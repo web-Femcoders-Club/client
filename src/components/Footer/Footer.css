@@ -1,0 +1,128 @@
+.footer {
+  width: 100%;
+  background: #4a148c;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-container {
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo img {
+  width: 90px;
+  margin-bottom: 20px;
+}
+
+.footer-social {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer-social p {
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-icons .icon {
+  color: #fff;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-icons .icon:hover {
+  color: #ef4444;
+}
+
+.footer-support {
+  text-align: right;
+}
+
+.footer-support p {
+  margin-bottom: 10px;
+}
+
+.footer-policies {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.slack-button {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgba(72, 61, 139, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.slack-button img {
+  width: 24px;
+  margin-right: 10px;
+}
+
+.slack-button:hover {
+  background-color: rgba(123, 104, 238, 0.8);
+}
+
+.cookie-link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-bottom: 20px;
+}
+
+.cookie-link:hover {
+  color: #ea4f33;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Centrar texto en móviles */
+  }
+  .footer-logo img {
+    width: 70px;
+  }
+  .footer-support {
+    text-align: center;
+  }
+
+  .footer-policies {
+    align-items: center;
+  }
+  .footer-bottom {
+    margin-top: 10px;
+  }
+}

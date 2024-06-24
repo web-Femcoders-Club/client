@@ -1,0 +1,442 @@
+.parallax {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 3rem;
+  height: auto;
+  margin-left: 3rem;
+  margin-top: 150px;
+}
+
+.text-content {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilo para el encabezado */
+.styled-heading {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  color: #4737bb;
+  text-align: left;
+  font-size: 2.5rem;
+}
+
+.styled-heading .highlight {
+  color: #ea4f33;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.styled-subheading {
+  font-family: "Asap Condensed", sans-serif;
+  color: #4737bb;
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.button-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+/* Contenedor de imágenes */
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: fill;
+}
+
+.photo-stack {
+  position: relative;
+  width: 80%;
+  margin-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-stack .photo {
+  width: 100%;
+  border-radius: 1rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo-stack .photo-1 {
+  z-index: 2;
+  transform: none;
+  width: 80%;
+  height: 26rem;
+}
+
+.photo-stack .photo-2 {
+  position: absolute;
+  top: -5.625rem;
+  left: -3.125rem;
+  z-index: 1;
+  width: 80%;
+  height: 26rem;
+  transform: rotate(-10deg);
+}
+
+.photo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border-radius: 1rem;
+  margin: 5px;
+  box-shadow: inset 0 0 0 5px white;
+}
+
+.curved-line {
+  width: 3.75rem;
+  height: 0.9375rem;
+  margin-bottom: -1.25rem;
+  margin-left: -3.75rem;
+}
+
+/* Estilos para el contenedor del carrusel */
+.carousel-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.carousel-heading {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #ea4f33;
+  margin-bottom: 5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 31.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.carousel-item.active {
+  left: 0;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.carousel-control.prev {
+  left: 0;
+  color: #ea4f33;
+}
+
+.carousel-control.next {
+  right: 0;
+  color: #ea4f33;
+}
+
+/* Estilos para la sección del contador */
+.section-countdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 5rem;
+}
+
+.section-countdown .countdown-content {
+  flex: 1;
+  text-align: left;
+  color: #4737bb;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-countdown .countdown {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #ea4f33;
+  margin-bottom: 2rem;
+}
+
+.section-countdown .countdown-item {
+  margin: 0 1rem;
+  text-align: center;
+}
+
+.section-countdown .countdown-item span {
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 2rem;
+  display: block;
+}
+
+.section-countdown .countdown-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  color: #4737bb;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-countdown .event-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  height: 400px;
+}
+
+.section-countdown .event-card img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  height: 70%;
+  object-fit: cover;
+}
+
+.section-countdown .event-card button {
+  background-color: #ea4f33;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.section-countdown .event-card button:hover {
+  background-color: rgba(239, 68, 68, 0.8);
+}
+.section-4 {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 6rem;
+  text-align: left;
+}
+
+.form-and-photos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.text-content {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.text-content h2 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.text-content {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 70px;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: fill;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+  .content-container {
+    flex-direction: column;
+    padding: 2rem;
+    margin-left: 0;
+    margin-top: 130px;
+  }
+  .text-content {
+    padding: 1rem;
+  }
+  .styled-heading {
+    font-size: 1.5rem;
+  }
+  .styled-heading .highlight {
+    font-size: 2.5rem;
+  }
+  .styled-subheading {
+    font-size: 1rem;
+  }
+  .image-content {
+    padding: 0.5rem;
+  }
+  .photo-stack {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .photo-stack .photo-1,
+  .photo-stack .photo-2 {
+    width: 100%;
+    height: 20rem;
+  }
+
+  .photo-stack .photo-2 {
+    top: -2.5rem;
+    left: -1.5rem;
+    transform: rotate(-5deg);
+  }
+  .carousel {
+    height: 20rem;
+  }
+  .carousel-control {
+    padding: 0.25rem 0.5rem;
+  }
+  .section-countdown .countdown-content {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-countdown .countdown {
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .section-countdown .countdown-item span {
+    font-size: 1.5rem;
+  }
+
+  .section-countdown .countdown-text {
+    font-size: 1.25rem;
+  }
+  .section-countdown {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .section-4 {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
+  .form-and-photos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-content {
+    text-align: justify;
+    margin-bottom: 2rem;
+  }
+
+  .form-container {
+    margin-left: 0;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .form-card {
+    max-width: 100%;
+  }
+
+  .image-content {
+    margin-top: 0;
+  }
+}

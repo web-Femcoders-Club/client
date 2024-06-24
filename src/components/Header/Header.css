@@ -1,0 +1,167 @@
+.header {
+  background: linear-gradient(to right, #6D2C95, #4737BB);
+  padding: 16px 0;
+  position: fixed; 
+  top: 0;
+  width: 100%;
+  z-index: 1000; 
+  transition: background 0.3s ease; 
+}
+
+.header.scrolled {
+  backdrop-filter: blur(10px); 
+  background: rgba(71, 55, 187, 0.7);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+}
+
+.menu-toggle {
+  display: none; 
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+.menu-toggle.open .menu-icon {
+  background-color: transparent;
+}
+
+.menu-toggle.open .menu-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.open .menu-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px; 
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  justify-content: flex-end;
+  transition: all 0.3s ease;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-family: 'Asap Condensed', sans-serif;
+  font-size: 1rem; 
+}
+
+.nav-link:hover {
+  color: #EA4F33;
+}
+
+.faqs-link {
+  margin-right: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 24px; 
+  transition: all 0.3s ease;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; 
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(109, 44, 149, 0.9);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 300px; 
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: calc(100% + 200px); 
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    background-color: rgba(109, 44, 149, 0.9);
+    transition: max-height 0.3s ease;
+  }
+
+  .auth-buttons.open {
+    max-height: 150px; 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+  
