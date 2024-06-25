@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import Layout from "../../../components/Layout/Layout";
-import "./Home.css";
 import { Link } from "react-router-dom";
+import ConfirmationModal from "../../Contact/components/ConfirmationModal";
+import "./Home.css";
 
 const HomePage: React.FC = () => {
   const images = [
@@ -50,6 +52,8 @@ const HomePage: React.FC = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const form = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     const photoInterval = setInterval(() => {
@@ -87,6 +91,37 @@ const HomePage: React.FC = () => {
     setCarouselIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!form.current) {
+      throw new Error("The form element is not found");
+    }
+
+    const formData = new FormData(form.current);
+
+    const serviceId = import.meta.env.VITE_API_SERVICE_ID;
+    const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
+    const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
+
+    const templateParams = {
+      to_email: "info@femcodersclub.com",
+      userName: formData.get('name'),
+      userLastName: formData.get('last-name'),
+      userEmail: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, apiKey)
+      .then(result => {
+        console.log(result.text);
+        setShowMessage(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -228,7 +263,7 @@ const HomePage: React.FC = () => {
                   alt="FemCoders Club Logo"
                   className="form-logo"
                 />
-                <form>
+                <form ref={form} onSubmit={handleSubmit}>
                   <input type="text" name="name" placeholder="Nombre" />
                   <input type="text" name="last-name" placeholder="Apellidos" />
                   <input type="email" name="email" placeholder="Email" />
@@ -256,8 +291,12 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ConfirmationModal isVisible={showMessage} onClose={() => setShowMessage(false)} />
     </Layout>
   );
 };
 
 export default HomePage;
+
+
