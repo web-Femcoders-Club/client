@@ -167,8 +167,8 @@ h4 {
 }
 
 .bg4 {
-  background-image: url('public/bg4.png');
- background-size: cover;
+  background-image: url('/public/bg4.jpg');
+  background-size: cover;
   background-position: center;
   z-index: 0;
 }
