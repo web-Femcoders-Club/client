@@ -14,8 +14,8 @@ module.exports = {
       subtitleText: ['Roboto', 'sans-serif'],
       bodyText: ['Roboto', 'sans-serif']
     },
-    
-    fontSize: {
+
+    fontSize:{
       heading1: "6rem",
       heading2: "4rem",
       heading3: "3.5rem",
@@ -55,9 +55,41 @@ module.exports = {
         'errorColor': '#EA4F33',
         'errorColorLight': '#F9D4CE',
       },
+      button: {
+        sizes:{
+          largeButton: {
+            width: '28.125rem',
+            padding: '0.5rem 1rem',
+            fontSize: '0.875rem',
+            borderRadius: '1.25rem',
+            fontFamily: 'Roboto, sans-serif'
+          },
+          mediumButton: {
+            width: '18.75rem',
+            padding: '0.5rem 1rem',
+            fontSize: '1.125rem',
+            borderRadius: '1.25rem',
+            fontFamily: 'Roboto, sans-serif'
+          },
+          smallButton: {
+            width: '11.25rem',
+            padding: '0.5rem 0.75rem',
+            fontSize: '1rem',
+            borderRadius: '1rem',
+            fontFamily: 'Roboto, sans-serif'
+          },
+          extraSmallButton: {
+            width: '9.375rem',
+            padding: '0.5rem 0.75rem',
+            fontSize: '0.75rem',
+            borderRadius: '0.5rem',
+            fontFamily: 'Roboto, sans-serif'
+          }
+        }
+      },
     }
   }
-};
+  };
 
   
 

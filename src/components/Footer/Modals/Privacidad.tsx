@@ -38,7 +38,7 @@ const PrivacyPolicyModal = () => {
               <button onClick={closeModal}>x</button>
             </div>
             <div className="modal-header">
-              <h2>Política de Privacidad y Términos de Uso</h2>
+              <h3>Política de Privacidad y Términos de Uso</h3>
             </div>
             <div className="modal-body">
               <p>

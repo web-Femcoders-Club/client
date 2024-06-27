@@ -54,12 +54,8 @@ const Header: React.FC = () => {
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
-          <Link to="/login">
-            <button className="secondary-button">Iniciar sesión</button>
-          </Link>
-          <Link to="/signup">
-            <button className="primary-button">Registrarme</button>
-          </Link>
+          <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link>
+          <Link to="/signup" className="nav-link secondary-button">Registrarme</Link>
         </div>
       </nav>
     </header>
@@ -67,8 +63,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
-
-
-
-
