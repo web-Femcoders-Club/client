@@ -26,7 +26,7 @@ const CookiePolicyModal = () => {
               <button onClick={closeModal}>x</button>
             </div>
             <div className="modal-header">
-              <h2>Política de cookies</h2>
+              <h3>Política de cookies</h3>
             </div>
             <div className="modal-body">
               <p>
