@@ -36,7 +36,7 @@ export const useLocalStorage = (keyName: string,defaultValue: string) => {
         }
         addEventListener("storage", listenStorageChange);
         return () => removeEventListener("storage", listenStorageChange);
-    }, [])
+    }, [defaultValue, keyName])
     
     return [storedValue, setValue];
 }

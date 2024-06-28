@@ -156,7 +156,6 @@ export type TokenVerificationDto = {
     token: string;
 };
 
-// Nuevos tipos
 export type ContactFormProps = {
     recipientEmail: string;
 };

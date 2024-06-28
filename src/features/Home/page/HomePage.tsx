@@ -1,11 +1,10 @@
 import { useState, useEffect, FormEvent, useRef } from "react";
 import emailjs from '@emailjs/browser';
-import Layout from "../../../components/Layout/Layout";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import { FaUserFriends, FaBriefcase, FaStar } from 'react-icons/fa';
+import { Helmet } from "react-helmet";
 import "./Home.css";
-
 
 const HomePage: React.FC = () => {
   const images = [
@@ -127,7 +126,11 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <>
+      <Helmet>
+        <title>FemCoders Club - Comunidad de Mujeres en Tecnología</title>
+        <meta name="description" content="Únete a FemCoders Club, una comunidad inclusiva de mujeres apasionadas por la tecnología. Participa en eventos, talleres y programas de mentoría." />
+      </Helmet>
       <section className="parallax bg1 full-height">
     <div className="content-container">
       <div className="text-content">
@@ -299,10 +302,11 @@ const HomePage: React.FC = () => {
       </section>
 
       <ConfirmationModal isVisible={showMessage} onClose={() => setShowMessage(false)} />
-    </Layout>
+    </>
   );
 };
 
 export default HomePage;
+
 
 
