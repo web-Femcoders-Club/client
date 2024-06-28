@@ -1,21 +1,24 @@
+// src/components/Footer/Footer.tsx
+//src/components/Footer/Footer.tsx
 import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
 import ApoyanosButton from './ApoyanosButton';
 import SlackButton from './SlackButton';
-import PrivacyPolicyModal from './Modals/Privacidad';
-import CookiePolicyModal from './Modals/Cookies';
 import FemCodersClubLogo from '../../../public/negativeLogo.png';
 import './Footer.css';
+import { useContext } from 'react';
+import { ModalContext } from '../../context/ModalContext';
 
 const FccFooter = () => {
+  const { openModal } = useContext(ModalContext);
+
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-logo">
-            <Link to="/">
+            <a href="/">
               <img src={FemCodersClubLogo} alt="Fem Coders Club Logo" />
-            </Link>
+            </a>
           </div>
           <div className="footer-social">
             <p>Síguenos en:</p>
@@ -30,10 +33,9 @@ const FccFooter = () => {
           </div>
           <div className="footer-support">
             <div className="footer-policies">
-              <CookiePolicyModal />
-              <PrivacyPolicyModal />
+              <a href="#" onClick={() => openModal('cookiePolicy')} className="cookie-link">Política de Cookies</a>
+              <a href="#" onClick={() => openModal('privacyPolicy')} className="cookie-link">Política de Privacidad</a>
             </div>
-            
             <ApoyanosButton />
           </div>
         </div>
@@ -46,4 +48,12 @@ const FccFooter = () => {
 }
 
 export default FccFooter;
+
+
+
+
+
+
+
+
 
