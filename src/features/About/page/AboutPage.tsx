@@ -1,5 +1,7 @@
 import React from 'react';
-
+import iconMission from '/iconMission.png';
+import iconVision from '/iconVision.png';
+import FemCodersClubLogo from '/FemCodersClubLogo.png';
 import './AboutPage.css';
 
 const AboutPage: React.FC = () => {
@@ -9,30 +11,60 @@ const AboutPage: React.FC = () => {
         <div className="banner-quienes-somos">
           <h1>Comunidad de mujeres desarrolladoras</h1>
           <p>
-            El objetivo principal de <strong>femCoders Club</strong> es cerrar la brecha de género en el ámbito digital y ser un referente que promueva la inclusión femenina en el mundo tecnológico. Somos un grupo de mujeres apasionadas por la tecnología que trabajamos para fomentar la participación activa de las mujeres en el sector de TI.
+            El objetivo principal de <strong>femCoders Club</strong> es cerrar la brecha de género en el ámbito digital y ser un referente que promueva la inclusión femenina en el mundo tecnológico. Somos un grupo de mujeres apasionadas por la tecnología que <strong>trabajamos para fomentar la participación activa de las mujeres en el sector de TI.</strong>
           </p>
         </div>
       </section>
-      <section className="parallax bg1 full-height">
+      <section className="parallax-bg1">
         <div className="container-quienes-somos">
           <p className="description text-left">
-            Nuestra misión es crear un espacio seguro donde podamos reunirnos y colaborar para crecer juntas. Para lograrlo, organizamos actividades que visibilizan a las mujeres programadoras y promovemos su desarrollo profesional. A través de diálogos abiertos y respetuosos, buscamos derribar barreras y estereotipos, empoderando a todas las mujeres para prosperar en sus carreras tecnológicas. Mediante eventos, talleres y recursos, trabajamos unidas para generar un impacto duradero en la industria y en la vida de nuestras miembros.
+            <strong>Nuestro objetivo es crear un espacio seguro donde podamos reunirnos y colaborar para crecer juntas.</strong> Para lograrlo, organizamos actividades que visibilizan a las mujeres programadoras y promovemos su desarrollo profesional. A través de diálogos abiertos y respetuosos, buscamos derribar barreras y estereotipos, empoderando a todas las mujeres para prosperar en sus carreras tecnológicas. Mediante eventos, talleres y recursos, trabajamos unidas para generar un impacto duradero en la industria de la tecnología.
           </p>
           <p className="description text-right">
             En <span>FemCoders Club </span>nos enfocamos en impulsar la inclusión, equidad y visibilidad de las mujeres en el sector de TI. Creemos en la diversidad y en la fuerza colectiva para superar obstáculos y lograr un impacto positivo en la industria tecnológica. Promovemos la colaboración y el apoyo mutuo, ofreciendo una plataforma donde las mujeres pueden compartir sus conocimientos, experiencias y recursos. <strong>Juntas, estamos construyendo un futuro más inclusivo y equitativo en el mundo de la tecnología.</strong>
           </p>
-          
         </div>
-        
       </section>
-      <section className="parallax bg2 full-height"></section>
-      <section className="parallax bg3 full-height"></section>
-      <section className="parallax bg4 full-height"></section>
+      <section className="parallax bg2 full-height">
+        <div className="card-container">
+          <div className="card">
+            <div className="flip-card-inner">
+              <div className="flip-card-front">
+                <img src={iconMission} alt="Icono Misión" />
+                <h3>Misión</h3>
+              </div>
+              <div className="flip-card-back">
+              <img src= {FemCodersClubLogo} alt='femCoders Club logo' />
+                <p>
+                  <strong>Nuestra misión es empoderar y elevar a las mujeres en el campo del desarrollo web.</strong> Trabajamos intensamente para cerrar la brecha de género en la tecnología, fomentando una comunidad que fortalece habilidades, conocimientos y confianza. Nos esforzamos incansablemente por tener un impacto positivo tanto en el sector tecnológico como en el desarrollo personal de nuestras miembros, a través de <strong>eventos, talleres y recursos que promueven la inclusión, la equidad y la diversidad.</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="flip-card-inner">
+              <div className="flip-card-front">
+                <img src={iconVision} alt="Icono Visión" />
+                <h3>Visión</h3>
+              </div>
+              <div className="flip-card-back">
+                <img src= {FemCodersClubLogo} alt='logo femCoders Club' />
+                <p>
+                  <strong>Nuestra visión es un futuro donde las mujeres desarrolladoras web lideren, innoven y den forma al panorama digital.</strong> Aspiramos a un sector IT equitativo e inclusivo, donde la diversidad y la inclusión sean principios fundamentales que impulsen el progreso tecnológico. Nuestro club aspira a ser el catalizador del cambio, donde cada mujer, sin importar su origen, encuentre estímulo, recursos y <strong>una comunidad vibrante para destacarse como codificadora y líder.</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+      </section>
+      <section className="parallax bg3 full-height">
+        <div><h3>Nuestros Valores</h3></div>
+        <div><h3>Nuestro Compromiso</h3></div>
+      </section>
+      <section className="parallax bg4 full-height"><h3>Nuestras Ideas</h3></section>
     </>
   );
 };
 
 export default AboutPage;
-
-
-

@@ -26,7 +26,7 @@
   font-family: "Roboto", sans-serif;
   color: #4737bb;
   line-height: 1.2;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 25px;
 }
 
@@ -90,10 +90,11 @@
 }
 
 .curved-line {
-  width: 3.75rem;
+  width: 9.75rem;
   height: 0.9375rem;
-  margin-bottom: -1.25rem;
-  margin-left: -3.75rem;
+margin-left: 77%;
+
+ 
 }
 
 .carousel-container {
@@ -117,7 +118,7 @@
   font-family: "Roboto", sans-serif;
   color: #fdfdfd;
   line-height: 1.2;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 25px;
   margin-bottom: 2rem;
 }
@@ -181,9 +182,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 5rem;
+  padding: 3rem;
   margin-top: 3rem;
-  
+  gap: 4rem;
 }
 
 @keyframes fadeIn {
@@ -274,12 +275,12 @@
 }
 
 .event-card img {
-  height: 400px;
+  height: 380px;
   border-radius: 1rem;
   margin-bottom: 1rem;
   object-fit: cover;
   cursor: pointer;
-  margin-left: 10%;
+ 
 }
 .section-4 {
   display: flex;

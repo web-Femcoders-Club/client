@@ -136,6 +136,10 @@ const HomePage: React.FC = () => {
       <div className="text-content">
         <h1 >
           femCoders Club
+         
+        </h1>
+        <h2 >
+          Tu comunidad de mujeres en tecnología
           <svg
             className="curved-line"
             xmlns="http://www.w3.org/2000/svg"
@@ -149,9 +153,6 @@ const HomePage: React.FC = () => {
               fill="none"
             />
           </svg>
-        </h1>
-        <h2 >
-          Tu comunidad de mujeres en tecnología
         </h2>
         <p className="styled-paragraph">
          <span > Juntas,</span> potenciamos el crecimiento y liderazgo de las mujeres tech.
