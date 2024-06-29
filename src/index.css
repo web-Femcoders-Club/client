@@ -3,7 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.parallax {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+  transition: background-position 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
 .primary-button {
   background-color: #ea4f33;
   color: white;
@@ -213,6 +226,8 @@ form textarea {
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
 }
+
+
 
 @media (max-width: 768px) {
   h1 {
