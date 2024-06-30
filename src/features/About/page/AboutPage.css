@@ -7,7 +7,7 @@
 }
 
 .parallax-bg1 {
-  height: 60vh;
+  height: 50vh;
 }
 
 .banner {
@@ -68,7 +68,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin: 20px;
+  margin-top: 50px;
 }
 
 .text-left,
@@ -148,6 +148,9 @@
   margin-bottom: 10px;
 }
 
+.parallax.bg3 {
+  height: 110vh;
+}
 .parallax.bg3 .bg3-content {
   display: flex;
   flex-direction: column;
@@ -155,7 +158,6 @@
   width: 100%;
   padding: 50px;
   gap: 80px;
-  
 }
 
 .commitment-section {
@@ -165,54 +167,85 @@
   align-items: center;
   width: 100%;
   margin-top: 20px;
-  
 }
 
 .commitment-section .compromise-text {
   flex: 1;
   text-align: center;
   margin-left: 50px;
- 
 }
-.compromise-text p{
-  color:#4737bb;
+.compromise-text p {
+  color: #4737bb;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   line-height: 1.6;
-  
 }
-.compromise-text img{
- margin-left: 50%;
+.compromise-text img {
+  margin-left: 50%;
 }
 .commitment-section .compromise-img {
   flex: 1;
   text-align: center;
   margin-left: 200px;
- 
 }
 
-.commitment-section h3  {
+.commitment-section h3 {
   margin-top: 30px;
-  
 }
 .values-section h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
- 
+}
+.parallax.bg4 {
+  height: 130vh;
+  padding-bottom: 20px;
 }
 
+.parallax.bg4 p {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+}
+
+.idea-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 1px solid #7d5795;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.idea-card.expanded {
+  background: linear-gradient(to right, #9f97d9, #7d5795, #f38c79);
+  padding: 20px;
+}
+
+.idea-card-title {
+  color: #ea4f33;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.idea-card-content {
+  margin-top: 10px;
+}
 
 @media (max-width: 768px) {
   .banner h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .banner p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
-
+  .parallax-bg1 {
+    height: 80vh;
+  }
   .container-quienes-somos {
     flex-direction: column;
     align-items: center;
@@ -222,10 +255,42 @@
   .text-right {
     margin: 20px;
     text-align: justify;
+    font-size: 1rem;
+  }
+  .card-container {
+    flex-direction: column;
+  }
+  .flip-card-inner,
+  .flip-card-front,
+  .flip-card-back {
+    width: 80%;
+    height: 100%;
+    text-align: justify;
   }
 
- 
+  .commitment-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .commitment-section .compromise-text {
+    margin-left: 0;
+  }
+  .compromise-text p {
+    font-size: 1rem;
+  }
+  .compromise-img {
+    display: none;
+  }
+  .parallax.bg4 {
+    height: 125vh;
+  }
+  .parallax.bg4 h3 {
+    font-size: 1.5rem;
+  }
+  .idea-card-title {
+    font-size: 1.2rem;
+  }
+  .idea-card-content {
+    font-size: 0.87rem;
+  }
 }
-
-
-
