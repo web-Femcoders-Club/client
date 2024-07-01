@@ -218,7 +218,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="parallax bg3">
+      <section className="parallax bg3 full-height">
   <div className="section-content">
     <div className="call-to-action">
       <h2>Conócenos</h2>

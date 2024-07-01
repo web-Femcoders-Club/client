@@ -93,8 +93,6 @@
   width: 9.75rem;
   height: 0.9375rem;
 margin-left: 77%;
-
- 
 }
 
 .carousel-container {
@@ -185,7 +183,11 @@ margin-left: 77%;
   padding: 3rem;
   margin-top: 3rem;
   gap: 4rem;
+  width: 100%;
+  
+
 }
+
 
 @keyframes fadeIn {
   0% {
@@ -280,6 +282,7 @@ margin-left: 77%;
   margin-bottom: 1rem;
   object-fit: cover;
   cursor: pointer;
+  margin-left: 80px;
  
 }
 .section-4 {
@@ -388,6 +391,9 @@ margin-left: 77%;
     font-size: 0.87rem;
   }
 
+  .curved-line{
+    width: 4.25rem;
+  }
   .photo-stack {
     width: 90%;
     margin-top: 2rem;
@@ -417,37 +423,52 @@ margin-left: 77%;
   .carousel-subheading {
     font-size: 1rem;
   }
+ 
   .section-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 28rem;
   }
 
   .call-to-action,
   .section-countdown {
     width: 100%;
+   
     margin-right: 0;
-    margin-bottom: 1rem;
+   
   }
+ .countdown-content{
+  height: 7rem;
+  margin-bottom: 5rem;
 
+ }
+ .countdown-content h3{
+  font-size: 1rem;
+ }
   .call-to-action h2,
   .countdown-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+
   }
 
   .call-to-action p {
     font-size: 1rem;
-    margin-top: 15px;
-    margin-bottom: 1.5rem;
+    margin-top: 10px;
+    
   }
 
   .event-card img {
     width: 100%;
+    height: 20%;
+  margin-bottom: 66rem;
+  margin-left: 0;
   }
+
   .section-4 {
     flex-direction: column;
     padding: 0.1rem;
+  
   }
 
   .form-and-photos {
@@ -465,7 +486,8 @@ margin-left: 77%;
     padding: 1rem;
   }
   .photo-stack.section-4-photo-stack {
-    width: 90%;
+    width: 100%;
+    margin-top: 5rem;
   }
   .form-card {
     max-width: 80%;
