@@ -12,6 +12,7 @@ import logPageView from '../utils/logPageView';
 import { ModalContext } from '../context/ModalContext';
 import CookiePolicyModal from '../components/Footer/Modals/Cookies';
 import PrivacyPolicyModal from '../components/Footer/Modals/Privacidad';
+import TeamPage from '../features/Team/page/TeamPage'; 
 
 const RouterComponent: React.FC = () => {
     const location = useLocation();
@@ -32,6 +33,7 @@ const RouterComponent: React.FC = () => {
                 <Route path="/sobrenosotras" element={<Layout><AboutPage /></Layout>} />
                 <Route path="/faqs" element={<Layout><FaqsPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
+                <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
             </Routes>
             {modalType === 'cookiePolicy' && <CookiePolicyModal closeModal={closeModal} />}
             {modalType === 'privacyPolicy' && <PrivacyPolicyModal closeModal={closeModal} />}
