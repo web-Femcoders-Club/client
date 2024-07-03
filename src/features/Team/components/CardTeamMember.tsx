@@ -5,10 +5,10 @@ import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
 import { HiUserGroup } from "react-icons/hi";
 import { useState } from "react";
-import "../../Team/page/CardTeamMember.css";
+import "../../Team/page/CardTeamMember.css"; 
 
 const CardTeamMember = () => {
-  const { data, error, isLoading } = useQuery<Member[]>({
+  const { data } = useQuery<Member[]>({
     queryKey: ['members'],
     queryFn: getMember
   });
@@ -16,7 +16,7 @@ const CardTeamMember = () => {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   const handleClick = (member: Member) => {
-    setSelectedMember(member);
+    setSelectedMember(member); 
     document.body.style.overflow = 'hidden';
   };
 
@@ -25,12 +25,13 @@ const CardTeamMember = () => {
     document.body.style.overflow = 'auto';
   };
 
-  if (isLoading) return <div>Loading...</div>;  // Maneja el estado de carga
-  if (error) return <div>Error: {error.message}</div>;  // Maneja errores
+  if (!Array.isArray(data)) {
+    return <div>Error: data is not an array</div>;
+  }
 
   return (
     <div className="card-team-member-container">
-      {Array.isArray(data) && data.map((member) => (  // Verifica si 'data' es un array
+      {data.map((member) => (
         <div key={member.idMember} className="card-team-member">
           <div className="card-team-member-content">
             <div className="card-team-member-image">
@@ -69,5 +70,4 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
-
 
