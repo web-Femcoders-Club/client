@@ -1,4 +1,3 @@
-// src/features/Team/components/CardTeamMember.tsx
 import { useQuery } from "@tanstack/react-query";
 import { FaLinkedin, FaUser } from "react-icons/fa";
 import { PiFileMagnifyingGlassBold } from "react-icons/pi";
@@ -9,7 +8,7 @@ import { useState } from "react";
 import "../../Team/page/CardTeamMember.css"; 
 
 const CardTeamMember = () => {
-  const { data, error } = useQuery<Member[]>({
+  const { data, error, isLoading } = useQuery<Member[]>({
     queryKey: ['members'],
     queryFn: getMember
   });
@@ -25,6 +24,10 @@ const CardTeamMember = () => {
     setSelectedMember(null);
     document.body.style.overflow = 'auto';
   };
+
+  if (isLoading) {
+    return <p>Loading members...</p>;
+  }
 
   if (error) {
     console.error("Error fetching members:", error);
@@ -78,6 +81,7 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
+
 
 
 
