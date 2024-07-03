@@ -6,10 +6,6 @@ import mkcert from 'vite-plugin-mkcert';
 export default defineConfig({
   plugins: [react(), mkcert()],
   server: {
-    https: {
-      key: 'path/to/key',
-      cert: 'path/to/cert',
-    },
     proxy: {
       '/api': {
         target: process.env.NODE_ENV === 'production' 
@@ -21,6 +17,8 @@ export default defineConfig({
     },
   },
 });
+
+
 
 
 
