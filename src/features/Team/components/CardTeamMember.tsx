@@ -8,7 +8,7 @@ import { useState } from "react";
 import "../../Team/page/CardTeamMember.css"; 
 
 const CardTeamMember = () => {
-  const { data } = useQuery<Member[]>({
+  const { data, error } = useQuery<Member[]>({
     queryKey: ['members'],
     queryFn: getMember
   });
@@ -25,28 +25,33 @@ const CardTeamMember = () => {
     document.body.style.overflow = 'auto';
   };
 
-  if (!Array.isArray(data)) {
-    return <div>Error: data is not an array</div>;
+  if (error) {
+    console.error("Error fetching members:", error);
+    return <p>Error loading members</p>;
   }
 
   return (
     <div className="card-team-member-container">
-      {data.map((member) => (
-        <div key={member.idMember} className="card-team-member">
-          <div className="card-team-member-content">
-            <div className="card-team-member-image">
-              <img src={member.memberImage} alt="member image" className="member-image" />
+      {Array.isArray(data) && data.length > 0 ? (
+        data.map((member) => (
+          <div key={member.idMember} className="card-team-member">
+            <div className="card-team-member-content">
+              <div className="card-team-member-image">
+                <img src={member.memberImage} alt="member image" className="member-image" />
+              </div>
+              <div className="card-team-member-details">
+                <h5 className="card-team-member-title"><FaUser className="icon" />{member.memberName} {member.memberLastName}</h5>
+                <p className="card-team-member-role"><HiUserGroup className="icon" />{member.memberRole}</p>
+                <p className="card-team-member-linkedin"><FaLinkedin className="icon" />{member.memberLinkedin.slice(0, 20)}...</p>
+                <p className="card-team-member-description"><PiFileMagnifyingGlassBold className="icon" /><strong>{member.memberDescription.slice(0, 52)}...</strong></p>
+              </div>
             </div>
-            <div className="card-team-member-details">
-              <h5 className="card-team-member-title"><FaUser className="icon" />{member.memberName} {member.memberLastName}</h5>
-              <p className="card-team-member-role"><HiUserGroup className="icon" />{member.memberRole}</p>
-              <p className="card-team-member-linkedin"><FaLinkedin className="icon" />{member.memberLinkedin.slice(0, 20)}...</p>
-              <p className="card-team-member-description"><PiFileMagnifyingGlassBold className="icon" /><strong>{member.memberDescription.slice(0, 52)}...</strong></p>
-            </div>
+            <button className="secondary-button" onClick={() => handleClick(member)}>Ver más</button>
           </div>
-          <button className="secondary-button" onClick={() => handleClick(member)}>Ver más</button>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No members found.</p>
+      )}
       {selectedMember && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -70,4 +75,5 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
+
 
