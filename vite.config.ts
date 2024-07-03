@@ -6,10 +6,15 @@ import mkcert from 'vite-plugin-mkcert';
 export default defineConfig({
   plugins: [react(), mkcert()],
   server: {
-    https: true,
+    https: {
+      key: 'path/to/key',
+      cert: 'path/to/cert',
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:3000', 
+        target: process.env.NODE_ENV === 'production' 
+          ? 'https://server-femcoders.up.railway.app' 
+          : 'http://localhost:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
