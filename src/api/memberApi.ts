@@ -8,13 +8,14 @@ const API_URL = '/api';
 export const getMember = async (): Promise<Member[]> => {
   try {
     const response = await axios.get(`${API_URL}/member`);
-    console.log('Response data from getMember:', response.data);  // <-- Agrega esto para verificar los datos
+    console.log('Response data from getMember:', response.data); // Verifica que la API devuelve datos
     return response.data;
   } catch (error) {
-    console.error('Error al obtener los miembros:', error);  // <-- Agrega esto para loguear errores
+    console.error('Error al obtener los miembros:', error);
     throw new Error('Error al obtener los miembros');
   }
 };
+
 
 export const addMember = async (
   memberName: string,
