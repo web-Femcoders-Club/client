@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Slack from '../../../public/slack.jpg'; 
+import Slack from '/slack.jpg'; 
 import './Footer.css';
 
 const SlackButton = () => {

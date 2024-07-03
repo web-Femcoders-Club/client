@@ -1,9 +1,5 @@
-
-
 const components = () => {
-  return (
-    <div>components</div>
-  )
-}
+  return <div>components</div>;
+};
 
-export default components
+export default components;

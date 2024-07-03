@@ -1,62 +1,32 @@
-.parallax {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
 .full-height {
   height: 100vh;
 }
 
 .content-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 3rem;
+  width: 85%;
   height: auto;
-  margin-left: 3rem;
-  margin-top: 150px;
+  margin-top: 9.375rem;
 }
 
 .text-content {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 1;
 }
 
-/* Estilo para el encabezado */
-.styled-heading {
+.styled-paragraph {
   font-family: "Roboto", sans-serif;
-  font-weight: bold;
+  color: #4737bb;
   line-height: 1.2;
-  color: #4737bb;
-  text-align: left;
-  font-size: 2.5rem;
-}
-
-.styled-heading .highlight {
-  color: #ea4f33;
-  font-size: 4rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.styled-subheading {
-  font-family: "Asap Condensed", sans-serif;
-  color: #4737bb;
-  margin-top: 1rem;
-  text-align: left;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  margin-top: 25px;
 }
 
 .button-container {
@@ -66,7 +36,6 @@
   justify-content: flex-start;
 }
 
-/* Contenedor de imágenes */
 .image-content {
   flex: 1;
   display: flex;
@@ -79,8 +48,7 @@
   position: relative;
   width: 80%;
   margin-top: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 160px;
 }
 
 .photo-stack .photo {
@@ -121,13 +89,11 @@
 }
 
 .curved-line {
-  width: 3.75rem;
+  width: 9.75rem;
   height: 0.9375rem;
-  margin-bottom: -1.25rem;
-  margin-left: -3.75rem;
+  margin-left: 77%;
 }
 
-/* Estilos para el contenedor del carrusel */
 .carousel-container {
   width: 80%;
   display: flex;
@@ -142,10 +108,17 @@
   font-weight: bold;
   font-size: 2rem;
   color: #ea4f33;
-  margin-bottom: 5rem;
+  margin-top: 3rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
+.carousel-subheading {
+  font-family: "Roboto", sans-serif;
+  color: #fdfdfd;
+  line-height: 1.2;
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 2rem;
+}
 .carousel {
   position: relative;
   overflow: hidden;
@@ -202,96 +175,123 @@
   color: #ea4f33;
 }
 
-/* Estilos para la sección del contador */
-.section-countdown {
+.section-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  padding: 5rem;
+  align-items: flex-start;
+  padding: 3rem;
+  margin-top: 3rem;
+  gap: 4rem;
+  width: 100%;
+  
+
 }
 
-.section-countdown .countdown-content {
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+  }
+}
+.call-to-action {
   flex: 1;
-  text-align: left;
-  color: #4737bb;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin-right: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
-.section-countdown .countdown {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
+.call-to-action h2,
+.countdown-content h2 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
   color: #ea4f33;
-  margin-bottom: 2rem;
-}
-
-.section-countdown .countdown-item {
-  margin: 0 1rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
-.section-countdown .countdown-item span {
-  margin-top: 40px;
-  font-weight: bold;
+.call-to-action p {
+  font-family: "Roboto", sans-serif;
+  color: #4737bb;
+  line-height: 1.2;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  margin-bottom: 2rem;
+}
+
+.icon {
+  color: inherit;
   font-size: 2rem;
   display: block;
+  margin: 0.5rem auto;
 }
 
-.section-countdown .countdown-text {
-  font-family: "Roboto", sans-serif;
-  font-size: 2rem;
-  color: #4737bb;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.section-countdown .event-card {
+.section-countdown {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding: 2rem;
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
-.section-countdown .event-card img {
-  width: 100%;
+.countdown-content {
+  margin-bottom: 1rem;
+}
+
+.countdown-item {
+  display: inline-block;
+  margin: 0 1rem;
+  color: #4737bb;
+}
+
+.countdown-item span {
+  font-size: 1.5rem;
+  color: #ea4f33;
+  font-weight: bold;
+}
+
+.countdown-text {
+  font-size: 1.5rem;
+  margin-top: 1.3rem;
+  margin-bottom: 1rem;
+  color: #4737bb;
+}
+
+.event-card {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.event-card img {
+  height: 380px;
   border-radius: 1rem;
   margin-bottom: 1rem;
-  height: 70%;
   object-fit: cover;
-}
-
-.section-countdown .event-card button {
-  background-color: #ea4f33;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
-}
-
-.section-countdown .event-card button:hover {
-  background-color: rgba(239, 68, 68, 0.8);
 }
 .section-4 {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 6rem;
   text-align: left;
+  padding-top: 2rem;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-attachment: fixed;
 }
 
 .form-and-photos {
@@ -301,37 +301,31 @@
   padding-top: 2rem;
 }
 
-.text-content {
-  flex: 1;
-  padding: 1.5rem;
+.content-text {
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 2rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 1;
-}
-
-.text-content h2 {
-  font-family: "Asap Condensed", sans-serif;
-  font-weight: bold;
-  font-size: 32px;
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.text-content {
+  z-index: 2;
+  text-align: center;
   font-family: "Roboto", sans-serif;
   color: white;
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 1.3rem;
+  background: rgba(71, 55, 187, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: -10px;
 }
 
 .form-container {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-left: 70px;
 }
 
 .image-content {
@@ -343,6 +337,42 @@
   margin-top: 20px;
 }
 
+.photo-stack.section-4-photo-stack {
+  position: relative;
+  width: 80%;
+}
+
+.photo-stack .photo {
+  border-radius: 1rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo-stack .photo-1 {
+  z-index: 2;
+  transform: none;
+}
+
+.photo-stack .photo-2 {
+  position: absolute;
+  top: -50px;
+  left: 10px;
+  z-index: 1;
+  transform: rotate(-10deg);
+}
+
+.photo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border-radius: 1rem;
+  margin: 5px;
+  box-shadow: inset 0 0 0 5px white;
+}
 
 @media (max-width: 768px) {
   .parallax {
@@ -350,40 +380,32 @@
   }
   .content-container {
     flex-direction: column;
-    padding: 2rem;
     margin-left: 0;
-    margin-top: 130px;
   }
-  .text-content {
-    padding: 1rem;
+
+  .styled-paragraph {
+    font-size: 0.87rem;
   }
-  .styled-heading {
-    font-size: 1.5rem;
-  }
-  .styled-heading .highlight {
-    font-size: 2.5rem;
-  }
-  .styled-subheading {
-    font-size: 1rem;
-  }
-  .image-content {
-    padding: 0.5rem;
+
+  .curved-line{
+    width: 4.25rem;
   }
   .photo-stack {
-    width: 100%;
+    width: 90%;
     margin-top: 2rem;
+    margin-left: auto;
   }
 
   .photo-stack .photo-1,
   .photo-stack .photo-2 {
-    width: 100%;
-    height: 20rem;
+    width: 90%;
+    height: 16rem;
   }
 
   .photo-stack .photo-2 {
     top: -2.5rem;
     left: -1.5rem;
-    transform: rotate(-5deg);
+    transform: rotate(-10deg);
   }
   .carousel {
     height: 20rem;
@@ -391,30 +413,58 @@
   .carousel-control {
     padding: 0.25rem 0.5rem;
   }
-  .section-countdown .countdown-content {
-    text-align: center;
-    margin-bottom: 2rem;
+  .carousel-heading {
+    font-size: 1.3rem;
   }
-
-  .section-countdown .countdown {
-    justify-content: center;
+  .carousel-subheading {
     font-size: 1rem;
   }
-
-  .section-countdown .countdown-item span {
-    font-size: 1.5rem;
-  }
-
-  .section-countdown .countdown-text {
-    font-size: 1.25rem;
-  }
-  .section-countdown {
+ 
+  .section-content {
+    display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
+    align-items: center;
+    margin-top: 28rem;
   }
+
+  .call-to-action,
+  .section-countdown {
+    width: 100%;
+   
+    margin-right: 0;
+   
+  }
+ .countdown-content{
+  height: 7rem;
+  margin-bottom: 5rem;
+
+ }
+ .countdown-content h3{
+  font-size: 1rem;
+ }
+  .call-to-action h2,
+  .countdown-content h2 {
+    font-size: 1.2rem;
+
+  }
+
+  .call-to-action p {
+    font-size: 1rem;
+    margin-top: 10px;
+    
+  }
+
+  .event-card img {
+    width: 100%;
+    height: 20%;
+  margin-bottom: 66rem;
+  margin-left: 0;
+  }
+
   .section-4 {
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 0.1rem;
+  
   }
 
   .form-and-photos {
@@ -422,22 +472,20 @@
     align-items: center;
   }
 
-  .text-content {
-    text-align: justify;
-    margin-bottom: 2rem;
-  }
-
   .form-container {
     margin-left: 0;
-    margin-bottom: 2rem;
+    height: 50%;
+    width: 80%;
+  }
+  .content-text {
+    margin-top: -50px;
+    padding: 1rem;
+  }
+  .photo-stack.section-4-photo-stack {
     width: 100%;
+    margin-top: 5rem;
   }
-
   .form-card {
-    max-width: 100%;
-  }
-
-  .image-content {
-    margin-top: 0;
+    max-width: 80%;
   }
 }

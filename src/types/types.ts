@@ -1,5 +1,7 @@
+// types.ts
+
 export type ChildrenProps = {
-    children: React.ReactNode
+    children: React.ReactNode;
 };
 
 export type User = {
@@ -7,14 +9,14 @@ export type User = {
 };
 
 export type EditUserFormData = {
-    userId: string,
+    userId: string;
     updatedUser: {
-        userName: string,
-        userLastName: string,
-        userGender: string,
-        userEmail: string,
-        userTelephone: string,
-    }
+        userName: string;
+        userLastName: string;
+        userGender: string;
+        userEmail: string;
+        userTelephone: string;
+    };
 };
 
 export type SignUpFormData = {
@@ -24,7 +26,7 @@ export type SignUpFormData = {
     phoneNumber: string;
     email: string;
     password: string;
-    confirmPassword?: string,
+    confirmPassword?: string;
 };
 
 export type Sponsor = {
@@ -49,7 +51,7 @@ export type EditSponsorFormData = {
         sponsorsCompany: string;
         sponsorsEmail: string;
         sponsorsTelephone: string;
-    }
+    };
 };
 
 export type DeleteSponsorType = {
@@ -78,7 +80,7 @@ export type EditVolunteerData = {
         volunteerLastName: string;
         volunteerEmail: string;
         volunteerGender: string;
-    }
+    };
 };
 
 export type DeleteVolunteerData = {
@@ -101,23 +103,7 @@ export type EditFaqFormData = {
     faqAnswer: string;
 };
 
-export type faq = {
-    idFaq: number;
-    faqQuestion: string;
-    faqAnswer: string;
-};
-
 export type Member = {
-    idMember: number;
-    memberName: string;
-    memberLastName: string;
-    memberDescription: string;
-    memberRole: string;
-    memberImage: string;
-    memberLinkedin: string;
-};
-
-export type member = {
     idMember: number;
     memberName: string;
     memberLastName: string;
@@ -145,7 +131,7 @@ export type EditMemberFormData = {
         memberRole: string;
         memberImage: string;
         memberLinkedin: string;
-    }
+    };
 };
 
 export type DeleteMemberData = {
@@ -156,7 +142,6 @@ export type TokenVerificationDto = {
     token: string;
 };
 
-// Nuevos tipos
 export type ContactFormProps = {
     recipientEmail: string;
 };
@@ -165,3 +150,13 @@ export type ConfirmationModalProps = {
     isVisible: boolean;
     onClose: () => void;
 };
+
+export type UpdateMemberDto = {
+    memberName?: string;
+    memberLastName?: string;
+    memberDescription?: string;
+    memberRole?: string;
+    memberImage?: string;
+    memberLinkedin?: string;
+};
+

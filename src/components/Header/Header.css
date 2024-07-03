@@ -1,15 +1,15 @@
 .header {
-  background: linear-gradient(to right, #6D2C95, #4737BB);
+  background: linear-gradient(to right, #6d2c95, #4737bb);
   padding: 16px 0;
-  position: fixed; 
+  position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; 
-  transition: background 0.3s ease; 
+  z-index: 1000;
+  transition: background 0.3s ease;
 }
 
 .header.scrolled {
-  backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px);
   background: rgba(71, 55, 187, 0.7);
 }
 
@@ -29,11 +29,11 @@
 .logo {
   width: 70px;
   height: auto;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .menu-toggle {
-  display: none; 
+  display: none;
   cursor: pointer;
 }
 
@@ -47,7 +47,7 @@
 
 .menu-icon::before,
 .menu-icon::after {
-  content: '';
+  content: "";
   width: 24px;
   height: 2px;
   background-color: white;
@@ -81,7 +81,7 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 32px; 
+  gap: 32px;
   margin: 0;
   padding: 0;
   flex-grow: 1;
@@ -93,28 +93,55 @@
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-family: 'Asap Condensed', sans-serif;
-  font-size: 1rem; 
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1rem;
 }
 
 .nav-link:hover {
-  color: #EA4F33;
+  color: #ea4f33;
 }
 
 .faqs-link {
   margin-right: 1rem;
 }
 
-.auth-buttons {
-  display: flex;
-  gap: 24px; 
-  transition: all 0.3s ease;
+.auth-buttons .nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 8px;
 }
 
-/* Media Queries */
+.auth-buttons .secondary-button {
+  background-color: transparent;
+  border: 2px solid #fdfdfd;
+  color: white;
+}
+
+.auth-buttons .secondary-button:hover {
+  background-color: transparent;
+  color: #ea4f33;
+}
+
+.auth-buttons .primary-button {
+  background-color: #ea4f33;
+  border: none;
+  color: white;
+}
+
+.auth-buttons .primary-button:hover {
+  background-color: #bb3f28;
+  color: white;
+  border: none;
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; 
+    display: block;
   }
 
   .nav-links {
@@ -125,43 +152,48 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: rgba(109, 44, 149, 0.9);
+    background: linear-gradient(to right, #6d2c95, #4737bb);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 16px;
   }
 
   .nav-links.open {
-    max-height: 300px; 
+    max-height: 200px;
+  }
+
+  .nav-link {
+    margin: 16px 0;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
   }
 
   .auth-buttons {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     position: absolute;
-    top: calc(100% + 200px); 
+    top: calc(100% + 154px);
     left: 0;
     width: 100%;
     max-height: 0;
     overflow: hidden;
-    background-color: rgba(109, 44, 149, 0.9);
-    transition: max-height 0.3s ease;
+    background: linear-gradient(to right, #6d2c95, #4737bb);
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 8px;
   }
 
   .auth-buttons.open {
-    max-height: 150px; 
+    max-height: 150px;
+  }
+
+  .auth-buttons .nav-link {
+    margin: 8px 0;
+    width: 80%;
+    max-width: 150px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-  
