@@ -8,96 +8,58 @@ import { useState } from "react";
 import "../../Team/page/CardTeamMember.css";
 
 const CardTeamMember = () => {
-  const { data } = useQuery<Member[]>({
-    queryKey: ["members"],
-    queryFn: getMember,
+  const { data, error, isLoading } = useQuery<Member[]>({
+    queryKey: ['members'],
+    queryFn: getMember
   });
 
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   const handleClick = (member: Member) => {
     setSelectedMember(member);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   };
 
   const handleCloseModal = () => {
     setSelectedMember(null);
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
   };
+
+  if (isLoading) return <div>Loading...</div>;  // Maneja el estado de carga
+  if (error) return <div>Error: {error.message}</div>;  // Maneja errores
 
   return (
     <div className="card-team-member-container">
-      {data?.map((member) => (
+      {Array.isArray(data) && data.map((member) => (  // Verifica si 'data' es un array
         <div key={member.idMember} className="card-team-member">
           <div className="card-team-member-content">
             <div className="card-team-member-image">
-              <img
-                src={member.memberImage}
-                alt="member image"
-                className="member-image"
-              />
+              <img src={member.memberImage} alt="member image" className="member-image" />
             </div>
             <div className="card-team-member-details">
-              <h5 className="card-team-member-title">
-                <FaUser className="icon" />
-                {member.memberName} {member.memberLastName}
-              </h5>
-              <p className="card-team-member-role">
-                <HiUserGroup className="icon" />
-                {member.memberRole}
-              </p>
-              <p
-                className="card-team-member-linkedin"
-                title={member.memberLinkedin}
-              >
-                <FaLinkedin className="icon" />
-                <a
-                  href={member.memberLinkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linkedin-url"
-                >
-                  {member.memberLinkedin}
-                </a>
-              </p>
-              <p className="card-team-member-description">
-                <PiFileMagnifyingGlassBold className="icon" />
-                <strong>{member.memberDescription.slice(0, 52)}...</strong>
-              </p>
+              <h5 className="card-team-member-title"><FaUser className="icon" />{member.memberName} {member.memberLastName}</h5>
+              <p className="card-team-member-role"><HiUserGroup className="icon" />{member.memberRole}</p>
+              <p className="card-team-member-linkedin"><FaLinkedin className="icon" />{member.memberLinkedin.slice(0, 20)}...</p>
+              <p className="card-team-member-description"><PiFileMagnifyingGlassBold className="icon" /><strong>{member.memberDescription.slice(0, 52)}...</strong></p>
             </div>
           </div>
-          <button className="button-card" onClick={() => handleClick(member)}>
-            Ver más
-          </button>
+          <button className="secondary-button" onClick={() => handleClick(member)}>Ver más</button>
         </div>
       ))}
       {selectedMember && (
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-header">
-              <img
-                src={selectedMember.memberImage}
-                alt="member image"
-                className="modal-image"
-              />
-              <h5 className="modal-title">
-                {selectedMember.memberName} {selectedMember.memberLastName}
-              </h5>
+              <img src={selectedMember.memberImage} alt="member image" className="modal-image" />
+              <h5 className="modal-title">{selectedMember.memberName} {selectedMember.memberLastName}</h5>
               <p className="modal-role">| {selectedMember.memberRole} |</p>
-              <a
-                href={selectedMember.memberLinkedin}
-                className="modal-linkedin"
-              >
-                {selectedMember.memberLinkedin}
-              </a>
+              <a href={selectedMember.memberLinkedin} className="modal-linkedin">{selectedMember.memberLinkedin}</a>
             </div>
             <div className="modal-body">
               <p>{selectedMember.memberDescription}</p>
             </div>
             <div className="modal-footer">
-              <button className="primary-button" onClick={handleCloseModal}>
-                Cerrar
-              </button>
+              <button className="primary-button" onClick={handleCloseModal}>Cerrar</button>
             </div>
           </div>
         </div>
@@ -107,3 +69,4 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
+
