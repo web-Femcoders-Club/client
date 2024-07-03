@@ -230,7 +230,9 @@ form textarea {
   font-family: "Roboto", sans-serif;
 }
 
-
+p{
+  font-family:"Roboto", sans-serif;
+}
 
 @media (max-width: 768px) {
   h1 {

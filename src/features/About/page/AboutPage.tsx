@@ -7,10 +7,18 @@ import CarouselValues from "../components/CarouselValues";
 import iconCommitment from "/iconCommitment.png";
 import imgCommitment from "/imgCommitment.png";
 import Collapse from "../components/Collapse";
+import { Helmet } from "react-helmet";
 
 const AboutPage: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>Sobre Nosotras - FemCoders Club</title>
+        <meta
+          name="description"
+          content="Conoce más sobre FemCoders Club, una comunidad de mujeres desarrolladoras apasionadas por la tecnología. Descubre nuestra misión, visión y valores."
+        />
+      </Helmet>
       <section className="banner">
         <div className="banner-quienes-somos">
           <h1>Comunidad de mujeres desarrolladoras</h1>

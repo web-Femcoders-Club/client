@@ -213,9 +213,19 @@
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
-  border: 1px solid #7d5795;
+  border: none;
   border-radius: 8px;
   padding: 10px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 1px 0 0 rgba(255, 255, 255, 0.6),
+    inset -1px 0 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.6), inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.idea-card:hover {
+  transform: scale(1.05);
 }
 
 .idea-card.expanded {
