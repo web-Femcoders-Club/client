@@ -3,11 +3,10 @@ import { Member, UpdateMemberDto } from '../types/types';
 
 axios.defaults.withCredentials = true;
 
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getMember = async (): Promise<Member[]> => {
   try {
-    console.log("Requesting members from API:", `${API_URL}/member`);
     const response = await axios.get(`${API_URL}/member`);
     console.log("API response data:", response.data);
     if (Array.isArray(response.data)) {
@@ -18,15 +17,16 @@ export const getMember = async (): Promise<Member[]> => {
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      console.error('Error al obtener los miembros:', error.response?.data || error.message);
+      console.error('Error al obtener los miembros:', error.response || error.message);
     } else {
-      console.error('Error al obtener los miembros:', error);
+      console.error('Error inesperado:', error);
     }
     throw new Error('Error al obtener los miembros');
   }
 };
 
-// El resto del código de la API permanece igual...
+// El resto del código permanece igual
+
 
 
 
