@@ -1,3 +1,4 @@
+// src/features/Team/components/CardTeamMember.tsx
 import { useQuery } from "@tanstack/react-query";
 import { FaLinkedin, FaUser } from "react-icons/fa";
 import { PiFileMagnifyingGlassBold } from "react-icons/pi";
@@ -29,6 +30,8 @@ const CardTeamMember = () => {
     console.error("Error fetching members:", error);
     return <p>Error loading members</p>;
   }
+
+  console.log("Fetched members data:", data);
 
   return (
     <div className="card-team-member-container">
@@ -75,5 +78,6 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
+
 
 
