@@ -4,7 +4,7 @@ import { Member, UpdateMemberDto } from '../types/types';
 axios.defaults.withCredentials = true;
 
 const API_URL = '/api';
-
+//const API_URL = import.meta.env.VITE_API_URL;
 export const getMember = async (): Promise<Member[]> => {
   try {
     const response = await axios.get(`${API_URL}/member`);
