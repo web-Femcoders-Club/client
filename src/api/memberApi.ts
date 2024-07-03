@@ -16,13 +16,18 @@ export const getMember = async (): Promise<Member[]> => {
       console.error("Response is not an array:", response.data);
       return []; // Asegurarse de devolver un array en caso de que la respuesta no sea un array
     }
-  } catch (error) {
-    console.error('Error al obtener los miembros:', error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Error al obtener los miembros:', error.response?.data || error.message);
+    } else {
+      console.error('Error al obtener los miembros:', error);
+    }
     throw new Error('Error al obtener los miembros');
   }
 };
 
-// Resto del código del API permanece igual...
+// El resto del código de la API permanece igual...
+
 
 
 
