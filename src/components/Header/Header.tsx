@@ -49,8 +49,8 @@ const Header: React.FC = () => {
           <li>
             <Link to="/contacto" className="nav-link">Contacto</Link>
           </li>
-          <li className="faqs-link">
-            <Link to="/faqs" className="nav-link">FAQs</Link>
+          <li className="blog">
+            <Link to="/blog" className="nav-link">Blog</Link>
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>

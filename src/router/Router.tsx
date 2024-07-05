@@ -4,7 +4,7 @@ import HomePage from '../features/Home/page/HomePage';
 import ContactPage from "../features/Contact/page/ContactPage";
 import AboutPage from "../features/About/page/AboutPage";
 import EventsPage from "../features/Events/page/EventsPage";
-import FaqsPage from "../features/Faqs/page/FaqsPage";
+
 import Stats from '../components/Stats';
 import Layout from '../components/Layout/Layout';
 import useIdleTimer from '../hooks/useIdleTimer';
@@ -13,6 +13,7 @@ import { ModalContext } from '../context/ModalContext';
 import CookiePolicyModal from '../components/Footer/Modals/Cookies';
 import PrivacyPolicyModal from '../components/Footer/Modals/Privacidad';
 import TeamPage from '../features/Team/page/TeamPage'; 
+import BlogPage from '../features/Blog/page/Blog';
 
 const RouterComponent: React.FC = () => {
     const location = useLocation();
@@ -31,7 +32,7 @@ const RouterComponent: React.FC = () => {
                 <Route path="/contacto" element={<Layout><ContactPage /></Layout>} />
                 <Route path="/eventos" element={<Layout><EventsPage /></Layout>} />
                 <Route path="/sobrenosotras" element={<Layout><AboutPage /></Layout>} />
-                <Route path="/faqs" element={<Layout><FaqsPage /></Layout>} />
+                <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
                 <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
             </Routes>
