@@ -7,7 +7,7 @@
 }
 
 .card-team-member {
-  background-image: url("/bg4.jpg");
+  background-image: url("/bg2.png");
   background-size: cover;
   background-position: center;
   border: 1px solid #ddd;
@@ -45,8 +45,10 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
-.button-card {
-  margin-left: 31%;
+
+.button-card, .card-team-member .secondary-button {
+  display: block;
+  margin: 1rem auto 0;
   background-color: #821ad4;
   padding: 0.5rem 2rem;
   color: white;
@@ -54,7 +56,8 @@
   transition: transform 0.2s ease-in-out;
   margin-top: 5px;
 }
-.button-card:hover {
+
+.button-card:hover, .card-team-member .secondary-button:hover {
   background-color: #ea4f33;
   color: #fdfdfd;
   transform: scale(1.1);
@@ -63,8 +66,7 @@
 .card-team-member-role,
 .card-team-member-linkedin,
 .card-team-member-description {
-  color: #4737bb;
-
+  color: #fdfdfd;
   text-align: center;
   margin: 0.5rem 0;
 }
@@ -117,6 +119,7 @@
   text-align: center;
 }
 
-.modal-footer .primary-button {
+.modal-footer .button-card {
   margin-top: 1rem;
 }
+

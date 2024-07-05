@@ -1,5 +1,8 @@
 import { Helmet } from "react-helmet";
 import CardTeamMember from "../components/CardTeamMember";
+import Supporters from "../components/Supporters";
+import PromoterCard from "../components/PromoterCard";
+import DaisyAvatars from "../components/DaisyAvatars";
 
 const GradientOverlay = ({ height }: { height: string }) => (
   <div
@@ -37,9 +40,9 @@ const TeamPage = () => {
           Conoce nuestro equipo
         </h1>
       </section>
-      <section className="w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10">
+      <section className="w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32">
         <p
-          className="max-w-4xl text-center mx-2"
+          className="w-full text-left"
           style={{
             fontFamily: "Roboto, sans-serif",
             color: "#4737bb",
@@ -62,8 +65,54 @@ const TeamPage = () => {
 
         <CardTeamMember />
       </section>
+      <section className="w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32">
+        <h2 className="text-primary text-4xl font-semibold leading-9 mt-4 font-headerText text-center">
+          Agradecimientos Especiales
+        </h2>
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="md:flex-1 flex justify-center">
+            <PromoterCard /> {/* Renderiza la tarjeta de la promotora */}
+          </div>
+          <div className="md:flex-1 flex justify-center">
+            <DaisyAvatars /> {/* Renderiza los avatares */}
+          </div>
+        </div>
+      </section>
+      <section className="w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32 bg-gray-100">
+        <h2 className="text-primary text-4xl font-semibold leading-9 mt-4 font-headerText text-center">
+          Nuestros Apoyos
+        </h2>
+        <p
+          className="w-full text-left"
+          style={{
+            fontFamily: "Roboto, sans-serif",
+            color: "#4737bb",
+            lineHeight: "1.2",
+            fontSize: "1.3rem",
+          }}
+        >
+          Valoramos enormemente el apoyo de diversas empresas y organizaciones que comparten nuestra visión de empoderamiento femenino en el campo de la tecnología. Aquí destacamos a nuestros socios y promotores que hacen posible nuestras iniciativas y eventos.
+        </p>
+
+        <Supporters /> 
+        <div className="content-text">
+      <h2 className="cta-banner-title">
+        ¿Te gustaría que tu empresa sea parte de FemCoders Club?
+      </h2>
+      <p className="cta-banner-text">
+        Si compartes nuestra filosofía de visibilizar a las mujeres programadoras
+        y promover su desarrollo profesional, escríbenos. Juntos podemos crear un
+        impacto significativo en la industria tecnológica.
+      </p>
+      <a href="mailto:info@femcodersclub.com" className="cta-banner-button">
+        Escríbenos
+      </a>
+    </div>
+      </section>
     </div>
   );
 };
 
 export default TeamPage;
+
+

@@ -7,7 +7,7 @@ interface Idea {
   content: string;
 }
 
-const IdeasSection: React.FC = () => {
+const Collapse: React.FC = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const ideas: Idea[] = [
@@ -73,43 +73,40 @@ const IdeasSection: React.FC = () => {
   };
 
   return (
-    <section className="parallax bg4 full-height">
-      <div className="h-full md:mt-16 bg-gradient-to-r from-secondary to-accent lg:py-16">
-        <div className="flex flex-col items-center px-2 py-16 lg:flex lg:items-center lg:pt-8 gap-6">
-          <img src={iconIdea} className="w-[50px]" alt="Icono Ideas" />
-          <h3>Nuestras Ideas</h3>
-          <div className="max-w-6xl text-primary text-base font-textBody space-y-4 mx-8">
-            {ideas.map((idea, index) => (
-              <div
-                key={index}
-                className={`idea-card ${
-                  expandedIndex === index ? "expanded" : ""
-                }`}
-                onClick={() => handleExpand(index)}
-              >
-                <div className="idea-card-title text-xl font-medium">
-                  {idea.title}
-                </div>
-                {expandedIndex === index && (
-                  <div className="idea-card-content">
-                    <p
-                      className="text-white"
-                      style={{
-                        fontSize: "1.2rem",
-                        fontFamily: "Roboto, sans-serif",
-                      }}
-                    >
-                      {idea.content}
-                    </p>
-                  </div>
-                )}
+    <div className="h-full md:mt-16 bg-gradient-to-r from-secondary to-accent lg:py-16">
+      <div className="flex flex-col items-center px-2 py-16 lg:flex lg:items-center lg:pt-8 gap-6">
+        <img src={iconIdea} className="w-[50px]" alt="Icono Ideas" />
+        <h3>Nuestras Ideas</h3>
+        <div className="max-w-6xl text-primary text-base font-textBody space-y-4 mx-8">
+          {ideas.map((idea, index) => (
+            <div
+              key={index}
+              className={`idea-card ${expandedIndex === index ? "expanded" : ""}`}
+              onClick={() => handleExpand(index)}
+            >
+              <div className="idea-card-title text-xl font-medium">
+                {idea.title}
               </div>
-            ))}
-          </div>
+              {expandedIndex === index && (
+                <div className="idea-card-content">
+                  <p
+                    className="text-white"
+                    style={{
+                      fontSize: "1.2rem",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    {idea.content}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default IdeasSection;
+export default Collapse;
+

@@ -1,103 +1,88 @@
-.description {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #4737bb;
-  margin: 20px;
+.parallax {
+  background-attachment: fixed;
 }
 
-.parallax-bg1 {
-  height: 50vh;
+.full-height {
+  height: 100vh;
 }
 
-.banner {
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.banner-quienes-somos {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("/public/bg1.png");
   background-size: cover;
   background-position: center;
   text-align: center;
-  color: white;
-  padding: 80px 20px;
+  padding: 40px 20px;
   position: relative;
   overflow: hidden;
-}
-
-.banner::before {
-  content: "";
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(200%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-}
-
-.banner-quienes-somos {
-  position: relative;
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 40px;
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
 }
 
 .banner-quienes-somos h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  margin-top: 5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .banner-quienes-somos p {
   text-align: center;
   font-size: 1.3rem;
-  max-width: 800px;
-  margin: 20px auto;
+  line-height: 1.2;
   color: #4737bb;
+  margin: 2rem;
 }
 
-.container-quienes-somos {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  margin-top: 50px;
+.values-section {
+  width: 100%;
+  padding: 20px 20px;
+  text-align: center;
+  border-radius: 10px;
 }
 
-.text-left,
-.text-right {
-  flex: 1;
-  min-width: 300px;
+.values-section h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #4737bb;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.text-left {
-  text-align: left;
-  margin-right: 20px;
+.carousel-container button {
+  position: absolute;
 }
 
-.text-right {
-  text-align: left;
-  margin-left: 20px;
+.carousel-container button:first-of-type {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-container button:last-of-type {
+  right: 0;
+  transform: translate(50%, -50%);
 }
 
 .card-container {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
-  gap: 50px;
+  margin: 120px;
 }
 
 .card {
-  width: 600px;
-  height: 400px;
-  background-color: #fdfdfd;
+  width: 450px;
+  height: 350px;
+  background: url("/bg1.png");
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
@@ -148,16 +133,35 @@
   margin-bottom: 10px;
 }
 
-.parallax.bg3 {
-  height: 110vh;
-}
-.parallax.bg3 .bg3-content {
+.container-quienes-somos {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  justify-content: space-between;
   padding: 50px;
-  gap: 80px;
+  margin-top: 50px;
+  background: rgba(71, 55, 187, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.text-left,
+.text-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.text-left {
+  text-align: left;
+  margin-right: 20px;
+}
+
+.text-right {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.container-quienes-somos p {
+  color: #fdfdfd;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 .commitment-section {
@@ -174,15 +178,18 @@
   text-align: center;
   margin-left: 50px;
 }
+
 .compromise-text p {
   color: #4737bb;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   line-height: 1.6;
 }
+
 .compromise-text img {
   margin-left: 50%;
 }
+
 .commitment-section .compromise-img {
   flex: 1;
   text-align: center;
@@ -192,12 +199,7 @@
 .commitment-section h3 {
   margin-top: 30px;
 }
-.values-section h3 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-}
+
 .parallax.bg4 {
   height: 130vh;
   padding-bottom: 20px;
@@ -216,7 +218,6 @@
   border: none;
   border-radius: 8px;
   padding: 10px;
-
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     inset 1px 0 0 rgba(255, 255, 255, 0.6),
@@ -229,7 +230,8 @@
 }
 
 .idea-card.expanded {
-  background: linear-gradient(to right, #9f97d9, #7d5795, #f38c79);
+  background: rgba(71, 55, 187, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;
 }
 
@@ -246,61 +248,60 @@
 }
 
 @media (max-width: 768px) {
-  .banner h1 {
+  .parallax {
+    background-attachment: scroll;
+  }
+
+  .contenedor {
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .banner-quienes-somos h1 {
     font-size: 1.5rem;
   }
 
-  .banner p {
+  .banner-quienes-somos p {
     font-size: 1rem;
-  }
-  .parallax-bg1 {
-    height: 80vh;
-  }
-  .container-quienes-somos {
-    flex-direction: column;
-    align-items: center;
   }
 
-  .text-left,
-  .text-right {
-    margin: 20px;
-    text-align: justify;
-    font-size: 1rem;
+  .values-section {
+    padding: 10px;
   }
+
+  .values-section h3 {
+    font-size: 1.2rem;
+  }
+
   .card-container {
     flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
-  .flip-card-inner,
-  .flip-card-front,
-  .flip-card-back {
-    width: 80%;
-    height: 100%;
-    text-align: justify;
+
+  .container-quienes-somos {
+    display: none;
   }
 
   .commitment-section {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
   }
+
   .commitment-section .compromise-text {
     margin-left: 0;
   }
-  .compromise-text p {
+
+  .commitment-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .commitment-section p {
     font-size: 1rem;
   }
   .compromise-img {
-    display: none;
-  }
-  .parallax.bg4 {
-    height: 125vh;
-  }
-  .parallax.bg4 h3 {
-    font-size: 1.5rem;
-  }
-  .idea-card-title {
-    font-size: 1.2rem;
-  }
-  .idea-card-content {
-    font-size: 0.87rem;
+    width: 100%;
+    margin-right: 200px;
   }
 }

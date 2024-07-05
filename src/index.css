@@ -213,6 +213,7 @@ span {
 .form-logo {
   width: 100px;
   margin-bottom: 1rem;
+  margin-left: 38%;
 }
 
 form {
@@ -232,6 +233,24 @@ form textarea {
 
 p{
   font-family:"Roboto", sans-serif;
+}
+.content-text {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  line-height: 1.5;
+  font-size: 1.3rem;
+  background: rgba(71, 55, 187, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: -10px;
 }
 
 @media (max-width: 768px) {
@@ -276,5 +295,9 @@ p{
   form textarea {
     padding: 0.5rem;
     font-size: 0.875rem;
+  }
+  .content-text {
+    margin-top: -50px;
+    padding: 1.3rem;
   }
 }

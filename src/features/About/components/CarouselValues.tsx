@@ -126,7 +126,7 @@ function CarouselValues() {
 
   const Card: React.FC<CardProps> = ({ img, title, desc }) => (
     <div
-      className="flex flex-col items-center justify-center bg-primary py-8 rounded-3xl w-[300px] h-[350px]"
+      className="flex flex-col items-center justify-center bg-primary py-8 rounded-3xl w-[300px] h-[400px]"
       style={{ boxShadow: "rgba(0, 0, 0, 0.1) 6px 4px 12px 3px" }}
     >
       <img src={img} alt={title} className="mb-4" />
@@ -147,7 +147,7 @@ function CarouselValues() {
   );
 
   return (
-    <div className="h-[500px] w-full relative">
+    <div className="carousel-container mx-auto px-4 relative">
       <div className="flex overflow-hidden">
         {cards
           .slice(currentSlide, currentSlide + itemsPerPage)
@@ -158,13 +158,13 @@ function CarouselValues() {
           ))}
       </div>
       <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white p-2 rounded-full"
+        className="absolute top-1/2 left-[-30px] transform -translate-y-1/2 text-white p-2 rounded-full"
         onClick={prevSlide}
       >
         <img src={iconArrowL} alt="Previous" />
       </button>
       <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2  text-white p-2 rounded-full"
+        className="absolute top-1/2 right-[-30px] transform -translate-y-1/2 text-white p-2 rounded-full"
         onClick={nextSlide}
       >
         <img src={iconArrowR} alt="Next" />
@@ -174,3 +174,5 @@ function CarouselValues() {
 }
 
 export default CarouselValues;
+
+
