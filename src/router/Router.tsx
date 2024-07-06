@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
-import HomePage from '../features/Home/page/HomePage';
-import ContactPage from "../features/Contact/page/ContactPage";
-import AboutPage from "../features/About/page/AboutPage";
-import EventsPage from "../features/Events/page/EventsPage";
-
-import Stats from '../components/Stats';
-import Layout from '../components/Layout/Layout';
-import useIdleTimer from '../hooks/useIdleTimer';
-import logPageView from '../utils/logPageView';
-import { ModalContext } from '../context/ModalContext';
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import CookiePolicyModal from '../components/Footer/Modals/Cookies';
 import PrivacyPolicyModal from '../components/Footer/Modals/Privacidad';
-import TeamPage from '../features/Team/page/TeamPage'; 
+import Layout from '../components/Layout/Layout';
+import Stats from '../components/Stats';
+import { ModalContext } from '../context/ModalContext';
+import AboutPage from "../features/About/page/AboutPage";
 import BlogPage from '../features/Blog/page/Blog';
+import ContactPage from "../features/Contact/page/ContactPage";
+import EventsPage from "../features/Events/page/EventsPage";
+import HomePage from '../features/Home/page/HomePage';
+import TeamPage from '../features/Team/page/TeamPage';
+import useIdleTimer from '../hooks/useIdleTimer';
+import logPageView from '../utils/logPageView';
+import FaqModal from '../components/Footer/Modals/FaqModal';
 
 const RouterComponent: React.FC = () => {
     const location = useLocation();
@@ -38,6 +38,7 @@ const RouterComponent: React.FC = () => {
             </Routes>
             {modalType === 'cookiePolicy' && <CookiePolicyModal closeModal={closeModal} />}
             {modalType === 'privacyPolicy' && <PrivacyPolicyModal closeModal={closeModal} />}
+            {modalType === "faq" && <FaqModal closeModal={closeModal} />}
         </>
     );
 };

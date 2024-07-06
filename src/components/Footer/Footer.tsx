@@ -69,6 +69,14 @@ const FccFooter = () => {
               >
                 Política de Privacidad
               </a>
+              <a
+                href="#"
+                onClick={() => openModal("faq")}
+                className="cookie-link"
+              >
+                Preguntas Frecuentes
+              </a>
+          
             </div>
             <ApoyanosButton />
           </div>

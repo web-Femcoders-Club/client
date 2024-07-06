@@ -138,7 +138,9 @@ span {
   color: #fff;
   direction: ltr;
   display: flex;
-  justify-content: flex-start;
+  /*justify-content: flex-start;*/
+  flex-direction: column; /* Cambio aquí */
+  justify-content: space-between; /* Cambio aquí */
 }
 
 .modal-close {
@@ -163,6 +165,18 @@ span {
   line-height: 1.5;
   padding: 1rem 0;
   text-align: left;
+  flex-grow: 1; /* Para ocupar todo el espacio disponible */
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  padding: 0.5rem 0 0 1rem;
+  margin-top: 0.5rem;
+  color: #eee;
 }
 
 .modal-body ul {
