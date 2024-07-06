@@ -13,7 +13,7 @@ export const getMember = async (): Promise<Member[]> => {
       return response.data;
     } else {
       console.error("Response is not an array:", response.data);
-      return []; // Asegurarse de devolver un array en caso de que la respuesta no sea un array
+      return []; 
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -24,12 +24,6 @@ export const getMember = async (): Promise<Member[]> => {
     throw new Error('Error al obtener los miembros');
   }
 };
-
-// El resto del código permanece igual
-
-
-
-
 
 export const addMember = async (
   memberName: string,
