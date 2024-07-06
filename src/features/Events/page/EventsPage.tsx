@@ -30,7 +30,7 @@ const EventsPage = () => {
       <section className='mb-16'>
         <div className='mt-16 flex items-center justify-center flex-col gap-y-8 p-5'>
           {isLoadingUpcomingEvents ? (
-            <FemSpinner /> 
+            <FemSpinner />
           ) : (
             upcomingEventsData?.events?.length > 0 ? (
               upcomingEventsData.events.map((
@@ -91,6 +91,7 @@ const EventsPage = () => {
 }
 
 export default EventsPage;
+
 
 
 
