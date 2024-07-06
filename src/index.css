@@ -138,9 +138,8 @@ span {
   color: #fff;
   direction: ltr;
   display: flex;
-  /*justify-content: flex-start;*/
-  flex-direction: column; /* Cambio aquí */
-  justify-content: space-between; /* Cambio aquí */
+  flex-direction: column; 
+  justify-content: space-between; 
 }
 
 .modal-close {
@@ -165,7 +164,7 @@ span {
   line-height: 1.5;
   padding: 1rem 0;
   text-align: left;
-  flex-grow: 1; /* Para ocupar todo el espacio disponible */
+  flex-grow: 1; 
 }
 .faq-question {
   display: flex;
