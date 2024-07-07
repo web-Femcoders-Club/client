@@ -5,6 +5,29 @@ import FemSpinner from '../../../components/Spinner';
 import CardPastEvents from '../components/CardPastEvents';
 import CardUpcomingEvent from '../components/CardUpcomingEvent';
 
+type Event = {
+  start: {
+    local: string | number | Date;
+  };
+  name: {
+    text: string;
+  };
+  logo?: {
+    original?: {
+      url?: string;
+    };
+  };
+  venue?: {
+    address?: {
+      localized_address_display?: string;
+    };
+  };
+  description?: {
+    text?: string;
+  };
+  id: string;
+};
+
 const EventsPage = () => {
   const { data: pastEventsData, isLoading: isLoadingPastEvents } = useQuery({
     queryKey: ['pastEvents'],
@@ -30,27 +53,28 @@ const EventsPage = () => {
       <section className='mb-16'>
         <div className='mt-16 flex items-center justify-center flex-col gap-y-8 p-5'>
           {isLoadingUpcomingEvents ? (
-            <FemSpinner />
+            <FemSpinner /> 
           ) : (
             upcomingEventsData?.events?.length > 0 ? (
-              upcomingEventsData.events.map((
-                event: { start: { local: string | number | Date; }; 
-                name: { text: string; }; logo: { original: { url: string; }; }; 
-                venue: { address: { localized_address_display: string; }; }; 
-                description: { text: string; }; id:string}) => {
+              upcomingEventsData.events.map((event: Event) => {
+                if (!event.name || !event.start) {
+                  return null; // Skip rendering this event if name or start is missing
+                }
 
-                const date = new Date(event?.start?.local)
-                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true })
+                const date = new Date(event.start.local);
+                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
 
-                return <CardUpcomingEvent
-                  key={event.id}
-                  title={event.name.text}
-                  image={event?.logo?.original?.url}
-                  date={formateDate}
-                  location={event?.venue?.address?.localized_address_display}
-                  description={event.description.text}
-                  eventId={event.id}
-                />
+                return (
+                  <CardUpcomingEvent
+                    key={event.id}
+                    title={event.name.text}
+                    image={event.logo?.original?.url ?? ''}
+                    date={formateDate}
+                    location={event.venue?.address?.localized_address_display ?? ''}
+                    description={event.description?.text ?? ''}
+                    eventId={event.id}
+                  />
+                );
               })
             ) : (
               <p>No hay próximos eventos disponibles</p>
@@ -66,19 +90,24 @@ const EventsPage = () => {
             <FemSpinner />
           ) : (
             pastEventsData?.events?.length > 0 ? (
-              pastEventsData.events.map((event: { start: { local: string | number | Date; }; name: { text: string; }; logo: { original: { url: string; }; }; venue: { address: { localized_address_display: string; }; }; description: { text: string; }; id: string }) => {
+              pastEventsData.events.map((event: Event) => {
+                if (!event.name || !event.start) {
+                  return null; // Skip rendering this event if name or start is missing
+                }
 
-                const date = new Date(event?.start?.local)
-                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true })
+                const date = new Date(event.start.local);
+                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
 
-                return <CardPastEvents
-                  key={event.id}
-                  title={event.name.text}
-                  image={event?.logo?.original?.url}
-                  date={formateDate}
-                  location={event?.venue?.address?.localized_address_display}
-                  description={event.description.text}
-                />
+                return (
+                  <CardPastEvents
+                    key={event.id}
+                    title={event.name.text}
+                    image={event.logo?.original?.url ?? ''}
+                    date={formateDate}
+                    location={event.venue?.address?.localized_address_display ?? ''}
+                    description={event.description?.text ?? ''}
+                  />
+                );
               })
             ) : (
               <p>No hay eventos pasados disponibles</p>
@@ -87,8 +116,8 @@ const EventsPage = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default EventsPage;
 
