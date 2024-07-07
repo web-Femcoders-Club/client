@@ -5,13 +5,40 @@ import FemSpinner from '../../../components/Spinner';
 import CardPastEvents from '../components/CardPastEvents';
 import CardUpcomingEvent from '../components/CardUpcomingEvent';
 
+interface Event {
+  id: string;
+  start: {
+    local: string;
+  };
+  name: {
+    text: string;
+  };
+  logo?: {
+    original?: {
+      url: string;
+    };
+  };
+  venue?: {
+    address?: {
+      localized_address_display: string;
+    };
+  };
+  description: {
+    text: string;
+  };
+}
+
+interface EventsData {
+  events: Event[];
+}
+
 const EventsPage = () => {
-  const { data: pastEventsData, isLoading: isLoadingPastEvents } = useQuery({
+  const { data: pastEventsData, isLoading: isLoadingPastEvents } = useQuery<EventsData>({
     queryKey: ['pastEvents'],
     queryFn: getPastEvents,
   });
 
-  const { data: upcomingEventsData, isLoading: isLoadingUpcomingEvents } = useQuery({
+  const { data: upcomingEventsData, isLoading: isLoadingUpcomingEvents } = useQuery<EventsData>({
     queryKey: ['upcomingEvents'],
     queryFn: getUpcomingEvents,
   });
@@ -30,31 +57,27 @@ const EventsPage = () => {
       <section className='mb-16'>
         <div className='mt-16 flex items-center justify-center flex-col gap-y-8 p-5'>
           {isLoadingUpcomingEvents ? (
-            <FemSpinner /> 
+            <FemSpinner />
           ) : (
-            upcomingEventsData?.events?.length > 0 ? (
-              upcomingEventsData.events.map((event: any) => {
-                if (!event?.start?.local || !event?.name?.text) {
-                  return null; // Skip events with missing required fields
-                }
-
-                const date = new Date(event?.start?.local);
-                const formateDate = date.toLocaleDateString("es-ES", { 
-                  weekday: "long", 
-                  month: "long", 
-                  day: "numeric", 
-                  hour: "numeric", 
-                  minute: "numeric", 
-                  hour12: true 
+            upcomingEventsData?.events && upcomingEventsData.events.length > 0 ? (
+              upcomingEventsData.events.map((event: Event) => {
+                const date = new Date(event.start.local);
+                const formateDate = date.toLocaleDateString("es-ES", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true
                 });
 
                 return (
                   <CardUpcomingEvent
                     key={event.id}
                     title={event.name.text}
-                    image={event?.logo?.original?.url}
+                    image={event?.logo?.original?.url ?? ''}
                     date={formateDate}
-                    location={event?.venue?.address?.localized_address_display}
+                    location={event?.venue?.address?.localized_address_display ?? ''}
                     description={event.description.text}
                     eventId={event.id}
                   />
@@ -73,29 +96,25 @@ const EventsPage = () => {
           {isLoadingPastEvents ? (
             <FemSpinner />
           ) : (
-            pastEventsData?.events?.length > 0 ? (
-              pastEventsData.events.map((event: any) => {
-                if (!event?.start?.local || !event?.name?.text) {
-                  return null; // Skip events with missing required fields
-                }
-
-                const date = new Date(event?.start?.local);
-                const formateDate = date.toLocaleDateString("es-ES", { 
-                  weekday: "long", 
-                  month: "long", 
-                  day: "numeric", 
-                  hour: "numeric", 
-                  minute: "numeric", 
-                  hour12: true 
+            pastEventsData?.events && pastEventsData.events.length > 0 ? (
+              pastEventsData.events.map((event: Event) => {
+                const date = new Date(event.start.local);
+                const formateDate = date.toLocaleDateString("es-ES", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true
                 });
 
                 return (
                   <CardPastEvents
                     key={event.id}
                     title={event.name.text}
-                    image={event?.logo?.original?.url}
+                    image={event?.logo?.original?.url ?? ''}
                     date={formateDate}
-                    location={event?.venue?.address?.localized_address_display}
+                    location={event?.venue?.address?.localized_address_display ?? ''}
                     description={event.description.text}
                   />
                 );
