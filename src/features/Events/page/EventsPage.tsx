@@ -62,14 +62,14 @@ const EventsPage = () => {
                 }
 
                 const date = new Date(event.start.local);
-                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
+                const formattedDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
 
                 return (
                   <CardUpcomingEvent
                     key={event.id}
                     title={event.name.text}
                     image={event.logo?.original?.url ?? ''}
-                    date={formateDate}
+                    date={formattedDate}
                     location={event.venue?.address?.localized_address_display ?? ''}
                     description={event.description?.text ?? ''}
                     eventId={event.id}
@@ -96,14 +96,14 @@ const EventsPage = () => {
                 }
 
                 const date = new Date(event.start.local);
-                const formateDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
+                const formattedDate = date.toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
 
                 return (
                   <CardPastEvents
                     key={event.id}
                     title={event.name.text}
                     image={event.logo?.original?.url ?? ''}
-                    date={formateDate}
+                    date={formattedDate}
                     location={event.venue?.address?.localized_address_display ?? ''}
                     description={event.description?.text ?? ''}
                   />
@@ -120,6 +120,7 @@ const EventsPage = () => {
 };
 
 export default EventsPage;
+
 
 
 
