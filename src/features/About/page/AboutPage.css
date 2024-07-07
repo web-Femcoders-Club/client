@@ -79,8 +79,8 @@
   margin: 120px;
 }
 
-.card {
-  width: 450px;
+.card-about{
+  width: 550px;
   height: 350px;
   background: url("/bg1.png");
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -100,7 +100,7 @@
   transform-style: preserve-3d;
 }
 
-.card:hover .flip-card-inner {
+.card-about:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
 
@@ -128,7 +128,7 @@
   color: #4737bb;
 }
 
-.card img {
+.card-about img {
   width: 50px;
   margin-bottom: 10px;
 }

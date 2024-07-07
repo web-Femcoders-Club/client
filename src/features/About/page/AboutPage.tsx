@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
       <section className="parallax bg2 full-height">
         <div className="container-bg-3">
           <div className="card-container">
-            <div className="card">
+            <div className="card-about">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <img src={iconMission} alt="Icono Misión" />
@@ -72,7 +72,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="card">
+            <div className="card-about">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <img src={iconVision} alt="Icono Visión" />

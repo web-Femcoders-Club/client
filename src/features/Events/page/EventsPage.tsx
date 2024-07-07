@@ -1,139 +1,183 @@
-import { useQuery } from '@tanstack/react-query';
-import bgEvents1 from '/bgEvents1.png';
-import { getPastEvents, getUpcomingEvents } from '../../../api/eventsApi';
-import FemSpinner from '../../../components/Spinner';
-import CardPastEvents from '../components/CardPastEvents';
-import CardUpcomingEvent from '../components/CardUpcomingEvent';
-
-interface Event {
-  id: string;
-  start: {
-    local: string;
-  };
-  name: {
-    text: string;
-  };
-  logo?: {
-    original?: {
-      url: string;
-    };
-  };
-  venue?: {
-    address?: {
-      localized_address_display: string;
-    };
-  };
-  description: {
-    text: string;
-  };
-}
-
-interface EventsData {
-  events: Event[];
-}
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
+import FemSpinner from "../../../components/Spinner";
+import CardEvent from "../components/CardEvent";
+import "./EventsPage.css";
+import textofemcoders from "/textofemcodersclub.png";
+import bg1 from "/bg4.jpg";
 
 const EventsPage = () => {
-  const { data: pastEventsData, isLoading: isLoadingPastEvents } = useQuery<EventsData>({
-    queryKey: ['pastEvents'],
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 3;
+
+  const {
+    data: pastEventsData,
+    isLoading: isLoadingPastEvents,
+    error: pastEventsError,
+  } = useQuery({
+    queryKey: ["pastEvents"],
     queryFn: getPastEvents,
   });
 
-  const { data: upcomingEventsData, isLoading: isLoadingUpcomingEvents } = useQuery<EventsData>({
-    queryKey: ['upcomingEvents'],
+  const {
+    data: upcomingEventsData,
+    isLoading: isLoadingUpcomingEvents,
+    error: upcomingEventsError,
+  } = useQuery({
+    queryKey: ["upcomingEvents"],
     queryFn: getUpcomingEvents,
   });
 
-  console.log('Upcoming events data:', upcomingEventsData);
-  console.log('Past events data:', pastEventsData);
+  if (pastEventsError || upcomingEventsError) {
+    return <div>Error loading events. Please try again later.</div>;
+  }
+
+  // Paginated Events
+  const paginatedEvents = pastEventsData?.events.slice(
+    (currentPage - 1) * eventsPerPage,
+    currentPage * eventsPerPage
+  );
+
+  const totalPages = Math.ceil(
+    (pastEventsData?.events.length || 0) / eventsPerPage
+  );
 
   return (
     <>
-      <section className="flex justify-center text-center items-center bg-center bg-cover bg-no-repeat h-[500px]" style={{ backgroundImage: `url(${bgEvents1})` }}>
-        <h1 className="text-4xl font-bold text-orange-500 shadow-lg">
-          Próximos eventos
-        </h1>
+      <section
+        style={{
+          backgroundImage: `url(${textofemcoders})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center bottom",
+          height: "300px",
+        }}
+      >
+        <h1 className="text-eventos">Próximos eventos</h1>
       </section>
 
-      <section className='mb-16'>
-        <div className='mt-16 flex items-center justify-center flex-col gap-y-8 p-5'>
+      <section>
+        <div className=" flex items-center justify-center flex-col gap-y-8 p-5">
           {isLoadingUpcomingEvents ? (
             <FemSpinner />
-          ) : (
-            upcomingEventsData?.events && upcomingEventsData.events.length > 0 ? (
-              upcomingEventsData.events.map((event: Event) => {
-                const date = new Date(event.start.local);
-                const formateDate = date.toLocaleDateString("es-ES", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true
-                });
-
+          ) : upcomingEventsData?.events &&
+            upcomingEventsData.events.length > 0 ? (
+            upcomingEventsData.events.map(
+              (event: {
+                id: string;
+                start: { local: string };
+                name: { text: string };
+                logo?: { original?: { url?: string } };
+                venue?: { address?: { localized_address_display?: string } };
+                description: { text: string };
+                url: string;
+              }) => {
+                const date = new Date(event.start.local).toLocaleDateString(
+                  "es-ES",
+                  {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  }
+                );
                 return (
-                  <CardUpcomingEvent
+                  <CardEvent
                     key={event.id}
                     title={event.name.text}
-                    image={event?.logo?.original?.url ?? ''}
-                    date={formateDate}
-                    location={event?.venue?.address?.localized_address_display ?? ''}
+                    image={event.logo?.original?.url || ""}
+                    date={date}
+                    location={
+                      event.venue?.address?.localized_address_display || ""
+                    }
                     description={event.description.text}
-                    eventId={event.id}
+                    eventUrl={event.url}
                   />
                 );
-              })
-            ) : (
-              <p>No hay próximos eventos disponibles</p>
+              }
             )
+          ) : (
+            <p>No hay próximos eventos disponibles</p>
           )}
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-purple-200 to-blue-200 mb-20 pt-8 p-5">
-        <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">Eventos Pasados</h1>
-        <div className='flex items-center justify-center flex-col gap-y-8'>
+      <section
+        className="mb-20 pt-8 p-5"
+        style={{
+          backgroundImage: `url(${bg1})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">
+          Eventos Pasados
+        </h1>
+        <div className="flex items-center justify-center flex-col gap-y-8">
           {isLoadingPastEvents ? (
             <FemSpinner />
-          ) : (
-            pastEventsData?.events && pastEventsData.events.length > 0 ? (
-              pastEventsData.events.map((event: Event) => {
-                const date = new Date(event.start.local);
-                const formateDate = date.toLocaleDateString("es-ES", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true
-                });
-
+          ) : paginatedEvents && paginatedEvents.length > 0 ? (
+            paginatedEvents.map(
+              (event: {
+                id: string;
+                start: { local: string };
+                name: { text: string };
+                logo?: { original?: { url?: string } };
+                venue?: { address?: { localized_address_display?: string } };
+                description: { text: string };
+                url: string;
+              }) => {
+                const date = new Date(event.start.local).toLocaleDateString(
+                  "es-ES",
+                  {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  }
+                );
                 return (
-                  <CardPastEvents
+                  <CardEvent
                     key={event.id}
                     title={event.name.text}
-                    image={event?.logo?.original?.url ?? ''}
-                    date={formateDate}
-                    location={event?.venue?.address?.localized_address_display ?? ''}
+                    image={event.logo?.original?.url || ""}
+                    date={date}
+                    location={
+                      event.venue?.address?.localized_address_display || ""
+                    }
                     description={event.description.text}
+                    eventUrl={event.url}
                   />
                 );
-              })
-            ) : (
-              <p>No hay eventos pasados disponibles</p>
+              }
             )
+          ) : (
+            <p>No hay eventos pasados disponibles</p>
           )}
+        </div>
+
+        <div className="flex justify-center mt-4">
+          <div className="btn-group pagination-custom">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={`btn ${
+                  currentPage === index + 1 ? "btn-active" : ""
+                }`}
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
     </>
   );
-}
+};
 
 export default EventsPage;
-
-
-
-
-
-
-

@@ -8,11 +8,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const getMember = async (): Promise<Member[]> => {
   try {
     const response = await axios.get(`${API_URL}/member`);
-    console.log("API response data:", response.data);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
-      console.error("Response is not an array:", response.data);
       return []; 
     }
   } catch (error: unknown) {
@@ -66,5 +64,6 @@ export const deleteMember = async (idMember: number): Promise<Member> => {
     throw new Error('Error al eliminar el miembro');
   }
 };
+
 
 
