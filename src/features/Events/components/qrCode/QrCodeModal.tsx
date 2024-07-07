@@ -28,3 +28,4 @@ function QrCodeModal({ showQr, onClose, qrCode }: { showQr: boolean, onClose: ()
 }
 
 export default QrCodeModal;
+

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
-import QrCodeModal from "../components/qrCode/QrCodeModal";
+import QrCodeModal from "../components/qrCode/QrCodeModal"; 
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import QRCode from 'qrcode';
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -75,9 +75,8 @@ const EmbeddedCheckout = ({ isVisible, onClose, eventId }: { isVisible: boolean,
       )}
       <QrCodeModal showQr={showQr} onClose={() => setShowQr(false)} qrCode={src} />
     </>
-  )
+  );
 }
 
 export default EmbeddedCheckout;
-
 
