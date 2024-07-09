@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import iconArrowR from "/iconArrowR.png";
-import iconArrowL from "/iconArrowL.png";
 import iconEquity from "/iconEquity.png";
 import iconInclusion from "/iconInclusion.png";
 import iconVisibility from "/iconVisibility.png";
@@ -13,39 +11,8 @@ import iconInnovation from "/iconInnovation.png";
 import iconBalance from "/iconBalance.png";
 import iconResponsibility from "/iconResponsibility.png";
 
-function getInitialDeviceWidth() {
-  if (window.innerWidth <= 768) {
-    return "mobile";
-  } else if (window.innerWidth <= 976) {
-    return "tablet";
-  } else {
-    return "desktop";
-  }
-}
-
 function CarouselValues() {
-  const [deviceType, setDeviceType] = useState<"desktop" | "tablet" | "mobile">(
-    getInitialDeviceWidth
-  );
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 976) {
-        setDeviceType("desktop");
-      } else if (window.innerWidth <= 976) {
-        setDeviceType("tablet");
-      } else if (window.innerWidth <= 768) {
-        setDeviceType("mobile");
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const cards = [
     {
@@ -105,18 +72,19 @@ function CarouselValues() {
     },
   ];
 
-  const itemsPerPage =
-    deviceType === "mobile" ? 1 : deviceType === "tablet" ? 2 : 3;
+  const itemsPerPage = 1;
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + itemsPerPage) % cards.length);
-  };
+  useEffect(() => {
+    const nextSlide = () => {
+      setCurrentSlide((prev) => (prev + itemsPerPage) % cards.length);
+    };
 
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - itemsPerPage + cards.length) % cards.length
-    );
-  };
+    const interval = setInterval(nextSlide, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [cards.length]);
 
   interface CardProps {
     img: string;
@@ -126,8 +94,11 @@ function CarouselValues() {
 
   const Card: React.FC<CardProps> = ({ img, title, desc }) => (
     <div
-      className="flex flex-col items-center justify-center bg-primary py-8 rounded-3xl w-[300px] h-[400px]"
-      style={{ boxShadow: "rgba(0, 0, 0, 0.1) 6px 4px 12px 3px" }}
+      className="flex flex-col items-center justify-center bg-primary py-8 rounded-3xl w-[300px]"
+      style={{
+        boxShadow: "10px 0 20px -5px rgba(234, 79, 51, 0.5)", // Sombra solo a la derecha en color naranja
+        minHeight: "400px",
+      }}
     >
       <img src={img} alt={title} className="mb-4" />
       <h3 className="text-xl font-bold text-secondary font-headerText my-4">
@@ -147,7 +118,7 @@ function CarouselValues() {
   );
 
   return (
-    <div className="carousel-container mx-auto px-4 relative">
+    <div className="carousel-container mx-auto px-4 relative" style={{ minHeight: "400px" }}>
       <div className="flex overflow-hidden">
         {cards
           .slice(currentSlide, currentSlide + itemsPerPage)
@@ -157,22 +128,16 @@ function CarouselValues() {
             </div>
           ))}
       </div>
-      <button
-        className="absolute top-1/2 left-[-30px] transform -translate-y-1/2 text-white p-2 rounded-full"
-        onClick={prevSlide}
-      >
-        <img src={iconArrowL} alt="Previous" />
-      </button>
-      <button
-        className="absolute top-1/2 right-[-30px] transform -translate-y-1/2 text-white p-2 rounded-full"
-        onClick={nextSlide}
-      >
-        <img src={iconArrowR} alt="Next" />
-      </button>
     </div>
   );
 }
 
 export default CarouselValues;
+
+
+
+
+
+
 
 

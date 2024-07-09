@@ -219,7 +219,7 @@
 
 .call-to-action p {
   font-family: "Roboto", sans-serif;
-  color: #4737bb;
+  color: #2A2170;
   line-height: 1.2;
   font-size: 1.2rem;
   margin-top: 25px;
@@ -250,7 +250,7 @@
 .countdown-item {
   display: inline-block;
   margin: 0 1rem;
-  color: #4737bb;
+  color: #2A2170;
 }
 
 .countdown-item span {
@@ -263,7 +263,7 @@
   font-size: 1.5rem;
   margin-top: 1.3rem;
   margin-bottom: 1rem;
-  color: #4737bb;
+  color: #2A2170;
 }
 
 .event-card {

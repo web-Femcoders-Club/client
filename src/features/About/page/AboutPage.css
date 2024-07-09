@@ -15,71 +15,62 @@
   margin-top: 20px;
 }
 
+.titulo-centrado {
+  font-family: "Asap Condensed", sans-serif;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.contenido-seccion {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .banner-quienes-somos {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-size: cover;
   background-position: center;
-  text-align: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.banner-quienes-somos h1 {
-  font-size: 2rem;
-  margin-top: 5rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.banner-quienes-somos p {
-  text-align: center;
+  text-align: left;
+  padding: 20px;
+  margin-left: 20px;
+  width: 50%;
+  color:#4737bb;
+  font-family: "Roboto", sans-serif;
   font-size: 1.3rem;
-  line-height: 1.2;
-  color: #4737bb;
-  margin: 2rem;
+  line-height: 1.6;
 }
 
 .values-section {
-  width: 100%;
-  padding: 20px 20px;
+  width: 50%;
+  padding-top: 20px;
   text-align: center;
   border-radius: 10px;
+
 }
 
-.values-section h3 {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  color: #4737bb;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
 
-.carousel-container button {
-  position: absolute;
-}
-
-.carousel-container button:first-of-type {
-  left: 0;
-  transform: translate(-50%, -50%);
-}
-
-.carousel-container button:last-of-type {
-  right: 0;
-  transform: translate(50%, -50%);
+.container-bg-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+ 
 }
 
 .card-container {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
-  margin: 120px;
+ gap: 50px;
 }
 
-.card-about{
+.card-about {
   width: 550px;
   height: 350px;
   background: url("/bg1.png");
@@ -89,6 +80,7 @@
   margin: 0 10px;
   text-align: center;
   perspective: 1000px;
+
 }
 
 .flip-card-inner {
@@ -126,6 +118,7 @@
   justify-content: center;
   align-items: center;
   color: #4737bb;
+  padding: 1.5rem;
 }
 
 .card-about img {
@@ -180,7 +173,7 @@
 }
 
 .compromise-text p {
-  color: #4737bb;
+  color: #2a2170;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   line-height: 1.6;
@@ -193,11 +186,11 @@
 .commitment-section .compromise-img {
   flex: 1;
   text-align: center;
-  margin-left: 200px;
+  margin-left: 20px;
 }
 
 .commitment-section h3 {
-  margin-top: 30px;
+  margin-bottom: 2rem;
 }
 
 .parallax.bg4 {
@@ -257,7 +250,7 @@
     margin-left: 0;
   }
 
-  .banner-quienes-somos h1 {
+  .titulo-centrado {
     font-size: 1.5rem;
   }
 
@@ -302,6 +295,7 @@
   }
   .compromise-img {
     width: 100%;
-    margin-right: 200px;
+    margin-right: 0;
   }
 }
+

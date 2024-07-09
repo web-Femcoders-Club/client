@@ -5,9 +5,11 @@ import FemCodersClubLogo from "/FemCodersClubLogo.png";
 import "./AboutPage.css";
 import CarouselValues from "../components/CarouselValues";
 import iconCommitment from "/iconCommitment.png";
-import imgCommitment from "/imgCommitment.png";
+import VideoInicialComunidad from "/VideoInicialComunidad.mp4";
 import Collapse from "../components/Collapse";
 import { Helmet } from "react-helmet";
+
+
 
 const AboutPage: React.FC = () => {
   return (
@@ -21,11 +23,12 @@ const AboutPage: React.FC = () => {
       </Helmet>
       <section className="parallax bg1 full-height">
         <div className="contenedor">
-          <section className="banner">
-            <div className="banner-quienes-somos">
-              <h1>Comunidad de mujeres desarrolladoras</h1>
+          <h1 className="titulo-centrado">Comunidad de mujeres desarrolladoras</h1>
+          <div className="contenido-seccion">
+            <div className="banner-quienes-somos text-left">
+            
               <p>
-                El objetivo principal de <strong>femCoders Club</strong> es cerrar
+                El objetivo principal de <span>femCoders Club</span> es cerrar
                 la brecha de género en el ámbito digital y ser un referente que
                 promueva la inclusión femenina en el mundo tecnológico. Somos un
                 grupo de mujeres apasionadas por la tecnología que{" "}
@@ -34,13 +37,16 @@ const AboutPage: React.FC = () => {
                   en el sector de TI.
                 </strong>
               </p>
+             
             </div>
-          </section>
-          <div className="values-section">
-            <h3>Nuestros Valores</h3>
-            <CarouselValues />
+            
+            <div className="values-section">
+              <h3>Nuestros Valores</h3>
+              <CarouselValues />
+            </div>
           </div>
         </div>
+        
       </section>
       <section className="parallax bg2 full-height">
         <div className="container-bg-3">
@@ -52,7 +58,7 @@ const AboutPage: React.FC = () => {
                   <h3>Misión</h3>
                 </div>
                 <div className="flip-card-back">
-                  <img src={FemCodersClubLogo} alt="femCoders Club logo" />
+                  <img src={FemCodersClubLogo} alt="femCoders Club logo"  />
                   <p>
                     <strong>
                       Nuestra misión es empoderar y elevar a las mujeres en el
@@ -147,10 +153,10 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
             <div className="compromise-img">
-              <img
-                src={imgCommitment}
+              <video
+                src={VideoInicialComunidad}
                 className="px-8 lg:order-1 lg:h-76 mb-8"
-                alt="Icono de equidad"
+                controls
               />
             </div>
           </div>
