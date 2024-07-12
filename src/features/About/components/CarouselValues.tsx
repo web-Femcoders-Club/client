@@ -96,7 +96,7 @@ function CarouselValues() {
     <div
       className="flex flex-col items-center justify-center bg-primary py-8 rounded-3xl w-[300px]"
       style={{
-        boxShadow: "10px 0 20px -5px rgba(234, 79, 51, 0.5)", // Sombra solo a la derecha en color naranja
+        boxShadow: "10px 0 20px -5px rgba(234, 79, 51, 0.5)", 
         minHeight: "400px",
       }}
     >

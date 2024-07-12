@@ -73,40 +73,33 @@ const Collapse: React.FC = () => {
   };
 
   return (
-    <div className="h-full md:mt-16 bg-gradient-to-r from-secondary to-accent lg:py-16">
-      <div className="flex flex-col items-center px-2 py-16 lg:flex lg:items-center lg:pt-8 gap-6">
-        <img src={iconIdea} className="w-[50px]" alt="Icono Ideas" />
+    <div className="collapse-container">
+      <div className="collapse-header">
+        <img src={iconIdea} className="icon-idea" alt="Icono Ideas" />
         <h3>Nuestras Ideas</h3>
-        <div className="max-w-6xl text-primary text-base font-textBody space-y-4 mx-8">
-          {ideas.map((idea, index) => (
-            <div
-              key={index}
-              className={`idea-card ${expandedIndex === index ? "expanded" : ""}`}
-              onClick={() => handleExpand(index)}
-            >
-              <div className="idea-card-title text-xl font-medium">
-                {idea.title}
-              </div>
-              {expandedIndex === index && (
-                <div className="idea-card-content">
-                  <p
-                    className="text-white"
-                    style={{
-                      fontSize: "1.2rem",
-                      fontFamily: "Roboto, sans-serif",
-                    }}
-                  >
-                    {idea.content}
-                  </p>
-                </div>
-              )}
+      </div>
+      <div className="ideas-list">
+        {ideas.map((idea, index) => (
+          <div
+            key={index}
+            className={`idea-card ${expandedIndex === index ? "expanded" : ""}`}
+            onClick={() => handleExpand(index)}
+          >
+            <div className="idea-card-title">
+              {idea.title}
             </div>
-          ))}
-        </div>
+            {expandedIndex === index && (
+              <div className="idea-card-content">
+                <p>{idea.content}</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default Collapse;
+
 
