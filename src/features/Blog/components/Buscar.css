@@ -1,0 +1,28 @@
+.buscar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.buscar-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #4737bb;
+  border-radius: 5px 0 0 5px;
+}
+
+.buscar-button {
+  padding: 10px;
+  background-color: #4737bb;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: white;
+  cursor: pointer;
+}
+
+.buscar-button:hover {
+  background-color: #6d2c95;
+}
+
+
+  

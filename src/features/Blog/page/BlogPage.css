@@ -1,0 +1,167 @@
+body{
+  background: url('/bg1.png');
+}
+
+
+
+.blog-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  font-family: "Asap Condensed", sans-serif;
+  color: #4737bb;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.blog-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+}
+
+.blog-menu {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.blog-menu-item {
+  margin-right: 1rem;
+}
+
+.blog-menu-link {
+  color: #4737bb;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Asap condensed', sans-serif;
+  font-size: 1.3rem;
+}
+
+.blog-menu-link:hover {
+  color: #ea4f33;
+}
+
+.buscar-container {
+  margin-left: auto;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(71, 55, 187, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.hero-section p {
+  color: #2A2170;
+}
+
+.blog-content {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.featured-posts,
+.categories-section {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-posts h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.post-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 0.5rem; 
+  flex: 1;
+  width: 600px;
+  text-align: center;
+}
+
+.post-card h4 {
+  font-size: 1.5rem;
+  color: #4737bb;
+  margin-bottom: 1rem;
+}
+
+.post-card p {
+  font-size: 1rem;
+  color: #2A2170;
+  margin-bottom: 1rem;
+}
+
+.categories-section h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+@media (max-width: 768px) {
+  .blog-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buscar-container {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  
+  .post-card {
+    margin: 1rem 0; 
+    
+  }
+  .post-grid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+  

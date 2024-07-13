@@ -6,7 +6,7 @@ import Layout from '../components/Layout/Layout';
 import Stats from '../components/Stats';
 import { ModalContext } from '../context/ModalContext';
 import AboutPage from "../features/About/page/AboutPage";
-import BlogPage from '../features/Blog/page/Blog';
+import BlogPage from '../features/Blog/page/BlogPage';
 import ContactPage from "../features/Contact/page/ContactPage";
 import EventsPage from "../features/Events/page/EventsPage";
 import HomePage from '../features/Home/page/HomePage';
@@ -32,7 +32,7 @@ const RouterComponent: React.FC = () => {
                 <Route path="/contacto" element={<Layout><ContactPage /></Layout>} />
                 <Route path="/eventos" element={<Layout><EventsPage /></Layout>} />
                 <Route path="/sobrenosotras" element={<Layout><AboutPage /></Layout>} />
-                <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+                <Route path="/blog/*" element={<Layout><BlogPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
                 <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
             </Routes>
