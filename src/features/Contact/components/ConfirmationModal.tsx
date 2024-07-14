@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import bgModal from '../../../../public/bgModal.svg';
-import './ConfirmationModal.css'; 
+import bgModal from '/negativeLogo.png';
+
 
 interface ConfirmationModalProps {
   isVisible: boolean;
@@ -16,7 +16,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ isVisible, onClos
   return createPortal(
     <div className="modal-overlay">
       <div className="modal-content">
-        <img src={bgModal} className="modal-background" alt="Background" />
+      <img src={bgModal} alt="Background" style={{ width: '200px' }} />
+
         <button className="modal-close" onClick={onClose}>×</button>
         <div className="modal-body">
           <h2 className="modal-title">¡Mensaje enviado con éxito!</h2>

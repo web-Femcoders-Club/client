@@ -2,7 +2,7 @@ import React, { FormEvent, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import ConfirmationModal from './ConfirmationModal';
 import { ContactFormProps } from '../../../types/types';
-import './ContactForm.css';
+
 
 const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -36,61 +36,161 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
         console.log(error);
       });
   };
+  const handleMouseOver = (e: React.MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.boxShadow = '0 0 10px rgba(71, 55, 187, 0.8)';
+    e.currentTarget.style.borderColor = '#4737bb';
+  };
+
+  const handleMouseOut = (e: React.MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.boxShadow = '0 0 10px rgba(71, 55, 187, 0.8)';
+    e.currentTarget.style.borderColor = '#4737bb';
+  };
+
 
   return (
     <>
-      <div className="form-card">
-        <form ref={form} onSubmit={handleSubmit} action="#" method="POST" className="flex flex-col w-full h-fit p-8">
-          <label htmlFor="name" className="label2">Nombre:</label>
-          <input 
-            required
-            type="text"
-            aria-label='name'
-            name='userName'
-            placeholder='Escribe tu nombre aquí'
-            className="input mt-1 mb-4"
-          />
-
-          <label htmlFor="email" className="label2">Correo:</label>
+      <div
+        className="form-card"
+        style={{
+          width: '100%',
+          maxWidth: '500px',
+          margin: '150px 0 auto',
+          background: '#fdfdfd',
+          padding: '2rem',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          borderRadius: '8px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          
+        
+        }}
+      >
+        <img
+          src="/FemCodersClubLogo.png"
+          alt="FemCoders Club Logo"
+          className="form-logo"
+          style={{ width: '100px', marginBottom: '1rem', marginLeft:'0' }}
+        />
+        <form
+          ref={form}
+          onSubmit={handleSubmit}
+          action="#"
+          method="POST"
+          style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
+        >
+          <label htmlFor="name"  style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#821ad4', textAlign:'left' }}>
+            Nombre:
+          </label>
           <input
             required
-            type="email" 
-            aria-label='correo'
-            name='userEmail'
-            placeholder='Ej: ejemplo@gmail.com'
-            className="input mt-1 mb-4"
+            type="text"
+            aria-label="name"
+            name="userName"
+            placeholder=""
+            className="input"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              border: '1px solid #4737bb',
+              borderRadius: '5px',
+              marginBottom: '1rem',
+              fontSize: '1rem',
+            }}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
           />
 
-          <label htmlFor="asunto" className="label2">Asunto:</label>
+          <label htmlFor="email"  style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#821ad4', textAlign:'left' }}>
+            Correo:
+          </label>
+          <input
+            required
+            type="email"
+            aria-label="correo"
+            name="userEmail"
+            placeholder=""
+            className="input"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              border: '1px solid #4737bb',
+              borderRadius: '5px',
+              marginBottom: '1rem',
+              fontSize: '1rem',
+            }}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          />
+
+          <label htmlFor="asunto" style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#821ad4', textAlign:'left' }}>
+            Asunto:
+          </label>
           <input
             required
             type="text"
-            aria-label='asunto'
-            name='asunto'
-            placeholder='Ej: quiero ser voluntari@'
-            className="input mt-1 mb-4"
+            aria-label="asunto"
+            name="asunto"
+            placeholder=""
+            className="input"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              border: '1px solid #4737bb',
+              borderRadius: '5px',
+              marginBottom: '1rem',
+              fontSize: '1rem',
+              
+            }}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
           />
 
-          <label htmlFor="message" className="label2">Mensaje:</label>
-          <textarea 
-            required 
-            name='message'
-            placeholder='Escribe tu mensaje aquí'
-            className="textarea mt-1 mb-4"
+          <label htmlFor="message" style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#821ad4', textAlign:'left' }}>
+            Mensaje:
+          </label>
+          <textarea
+            required
+            name="message"
+            title="Message"
+            className="textarea"
+            style={{
+              border: '1px solid #4737bb',
+            }}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
           />
 
-          <button type='submit' className="primaryBtn w-[200px] self-center mt-5">
+          <button
+            type="submit"
+            className="primaryBtn"
+            style={{
+              width: '200px',
+              alignSelf: 'center',
+              marginTop: '1rem',
+              padding: '0.75rem 1.5rem',
+              backgroundColor: '#4737bb',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s ease',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#ea4f33')}
+            onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#4737bb')}
+          >
             Enviar
           </button>
         </form>
       </div>
-      
+
       <ConfirmationModal isVisible={showMessage} onClose={() => setShowMessage(false)} />
     </>
   );
 };
 
 export default ContactForm;
+
 
 
 

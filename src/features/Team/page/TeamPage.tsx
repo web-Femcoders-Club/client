@@ -36,7 +36,7 @@ const TeamPage = () => {
         <GradientOverlay height="18%" />
         <GradientOverlay height="10%" />
         <GradientOverlay height="5%" />
-        <h1 className="text-primary text-5xl font-semibold leading-9 mt-4 font-headerText">
+        <h1 className="text-primary text-5xl font-semibold leading-9 mt-28 font-headerText">
           Conoce nuestro equipo
         </h1>
       </section>

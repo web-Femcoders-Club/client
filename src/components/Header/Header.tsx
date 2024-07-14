@@ -50,7 +50,7 @@ const Header: React.FC = () => {
             <Link to="/contacto" className="nav-link">Contacto</Link>
           </li>
           <li className="blog">
-            <Link to="/blog" className="nav-link">Blog</Link>
+            <Link to="/blog" className="nav-link ">Blog</Link>
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>

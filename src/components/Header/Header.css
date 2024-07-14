@@ -101,9 +101,7 @@
   color: #ea4f33;
 }
 
-.faqs-link {
-  margin-right: 1rem;
-}
+
 
 .auth-buttons .nav-link {
   display: inline-block;
@@ -186,7 +184,8 @@
     overflow: hidden;
     background: linear-gradient(to right, #6d2c95, #4737bb);
     transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0 8px;
+   margin-top: 1.9rem;
+    
   }
 
   .auth-buttons.open {
