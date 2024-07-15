@@ -14,6 +14,7 @@ import TeamPage from '../features/Team/page/TeamPage';
 import useIdleTimer from '../hooks/useIdleTimer';
 import logPageView from '../utils/logPageView';
 import FaqModal from '../components/Footer/Modals/FaqModal';
+import LoginPage from '../features/LogIn/page/LoginPage';
 
 const RouterComponent: React.FC = () => {
     const location = useLocation();
@@ -35,6 +36,7 @@ const RouterComponent: React.FC = () => {
                 <Route path="/blog/*" element={<Layout><BlogPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
                 <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
+                <Route path="/login" element={<Layout><LoginPage /></Layout>} />
             </Routes>
             {modalType === 'cookiePolicy' && <CookiePolicyModal closeModal={closeModal} />}
             {modalType === 'privacyPolicy' && <PrivacyPolicyModal closeModal={closeModal} />}

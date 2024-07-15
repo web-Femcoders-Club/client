@@ -74,10 +74,10 @@ const BlogPage: React.FC = () => {
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            <Link to="/blog/categoria/javascript" className="button tertiary-button">JavaScript</Link>
-            <Link to="/blog/categoria/react" className="button tertiary-button">React</Link>
-            <Link to="/blog/categoria/css" className="button tertiary-button">CSS</Link>
-            <Link to="/blog/categoria/python" className="button tertiary-button">Python</Link>
+            <Link to="/blog/categoria/javascript" className="button secondary-button">JavaScript</Link>
+            <Link to="/blog/categoria/react" className="button secondary-button">React</Link>
+            <Link to="/blog/categoria/css" className="button secondary-button">CSS</Link>
+            <Link to="/blog/categoria/python" className="button secondary-button">Python</Link>
           </div>
         </div>
         <Routes>

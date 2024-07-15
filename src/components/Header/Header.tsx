@@ -50,12 +50,11 @@ const Header: React.FC = () => {
             <Link to="/contacto" className="nav-link">Contacto</Link>
           </li>
           <li className="blog">
-            <Link to="/blog" className="nav-link ">Blog</Link>
+            <Link to="/blog" className="nav-link">Blog</Link>
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
-          <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link>
-          <Link to="/signup" className="nav-link secondary-button">Registrarme</Link>
+          <Link to="/login" className="nav-link primary-button">Iniciar sesión </Link>
         </div>
       </nav>
     </header>
@@ -63,3 +62,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
