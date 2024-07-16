@@ -1,11 +1,17 @@
-// types.ts
-
 export type ChildrenProps = {
     children: React.ReactNode;
 };
 
 export type User = {
-    accesToken: string;
+    idUser: number;
+    userName: string;
+    userLastName: string;
+    userEmail: string;
+    userPassword: string;
+    userTelephone: string;
+    userGender: string;
+    userRole: string;
+    accesToken?: string;
 };
 
 export type EditUserFormData = {
@@ -159,4 +165,5 @@ export type UpdateMemberDto = {
     memberImage?: string;
     memberLinkedin?: string;
 };
+
 
