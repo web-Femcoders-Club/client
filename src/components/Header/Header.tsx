@@ -50,11 +50,11 @@ const Header: React.FC = () => {
             <Link to="/contacto" className="nav-link">Contacto</Link>
           </li>
           <li className="blog">
-            <Link to="/blog" className="nav-link">Blog</Link>
+          <Link to="/blog" className="nav-link" style={{ color: '#ea4f33' }}>Blog</Link>
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
-          <Link to="/login" className="nav-link primary-button">Iniciar sesión </Link>
+          {/* <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link> */}
         </div>
       </nav>
     </header>

@@ -14,7 +14,7 @@ import TeamPage from '../features/Team/page/TeamPage';
 import useIdleTimer from '../hooks/useIdleTimer';
 import logPageView from '../utils/logPageView';
 import FaqModal from '../components/Footer/Modals/FaqModal';
-import LoginPage from '../features/LogIn/page/LoginPage';
+// import LoginPage from '../features/LogIn/page/LoginPage';
 import WelcomePage from '../features/Welcome/page/WelcomePage';
 
 const RouterComponent: React.FC = () => {
@@ -37,8 +37,8 @@ const RouterComponent: React.FC = () => {
                 <Route path="/blog/*" element={<Layout><BlogPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
                 <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
-                <Route path="/login" element={<Layout><LoginPage /></Layout>} />
-                <Route path="/login" element={<Layout><WelcomePage /></Layout>} />
+                {/* <Route path="/login" element={<Layout><LoginPage /></Layout>} /> */}
+                <Route path="/welcome" element={<Layout><WelcomePage /></Layout>} />
             </Routes>
             {modalType === 'cookiePolicy' && <CookiePolicyModal closeModal={closeModal} />}
             {modalType === 'privacyPolicy' && <PrivacyPolicyModal closeModal={closeModal} />}
@@ -56,3 +56,4 @@ const Router: React.FC = () => {
 };
 
 export default Router;
+

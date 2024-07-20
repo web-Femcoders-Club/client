@@ -5,25 +5,44 @@ import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import { FaUserFriends, FaBriefcase, FaStar } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import "./Home.css";
+import CarouselWithText from "../components/CarouselWithText";
 
 const HomePage: React.FC = () => {
   const images = [
+    "/eventoCarmenAnsio.jpg",
+    "/eventoFactoriaF5.jpg",
+    "/mujeresTech.jpg",
+    "/comunidadFemCodersClubEventoCriteo.jpg",
     "/doscomunidadestech.jpeg",
-    "/comunidadfem.JPG",
-    "/eventoAntesMuerta.jpg",
-    "/comoesunevento.jpeg",
-    "/evento8Marzo1.jpg",
-    "/eventoCriteo.jpg",
-    "/cordialidadCriteo.JPG",
-    "/eventocomunidad.jpg",
-    "/eventoData.jpg",
-    "/eventocomunidadfemcodersclub.JPG",
-    "/eventoGlovo.jpg",
-    "/eventoFactoria1.jpg",
-    "/iniciofemCoders.jpg",
-    "/eventoFactoria2.jpg",
-    "/eventoFactoria3.jpg",
-    "/femcodersclubpresentacion.jpeg",
+    "/eventoTecnologico8Marzo.jpg",
+    "/mujeresprogramadoras.jpg",
+    "/posit8Marzo.jpg",
+    "evento_techFemCodersClub.jpg",
+    "/comunidadesMujeresTecnologas.jpg",
+    "/AureaRodriguez.jpg",
+    "/asistentesfemCodersClubCriteo.jpg",
+    "/eventobufet.jpg",
+    "/apoyoMujeresTech.jpg",
+    "/EventoFactorial.jpg",
+    "/mujeresTechNetworking.jpg",
+    "/musicaconcodigo.jpeg",
+    "/eventoUnlokingData.jpg",
+    "/eventoLiderazgoMujer.jpg",
+
+    "/mujeresFemCodersClub.png",
+    "/networkingEventosFemCodersClub.png",
+    "/mujeresComunidadFemCodersClub.png",
+    "/networking.png",
+    "/eventoAdevintaFemCodersClub.png",
+    "/apoyomujeres.png",
+    "/comunidadDeMujeres.png",
+  ];
+
+  const texts = [
+    "Empoderamos a las Mujeres en Tecnología",
+    "Participa en Nuestro Próximo Evento",
+    "Conéctate y Crezcamos Juntas",
+    "Sé una Líder en tu Vida y Profesión",
   ];
 
   const calculateTimeLeft = () => {
@@ -174,22 +193,30 @@ const HomePage: React.FC = () => {
           </div>
           <div className="image-content">
             <div className="photo-stack">
-              <img
-                src="/portada1.jpg"
-                alt="Foto 1"
+              <div
                 className={`photo ${
                   currentPhotoIndex === 0 ? "photo-1" : "photo-2"
                 }`}
-                title="Foto 1"
-              />
-              <img
-                src="/portada4.jpeg"
-                alt="Foto 2"
+              >
+                <div className="photo-gradient"></div>
+                <img
+                  src="/cofundadorasFemCodersClub.jpg"
+                  alt="varias de las cofundadoras de FemCoders Club"
+                  title="Parte de las cofundadoras de FemCoders Club"
+                />
+              </div>
+              <div
                 className={`photo ${
                   currentPhotoIndex === 1 ? "photo-1" : "photo-2"
                 }`}
-                title="Foto 2"
-              />
+              >
+                <div className="photo-gradient"></div>
+                <img
+                  src="/femCodersClubCofundadoras.png"
+                  alt="Foto 2"
+                  title="Foto 2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -197,7 +224,6 @@ const HomePage: React.FC = () => {
 
       <section className="parallax bg2 full-height">
         <div className="carousel-container">
-          <h2 className="carousel-heading">Galería Eventos femCoders Club</h2>
           <p className="carousel-subheading">
             En<span> FemCoders Club, </span>organizamos regularmente eventos que
             no solo son educativos, sino también una oportunidad increíble para
@@ -227,6 +253,7 @@ const HomePage: React.FC = () => {
             <button className="carousel-control next" onClick={nextSlide}>
               ❯
             </button>
+            <CarouselWithText texts={texts} />
           </div>
         </div>
       </section>
@@ -281,14 +308,16 @@ const HomePage: React.FC = () => {
               </h3>
             </div>
             <div className="event-card">
-              <img src="/eventoCriteo.jpg" alt="Próximo evento" />
-              <button className="secondary-button">Más información</button>
+              <img src="/apoyomujeres.png" alt="Próximo evento" />
+              <Link to="/eventos">
+                <button className="secondary-button">Más información</button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="parallax bg4 ">
+      <section className="parallax bg5 ">
         <div className="content-container section-4">
           <div className="content-text">
             <h4>
@@ -307,28 +336,65 @@ const HomePage: React.FC = () => {
                   className="form-logo"
                 />
                 <form ref={form} onSubmit={handleSubmit}>
-                  <input type="text" name="name" placeholder="Nombre" />
-                  <input type="text" name="last-name" placeholder="Apellidos" />
-                  <input type="email" name="email" placeholder="Email" />
-                  <textarea name="message" placeholder="Mensaje"></textarea>
+                  <div className="form-group">
+                    <input type="text" id="name" name="name" required />
+                    <label htmlFor="name">Nombre</label>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      id="last-name"
+                      name="last-name"
+                      required
+                    />
+                    <label htmlFor="last-name">Apellidos</label>
+                  </div>
+                  <div className="form-group">
+                    <input type="email" id="email" name="email" required />
+                    <label htmlFor="email">Email</label>
+                  </div>
+                  <div className="form-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label htmlFor="message">Mensaje</label>
+                  </div>
                   <button type="submit" className="accent-button">
                     Enviar
                   </button>
                 </form>
               </div>
             </div>
+
             <div className="image-content">
-              <div className="photo-stack section-4-photo-stack">
-                <img
-                  src="/portada6.jpg"
-                  alt="Foto 3"
-                  className="photo photo-1"
-                />
-                <img
-                  src="/portada5.jpeg"
-                  alt="Foto 4"
-                  className="photo photo-2"
-                />
+              <div className="photo-stack">
+                <div
+                  className={`photo ${
+                    currentPhotoIndex === 0 ? "photo-1" : "photo-2"
+                  }`}
+                >
+                  <div className="photo-gradient"></div>
+                  <img
+                    src="/fotoFemCodersClub.jpg"
+                    alt="Foto 3"
+                    className="photo-1"
+                  />
+                </div>
+                <div
+                  className={`photo ${
+                    currentPhotoIndex === 1 ? "photo-1" : "photo-2"
+                  }`}
+                >
+                  <div className="photo-gradient"></div>
+                  <img
+                    src="/femcodersclubFinalEvento.jpg"
+                    alt="Foto 4"
+                    className="photo-2"
+                    style={{
+                      marginTop: "90px",
+                      marginLeft: "50px",
+                      transform: "rotate(0deg)",
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

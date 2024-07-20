@@ -1,4 +1,4 @@
-import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube } from "react-icons/bs";
+import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube, BsGithub } from "react-icons/bs";
 import ApoyanosButton from "./ApoyanosButton";
 import SlackButton from "./SlackButton";
 import FemCodersClubLogo from "/negativeLogo.png";
@@ -49,6 +49,13 @@ const FccFooter = () => {
               >
                 <BsYoutube />
               </a>
+              <a
+                href="https://github.com/femcodersclub"
+                className="icon"
+                aria-label="GitHub"
+              >
+                <BsGithub />
+              </a>
             </div>
             <p>O también:</p>
             <SlackButton />
@@ -76,7 +83,6 @@ const FccFooter = () => {
               >
                 Preguntas Frecuentes
               </a>
-          
             </div>
             <ApoyanosButton />
           </div>
@@ -90,3 +96,4 @@ const FccFooter = () => {
 };
 
 export default FccFooter;
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import imgEvents from '/imgEvents.png';
+import imgEvents from '/apoyomujeres.png';
 import iconDate from '/iconDate.png';
 import iconLocation from '/iconLocation.png';
 

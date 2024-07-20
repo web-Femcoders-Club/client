@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Footer.css"; 
+import "../Footer.css";
 
 interface FaqModalProps {
   closeModal: () => void;
@@ -17,16 +17,16 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "La misión fundamental de FemCoders Club es proporcionar un espacio inclusivo donde las mujeres puedan colaborar, aprender y crecer en campos relacionados con la tecnología. Esta comunidad tiene un compromiso firme con la visibilización y el fortalecimiento de la presencia femenina en el sector.",
         "A través de eventos, talleres y talleres presenciales, FemCoders Club busca derribar barreras y desafiar estereotipos, alentando a las mujeres a perseguir carreras en áreas como la programación, el diseño digital y la ingeniería.",
         "Además, la red de apoyo de FemCoders Club se extiende más allá de las fronteras geográficas, conectando a mujeres interesadas en la tecnología a nivel internacional ya que es una comunidad online. La diversidad de experiencias y perspectivas enriquece la comunidad, fomentando un ambiente colaborativo donde el intercambio de conocimientos y el apoyo mutuo son fundamentales.",
-        "En resumen, FemCoders Club no solo representa un espacio para el crecimiento profesional, sino también una fuerza impulsora en la construcción de un sector tecnológico más inclusivo y diverso al proporcionar recursos y oportunidades a mujeres que buscan destacar en el mundo digital."
-      ]
+        "En resumen, FemCoders Club no solo representa un espacio para el crecimiento profesional, sino también una fuerza impulsora en la construcción de un sector tecnológico más inclusivo y diverso al proporcionar recursos y oportunidades a mujeres que buscan destacar en el mundo digital.",
+      ],
     },
     {
       question: "¿Cuáles son sus objetivos?",
       answer: [
         "- Organizar masterclasses y sesiones inspiradoras, brindando oportunidades de aprendizaje y desarrollo personal a través de experiencias compartidas.",
         "- Facilitar encuentros regulares donde las mujeres puedan conectarse, compartir experiencias y establecer conexiones significativas.",
-        "- Promover la inclusión y diversidad, asegurando que la comunidad sea acogedora para mujeres de diversos trasfondos y experiencias."
-      ]
+        "- Promover la inclusión y diversidad, asegurando que la comunidad sea acogedora para mujeres de diversos trasfondos y experiencias.",
+      ],
     },
     {
       question: "¿Por qué debería unirme a esta comunidad?",
@@ -39,8 +39,8 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "● Emprendimiento: Si tienes aspiraciones emprendedoras, unirte a la comunidad te conectará con experiencias de otras mujeres emprendedoras, ofreciéndote de esta forma la posibilidad de conocer los emprendimientos y recursos para desarrollar y hacer crecer tus propias iniciativas empresariales en el mundo digital.",
         "● Inclusión y Apoyo Mutuo: FemCoders Club se esfuerza por crear un ambiente inclusivo donde cada voz sea valorada. Unirte te permite formar parte de un espacio donde el apoyo mutuo es fundamental, proporcionándote un respaldo significativo mientras navegas por los desafíos y triunfos de tu carrera.",
         "● Contribución a la Diversidad en Tecnología: Al unirte, contribuyes activamente a la construcción de un sector tecnológico más diverso e igualitario. Tu participación fortalece la presencia y el impacto de las mujeres en la industria, inspirando a futuras generaciones.",
-        "En resumen, unirte a FemCoders Club no solo ampliará tu conocimiento y tu red, sino que también te proporcionará un sentido de pertenencia en una comunidad que impulsa el cambio y el progreso en el emocionante mundo de la tecnología."
-      ]
+        "En resumen, unirte a FemCoders Club no solo ampliará tu conocimiento y tu red, sino que también te proporcionará un sentido de pertenencia en una comunidad que impulsa el cambio y el progreso en el emocionante mundo de la tecnología.",
+      ],
     },
     {
       question: "¿Cuáles son las líneas de actuación de FemCoders Club?",
@@ -51,36 +51,36 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "● Actividades Planificadas: Para asegurar la continuidad y la variedad de las experiencias ofrecidas, FemCoders Club implementa programas de actividades planificadas. Estos programas serán cuidadosamente diseñados para abordar diversas áreas de interés, desde desarrollo profesional y habilidades técnicas hasta temas de emprendimiento y liderazgo.",
         "● Participación Activa de la Comunidad: La participación activa de la comunidad es un pilar fundamental. FemCoders Club fomenta la contribución de sus miembros a través de la organización de eventos colaborativos, donde las mujeres tienen la oportunidad de compartir sus conocimientos, experiencias y perspectivas, creando así un ambiente enriquecedor.",
         "● Promoción de la Diversidad e Inclusión: FemCoders Club trabaja activamente en la promoción de la diversidad e inclusión en el sector tecnológico. Sus programas y eventos están diseñados para abordar desafíos específicos que las mujeres enfrentan en este campo, promoviendo así un entorno más equitativo.",
-        "● Estas líneas de actuación colectivamente construyen un enfoque integral para el crecimiento y el éxito de las mujeres en tecnología, asegurando que FemCoders Club no solo sea un espacio de encuentro, sino también un motor activo para el cambio positivo en la comunidad tecnológica."
-      ]
+        "● Estas líneas de actuación colectivamente construyen un enfoque integral para el crecimiento y el éxito de las mujeres en tecnología, asegurando que FemCoders Club no solo sea un espacio de encuentro, sino también un motor activo para el cambio positivo en la comunidad tecnológica.",
+      ],
     },
     {
       question: "¿Qué diferencia a FemCoders Club de otras comunidades?",
       answer: [
         "FemCoders Club se destaca por ofrecer algo más que una simple comunidad tecnológica. Nos diferenciamos al ser un espacio donde la colaboración y el consenso es el principal valor.",
-        "En lugar de limitarnos a compartir conocimientos, nos destacamos por fomentar un ambiente donde cada miembro es un catalizador para el crecimiento y la inspiración. Nos definimos por ser una \"colectividad activa y dinámica\".",
+        'En lugar de limitarnos a compartir conocimientos, nos destacamos por fomentar un ambiente donde cada miembro es un catalizador para el crecimiento y la inspiración. Nos definimos por ser una "colectividad activa y dinámica".',
         "En FemCoders Club, no solo te unes a un grupo, sino que participas en un movimiento colaborativo donde cada voz cuenta. La clave de nuestra diferenciación radica en nuestro enfoque en la acción conjunta.",
-        "A través de eventos, proyectos y una mentalidad proactiva. Únete a nuestra colectividad y sé parte de un movimiento que no solo abraza la diversidad, sino que también impulsa el progreso y la presencia activa de las mujeres en la vanguardia del cambio tecnológico."
-      ]
+        "A través de eventos, proyectos y una mentalidad proactiva. Únete a nuestra colectividad y sé parte de un movimiento que no solo abraza la diversidad, sino que también impulsa el progreso y la presencia activa de las mujeres en la vanguardia del cambio tecnológico.",
+      ],
     },
     {
       question: "¿Cómo puedo enterarme de los eventos de FemCoders Club?",
       answer: [
-        "FemCoders Club publica todos sus eventos a través de nuestra página web, Linkedin y nuestro canal de #eventos en slack."
-      ]
+        "FemCoders Club publica todos sus eventos a través de nuestra página web, Linkedin y nuestro canal de #eventos en slack.",
+      ],
     },
     {
       question: "¿Cómo puedo unirme a la comunidad?",
       answer: [
         "Si quieres formar parte de nuestra comunidad, puedes hacerlo a través de nuestro Slack. Puedes contactarnos por LinkedIn.",
-        "También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial."
-      ]
+        "También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial.",
+      ],
     },
     {
       question: "¿Puedo unirme como promotora?",
       answer: [
-        "Si quieres participar más activamente en la comunidad, lo puedes hacer como promotora. Tienes que unirte a la comunidad por slack, presentarte en el canal de #nuevos-miembros y mencionar en tu presentación que quieres ser promotora en FemCoders Club, y en breve nos pondremos en contacto contigo."
-      ]
+        "Si quieres participar más activamente en la comunidad, lo puedes hacer como promotora. Tienes que unirte a la comunidad por slack, presentarte en el canal de #nuevos-miembros y mencionar en tu presentación que quieres ser promotora en FemCoders Club, y en breve nos pondremos en contacto contigo.",
+      ],
     },
     {
       question: "¿Cuáles son las tareas de una promotora?",
@@ -90,9 +90,9 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "● Espacios para eventos: Las empresas pueden ofrecer espacios para que FemCoders Club organice talleres, eventos de networking, charlas y otras actividades.",
         "● Voluntariado: Los empleados de las empresas pueden ofrecer su tiempo como voluntarios para ayudar a FemCoders Club con la organización de eventos, la creación de contenido, la gestión de redes sociales u otras tareas.",
         "● Difusión: Las empresas pueden ayudar a FemCoders Club a difundir su mensaje y aumentar su visibilidad compartiendo información sobre la organización en sus redes sociales, sitio web y boletines informativos.",
-        "● Ofertas de trabajo: Las empresas pueden considerar y dar prioridad a las mujeres de FemCoders Club en sus procesos de selección de personal."
-      ]
-    }
+        "● Ofertas de trabajo: Las empresas pueden considerar y dar prioridad a las mujeres de FemCoders Club en sus procesos de selección de personal.",
+      ],
+    },
   ];
 
   const handleExpand = (index: number) => {
@@ -112,7 +112,12 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
           <div className="faq-collapse">
             {faqs.map((faq, index) => (
               <div key={index} className="faq-item">
-                <button className={`faq-question ${expandedIndex === index ? "active" : ""}`} onClick={() => handleExpand(index)}>
+                <button
+                  className={`faq-question ${
+                    expandedIndex === index ? "active" : ""
+                  }`}
+                  onClick={() => handleExpand(index)}
+                >
                   <span>{faq.question}</span>
                   <span>{expandedIndex === index ? "-" : "+"}</span>
                 </button>
@@ -138,9 +143,3 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
 };
 
 export default FaqModal;
-
-
-
-
-
-
