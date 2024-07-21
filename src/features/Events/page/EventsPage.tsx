@@ -5,7 +5,7 @@ import FemSpinner from '../../../components/Spinner';
 import CardEvent from '../components/CardEvent';
 import './EventsPage.css';
 import textofemcoders from '/textofemcodersclub.png';
-import bg1 from '/bg4.jpg';
+import bg1 from '/bg4.png';
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
