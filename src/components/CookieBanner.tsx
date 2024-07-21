@@ -67,7 +67,7 @@ const linkStyle: React.CSSProperties = {
 const acceptButtonStyle: React.CSSProperties = {
     marginLeft: '10px',
     padding: '5px 10px',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#821ad4',
     color: 'white',
     border: 'none',
     cursor: 'pointer',
