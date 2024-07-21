@@ -85,9 +85,7 @@ const Collapse: React.FC = () => {
             className={`idea-card ${expandedIndex === index ? "expanded" : ""}`}
             onClick={() => handleExpand(index)}
           >
-            <div className="idea-card-title">
-              {idea.title}
-            </div>
+            <div className="idea-card-title">{idea.title}</div>
             {expandedIndex === index && (
               <div className="idea-card-content">
                 <p>{idea.content}</p>
@@ -101,5 +99,3 @@ const Collapse: React.FC = () => {
 };
 
 export default Collapse;
-
-

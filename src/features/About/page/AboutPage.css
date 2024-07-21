@@ -11,35 +11,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 85%;
-  margin: 0 auto;
-}
-
-.titulo-centrado {
-  font-family: "Asap Condensed", sans-serif;
-  text-align: center;
-  font-size: 3rem;
-  color: #4737bb;
-  margin-bottom: 2rem;
+  width: 80%;
   margin-top: 5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .contenido-seccion {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
   padding: 2rem;
+  gap: 5rem;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-out;
 }
 
 .banner-quienes-somos p {
   color: #4737bb;
   font-family: "Roboto", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.6;
 }
 
@@ -66,9 +58,11 @@
 
 .card-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
-  gap: 50px;
+  gap: 6rem;
+  margin-top: 6rem;
+
+  animation: fadeIn 1s ease-out;
+  padding: 2rem;
 }
 
 .card-about {
@@ -79,7 +73,7 @@
   border-radius: 8px;
   padding: 20px;
   margin: 0 10px;
-  text-align: center;
+
   perspective: 1000px;
 }
 
@@ -87,7 +81,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
+
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -130,10 +124,11 @@
   display: flex;
   justify-content: space-between;
   padding: 50px;
-  margin-top: 50px;
+
   background: rgba(71, 55, 187, 0.7);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
+  animation: fadeIn 1s ease-out;
 }
 
 .text-left,
@@ -143,6 +138,7 @@
   color: #fdfdfd;
   font-size: 1.2rem;
   line-height: 1.6;
+  padding: 2rem;
 }
 
 .text-left {
@@ -161,12 +157,10 @@
   justify-content: space-between;
   align-items: center;
   width: 95%;
-  margin-top: 20px;
+  margin-top: 3rem;
   padding: 2rem;
   margin-left: 50px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .commitment-section .compromise-text {
@@ -177,26 +171,20 @@
 
 .compromise-text p {
   color: #2a2170;
-  font-family: "Roboto", sans-serif;
+  margin-top: 1rem;
   font-size: 1.2rem;
   line-height: 1.6;
 }
 
 .compromise-text img {
   margin-left: 50%;
+  margin-bottom: 1rem;
 }
 
 .commitment-section .values-section {
   flex: 1;
   text-align: center;
   margin-left: 20px;
-}
-
-.commitment-section h3 {
-  margin-bottom: 2rem;
-  color: #2a2170;
-  font-family: "Asap Condensed", sans-serif;
-  font-size: 2rem;
 }
 
 .parallax.bg4 {
@@ -206,7 +194,7 @@
 
 .parallax.bg4 p {
   color: white;
-  font-family: "Roboto", sans-serif;
+
   font-size: 1.5rem;
 }
 
@@ -247,10 +235,8 @@
 }
 
 .collapse-container {
-  background: url("/bg1.png");
   padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   margin: 2rem auto;
   width: 85%;
 }
@@ -262,15 +248,8 @@
   margin-bottom: 1rem;
 }
 
-.collapse-header h3 {
-  color: #2a2170;
-  font-family: "Asap Condensed", sans-serif;
-  font-size: 2rem;
-  margin-top: 0.5rem;
-}
-
 .icon-idea {
-  width: 50px;
+  width: 40px;
 }
 
 .ideas-list {
@@ -280,18 +259,9 @@
 }
 
 @media (max-width: 768px) {
-  .parallax {
-    background-attachment: scroll;
-  }
-
   .contenedor {
     flex-direction: column;
   }
-
-  .titulo-centrado {
-    font-size: 1.5rem;
-  }
-
   .contenido-seccion {
     flex-direction: column;
     align-items: center;
@@ -306,9 +276,8 @@
     width: 100%;
     margin-bottom: 1rem;
   }
-
-  .values-section {
-    padding: 10px;
+  .flip-card-back {
+    padding: 4rem;
   }
 
   .values-section h3 {
@@ -318,7 +287,8 @@
   .card-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
 
   .container-quienes-somos {
@@ -336,23 +306,33 @@
 
   .commitment-section .compromise-text {
     margin-left: 0;
-    font-size: 1rem;
-  }
-
-  .commitment-section h3 {
-    font-size: 1.5rem;
   }
 
   .commitment-section p {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .collapse-container {
     padding: 1rem;
     width: 100%;
   }
-
-  .collapse-header h3 {
-    font-size: 1.5rem;
+  .idea-card-title {
+    font-size: 1.2rem;
   }
+  .parallax.bg4 {
+    height: 100vh;
+    padding-bottom: 20px;
+  }
+  .parallax.bg4 p {
+    font-size: 1rem;
+  }
+  .icon-idea {
+    width: 40px;
+  }
+}
+.parallax.bg4 p {
+  font-size: 0.875rem;
+}
+.icon-idea {
+  width: 30px;
 }

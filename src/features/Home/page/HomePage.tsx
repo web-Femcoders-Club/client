@@ -213,8 +213,8 @@ const HomePage: React.FC = () => {
                 <div className="photo-gradient"></div>
                 <img
                   src="/femCodersClubCofundadoras.png"
-                  alt="Foto 2"
-                  title="Foto 2"
+                  alt="Mujeres cofundadoras de FemCoders Club"
+                  title="Parte de las cofundadoras de FemCoders Club"
                 />
               </div>
             </div>
@@ -332,7 +332,7 @@ const HomePage: React.FC = () => {
               <div className="form-card">
                 <img
                   src="/FemCodersClubLogo.png"
-                  alt="FemCoders Club Logo"
+                  alt="femCoders Club Logo"
                   className="form-logo"
                 />
                 <form ref={form} onSubmit={handleSubmit}>
@@ -374,7 +374,7 @@ const HomePage: React.FC = () => {
                   <div className="photo-gradient"></div>
                   <img
                     src="/fotoFemCodersClub.jpg"
-                    alt="Foto 3"
+                    alt="Cofundadoras de FemCoders Club con perfiles en STEM"
                     className="photo-1"
                   />
                 </div>
@@ -386,7 +386,7 @@ const HomePage: React.FC = () => {
                   <div className="photo-gradient"></div>
                   <img
                     src="/femcodersclubFinalEvento.jpg"
-                    alt="Foto 4"
+                    alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
                     className="photo-2"
                     style={{
                       marginTop: "90px",

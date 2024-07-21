@@ -21,9 +21,7 @@ const AboutPage: React.FC = () => {
       </Helmet>
       <section className="parallax bg1 full-height">
         <div className="contenedor">
-          <h1 className="titulo-centrado">
-            Comunidad de mujeres desarrolladoras
-          </h1>
+         
           <div className="contenido-seccion">
             <div className="banner-quienes-somos text-left">
               <p>
@@ -149,7 +147,7 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
             <div className="values-section">
-              <h3>Nuestros Valores</h3>
+             
 
               <CarouselValues />
             </div>
