@@ -70,7 +70,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
           src="/FemCodersClubLogo.png"
           alt="FemCoders Club Logo"
           className="form-logo"
-          style={{ width: '100px', marginBottom: '1rem', marginLeft:'0' }}
+          style={{ width: '100px', marginBottom: '1rem' }}
         />
         <form
           ref={form}

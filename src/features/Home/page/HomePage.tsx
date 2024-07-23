@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet";
 import "./Home.css";
 import CarouselWithText from "../components/CarouselWithText";
 
+
+
 const HomePage: React.FC = () => {
   const images = [
     "/eventoCarmenAnsio.jpg",
@@ -143,6 +145,8 @@ const HomePage: React.FC = () => {
       .catch((error) => {
         console.log(error);
       });
+
+      
   };
 
   return (
@@ -154,9 +158,9 @@ const HomePage: React.FC = () => {
           content="Únete a FemCoders Club, una comunidad inclusiva de mujeres apasionadas por la tecnología. Participa en eventos, talleres y programas de mentoría."
         />
       </Helmet>
-      <section className="parallax bg1 full-height">
+      <section className="parallax bg1 full-height ">
         <div className="content-container">
-          <div className="text-content">
+          <div className="text-content ">
             <h1>femCoders Club</h1>
             <h2>
               Tu comunidad de mujeres en tecnología
@@ -222,7 +226,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="parallax bg2 full-height">
+      <section className="parallax bg2 full-height ">
         <div className="carousel-container">
           <p className="carousel-subheading">
             En<span> FemCoders Club, </span>organizamos regularmente eventos que
@@ -258,7 +262,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="parallax bg3">
+      <section className="parallax bg3 ">
         <div className="section-content">
           <div className="call-to-action">
             <h2>Conócenos</h2>

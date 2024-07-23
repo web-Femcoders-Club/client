@@ -37,7 +37,8 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="compromise-video">
-              <video src={VideoInicialComunidad} className="video" controls />
+              <video src={VideoInicialComunidad} className="video" controls aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos" />
+             
             </div>
           </div>
         </div>
@@ -147,8 +148,6 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
             <div className="values-section">
-             
-
               <CarouselValues />
             </div>
           </div>
@@ -162,3 +161,4 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+
