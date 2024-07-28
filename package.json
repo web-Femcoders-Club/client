@@ -17,6 +17,7 @@
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "daisyui": "^4.12.6",
+    "lucide-react": "^0.416.0",
     "postcss": "^8.4.38",
     "qrcode": "^1.5.3",
     "react": "^18.3.1",

@@ -1,4 +1,4 @@
-import "../page/DaisyAvatars.css"; 
+import "../page/DaisyAvatars.css";
 
 const linkedinProfiles = [
   { url: "https://www.linkedin.com/in/disofiareynoso/", name: "Sofia Reynoso", img: "/sofi.jpeg" },
@@ -14,12 +14,9 @@ const DaisyAvatars = () => {
     <div className="daisy-avatars">
       {linkedinProfiles.map((profile, index) => (
         <div key={index} className="avatar">
-          <div className="w-24 rounded-full">
+          <div className="avatar-image">
             <a href={profile.url} target="_blank" rel="noopener noreferrer">
-              <img
-                src={profile.img}
-                alt={`LinkedIn profile of ${profile.name}`}
-              />
+              <img src={profile.img} alt={`LinkedIn profile of ${profile.name}`} />
             </a>
           </div>
           <p className="avatar-name">{profile.name}</p>
@@ -30,5 +27,6 @@ const DaisyAvatars = () => {
 };
 
 export default DaisyAvatars;
+
 
 

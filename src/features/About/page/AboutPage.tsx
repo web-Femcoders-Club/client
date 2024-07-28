@@ -12,11 +12,15 @@ import { Helmet } from "react-helmet";
 const AboutPage: React.FC = () => {
   return (
     <>
-      <Helmet>
+    <Helmet>
         <title>Sobre Nosotras - FemCoders Club</title>
         <meta
           name="description"
           content="Conoce más sobre FemCoders Club, una comunidad de mujeres desarrolladoras apasionadas por la tecnología. Descubre nuestra misión, visión y valores."
+        />
+        <meta
+          name="keywords"
+          content="FemCoders Club, mujeres desarrolladoras, misión FemCoders, visión FemCoders, valores FemCoders, brecha de género en tecnología, inclusión femenina en TI, comunidad de mujeres tech, eventos de tecnología, talleres de programación, empoderamiento femenino, liderazgo en TI"
         />
       </Helmet>
       <section className="parallax bg1 full-height">

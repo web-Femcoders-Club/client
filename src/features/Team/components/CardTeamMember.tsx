@@ -34,8 +34,6 @@ const CardTeamMember = () => {
     return <p>Error loading members</p>;
   }
 
-  console.log("Fetched members data:", data);
-
   return (
     <div className="card-team-member-container">
       {Array.isArray(data) && data.length > 0 ? (
@@ -45,7 +43,7 @@ const CardTeamMember = () => {
               <div className="card-team-member-image">
                 <img
                   src={member.memberImage}
-                  alt="member image"
+                  alt="Imagen del miembro"
                   className="member-image"
                 />
               </div>
@@ -92,7 +90,7 @@ const CardTeamMember = () => {
             <div className="modal-header">
               <img
                 src={selectedMember.memberImage}
-                alt="member image"
+                alt="Imagen del miembro"
                 className="modal-image"
               />
               <h5 className="modal-title">
@@ -124,6 +122,7 @@ const CardTeamMember = () => {
 };
 
 export default CardTeamMember;
+
 
 
 

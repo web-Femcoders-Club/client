@@ -1,23 +1,42 @@
+import React from 'react';
+import { FaLinkedin } from 'react-icons/fa';
+import "../page/PromoterCard.css";
 
-import "../page/PromoterCard.css"; // Asegúrate de crear este archivo CSS para los estilos del componente
+interface PromoterCardProps {
+  imageSrc: string;
+  name: string;
+  role: string;
+  description: string;
+  linkedin: string;
+}
 
-const PromoterCard = () => {
+const PromoterCard: React.FC<PromoterCardProps> = ({ imageSrc, name, role, description, linkedin }) => {
   return (
-    <div className="promoter-card">
-      <img
-        src="URL_DE_LA_IMAGEN_DE_LA_PROMOTORA"
-        alt="Promotora"
-        className="promoter-image"
-      />
-      <h3 className="promoter-name">Nombre de la Promotora</h3>
-      <p className="promoter-role">Promotora y Fotógrafa</p>
-      <p className="promoter-description">
-        Agradecemos enormemente a [Nombre de la Promotora] por su incansable
-        apoyo y dedicación en cada uno de nuestros eventos. Su talento y
-        compromiso han sido fundamentales para nuestro éxito.
-      </p>
+    <div className="card-promotora">
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <img src={imageSrc} alt={`Imagen de ${name}`} />
+          <h3>{name}</h3>
+        </div>
+        <div className="card-back">
+          <p>
+            <strong>{role}</strong>
+          </p>
+          <p>{description}</p>
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${name}`}>
+              <FaLinkedin size={24} />
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default PromoterCard;
+
+
+
+
+

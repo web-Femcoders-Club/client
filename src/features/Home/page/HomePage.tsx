@@ -157,6 +157,10 @@ const HomePage: React.FC = () => {
           name="description"
           content="Únete a FemCoders Club, una comunidad inclusiva de mujeres apasionadas por la tecnología. Participa en eventos, talleres y programas de mentoría."
         />
+        <meta
+          name="keywords"
+          content="FemCoders Club, mujeres en tecnología, empoderamiento femenino, eventos tecnológicos, comunidad tecnológica, talleres de tecnología, mentoría para mujeres, programación, liderazgo femenino, networking, desarrollo profesional, inclusión en tecnología, mujeres programadoras"
+        />
       </Helmet>
       <section className="parallax bg1 full-height ">
         <div className="content-container">

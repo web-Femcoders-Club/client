@@ -3,12 +3,18 @@ import { BsSpotify, BsInstagram, BsLinkedin, BsYoutube, BsGithub } from 'react-i
 import { FaSlack } from 'react-icons/fa';
 import ContactForm from '../components/ContactForm';
 import './ContactPage.css';
+import { Helmet } from 'react-helmet';
 
 const ContactPage: React.FC = () => {
   const recipientEmail = 'info@femcodersclub.com';
 
   return (
     <div className="contact-page">
+       <Helmet>
+        <title>Contacto - FemCoders Club</title>
+        <meta name="description" content="Ponte en contacto con FemCoders Club. ¿Tienes alguna pregunta o comentario? ¡Nos encantaría saber de ti! Puedes encontrarnos en Spotify, Instagram, LinkedIn, YouTube, GitHub y Slack." />
+        <meta name="keywords" content="contacto, FemCoders Club, mujeres en tecnología, comunidad tecnológica, preguntas, comentarios, redes sociales" />
+      </Helmet>
       <main className="contact-main">
         <section className="contact-info">
           <h2>Información de contacto</h2>
@@ -50,8 +56,3 @@ const ContactPage: React.FC = () => {
 };
 
 export default ContactPage;
-
-
-
-
-

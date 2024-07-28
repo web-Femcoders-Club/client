@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .card-team-member {
@@ -11,11 +11,11 @@
   background-size: cover;
   background-position: center;
   border: 1px solid #ddd;
-  padding: 1rem;
+  animation: fadeIn 1.5s ease-in-out;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  height: 530px;
+  width: 280px;
+  height: 480px;
   transition: transform 0.3s ease;
 }
 
@@ -31,33 +31,35 @@
 }
 
 .card-team-member-image img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background-color: #fdfdfd;
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
 .card-team-member-title {
   color: #fdfdfd;
   text-align: center;
   margin: 0.5rem 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
-.button-card, .card-team-member .secondary-button {
+.button-card,
+.card-team-member .secondary-button {
   display: block;
   margin: 1rem auto 0;
   background-color: #821ad4;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.5rem;
   color: white;
   border-radius: 10px;
   transition: transform 0.2s ease-in-out;
   margin-top: 5px;
 }
 
-.button-card:hover, .card-team-member .secondary-button:hover {
+.button-card:hover,
+.card-team-member .secondary-button:hover {
   background-color: #ea4f33;
   color: #fdfdfd;
   transform: scale(1.1);
@@ -99,7 +101,7 @@
   height: 120px;
   border-radius: 50%;
   margin-bottom: 1rem;
-  margin-left: 30%;
+  margin-left: 40%;
 }
 
 .modal-title {
@@ -123,3 +125,15 @@
   margin-top: 1rem;
 }
 
+@media (max-width: 768px) {
+  .card-team-member-title {
+    font-size: 1rem;
+  }
+  .modal-image {
+    width: 80px;
+    height: 80px;
+  }
+  .modal-body p {
+    font-size: 0.8rem;
+  }
+}

@@ -1,20 +1,53 @@
 .daisy-avatars {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .avatar img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.avatar:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #4737bb;
+}
+
+.avatar-name {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #4737bb;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+  color: #ea4f33;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h5 {
+  font-size: 1.5rem;
+  color: #4737bb;
+  text-align: center;
+  margin-bottom: 2rem;
+}
