@@ -1,0 +1,93 @@
+.centered-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.centered-section .carousel-heading,
+.centered-section .carousel-subheading {
+  margin: 5px 5px;
+}
+
+.custom-carousel-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.custom-carousel-wrapper {
+  width: 80%;
+  overflow: hidden;
+}
+
+.custom-carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.custom-carousel-item {
+  min-width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-carousel-item img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-carousel-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: rgba(71, 55, 187, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.custom-carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #4737bb;
+}
+
+.custom-carousel-control.prev {
+  left: 10px;
+}
+
+.custom-carousel-control.next {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .custom-carousel-wrapper {
+    width: 90%;
+  }
+
+  .custom-carousel-item img {
+    height: 300px;
+  }
+
+  .custom-carousel-text {
+    font-size: 12px;
+    padding: 3px;
+  }
+}

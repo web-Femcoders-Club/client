@@ -4,6 +4,10 @@
   margin: 30px 0;
   perspective: 1000px;
 }
+.background-image-mobile {
+  height: 250px;
+  top:3rem;
+}
 
 .text-eventos {
   font-family: "Asap Condensed", sans-serif;
@@ -102,3 +106,32 @@
 .pagination-custom .btn-active {
   background-color: #ea4f33;
 }
+
+@media (max-width: 768px) {
+  .text-eventos {
+    font-size: 2rem;
+  
+  }
+
+  .event-flip-card-inner-custom {
+    height: 300px;
+  }
+
+  .event-flip-card-back-custom {
+    padding: 2rem;
+    font-size: 1rem;
+  }
+
+  .event-card-image-custom {
+    width: 90%;
+    height: 200px;
+  }
+
+  .event-card-title-custom {
+    font-size: 1rem;
+  }
+  .background-image-mobile {
+    height: 200px;
+    
+  }
+  }

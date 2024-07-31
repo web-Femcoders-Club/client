@@ -1,59 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getPastEvents, getUpcomingEvents } from '../../../api/eventsApi';
 import FemSpinner from '../../../components/Spinner';
 import CardEvent from '../components/CardEvent';
+import CustomCarousel from '../components/CustomCarousel';
 import './EventsPage.css';
 import textofemcoders from '/textofemcodersclub.png';
 import bg1 from '/bg4.png';
+import { Helmet } from 'react-helmet';
+
+interface Event {
+  id: string;
+  start: {
+    local: string;
+  };
+  name: {
+    text: string;
+  };
+  logo?: {
+    original?: {
+      url?: string;
+    };
+  };
+  venue?: {
+    address?: {
+      localized_address_display?: string;
+    };
+  };
+  description: {
+    text: string;
+  };
+  url: string;
+}
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [carouselIndex, setCarouselIndex] = useState(0);
   const eventsPerPage = 3;
 
-  const images = [
-    "/doscomunidadestech.jpeg",
-    "/comunidadfem.JPG",
-    "/eventoAntesMuerta.jpg",
-    "/comoesunevento.jpeg",
-    "/evento8Marzo1.jpg",
-    "/eventoCriteo.jpg",
-    "/cordialidadCriteo.JPG",
-    "/eventocomunidad.jpg",
-    "/eventoData.jpg",
-    "/eventocomunidadfemcodersclub.JPG",
-    "/eventoGlovo.jpg",
-    "/eventoFactoria1.jpg",
-    "/iniciofemCoders.jpg",
-    "/eventoFactoria2.jpg",
-    "/eventoFactoria3.jpg",
-    "/femcodersclubpresentacion.jpeg",
-  ];
+  const { data: pastEventsData, isLoading: isLoadingPastEvents, error: pastEventsError } = useQuery({
+    queryKey: ['pastEvents'],
+    queryFn: getPastEvents,
+  });
 
-  const { data: pastEventsData, isLoading: isLoadingPastEvents, error: pastEventsError } = useQuery(
-    {
-      queryKey: ['pastEvents'],
-      queryFn: getPastEvents,
-    }
-  );
-
-  const { data: upcomingEventsData, isLoading: isLoadingUpcomingEvents, error: upcomingEventsError } = useQuery(
-    {
-      queryKey: ['upcomingEvents'],
-      queryFn: getUpcomingEvents,
-    }
-  );
-
-  useEffect(() => {
-    const carouselInterval = setInterval(() => {
-      setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-
-    return () => {
-      clearInterval(carouselInterval);
-    };
-  }, [images.length]);
+  const { data: upcomingEventsData, isLoading: isLoadingUpcomingEvents, error: upcomingEventsError } = useQuery({
+    queryKey: ['upcomingEvents'],
+    queryFn: getUpcomingEvents,
+  });
 
   if (pastEventsError || upcomingEventsError) {
     return <div>Error loading events. Please try again later.</div>;
@@ -68,7 +60,13 @@ const EventsPage = () => {
 
   return (
     <>
-      <section style={{ backgroundImage: `url(${textofemcoders})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center bottom', height: '250px' }}>
+    <Helmet>
+        <title>FemCoders Club Events</title>
+        <meta name="description" content="Upcoming and past events organized by FemCoders Club" />
+        <meta name="keywords" content="FemCoders, FemCoders Club, events, tech events, women in tech, coding, programming, technology, community" />
+      </Helmet>
+      
+       <section style={{ backgroundImage: `url(${textofemcoders})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center bottom', }} className="background-image-mobile">
         <h1 className="text-eventos">Próximos eventos</h1>
       </section>
 
@@ -78,7 +76,7 @@ const EventsPage = () => {
             <FemSpinner />
           ) : (
             upcomingEventsData?.events && upcomingEventsData.events.length > 0 ? (
-              upcomingEventsData.events.map((event: { id: string, start: { local: string }, name: { text: string }, logo?: { original?: { url?: string } }, venue?: { address?: { localized_address_display?: string } }, description: { text: string }, url: string }) => {
+              upcomingEventsData.events.map((event: Event) => {
                 const date = new Date(event.start.local).toLocaleDateString('es-ES', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
                 return (
                   <CardEvent
@@ -99,39 +97,22 @@ const EventsPage = () => {
         </div>
       </section>
 
-      <section className="parallax bg2">
-        <div className="carousel-container">
-          <h2 className="carousel-heading">Gracias a todas las ponentes que empoderan a nuestra comunidad</h2>
-          <p className="carousel-subheading">
-            Con la ayuda de estas ponentes, nuestra comunidad adquiere conocimiento, empoderamiento y conexión.
-          </p>
-          <div className="carousel">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`carousel-item ${index === carouselIndex ? 'active' : ''}`}
-              >
-                <img src={image} alt={`Evento ${index + 1}`} />
-              </div>
-            ))}
-            <button className="carousel-control prev" onClick={() => setCarouselIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)}>
-              ❮
-            </button>
-            <button className="carousel-control next" onClick={() => setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length)}>
-              ❯
-            </button>
-          </div>
-        </div>
+      <section className="parallax bg2 centered-section">
+        <h3 className="carousel-heading">Gracias a todas las ponentes que empoderan a nuestra comunidad</h3>
+        <p className="carousel-subheading">
+          Con la ayuda de estas ponentes, nuestra comunidad adquiere conocimiento, empoderamiento y conexión.
+        </p>
+        <CustomCarousel />
       </section>
 
-      <section className="mb-20 pt-8 p-5" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className=" pt-8 p-5" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">Eventos Pasados</h1>
         <div className='flex items-center justify-center flex-col gap-y-8'>
           {isLoadingPastEvents ? (
             <FemSpinner />
           ) : (
             paginatedEvents && paginatedEvents.length > 0 ? (
-              paginatedEvents.map((event: { id: string, start: { local: string }, name: { text: string }, logo?: { original?: { url?: string } }, venue?: { address?: { localized_address_display?: string } }, description: { text: string }, url: string }) => {
+              paginatedEvents.map((event: Event) => {
                 const date = new Date(event.start.local).toLocaleDateString("es-ES", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true });
                 return (
                   <CardEvent
