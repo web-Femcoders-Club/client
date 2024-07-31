@@ -49,8 +49,8 @@ const Header: React.FC = () => {
           <li>
             <Link to="/contacto" className="nav-link">Contacto</Link>
           </li>
-          <li className="blog">
-          <Link to="/blog" className="nav-link" style={{ color: '#ea4f33' }}>Blog</Link>
+          <li>
+            <Link to="/blog" className="nav-link" style={{ color: '#ea4f33' }}>Blog</Link>
           </li>
         </ul>
         <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
@@ -62,4 +62,6 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+
 

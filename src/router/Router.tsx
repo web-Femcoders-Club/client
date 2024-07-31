@@ -34,7 +34,7 @@ const RouterComponent: React.FC = () => {
                 <Route path="/contacto" element={<Layout><ContactPage /></Layout>} />
                 <Route path="/eventos" element={<Layout><EventsPage /></Layout>} />
                 <Route path="/sobrenosotras" element={<Layout><AboutPage /></Layout>} />
-                <Route path="/blog/*" element={<Layout><BlogPage /></Layout>} />
+                <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
                 <Route path="/stats" element={<Layout><Stats /></Layout>} />
                 <Route path="/equipo" element={<Layout><TeamPage /></Layout>} />
                 {/* <Route path="/login" element={<Layout><LoginPage /></Layout>} /> */}

@@ -4,6 +4,7 @@ import Noticias from './Noticias';
 import Recursos from './Recursos';
 import Buscar from '../components/Buscar';
 import './BlogPage.css';
+import { Helmet } from 'react-helmet';
 
 const BlogPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +37,11 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
+     <Helmet>
+        <title>Blog de FemCoders Club</title>
+        <meta name="description" content="Descubre noticias y recursos en el blog de FemCoders Club" />
+        <meta name="keywords" content="FemCoders, noticias, recursos, programación, tecnología" />
+      </Helmet>
       <header className="blog-header">
         <h1 className="blog-title">Bienvenidas al Blog de FemCoders Club</h1>
         <nav className="blog-nav">
@@ -53,7 +59,7 @@ const BlogPage: React.FC = () => {
         </nav>
       </header>
       <section className="hero-section">
-        <h2>Descubre lo Último sobre femCoders Club</h2>
+        <h3>Descubre lo Último sobre femCoders Club</h3>
         <p>Encuentra noticias, recursos, y más en nuestro blog.</p>
       </section>
       <section className="blog-content">
