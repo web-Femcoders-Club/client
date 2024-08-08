@@ -12,12 +12,15 @@ const LoginForm: React.FC = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
-                email,
-                password
+                userEmail: email, 
+                userPassword: password
             });
             console.log('Login successful:', response.data);
-            
-            navigate('/welcome', { state: { userName: response.data.userName } });
+            if (response.data.role === 'admin') {
+                navigate('/admin', { state: { userName: response.data.name } });
+            } else {
+                navigate('/welcome', { state: { userName: response.data.name } });
+            }
         } catch (error) {
             setError('Error al iniciar sesión. Verifica tus credenciales.');
         }
@@ -60,6 +63,7 @@ const LoginForm: React.FC = () => {
 };
 
 export default LoginForm;
+
 
 
 

@@ -157,6 +157,16 @@ export type ConfirmationModalProps = {
     onClose: () => void;
 };
 
+
+export type Comment ={
+    id: number;
+    postId: number;
+    content: string;
+    approved: boolean;
+    userEmail: string;
+  }
+  
+  
 export type UpdateMemberDto = {
     memberName?: string;
     memberLastName?: string;

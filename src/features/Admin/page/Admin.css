@@ -1,0 +1,63 @@
+.admin-container {
+    
+    background: url("/bg1.pg");
+    padding: 3rem;
+    border-radius: 8px;
+   
+  }
+  
+  .admin-header {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .admin-header h1 {
+    font-size: 2rem;
+    color: #4737bb;
+  }
+  
+  .admin-header h2 {
+    font-size: 1.5rem;
+    color: #ea4f33;
+  }
+  
+  .admin-header p {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .admin-content {
+    display: flex;
+  }
+  
+  .admin-sidebar {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-main {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .steps .step {
+    color: #4737bb;
+  }
+  
+  .steps .step:last-child {
+    color: #ea4f33;
+  }
+  
+  .steps .step a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .steps .step a:hover {
+    text-decoration: underline;
+  }
+  
+  

@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import Noticias from './Noticias';
 import Recursos from './Recursos';
+import Noticia1 from '../posts/Noticia1'; 
+import Noticia2 from '../posts/Noticia2';
+import Noticia3 from '../posts/Noticia3';
 import Buscar from '../components/Buscar';
 import './BlogPage.css';
 import { Helmet } from 'react-helmet';
@@ -25,9 +28,8 @@ const BlogPage: React.FC = () => {
   };
 
   const posts = [
-    { id: 1, type: 'noticia', title: 'Noticia Reciente 1', description: 'Breve descripción de la noticia...' },
+    { id: 1, type: 'noticia', title: 'Bienvenidas a femCoders Club: Innovación, Inclusión y Comunidad en la Programación', description: 'Presentacíon femCoders Club' },
     { id: 2, type: 'recurso', title: 'Recurso Reciente 1', description: 'Breve descripción del recurso...' },
-    
   ];
 
   const filteredPosts = posts.filter(post => 
@@ -37,7 +39,7 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Blog de FemCoders Club</title>
         <meta name="description" content="Descubre noticias y recursos en el blog de FemCoders Club" />
         <meta name="keywords" content="FemCoders, noticias, recursos, programación, tecnología" />
@@ -89,6 +91,9 @@ const BlogPage: React.FC = () => {
         <Routes>
           <Route path="noticias" element={<Noticias />} />
           <Route path="recursos" element={<Recursos />} />
+          <Route path="noticias/1" element={<Noticia1 />} />
+          <Route path="noticias/2" element={<Noticia2 />} />
+          <Route path="noticias/3" element={<Noticia3 />} />
         </Routes>
       </section>
     </>
@@ -96,16 +101,3 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
-
-
-
-
-
-
-
-
-
-
-
-
-

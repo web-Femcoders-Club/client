@@ -82,6 +82,3 @@ const Recursos: React.FC = () => {
 
 export default Recursos;
 
-
-
-

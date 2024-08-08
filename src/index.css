@@ -216,7 +216,7 @@ span {
 .faq-answer {
   padding: 0.5rem 0 0 1rem;
   margin-top: 0.5rem;
-  color: #eee;
+  color: #fdfdfd;
 }
 
 .modal-body ul {
@@ -301,7 +301,7 @@ span {
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  background: #fff;
+  background: #fdfdfd;
   border-color: #4737bb;
   box-shadow: 0 0 10px #4737bb, 0 0 20px rgba(71, 55, 187, 0.5);
 }

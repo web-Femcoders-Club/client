@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BsInstagram, BsLinkedin } from 'react-icons/bs';
 import './Noticias.css';
 
@@ -8,7 +9,9 @@ const Noticias: React.FC = () => {
       <h2>Noticias</h2>
       <p>Contenido de las noticias...</p>
       <div className="noticia-item">
-        Noticia 1
+        <Link to="/noticias/1">
+          Bienvenidas a femCoders Club: Innovación, Inclusión y Comunidad en la Programación
+        </Link>
         <div className="compartir">
           <a
             href="https://www.instagram.com/femcoders_club/"
@@ -31,7 +34,7 @@ const Noticias: React.FC = () => {
         </div>
       </div>
       <div className="noticia-item">
-        Noticia 2
+        <Link to="/noticias/2">Ejemplo Post Noticia</Link>
         <div className="compartir">
           <a
             href="https://www.instagram.com/femcoders_club/"
@@ -54,7 +57,7 @@ const Noticias: React.FC = () => {
         </div>
       </div>
       <div className="noticia-item">
-        Noticia 3
+        <Link to="/noticias/3">Noticia 3</Link>
         <div className="compartir">
           <a
             href="https://www.instagram.com/femcoders_club/"
@@ -81,6 +84,7 @@ const Noticias: React.FC = () => {
 };
 
 export default Noticias;
+
 
 
 
