@@ -1,0 +1,88 @@
+/* Estilos generales */
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+  }
+  
+  .login-form {
+    flex: 1;
+    max-width: 800px;
+    width: 500px;
+    padding: 3rem;
+    margin-right: 3rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form .logo {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+  
+  .login-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #821ad4;
+  }
+  
+  .login-form input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #4737bb;
+    border-radius: 5px;
+  }
+  
+  .login-form .error-message {
+    color: red;
+    margin-bottom: 1rem;
+  }
+  
+  .login-form .links {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .login-form .links a {
+    color: #821ad4;
+    text-decoration: none;
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+  
+    .login-form {
+      width: 100%;
+      max-width: none;
+      padding: 2rem;
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+  
+    .login-form .logo {
+      width: 80px; 
+    }
+  
+    .login-form input {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  
+    .login-form .links {
+      font-size: 0.9rem;
+    }
+  }
+  
