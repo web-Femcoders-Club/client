@@ -142,7 +142,7 @@ const RouterComponent: React.FC = () => {
           }
         />
         <Route
-          path="/register*"
+          path="/register/*"
           element={
             <Layout>
               <RegisterForm />
