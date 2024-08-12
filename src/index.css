@@ -254,7 +254,7 @@ span {
   background-position: center;
 }
 .bg5 {
-  background-image: url("bg5.png");
+  background-image: url("/bg5.png");
   background-size: cover;
   background-position: center;
 }

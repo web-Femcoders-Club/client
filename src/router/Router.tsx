@@ -21,6 +21,7 @@ import TeamPage from "../features/Team/page/TeamPage";
 import WelcomePage from "../features/Welcome/page/WelcomePage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
+import RegisterForm from "../features/User/page/RegisterForm";
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -92,7 +93,7 @@ const RouterComponent: React.FC = () => {
             </Layout>
           }
         />
-         <Route
+        <Route
           path="/noticias/1"
           element={
             <Layout>
@@ -116,9 +117,38 @@ const RouterComponent: React.FC = () => {
             </Layout>
           }
         />
- <Route path="/admin/comments" element={<Layout><ManageComments /></Layout>} />
- <Route path="/login" element={<Layout><LogIn /></Layout>} />
- <Route path="/admin/*" element={<Layout><Admin /></Layout>} /> 
+        <Route
+          path="/admin/comments"
+          element={
+            <Layout>
+              <ManageComments />
+            </Layout>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <LogIn />
+            </Layout>
+          }
+        />
+        <Route
+          path="/admin/*"
+          element={
+            <Layout>
+              <Admin />
+            </Layout>
+          }
+        />
+        <Route
+          path="/register*"
+          element={
+            <Layout>
+              <RegisterForm />
+            </Layout>
+          }
+        />
         <Route
           path="/welcome"
           element={
