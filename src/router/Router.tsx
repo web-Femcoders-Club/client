@@ -22,6 +22,9 @@ import WelcomePage from "../features/Welcome/page/WelcomePage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 import RegisterForm from "../features/User/page/RegisterForm";
+import ForgotPasswordForm from "../features/ForgotPassword/components/ForgotPasswordForm";
+import ResetPasswordForm from "../features/ForgotPassword/page/ResetPasswordForm";
+
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -149,6 +152,26 @@ const RouterComponent: React.FC = () => {
             </Layout>
           }
         />
+        <Route
+          path="/forgot-password"
+          element={
+            <Layout>
+              <ForgotPasswordForm />
+            </Layout>
+          }
+        />
+
+        
+<Route
+  path="/reset-password"
+  element={
+    <Layout>
+      <ResetPasswordForm />
+    </Layout>
+  }
+/>
+
+        
         <Route
           path="/welcome"
           element={

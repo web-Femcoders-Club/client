@@ -12,7 +12,7 @@ const WelcomePage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f0f0' }}>
-            <h1>Hola 👋 {userName}, bienvenida a tu comunidad!</h1>
+            <h1>Hola 👋 {userName}, <br />Bienvenida a tu comunidad!</h1>
         </div>
     );
 };
