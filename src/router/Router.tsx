@@ -26,6 +26,7 @@ import ForgotPasswordForm from "../features/ForgotPassword/components/ForgotPass
 import ResetPasswordForm from "../features/ForgotPassword/page/ResetPasswordForm";
 
 
+
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);

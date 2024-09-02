@@ -64,6 +64,8 @@ const LoginForm: React.FC = () => {
           <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
           <br />
           <a href="/register/*">¿No tienes cuenta? Regístrate</a>
+          
+
         </div>
       </div>
     </div>
