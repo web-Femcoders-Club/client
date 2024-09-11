@@ -17,6 +17,7 @@
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "daisyui": "^4.12.6",
+    "date-fns": "^3.6.0",
     "lucide-react": "^0.416.0",
     "postcss": "^8.4.38",
     "qrcode": "^1.5.3",
@@ -28,6 +29,7 @@
     "serve": "^14.2.3"
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/node": "^20.14.9",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.3",

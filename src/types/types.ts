@@ -158,13 +158,15 @@ export type ConfirmationModalProps = {
 };
 
 
-export type Comment ={
+export interface Comment {
     id: number;
     postId: number;
     content: string;
     approved: boolean;
     userEmail: string;
+    createdAt: Date;  
   }
+  
   
   
 export type UpdateMemberDto = {
