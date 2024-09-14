@@ -126,10 +126,23 @@
   margin-top: 20px;
 }
 
-/* Media query para pantallas más pequeñas */
+.social-share {
+  padding: 20px;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .blog-post-title {
-    font-size: 2rem;
+    font-size: 1.7rem;
+  }
+  .blog-post-image {
+    height: 300px;
+    width: 80%;
   }
 
   .intro-text {

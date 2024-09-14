@@ -102,6 +102,18 @@ const SponsorsTimeline = () => {
       website: "https://www.lewagon.com/es",
       backgroundImage: "/leWagon.jpg",
     },
+    {
+      date: "2024-09-05",
+
+      sponsor: "Codurance",
+      event:
+        "Ciberseguridad - Catch Me If You Can: Malware Hide and Seek",
+      description:
+        "En colaboración con Codurance, exploramos el mundo del malware y sus efectos en nuestros dispositivos y datos. Descubrimos cómo operan estos programas maliciosos y cómo protegernos de ellos en plataformas digitales.",
+      logo: "/logo-codurance.jpeg",
+      website: "https://www.codurance.com/es/",
+      backgroundImage: "/codurance-oficina.jpg",
+    },
   ];
 
   const handlePrev = () => {

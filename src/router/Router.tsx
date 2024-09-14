@@ -10,22 +10,20 @@ import AboutPage from "../features/About/page/AboutPage";
 import ManageComments from "../features/Admin/components/comment/ManageComments";
 import Admin from "../features/Admin/page/Admin";
 import BlogPage from "../features/Blog/page/BlogPage";
-import Noticia1 from "../features/Blog/posts/Noticia1";
 import Noticia2 from "../features/Blog/posts/Noticia2";
 import Noticia3 from "../features/Blog/posts/Noticia3";
 import ContactPage from "../features/Contact/page/ContactPage";
 import EventsPage from "../features/Events/page/EventsPage";
+import ForgotPasswordForm from "../features/ForgotPassword/components/ForgotPasswordForm";
+import ResetPasswordForm from "../features/ForgotPassword/page/ResetPasswordForm";
 import HomePage from "../features/Home/page/HomePage";
 import LogIn from "../features/LogIn/page/LoginPage";
 import TeamPage from "../features/Team/page/TeamPage";
+import RegisterForm from "../features/User/page/RegisterForm";
 import WelcomePage from "../features/Welcome/page/WelcomePage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
-import RegisterForm from "../features/User/page/RegisterForm";
-import ForgotPasswordForm from "../features/ForgotPassword/components/ForgotPasswordForm";
-import ResetPasswordForm from "../features/ForgotPassword/page/ResetPasswordForm";
-
-
+import Aniversario from "../features/Blog/posts/Aniversario";
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -98,10 +96,10 @@ const RouterComponent: React.FC = () => {
           }
         />
         <Route
-          path="/noticias/1"
+          path="/noticias/Aniversario"
           element={
             <Layout>
-              <Noticia1 />
+              <Aniversario />
             </Layout>
           }
         />
@@ -162,17 +160,15 @@ const RouterComponent: React.FC = () => {
           }
         />
 
-        
-<Route
-  path="/reset-password"
-  element={
-    <Layout>
-      <ResetPasswordForm />
-    </Layout>
-  }
-/>
+        <Route
+          path="/reset-password"
+          element={
+            <Layout>
+              <ResetPasswordForm />
+            </Layout>
+          }
+        />
 
-        
         <Route
           path="/welcome"
           element={

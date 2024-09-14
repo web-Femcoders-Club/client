@@ -8,19 +8,23 @@ import {
   BsLinkedin,
   BsSpotify,
   BsYoutube,
+  BsFacebook,
+  BsTwitter,
 } from "react-icons/bs";
-import { FaSlack } from "react-icons/fa";
+import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
 
-const Noticia1: React.FC = () => {
+const Aniversario: React.FC = () => {
   const [comment, setComment] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [approvedComments, setApprovedComments] = useState<Comment[]>([]);
   const form = useRef<HTMLFormElement | null>(null);
+
+  const currentUrl = window.location.href;
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -102,7 +106,7 @@ const Noticia1: React.FC = () => {
       </Helmet>
       <div className="post-image-container">
         <img
-          src="/mujeresprogramadoras.jpg"
+          src="/femCodersClubpost.png"
           alt="Mujeres programadoras"
           className="blog-post-image"
         />
@@ -112,6 +116,51 @@ const Noticia1: React.FC = () => {
         Un año innovando juntas: ¡Celebramos el primer aniversario de femCoders
         Club!
       </h1>
+
+      <div className="social-share">
+        <div className="share-buttons">
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Compartir en Facebook"
+          >
+            <BsFacebook className="social-icon" />
+          </a>
+          <a
+            href={`https://www.instagram.com/?url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Compartir en Instagram"
+          >
+            <BsInstagram className="social-icon" />
+          </a>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Compartir en LinkedIn"
+          >
+            <BsLinkedin className="social-icon" />
+          </a>
+          <a
+            href={`https://www.tiktok.com/share?url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Compartir en TikTok"
+          >
+            <FaTiktok className="social-icon" />
+          </a>
+          <a
+            href={`https://twitter.com/share?url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Compartir en Twitter/X"
+          >
+            <BsTwitter className="social-icon" />
+          </a>
+        </div>
+      </div>
 
       <p className="intro-text">
         🌟 ¿Alguna vez te has sentido sola en el mundo de la programación? En{" "}
@@ -149,6 +198,7 @@ const Noticia1: React.FC = () => {
           para crecer.
         </p>
       </div>
+
       <div className="highlight-box">
         <h2>¿Cómo puedes unirte? 🤝</h2>
         <p>
@@ -313,4 +363,4 @@ const Noticia1: React.FC = () => {
   );
 };
 
-export default Noticia1;
+export default Aniversario;

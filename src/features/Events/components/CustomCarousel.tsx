@@ -92,6 +92,15 @@ const CustomCarousel = () => {
       src: "/LauraPourtier.png",
       text: "De la mano de Laura Pourtier, analizamos la rentabilidad de Walmart utilizando Tableau en colaboración con Le Wagon. Un evento imprescindible para los apasionados por el análisis de datos y la tecnología.",
     },
+    {
+      src: "/DanielaTrifu-experta-en-ciberseguridad.png",
+      text: "Daniela Trifu, referente en ciberseguridad, aportando su valiosa experiencia durante el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek'",
+    },
+    {
+      src: "/Yeraldyn-Salazar-Cybersecurity-Teacher.png",
+      text: "Yeraldin Salazar, especialista en ciberseguridad, brindando su visión experta en el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek''.",
+    },
+    
   ];
 
   useEffect(() => {

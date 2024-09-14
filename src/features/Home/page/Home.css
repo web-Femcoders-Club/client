@@ -237,7 +237,6 @@
   }
 }
 
-
 .call-to-action {
   flex: 1;
   max-width: 600px;
@@ -304,13 +303,6 @@
   font-weight: bold;
 }
 
-.countdown-text {
-  font-size: 1.5rem;
-  margin-top: 1.3rem;
-  margin-bottom: 1rem;
-  color: #2a2170;
-}
-
 .event-card {
   margin-top: 1rem;
   text-align: center;
@@ -322,7 +314,6 @@
   margin-bottom: 1rem;
   object-fit: cover;
   cursor: pointer;
-  margin-left: 16%;
 }
 .section-4 {
   display: flex;

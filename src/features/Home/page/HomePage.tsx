@@ -6,10 +6,36 @@ import { FaUserFriends, FaBriefcase, FaStar } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import "./Home.css";
 import CarouselWithText from "../components/CarouselWithText";
+import { getUpcomingEvents } from "../../../api/eventsApi";
 
-
+interface Event {
+  start: {
+    local: string;
+  };
+  id: string;
+  name: {
+    text: string;
+  };
+  logo?: {
+    original?: {
+      url?: string;
+    };
+  };
+}
 
 const HomePage: React.FC = () => {
+  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const form = useRef<HTMLFormElement | null>(null);
+
   const images = [
     "/eventoCarmenAnsio.jpg",
     "/eventoFactoriaF5.jpg",
@@ -23,14 +49,14 @@ const HomePage: React.FC = () => {
     "/comunidadesMujeresTecnologas.jpg",
     "/AureaRodriguez.jpg",
     "/asistentesfemCodersClubCriteo.jpg",
-    "/eventobufet.jpg",
+    "/eventobufet.JPG",
     "/apoyoMujeresTech.jpg",
     "/EventoFactorial.jpg",
     "/mujeresTechNetworking.jpg",
     "/musicaconcodigo.jpeg",
     "/eventoUnlokingData.jpg",
     "/eventoLiderazgoMujer.jpg",
-
+    "/mujeres-ciberseguridad-femcoders-evento.png",
     "/mujeresFemCodersClub.png",
     "/networkingEventosFemCodersClub.png",
     "/mujeresComunidadFemCodersClub.png",
@@ -47,9 +73,10 @@ const HomePage: React.FC = () => {
     "Sé una Líder en tu Vida y Profesión",
   ];
 
-  const calculateTimeLeft = () => {
-    const eventDate = new Date("2024-12-31T00:00:00");
+  const calculateTimeLeft = (eventDate: Date | null) => {
     const now = new Date();
+    if (!eventDate) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
     const difference = eventDate.getTime() - now.getTime();
 
     let timeLeft = {
@@ -71,11 +98,34 @@ const HomePage: React.FC = () => {
     return timeLeft;
   };
 
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  const [showMessage, setShowMessage] = useState<boolean>(false);
-  const form = useRef<HTMLFormElement | null>(null);
+  useEffect(() => {
+    const fetchUpcomingEvent = async () => {
+      try {
+        const { events } = await getUpcomingEvents();
+        if (events && events.length > 0) {
+          const nextEvent = events[0];
+          const eventDate = new Date(nextEvent.start.local);
+          setUpcomingEvent(nextEvent);
+          setTimeLeft(calculateTimeLeft(eventDate));
+        }
+      } catch (error) {
+        console.error("Error fetching upcoming event:", error);
+      }
+    };
+
+    fetchUpcomingEvent();
+  }, [upcomingEvent]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (upcomingEvent) {
+        const eventDate = new Date(upcomingEvent.start.local);
+        setTimeLeft(calculateTimeLeft(eventDate));
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [upcomingEvent]);
 
   useEffect(() => {
     const photoInterval = setInterval(() => {
@@ -99,7 +149,10 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      if (upcomingEvent) {
+        const eventDate = new Date(upcomingEvent.start.local);
+        setTimeLeft(calculateTimeLeft(eventDate));
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -145,8 +198,6 @@ const HomePage: React.FC = () => {
       .catch((error) => {
         console.log(error);
       });
-
-      
   };
 
   return (
@@ -296,7 +347,7 @@ const HomePage: React.FC = () => {
           </div>
           <div className="section-countdown">
             <div className="countdown-content">
-              <h2>¡Proximo evento!</h2>
+              <h2>¡Próximo evento!</h2>
               <div className="countdown">
                 <div className="countdown-item">
                   <span>{timeLeft.days}</span> días
@@ -312,11 +363,18 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
               <h3 className="countdown-text">
-                Lorem, ipsum dolor sit amet consectetur
+                {upcomingEvent
+                  ? upcomingEvent.name.text
+                  : "¡No te pierdas este evento especial!"}
               </h3>
             </div>
             <div className="event-card">
-              <img src="/apoyomujeres.png" alt="Próximo evento" />
+              {upcomingEvent && (
+                <img
+                  src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
+                  alt="Próximo evento"
+                />
+              )}
               <Link to="/eventos">
                 <button className="secondary-button">Más información</button>
               </Link>
