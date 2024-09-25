@@ -60,13 +60,13 @@ const EventsPage = () => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>FemCoders Club Events</title>
         <meta name="description" content="Upcoming and past events organized by FemCoders Club" />
         <meta name="keywords" content="FemCoders, FemCoders Club, events, tech events, women in tech, coding, programming, technology, community" />
       </Helmet>
       
-       <section style={{ backgroundImage: `url(${textofemcoders})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center bottom', }} className="background-image-mobile">
+      <section style={{ backgroundImage: `url(${textofemcoders})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center bottom' }} className="background-image-mobile">
         <h1 className="text-eventos">Próximos eventos</h1>
       </section>
 
@@ -105,7 +105,7 @@ const EventsPage = () => {
         <CustomCarousel />
       </section>
 
-      <section className=" pt-8 p-5" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="pt-8 p-5" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">Eventos Pasados</h1>
         <div className='flex items-center justify-center flex-col gap-y-8'>
           {isLoadingPastEvents ? (
