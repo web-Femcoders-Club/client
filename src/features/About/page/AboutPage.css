@@ -103,12 +103,7 @@
   justify-content: center;
   align-items: center;
 }
-.flip-card-front .img {
-  width: 80px;
-  height: 100px;
-  border-radius: 50%;
- 
-}
+
 
 .flip-card-back {
   transform: rotateY(180deg);
@@ -196,10 +191,8 @@
   padding-bottom: 20px;
 }
 
-.parallax.bg4 p {
-  color: white;
-
-  font-size: 1.5rem;
+.idea-card-content{
+  color: #fdfdfd;
 }
 
 .idea-card {
@@ -234,10 +227,10 @@
   font-size: 1.5rem;
 }
 
-.idea-card-content {
+.idea-card-content{
   margin-top: 10px;
-  
 }
+
 
 .collapse-container {
   padding: 2rem;
@@ -281,6 +274,9 @@
   .video-container {
     width: 100%;
     margin-bottom: 1rem;
+  }
+  .flip-card-front {
+    padding: 4rem;
   }
   .flip-card-back {
     padding: 4rem;

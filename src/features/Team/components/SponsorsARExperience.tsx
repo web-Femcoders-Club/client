@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 
 const SponsorsTimeline = () => {
@@ -15,7 +15,6 @@ const SponsorsTimeline = () => {
       website: "https://canodrom.barcelona/es",
       backgroundImage: "/ImagenCanodrom.png",
     },
-
     {
       date: "2024-01-01",
       sponsor: "PokeCode",
@@ -25,18 +24,16 @@ const SponsorsTimeline = () => {
       website: "https://pokecode.net/",
       backgroundImage: "/pokeCode.jpg",
     },
-
     {
       date: "2024-02-20",
       sponsor: "FactoriaF5",
       event: "Las skills que necesitas para ser una UX Engineer",
       description:
-        "FactoriaF5 ha sido un aliado fundamental en nuestro objetivo de empoderar a las mujeres en la tecnología. Gracias a talleres como 'Las skills que necesitas para ser una UX Engineer', impartido por la experta Carmen Ansio, hemos ayudado a nuestras miembros a adquirir las habilidades necesarias para destacar en el competitivo mundo del diseño de UX. Este evento fue un punto de inflexión para muchas de nosotras",
+        "FactoriaF5 ha sido un aliado fundamental en nuestro objetivo de empoderar a las mujeres en la tecnología. Gracias a talleres como 'Las skills que necesitas para ser una UX Engineer', impartido por la experta Carmen Ansio, hemos ayudado a nuestras miembros a adquirir las habilidades necesarias para destacar en el competitivo mundo del diseño de UX. Este evento fue un punto de inflexión para muchas de nosotras.",
       logo: "/logoFactoriaF5.jpg",
       website: "https://factoriaf5.org/",
       backgroundImage: "/factoriaF5.png",
     },
-
     {
       date: "2024-03-07",
       sponsor: "Adevinta",
@@ -48,7 +45,6 @@ const SponsorsTimeline = () => {
       website: "https://adevinta.com/es/quienes-somos//",
       backgroundImage: "/adevinta4.jpeg",
     },
-
     {
       date: "2024-04-22",
       sponsor: "Glovo",
@@ -83,7 +79,7 @@ const SponsorsTimeline = () => {
     {
       date: "2024-06-19",
       sponsor: "Dynatrace",
-      event: " Essential Visualization and Metrics for Success 💻🚀",
+      event: "Essential Visualization and Metrics for Success 💻🚀",
       description:
         "La colaboración entre FemCoders Club y Dynatrace nos permitió ofrecer un evento de alta calidad donde los participantes pudieron ampliar sus conocimientos en un área tan importante como la visualización de datos. Gracias a Dynatrace por su apoyo y a todos los asistentes por su entusiasmo. ¡Juntos estamos construyendo una comunidad más fuerte y conocedora!",
       logo: "/logodynatrace.jpeg",
@@ -91,8 +87,7 @@ const SponsorsTimeline = () => {
       backgroundImage: "/oficinaDynatrace.jpg",
     },
     {
-      date: "2024-06-27 ",
-
+      date: "2024-06-27",
       sponsor: "Le wagon",
       event:
         "Predict the gender pay gap with AI, Analyze Walmart’s profitability using Tableau.",
@@ -104,10 +99,8 @@ const SponsorsTimeline = () => {
     },
     {
       date: "2024-09-05",
-
       sponsor: "Codurance",
-      event:
-        "Ciberseguridad - Catch Me If You Can: Malware Hide and Seek",
+      event: "Ciberseguridad - Catch Me If You Can: Malware Hide and Seek",
       description:
         "En colaboración con Codurance, exploramos el mundo del malware y sus efectos en nuestros dispositivos y datos. Descubrimos cómo operan estos programas maliciosos y cómo protegernos de ellos en plataformas digitales.",
       logo: "/logo-codurance.jpeg",
@@ -129,6 +122,14 @@ const SponsorsTimeline = () => {
   };
 
   const activeEvent = sponsorEvents[activeIndex];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div
@@ -200,9 +201,6 @@ const SponsorsTimeline = () => {
             }`}
             onClick={() => setActiveIndex(index)}
             aria-label={`Ir al evento ${index + 1}`}
-            style={{
-              backgroundColor: index === activeIndex ? "#4737bb" : "gray",
-            }}
           ></button>
         ))}
       </div>

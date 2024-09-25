@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import iconEquity from "/iconEquity.png";
 import iconInclusion from "/iconInclusion.png";
 import iconVisibility from "/iconVisibility.png";
@@ -84,6 +84,8 @@ const Card: React.FC<CardProps> = ({ img, title, desc }) => (
       position: "relative",
       zIndex: 1,
     }}
+    role="figure"
+    aria-labelledby={`card-title-${title}`}
   >
     <div
       style={{
@@ -95,12 +97,13 @@ const Card: React.FC<CardProps> = ({ img, title, desc }) => (
         borderRadius: "inherit",
         background:
           "radial-gradient(ellipse at center, rgba(109, 44, 149, 0) 30%, rgba(71, 55, 187, 0.2) 60%, rgba(234, 79, 51, 0.3) 100%)",
-
         zIndex: -1,
       }}
     ></div>
-    <img src={img} alt={title} className="mb-4 w-16 h-16" />
-    <h3 className="text-xl font-bold text-white my-4">{title}</h3>
+    <img src={img} alt={`Icono de ${title}`} className="mb-4 w-16 h-16" />
+    <h3 id={`card-title-${title}`} className="text-xl font-bold text-white my-4">
+      {title}
+    </h3>
     <p
       className="text-center px-6"
       style={{
@@ -129,6 +132,8 @@ const CarouselValues: React.FC = () => {
     <div
       className="carousel-container mx-auto px-4 relative"
       style={{ minHeight: "400px" }}
+      role="region"
+      aria-label="Carrusel de valores"
     >
       <div className="flex overflow-hidden justify-center">
         {cards
@@ -144,3 +149,4 @@ const CarouselValues: React.FC = () => {
 };
 
 export default CarouselValues;
+

@@ -242,9 +242,10 @@ const HomePage: React.FC = () => {
               Si compartes nuestra pasión por la tecnología, ¡únete a nosotras!
             </p>
             <div className="button-container">
-              <Link to="/signup">
-                <button className="primary-button">Unirse al club</button>
-              </Link>
+            <Link to="/register">
+  <button className="primary-button">Unirse al club</button>
+</Link>
+
               <Link to="/eventos">
                 <button className="secondary-button">Ver eventos</button>
               </Link>

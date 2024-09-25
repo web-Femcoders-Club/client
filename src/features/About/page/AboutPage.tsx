@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 const AboutPage: React.FC = () => {
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Sobre Nosotras - FemCoders Club</title>
         <meta
           name="description"
@@ -25,7 +25,6 @@ const AboutPage: React.FC = () => {
       </Helmet>
       <section className="parallax bg1 full-height">
         <div className="contenedor">
-         
           <div className="contenido-seccion">
             <div className="banner-quienes-somos text-left">
               <p>
@@ -41,8 +40,12 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="compromise-video">
-              <video src={VideoInicialComunidad} className="video" controls aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos" />
-             
+              <video
+                src={VideoInicialComunidad}
+                className="video"
+                controls
+                aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos"
+              />
             </div>
           </div>
         </div>
@@ -53,11 +56,18 @@ const AboutPage: React.FC = () => {
             <div className="card-about">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
-                  <img src={iconMission} alt="Icono Misión" />
+                  <img
+                    src={iconMission}
+                    alt="Icono Misión"
+                    style={{ height: "50px", marginTop: "7rem" }}
+                  />
                   <h3>Misión</h3>
                 </div>
                 <div className="flip-card-back">
-                  <img src={FemCodersClubLogo} alt="femCoders Club logo" />
+                  <img
+                    src={FemCodersClubLogo}
+                    alt="femCoders Club logo"
+                  />
                   <p>
                     <strong>
                       Nuestra misión es empoderar y elevar a las mujeres en el
@@ -79,7 +89,7 @@ const AboutPage: React.FC = () => {
             </div>
             <div className="card-about">
               <div className="flip-card-inner">
-                <div className="flip-card-front">
+                <div className="flip-card-front" style={{ height: "100px", marginTop: "7rem" }}>
                   <img src={iconVision} alt="Icono Visión" />
                   <h3>Visión</h3>
                 </div>
@@ -165,4 +175,5 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+
 
