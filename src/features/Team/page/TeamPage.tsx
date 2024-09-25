@@ -15,7 +15,7 @@ const TeamPage = () => {
         backgroundPosition: "center top",
       }}
     >
-    <Helmet>
+      <Helmet>
         <title>Nuestro Equipo - FemCoders Club</title>
         <meta
           name="description"
@@ -29,7 +29,7 @@ const TeamPage = () => {
 
       <section className="parallax bg1 w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32">
         <p
-          className="w-full text-left styled-paragraph"
+          className="w-full styled-paragraph"
           style={{
             marginTop: "10rem",
 

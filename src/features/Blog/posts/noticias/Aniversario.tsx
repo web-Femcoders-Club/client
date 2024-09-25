@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { Comment } from "../../../types/types";
-import { getApprovedComments } from "../../../api/commentApi";
+import { Comment } from "../../../../types/types";
+import { getApprovedComments } from "../../../../api/commentApi";
 import {
   BsGithub,
   BsInstagram,
@@ -158,6 +158,14 @@ const Aniversario: React.FC = () => {
             aria-label="Compartir en Twitter/X"
           >
             <BsTwitter className="social-icon" />
+          </a>
+          <a
+            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Unirse a Slack"
+          >
+            <FaSlack className="social-icon" />
           </a>
         </div>
       </div>

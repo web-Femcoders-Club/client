@@ -41,6 +41,8 @@ const ForgotPasswordForm: React.FC = () => {
         />
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <p className="instruction-text">Escribe tu correo para recibir instrucciones de restablecimiento.</p>
             <input
               type="email"
               id="email"
@@ -48,7 +50,6 @@ const ForgotPasswordForm: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <label htmlFor="email">Correo Electrónico</label>
           </div>
           <button type="submit" className="primary-button">
             Enviar
@@ -69,4 +70,5 @@ const ForgotPasswordForm: React.FC = () => {
 };
 
 export default ForgotPasswordForm;
+
 

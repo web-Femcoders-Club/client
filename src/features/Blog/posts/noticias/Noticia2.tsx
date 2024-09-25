@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { Comment } from '../../../types/types';
-import { getApprovedComments } from '../../../api/commentApi';
-import './PostStyles.css';
+import React, { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { Comment } from "../../../../types/types";
+import { getApprovedComments } from "../../../../api/commentApi";
+import "./../../../Blog/posts/PostStyles.css";
 
 const Noticia2: React.FC = () => {
-  const [comment, setComment] = useState('');
-  const [name, setName] = useState('');
+  const [comment, setComment] = useState("");
+  const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [approvedComments, setApprovedComments] = useState<Comment[]>([]);
   const form = useRef<HTMLFormElement | null>(null);
@@ -17,7 +17,7 @@ const Noticia2: React.FC = () => {
         const approved = await getApprovedComments();
         setApprovedComments(approved);
       } catch (error) {
-        console.error('Error fetching comments:', error);
+        console.error("Error fetching comments:", error);
       }
     };
 
@@ -46,37 +46,39 @@ const Noticia2: React.FC = () => {
     const templateParams = {
       from_name: name,
       message: comment,
-      to_name: 'Irina',
-      postId: '1',
+      to_name: "Irina",
+      postId: "1",
     };
 
-    emailjs.send(serviceId, templateId, templateParams, apiKey)
-      .then(result => {
+    emailjs
+      .send(serviceId, templateId, templateParams, apiKey)
+      .then((result) => {
         console.log(result.text);
         setSubmitted(true);
-        setComment('');
-        setName('');
+        setComment("");
+        setName("");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
 
     fetch(`${import.meta.env.VITE_API_URL}/comments`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         postId: 1,
         content: comment,
         userEmail: name,
       }),
-    }).then(response => response.json())
-      .then(data => {
-        console.log('Comentario enviado al backend:', data);
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Comentario enviado al backend:", data);
       })
-      .catch(error => {
-        console.error('Error enviando el comentario al backend:', error);
+      .catch((error) => {
+        console.error("Error enviando el comentario al backend:", error);
       });
   };
 
@@ -85,11 +87,20 @@ const Noticia2: React.FC = () => {
       <div className="blog-post-banner">
         <img src="/eventocontere.jpeg" alt="Banner" />
       </div>
-      <h2>Bienvenidas a femCoders Club: Innovación, Inclusión y Comunidad en la Programación</h2>
-      <p>¡Hola a todos! Estamos muy emocionadas de presentarles el nuevo sitio web de femCoders Club, un espacio dedicado a fomentar la inclusión, innovación y el crecimiento profesional de las mujeres en el mundo de la tecnología y la programación. En este primer artículo, queremos contarles quiénes somos, qué hacemos y cómo pueden unirse a esta increíble comunidad.</p>
-      
+      <h2>
+        Bienvenidas a femCoders Club: Innovación, Inclusión y Comunidad en la
+        Programación
+      </h2>
+      <p>
+        ¡Hola a todos! Estamos muy emocionadas de presentarles el nuevo sitio
+        web de femCoders Club, un espacio dedicado a fomentar la inclusión,
+        innovación y el crecimiento profesional de las mujeres en el mundo de la
+        tecnología y la programación. En este primer artículo, queremos
+        contarles quiénes somos, qué hacemos y cómo pueden unirse a esta
+        increíble comunidad.
+      </p>
+
       <div className="comments-section">
-        
         <ul>
           {approvedComments.map((comment) => (
             <li key={comment.id} className="approved-comment">
@@ -114,9 +125,13 @@ const Noticia2: React.FC = () => {
             placeholder="Escribe tu comentario aquí..."
             required
           />
-          <button type="submit" className="primary-button">Enviar comentario</button>
+          <button type="submit" className="primary-button">
+            Enviar comentario
+          </button>
         </form>
-        {submitted && <p>Tu comentario ha sido enviado y está pendiente de moderación.</p>}
+        {submitted && (
+          <p>Tu comentario ha sido enviado y está pendiente de moderación.</p>
+        )}
       </div>
     </div>
   );

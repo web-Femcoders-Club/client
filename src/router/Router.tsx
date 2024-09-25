@@ -1,29 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import CookiePolicyModal from "../components/Footer/Modals/Cookies";
 import FaqModal from "../components/Footer/Modals/FaqModal";
 import PrivacyPolicyModal from "../components/Footer/Modals/Privacidad";
 import Layout from "../components/Layout/Layout";
-import Stats from "../components/Stats";
 import { ModalContext } from "../context/ModalContext";
-import AboutPage from "../features/About/page/AboutPage";
-import ManageComments from "../features/Admin/components/comment/ManageComments";
-import Admin from "../features/Admin/page/Admin";
-import BlogPage from "../features/Blog/page/BlogPage";
-import Noticia2 from "../features/Blog/posts/Noticia2";
-import Noticia3 from "../features/Blog/posts/Noticia3";
-import ContactPage from "../features/Contact/page/ContactPage";
-import EventsPage from "../features/Events/page/EventsPage";
-import ForgotPasswordForm from "../features/ForgotPassword/components/ForgotPasswordForm";
-import ResetPasswordForm from "../features/ForgotPassword/page/ResetPasswordForm";
-import HomePage from "../features/Home/page/HomePage";
-import LogIn from "../features/LogIn/page/LoginPage";
-import TeamPage from "../features/Team/page/TeamPage";
-import RegisterForm from "../features/User/page/RegisterForm";
-import WelcomePage from "../features/Welcome/page/WelcomePage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
-import Aniversario from "../features/Blog/posts/Aniversario";
+
+const HomePage = lazy(() => import("../features/Home/page/HomePage"));
+const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
+const EventsPage = lazy(() => import("../features/Events/page/EventsPage"));
+const AboutPage = lazy(() => import("../features/About/page/AboutPage"));
+const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
+const Aniversario = lazy(() => import("../features/Blog/posts/noticias/Aniversario"));
+const IntroduccionHTML = lazy(() => import("../features/Blog/posts/recursos/html/IntroduccionHTML"));
+const Stats = lazy(() => import("../components/Stats"));
+const TeamPage = lazy(() => import("../features/Team/page/TeamPage"));
+const LogIn = lazy(() => import("../features/LogIn/page/LoginPage"));
+const ManageComments = lazy(() => import("../features/Admin/components/comment/ManageComments"));
+const Admin = lazy(() => import("../features/Admin/page/Admin"));
+const RegisterForm = lazy(() => import("../features/User/page/RegisterForm"));
+const ForgotPasswordForm = lazy(() => import("../features/ForgotPassword/components/ForgotPasswordForm"));
+const ResetPasswordForm = lazy(() => import("../features/ForgotPassword/page/ResetPasswordForm"));
+const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -37,153 +37,141 @@ const RouterComponent: React.FC = () => {
 
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <HomePage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/contacto"
-          element={
-            <Layout>
-              <ContactPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/eventos"
-          element={
-            <Layout>
-              <EventsPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/sobrenosotras"
-          element={
-            <Layout>
-              <AboutPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/blog/*"
-          element={
-            <Layout>
-              <BlogPage />
-            </Layout>
-          }
-        />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/contacto"
+            element={
+              <Layout>
+                <ContactPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/eventos"
+            element={
+              <Layout>
+                <EventsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/sobrenosotras"
+            element={
+              <Layout>
+                <AboutPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blog/*"
+            element={
+              <Layout>
+                <BlogPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/stats"
+            element={
+              <Layout>
+                <Stats />
+              </Layout>
+            }
+          />
+          <Route
+            path="/equipo"
+            element={
+              <Layout>
+                <TeamPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/Aniversario"
+            element={
+              <Layout>
+                <Aniversario />
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/html/introduccion-html"
+            element={
+              <Layout>
+                <IntroduccionHTML />
+              </Layout>
+            }
+          />
+          <Route
+            path="/admin/comments"
+            element={
+              <Layout>
+                <ManageComments />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <LogIn />
+              </Layout>
+            }
+          />
+          <Route
+            path="/admin/*"
+            element={
+              <Layout>
+                <Admin />
+              </Layout>
+            }
+          />
+          <Route
+            path="/register/*"
+            element={
+              <Layout>
+                <RegisterForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <Layout>
+                <ForgotPasswordForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <Layout>
+                <ResetPasswordForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/welcome"
+            element={
+              <Layout>
+                <WelcomePage />
+              </Layout>
+            }
+          />
+        </Routes>
+      </Suspense>
 
-        <Route
-          path="/stats"
-          element={
-            <Layout>
-              <Stats />
-            </Layout>
-          }
-        />
-        <Route
-          path="/equipo"
-          element={
-            <Layout>
-              <TeamPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/noticias/Aniversario"
-          element={
-            <Layout>
-              <Aniversario />
-            </Layout>
-          }
-        />
-        <Route
-          path="/noticias/2"
-          element={
-            <Layout>
-              <Noticia2 />
-            </Layout>
-          }
-        />
-        <Route
-          path="/noticias/3"
-          element={
-            <Layout>
-              <Noticia3 />
-            </Layout>
-          }
-        />
-        <Route
-          path="/admin/comments"
-          element={
-            <Layout>
-              <ManageComments />
-            </Layout>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Layout>
-              <LogIn />
-            </Layout>
-          }
-        />
-        <Route
-          path="/admin/*"
-          element={
-            <Layout>
-              <Admin />
-            </Layout>
-          }
-        />
-        <Route
-          path="/register/*"
-          element={
-            <Layout>
-              <RegisterForm />
-            </Layout>
-          }
-        />
-        <Route
-          path="/forgot-password"
-          element={
-            <Layout>
-              <ForgotPasswordForm />
-            </Layout>
-          }
-        />
-
-        <Route
-          path="/reset-password"
-          element={
-            <Layout>
-              <ResetPasswordForm />
-            </Layout>
-          }
-        />
-
-        <Route
-          path="/welcome"
-          element={
-            <Layout>
-              <WelcomePage />
-            </Layout>
-          }
-        />
-      </Routes>
-      {modalType === "cookiePolicy" && (
-        <CookiePolicyModal closeModal={closeModal} />
-      )}
-      {modalType === "privacyPolicy" && (
-        <PrivacyPolicyModal closeModal={closeModal} />
-      )}
+      {modalType === "cookiePolicy" && <CookiePolicyModal closeModal={closeModal} />}
+      {modalType === "privacyPolicy" && <PrivacyPolicyModal closeModal={closeModal} />}
       {modalType === "faq" && <FaqModal closeModal={closeModal} />}
     </>
   );
@@ -198,3 +186,4 @@ const Router: React.FC = () => {
 };
 
 export default Router;
+

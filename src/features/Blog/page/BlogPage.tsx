@@ -2,15 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Buscar from "../components/Buscar";
-import Aniversario from "../posts/Aniversario";
-import Noticia2 from "../posts/Noticia2";
-import Noticia3 from "../posts/Noticia3";
+import Aniversario from "../posts/noticias/Aniversario";
+import Noticia2 from "../posts/noticias/Noticia2";
+import Noticia3 from "../posts/noticias/Noticia3";
 import "./BlogPage.css";
 import Noticias from "./Noticias";
 import Recursos from "./Recursos";
 
 const BlogPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [showNoticias, setShowNoticias] = useState(false);
   const location = useLocation();
   const noticiasRef = useRef<HTMLDivElement>(null);
   const recursosRef = useRef<HTMLDivElement>(null);
@@ -25,28 +27,62 @@ const BlogPage: React.FC = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+    setCategoryFilter("");
+    setShowNoticias(false);
   };
 
   const posts = [
     {
       id: 1,
       type: "noticia",
+      category: "femCoders",
       title: "femCoders Club - Primer Aniversario",
       description: "Celebramos primer aniversario de femCoders Club",
     },
     {
       id: 2,
       type: "recurso",
-      title: "Recurso Reciente 1",
-      description: "Breve descripción del recurso...",
+      category: "html",
+      title: "Introducción a HTML",
+      description:
+        "Aprende los fundamentos de HTML y cómo se usa para estructurar la web.",
+    },
+    {
+      id: 3,
+      type: "recurso",
+      category: "css",
+      title: "Guía de CSS",
+      description: "Todo sobre diseño y estilos con CSS.",
+    },
+    {
+      id: 4,
+      type: "recurso",
+      category: "javascript",
+      title: "Guía de JavaScript",
+      description: "Explora las funcionalidades avanzadas de JavaScript.",
     },
   ];
 
-  const filteredPosts = posts.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPosts = posts.filter((post) => {
+    const matchSearch = post.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchCategory = !categoryFilter || post.category === categoryFilter;
+    const matchNoticias = !showNoticias || post.type === "noticia";
+    return matchSearch && matchCategory && matchNoticias;
+  });
+
+  const handleCategoryFilter = (category: string) => {
+    setCategoryFilter(category);
+    setSearchQuery("");
+    setShowNoticias(false);
+  };
+
+  const handleShowNoticias = () => {
+    setCategoryFilter("");
+    setSearchQuery("");
+    setShowNoticias(true);
+  };
 
   return (
     <>
@@ -61,6 +97,7 @@ const BlogPage: React.FC = () => {
           content="FemCoders, noticias, recursos, programación, tecnología"
         />
       </Helmet>
+
       <header className="blog-header">
         <h1 className="blog-title">Bienvenidas al Blog de FemCoders Club</h1>
         <nav className="blog-nav">
@@ -81,62 +118,85 @@ const BlogPage: React.FC = () => {
           </div>
         </nav>
       </header>
-      <section className="hero-section">
+
+      <section className="blog-section">
         <h2>Descubre lo Último sobre femCoders Club</h2>
         <p>Encuentra noticias, recursos, y más en nuestro blog.</p>
       </section>
+
       <section className="blog-content">
-        <div ref={noticiasRef} className="featured-posts">
-          <h3>Publicaciones Recientes</h3>
-          <div className="post-grid">
-            {filteredPosts.map((post) => (
-              <div key={post.id} className="post-card">
-                <h4>{post.title}</h4>
-                <p className="intro-text">{post.description}</p>
-                <Link
-                  to={
-                    post.title === "femCoders Club - Primer Aniversario"
-                      ? "/noticias/Aniversario"
-                      : `/blog/${post.type}/${post.id}`
-                  }
-                  className={`button ${
-                    post.type === "noticia"
-                      ? "primary-button"
-                      : "secondary-button"
-                  }`}
-                >
-                  {post.type === "noticia" ? "Leer más" : "Ver recurso"}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            <Link
-              to="/blog/categoria/javascript"
+            <button
+              onClick={() => handleCategoryFilter("html")}
+              className="button secondary-button"
+            >
+              HTML
+            </button>
+            <button
+              onClick={() => handleCategoryFilter("javascript")}
               className="button secondary-button"
             >
               JavaScript
-            </Link>
-            <Link
-              to="/blog/categoria/react"
+            </button>
+            <button
+              onClick={() => handleCategoryFilter("react")}
               className="button secondary-button"
             >
               React
-            </Link>
-            <Link to="/blog/categoria/css" className="button secondary-button">
+            </button>
+            <button
+              onClick={() => handleCategoryFilter("css")}
+              className="button secondary-button"
+            >
               CSS
-            </Link>
-            <Link
-              to="/blog/categoria/python"
+            </button>
+            <button
+              onClick={() => handleCategoryFilter("python")}
               className="button secondary-button"
             >
               Python
-            </Link>
+            </button>
+            <button
+              onClick={handleShowNoticias}
+              className="button secondary-button"
+            >
+              femCoders Club
+            </button>
           </div>
         </div>
+
+        <div ref={noticiasRef} className="featured-posts">
+          <h3>Publicaciones Recientes</h3>
+          <div className="post-grid">
+            {filteredPosts.length > 0 ? (
+              filteredPosts.map((post) => (
+                <div key={post.id} className="post-card">
+                  <h4>{post.title}</h4>
+                  <p className="intro-text">{post.description}</p>
+                  <Link
+                    to={
+                      post.title === "femCoders Club - Primer Aniversario"
+                        ? "/noticias/Aniversario"
+                        : `/blog/${post.type}/${post.id}`
+                    }
+                    className={`button ${
+                      post.type === "noticia"
+                        ? "primary-button"
+                        : "secondary-button"
+                    }`}
+                  >
+                    {post.type === "noticia" ? "Leer más" : "Ver recurso"}
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p>No se encontraron publicaciones.</p>
+            )}
+          </div>
+        </div>
+
         <Routes>
           <Route path="noticias" element={<Noticias />} />
           <Route path="recursos" element={<Recursos />} />

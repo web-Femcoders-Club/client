@@ -135,6 +135,14 @@
   justify-content: end;
   gap: 10px;
 }
+.code-block {
+  color: #2a2170;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
+}
 
 @media (max-width: 768px) {
   .blog-post-title {
@@ -142,7 +150,6 @@
   }
   .blog-post-image {
     height: 300px;
-    width: 80%;
   }
 
   .intro-text {

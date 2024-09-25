@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Comment } from '../../../types/types';
-import { getApprovedComments } from '../../../api/commentApi';
+import { Comment } from '../../../../types/types';
+import { getApprovedComments } from '../../../../api/commentApi';
 import './PostStyles.css';
 
 const Noticia2: React.FC = () => {
@@ -123,5 +123,3 @@ const Noticia2: React.FC = () => {
 };
 
 export default Noticia2;
-
-

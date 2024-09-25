@@ -30,18 +30,13 @@
 
 .intro-text {
   margin-top: 5px;
+  font-size: 1.3rem;
+  color: #2a2170;
 }
 
-.secondary-button {
-  background-color: #4737bb;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-left: auto;
-}
-
-.secondary-button:hover {
-  background-color: #2a2170;
+@media (max-width: 768px) {
+  .noticia-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
