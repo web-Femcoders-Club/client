@@ -60,11 +60,12 @@ const EventsPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>FemCoders Club Events</title>
-        <meta name="description" content="Upcoming and past events organized by FemCoders Club" />
-        <meta name="keywords" content="FemCoders, FemCoders Club, events, tech events, women in tech, coding, programming, technology, community" />
-      </Helmet>
+   <Helmet>
+  <title>Eventos de FemCoders Club</title>
+  <meta name="description" content="Próximos y eventos pasados organizados por FemCoders Club" />
+  <meta name="keywords" content="FemCoders, FemCoders Club, eventos, eventos tecnológicos, mujeres en tecnología, programación, tecnología, comunidad" />
+</Helmet>
+
       
       <section style={{ backgroundImage: `url(${textofemcoders})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center bottom' }} className="background-image-mobile">
         <h1 className="text-eventos">Próximos eventos</h1>

@@ -12,18 +12,25 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
-        {
-          userEmail: email,
-          userPassword: password,
-        }
-      );
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
+        userEmail: email,
+        userPassword: password,
+      });
       console.log("Login successful:", response.data);
+
+     
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("userAvatar", response.data.avatar || "");
+      localStorage.setItem("userName", response.data.name);
+
+      
+      window.dispatchEvent(new Event("storage"));
+
+      
       if (response.data.role === "admin") {
-        navigate("/admin", { state: { userName: response.data.name } });
+        navigate("/admin", { state: { userName: response.data.name, avatar: response.data.avatar } });
       } else {
-        navigate("/welcome", { state: { userName: response.data.name } });
+        navigate("/welcome", { state: { userName: response.data.name, avatar: response.data.avatar } });
       }
     } catch (error) {
       setError("Error al iniciar sesión. Verifica tus credenciales.");
@@ -35,7 +42,7 @@ const LoginForm: React.FC = () => {
       <div className="login-form">
         <img
           src="/FemCodersClubLogo.png"
-          alt="FemCoders Club Logo"
+          alt="Fem Coders Club Logo"
           className="logo"
         />
         <form onSubmit={handleSubmit}>
@@ -63,9 +70,7 @@ const LoginForm: React.FC = () => {
         <div className="links">
           <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
           <br />
-          <a href="/register/*">¿No tienes cuenta? Regístrate</a>
-          
-
+          <a href="/register">¿No tienes cuenta? Regístrate</a>
         </div>
       </div>
     </div>
@@ -73,3 +78,6 @@ const LoginForm: React.FC = () => {
 };
 
 export default LoginForm;
+
+
+
