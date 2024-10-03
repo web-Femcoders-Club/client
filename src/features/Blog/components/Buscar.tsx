@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Buscar.css';
+import '../page/PostStyles.css';
 
 const Buscar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
   const [query, setQuery] = useState('');

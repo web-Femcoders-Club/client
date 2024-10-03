@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Buscar from "../components/Buscar";
-import Aniversario from "../posts/noticias/Aniversario";
-import Noticia2 from "../posts/noticias/Noticia2";
-import Noticia3 from "../posts/noticias/Noticia3";
-import "./BlogPage.css";
+
+import "./PostStyles.css";
 import Noticias from "./Noticias";
 import Recursos from "./Recursos";
 
@@ -44,22 +42,21 @@ const BlogPage: React.FC = () => {
       type: "recurso",
       category: "html",
       title: "Introducción a HTML",
-      description:
-        "Aprende los fundamentos de HTML y cómo se usa para estructurar la web.",
+      description: "Aprende los fundamentos de HTML.",
     },
     {
       id: 3,
       type: "recurso",
-      category: "css",
-      title: "Guía de CSS",
-      description: "Todo sobre diseño y estilos con CSS.",
+      category: "html",
+      title: "Elementos HTML Clave",
+      description: "Descubre los elementos más utilizados en HTML.",
     },
     {
       id: 4,
       type: "recurso",
-      category: "javascript",
-      title: "Guía de JavaScript",
-      description: "Explora las funcionalidades avanzadas de JavaScript.",
+      category: "css",
+      title: "Guía de CSS",
+      description: "Todo sobre diseño y estilos con CSS.",
     },
   ];
 
@@ -168,27 +165,35 @@ const BlogPage: React.FC = () => {
         </div>
 
         <div ref={noticiasRef} className="featured-posts">
-          <h3>Publicaciones Recientes</h3>
           <div className="post-grid">
             {filteredPosts.length > 0 ? (
               filteredPosts.map((post) => (
                 <div key={post.id} className="post-card">
                   <h4>{post.title}</h4>
                   <p className="intro-text">{post.description}</p>
-                  <Link
-                    to={
-                      post.title === "femCoders Club - Primer Aniversario"
-                        ? "/noticias/Aniversario"
-                        : `/blog/${post.type}/${post.id}`
-                    }
-                    className={`button ${
-                      post.type === "noticia"
-                        ? "primary-button"
-                        : "secondary-button"
-                    }`}
-                  >
-                    {post.type === "noticia" ? "Leer más" : "Ver recurso"}
-                  </Link>
+                  {post.title === "Guía de CSS" ||
+                  post.title === "Guía de JavaScript" ? (
+                    <button className="button secondary-button" disabled>
+                      Próximamente
+                    </button>
+                  ) : (
+                    <Link
+                      to={
+                        post.title === "femCoders Club - Primer Aniversario"
+                          ? `/noticias/Aniversario`
+                          : post.title === "Introducción a HTML"
+                          ? `/recursos/html/introduccion-html`
+                          : `/recursos/html/elementos-html-clave`
+                      }
+                      className={`button ${
+                        post.type === "noticia"
+                          ? "primary-button"
+                          : "secondary-button"
+                      }`}
+                    >
+                      {post.type === "noticia" ? "Leer más" : "Ver recurso"}
+                    </Link>
+                  )}
                 </div>
               ))
             ) : (
@@ -200,9 +205,6 @@ const BlogPage: React.FC = () => {
         <Routes>
           <Route path="noticias" element={<Noticias />} />
           <Route path="recursos" element={<Recursos />} />
-          <Route path="noticias/Aniversario" element={<Aniversario />} />
-          <Route path="noticias/2" element={<Noticia2 />} />
-          <Route path="noticias/3" element={<Noticia3 />} />
         </Routes>
       </section>
     </>

@@ -7,22 +7,33 @@ import Layout from "../components/Layout/Layout";
 import { ModalContext } from "../context/ModalContext";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
+import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
 const EventsPage = lazy(() => import("../features/Events/page/EventsPage"));
 const AboutPage = lazy(() => import("../features/About/page/AboutPage"));
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
-const Aniversario = lazy(() => import("../features/Blog/posts/noticias/Aniversario"));
-const IntroduccionHTML = lazy(() => import("../features/Blog/posts/recursos/html/IntroduccionHTML"));
+const Aniversario = lazy(
+  () => import("../features/Blog/posts/noticias/Aniversario")
+);
+const IntroduccionHTML = lazy(
+  () => import("../features/Blog/posts/recursos/html/IntroduccionHTML")
+);
 const Stats = lazy(() => import("../components/Stats"));
 const TeamPage = lazy(() => import("../features/Team/page/TeamPage"));
 const LogIn = lazy(() => import("../features/LogIn/page/LoginPage"));
-const ManageComments = lazy(() => import("../features/Admin/components/comment/ManageComments"));
+const ManageComments = lazy(
+  () => import("../features/Admin/components/comment/ManageComments")
+);
 const Admin = lazy(() => import("../features/Admin/page/Admin"));
 const RegisterForm = lazy(() => import("../features/User/page/RegisterForm"));
-const ForgotPasswordForm = lazy(() => import("../features/ForgotPassword/components/ForgotPasswordForm"));
-const ResetPasswordForm = lazy(() => import("../features/ForgotPassword/page/ResetPasswordForm"));
+const ForgotPasswordForm = lazy(
+  () => import("../features/ForgotPassword/components/ForgotPasswordForm")
+);
+const ResetPasswordForm = lazy(
+  () => import("../features/ForgotPassword/page/ResetPasswordForm")
+);
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 
 const RouterComponent: React.FC = () => {
@@ -160,6 +171,15 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
+            path="/recursos/html/elementos-html-clave"
+            element={
+              <Layout>
+                <ElementosHTMLClave />
+              </Layout>
+            }
+          />
+
+          <Route
             path="/welcome"
             element={
               <Layout>
@@ -170,8 +190,12 @@ const RouterComponent: React.FC = () => {
         </Routes>
       </Suspense>
 
-      {modalType === "cookiePolicy" && <CookiePolicyModal closeModal={closeModal} />}
-      {modalType === "privacyPolicy" && <PrivacyPolicyModal closeModal={closeModal} />}
+      {modalType === "cookiePolicy" && (
+        <CookiePolicyModal closeModal={closeModal} />
+      )}
+      {modalType === "privacyPolicy" && (
+        <PrivacyPolicyModal closeModal={closeModal} />
+      )}
       {modalType === "faq" && <FaqModal closeModal={closeModal} />}
     </>
   );
@@ -186,4 +210,3 @@ const Router: React.FC = () => {
 };
 
 export default Router;
-

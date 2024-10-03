@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Noticias.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./PostStyles.css";
 
 const Noticias: React.FC = () => {
   return (
@@ -24,13 +24,3 @@ const Noticias: React.FC = () => {
 };
 
 export default Noticias;
-
-
-
-
-
-
-
-
-
-
