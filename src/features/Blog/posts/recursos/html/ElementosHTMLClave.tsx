@@ -102,7 +102,7 @@ const ElementosHTMLClave: React.FC = () => {
 
       <div className="post-image-container">
         <img
-          src="/src/assets/html/Elementos-HTML-Clave.png"
+          src="/public/assets/html/Elementos-HTML-Clave.png"
           alt="Elementos HTML Clave"
           className="blog-post-image"
         />

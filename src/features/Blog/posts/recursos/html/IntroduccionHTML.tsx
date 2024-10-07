@@ -99,7 +99,7 @@ const IntroduccionHTML: React.FC = () => {
       </Helmet>
       <div className="post-image-container">
         <img
-          src="/src/assets/html/Introduccion-HTML.png"
+          src="/public/assets/html/Introduccion-HTML.png"
           alt="Introducción a HTML"
           className="blog-post-image"
         />
