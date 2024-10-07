@@ -100,7 +100,7 @@ const IntroduccionCSS: React.FC = () => {
 
       <div className="post-image-container">
         <img
-          src="/public/assets/css/IntroduccionCss.png"
+          src="/assets/css/IntroduccionCss.png"
           alt="CSS Design"
           className="blog-post-image"
         />
