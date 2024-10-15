@@ -6,8 +6,9 @@ import CardEvent from '../components/CardEvent';
 import CustomCarousel from '../components/CustomCarousel';
 import './EventsPage.css';
 import textofemcoders from '/textofemcodersclub.png';
-import bg1 from '/bg4.png';
+import bg4 from '/bg4.png';
 import { Helmet } from 'react-helmet';
+import "./../../Home/page/Home.css";
 
 interface Event {
   id: string;
@@ -105,7 +106,7 @@ const EventsPage = () => {
         <CustomCarousel />
       </section>
 
-      <section className="pt-8 p-5" style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="pt-8 p-5" style={{ backgroundImage: `url(${bg4})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">Eventos Pasados</h1>
         <div className='flex items-center justify-center flex-col gap-y-8'>
           {isLoadingPastEvents ? (
@@ -151,4 +152,5 @@ const EventsPage = () => {
 }
 
 export default EventsPage;
+
 

@@ -9,7 +9,6 @@ import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 
-
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
 const EventsPage = lazy(() => import("../features/Events/page/EventsPage"));
@@ -21,7 +20,9 @@ const Aniversario = lazy(
 const IntroduccionHTML = lazy(
   () => import("../features/Blog/posts/recursos/html/IntroduccionHTML")
 );
-const IntroduccionCSS = lazy(() => import("../features/Blog/posts/recursos/css/IntroduccionCss"))
+const IntroduccionCSS = lazy(
+  () => import("../features/Blog/posts/recursos/css/IntroduccionCss")
+);
 
 const Stats = lazy(() => import("../components/Stats"));
 const TeamPage = lazy(() => import("../features/Team/page/TeamPage"));
@@ -125,7 +126,6 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-         
 
           <Route
             path="/admin/comments"
@@ -183,14 +183,14 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-           <Route
-  path="/recursos/css/introduccion-css"
-  element={
-    <Layout>
-      <IntroduccionCSS />
-    </Layout>
-  }
-/>
+          <Route
+            path="/recursos/css/introduccion-css"
+            element={
+              <Layout>
+                <IntroduccionCSS />
+              </Layout>
+            }
+          />
 
           <Route
             path="/welcome"

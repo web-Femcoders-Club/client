@@ -3,6 +3,7 @@ import CardTeamMember from "../components/CardTeamMember";
 import SponsorsARExperience from "../components/SponsorsARExperience";
 import PromoterCard from "../components/PromoterCard";
 import DaisyAvatars from "../components/DaisyAvatars";
+import "./../../Home/page/Home.css";
 
 const TeamPage = () => {
   return (

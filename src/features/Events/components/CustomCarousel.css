@@ -44,12 +44,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: radial-gradient(
-    ellipse at center,
-    rgba(109, 44, 149, 0) 40%,    
-    rgba(71, 55, 187, 0.2) 70%,   
-    rgba(234, 79, 51, 0.4) 100%   
-  ); */
   background: radial-gradient(
     ellipse at center,
     rgba(109, 44, 149, 0) 30%,

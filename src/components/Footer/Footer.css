@@ -20,6 +20,9 @@
 .footer-logo img {
   width: 90px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2), 
+  0 8px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15%;
 }
 
 .footer-social {
@@ -40,6 +43,7 @@
 
 .social-icons .icon {
   color: #fff;
+  box-shadow: 2px 2px 3px rgba(255, 0, 0, 0.3), 4px 4px 5px rgba(0, 0, 0, 0.1);
   font-size: 24px;
   transition: color 0.3s;
 }
@@ -61,7 +65,7 @@
   flex-direction: column;
   align-items: flex-end;
   margin-bottom: 20px;
-  text-shadow: #ea4f33 0px 0px 10px;
+  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.3), 4px 4px 5px rgba(0, 0, 0, 0.3);
 }
 
 .footer-policies a:hover {
@@ -71,14 +75,14 @@
   text-align: center;
   padding-top: 20px;
   border-top: 1px solid #eee;
+  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.2), 4px 4px 5px rgba(0, 0, 0, 0.2);
 }
 
 .slack-button {
   display: flex;
   align-items: center;
   color: white;
-  background-color: rgba(72, 61, 139, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.5), 4px 4px 5px rgba(0, 0, 0, 0.2);
   font-weight: bold;
   border-radius: 8px;
   font-size: 14px;

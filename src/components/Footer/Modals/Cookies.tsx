@@ -96,7 +96,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({
             .
           </p>
 
-          <h5>Contacto</h5>
+          <h3>Contacto</h3>
           <p>
             Si tienes alguna pregunta o inquietud sobre nuestra política de
             cookies, no dudes en ponerte en contacto con nosotras en{" "}

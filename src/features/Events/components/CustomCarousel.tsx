@@ -101,22 +101,22 @@ const CustomCarousel = () => {
       text: "Yeraldin Salazar, especialista en ciberseguridad, brindando su visión experta en el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek''.",
     },
     {
-      src: "src/assets/ML-ComunicacionAcertiva/AnnaVia.png",
+      src: "/assets/ML-ComunicacionAcertiva/AnnaVia.png",
       text: "Anna Vía, Product Manager de Machine Learning en Adevinta, compartió su conocimiento en la presentación 'Desbloqueando el potencial de IA: del problema al impacto', durante un evento organizado con el apoyo de Le Wagon.",
     },
 
     {
-      src: "src/assets/ML-ComunicacionAcertiva/ponentePaulaOses.png",
+      src: "/assets/ML-ComunicacionAcertiva/ponentePaulaOses.png",
       text: "Paula Oses, ingeniera de IA en IAG, presentó 'Construyendo tu propio modelo Rag' en el evento organizado con el apoyo de Le Wagon.",
     },
 
     {
-      src: "src/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
+      src: "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
       text: "En colaboración con Le Wagon, femCoders Club organizó un evento sobre Machine Learning, donde las ponentes compartieron su conocimiento y experiencia en el campo.",
     },
 
     {
-      src: "src/assets/ML-ComunicacionAcertiva/LiliDemarco-ponente.png",
+      src: "/assets/ML-ComunicacionAcertiva/LiliDemarco-ponente.png",
       text: "Liliana, una de las cofundadoras más queridas de femCoders Club, nos inspiró con su presentación 'Soft Skill: Comunicación Asertiva' en un evento organizado junto a Canodrum.",
     },
   ];
