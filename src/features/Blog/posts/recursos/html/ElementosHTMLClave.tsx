@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Comment } from "../../../../../types/types";
 import { getApprovedComments } from "../../../../../api/commentApi";
-import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
 import "../../../page/PostStyles.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const ElementosHTMLClave: React.FC = () => {
   const [comment, setComment] = useState("");
@@ -153,7 +154,7 @@ const ElementosHTMLClave: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Compartir este post en Twitter"
           >
-            <BsTwitter className="social-icon" />
+            <FaSquareXTwitter className="social-icon" />
           </a>
           <a
             href={`https://www.tiktok.com/share?url=${currentUrl}`}
@@ -447,6 +448,11 @@ const ElementosHTMLClave: React.FC = () => {
           comentario o seguirnos en nuestras redes sociales para más contenido
           interesante.
         </p>
+      </div>
+      <div className="back-to-blog-container">
+        <a href="/blog" className="back-to-blog">
+          Volver al Blog
+        </a>
       </div>
 
       <div className="comments-section">

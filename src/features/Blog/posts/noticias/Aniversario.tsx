@@ -9,13 +9,13 @@ import {
   BsSpotify,
   BsYoutube,
   BsFacebook,
-  BsTwitter,
 } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Aniversario: React.FC = () => {
   const [comment, setComment] = useState("");
@@ -157,9 +157,9 @@ const Aniversario: React.FC = () => {
             href={`https://twitter.com/share?url=${currentUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
+            aria-label="Compartir este post en Twitter"
           >
-            <BsTwitter className="social-icon" />
+            <FaSquareXTwitter className="social-icon" />
           </a>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
@@ -313,9 +313,25 @@ const Aniversario: React.FC = () => {
         </p>
         <p>
           No olvides seguirnos en nuestras redes sociales y unirte a las
-          conversaciones en Slack. ¡Estamos deseando ver todo lo que lograremos
-          en el futuro!
+          conversaciones en{" "}
+          <span>
+            {" "}
+            <a
+              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Slack
+            </a>
+          </span>
+          . ¡Estamos deseando ver todo lo que lograremos en el futuro!
         </p>
+      </div>
+
+      <div className="back-to-blog-container">
+        <a href="/blog" className="back-to-blog">
+          Volver al Blog
+        </a>
       </div>
 
       <div className="comments-section">

@@ -488,6 +488,27 @@ body {
   clip-path: inset(50%);
 }
 
+.back-to-blog-container {
+  text-align: center; 
+  margin-top: 20px; 
+}
+
+.back-to-blog {
+  background-color: #4737bb; 
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  font-size: 1.2rem; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.back-to-blog:hover {
+  background-color: #6d2c95; 
+  transform: scale(1.05); 
+}
+
+
 @media (max-width: 768px) {
   .blog-post-title {
     font-size: 1.7rem;

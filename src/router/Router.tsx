@@ -8,6 +8,7 @@ import { ModalContext } from "../context/ModalContext";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
+import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
@@ -180,6 +181,14 @@ const RouterComponent: React.FC = () => {
             element={
               <Layout>
                 <ElementosHTMLClave />
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/html/html-semantico"
+            element={
+              <Layout>
+                <HtmlSemantico />
               </Layout>
             }
           />

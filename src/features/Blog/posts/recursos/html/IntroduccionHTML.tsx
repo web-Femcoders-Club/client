@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Comment } from "../../../../../types/types";
 import { getApprovedComments } from "../../../../../api/commentApi";
-import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
 import "../../../page/PostStyles.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const IntroduccionHTML: React.FC = () => {
   const [comment, setComment] = useState("");
@@ -150,7 +151,7 @@ const IntroduccionHTML: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Compartir este post en Twitter"
           >
-            <BsTwitter className="social-icon" />
+            <FaSquareXTwitter className="social-icon" />
           </a>
           <a
             href={`https://www.tiktok.com/share?url=${currentUrl}`}
@@ -173,7 +174,7 @@ const IntroduccionHTML: React.FC = () => {
       </p>
 
       <div className="highlight-box">
-        <h2>¿Qué es HTML y por qué es importante?</h2>
+        <h2>¿Qué es HTML y por qué es importante 🌐✨?</h2>
         <p>
           HTML es un <strong>lenguaje de marcado</strong> diseñado para
           organizar y estructurar el contenido en la web. A través de sus
@@ -202,12 +203,11 @@ const IntroduccionHTML: React.FC = () => {
       </div>
 
       <div className="highlight-box">
-        <h2>Historia del HTML</h2>
+        <h2>Historia del HTML📜</h2>
         <p>
-          HTML, que significa <strong>HyperText Markup Language</strong>, fue
-          creado por Tim Berners-Lee en 1991. Originalmente, fue diseñado para
-          compartir documentos científicos en la web de manera más fácil y
-          accesible. Tim Berners-Lee, el inventor de la World Wide Web,
+          HTML fue creado por Tim Berners-Lee en 1991. Originalmente, fue
+          diseñado para compartir documentos científicos en la web de manera más
+          fácil y accesible. Tim Berners-Lee, el inventor de la World Wide Web,
           desarrolló HTML como una forma de interconectar documentos y
           enlazarlos a través de enlaces. Desde su creación, HTML ha
           evolucionado considerablemente, permitiendo no solo compartir textos,
@@ -217,7 +217,7 @@ const IntroduccionHTML: React.FC = () => {
       </div>
 
       <div className="highlight-box">
-        <h2>Evolución de las versiones de HTML</h2>
+        <h2>Evolución de las versiones de HTML📈</h2>
         <p>
           A lo largo de los años, HTML ha pasado por varias versiones
           importantes. A continuación, algunas de las más destacadas:
@@ -246,7 +246,7 @@ const IntroduccionHTML: React.FC = () => {
       </div>
 
       <div className="highlight-box">
-        <h2>Errores comunes al escribir HTML</h2>
+        <h2>Errores comunes al escribir HTML⚠️</h2>
         <p>
           Al trabajar con HTML, es común cometer algunos errores. Aquí te
           mencionamos algunos de los más comunes:
@@ -256,7 +256,12 @@ const IntroduccionHTML: React.FC = () => {
             <strong>No cerrar las etiquetas correctamente</strong>: Asegúrate
             siempre de cerrar las etiquetas con{" "}
             <code>&lt;/nombre-de-etiqueta&gt;</code>, especialmente en HTML más
-            estricto como XHTML.
+            estricto como XHTML. Por ejemplo:
+            <pre className="code-block bg3">
+              {`<div>
+  <h1>Título</h1>
+</div>`}
+            </pre>
           </li>
           <li>
             <strong>
@@ -265,18 +270,48 @@ const IntroduccionHTML: React.FC = () => {
             : El atributo <code>alt</code> es fundamental para mejorar la
             accesibilidad, describiendo el contenido de la imagen para los
             usuarios con discapacidades visuales y para optimización SEO.
+            Ejemplo:
+            <pre className="code-block bg3">
+              {`<img src="imagen.jpg" alt="Descripción de la imagen">`}
+            </pre>
           </li>
           <li>
             <strong>No usar etiquetas semánticas</strong>: Es importante usar
             etiquetas semánticas como <code>&lt;article&gt;</code>,{" "}
             <code>&lt;section&gt;</code>, y <code>&lt;header&gt;</code> para
-            mejorar la estructura y accesibilidad de tu página web.
+            mejorar la estructura y accesibilidad de tu página web. Por ejemplo:
+            <pre className="code-block bg3">
+              {`<article>
+  <header>
+    <h2>Título del Artículo</h2>
+  </header>
+  <p>Contenido del artículo...</p>
+</article>`}
+            </pre>
+          </li>
+          <li>
+            <strong>No incluir un doctype</strong>: Es esencial declarar un
+            doctype al principio de tu documento HTML para que los navegadores
+            sepan qué versión de HTML estás utilizando. Ejemplo:
+            <pre className="code-block bg3">{`<!DOCTYPE html>`}</pre>
+          </li>
+          <li>
+            <strong>Uso incorrecto de etiquetas de bloque y en línea</strong>:
+            Algunas etiquetas son de bloque (como <code>&lt;div&gt;</code> o{" "}
+            <code>&lt;p&gt;</code>) y otras son en línea (como{" "}
+            <code>&lt;span&gt;</code> o <code>&lt;a&gt;</code>). Usarlas
+            incorrectamente puede afectar el diseño. Ejemplo:
+            <pre className="code-block bg3">
+              {`<div>
+  <span>Texto en línea</span>
+</div>`}
+            </pre>
           </li>
         </ul>
       </div>
 
       <div className="highlight-box">
-        <h2>Compatibilidad entre navegadores</h2>
+        <h2>Compatibilidad entre navegadores🌍</h2>
         <p>
           Uno de los retos más grandes al trabajar con HTML es asegurarse de que
           tu página se vea bien en diferentes navegadores (Chrome, Firefox,
@@ -465,7 +500,7 @@ const IntroduccionHTML: React.FC = () => {
       </div>
 
       <div className="highlight-box">
-        <h2>Recursos adicionales para aprender HTML</h2>
+        <h2>Recursos adicionales para aprender HTML📚</h2>
         <p>
           Si deseas profundizar más en el aprendizaje de HTML, aquí tienes
           algunos recursos útiles:
@@ -519,6 +554,11 @@ const IntroduccionHTML: React.FC = () => {
           herramientas que te permitirán transformar tu estructura HTML en una
           web moderna e interactiva.
         </p>
+      </div>
+      <div className="back-to-blog-container">
+        <a href="/blog" className="back-to-blog">
+          Volver al Blog
+        </a>
       </div>
 
       <div className="comments-section">

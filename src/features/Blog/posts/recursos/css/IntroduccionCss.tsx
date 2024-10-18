@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Comment } from "../../../../../types/types";
 import { getApprovedComments } from "../../../../../api/commentApi";
-import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
 import "../../../page/PostStyles.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const IntroduccionCSS: React.FC = () => {
   const [comment, setComment] = useState("");
@@ -140,9 +141,9 @@ const IntroduccionCSS: React.FC = () => {
             href={`https://twitter.com/share?url=${currentUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
+            aria-label="Compartir este post en Twitter"
           >
-            <BsTwitter className="social-icon" />
+            <FaSquareXTwitter className="social-icon" />
           </a>
           <a
             href={`https://www.tiktok.com/share?url=${currentUrl}`}
@@ -165,10 +166,10 @@ const IntroduccionCSS: React.FC = () => {
 
       <div className="intro-text">
         <p>
-          CSS (Cascading Style Sheets) es un lenguaje de estilo que se utiliza
-          para describir la presentación de un documento escrito en HTML. A
-          través de CSS, puedes definir colores, fuentes, márgenes y posiciones,
-          lo que te permite dar vida a tus páginas web.
+          <strong> CSS (Cascading Style Sheets) </strong>es un lenguaje de
+          estilo que se utiliza para describir la presentación de un documento
+          escrito en HTML. A través de CSS, puedes definir colores, fuentes,
+          márgenes y posiciones, lo que te permite dar vida a tus páginas web.
         </p>
         <p>
           Separar la estructura del contenido (HTML) del estilo (CSS) es
@@ -206,14 +207,14 @@ p {
         <p>Hay tres formas de aplicar CSS a un documento HTML:</p>
         <ul>
           <li>
-            <strong>Inline CSS:</strong> Se aplica directamente en el elemento
-            HTML utilizando el atributo <code>style</code>.
+            <span>Inline CSS:</span> Se aplica directamente en el elemento HTML
+            utilizando el atributo <code>style</code>.
             <pre className="code-block bg3">
               {`<h1 style="color: blue;">Este es un título en azul</h1>`}
             </pre>
           </li>
           <li>
-            <strong>Internal CSS:</strong> Se incluye en la sección{" "}
+            <span>Internal CSS:</span> Se incluye en la sección{" "}
             <code>&lt;head&gt;</code> del HTML.
             <pre className="code-block bg3">
               {`<style>
@@ -224,7 +225,7 @@ h1 {
             </pre>
           </li>
           <li>
-            <strong>External CSS:</strong> Se enlaza a un archivo CSS externo.
+            <span>External CSS:</span> Se enlaza a un archivo CSS externo.
             <pre className="code-block bg3">
               {`<link rel="stylesheet" href="styles.css">`}
             </pre>
@@ -316,20 +317,10 @@ h1 {
       </div>
 
       <div className="highlight-box">
-        <h2>Conclusión</h2>
-        <p>
-          En este post, hemos aprendido sobre los conceptos básicos de CSS y
-          cómo aplicarlo a nuestros proyectos web. En futuros artículos,
-          profundizaremos en técnicas más avanzadas y en el uso de CSS para
-          crear diseños atractivos y responsivos. ¡Esperamos que te unas a
-          nosotras en este viaje!
-        </p>
-      </div>
-
-      <div className="highlight-box">
         <h2>¡Explora el proyecto! 🚀</h2>
         <p className="intro-text">
-          Visita el proyecto en:{" "}
+          Para que entiendas mejor y para que puedas practicar, hemos creado un
+          ejemplo básico. Visita el proyecto en:{" "}
           <span>
             <a
               href="https://femcodersclub.github.io/IntroduccionCSS/"
@@ -337,7 +328,6 @@ h1 {
               rel="noopener noreferrer"
               className="highlight"
             >
-              {" "}
               👉 GitHub Pages{" "}
             </a>
           </span>
@@ -350,11 +340,26 @@ h1 {
               rel="noopener noreferrer"
               className="highlight"
             >
-              {" "}
-              👉 GitHub .
+              👉 GitHub.
             </a>
           </span>
         </p>
+      </div>
+
+      <div className="highlight-box">
+        <h2>Conclusión</h2>
+        <p>
+          En este post, hemos aprendido sobre los conceptos básicos de CSS y
+          cómo aplicarlo a nuestros proyectos web. En futuros artículos,
+          profundizaremos en técnicas más avanzadas y en el uso de CSS para
+          crear diseños atractivos y responsivos. ¡Esperamos que te unas a
+          nosotras en este viaje!
+        </p>
+      </div>
+      <div className="back-to-blog-container">
+        <a href="/blog" className="back-to-blog">
+          Volver al Blog
+        </a>
       </div>
 
       <div className="comments-section">
