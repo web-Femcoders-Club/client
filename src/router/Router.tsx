@@ -9,10 +9,10 @@ import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
+import EventsPage from "../features/Events/page/EventsPage";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
-const EventsPage = lazy(() => import("../features/Events/page/EventsPage"));
 const AboutPage = lazy(() => import("../features/About/page/AboutPage"));
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
 const Aniversario = lazy(
@@ -71,11 +71,12 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-          <Route
+
+<Route
             path="/eventos"
             element={
               <Layout>
-                <EventsPage />
+                <EventsPage /> 
               </Layout>
             }
           />
@@ -211,6 +212,7 @@ const RouterComponent: React.FC = () => {
           />
         </Routes>
       </Suspense>
+      
 
       {modalType === "cookiePolicy" && (
         <CookiePolicyModal closeModal={closeModal} />
