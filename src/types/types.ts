@@ -14,6 +14,16 @@ export type User = {
     accesToken?: string;
 };
 
+export interface UnconnectedComment {
+    id: number;
+    postId: number;
+    content: string;
+    approved: boolean; 
+    userEmail: string; 
+    createdAt: Date;
+  }
+  
+
 export type EditUserFormData = {
     userId: string;
     updatedUser: {

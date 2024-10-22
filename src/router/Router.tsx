@@ -39,6 +39,7 @@ const ForgotPasswordForm = lazy(
 const ResetPasswordForm = lazy(
   () => import("../features/ForgotPassword/page/ResetPasswordForm")
 );
+const FormAndTablePost = lazy(() => import("../features/Blog/posts/recursos/html/FormandTablePost"));
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 
 const RouterComponent: React.FC = () => {
@@ -201,6 +202,14 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          <Route
+  path="/recursos/html/formularios-y-tablas"
+  element={
+    <Layout>
+      <FormAndTablePost />
+    </Layout>
+  }
+/>
 
           <Route
             path="/welcome"
