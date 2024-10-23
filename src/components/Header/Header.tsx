@@ -70,9 +70,9 @@ const Header: React.FC = () => {
             </Link>
           </li>
         </ul>
-        {/* <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
+        {/* { <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
           <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link>
-        </div> */}
+        </div> } */}
       </nav>
     </header>
   );

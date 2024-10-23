@@ -71,7 +71,7 @@ const ManageComments: React.FC = () => {
         const pendingConnected = await getPendingComments();
         setConnectedComments(pendingConnected);
 
-        const pendingUnconnected = await getPendingUnconnectedComments(); // Obtener comentarios no conectados
+        const pendingUnconnected = await getPendingUnconnectedComments(); 
         setUnconnectedComments(pendingUnconnected);
       } catch (error) {
         console.error('Error fetching comments:', error);
