@@ -43,21 +43,21 @@ const BlogPage: React.FC = () => {
       type: "noticia",
       category: "femCoders",
       title: "femCoders Club - Primer Aniversario",
-      description: "Celebramos el primer aniversario de femCoders Club",
+      description: "Celebramos el primer aniversario de femCoders Club.",
     },
     {
       id: 2,
       type: "recurso",
       category: "html",
       title: "Introducción a HTML",
-      description: "Aprende los fundamentos de HTML.",
+      description: "Los fundamentos de HTML.",
     },
     {
       id: 3,
       type: "recurso",
       category: "html",
       title: "Elementos HTML Clave",
-      description: "Descubre los elementos más utilizados en HTML.",
+      description: " Descubre los elementos más utilizados.",
     },
     {
       id: 4,
@@ -71,14 +71,14 @@ const BlogPage: React.FC = () => {
       type: "recurso",
       category: "html",
       title: "HTML Semántico y Diseño de Layout",
-      description: "Aprende sobre HTML semántico y layout.",
+      description: "Aprende HTML semántico y layout.",
     },
     {
       id: 6,
       type: "recurso",
       category: "html",
       title: "Formularios y Tablas en HTML",
-      description: "Aprende a estructurar formularios y tablas en HTML.",
+      description: "Estructurar formularios, tablas en HTML.",
     },
   ];
 

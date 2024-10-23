@@ -88,7 +88,7 @@ const Collapse: React.FC = () => {
             <div className="idea-card-title">{idea.title}</div>
             {expandedIndex === index && (
               <div className="idea-card-content">
-                <p style={{ fontSize: "1.1rem" }}>{idea.content}</p> 
+                <p style={{ fontSize: "1rem" }}>{idea.content}</p> 
               </div>
             )}
           </div>

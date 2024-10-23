@@ -508,6 +508,20 @@ body {
   transform: scale(1.05); 
 }
 
+.author-info {
+  margin-top: 30px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #2a2170;
+}
+
+.author-info strong {
+  color: #4737bb; 
+}
+
 
 @media (max-width: 768px) {
   .blog-post-title {

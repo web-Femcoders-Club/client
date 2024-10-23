@@ -511,6 +511,11 @@ const HTMLSemanticoYLayout: React.FC = () => {
           pensamientos en los comentarios a continuación!
         </p>
       </div>
+      <div className="author-info">
+  <p>Escrito por: <strong>Irina Ichim</strong></p>
+  <p>Co-fundadora de femCoders Club</p>
+  <p>Fecha de publicación: <strong>{new Date().toLocaleDateString()}</strong></p>
+</div>
       <div className="back-to-blog-container">
         <a href="/blog" className="back-to-blog">
           Volver al Blog
