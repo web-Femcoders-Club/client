@@ -355,11 +355,11 @@ span {
   }
 
   h2 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   h3 {
-    font-size: 0.875rem;
+    font-size: 1.2rem;
   }
   h4 {
     font-size: 0.855rem;
@@ -394,11 +394,11 @@ span {
 
   .form-card {
     padding: 1rem;
-    width: 90%;
+    width: 100%;
   }
-
   .content-text {
     margin-top: -50px;
     padding: 1.3rem;
+    font-size: 1rem;
   }
 }

@@ -64,10 +64,7 @@ const AboutPage: React.FC = () => {
                   <h3>Misión</h3>
                 </div>
                 <div className="flip-card-back">
-                  <img
-                    src={FemCodersClubLogo}
-                    alt="femCoders Club logo"
-                  />
+                  <img src={FemCodersClubLogo} alt="femCoders Club logo" />
                   <p>
                     <strong>
                       Nuestra misión es empoderar y elevar a las mujeres en el
@@ -89,7 +86,10 @@ const AboutPage: React.FC = () => {
             </div>
             <div className="card-about">
               <div className="flip-card-inner">
-                <div className="flip-card-front" style={{ height: "100px", marginTop: "7rem" }}>
+                <div
+                  className="flip-card-front"
+                  style={{ height: "100px", marginTop: "7rem" }}
+                >
                   <img src={iconVision} alt="Icono Visión" />
                   <h3>Visión</h3>
                 </div>
@@ -145,7 +145,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className="parallax bg3 full-height">
+      <section className="parallax bg3">
         <div className="bg3-content">
           <div className="commitment-section">
             <div className="compromise-text">
@@ -175,5 +175,3 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
-
-

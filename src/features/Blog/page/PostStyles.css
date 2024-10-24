@@ -489,23 +489,23 @@ body {
 }
 
 .back-to-blog-container {
-  text-align: center; 
-  margin-top: 20px; 
+  text-align: center;
+  margin-top: 20px;
 }
 
 .back-to-blog {
-  background-color: #4737bb; 
-  color: white; 
-  padding: 10px 20px; 
-  border-radius: 5px; 
-  text-decoration: none; 
-  font-size: 1.2rem; 
-  transition: background-color 0.3s ease, transform 0.3s ease; 
+  background-color: #4737bb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .back-to-blog:hover {
-  background-color: #6d2c95; 
-  transform: scale(1.05); 
+  background-color: #6d2c95;
+  transform: scale(1.05);
 }
 
 .author-info {
@@ -519,9 +519,8 @@ body {
 }
 
 .author-info strong {
-  color: #4737bb; 
+  color: #4737bb;
 }
-
 
 @media (max-width: 768px) {
   .blog-post-title {
@@ -530,8 +529,11 @@ body {
   .blog-post-image {
     height: auto;
   }
+  .blog-header {
+    padding: 1rem;
+  }
   .blog-menu-link {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   .intro-text {
     font-size: 1rem;
@@ -594,6 +596,13 @@ body {
 
   .blog-menu-item {
     font-size: 1.5rem;
+  }
+  .blog-section p {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  .category-buttons button {
+    padding: 0.5rem 0.6rem;
   }
 
   .hero-section p {

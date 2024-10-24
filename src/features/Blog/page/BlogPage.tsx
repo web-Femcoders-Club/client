@@ -7,6 +7,7 @@ import Noticias from "./Noticias";
 import Recursos from "./Recursos";
 
 const BlogPage: React.FC = () => {
+
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [showRecentPosts, setShowRecentPosts] = useState(true);
@@ -36,6 +37,7 @@ const BlogPage: React.FC = () => {
     setSearchQuery(query);
     setCategoryFilter("");
   };
+
 
   const posts = [
     {
@@ -89,6 +91,7 @@ const BlogPage: React.FC = () => {
     const matchCategory = !categoryFilter || post.category === categoryFilter;
     return matchSearch && matchCategory;
   });
+  
 
   const handleCategoryFilter = (category: string) => {
     setCategoryFilter(category);
@@ -277,3 +280,4 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
+
