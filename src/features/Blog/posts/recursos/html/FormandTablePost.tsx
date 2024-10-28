@@ -629,6 +629,17 @@ const FormandTablePost: React.FC = () => {
         </ul>
       </div>
 
+      <div className="highlight-box">
+  <h2>¿Te gustaría practicar lo aprendido?</h2>
+  <p>
+    Te invitamos a explorar un{" "}<span>
+    <a href="https://github.com/femcodersclub/Formularios-Tablas-HTML-CSS" target="_blank" rel="noopener noreferrer">
+      ejemplo práctico de formularios y tablas
+    </a>{" "}</span>
+    que hemos preparado. ¡Pon en práctica tus conocimientos de HTML y CSS de una forma visual y dinámica!
+  </p>
+</div>
+
       <div className="highlight-box conclusion">
         <h2>Conclusión</h2>
         <p>
