@@ -102,7 +102,26 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Introducción a las APIs en HTML: Potencia tus Proyectos Web</h3>
+            <p className="intro-text">
+              Aprende a utilizar APIs en HTML para añadir funcionalidades avanzadas como geolocalización, almacenamiento y gráficos interactivos.
+            </p>
+          </div>
+          <Link
+            to="/recursos/html/apis-html"
+            className="secondary-button"
+            aria-label="Leer más sobre Introducción a las APIs en HTML"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
+
+    
   );
 };
 

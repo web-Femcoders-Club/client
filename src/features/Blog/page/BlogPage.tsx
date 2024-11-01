@@ -82,6 +82,13 @@ const BlogPage: React.FC = () => {
       title: "Formularios y Tablas en HTML",
       description: "Estructurar formularios, tablas en HTML.",
     },
+    {
+      id: 7,
+      type: "recurso",
+      category: "html",
+      title: "Introducción a las APIs en HTML",
+      description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web."
+    }
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -212,6 +219,8 @@ const BlogPage: React.FC = () => {
                           ? `/recursos/html/html-semantico`
                           : post.title === "Formularios y Tablas en HTML"
                           ? `/recursos/html/formularios-y-tablas`
+                           : post.title === "Introducción a las APIs en HTML"
+                          ? `/recursos/html/apis-html`
                           : `/`
                       }
                       className={`button ${

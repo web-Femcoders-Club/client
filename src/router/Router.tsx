@@ -40,6 +40,8 @@ const ResetPasswordForm = lazy(
   () => import("../features/ForgotPassword/page/ResetPasswordForm")
 );
 const FormAndTablePost = lazy(() => import("../features/Blog/posts/recursos/html/FormandTablePost"));
+const APIsHtml = lazy(() => import("../features/Blog/posts/recursos/html/ApisHtml"));
+
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 
 const RouterComponent: React.FC = () => {
@@ -210,6 +212,15 @@ const RouterComponent: React.FC = () => {
     </Layout>
   }
 />
+<Route
+  path="/recursos/html/apis-html"
+  element={
+    <Layout>
+      <APIsHtml />
+    </Layout>
+  }
+/>
+
 
           <Route
             path="/welcome"
