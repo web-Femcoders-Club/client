@@ -330,22 +330,22 @@ window.addEventListener("storage", (event) => {
       </div>
 
       <div className="highlight-box">
-      <h2>🎨 Uso del Elemento Canvas para Crear Gráficos Dinámicos</h2>
+  <h2>🎨 Uso del Elemento Canvas para Crear Gráficos Dinámicos</h2>
 
-        <p>
-          El elemento <code>&lt;canvas&gt;</code> es una herramienta poderosa en
-          HTML que permite generar gráficos, animaciones y visualizaciones
-          interactivas mediante JavaScript. Es especialmente útil en
-          aplicaciones que requieren gráficos dinámicos, como videojuegos,
-          paneles de estadísticas y visualizaciones de datos.
-        </p>
-        <p>
-          A continuación, te mostramos un ejemplo sencillo en el que se dibuja
-          un círculo púrpura en un lienzo usando JavaScript:
-        </p>
-        <pre className="code-block bg3">
-          <code>
-            {`
+  <p>
+    El elemento <code>&lt;canvas&gt;</code> es una herramienta poderosa en
+    HTML que permite generar gráficos, animaciones y visualizaciones
+    interactivas mediante JavaScript. Es especialmente útil en
+    aplicaciones que requieren gráficos dinámicos, como videojuegos,
+    paneles de estadísticas y visualizaciones de datos.
+  </p>
+  <p>
+    A continuación, te mostramos un ejemplo sencillo en el que se dibuja
+    un círculo púrpura en un lienzo usando JavaScript:
+  </p>
+  <pre className="code-block bg3">
+    <code>
+      {`
 <canvas id="miCanvas" width="200" height="200"></canvas>
 <script>
   // Selecciona el elemento canvas del DOM y establece el contexto en 2D
@@ -361,21 +361,26 @@ window.addEventListener("storage", (event) => {
   ctx.fill();
 </script>
       `}
-          </code>
-        </pre>
-        <p>
-          En este ejemplo, se obtiene el contexto de dibujo en 2D del elemento{" "}
-          <code>&lt;canvas&gt;</code> mediante <code>getContext("2d")</code>.
-          Luego, se define el color de relleno como púrpura y se utiliza el
-          método <code>arc()</code> para dibujar un círculo en el centro del
-          lienzo.
-        </p>
-        <p>
-          Esta técnica es ideal para crear gráficos interactivos y es compatible
-          con múltiples estilos y animaciones, permitiendo desarrollar
-          visualizaciones dinámicas en tu aplicación web.
-        </p>
-      </div>
+    </code>
+  </pre>
+  <p>
+    En este ejemplo, se obtiene el contexto de dibujo en 2D del elemento{" "}
+    <code>&lt;canvas&gt;</code> mediante <code>getContext("2d")</code>.
+    Luego, se define el color de relleno como púrpura y se utiliza el
+    método <code>arc()</code> para dibujar un círculo en el centro del
+    lienzo.
+  </p>
+  <p>
+    Esta técnica es ideal para crear gráficos interactivos y es compatible
+    con múltiples estilos y animaciones, permitiendo desarrollar
+    visualizaciones dinámicas en tu aplicación web.
+  </p>
+  
+  <p>
+    Además, hemos creado un <strong>ejemplo práctico</strong> para la comunidad de femCoders Club. Te animamos a <span><a href="https://github.com/femcodersclub/CanvasTextAnimation" target="_blank" rel="noopener noreferrer">explorar el repositorio en GitHub</a> </span>, donde encontrarás una animación de texto interactiva en <code>&lt;canvas&gt;</code>. Puedes probarla, practicar y modificar el código para adaptarlo a tus proyectos. ¡Esperamos que disfrutes experimentando con esta técnica y desarrolles tus propias animaciones! 🚀
+  </p>
+</div>
+
 
       <div className="highlight-box">
       <h2>💬 WebRTC y WebSockets para Comunicación en Tiempo Real</h2>
