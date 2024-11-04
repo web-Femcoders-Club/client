@@ -77,7 +77,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ img, title, desc }) => (
   <div
-    className="flex flex-col items-center justify-center bg-dark py-8 px-4 rounded-3xl w-[300px] shadow-xl transition-transform transform hover:scale-105 relative"
+    className="flex flex-col items-center justify-center bg-dark py-7 px-3 rounded-3xl w-[300px] shadow-xl transition-transform transform hover:scale-105 relative"
     style={{
       backgroundColor: "#4737bb",
       minHeight: "400px",

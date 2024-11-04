@@ -62,7 +62,7 @@ const SponsorsTimeline = () => {
       event: "Green Software",
       description:
         "Factorial HR fue nuestro patrocinador en un evento clave para promover el desarrollo de software sostenible. Gracias a la experiencia de María Alexandra Galarza, exploramos cómo reducir el impacto ambiental de nuestros proyectos tecnológicos. ¡Juntas estamos construyendo un futuro más verde!",
-      logo: "/logoFactorial.jpg",
+      logo: "Factorial_logo_radical.png",
       website: "https://factorialhr.es/",
       backgroundImage: "/eventoFactorial.png",
     },

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { User, LogOut } from "lucide-react";
-
+import { Link } from "react-router-dom";
+import FemCodersClubLogo from "/logo-femcoders-club.jpg";
 import "./Header.css";
 
 const Header: React.FC = () => {
@@ -89,120 +88,53 @@ const Header: React.FC = () => {
   };
 
   return (
-    <>
-      <header className={`header ${isScrolled ? "scrolled" : ""}`}>
-        <nav className="navbar">
-          <Link to="/" className="logo-link">
-            <img
-              src="/negativeLogo.png"
-              className="logo"
-              alt="Fem Coders Club Logo"
-            />
-          </Link>
-
-          <div
-            className={`menu-toggle ${menuOpen ? "open" : ""}`}
-            onClick={toggleMenu}
-          >
-            <div className="menu-icon"></div>
-          </div>
-
-          <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <li>
-              <Link to="/sobrenosotras" className="nav-link">
-                Sobre nosotras
-              </Link>
-            </li>
-            <li>
-              <Link to="/equipo" className="nav-link">
-                Equipo
-              </Link>
-            </li>
-            <li>
-              <Link to="/eventos" className="nav-link">
-                Eventos
-              </Link>
-            </li>
-            <li>
-              <Link to="/contacto" className="nav-link">
-                Contacto
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" className="nav-link">
-                Blog
-              </Link>
-            </li>
-          </ul>
-
-          <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
-            {isAuthenticated ? (
-              <div className="user-avatar">
-                {avatar ? (
-                  <img
-                    src={avatar}
-                    alt="User Avatar"
-                    className="avatar-icon"
-                    onClick={handleAvatarClick}
-                  />
-                ) : (
-                  <User
-                    size={24}
-                    className="avatar-icon"
-                    onClick={handleAvatarClick}
-                  />
-                )}
-
-                <button className="logout-button" onClick={handleLogOut}>
-                  <LogOut size={24} className="logout-icon" /> Cerrar sesión
-                </button>
-              </div>
-            ) : (
-              <Link to="/login" className="nav-link primary-button">
-                Iniciar sesión
-              </Link>
-            )}
-          </div>
-        </nav>
-      </header>
-
-      {showUploadModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-close">
-              <button onClick={closeModal}>x</button>
-            </div>
-            <div className="modal-header">
-              <h3>Subir imagen de avatar</h3>
-            </div>
-
-            <div className="modal-body">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarChange}
-                title="Upload your avatar image"
-              />
-              {previewImage && (
-                <img
-                  src={previewImage}
-                  alt="Vista previa"
-                  className="preview-image"
-                />
-              )}
-            </div>
-            <div className="modal-footer">
-              <button onClick={confirmUpload} className="confirm-button">
-                Confirmar
-              </button>
-              <button onClick={closeModal} className="cancel-button">
-                Cancelar
-              </button>
-            </div>
-          </div>
+    <header className={`header ${isScrolled ? "scrolled" : ""}`}>
+      <nav className="navbar">
+        <Link to="/" className="logo-link">
+          <img
+            src={FemCodersClubLogo}
+            className="logo"
+            alt="Fem Coders Club Logo"
+          />
+        </Link>
+        <div
+          className={`menu-toggle ${menuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+        >
+          <div className="menu-icon"></div>
         </div>
-      )}
-    </>
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <li>
+            <Link to="/sobrenosotras" className="nav-link">
+              Sobre nosotras
+            </Link>
+          </li>
+          <li>
+            <Link to="/equipo" className="nav-link">
+              Equipo
+            </Link>
+          </li>
+          <li>
+            <Link to="/eventos" className="nav-link">
+              Eventos
+            </Link>
+          </li>
+          <li>
+            <Link to="/contacto" className="nav-link">
+              Contacto
+            </Link>
+          </li>
+          <li>
+            <Link to="/blog" className="nav-link" style={{ color: "#ea4f33" }}>
+              Blog
+            </Link>
+          </li>
+        </ul>
+        {/* { <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
+          <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link>
+        </div> } */}
+      </nav>
+    </header>
   );
 };
 

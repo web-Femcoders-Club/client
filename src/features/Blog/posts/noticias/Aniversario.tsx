@@ -9,12 +9,13 @@ import {
   BsSpotify,
   BsYoutube,
   BsFacebook,
-  BsTwitter,
 } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
+import "../../page/PostStyles.css";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Aniversario: React.FC = () => {
   const [comment, setComment] = useState("");
@@ -107,14 +108,15 @@ const Aniversario: React.FC = () => {
       <div className="post-image-container">
         <img
           src="/femCodersClubpost.png"
-          alt="Mujeres programadoras"
+          alt="Celebración del primer aniversario de femCoders Club, mujeres programadoras unidas."
           className="blog-post-image"
+          role="img"
         />
       </div>
 
       <h1 className="blog-post-title">
-        Un año innovando juntas: ¡Celebramos el primer aniversario de femCoders
-        Club!
+        🎉 ¡Un año innovando juntas! - Celebramos el primer aniversario de
+        femCoders Club
       </h1>
 
       <div className="social-share">
@@ -155,9 +157,9 @@ const Aniversario: React.FC = () => {
             href={`https://twitter.com/share?url=${currentUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartir en Twitter/X"
+            aria-label="Compartir este post en Twitter"
           >
-            <BsTwitter className="social-icon" />
+            <FaSquareXTwitter className="social-icon" />
           </a>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
@@ -171,18 +173,19 @@ const Aniversario: React.FC = () => {
       </div>
 
       <p className="intro-text">
-        🌟 ¿Alguna vez te has sentido sola en el mundo de la programación? En{" "}
-        <span>femCoders Club</span>, no estás sola. ¡Hoy celebramos nuestro
-        primer aniversario y estamos más emocionadas que nunca! 🎉 Este año,
-        hemos creado un espacio seguro y acogedor donde más de 1500 mujeres han
-        encontrado apoyo, inspiración y oportunidades para crecer juntas.
+        🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy
+        celebramos nuestro primer aniversario y estamos más emocionadas que
+        nunca. 🎉 Este año ha sido un viaje increíble, donde hemos creado un
+        espacio seguro y acogedor, permitiendo que más de 1500 mujeres
+        encuentren apoyo, inspiración y oportunidades para crecer juntas en el
+        mundo de la programación.
       </p>
 
       <p className="intro-text">
-        En femCoders Club hemos logrado organizar más de 15 eventos presenciales
-        y virtuales, reuniendo a cientos de mujeres apasionadas por la
-        programación. Nuestro <strong>canal de Slack,</strong> con más de 200
-        miembros activas, es un lugar vibrante donde el intercambio de
+        A lo largo del año, hemos organizado más de 15 eventos, tanto
+        presenciales como virtuales, conectando a cientos de mujeres apasionadas
+        por la programación. Nuestro <strong>canal de Slack,</strong> con más de
+        200 miembros activos, es un lugar vibrante donde el intercambio de
         conocimientos y el apoyo mutuo son la clave. Desde nuestras primeras
         charlas hasta hoy, hemos visto cómo una pequeña idea se ha convertido en
         una gran comunidad que sigue creciendo y evolucionando. 💜
@@ -191,38 +194,32 @@ const Aniversario: React.FC = () => {
       <div className="highlight-box">
         <h2>¿Quiénes somos? 👩‍💻</h2>
         <p>
-          <strong>
-            femCoders Club es una comunidad inclusiva y apasionada por la
-            tecnología,
-          </strong>{" "}
-          cuyo objetivo es empoderar a las mujeres y transformar el sector
-          tecnológico. Creemos en la colaboración, el respeto y la innovación
-          como pilares fundamentales para alcanzar la igualdad de oportunidades.
-          Al unirte a nuestra comunidad, tendrás acceso a una red de mentoras
-          que te apoyarán en tu camino, participarás en talleres y eventos
-          exclusivos, y desarrollarás proyectos innovadores junto a otras
-          mujeres talentosas. Juntas, estamos construyendo un futuro más
-          inclusivo y tecnológico, donde cada una de nosotras tiene un lugar
-          para crecer.
+          <strong>femCoders Club</strong> es una comunidad inclusiva y
+          apasionada por la tecnología, cuyo objetivo es empoderar a las mujeres
+          y transformar el sector tecnológico. Creemos en la colaboración, el
+          respeto y la innovación como pilares fundamentales para alcanzar la
+          igualdad de oportunidades. Al unirte a nuestra comunidad, tendrás
+          acceso a una red de mentoras que te apoyarán en tu camino,
+          participarás en talleres y eventos exclusivos, y desarrollarás
+          proyectos innovadores junto a otras mujeres talentosas. Juntas,
+          estamos construyendo un futuro más inclusivo y tecnológico, donde cada
+          una de nosotras tiene un lugar para crecer.
         </p>
       </div>
 
       <div className="highlight-box">
         <h2>¿Cómo puedes unirte? 🤝</h2>
         <p>
-          ¡Nos encantaría que formes parte de esta comunidad increíble!
-          <span>
-            <br /> Únete a nuestro canal de{" "}
-            <a
-              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Slack
-            </a>
-            ,{" "}
-          </span>
-          donde mujeres programadoras de todo el mundo comparten ideas,
+          ¡Nos encantaría que formes parte de esta comunidad increíble! Únete a
+          nuestro canal de{" "}
+          <a
+            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Slack
+          </a>
+          , donde mujeres programadoras de todo el mundo comparten ideas,
           colaboran en proyectos y se apoyan mutuamente. 💬
         </p>
         <p>
@@ -230,55 +227,60 @@ const Aniversario: React.FC = () => {
           nuestras novedades, eventos y oportunidades de networking. ¡Estamos en
           varias plataformas, así que elige la que más te guste! 💜
         </p>
-        <div className="social-links">
-          <a
-            href="https://open.spotify.com/user/31wgl44unbqdv6nh4igsgw5pp6t4?si=29d0152b29404e44"
-            aria-label="Spotify"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BsSpotify className="social-icon" />
-          </a>
-          <a
-            href="https://www.instagram.com/femcoders_club/"
-            aria-label="Instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/fem-coders-club/"
-            aria-label="LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href="https://www.youtube.com/@FemcodersClub"
-            aria-label="YouTube"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BsYoutube className="social-icon" />
-          </a>
-          <a
-            href="https://github.com/femcodersclub"
-            aria-label="GitHub"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BsGithub className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            aria-label="Slack"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaSlack className="social-icon" />
-          </a>
+
+        <div className="social-share">
+          <div className="share-buttons">
+            <a
+              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Unirse a Slack"
+            >
+              <FaSlack className="social-icon" />
+            </a>
+
+            <a
+              href={`https://www.instagram.com/?url=${currentUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Compartir este post en Instagram"
+            >
+              <BsInstagram className="social-icon" />
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Compartir en LinkedIn"
+            >
+              <BsLinkedin className="social-icon" />
+            </a>
+
+            <a
+              href="https://www.youtube.com/@FemcodersClub"
+              aria-label="YouTube"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BsYoutube className="social-icon" />
+            </a>
+            <a
+              href="https://github.com/femcodersclub"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BsGithub className="social-icon" />
+            </a>
+            <a
+              href="https://open.spotify.com/user/31wgl44unbqdv6nh4igsgw5pp6t4?si=29d0152b29404e44"
+              aria-label="Spotify"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BsSpotify className="social-icon" />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -287,9 +289,7 @@ const Aniversario: React.FC = () => {
         <p>
           Este es solo el comienzo. Muy pronto estaremos lanzando nuevos
           recursos y herramientas en nuestra página web{" "}
-          <span>
-            <a href="https://www.femcodersclub.com">www.femcodersclub.com</a>,
-          </span>{" "}
+          <a href="https://www.femcodersclub.com">www.femcodersclub.com</a>,
           incluyendo documentación técnica, tutoriales interactivos y muchas
           sorpresas más.
         </p>
@@ -297,9 +297,7 @@ const Aniversario: React.FC = () => {
           Si tienes alguna sugerencia, idea o recursos interesantes que creas
           que puedan aportar valor a la comunidad, ¡nos encantaría que nos lo
           hagas saber! No dudes en escribirnos a{" "}
-          <span>
-            <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.{" "}
-          </span>
+          <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
           Juntas seguiremos creciendo y creando una comunidad aún más fuerte.
         </p>
       </div>
@@ -315,23 +313,47 @@ const Aniversario: React.FC = () => {
         </p>
         <p>
           No olvides seguirnos en nuestras redes sociales y unirte a las
-          conversaciones en Slack. ¡Estamos deseando ver todo lo que lograremos
-          en el futuro!
+          conversaciones en{" "}
+          <span>
+            {" "}
+            <a
+              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Slack
+            </a>
+          </span>
+          . ¡Estamos deseando ver todo lo que lograremos en el futuro!
         </p>
+      </div>
+
+      <div className="back-to-blog-container">
+        <a href="/blog" className="back-to-blog">
+          Volver al Blog
+        </a>
       </div>
 
       <div className="comments-section">
         <h3>¡Queremos saber de ti! 💬</h3>
         <form ref={form} onSubmit={handleSubmit} className="comment-form">
+          <label htmlFor="name" className="visually-hidden">
+            Tu nombre
+          </label>
           <input
             type="text"
+            id="name"
             value={name}
             onChange={handleNameChange}
             placeholder="Tu nombre"
             required
             className="comment-input"
           />
+          <label htmlFor="comment" className="visually-hidden">
+            Escribe tu comentario aquí...
+          </label>
           <textarea
+            id="comment"
             value={comment}
             onChange={handleCommentChange}
             placeholder="Escribe tu comentario aquí..."
@@ -357,7 +379,6 @@ const Aniversario: React.FC = () => {
             <li key={comment.id} className="comment-item">
               <strong>{comment.userEmail}</strong>
               <p>{comment.content}</p>
-
               <small>
                 {format(new Date(comment.createdAt), "d 'de' MMMM 'de' yyyy", {
                   locale: es,
