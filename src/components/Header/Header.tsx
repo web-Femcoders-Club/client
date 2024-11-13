@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FemCodersClubLogo from "/logo-femcoders-club.jpg";
 import "./Header.css";
 
@@ -130,9 +130,45 @@ const Header: React.FC = () => {
             </Link>
           </li>
         </ul>
-        {/* { <div className={`auth-buttons ${menuOpen ? 'open' : ''}`}>
-          <Link to="/login" className="nav-link primary-button">Iniciar sesión</Link>
-        </div> } */}
+        <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
+  {isAuthenticated ? (
+    <div className="avatar-container">
+      <img
+        src={avatar || "/default-avatar.png"}
+        alt="User Avatar"
+        className="avatar"
+        onClick={handleAvatarClick}
+      />
+      <button onClick={handleLogOut} className="logout-button">
+        Cerrar sesión
+      </button>
+    </div>
+  ) : (
+    <Link to="/login" className="logout-button">
+      Iniciar sesión
+    </Link>
+  )}
+</div>
+
+       
+        {showUploadModal && (
+          <div className="upload-modal">
+            <div className="modal-content">
+            <h3>Selecciona tu Imagen de Perfil</h3>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarChange}
+                title="Upload your avatar"
+              />
+              {previewImage && (
+                <img src={previewImage} alt="Avatar Preview" className="avatar-preview" />
+              )}
+              <button onClick={confirmUpload}>Confirmar</button>
+              <button onClick={closeModal}>Cancelar</button>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );
