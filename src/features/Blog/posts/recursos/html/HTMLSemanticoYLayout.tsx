@@ -57,7 +57,7 @@ const HTMLSemanticoYLayout: React.FC = () => {
       from_name: name,
       message: comment,
       to_name: "femCoders",
-      postId: "4",
+      postId: "8",
     };
 
     try {
@@ -72,7 +72,7 @@ const HTMLSemanticoYLayout: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          postId: 4,
+          postId: 8,
           content: comment,
           userEmail: "",
         }),

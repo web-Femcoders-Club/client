@@ -9,7 +9,7 @@ import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
-import EventsPage from "../features/Events/page/EventsPage";
+import EventsPage from "../features/Events/page/EventsPage"; 
 import Loader from "../components/Loader";
 
 
@@ -30,6 +30,7 @@ const ForgotPasswordForm = lazy(() => import("../features/ForgotPassword/compone
 const ResetPasswordForm = lazy(() => import("../features/ForgotPassword/page/ResetPasswordForm"));
 const FormAndTablePost = lazy(() => import("../features/Blog/posts/recursos/html/FormandTablePost"));
 const APIsHtml = lazy(() => import("../features/Blog/posts/recursos/html/ApisHtml"));
+const HtmlAvanzado = lazy(() => import("../features/Blog/posts/recursos/html/HtmlAvanzado"));
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 
 const RouterComponent: React.FC = () => {
@@ -48,7 +49,7 @@ const RouterComponent: React.FC = () => {
         <Routes>
           <Route path="/" element={<Layout><HomePage /></Layout>} />
           <Route path="/contacto" element={<Layout><ContactPage /></Layout>} />
-          <Route path="/eventos" element={<Layout><EventsPage /></Layout>} />
+          <Route path="/eventos" element={<Layout><EventsPage /></Layout>} /> 
           <Route path="/sobrenosotras" element={<Layout><AboutPage /></Layout>} />
           <Route path="/blog/*" element={<Layout><BlogPage /></Layout>} />
           <Route path="/stats" element={<Layout><Stats /></Layout>} />
@@ -66,6 +67,7 @@ const RouterComponent: React.FC = () => {
           <Route path="/recursos/css/introduccion-css" element={<Layout><IntroduccionCSS /></Layout>} />
           <Route path="/recursos/html/formularios-y-tablas" element={<Layout><FormAndTablePost /></Layout>} />
           <Route path="/recursos/html/apis-html" element={<Layout><APIsHtml /></Layout>} />
+          <Route path="/recursos/html/html-seo-accesibilidad" element={<Layout><HtmlAvanzado /></Layout>} />
           <Route path="/welcome" element={<Layout><WelcomePage /></Layout>} />
         </Routes>
       </Suspense>
@@ -86,3 +88,4 @@ const Router: React.FC = () => {
 };
 
 export default Router;
+
