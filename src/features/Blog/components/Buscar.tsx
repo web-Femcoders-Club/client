@@ -8,7 +8,7 @@ const Buscar: React.FC<{ onSearch: (query: string) => void }> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    onSearch(e.target.value);
+    onSearch(e.target.value); 
   };
 
   return (
@@ -20,11 +20,10 @@ const Buscar: React.FC<{ onSearch: (query: string) => void }> = ({
         onChange={handleInputChange}
         className="buscar-input"
       />
-      <button className="buscar-button" onClick={() => onSearch(query)}>
-        Buscar
-      </button>
     </div>
   );
 };
 
 export default Buscar;
+
+

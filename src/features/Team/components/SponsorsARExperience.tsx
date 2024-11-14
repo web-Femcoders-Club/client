@@ -107,6 +107,16 @@ const SponsorsTimeline = () => {
       website: "https://www.codurance.com/es/",
       backgroundImage: "/codurance-oficina.jpg",
     },
+    {
+      date: "2024-11-07",
+      sponsor: "Semrush",
+      event: "Estrategias Clave en Tecnología: Accesibilidad y POO",
+      description:
+        "Gracias a Semrush, pudimos organizar un evento extraordinario con la participación de Daria Naydikova y Cris Mouta.  Las asistentes aprendieron sobre herramientas y enfoques para mejorar la accesibilidad y prevenir errores en productos, así como conceptos de POO de una manera lúdica y entretenida.",
+      logo: "assets/semRush/logoSemRush.png", 
+      website: "https://www.semrush.com/",
+      backgroundImage: "assets/semRush/oficina-SemRush.jpg", 
+    },
   ];
 
   const handlePrev = () => {

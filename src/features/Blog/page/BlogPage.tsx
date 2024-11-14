@@ -7,7 +7,6 @@ import Noticias from "./Noticias";
 import Recursos from "./Recursos";
 
 const BlogPage: React.FC = () => {
-
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [showRecentPosts, setShowRecentPosts] = useState(true);
@@ -35,9 +34,8 @@ const BlogPage: React.FC = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCategoryFilter("");
+    setCategoryFilter(""); 
   };
-
 
   const posts = [
     {
@@ -59,7 +57,7 @@ const BlogPage: React.FC = () => {
       type: "recurso",
       category: "html",
       title: "Elementos HTML Clave",
-      description: " Descubre los elementos más utilizados.",
+      description: "Descubre los elementos más utilizados.",
     },
     {
       id: 4,
@@ -92,17 +90,23 @@ const BlogPage: React.FC = () => {
   ];
 
   const filteredPosts = posts.filter((post) => {
-    const matchSearch = post.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    // Normalizamos los datos para evitar problemas de mayúsculas/minúsculas
+    const normalizedTitle = post.title.toLowerCase();
+    const normalizedDescription = post.description.toLowerCase();
+    const normalizedSearchQuery = searchQuery.toLowerCase();
+
+    // Buscamos coincidencias en el título o la descripción
+    const matchSearch =
+      normalizedTitle.includes(normalizedSearchQuery) ||
+      normalizedDescription.includes(normalizedSearchQuery);
+      
     const matchCategory = !categoryFilter || post.category === categoryFilter;
     return matchSearch && matchCategory;
   });
-  
 
   const handleCategoryFilter = (category: string) => {
     setCategoryFilter(category);
-    setSearchQuery("");
+    setSearchQuery(""); // Limpiamos la búsqueda actual cuando se selecciona una categoría
   };
 
   return (
@@ -196,7 +200,7 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
 
-        {categoryFilter ? (
+        {categoryFilter || searchQuery ? (
           <div className="filtered-posts">
             <div className="post-grid">
               {filteredPosts.length > 0 ? (
@@ -219,7 +223,7 @@ const BlogPage: React.FC = () => {
                           ? `/recursos/html/html-semantico`
                           : post.title === "Formularios y Tablas en HTML"
                           ? `/recursos/html/formularios-y-tablas`
-                           : post.title === "Introducción a las APIs en HTML"
+                          : post.title === "Introducción a las APIs en HTML"
                           ? `/recursos/html/apis-html`
                           : `/`
                       }
@@ -234,7 +238,7 @@ const BlogPage: React.FC = () => {
                   </div>
                 ))
               ) : (
-                <p>No se encontraron publicaciones en esta categoría.</p>
+                <p>No se encontraron publicaciones.</p>
               )}
             </div>
           </div>
@@ -289,4 +293,5 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
+
 

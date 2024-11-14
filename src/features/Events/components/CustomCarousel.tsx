@@ -119,12 +119,21 @@ const CustomCarousel = () => {
       src: "/assets/ML-ComunicacionAcertiva/LiliDemarco-ponente.png",
       text: "Liliana, una de las cofundadoras más queridas de femCoders Club, nos inspiró con su presentación 'Soft Skill: Comunicación Asertiva' en un evento organizado junto a Canodrum.",
     },
+    {
+      src: "/assets/semRush/dariaNaidikova.jpg",
+      text: "Daria Naidikova, desarrolladora front-end en Semrush, compartió estrategias clave sobre cómo mejorar la accesibilidad en productos digitales, inspirando a nuestra comunidad a crear experiencias web inclusivas para todos.",
+    },
+    {
+      src: "/assets/semRush/crisMouta.jpg",
+      text: "Cris Mouta, arquitecta convertida en programadora y formadora fullstack, nos mostró los fundamentos de la Programación Orientada a Objetos (POO), destacando la importancia de la creatividad y pasión en el desarrollo de software.",
+    },
+    
   ];
 
   useEffect(() => {
     const carouselInterval = setInterval(() => {
       setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(carouselInterval);
