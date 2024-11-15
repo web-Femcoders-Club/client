@@ -7,7 +7,6 @@ import Noticias from "./Noticias";
 import Recursos from "./Recursos";
 
 const BlogPage: React.FC = () => {
-
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [showRecentPosts, setShowRecentPosts] = useState(true);
@@ -16,10 +15,7 @@ const BlogPage: React.FC = () => {
   const recursosRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (
-      location.pathname.includes("noticias") ||
-      location.pathname.includes("recursos")
-    ) {
+    if (location.pathname.includes("noticias") || location.pathname.includes("recursos")) {
       setShowRecentPosts(false);
       setCategoryFilter("");
     } else {
@@ -38,85 +34,60 @@ const BlogPage: React.FC = () => {
     setCategoryFilter("");
   };
 
-
   const posts = [
-    {
-      id: 1,
-      type: "noticia",
-      category: "femCoders",
-      title: "femCoders Club - Primer Aniversario",
-      description: "Celebramos el primer aniversario de femCoders Club.",
-    },
-    {
-      id: 2,
-      type: "recurso",
-      category: "html",
-      title: "Introducción a HTML",
-      description: "Los fundamentos de HTML.",
-    },
-    {
-      id: 3,
-      type: "recurso",
-      category: "html",
-      title: "Elementos HTML Clave",
-      description: " Descubre los elementos más utilizados.",
-    },
-    {
-      id: 4,
-      type: "recurso",
-      category: "css",
-      title: "¿Qué es CSS y por qué es esencial para el diseño web?",
-      description: "Explora la importancia de CSS en el diseño web",
-    },
-    {
-      id: 5,
-      type: "recurso",
-      category: "html",
-      title: "HTML Semántico y Diseño de Layout",
-      description: "Aprende HTML semántico y layout.",
-    },
-    {
-      id: 6,
-      type: "recurso",
-      category: "html",
-      title: "Formularios y Tablas en HTML",
-      description: "Estructurar formularios, tablas en HTML.",
-    },
-    {
-      id: 7,
-      type: "recurso",
-      category: "html",
-      title: "Introducción a las APIs en HTML",
-      description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web."
-    }
+    { id: 1, type: "noticia", category: "femCoders", title: "femCoders Club - Primer Aniversario", description: "Celebramos el primer aniversario de femCoders Club.", createdAt: new Date("2024-10-24") },
+    { id: 2, type: "recurso", category: "html", title: "Introducción a HTML", description: "Los fundamentos de HTML.", createdAt: new Date("2024-10-05") },
+    { id: 3, type: "recurso", category: "html", title: "Elementos HTML Clave", description: "Descubre los elementos más utilizados.", createdAt: new Date("2024-10-07") },
+    { id: 4, type: "recurso", category: "css", title: "¿Qué es CSS y por qué es esencial para el diseño web?", description: "Explora la importancia de CSS en el diseño web", createdAt: new Date("2024-10-10") },
+    { id: 5, type: "recurso", category: "html", title: "HTML Semántico y Diseño de Layout", description: "Aprende HTML semántico y layout.", createdAt: new Date("2024-10-12") },
+    { id: 6, type: "recurso", category: "html", title: "Formularios y Tablas en HTML", description: "Estructurar formularios, tablas en HTML.", createdAt: new Date("2024-10-14") },
+    { id: 7, type: "recurso", category: "html", title: "Introducción a las APIs en HTML", description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.", createdAt: new Date("2024-10-15") },
+    { id: 8, type: "recurso", category: "html", title: "HTML Avanzado para SEO y Accesibilidad", description: "Explora técnicas avanzadas de HTML, como microdatos, atributos ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu web.", createdAt: new Date("2024-10-18") }
   ];
 
   const filteredPosts = posts.filter((post) => {
-    const matchSearch = post.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const normalizedTitle = post.title.toLowerCase();
+    const normalizedDescription = post.description.toLowerCase();
+    const normalizedSearchQuery = searchQuery.toLowerCase();
+    const matchSearch = normalizedTitle.includes(normalizedSearchQuery) || normalizedDescription.includes(normalizedSearchQuery);
     const matchCategory = !categoryFilter || post.category === categoryFilter;
     return matchSearch && matchCategory;
   });
-  
 
   const handleCategoryFilter = (category: string) => {
     setCategoryFilter(category);
     setSearchQuery("");
   };
 
+  const getPostLink = (post: { title: string }) => {
+    switch (post.title) {
+      case "femCoders Club - Primer Aniversario":
+        return `/noticias/Aniversario`;
+      case "Introducción a HTML":
+        return `/recursos/html/introduccion-html`;
+      case "Elementos HTML Clave":
+        return `/recursos/html/elementos-html-clave`;
+      case "¿Qué es CSS y por qué es esencial para el diseño web?":
+        return `/recursos/css/introduccion-css`;
+      case "HTML Semántico y Diseño de Layout":
+        return `/recursos/html/html-semantico`;
+      case "Formularios y Tablas en HTML":
+        return `/recursos/html/formularios-y-tablas`;
+      case "Introducción a las APIs en HTML":
+        return `/recursos/html/apis-html`;
+      case "HTML Avanzado para SEO y Accesibilidad":
+        return `/recursos/html/html-seo-accesibilidad`;
+      default:
+        return `/`;
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>Blog de FemCoders Club</title>
-        <meta
-          name="description"
-          content="Descubre noticias y recursos en el blog de FemCoders Club"
-        />
-        <meta
-          name="keywords"
-          content="FemCoders, noticias, recursos, programación, tecnología"
-        />
+        <meta name="description" content="Descubre noticias y recursos en el blog de FemCoders Club" />
+        <meta name="keywords" content="FemCoders, noticias, recursos, programación, tecnología" />
       </Helmet>
 
       <header className="blog-header">
@@ -124,20 +95,12 @@ const BlogPage: React.FC = () => {
         <nav className="blog-nav">
           <ul className="blog-menu">
             <li className="blog-menu-item">
-              <Link
-                to="noticias"
-                className="blog-menu-link"
-                onClick={() => setShowRecentPosts(false)}
-              >
+              <Link to="noticias" className="blog-menu-link" onClick={() => setShowRecentPosts(false)}>
                 Noticias
               </Link>
             </li>
             <li className="blog-menu-item">
-              <Link
-                to="recursos"
-                className="blog-menu-link"
-                onClick={() => setShowRecentPosts(false)}
-              >
+              <Link to="recursos" className="blog-menu-link" onClick={() => setShowRecentPosts(false)}>
                 Recursos
               </Link>
             </li>
@@ -157,46 +120,15 @@ const BlogPage: React.FC = () => {
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            <button
-              onClick={() => handleCategoryFilter("html")}
-              className="button secondary-button"
-            >
-              HTML
-            </button>
-            <button
-              onClick={() => handleCategoryFilter("javascript")}
-              className="button secondary-button"
-            >
-              JavaScript
-            </button>
-            <button
-              onClick={() => handleCategoryFilter("react")}
-              className="button secondary-button"
-            >
-              React
-            </button>
-            <button
-              onClick={() => handleCategoryFilter("css")}
-              className="button secondary-button"
-            >
-              CSS
-            </button>
-            <button
-              onClick={() => handleCategoryFilter("python")}
-              className="button secondary-button"
-            >
-              Python
-            </button>
-            <button
-              onClick={() => handleCategoryFilter("femCoders")}
-              className="button secondary-button"
-            >
-              femCoders Club
-            </button>
+            {["html", "javascript", "react", "css", "python", "femCoders"].map((category) => (
+              <button key={category} onClick={() => handleCategoryFilter(category)} className="button secondary-button">
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
 
-        {categoryFilter ? (
+        {categoryFilter || searchQuery ? (
           <div className="filtered-posts">
             <div className="post-grid">
               {filteredPosts.length > 0 ? (
@@ -204,37 +136,13 @@ const BlogPage: React.FC = () => {
                   <div key={post.id} className="post-card">
                     <h4>{post.title}</h4>
                     <p className="intro-text">{post.description}</p>
-                    <Link
-                      to={
-                        post.title === "femCoders Club - Primer Aniversario"
-                          ? `/noticias/Aniversario`
-                          : post.title === "Introducción a HTML"
-                          ? `/recursos/html/introduccion-html`
-                          : post.title === "Elementos HTML Clave"
-                          ? `/recursos/html/elementos-html-clave`
-                          : post.title ===
-                            "¿Qué es CSS y por qué es esencial para el diseño web?"
-                          ? `/recursos/css/introduccion-css`
-                          : post.title === "HTML Semántico y Diseño de Layout"
-                          ? `/recursos/html/html-semantico`
-                          : post.title === "Formularios y Tablas en HTML"
-                          ? `/recursos/html/formularios-y-tablas`
-                           : post.title === "Introducción a las APIs en HTML"
-                          ? `/recursos/html/apis-html`
-                          : `/`
-                      }
-                      className={`button ${
-                        post.type === "noticia"
-                          ? "primary-button"
-                          : "secondary-button"
-                      }`}
-                    >
+                    <Link to={getPostLink(post)} className={`button ${post.type === "noticia" ? "primary-button" : "secondary-button"}`}>
                       {post.type === "noticia" ? "Leer más" : "Ver recurso"}
                     </Link>
                   </div>
                 ))
               ) : (
-                <p>No se encontraron publicaciones en esta categoría.</p>
+                <p>No se encontraron publicaciones.</p>
               )}
             </div>
           </div>
@@ -243,37 +151,18 @@ const BlogPage: React.FC = () => {
             <div className="featured-posts">
               <h3>Publicaciones Recientes</h3>
               <div className="post-grid">
-                {posts.slice(0, 3).map((post) => (
-                  <div key={post.id} className="post-card">
-                    <h4>{post.title}</h4>
-                    <p className="intro-text">{post.description}</p>
-                    <Link
-                      to={
-                        post.title === "femCoders Club - Primer Aniversario"
-                          ? `/noticias/Aniversario`
-                          : post.title === "Introducción a HTML"
-                          ? `/recursos/html/introduccion-html`
-                          : post.title === "Elementos HTML Clave"
-                          ? `/recursos/html/elementos-html-clave`
-                          : post.title ===
-                            "¿Qué es CSS y por qué es esencial para el diseño web?"
-                          ? `/recursos/css/introduccion-css`
-                          : post.title === "HTML Semántico y Diseño de Layout"
-                          ? `/recursos/html/html-semantico`
-                          : post.title === "Formularios y Tablas en HTML"
-                          ? `/recursos/html/formularios-y-tablas`
-                          : `/`
-                      }
-                      className={`button ${
-                        post.type === "noticia"
-                          ? "primary-button"
-                          : "secondary-button"
-                      }`}
-                    >
-                      {post.type === "noticia" ? "Leer más" : "Ver recurso"}
-                    </Link>
-                  </div>
-                ))}
+                {posts
+                  .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+                  .slice(0, 3)
+                  .map((post) => (
+                    <div key={post.id} className="post-card">
+                      <h4>{post.title}</h4>
+                      <p className="intro-text">{post.description}</p>
+                      <Link to={getPostLink(post)} className={`button ${post.type === "noticia" ? "primary-button" : "secondary-button"}`}>
+                        {post.type === "noticia" ? "Leer más" : "Ver recurso"}
+                      </Link>
+                    </div>
+                  ))}
               </div>
             </div>
           )
@@ -289,4 +178,3 @@ const BlogPage: React.FC = () => {
 };
 
 export default BlogPage;
-

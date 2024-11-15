@@ -173,7 +173,7 @@ const Aniversario: React.FC = () => {
       </div>
 
       <p className="intro-text">
-        🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy
+        🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy, 24 de octubre,
         celebramos nuestro primer aniversario y estamos más emocionadas que
         nunca. 🎉 Este año ha sido un viaje increíble, donde hemos creado un
         espacio seguro y acogedor, permitiendo que más de 1500 mujeres
@@ -325,6 +325,16 @@ const Aniversario: React.FC = () => {
             </a>
           </span>
           . ¡Estamos deseando ver todo lo que lograremos en el futuro!
+        </p>
+      </div>
+
+      <div className="author-info">
+        <p>
+          Escrito por: <strong>femCoders Club</strong>
+        </p>
+        <p>
+          Actualización:{" "}
+          <strong>{new Date().toLocaleDateString()}</strong>
         </p>
       </div>
 

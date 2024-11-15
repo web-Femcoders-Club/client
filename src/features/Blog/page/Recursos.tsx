@@ -102,6 +102,7 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+
       <div className="recurso-item bg1">
         <div className="noticia-content">
           <div>
@@ -119,10 +120,27 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
-    </div>
 
-    
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>HTML Avanzado para SEO y Accesibilidad</h3>
+            <p className="intro-text">
+              Explora técnicas avanzadas de HTML, como microdatos, atributos ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu web.
+            </p>
+          </div>
+          <Link
+            to="/recursos/html/html-seo-accesibilidad"
+            className="secondary-button"
+            aria-label="Leer más sobre HTML Avanzado para SEO y Accesibilidad"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Recursos;
+

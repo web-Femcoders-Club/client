@@ -57,7 +57,7 @@ const FormandTablePost: React.FC = () => {
       from_name: name,
       message: comment,
       to_name: "femCoders",
-      postId: "2",
+      postId: "6",
     };
 
     try {
@@ -72,7 +72,7 @@ const FormandTablePost: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          postId: 2,
+          postId: 6,
           content: comment,
           userEmail: "",
         }),

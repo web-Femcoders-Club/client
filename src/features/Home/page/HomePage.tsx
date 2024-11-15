@@ -67,7 +67,10 @@ const HomePage: React.FC = () => {
     "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.png",
     "/assets/ML-ComunicacionAcertiva/EventoFemCodersClub-ComunicacionAcertiva.png",
     "/assets/ML-ComunicacionAcertiva/desarolladora-fullstack-Irina-femCodersClub.png",
-    "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png"
+    "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
+    "/assets/semRush/AnaSemrush.jpg",
+    "/assets/semRush/eventoSemrush.jpg",
+   
   ];
 
   const texts = [

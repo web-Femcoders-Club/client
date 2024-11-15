@@ -57,7 +57,7 @@ const ApisHtml: React.FC = () => {
       from_name: name,
       message: comment,
       to_name: "femCoders",
-      postId: "",
+      postId: "7",
     };
 
     try {
@@ -72,7 +72,7 @@ const ApisHtml: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          postId: 3,
+          postId: 7,
           content: comment,
           userEmail: "",
         }),
@@ -91,11 +91,11 @@ const ApisHtml: React.FC = () => {
     <title>Guía Completa: APIs en HTML para Proyectos Web - femCoders Club</title>
     <meta 
       name="description" 
-      content="Explora cómo integrar y aprovechar APIs en HTML para mejorar la funcionalidad de tus proyectos web. Aprende sobre Geolocalización, Web Storage, Canvas, WebRTC, y más. Una guía esencial para desarrolladoras de femCoders Club."
+      content="Explora cómo integrar y aprovechar APIs en HTML para mejorar la funcionalidad de tus proyectos web. Aprende sobre Geolocalización, Web Storage, Canvas, WebRTC, Video, Audio, y más. Una guía esencial para desarrolladoras de femCoders Club."
     />
     <meta 
       name="keywords" 
-      content="HTML, APIs HTML, Geolocalización, Web Storage, Canvas, WebRTC, WebSockets, Desarrollo Web, Programación, femCoders Club"
+      content="HTML, APIs HTML, Geolocalización, Web Storage, Canvas, WebRTC, Video, Audio, WebSockets, Desarrollo Web, Programación, femCoders Club"
     />
     <meta property="og:title" content="Guía Completa: APIs en HTML para Proyectos Web - femCoders Club" />
     <meta property="og:description" content="Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras." />
@@ -378,6 +378,70 @@ window.addEventListener("storage", (event) => {
   
   <p>
     Además, hemos creado un <strong>ejemplo práctico</strong> para la comunidad de femCoders Club. Te animamos a <span><a href="https://github.com/femcodersclub/CanvasTextAnimation" target="_blank" rel="noopener noreferrer">explorar el repositorio en GitHub</a> </span>, donde encontrarás una animación de texto interactiva en <code>&lt;canvas&gt;</code>. Puedes probarla, practicar y modificar el código para adaptarlo a tus proyectos. ¡Esperamos que disfrutes experimentando con esta técnica y desarrolles tus propias animaciones! 🚀
+  </p>
+</div>
+<div className="highlight-box">
+  <h2>🎥 Video y Audio en HTML: Reproducción Multimedia</h2>
+
+  <p>
+    HTML proporciona etiquetas específicas para la reproducción de contenido multimedia, como <code>&lt;video&gt;</code> y <code>&lt;audio&gt;</code>. Estas etiquetas te permiten incluir videos y archivos de audio directamente en tus páginas web, mejorando la experiencia del usuario con contenido enriquecido.
+  </p>
+
+  <h3>🌟 Etiqueta <code>&lt;video&gt;</code></h3>
+  <p>
+    La etiqueta <code>&lt;video&gt;</code> se utiliza para incrustar un video en la página. Puedes personalizar la experiencia del usuario añadiendo controles como reproducir, pausar, ajustar el volumen, etc. Aquí tienes un ejemplo:
+  </p>
+  
+  <pre className="code-block bg3">
+    <code>
+      {`
+<video width="320" height="240" controls>
+  <source src="/assets/videos/femCoders.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+      `}
+    </code>
+  </pre>
+
+  <p>
+    En este ejemplo, se define un video con controles básicos. El atributo <code>controls</code> agrega opciones de reproducción, volumen y pantalla completa al video, mientras que el <code>source</code> indica la ubicación del archivo.
+  </p>
+
+  <h3>🎶 Etiqueta <code>&lt;audio&gt;</code></h3>
+  <p>
+    La etiqueta <code>&lt;audio&gt;</code> permite incrustar un archivo de audio en la página. Puedes proporcionar controles para reproducir, pausar, etc. Aquí tienes un ejemplo básico:
+  </p>
+
+  <pre className="code-block bg3">
+    <code>
+      {`
+<audio controls>
+  <source src="/assets/audios/femCodersPodcast.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>
+      `}
+    </code>
+  </pre>
+
+  <p>
+    En este caso, el archivo de audio se puede reproducir utilizando los controles proporcionados. Al igual que con el video, el atributo <code>controls</code> permite al usuario interactuar con el audio.
+  </p>
+
+  <h3>💡 Consejos Prácticos</h3>
+  <ul>
+    <li>
+      <strong>Soporte Multiformato:</strong> Para garantizar la compatibilidad con todos los navegadores, se recomienda proporcionar múltiples formatos de video y audio, como <code>mp4</code>, <code>webm</code>, y <code>ogg</code>.
+    </li>
+    <li>
+      <strong>Subtítulos y Descripciones:</strong> Utiliza la etiqueta <code>&lt;track&gt;</code> dentro de <code>&lt;video&gt;</code> para agregar subtítulos, haciendo que el contenido multimedia sea más accesible.
+    </li>
+    <li>
+      <strong>Fallback:</strong> Siempre incluye un mensaje de fallback como "Tu navegador no soporta este elemento" para mejorar la experiencia de los usuarios que no pueden visualizar el contenido multimedia.
+    </li>
+  </ul>
+
+  <p>
+    El uso de estas etiquetas es esencial para crear una página web que brinde una experiencia interactiva y envolvente. Te animo a probar estos ejemplos en tus propios proyectos y ver cómo mejoran la calidad y accesibilidad de tus páginas web.
   </p>
 </div>
 

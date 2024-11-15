@@ -26,8 +26,13 @@ const CardTeamMember = () => {
   };
 
   if (isLoading) {
-    return <p>Loading members...</p>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-spinner text-primary" style={{ width: "4rem", height: "4rem" }}></span>
+      </div>
+    );
   }
+  
 
   if (error) {
     console.error("Error fetching members:", error);
