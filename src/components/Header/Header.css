@@ -31,8 +31,7 @@
   height: auto;
   transition: transform 0.3s ease, filter 0.3s ease;
   border-radius: 10%;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 
-  0 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
   border-radius: 15%;
 }
 
@@ -113,7 +112,6 @@
 .user-avatar {
   display: flex;
   align-items: center;
-  gap: 16px;
   position: relative;
 }
 
@@ -125,10 +123,10 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
   margin: 1rem;
+  align-items: center;
 }
-
 .avatar-icon:hover {
-  transform: scale(1.1);
+  transform: rotate(10deg);
 }
 
 .logout-button {
@@ -142,7 +140,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -160,19 +157,6 @@
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0 8px;
-}
-
-.avatar-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.avatar-icon:hover {
-  transform: rotate(10deg); 
 }
 
 .upload-modal {
@@ -199,7 +183,8 @@
   object-fit: cover;
 }
 
-.confirm-button, .cancel-button {
+.confirm-button,
+.cancel-button {
   margin-top: 20px;
   padding: 10px 20px;
   border-radius: 5px;
@@ -223,6 +208,42 @@
 
 .cancel-button:hover {
   background-color: #e53935;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #4737bb;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+
+}
+
+.dropdown.open .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scrolled-dropdown {
+  background: rgba(71, 55, 187, 0.7);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
+}
+
+.avatar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dropdown-menu .nav-link,
+.dropdown-item.logout-button {
+  text-align: left;
+  margin: 5px 0;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -280,20 +301,11 @@
   }
 
   .auth-buttons.open {
-    max-height: 100px; 
+    max-height: 200px;
   }
 
   .logout-button {
-    background-color: #ea4f33;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
     cursor: pointer;
-    width: 80%;
-    max-width: 150px;
     text-align: center;
     margin: 8px 0;
   }
@@ -301,6 +313,20 @@
   .logout-button:hover {
     background-color: #bb3f28;
     transform: scale(1.05);
+  }
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .dropdown.open .dropdown-menu {
+    max-height: 150px;
+    overflow: hidden;
+  }
+  .scrolled-dropdown {
+    background-color: rgba(71, 55, 187, 0.8);
   }
 }
 
