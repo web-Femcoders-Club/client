@@ -32,6 +32,7 @@ const FormAndTablePost = lazy(() => import("../features/Blog/posts/recursos/html
 const APIsHtml = lazy(() => import("../features/Blog/posts/recursos/html/ApisHtml"));
 const HtmlAvanzado = lazy(() => import("../features/Blog/posts/recursos/html/HtmlAvanzado"));
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
+const PersonalizaPerfil = lazy(() => import("../features/PersonalizaPerfil/page/PersonalizaPerfil"));
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -69,6 +70,7 @@ const RouterComponent: React.FC = () => {
           <Route path="/recursos/html/apis-html" element={<Layout><APIsHtml /></Layout>} />
           <Route path="/recursos/html/html-seo-accesibilidad" element={<Layout><HtmlAvanzado /></Layout>} />
           <Route path="/welcome" element={<Layout><WelcomePage /></Layout>} />
+          <Route path="/personaliza-perfil" element={<Layout><PersonalizaPerfil /></Layout>} />
         </Routes>
       </Suspense>
 

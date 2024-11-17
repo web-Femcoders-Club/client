@@ -1,4 +1,4 @@
-// import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState, useRef } from "react";
 // import { Link, useNavigate } from "react-router-dom";
 // import FemCodersClubLogo from "/logo-femcoders-club.jpg";
 // import "./Header.css";
@@ -10,6 +10,7 @@
 //   const [menuOpen, setMenuOpen] = useState(false);
 //   const [dropdownOpen, setDropdownOpen] = useState(false);
 //   const navigate = useNavigate();
+//   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
 //   useEffect(() => {
 //     const authStatus = localStorage.getItem("isAuthenticated") === "true";
@@ -45,6 +46,27 @@
 //     };
 //   }, []);
 
+//   useEffect(() => {
+//     const handleClickOutside = (event: MouseEvent) => {
+//       if (
+//         dropdownRef.current &&
+//         !dropdownRef.current.contains(event.target as Node)
+//       ) {
+//         setDropdownOpen(false);
+//       }
+//     };
+
+//     if (dropdownOpen) {
+//       document.addEventListener("mousedown", handleClickOutside);
+//     } else {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     }
+
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, [dropdownOpen]);
+
 //   const toggleMenu = () => {
 //     setMenuOpen((prev) => !prev);
 //   };
@@ -53,10 +75,17 @@
 //     setDropdownOpen((prev) => !prev);
 //   };
 
-//   const handleMouseLeave = () => {
-//     setTimeout(() => {
-//       setDropdownOpen(false);
-//     }, 300);
+//   const goToWelcomePage = () => {
+//     const userName = localStorage.getItem("userName") || "Usuario";
+//     const userAvatar = localStorage.getItem("userAvatar");
+
+//     navigate("/welcome", {
+//       state: {
+//         userName: userName,
+//         avatar: userAvatar,
+//       },
+//     });
+//     setDropdownOpen(false);
 //   };
 
 //   const handleLogOut = () => {
@@ -136,48 +165,47 @@
 //         </ul>
 
 //         <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
-//   {isAuthenticated ? (
-//     <div className="user-avatar-dropdown" onMouseLeave={handleMouseLeave}>
-//       {/* Avatar del usuario que despliega el menú */}
-//       <button
-//         className="dropdown-toggle avatar-button"
-//         onClick={handleAvatarClick}
-//       >
-//         <img
-//           src={avatar || "/default-avatar.png"}
-//           alt="User Avatar"
-//           className="avatar-icon"
-//         />
-//       </button>
+//           {isAuthenticated ? (
+//             <div className="user-avatar-dropdown" ref={dropdownRef}>
+//               {/* Avatar del usuario que despliega el menú */}
+//               <button
+//                 className="dropdown-toggle avatar-button"
+//                 onClick={handleAvatarClick}
+//               >
+//                 <img
+//                   src={avatar || "/default-avatar.png"}
+//                   alt="User Avatar"
+//                   className="avatar-icon"
+//                 />
+//               </button>
 
-    
-//       {dropdownOpen && (
-//         <div
-//           className={`dropdown-menu ${isScrolled ? "scrolled-dropdown" : ""}`}
-//         >
-//           <Link
-//             to="/personaliza-perfil"
-//             className="nav-link"
-//             onClick={() => setMenuOpen(false)}
-//           >
-//             Mi Perfil
-//           </Link>
-//           <button
-//             onClick={handleLogOut}
-//             className="dropdown-item logout-button"
-//           >
-//             Cerrar sesión
-//           </button>
+//               {dropdownOpen && (
+//                 <div
+//                   className={`dropdown-menu ${
+//                     isScrolled ? "scrolled-dropdown" : ""
+//                   }`}
+//                 >
+//                   <button
+//                     onClick={goToWelcomePage}
+//                     className="dropdown-item nav-link"
+//                   >
+//                     Mi Perfil
+//                   </button>
+//                   <button
+//                     onClick={handleLogOut}
+//                     className="dropdown-item logout-button"
+//                   >
+//                     Cerrar sesión
+//                   </button>
+//                 </div>
+//               )}
+//             </div>
+//           ) : (
+//             <Link to="/login" className="logout-button">
+//               Iniciar sesión
+//             </Link>
+//           )}
 //         </div>
-//       )}
-//     </div>
-//   ) : (
-//     <Link to="/login" className="logout-button">
-//       Iniciar sesión
-//     </Link>
-//   )}
-// </div>
-
 //       </nav>
 //     </header>
 //   );
@@ -200,30 +228,31 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // Obtener información de autenticación al cargar el componente
-  useEffect(() => {
-    const authStatus = localStorage.getItem("isAuthenticated") === "true";
-    const storedAvatar = localStorage.getItem("userAvatar");
+  const updateAuthState = () => {
+    const authStatus = sessionStorage.getItem("authToken") !== null;
+    const storedAvatar = sessionStorage.getItem("userAvatar");
 
     setIsAuthenticated(authStatus);
     setAvatar(storedAvatar);
+  };
 
-    const handleStorageChange = () => {
-      const updatedAuthStatus =
-        localStorage.getItem("isAuthenticated") === "true";
-      const updatedAvatar = localStorage.getItem("userAvatar");
-      setIsAuthenticated(updatedAuthStatus);
-      setAvatar(updatedAvatar);
+  // Usar datos desde sessionStorage en vez de localStorage
+  useEffect(() => {
+    updateAuthState();
+
+    // Escuchar el evento de cambio de estado de autenticación
+    const handleAuthStateChange = () => {
+      updateAuthState();
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("authStateChange", handleAuthStateChange);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("authStateChange", handleAuthStateChange);
     };
   }, []);
 
-  // Detectar el scroll para cambiar la apariencia del header
+  // Manejar scroll para actualizar clase CSS de Header
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -236,7 +265,7 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Detectar clics fuera del dropdown para cerrarlo
+  // Manejar clic fuera del dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -258,20 +287,29 @@ const Header: React.FC = () => {
     };
   }, [dropdownOpen]);
 
-  // Alternar la apertura/cierre del menú hamburguesa
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
 
-  // Alternar la apertura/cierre del menú desplegable del avatar
   const handleAvatarClick = () => {
     setDropdownOpen((prev) => !prev);
   };
 
-  // Manejar el cierre de sesión del usuario
+  const goToWelcomePage = () => {
+    const userName = sessionStorage.getItem("userName") || "Usuario";
+    const userAvatar = sessionStorage.getItem("userAvatar");
+
+    navigate("/welcome", {
+      state: {
+        userName: userName,
+        avatar: userAvatar,
+      },
+    });
+    setDropdownOpen(false);
+  };
+
   const handleLogOut = () => {
-    localStorage.setItem("isAuthenticated", "false");
-    localStorage.removeItem("userAvatar");
+    sessionStorage.clear(); // Limpiar el sessionStorage
     setIsAuthenticated(false);
     setAvatar(null);
     setDropdownOpen(false);
@@ -348,7 +386,6 @@ const Header: React.FC = () => {
         <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
           {isAuthenticated ? (
             <div className="user-avatar-dropdown" ref={dropdownRef}>
-              {/* Avatar del usuario que despliega el menú */}
               <button
                 className="dropdown-toggle avatar-button"
                 onClick={handleAvatarClick}
@@ -360,20 +397,18 @@ const Header: React.FC = () => {
                 />
               </button>
 
-              {/* Dropdown menu */}
               {dropdownOpen && (
                 <div
                   className={`dropdown-menu ${
                     isScrolled ? "scrolled-dropdown" : ""
                   }`}
                 >
-                  <Link
-                    to="/personaliza-perfil"
-                    className="nav-link"
-                    onClick={() => setMenuOpen(false)}
+                  <button
+                    onClick={goToWelcomePage}
+                    className="dropdown-item nav-link"
                   >
                     Mi Perfil
-                  </Link>
+                  </button>
                   <button
                     onClick={handleLogOut}
                     className="dropdown-item logout-button"
@@ -395,4 +430,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
