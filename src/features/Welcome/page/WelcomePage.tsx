@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./WelcomePage.css"; // Vamos a necesitar un archivo CSS para animaciones
+import "./WelcomePage.css";
 
 interface LocationState {
   userName: string;
@@ -51,7 +51,6 @@ const WelcomePage: React.FC = () => {
     localStorage.setItem("userEmoji", emoji);
     setEmojiMenuOpen(false);
 
-    // Actualizar estadísticas
     const currentDate = new Date().toLocaleDateString();
     const updatedStats = { ...emojiStats };
     updatedStats[currentDate] = (updatedStats[currentDate] || 0) + 1;
@@ -83,7 +82,6 @@ const WelcomePage: React.FC = () => {
 
   const weeklyStats = calculateWeeklyStats();
 
-  // Opciones de Emojis con significados
   const emojiOptions = [
     { emoji: "😊", label: "Feliz" },
     { emoji: "😍", label: "Enamorado/a" },
@@ -101,17 +99,14 @@ const WelcomePage: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar Menu */}
       <div className="w-72 bg1 shadow-lg p-6 rounded-r-3xl">
         <div className="flex flex-col items-center mt-24">
-          {/* Mostrar Emoji Seleccionado */}
           {selectedEmoji && (
             <div className="selected-emoji mb-4 text-5xl animate-emoji">
               {selectedEmoji}
             </div>
           )}
 
-          {/* Mensaje de Bienvenida */}
           <h2 className="text-xl font-semibold text-center text-white mb-4">
             {getGreeting()}, {displayName}!
           </h2>
@@ -119,7 +114,6 @@ const WelcomePage: React.FC = () => {
             {getMotivationalMessage()}
           </blockquote>
 
-          {/* Botón para Mostrar/Ocultar Emojis */}
           <button
             onClick={() => setEmojiMenuOpen(!emojiMenuOpen)}
             className="w-full text-center py-2 px-4 bg-white text-[#4737bb] font-semibold rounded-lg shadow hover:bg-gray-100 transition duration-300 mb-4"
@@ -127,14 +121,13 @@ const WelcomePage: React.FC = () => {
             {emojiMenuOpen ? "Cerrar Emojis" : "Cambiar mi estado de ánimo"}
           </button>
 
-          {/* Selección de Emoji (Oculta por Defecto) */}
           {emojiMenuOpen && (
             <div className="emoji-selection flex flex-wrap justify-center space-x-4 mb-12">
               {emojiOptions.map(({ emoji, label }) => (
                 <button
                   key={emoji}
                   onClick={() => handleEmojiSelect(emoji)}
-                  title={label} // Mostrar el significado al pasar el cursor sobre el emoji
+                  title={label}
                   className={`emoji-option text-3xl p-2 rounded-lg ${
                     selectedEmoji === emoji
                       ? "bg-white text-[#4737bb] shadow-md"
@@ -147,7 +140,6 @@ const WelcomePage: React.FC = () => {
             </div>
           )}
 
-          {/* Mostrar Estadísticas Semanales */}
           <div className="weekly-stats text-white mt-8">
             <h3 className="text-lg font-semibold mb-4">
               Resumen semanal de tu estado de ánimo:
@@ -165,7 +157,6 @@ const WelcomePage: React.FC = () => {
             )}
           </div>
 
-          {/* Enlaces del Menú */}
           <ul className="menu mt-4 w-full flex flex-col items-center gap-4">
             <li>
               <Link
@@ -211,9 +202,6 @@ const WelcomePage: React.FC = () => {
         </div>
       </div>
 
-   
-
-
       {/* Main Content */}
       <div className="flex-1 bg-white p-8 rounded-l-3xl shadow-lg">
         <h1 className="text-4xl font-bold text-[#4737bb] mb-6">
@@ -246,19 +234,3 @@ const WelcomePage: React.FC = () => {
 };
 
 export default WelcomePage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

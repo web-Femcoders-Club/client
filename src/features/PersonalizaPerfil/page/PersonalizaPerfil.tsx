@@ -1,40 +1,36 @@
 import React, { useState, useRef } from "react";
 
 const PersonalizaPerfil: React.FC = () => {
-  // Estado para guardar la imagen actual del avatar y la nueva seleccionada temporalmente
   const [avatar, setAvatar] = useState<string | null>(
-    localStorage.getItem("userAvatar")
+    sessionStorage.getItem("userAvatar")
   );
   const [newAvatar, setNewAvatar] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Manejar la selección de un archivo para el avatar
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        setNewAvatar(base64String); // Mostrar la imagen temporalmente
+        setNewAvatar(base64String);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Función para abrir el selector de archivos cuando se hace clic en "Cambiar Avatar"
   const handleUploadAvatarClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
 
-  // Guardar la imagen en el localStorage y actualizar el estado para que sea oficial
   const handleSaveAvatar = () => {
     if (newAvatar) {
-      setAvatar(newAvatar); // Actualizar la imagen oficial
-      localStorage.setItem("userAvatar", newAvatar);
-      setNewAvatar(null); // Resetear el valor temporal del nuevo avatar
-      window.dispatchEvent(new Event("storage")); // Forzar una actualización en Header
+      setAvatar(newAvatar);
+      sessionStorage.setItem("userAvatar", newAvatar);
+      setNewAvatar(null);
+      window.dispatchEvent(new Event("storage")); 
     }
   };
 
@@ -77,12 +73,8 @@ const PersonalizaPerfil: React.FC = () => {
         title="Seleccionar archivo de imagen"
       />
 
-      {/* Mostrar el botón de guardar solo si hay un nuevo avatar seleccionado */}
       {newAvatar && (
-        <button
-          className="btn btn-primary mt-4"
-          onClick={handleSaveAvatar}
-        >
+        <button className="btn btn-primary mt-4" onClick={handleSaveAvatar}>
           Guardar Imagen
         </button>
       )}
@@ -94,7 +86,7 @@ const PersonalizaPerfil: React.FC = () => {
         <input
           id="nombreUsuario"
           type="text"
-          defaultValue={localStorage.getItem("userName") || "Usuario"}
+          defaultValue={sessionStorage.getItem("userName") || "Usuario"}
           className="input input-bordered w-full max-w-xs"
           disabled
         />
@@ -104,6 +96,7 @@ const PersonalizaPerfil: React.FC = () => {
 };
 
 export default PersonalizaPerfil;
+
 
 
 
