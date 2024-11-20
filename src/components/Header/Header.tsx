@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import FemCodersClubLogo from "/logo-femcoders-club.jpg";
 import "./Header.css";
 
@@ -12,27 +13,56 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const updateAuthState = () => {
-    const authStatus = sessionStorage.getItem("authToken") !== null;
-    const storedAvatar = sessionStorage.getItem("userAvatar");
-
-    setIsAuthenticated(authStatus);
-    setAvatar(storedAvatar);
-  };
-
   useEffect(() => {
+    const updateAuthState = async () => {
+      const authToken = sessionStorage.getItem("authToken");
+      const userId = sessionStorage.getItem("userId");
+
+      console.log("Token de autenticación:", authToken);
+      console.log("ID de usuario:", userId);
+
+      if (authToken && userId) {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_URL}/user/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            }
+          );
+
+          console.log("Respuesta del backend:", response);
+
+          if (response.status === 200 && response.data) {
+            setIsAuthenticated(true);
+            setAvatar(response.data.userAvatar || "/default-avatar.png");
+          } else {
+            setIsAuthenticated(false);
+            setAvatar(null);
+          }
+        } catch (error) {
+          console.error("Error al obtener los datos del usuario:", error);
+          setIsAuthenticated(false);
+          setAvatar(null);
+        }
+      } else {
+        setIsAuthenticated(false);
+        setAvatar(null);
+      }
+    };
+
     updateAuthState();
 
-    const handleAuthStateChange = () => {
+    const handleStorageChange = () => {
+      console.log("Cambio en sessionStorage detectado, actualizando estado...");
       updateAuthState();
     };
 
-    window.addEventListener("authStateChange", handleAuthStateChange);
-    window.addEventListener("storage", updateAuthState);
+    window.addEventListener("storage", handleStorageChange);
 
     return () => {
-      window.removeEventListener("authStateChange", handleAuthStateChange);
-      window.removeEventListener("storage", updateAuthState);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
 
@@ -79,18 +109,21 @@ const Header: React.FC = () => {
 
   const goToWelcomePage = () => {
     const userName = sessionStorage.getItem("userName") || "Usuario";
-    const userAvatar = sessionStorage.getItem("userAvatar");
-
+    console.log(
+      "Navegando a la página de bienvenida con nombre de usuario:",
+      userName
+    );
     navigate("/welcome", {
       state: {
         userName: userName,
-        avatar: userAvatar,
+        avatar: avatar,
       },
     });
     setDropdownOpen(false);
   };
 
   const handleLogOut = () => {
+    console.log("Cerrando sesión...");
     sessionStorage.clear();
     setIsAuthenticated(false);
     setAvatar(null);
