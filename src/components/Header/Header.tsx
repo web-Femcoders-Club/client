@@ -18,9 +18,6 @@ const Header: React.FC = () => {
       const authToken = sessionStorage.getItem("authToken");
       const userId = sessionStorage.getItem("userId");
 
-      console.log("Token de autenticación:", authToken);
-      console.log("ID de usuario:", userId);
-
       if (authToken && userId) {
         try {
           const response = await axios.get(
@@ -31,8 +28,6 @@ const Header: React.FC = () => {
               },
             }
           );
-
-          console.log("Respuesta del backend:", response);
 
           if (response.status === 200 && response.data) {
             setIsAuthenticated(true);
@@ -55,7 +50,6 @@ const Header: React.FC = () => {
     updateAuthState();
 
     const handleStorageChange = () => {
-      console.log("Cambio en sessionStorage detectado, actualizando estado...");
       updateAuthState();
     };
 
@@ -109,10 +103,6 @@ const Header: React.FC = () => {
 
   const goToWelcomePage = () => {
     const userName = sessionStorage.getItem("userName") || "Usuario";
-    console.log(
-      "Navegando a la página de bienvenida con nombre de usuario:",
-      userName
-    );
     navigate("/welcome", {
       state: {
         userName: userName,
@@ -123,7 +113,6 @@ const Header: React.FC = () => {
   };
 
   const handleLogOut = () => {
-    console.log("Cerrando sesión...");
     sessionStorage.clear();
     setIsAuthenticated(false);
     setAvatar(null);

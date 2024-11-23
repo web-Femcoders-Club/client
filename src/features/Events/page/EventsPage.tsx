@@ -9,30 +9,7 @@ import textofemcoders from "/textofemcodersclub.png";
 import bg4 from "/bg4.png";
 import { Helmet } from "react-helmet";
 import "./../../Home/page/Home.css";
-
-interface Event {
-  id: string;
-  start: {
-    local: string;
-  };
-  name: {
-    text: string;
-  };
-  logo?: {
-    original?: {
-      url?: string;
-    };
-  };
-  venue?: {
-    address?: {
-      localized_address_display?: string;
-    };
-  };
-  description: {
-    text: string;
-  };
-  url: string;
-}
+import { Event } from "../../../types/types";
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,14 +37,12 @@ const EventsPage = () => {
     return <div>Error loading events. Please try again later.</div>;
   }
 
-  const paginatedEvents = pastEventsData?.events.slice(
+  const paginatedEvents = pastEventsData?.slice(
     (currentPage - 1) * eventsPerPage,
     currentPage * eventsPerPage
   );
 
-  const totalPages = Math.ceil(
-    (pastEventsData?.events.length || 0) / eventsPerPage
-  );
+  const totalPages = Math.ceil((pastEventsData?.length || 0) / eventsPerPage);
 
   return (
     <>
@@ -98,10 +73,9 @@ const EventsPage = () => {
         <div className="mt-16 flex items-center justify-center flex-col gap-y-8 p-5">
           {isLoadingUpcomingEvents ? (
             <FemSpinner />
-          ) : upcomingEventsData?.events &&
-            upcomingEventsData.events.length > 0 ? (
-            upcomingEventsData.events.map((event: Event) => {
-              const date = new Date(event.start.local).toLocaleDateString(
+          ) : upcomingEventsData && upcomingEventsData.length > 0 ? (
+            upcomingEventsData.map((event: Event) => {
+              const date = new Date(event.start_local).toLocaleDateString(
                 "es-ES",
                 {
                   weekday: "long",
@@ -115,15 +89,13 @@ const EventsPage = () => {
               return (
                 <CardEvent
                   key={event.id}
-                  title={event.name.text}
-                  image={event.logo?.original?.url || ""}
+                  title={event.name}
+                  image={event.logo_url || ""}
                   date={date}
-                  location={
-                    event.venue?.address?.localized_address_display || ""
-                  }
-                  description={event.description.text}
-                  eventUrl={event.url}
-                  start={event.start}
+                  location={event.location || ""}
+                  description={event.description || ""}
+                  eventUrl={event.event_url || "#"}
+                  start={{ local: event.start_local }}
                 />
               );
             })
@@ -138,9 +110,8 @@ const EventsPage = () => {
           Gracias a todas las ponentes que empoderan a nuestra comunidad
         </h3>
         <p className="carousel-subheading">
-          {" "}
           Gracias a la colaboración de estas ponentes, nuestra comunidad se
-          fortalece a través del conocimiento, el empoderamiento y la conexión.{" "}
+          fortalece a través del conocimiento, el empoderamiento y la conexión.
         </p>
         <CustomCarousel />
       </section>
@@ -161,7 +132,7 @@ const EventsPage = () => {
             <FemSpinner />
           ) : paginatedEvents && paginatedEvents.length > 0 ? (
             paginatedEvents.map((event: Event) => {
-              const date = new Date(event.start.local).toLocaleDateString(
+              const date = new Date(event.start_local).toLocaleDateString(
                 "es-ES",
                 {
                   weekday: "long",
@@ -175,15 +146,13 @@ const EventsPage = () => {
               return (
                 <CardEvent
                   key={event.id}
-                  title={event.name.text}
-                  image={event.logo?.original?.url || ""}
+                  title={event.name}
+                  image={event.logo_url || ""}
                   date={date}
-                  location={
-                    event.venue?.address?.localized_address_display || ""
-                  }
-                  description={event.description.text}
-                  eventUrl={event.url}
-                  start={event.start}
+                  location={event.location || ""}
+                  description={event.description || ""}
+                  eventUrl={event.event_url || "#"}
+                  start={{ local: event.start_local }}
                 />
               );
             })

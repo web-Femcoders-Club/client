@@ -70,7 +70,6 @@ const HomePage: React.FC = () => {
     "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
     "/assets/semRush/AnaSemrush.jpg",
     "/assets/semRush/eventoSemrush.jpg",
-   
   ];
 
   const texts = [
@@ -86,33 +85,39 @@ const HomePage: React.FC = () => {
 
     const difference = eventDate.getTime() - now.getTime();
 
-    let timeLeft = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
     };
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
   };
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
       try {
-        const { events } = await getUpcomingEvents();
+        const events = await getUpcomingEvents();
         if (events && events.length > 0) {
           const nextEvent = events[0];
-          const eventDate = new Date(nextEvent.start.local);
-          setUpcomingEvent(nextEvent);
+          const adaptedEvent: Event = {
+            id: nextEvent.id,
+            start: {
+              local: nextEvent.start_local,
+            },
+            name: {
+              text: nextEvent.name,
+            },
+            logo: nextEvent.logo_url
+              ? {
+                  original: {
+                    url: nextEvent.logo_url,
+                  },
+                }
+              : undefined,
+          };
+
+          const eventDate = new Date(adaptedEvent.start.local);
+          setUpcomingEvent(adaptedEvent);
           setTimeLeft(calculateTimeLeft(eventDate));
         }
       } catch (error) {
@@ -121,7 +126,7 @@ const HomePage: React.FC = () => {
     };
 
     fetchUpcomingEvent();
-  }, [upcomingEvent]);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -153,17 +158,6 @@ const HomePage: React.FC = () => {
       clearInterval(carouselInterval);
     };
   }, [images.length]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (upcomingEvent) {
-        const eventDate = new Date(upcomingEvent.start.local);
-        setTimeLeft(calculateTimeLeft(eventDate));
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const nextSlide = () => {
     setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -249,9 +243,9 @@ const HomePage: React.FC = () => {
               Si compartes nuestra pasión por la tecnología, ¡únete a nosotras!
             </p>
             <div className="button-container">
-            <Link to="/register">
-  <button className="primary-button">Unirse al club</button>
-</Link>
+              <Link to="/register">
+                <button className="primary-button">Unirse al club</button>
+              </Link>
 
               <Link to="/eventos">
                 <button className="secondary-button">Ver eventos</button>
@@ -324,7 +318,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
       <section className="parallax bg3 ">
         <div className="section-content">
           <div className="call-to-action">
@@ -353,6 +346,7 @@ const HomePage: React.FC = () => {
               <br /> <FaStar color="#EA4F33" className="icon" />
             </p>
           </div>
+
           <div className="section-countdown">
             <div className="countdown-content">
               <h2>¡Próximo evento!</h2>

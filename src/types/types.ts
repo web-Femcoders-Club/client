@@ -1,191 +1,195 @@
 export type ChildrenProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export type User = {
-    idUser: number;
-    userName: string;
-    userLastName: string;
-    userEmail: string;
-    userPassword: string;
-    userTelephone: string;
-    userGender: string;
-    userRole: string;
-    accesToken?: string;
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  userPassword: string;
+  userTelephone: string;
+  userGender: string;
+  userRole: string;
+  accesToken?: string;
 };
 
 export interface UnconnectedComment {
-    id: number;
-    postId: number;
-    content: string;
-    approved: boolean; 
-    userEmail: string; 
-    createdAt: Date;
-  }
-  
+  id: number;
+  postId: number;
+  content: string;
+  approved: boolean;
+  userEmail: string;
+  createdAt: Date;
+}
 
 export type EditUserFormData = {
-    userId: string;
-    updatedUser: {
-        userName: string;
-        userLastName: string;
-        userGender: string;
-        userEmail: string;
-        userTelephone: string;
-    };
+  userId: string;
+  updatedUser: {
+    userName: string;
+    userLastName: string;
+    userGender: string;
+    userEmail: string;
+    userTelephone: string;
+  };
 };
 
 export type SignUpFormData = {
-    name: string;
-    lastName: string;
-    gender: string;
-    phoneNumber: string;
-    email: string;
-    password: string;
-    confirmPassword?: string;
+  name: string;
+  lastName: string;
+  gender: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
 };
 
 export type Sponsor = {
-    idPotential_Sponsors: string;
-    sponsorsName: string;
-    sponsorsCompany: string;
-    sponsorsEmail: string;
-    sponsorsTelephone: string;
+  idPotential_Sponsors: string;
+  sponsorsName: string;
+  sponsorsCompany: string;
+  sponsorsEmail: string;
+  sponsorsTelephone: string;
 };
 
 export type AddSponsorFormData = {
+  sponsorsName: string;
+  sponsorsCompany: string;
+  sponsorsEmail: string;
+  sponsorsTelephone: string;
+};
+
+export type EditSponsorFormData = {
+  idPotential_Sponsors: string;
+  updatedSponsor: {
     sponsorsName: string;
     sponsorsCompany: string;
     sponsorsEmail: string;
     sponsorsTelephone: string;
-};
-
-export type EditSponsorFormData = {
-    idPotential_Sponsors: string;
-    updatedSponsor: {
-        sponsorsName: string;
-        sponsorsCompany: string;
-        sponsorsEmail: string;
-        sponsorsTelephone: string;
-    };
+  };
 };
 
 export type DeleteSponsorType = {
-    sponsorId: string;
+  sponsorId: string;
 };
 
 export type Volunteer = {
-    idVolunteer: string;
-    volunteerName: string;
-    volunteerLastName: string;
-    volunteerEmail: string;
-    volunteerGender: string;
+  idVolunteer: string;
+  volunteerName: string;
+  volunteerLastName: string;
+  volunteerEmail: string;
+  volunteerGender: string;
 };
 
 export type AddVolunteerData = {
+  volunteerName: string;
+  volunteerLastName: string;
+  volunteerEmail: string;
+  volunteerGender: string;
+};
+
+export type EditVolunteerData = {
+  idVolunteer: string;
+  updatedVolunteer: {
     volunteerName: string;
     volunteerLastName: string;
     volunteerEmail: string;
     volunteerGender: string;
-};
-
-export type EditVolunteerData = {
-    idVolunteer: string;
-    updatedVolunteer: {
-        volunteerName: string;
-        volunteerLastName: string;
-        volunteerEmail: string;
-        volunteerGender: string;
-    };
+  };
 };
 
 export type DeleteVolunteerData = {
-    idVolunteer: string;
+  idVolunteer: string;
 };
 
 export type Faq = {
-    idFaq: number;
-    faqQuestion: string;
-    faqAnswer: string;
+  idFaq: number;
+  faqQuestion: string;
+  faqAnswer: string;
 };
 
 export type AddFaqFormData = {
-    faqQuestion: string;
-    faqAnswer: string;
+  faqQuestion: string;
+  faqAnswer: string;
 };
 
 export type EditFaqFormData = {
-    faqQuestion: string;
-    faqAnswer: string;
+  faqQuestion: string;
+  faqAnswer: string;
 };
 
 export type Member = {
-    idMember: number;
-    memberName: string;
-    memberLastName: string;
-    memberDescription: string;
-    memberRole: string;
-    memberImage: string;
-    memberLinkedin: string;
+  idMember: number;
+  memberName: string;
+  memberLastName: string;
+  memberDescription: string;
+  memberRole: string;
+  memberImage: string;
+  memberLinkedin: string;
 };
 
 export type AddMemberFormData = {
+  memberName: string;
+  memberLastName: string;
+  memberDescription: string;
+  memberRole: string;
+  memberImage: string;
+  memberLinkedin: string;
+};
+
+export type EditMemberFormData = {
+  idMember: number;
+  updatedMember: {
     memberName: string;
     memberLastName: string;
     memberDescription: string;
     memberRole: string;
     memberImage: string;
     memberLinkedin: string;
-};
-
-export type EditMemberFormData = {
-    idMember: number;
-    updatedMember: {
-        memberName: string;
-        memberLastName: string;
-        memberDescription: string;
-        memberRole: string;
-        memberImage: string;
-        memberLinkedin: string;
-    };
+  };
 };
 
 export type DeleteMemberData = {
-    idMember: number;
+  idMember: number;
 };
 
 export type TokenVerificationDto = {
-    token: string;
+  token: string;
 };
 
 export type ContactFormProps = {
-    recipientEmail: string;
+  recipientEmail: string;
 };
 
 export type ConfirmationModalProps = {
-    isVisible: boolean;
-    onClose: () => void;
+  isVisible: boolean;
+  onClose: () => void;
 };
-
 
 export interface Comment {
-    id: number;
-    postId: number;
-    content: string;
-    approved: boolean;
-    userEmail: string;
-    createdAt: Date;  
-  }
-  
-  
-  
-export type UpdateMemberDto = {
-    memberName?: string;
-    memberLastName?: string;
-    memberDescription?: string;
-    memberRole?: string;
-    memberImage?: string;
-    memberLinkedin?: string;
+  id: number;
+  postId: number;
+  content: string;
+  approved: boolean;
+  userEmail: string;
+  createdAt: Date;
+}
+
+export type Event = {
+  id: string;
+  name: string;
+  start_local: string;
+  location?: string;
+  description?: string;
+  event_url?: string;
+  logo_url?: string;
 };
 
-
+export type UpdateMemberDto = {
+  memberName?: string;
+  memberLastName?: string;
+  memberDescription?: string;
+  memberRole?: string;
+  memberImage?: string;
+  memberLinkedin?: string;
+};
