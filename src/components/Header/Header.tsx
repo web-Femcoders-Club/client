@@ -223,9 +223,10 @@ const Header: React.FC = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="logout-button">
-              Iniciar sesión
-            </Link>
+            // <Link to="/login" className="logout-button">
+            //   Iniciar sesión
+            // </Link>
+            <></> // Aquí, he comentado la línea para que el botón no se muestre.
           )}
         </div>
       </nav>
@@ -234,3 +235,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
