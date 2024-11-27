@@ -15,7 +15,10 @@ const BlogPage: React.FC = () => {
   const recursosRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (location.pathname.includes("noticias") || location.pathname.includes("recursos")) {
+    if (
+      location.pathname.includes("noticias") ||
+      location.pathname.includes("recursos")
+    ) {
       setShowRecentPosts(false);
       setCategoryFilter("");
     } else {
@@ -35,21 +38,90 @@ const BlogPage: React.FC = () => {
   };
 
   const posts = [
-    { id: 1, type: "noticia", category: "femCoders", title: "femCoders Club - Primer Aniversario", description: "Celebramos el primer aniversario de femCoders Club.", createdAt: new Date("2024-10-24") },
-    { id: 2, type: "recurso", category: "html", title: "Introducción a HTML", description: "Los fundamentos de HTML.", createdAt: new Date("2024-10-05") },
-    { id: 3, type: "recurso", category: "html", title: "Elementos HTML Clave", description: "Descubre los elementos más utilizados.", createdAt: new Date("2024-10-07") },
-    { id: 4, type: "recurso", category: "css", title: "¿Qué es CSS y por qué es esencial para el diseño web?", description: "Explora la importancia de CSS en el diseño web", createdAt: new Date("2024-10-10") },
-    { id: 5, type: "recurso", category: "html", title: "HTML Semántico y Diseño de Layout", description: "Aprende HTML semántico y layout.", createdAt: new Date("2024-10-12") },
-    { id: 6, type: "recurso", category: "html", title: "Formularios y Tablas en HTML", description: "Estructurar formularios, tablas en HTML.", createdAt: new Date("2024-10-14") },
-    { id: 7, type: "recurso", category: "html", title: "Introducción a las APIs en HTML", description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.", createdAt: new Date("2024-10-15") },
-    { id: 8, type: "recurso", category: "html", title: "HTML Avanzado para SEO y Accesibilidad", description: "Explora técnicas avanzadas de HTML, como microdatos, atributos ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu web.", createdAt: new Date("2024-10-18") }
+    {
+      id: 1,
+      type: "noticia",
+      category: "femCoders",
+      title: "femCoders Club - Primer Aniversario",
+      description: "Celebramos el primer aniversario de femCoders Club.",
+      createdAt: new Date("2024-10-24"),
+    },
+    {
+      id: 2,
+      type: "recurso",
+      category: "html",
+      title: "Introducción a HTML",
+      description: "Los fundamentos de HTML.",
+      createdAt: new Date("2024-10-05"),
+    },
+    {
+      id: 3,
+      type: "recurso",
+      category: "html",
+      title: "Elementos HTML Clave",
+      description: "Descubre los elementos más utilizados.",
+      createdAt: new Date("2024-10-07"),
+    },
+    {
+      id: 4,
+      type: "recurso",
+      category: "css",
+      title: "¿Qué es CSS y por qué es esencial para el diseño web?",
+      description: "Explora la importancia de CSS en el diseño web",
+      createdAt: new Date("2024-10-10"),
+    },
+    {
+      id: 5,
+      type: "recurso",
+      category: "html",
+      title: "HTML Semántico y Diseño de Layout",
+      description: "Aprende HTML semántico y layout.",
+      createdAt: new Date("2024-10-12"),
+    },
+    {
+      id: 6,
+      type: "recurso",
+      category: "html",
+      title: "Formularios y Tablas en HTML",
+      description: "Estructurar formularios, tablas en HTML.",
+      createdAt: new Date("2024-10-14"),
+    },
+    {
+      id: 7,
+      type: "recurso",
+      category: "html",
+      title: "Introducción a las APIs en HTML",
+      description:
+        "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.",
+      createdAt: new Date("2024-10-15"),
+    },
+    {
+      id: 8,
+      type: "recurso",
+      category: "html",
+      title: "HTML Avanzado para SEO y Accesibilidad",
+      description:
+        "Explora técnicas avanzadas de HTML, como microdatos, atributos ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu web.",
+      createdAt: new Date("2024-10-18"),
+    },
+    {
+      id: 9,
+      type: "recurso",
+      category: "html",
+      title: "Integración de Frameworks y Librerías",
+      description:
+        "Aprende cómo HTML se relaciona con frameworks modernos como React, Vue.js, Angular y Svelte para crear aplicaciones web dinámicas.",
+      createdAt: new Date("2024-10-27"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
     const normalizedTitle = post.title.toLowerCase();
     const normalizedDescription = post.description.toLowerCase();
     const normalizedSearchQuery = searchQuery.toLowerCase();
-    const matchSearch = normalizedTitle.includes(normalizedSearchQuery) || normalizedDescription.includes(normalizedSearchQuery);
+    const matchSearch =
+      normalizedTitle.includes(normalizedSearchQuery) ||
+      normalizedDescription.includes(normalizedSearchQuery);
     const matchCategory = !categoryFilter || post.category === categoryFilter;
     return matchSearch && matchCategory;
   });
@@ -77,6 +149,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/html/apis-html`;
       case "HTML Avanzado para SEO y Accesibilidad":
         return `/recursos/html/html-seo-accesibilidad`;
+      case "Integración de Frameworks y Librerías":
+        return `/recursos/html/integracion-frameworks`;
       default:
         return `/`;
     }
@@ -85,9 +159,52 @@ const BlogPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Blog de FemCoders Club</title>
-        <meta name="description" content="Descubre noticias y recursos en el blog de FemCoders Club" />
-        <meta name="keywords" content="FemCoders, noticias, recursos, programación, tecnología" />
+        <title>
+          {location.pathname.includes("noticias")
+            ? "Noticias - FemCoders Club"
+            : location.pathname.includes("recursos")
+            ? "Recursos - FemCoders Club"
+            : "Blog de FemCoders Club"}
+        </title>
+
+        <meta
+          name="description"
+          content="Descubre noticias y recursos sobre programación, tecnología, y más en el blog de FemCoders Club. Aprende y crece con nuestra comunidad."
+        />
+
+        <meta
+          name="keywords"
+          content="FemCoders, blog de programación, recursos de desarrollo, noticias de tecnología, mujeres en tecnología, HTML, CSS, React, Python"
+        />
+
+        <link rel="canonical" href="https://femcodersclub.com/blog" />
+
+        <meta property="og:title" content="Blog de FemCoders Club" />
+        <meta
+          property="og:description"
+          content="Encuentra noticias, recursos y consejos sobre programación en el blog de FemCoders Club."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://femcodersclub.com${location.pathname}`}
+        />
+        <meta
+          property="og:image"
+          content="/assets/femcoders-blog-thumbnail.jpg"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog de FemCoders Club" />
+        <meta
+          name="twitter:description"
+          content="Explora recursos y noticias del mundo tech en el blog de FemCoders Club."
+        />
+        <meta
+          name="twitter:image"
+          content="/assets/femcoders-blog-thumbnail.jpg"
+        />
       </Helmet>
 
       <header className="blog-header">
@@ -95,12 +212,20 @@ const BlogPage: React.FC = () => {
         <nav className="blog-nav">
           <ul className="blog-menu">
             <li className="blog-menu-item">
-              <Link to="noticias" className="blog-menu-link" onClick={() => setShowRecentPosts(false)}>
+              <Link
+                to="noticias"
+                className="blog-menu-link"
+                onClick={() => setShowRecentPosts(false)}
+              >
                 Noticias
               </Link>
             </li>
             <li className="blog-menu-item">
-              <Link to="recursos" className="blog-menu-link" onClick={() => setShowRecentPosts(false)}>
+              <Link
+                to="recursos"
+                className="blog-menu-link"
+                onClick={() => setShowRecentPosts(false)}
+              >
                 Recursos
               </Link>
             </li>
@@ -120,11 +245,17 @@ const BlogPage: React.FC = () => {
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            {["html", "javascript", "react", "css", "python", "femCoders"].map((category) => (
-              <button key={category} onClick={() => handleCategoryFilter(category)} className="button secondary-button">
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
+            {["html", "javascript", "react", "css", "python", "femCoders"].map(
+              (category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryFilter(category)}
+                  className="button secondary-button"
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              )
+            )}
           </div>
         </div>
 
@@ -136,7 +267,14 @@ const BlogPage: React.FC = () => {
                   <div key={post.id} className="post-card">
                     <h4>{post.title}</h4>
                     <p className="intro-text">{post.description}</p>
-                    <Link to={getPostLink(post)} className={`button ${post.type === "noticia" ? "primary-button" : "secondary-button"}`}>
+                    <Link
+                      to={getPostLink(post)}
+                      className={`button ${
+                        post.type === "noticia"
+                          ? "primary-button"
+                          : "secondary-button"
+                      }`}
+                    >
                       {post.type === "noticia" ? "Leer más" : "Ver recurso"}
                     </Link>
                   </div>
@@ -158,7 +296,14 @@ const BlogPage: React.FC = () => {
                     <div key={post.id} className="post-card">
                       <h4>{post.title}</h4>
                       <p className="intro-text">{post.description}</p>
-                      <Link to={getPostLink(post)} className={`button ${post.type === "noticia" ? "primary-button" : "secondary-button"}`}>
+                      <Link
+                        to={getPostLink(post)}
+                        className={`button ${
+                          post.type === "noticia"
+                            ? "primary-button"
+                            : "secondary-button"
+                        }`}
+                      >
                         {post.type === "noticia" ? "Leer más" : "Ver recurso"}
                       </Link>
                     </div>

@@ -33,6 +33,8 @@ const APIsHtml = lazy(() => import("../features/Blog/posts/recursos/html/ApisHtm
 const HtmlAvanzado = lazy(() => import("../features/Blog/posts/recursos/html/HtmlAvanzado"));
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 const PersonalizaPerfil = lazy(() => import("../features/PersonalizaPerfil/page/PersonalizaPerfil"));
+const FrameworksIntegration = lazy(() => import("../features/Blog/posts/recursos/html/FrameworksIntegration"));
+
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -71,6 +73,11 @@ const RouterComponent: React.FC = () => {
           <Route path="/recursos/html/html-seo-accesibilidad" element={<Layout><HtmlAvanzado /></Layout>} />
           <Route path="/welcome" element={<Layout><WelcomePage /></Layout>} />
           <Route path="/personaliza-perfil" element={<Layout><PersonalizaPerfil /></Layout>} />
+          <Route
+  path="/recursos/html/integracion-frameworks"
+  element={<Layout><FrameworksIntegration /></Layout>}
+/>
+
         </Routes>
       </Suspense>
 

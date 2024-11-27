@@ -138,6 +138,24 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>Integración de Frameworks y Librerías</h3>
+      <p className="intro-text">
+        Aprende cómo HTML se relaciona con frameworks modernos como React, Vue.js, Angular y Svelte para crear aplicaciones web dinámicas.
+      </p>
+    </div>
+    <Link
+      to="/recursos/html/integracion-frameworks"
+      className="secondary-button"
+      aria-label="Leer más sobre Integración de Frameworks y Librerías"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
+
     </div>
   );
 };

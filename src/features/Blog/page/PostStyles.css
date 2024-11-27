@@ -522,6 +522,113 @@ body {
   color: #4737bb;
 }
 
+
+
+.creators-section {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.creator-item {
+  background: #f9f9f9;
+  border-left: 4px solid #6d2c95;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  list-style-type: none;
+
+
+}
+
+.creator-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.creator-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.creator-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4737bb;
+  transition: transform 0.3s ease;
+}
+
+.creator-item:hover .creator-avatar {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.creator-content div {
+  flex: 1;
+}
+.framework-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.framework-comparison-table thead {
+  background-color: #4737bb;
+  color: white;
+}
+
+.framework-comparison-table th {
+  padding: 15px;
+  text-align: left;
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.framework-comparison-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.framework-comparison-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.framework-comparison-table tbody tr:hover {
+  background-color: rgba(71, 55, 187, 0.05);
+}
+
+.framework-comparison-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #2a2170;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.framework-comparison-table td strong {
+  color: #4737bb;
+  font-size: 1.1rem;
+}
+
+.framework-comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+
 @media (max-width: 768px) {
   .blog-post-title {
     font-size: 1.7rem;
@@ -623,5 +730,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .creator-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .creator-avatar {
+    margin-bottom: 15px;
+  }
+  .framework-comparison-table {
+    font-size: 0.9rem;
+  }
+
+  .framework-comparison-table th,
+  .framework-comparison-table td {
+    padding: 10px;
   }
 }

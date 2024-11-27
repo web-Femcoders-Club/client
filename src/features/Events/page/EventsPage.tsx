@@ -47,14 +47,39 @@ const EventsPage = () => {
   return (
     <>
       <Helmet>
-        <title>FemCoders Club Events</title>
+        <title>Eventos - FemCoders Club</title>
         <meta
           name="description"
-          content="Upcoming and past events organized by FemCoders Club"
+          content="Explora los próximos y pasados eventos organizados por FemCoders Club. Una comunidad para mujeres apasionadas por la tecnología."
         />
         <meta
           name="keywords"
-          content="FemCoders, FemCoders Club, events, tech events, women in tech, coding, programming, technology, community"
+          content="FemCoders, eventos tecnológicos, mujeres en tecnología, programación, talleres de tecnología, comunidad tecnológica, eventos de coding, desarrollo web"
+        />
+        <link rel="canonical" href="https://femcodersclub.com/eventos" />
+
+        <meta property="og:title" content="Eventos - FemCoders Club" />
+        <meta
+          property="og:description"
+          content="Descubre eventos pasados y próximos organizados por FemCoders Club. Únete a nuestra comunidad y participa en eventos tecnológicos únicos."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://femcodersclub.com/eventos" />
+        <meta
+          property="og:image"
+          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Eventos - FemCoders Club" />
+        <meta
+          name="twitter:description"
+          content="Participa en eventos organizados por FemCoders Club, una comunidad dedicada a empoderar a mujeres en tecnología."
+        />
+        <meta
+          name="twitter:image"
+          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
         />
       </Helmet>
 

@@ -204,16 +204,56 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>FemCoders Club - Comunidad de Mujeres en Tecnología</title>
+        <title>Eventos - FemCoders Club</title>
         <meta
           name="description"
-          content="Únete a FemCoders Club, una comunidad inclusiva de mujeres apasionadas por la tecnología. Participa en eventos, talleres y programas de mentoría."
+          content="Explora los próximos y pasados eventos organizados por FemCoders Club. Una comunidad para mujeres apasionadas por la tecnología."
         />
         <meta
           name="keywords"
-          content="FemCoders Club, mujeres en tecnología, empoderamiento femenino, eventos tecnológicos, comunidad tecnológica, talleres de tecnología, mentoría para mujeres, programación, liderazgo femenino, networking, desarrollo profesional, inclusión en tecnología, mujeres programadoras"
+          content="FemCoders, eventos tecnológicos, mujeres en tecnología, programación, talleres de tecnología, comunidad tecnológica, eventos de coding, desarrollo web"
         />
+        <link rel="canonical" href="https://femcodersclub.com/eventos" />
+
+        <meta property="og:title" content="Eventos - FemCoders Club" />
+        <meta
+          property="og:description"
+          content="Descubre eventos pasados y próximos organizados por FemCoders Club. Únete a nuestra comunidad y participa en eventos tecnológicos únicos."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://femcodersclub.com/eventos" />
+        <meta
+          property="og:image"
+          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Eventos - FemCoders Club" />
+        <meta
+          name="twitter:description"
+          content="Participa en eventos organizados por FemCoders Club, una comunidad dedicada a empoderar a mujeres en tecnología."
+        />
+        <meta
+          name="twitter:image"
+          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
+        />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Helmet>
+
       <section className="parallax bg1 full-height ">
         <div className="content-container">
           <div className="text-content ">

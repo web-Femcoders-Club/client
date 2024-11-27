@@ -20,13 +20,39 @@ const ContactPage: React.FC = () => {
         <title>Contacto - FemCoders Club</title>
         <meta
           name="description"
-          content="Ponte en contacto con FemCoders Club. ¿Tienes alguna pregunta o comentario? ¡Nos encantaría saber de ti! Puedes encontrarnos en Spotify, Instagram, LinkedIn, YouTube, GitHub y Slack."
+          content="Ponte en contacto con nosotras en FemCoders Club. Participa, consulta o colabora con nuestra comunidad de mujeres apasionadas por la tecnología."
         />
         <meta
           name="keywords"
-          content="contacto, FemCoders Club, mujeres en tecnología, comunidad tecnológica, preguntas, comentarios, redes sociales"
+          content="contacto, FemCoders Club, mujeres en tecnología, comunidad tecnológica, redes sociales, consulta, colaboración, empoderamiento femenino, desarrollo web"
+        />
+        <link rel="canonical" href="https://femcodersclub.com/contacto" />
+
+        <meta property="og:title" content="Contacto - FemCoders Club" />
+        <meta
+          property="og:description"
+          content="Ponte en contacto con FemCoders Club y colabora con nuestra comunidad de mujeres en tecnología."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://femcodersclub.com/contacto" />
+        <meta
+          property="og:image"
+          content="/assets/femcoders-contact-thumbnail.jpg"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contacto - FemCoders Club" />
+        <meta
+          name="twitter:description"
+          content="Consulta, participa o colabora con FemCoders Club, una comunidad para mujeres apasionadas por la tecnología."
+        />
+        <meta
+          name="twitter:image"
+          content="/assets/femcoders-contact-thumbnail.jpg"
         />
       </Helmet>
+
       <main className="contact-main">
         <section className="contact-info">
           <h2>Información de contacto</h2>

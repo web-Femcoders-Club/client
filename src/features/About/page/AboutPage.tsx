@@ -13,16 +13,51 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Sobre Nosotras - FemCoders Club</title>
+        <title>Sobre Nosotras | Mujeres en Tecnología - FemCoders Club</title>
+
         <meta
           name="description"
-          content="Conoce más sobre FemCoders Club, una comunidad de mujeres desarrolladoras apasionadas por la tecnología. Descubre nuestra misión, visión y valores."
+          content="Descubre cómo FemCoders Club está empoderando a mujeres en el mundo tecnológico. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva."
         />
+
         <meta
           name="keywords"
-          content="FemCoders Club, mujeres desarrolladoras, misión FemCoders, visión FemCoders, valores FemCoders, brecha de género en tecnología, inclusión femenina en TI, comunidad de mujeres tech, eventos de tecnología, talleres de programación, empoderamiento femenino, liderazgo en TI"
+          content="FemCoders Club, mujeres en tecnología, inclusión en TI, liderazgo femenino, comunidad tech, empoderamiento femenino, desarrollo web, talleres de programación, igualdad de género en tecnología, misión y visión FemCoders"
+        />
+
+        <meta
+          property="og:title"
+          content="Sobre Nosotras | Mujeres en Tecnología - FemCoders Club"
+        />
+        <meta
+          property="og:description"
+          content="Conoce cómo FemCoders Club está transformando el panorama tecnológico con una comunidad inclusiva de mujeres apasionadas por la programación y la tecnología."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/sobre-nosotras"
+        />
+        <meta property="og:image" content="/FemCodersClubLogo.png" />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Sobre Nosotras | Mujeres en Tecnología - FemCoders Club"
+        />
+        <meta
+          name="twitter:description"
+          content="FemCoders Club promueve la inclusión y empoderamiento de mujeres en la tecnología. Únete a nuestra misión y sé parte del cambio."
+        />
+        <meta name="twitter:image" content="/FemCodersClubLogo.png" />
+
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/sobre-nosotras"
         />
       </Helmet>
+
       <section className="parallax bg1 full-height">
         <div className="contenedor">
           <div className="contenido-seccion">
