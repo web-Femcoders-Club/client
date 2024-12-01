@@ -1,100 +1,123 @@
-/* Mentorship.css */
+.mentorship-page-container {
+  display: flex;
+  justify-content: center;
 
-/* Estilo general del contenedor del formulario */
-.mentorship-form-container {
-  max-width: 600px;
-  margin: 0 auto;
+  min-height: 100vh;
   padding: 2rem;
- 
+  margin-top: 150px;
+}
+
+.mentorship-form-container {
+  display: flex;
+  flex-direction: column;
+  background: white;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   animation: fadeIn 1.5s ease-in-out;
-}
-
-/* Encabezado del formulario */
-.mentorship-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.mentorship-header img {
-  width: 80px;
-  margin-bottom: 1rem;
-}
-
-.mentorship-header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #ea4f33; /* Usando el color principal del proyecto */
-}
-
-.header-description {
-  font-size: 1rem;
-  color: #6b7280; /* Color de texto secundario */
-}
-
-/* Estilos de la etiqueta y entrada de los campos */
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-label {
-  font-weight: bold;
-  color: #2c3e50; /* Color de la etiqueta */
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.form-input {
+  max-width: 1200px;
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #4737bb;
-  border-radius: 8px;
-  outline: none;
-  font-size: 1rem;
-  background: #f7f4fa; /* Fondo para mantener consistencia */
-  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.form-input:focus {
-  border-color: #4737bb;
-  box-shadow: 0 0 8px rgba(71, 55, 187, 0.5);
-}
-
-/* Estilos del botón de enviar */
-.submit-btn {
-  background-color: #ea4f33;
-  color: white;
-  padding: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+.mentorship-content {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form-column {
+  flex: 1 1 60%;
+  padding: 2rem;
+}
+
+.logo-column {
+  flex: 1 1 40%;
+  background-color: #f7f4fa;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.submit-btn:hover {
-  background-color: #821ad4;
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
-.send-icon {
-  margin-right: 8px;
+@keyframes logo-travel {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10%, -10%) rotate(3deg);
+  }
+  50% {
+    transform: translate(0, -20%) rotate(-3deg);
+  }
+  75% {
+    transform: translate(-10%, -10%) rotate(3deg);
+  }
 }
 
-/* Estilo del mensaje después de enviar */
+@keyframes logo-rotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes logo-threeD {
+  0% {
+    transform: translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: translate3d(50%, -50%, 50px) rotateY(90deg) rotateX(10deg);
+  }
+  50% {
+    transform: translate3d(0, -100%, 0) rotateY(180deg) rotateX(0deg);
+  }
+  75% {
+    transform: translate3d(-50%, -50%, -50px) rotateY(270deg) rotateX(-10deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateY(360deg) rotateX(0deg);
+  }
+}
+
+.animate-logo-pulse {
+  animation: logo-pulse 2s ease-in-out infinite;
+}
+
+.animate-logo-travel {
+  animation: logo-travel 5s infinite ease-in-out;
+}
+
+.animate-logo-rotate {
+  animation: logo-rotate 3s ease-in-out infinite;
+}
+
+.animate-logo-threeD {
+  animation: logo-threeD 6s infinite ease-in-out;
+}
+
 .message {
   margin-top: 1.5rem;
   text-align: center;
-  color: #4737bb; /* Color para el mensaje */
   font-weight: bold;
 }
 
+.text-error {
+  color: #ea4f33;
+}
 
-
-  
-
-  
+.text-success {
+  color: #2a2170;
+}

@@ -139,21 +139,25 @@ const Header: React.FC = () => {
         </div>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          {["/sobrenosotras", "/equipo", "/eventos", "/contacto", "/blog"].map(
-            (path, index) => (
-              <li key={index}>
-                <Link
-                  to={path}
-                  className={`nav-link ${
-                    path === "/blog" ? "highlighted" : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {path.replace("/", "").replace("-", " ")}
-                </Link>
-              </li>
-            )
-          )}
+          {[
+            { path: "/sobrenosotras", label: "Sobre Nosotras" },
+            { path: "/equipo", label: "Equipo" },
+            { path: "/eventos", label: "Eventos" },
+            { path: "/contacto", label: "Contacto" },
+            { path: "/blog", label: "Blog" },
+          ].map((link, index) => (
+            <li key={index}>
+              <Link
+                to={link.path}
+                className={`nav-link ${
+                  link.path === "/blog" ? "highlighted" : ""
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
@@ -203,3 +207,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
