@@ -1,31 +1,28 @@
-
-/* Estilos del scroll para el sidebar */
 .sidebar-nav {
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #4737bb white; /* Firefox */
-  }
-  
-  .sidebar-nav::-webkit-scrollbar {
-    width: 12px; /* Ancho del scrollbar */
-  }
-  
-  .sidebar-nav::-webkit-scrollbar-track {
-    background: white; /* Fondo del track */
-  }
-  
-  .sidebar-nav::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #4737bb, #6d2c95); /* Degradado del thumb */
-    border-radius: 10px; /* Bordes redondeados */
-  }
-  
-  .sidebar-nav::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #6d2c95, #4737bb); /* Color del thumb al pasar el ratón */
-  }
-  
-  .nav-chevron {
-    color: #4737bb !important;
-  }
-  .text-custom-blue {
-    color: #2a2170;
-  }
-  
+  scrollbar-width: thin;
+  scrollbar-color: #4737bb white;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 12px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: white;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #4737bb, #6d2c95);
+  border-radius: 10px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #6d2c95, #4737bb);
+}
+
+.nav-chevron {
+  color: #4737bb !important;
+}
+.text-custom-blue {
+  color: #2a2170;
+}

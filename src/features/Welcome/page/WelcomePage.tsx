@@ -477,7 +477,7 @@ const WelcomePage = () => {
               <div className="group relative overflow-hidden">
               <div
                   style={{
-                    background: "linear-gradient(to right, #ea4f33, #4737bb )",
+                    background: "radial-gradient(circle at top left, #4737bb, #ea43ff)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
@@ -526,7 +526,7 @@ const WelcomePage = () => {
               <div className="group relative overflow-hidden">
               <div
                   style={{
-                    background: "linear-gradient(to right, #ea4f33, #4737bb )",
+                    background: "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
@@ -576,7 +576,7 @@ const WelcomePage = () => {
               <div className="group relative overflow-hidden">
                 <div
                   style={{
-                    background: "linear-gradient(to right,#ea4f33, #4737bb)",
+                    background: "linear-gradient(135deg, rgba(71, 55, 187, 0.9) 0%, rgba(234, 67, 255, 0.9) 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
@@ -627,7 +627,7 @@ const WelcomePage = () => {
               <div className="group relative overflow-hidden">
                 <div
                   style={{
-                    background: "linear-gradient(to right, #6d2c95, #ea4f33)",
+                    background: "linear-gradient(to bottom right, #4737bb 0%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
@@ -652,7 +652,7 @@ const WelcomePage = () => {
               <div className="group relative overflow-hidden">
                 <div
                   style={{
-                    background: "linear-gradient(to right, #ea4f33, #4737bb )",
+                    background: "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />

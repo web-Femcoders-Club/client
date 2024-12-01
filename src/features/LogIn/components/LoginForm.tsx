@@ -11,6 +11,8 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
@@ -20,25 +22,40 @@ const LoginForm: React.FC = () => {
         }
       );
 
+      const { idUser, name, lastName, avatar, token, role } = response.data;
+
+      if (!idUser || !token) {
+        throw new Error("Datos de usuario incompletos recibidos");
+      }
+
       sessionStorage.setItem("isAuthenticated", "true");
-      sessionStorage.setItem("userAvatar", response.data.avatar || "");
-      sessionStorage.setItem("userName", response.data.name);
-      sessionStorage.setItem("userId", response.data.idUser);
-      sessionStorage.setItem("authToken", response.data.token);
+      sessionStorage.setItem("userAvatar", avatar || "/default-avatar.png");
+      sessionStorage.setItem("userName", name || "Usuario");
+      sessionStorage.setItem("userLastName", lastName || "");
+      sessionStorage.setItem("userId", idUser);
+      sessionStorage.setItem("authToken", token);
+      sessionStorage.setItem("userEmail", email);
 
       window.dispatchEvent(new Event("storage"));
 
-      if (response.data.role === "admin") {
+      if (role === "admin") {
         navigate("/admin", {
-          state: { userName: response.data.name, avatar: response.data.avatar },
+          state: { userName: name, avatar: avatar },
         });
       } else {
         navigate("/welcome", {
-          state: { userName: response.data.name, avatar: response.data.avatar },
+          state: { userName: name, avatar: avatar },
         });
       }
     } catch (error) {
-      setError("Error al iniciar sesión. Verifica tus credenciales.");
+      if (axios.isAxiosError(error)) {
+        setError(
+          error.response?.data?.message ||
+            "Error al iniciar sesión. Verifica tus credenciales."
+        );
+      } else {
+        setError("Error inesperado. Por favor, intenta de nuevo.");
+      }
     }
   };
 

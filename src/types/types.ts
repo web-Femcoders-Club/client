@@ -193,3 +193,38 @@ export type UpdateMemberDto = {
   memberImage?: string;
   memberLinkedin?: string;
 };
+
+export interface EmailDto {
+  userEmail: string;
+  mentorshipType?: string;
+  githubLink?: string;
+  description?: string; 
+}
+
+
+export type EmailResponse = {
+  message: string;
+};
+
+
+export type MentorshipFormData = {
+  mentorshipType: string;
+  githubLink?: string;
+};
+
+export type ResourceFormData = {
+  resourceDetails: string;
+};
+
+export type SpeakerFormData = {
+  speakerReason: string;
+};
+
+
+export type FormState = {
+  successMessage: string;
+  errorMessage: string;
+  isLoading: boolean;
+};
+
+

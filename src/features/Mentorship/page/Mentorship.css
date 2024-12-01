@@ -1,0 +1,100 @@
+/* Mentorship.css */
+
+/* Estilo general del contenedor del formulario */
+.mentorship-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+ 
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Encabezado del formulario */
+.mentorship-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.mentorship-header img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.mentorship-header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ea4f33; /* Usando el color principal del proyecto */
+}
+
+.header-description {
+  font-size: 1rem;
+  color: #6b7280; /* Color de texto secundario */
+}
+
+/* Estilos de la etiqueta y entrada de los campos */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #2c3e50; /* Color de la etiqueta */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #4737bb;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  background: #f7f4fa; /* Fondo para mantener consistencia */
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #4737bb;
+  box-shadow: 0 0 8px rgba(71, 55, 187, 0.5);
+}
+
+/* Estilos del botón de enviar */
+.submit-btn {
+  background-color: #ea4f33;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:hover {
+  background-color: #821ad4;
+}
+
+.send-icon {
+  margin-right: 8px;
+}
+
+/* Estilo del mensaje después de enviar */
+.message {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #4737bb; /* Color para el mensaje */
+  font-weight: bold;
+}
+
+
+
+  
+
+  

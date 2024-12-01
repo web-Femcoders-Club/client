@@ -1,20 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { Camera, RotateCw, RotateCcw } from "lucide-react";
+import "./ProfileCard.css";
 
 const PersonalizaPerfil: React.FC = () => {
-  const [avatar, setAvatar] = useState<string | null>(null);
-  const [newAvatar, setNewAvatar] = useState<string | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string>("");
-  const [userLastName, setUserLastName] = useState<string>("");
-  const [userGender, setUserGender] = useState<string>("");
-  const [userTelephone, setUserTelephone] = useState<string>("");
+  const [userData, setUserData] = useState({
+    avatar: null as string | null,
+    newAvatar: null as string | null,
+    userId: null as string | null,
+    userName: "",
+    userLastName: "",
+    userGender: "",
+    userTelephone: "",
+  });
+
+  const [isCardRotated, setIsCardRotated] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const storedUserId = sessionStorage.getItem("userId");
     if (storedUserId) {
-      setUserId(storedUserId);
       fetchUserDetails(storedUserId);
     } else {
       alert(
@@ -29,18 +35,20 @@ const PersonalizaPerfil: React.FC = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/user/${userId}`,
         {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
+          headers: { Authorization: `Bearer ${authToken}` },
         }
       );
 
       if (response.data) {
-        setAvatar(response.data.userAvatar);
-        setUserName(response.data.userName);
-        setUserLastName(response.data.userLastName);
-        setUserGender(response.data.userGender);
-        setUserTelephone(response.data.userTelephone);
+        setUserData((prevData) => ({
+          ...prevData,
+          userId,
+          avatar: response.data.userAvatar,
+          userName: response.data.userName,
+          userLastName: response.data.userLastName,
+          userGender: response.data.userGender,
+          userTelephone: response.data.userTelephone,
+        }));
       }
     } catch (error) {
       console.error("Error al obtener los datos del usuario:", error);
@@ -59,156 +67,239 @@ const PersonalizaPerfil: React.FC = () => {
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setNewAvatar(base64String);
+        setUserData((prevData) => ({
+          ...prevData,
+          newAvatar: reader.result as string,
+        }));
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleUploadAvatarClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
+  const handleSaveProfile = async () => {
+    if (!userData.userId) {
+      alert("No se encontró el ID del usuario.");
+      return;
+    }
+
+    try {
+      const authToken = sessionStorage.getItem("authToken");
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/user/${userData.userId}`,
+        {
+          userAvatar: userData.newAvatar,
+          userName: userData.userName,
+          userLastName: userData.userLastName,
+          userGender: userData.userGender,
+          userTelephone: userData.userTelephone,
+        },
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
+      );
+
+      if (userData.newAvatar) {
+        sessionStorage.setItem("userAvatar", userData.newAvatar);
+        window.dispatchEvent(new Event("storage"));
+        setUserData((prevData) => ({
+          ...prevData,
+          avatar: userData.newAvatar,
+          newAvatar: null,
+        }));
+      }
+    } catch (error) {
+      alert(
+        "Hubo un problema al actualizar el perfil. Por favor, inténtalo de nuevo."
+      );
     }
   };
 
-  const handleSaveProfile = async () => {
-    if (userId) {
-      try {
-        const authToken = sessionStorage.getItem("authToken");
-        await axios.put(
-          `${import.meta.env.VITE_API_URL}/user/${userId}`,
-          {
-            userAvatar: newAvatar,
-            userName,
-            userLastName,
-            userGender,
-            userTelephone,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
+  const handleInputChange = (field: string, value: string) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
 
-        if (newAvatar) {
-          sessionStorage.setItem("userAvatar", newAvatar);
-          window.dispatchEvent(new Event("storage"));
-          setAvatar(newAvatar);
-          setNewAvatar(null);
-        }
-
-        alert("Perfil actualizado correctamente.");
-      } catch (error) {
-        alert(
-          "Hubo un problema al actualizar el perfil. Por favor, inténtalo de nuevo."
-        );
-      }
-    } else {
-      alert("No se encontró el ID del usuario.");
-    }
+  const toggleCardRotation = () => {
+    setIsCardRotated(!isCardRotated);
   };
 
   return (
-    <div className="flex flex-col items-center p-8">
-      <h1 className="text-3xl font-bold mb-6 text-primary">Personaliza tu Perfil</h1>
-
-      <div className="avatar mb-4 relative">
-        {newAvatar ? (
-          <img
-            src={newAvatar}
-            alt="User Avatar"
-            className="rounded-full w-32 h-32 object-cover shadow-md border-4 border-primary"
-          />
-        ) : avatar ? (
-          <img
-            src={avatar}
-            alt="User Avatar"
-            className="rounded-full w-32 h-32 object-cover shadow-md border-4 border-primary"
-          />
-        ) : (
-          <div className="rounded-full w-32 h-32 bg-gray-300 flex items-center justify-center shadow-md">
-            <span className="text-xl text-gray-700">No Avatar</span>
-          </div>
-        )}
+    <div
+      className="bg1 overflow-hidden flex justify-center items-center min-h-screen"
+      role="form"
+      aria-labelledby="personaliza-perfil"
+    >
+      <div className={`profile-card ${isCardRotated ? "rotated" : ""}`}>
         <button
-          className="btn btn-circle btn-accent absolute bottom-0 right-0"
-          onClick={handleUploadAvatarClick}
+          className="group absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all"
+          onClick={toggleCardRotation}
+          aria-label={isCardRotated ? "Restaurar vista" : "Girar tarjeta"}
         >
-          📷
+          {isCardRotated ? <RotateCcw size={20} /> : <RotateCw size={20} />}
+
+          <span
+            className="
+      absolute 
+      bottom-full 
+      left-1/2 
+      transform 
+      -translate-x-1/2 
+      -translate-y-2 
+      bg-gray-800 
+      text-white 
+      text-xs 
+      px-2 
+      py-1 
+      rounded 
+      opacity-0 
+      group-hover:opacity-100 
+      transition-opacity 
+      duration-300 
+      z-10
+      whitespace-nowrap
+    "
+          >
+            {isCardRotated ? "Desactivar animación" : "Girar tarjeta"}
+          </span>
         </button>
+
+        <div className="profile-card-inner">
+          <div
+            className="profile-card-front bg2"
+            aria-label="Tarjeta de perfil"
+          >
+            <img src="/negativeLogo.png" alt="Logo de FemCoders Club" />
+            <h1>Miembro FemCoders Club</h1>
+          </div>
+
+          <div className="profile-card-back">
+            <div className="profile-card-back-left">
+              <h5>Personaliza tu Perfil</h5>
+
+              <div className="relative group">
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  className="hidden"
+                  onChange={handleFileChange}
+                  aria-label="Subir nueva foto de perfil"
+                />
+
+                {userData.newAvatar ? (
+                  <img
+                    src={userData.newAvatar}
+                    alt="Nuevo avatar del usuario"
+                    className="rounded-full object-cover"
+                  />
+                ) : userData.avatar ? (
+                  <img
+                    src={userData.avatar}
+                    alt="Avatar actual del usuario"
+                    className="rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="rounded-full bg-gray-300 flex items-center justify-center w-full h-full">
+                    <span>No Avatar</span>
+                  </div>
+                )}
+
+                <button
+                  className="btn btn-circle btn-accent absolute bottom-0 right-0 primary-button relative"
+                  onClick={() => fileInputRef.current?.click()}
+                  aria-label="Subir nueva foto de perfil"
+                >
+                  <Camera aria-hidden="true" />
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                    Subir imagen
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div className="profile-card-back-right">
+              <div className="w-full">
+                <label htmlFor="nombreUsuario" className="text-lg block mb-2">
+                  Nombre:
+                </label>
+                <input
+                  id="nombreUsuario"
+                  type="text"
+                  value={userData.userName}
+                  onChange={(e) =>
+                    handleInputChange("userName", e.target.value)
+                  }
+                  className="input input-bordered w-full mb-4"
+                  aria-labelledby="nombreUsuario"
+                />
+
+                <label htmlFor="apellidoUsuario" className="text-lg block mb-2">
+                  Apellido:
+                </label>
+                <input
+                  id="apellidoUsuario"
+                  type="text"
+                  value={userData.userLastName}
+                  onChange={(e) =>
+                    handleInputChange("userLastName", e.target.value)
+                  }
+                  className="input input-bordered w-full mb-4"
+                  aria-labelledby="apellidoUsuario"
+                />
+
+                <label htmlFor="generoUsuario" className="text-lg block mb-2">
+                  Género:
+                </label>
+                <select
+                  id="generoUsuario"
+                  value={userData.userGender}
+                  onChange={(e) =>
+                    handleInputChange("userGender", e.target.value)
+                  }
+                  className="input input-bordered w-full mb-4 custom-select"
+                  aria-label="Selecciona tu género"
+                >
+                  <option value="" disabled>
+                    Selecciona tu género
+                  </option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="No binario">No binario</option>
+                  <option value="Prefiero no decirlo">
+                    Prefiero no decirlo
+                  </option>
+                </select>
+
+                <label htmlFor="telefonoUsuario" className="text-lg block mb-2">
+                  Teléfono:
+                </label>
+                <input
+                  id="telefonoUsuario"
+                  type="text"
+                  value={userData.userTelephone}
+                  onChange={(e) =>
+                    handleInputChange("userTelephone", e.target.value)
+                  }
+                  className="input input-bordered w-full mb-4"
+                  aria-labelledby="telefonoUsuario"
+                />
+              </div>
+
+              <button
+                className="primary-button"
+                onClick={handleSaveProfile}
+                aria-label="Guardar cambios de perfil"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        className="hidden"
-        onChange={handleFileChange}
-        title="Seleccionar archivo de imagen"
-      />
-
-      {newAvatar && (
-        <button className="btn btn-primary mt-4" onClick={handleSaveProfile}>
-          Guardar Imagen
-        </button>
-      )}
-
-      <div className="flex flex-col items-center w-full mt-6">
-        <label htmlFor="nombreUsuario" className="mb-2 text-lg">
-          Nombre de Usuario:
-        </label>
-        <input
-          id="nombreUsuario"
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          className="input input-bordered w-full max-w-xs mb-4"
-        />
-
-        <label htmlFor="apellidoUsuario" className="mb-2 text-lg">
-          Apellido:
-        </label>
-        <input
-          id="apellidoUsuario"
-          type="text"
-          value={userLastName}
-          onChange={(e) => setUserLastName(e.target.value)}
-          className="input input-bordered w-full max-w-xs mb-4"
-        />
-
-        <label htmlFor="generoUsuario" className="mb-2 text-lg">
-          Género:
-        </label>
-        <input
-          id="generoUsuario"
-          type="text"
-          value={userGender}
-          onChange={(e) => setUserGender(e.target.value)}
-          className="input input-bordered w-full max-w-xs mb-4"
-        />
-
-        <label htmlFor="telefonoUsuario" className="mb-2 text-lg">
-          Teléfono:
-        </label>
-        <input
-          id="telefonoUsuario"
-          type="text"
-          value={userTelephone}
-          onChange={(e) => setUserTelephone(e.target.value)}
-          className="input input-bordered w-full max-w-xs mb-4"
-        />
-      </div>
-
-      <button
-        className="btn btn-primary mt-6"
-        onClick={handleSaveProfile}
-      >
-        Guardar Cambios
-      </button>
     </div>
   );
 };
 
 export default PersonalizaPerfil;
-

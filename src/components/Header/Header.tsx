@@ -139,52 +139,21 @@ const Header: React.FC = () => {
         </div>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li>
-            <Link
-              to="/sobrenosotras"
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Sobre nosotras
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/equipo"
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Equipo
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/eventos"
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Eventos
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contacto"
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contacto
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/blog"
-              className="nav-link"
-              style={{ color: "#ea4f33" }}
-              onClick={() => setMenuOpen(false)}
-            >
-              Blog
-            </Link>
-          </li>
+          {["/sobrenosotras", "/equipo", "/eventos", "/contacto", "/blog"].map(
+            (path, index) => (
+              <li key={index}>
+                <Link
+                  to={path}
+                  className={`nav-link ${
+                    path === "/blog" ? "highlighted" : ""
+                  }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {path.replace("/", "").replace("-", " ")}
+                </Link>
+              </li>
+            )
+          )}
         </ul>
 
         <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
@@ -223,10 +192,9 @@ const Header: React.FC = () => {
               )}
             </div>
           ) : (
-            // <Link to="/login" className="logout-button">
-            //   Iniciar sesión
-            // </Link>
-            <></> // Aquí, he comentado la línea para que el botón no se muestre.
+            <Link to="/login" className="logout-button">
+              Iniciar sesión
+            </Link>
           )}
         </div>
       </nav>
@@ -235,4 +203,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
