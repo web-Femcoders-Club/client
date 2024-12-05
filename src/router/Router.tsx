@@ -35,6 +35,8 @@ const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 const PersonalizaPerfil = lazy(() => import("../features/PersonalizaPerfil/page/PersonalizaPerfil"));
 const FrameworksIntegration = lazy(() => import("../features/Blog/posts/recursos/html/FrameworksIntegration"));
 const MentorshipPage = lazy(() => import("../features/Mentorship/page/Mentorship"));
+const SendDocumentation = lazy(() => import("../features/SendingDocument/page/SendDocumentation"));
+
 
 
 const RouterComponent: React.FC = () => {
@@ -75,6 +77,8 @@ const RouterComponent: React.FC = () => {
           <Route path="/welcome" element={<Layout><WelcomePage /></Layout>} />
           <Route path="/personaliza-perfil" element={<Layout><PersonalizaPerfil /></Layout>} />
           <Route path="/mentoria" element={<Layout><MentorshipPage /></Layout>} />
+          <Route path="/enviar-documentacion" element={<Layout><SendDocumentation /></Layout>} />
+
           <Route
   path="/recursos/html/integracion-frameworks"
   element={<Layout><FrameworksIntegration /></Layout>}

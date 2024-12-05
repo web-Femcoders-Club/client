@@ -204,8 +204,39 @@ export interface EmailDto {
 
 export type EmailResponse = {
   message: string;
+  
 };
 
+
+// export type MentorshipFormData = {
+//   mentorshipType: string;
+//   githubLink?: string;
+// };
+
+// export type ResourceFormData = {
+//   resourceDetails: string;
+// };
+
+// export type SpeakerFormData = {
+//   speakerReason: string;
+// };
+
+
+// export type FormState = {
+//   successMessage: string;
+//   errorMessage: string;
+//   isLoading: boolean;
+// };
+
+
+export interface EmailDto {
+  userEmail: string;
+  mentorshipType?: string;
+  mentorshipTitle?: string; 
+  githubLink?: string;
+  description?: string;
+  files?: File[]; // Campo para los archivos adjuntos (compatible con el DTO del backend)
+}
 
 export type MentorshipFormData = {
   mentorshipType: string;
@@ -214,17 +245,16 @@ export type MentorshipFormData = {
 
 export type ResourceFormData = {
   resourceDetails: string;
+  mentorshipTitle?: string; // Campo opcional para el título del recurso
+  files?: File[]; // Archivos adjuntos para recursos
 };
 
 export type SpeakerFormData = {
   speakerReason: string;
 };
 
-
 export type FormState = {
   successMessage: string;
   errorMessage: string;
   isLoading: boolean;
 };
-
-

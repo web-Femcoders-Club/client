@@ -39,58 +39,88 @@
 }
 
 @keyframes logo-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes logo-travel {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 0 0px rgba(234, 79, 51, 0.5); /* Sombra inicial */
   }
   25% {
-    transform: translate(10%, -10%) rotate(3deg);
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 0 10px rgba(109, 44, 149, 0.7); /* Sombra intermedia */
   }
   50% {
-    transform: translate(0, -20%) rotate(-3deg);
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 0 20px rgba(71, 55, 187, 0.9); /* Sombra en el pico */
   }
   75% {
-    transform: translate(-10%, -10%) rotate(3deg);
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 0 0 10px rgba(109, 44, 149, 0.7); /* Sombra intermedia */
   }
 }
 
-@keyframes logo-rotate {
-  0%,
-  100% {
-    transform: rotate(0deg);
+
+@keyframes logo-travel {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.2); /* Sombra inicial */
+  }
+  25% {
+    transform: translate(15%, -10%) rotate(5deg);
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra dinámica */
   }
   50% {
-    transform: rotate(10deg);
+    transform: translate(0, -20%) rotate(-5deg);
+    box-shadow: 0 10px 20px rgba(71, 55, 187, 0.7); /* Sombra en el pico */
+  }
+  75% {
+    transform: translate(-15%, -10%) rotate(5deg);
+    box-shadow: -5px 5px 15px rgba(109, 44, 149, 0.5); /* Sombra dinámica */
   }
 }
+
+
+@keyframes logo-rotate {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra inicial */
+  }
+  25% {
+    transform: rotate(10deg) scale(1.05);
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra con color */
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.1);
+    box-shadow: 10px -5px 20px rgba(71, 55, 187, 0.7); /* Sombra en el pico */
+  }
+  75% {
+    transform: rotate(10deg) scale(1.05);
+    box-shadow: -5px 5px 15px rgba(109, 44, 149, 0.5); /* Sombra dinámica */
+  }
+}
+
 
 @keyframes logo-threeD {
   0% {
-    transform: translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg);
+    transform: translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg) scale(1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra inicial */
   }
   25% {
-    transform: translate3d(50%, -50%, 50px) rotateY(90deg) rotateX(10deg);
+    transform: translate3d(50%, -50%, 50px) rotateY(90deg) rotateX(10deg) scale(1.1);
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra dinámica */
   }
   50% {
-    transform: translate3d(0, -100%, 0) rotateY(180deg) rotateX(0deg);
+    transform: translate3d(0, -100%, 0) rotateY(180deg) rotateX(0deg) scale(1.05);
+    box-shadow: 10px -10px 20px rgba(71, 55, 187, 0.7); /* Color de sombra diferente */
   }
   75% {
-    transform: translate3d(-50%, -50%, -50px) rotateY(270deg) rotateX(-10deg);
+    transform: translate3d(-50%, -50%, -50px) rotateY(270deg) rotateX(-10deg) scale(1.1);
+    box-shadow: -5px 5px 15px rgba(109, 44, 149, 0.5); /* Más sombra dinámica */
   }
   100% {
-    transform: translate3d(0, 0, 0) rotateY(360deg) rotateX(0deg);
+    transform: translate3d(0, 0, 0) rotateY(360deg) rotateX(0deg) scale(1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Vuelve al estado inicial */
   }
 }
+
 
 .animate-logo-pulse {
   animation: logo-pulse 2s ease-in-out infinite;

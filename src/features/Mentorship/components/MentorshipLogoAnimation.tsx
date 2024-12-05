@@ -55,12 +55,17 @@ const MentorshipLogoAnimation: React.FC<MentorshipLogoAnimationProps> = ({
           >
             {isAnimating ? <Pause size={16} /> : <Play size={16} />}
           </summary>
-          <div
-            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 text-white text-sm font-medium py-1 px-2 rounded-md shadow-lg"
-            style={{ backgroundColor: "#821ad4", width: "max-content" }}
-          >
-            {isAnimating ? "Pausar animación" : "Reanudar animación"}
-          </div>
+<div
+  className={`absolute top-full left-1/2 transform -translate-x-1/2 translate-y-4 text-white text-sm font-medium py-1 px-3 rounded-lg shadow-md transition-opacity duration-300 ${
+    isAnimating ? "bg-green-500" : "bg-red-500"
+  }`}
+  style={{ width: "max-content" }}
+  aria-live="polite"
+>
+  {isAnimating ? "Animación en curso" : "Animación pausada"}
+</div>
+
+
         </details>
 
         <details className="relative group">

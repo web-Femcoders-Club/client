@@ -137,7 +137,8 @@ const MentorshipForm: React.FC = () => {
             <div className="form-column">
               <header>
                 <h3>¡Solicita una Mentoría!</h3>
-                <p className="styled-paragraph">
+                <p className="styled-paragraph ">
+
                   ¿Estás dando tus primeros pasos en el mundo de la programación
                   y necesitas orientación? ¿Te has atascado con algún concepto o
                   buscas a alguien que te ayude a entender mejor los lenguajes
