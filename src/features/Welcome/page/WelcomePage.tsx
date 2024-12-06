@@ -14,6 +14,10 @@ import {
   Heart,
   Megaphone,
   Lightbulb,
+  BookOpen,
+  MicVocal,
+  FolderOpen,
+  Building,
 } from "lucide-react";
 import "./WelcomePage.css";
 
@@ -233,7 +237,6 @@ const WelcomePage = () => {
           Cerrar
         </button>
 
-     
         <div className="flex flex-col items-center space-y-4 mt-12">
           {selectedEmoji && (
             <div className="text-6xl animate-bounce">{selectedEmoji}</div>
@@ -243,7 +246,6 @@ const WelcomePage = () => {
           </h2>
         </div>
 
-      
         <div className="mt-4 p-4 bg2 backdrop-blur-sm rounded-xl border border-white/20">
           <p className="text-sm text-white/90 italic">{motivationalMessage}</p>
         </div>
@@ -302,7 +304,6 @@ const WelcomePage = () => {
           </div>
         )}
 
-       
         <nav className="mt-8 flex-1 overflow-y-auto">
           <ul className="space-y-2">
             {[
@@ -366,14 +367,12 @@ const WelcomePage = () => {
       <Overlay />
       <Sidebar />
 
-     
       <div className="lg:ml-80 flex-1 p-4 lg:p-8 w-full">
         <MenuTrigger />
 
         <div className="max-w-6xl mx-auto">
-       
           <header className="mt-36 mb-8 lg:mb-12">
-            <h2 >
+            <h2>
               ¡Bienvenida a FemCoders Club!{" "}
               {selectedEmoji && ` ${selectedEmoji}`}
             </h2>
@@ -386,8 +385,7 @@ const WelcomePage = () => {
 
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-          <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-[#4737bb]">
-
+            <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-[#4737bb]">
               <div className="flex items-center gap-4 mb-8">
                 <Calendar className="w-8 h-8 text-indigo-500" />
                 <h2>Próximos Eventos</h2>
@@ -458,8 +456,8 @@ const WelcomePage = () => {
               </div>
             </div>
           </div>
-         
-          {/* Community Section */}
+
+          {/* Welcome Card */}
           <div className="bg-white rounded-3xl shadow-2xl p-8 text-white mt-8 mx-auto max-w-full lg:max-w-6xl">
             <div className="max-w-xl mx-auto text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
@@ -473,204 +471,376 @@ const WelcomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Create a Community Project */}
-              <div className="group relative overflow-hidden">
-              <div
+              {/* Create a project */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
+                <div
                   style={{
-                    background: "radial-gradient(circle at top left, #4737bb, #ea43ff)",
+                    background:
+                      "radial-gradient(circle at top left, #4737bb, #ea43ff)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Users
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Crea un Proyecto Junto a Otras Mujeres
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Conéctate y comienza un proyecto en GitHub con otras
+                      programadoras. ¡Aprende y crece juntas!
+                    </p>
+                  </div>
 
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Users
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Crea un Proyecto Junto a Otras Mujeres
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Conéctate y comienza un proyecto en GitHub con otras
-                    programadoras. ¡Aprende y crece juntas!
-                  </p>
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Tienes un proyecto en mente o simplemente te gustaría
+                      colaborar en un proyecto junto a otras programadoras?
+                      ¡Esta es tu oportunidad para conectar y crecer juntas!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¡Contáctanos!
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Write a Post */}
-              <div className="group relative overflow-hidden">
+              {/* Write a post */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
                     background: "linear-gradient(to right, #4737bb, #ea43ff)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Book
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4  transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Escribe un Post y Comparte Tu Conocimiento
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Publica tus experiencias o crea una guía para inspirar y
-                    ayudar a otras programadoras.
-                  </p>
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Book
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Escribe un Post y Comparte Tu Conocimiento
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Publica tus experiencias o crea una guía para inspirar y
+                      ayudar a otras programadoras.
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Tienes algo que compartir con la comunidad? ¡Escribe un
+                      post y comparte tu conocimiento!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¡Contáctanos!
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Become a Community Promoter */}
-              <div className="group relative overflow-hidden">
-              <div
+              {/* Be a community promoter */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
+                <div
                   style={{
-                    background: "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
+                    background:
+                      "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
 
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Megaphone
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Megaphone
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Sé Promotora de la Comunidad
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      ¿Te gustaría ser promotora de FemCoders Club? ¡Ayúdanos a
+                      difundir nuestra misión y atraer a más mujeres a la
+                      comunidad!
+                    </p>
+                  </div>
 
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Sé Promotora de la Comunidad
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Ayuda a que más mujeres conozcan FemCoders Club. Comparte y
-                    colabora.
-                  </p>
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Quieres saber cómo puedes ser promotora? ¡Contáctanos y
+                      empieza a hacer la diferencia hoy mismo!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      Enviar correo
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Suggest Improvements */}
-              <div className="group relative overflow-hidden">
-              <div
+              {/* Propose ideas */}
+
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
+                <div
                   style={{
                     background: "linear-gradient(to right, #4737bb, #ea43ff)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Lightbulb
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Propón Ideas para Mejorar la Comunidad
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Únete o crea un grupo de estudio sobre JavaScript, CSS,
-                    backend, y más.
-                  </p>
+
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Lightbulb
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Propón Ideas para Mejorar la Comunidad
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Comparte tus ideas para mejorar la comunidad. ¡Cada
+                      sugerencia cuenta!
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¡Tus ideas son importantes! Comparte tus propuestas.
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¡Queremos escucharte!
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Mentorship Opportunities */}
-              <div className="group relative overflow-hidden">
+              {/* Be a mentor */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
-                    background: "linear-gradient(135deg, rgba(71, 55, 187, 0.9) 0%, rgba(234, 67, 255, 0.9) 100%)",
+                    background:
+                      "linear-gradient(135deg, rgba(71, 55, 187, 0.9) 0%, rgba(234, 67, 255, 0.9) 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
 
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Heart
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Participa como Mentora
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Comparte tu experiencia y conviértete en mentora para
-                    inspirar y guiar a otras mujeres en programación y
-                    tecnología. ¡Únete a nuestro programa de mentoría y haz la
-                    diferencia!
-                  </p>
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Heart
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Participa como Mentora
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Comparte tu experiencia y conviértete en mentora para
+                      inspirar y guiar a otras mujeres en programación y
+                      tecnología. ¡Únete a nuestro programa de mentoría y haz la
+                      diferencia!
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Te interesa ser mentora? ¡Únete a nuestro programa de
+                      mentoría y comparte tu conocimiento con otras mujeres!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¡Contáctanos para más detalles!
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Join a study group */}
-              <div className="group relative overflow-hidden">
-              <div
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
+                <div
                   style={{
                     background: "linear-gradient(to right, #4737bb, #ea43ff)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Lightbulb
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Forma Parte de un Grupo de Estudio
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Comparte tus ideas para mejorar la comunidad. ¡Cada
-                    sugerencia cuenta!
-                  </p>
+
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <BookOpen
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Forma Parte de un Grupo de Estudio
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Únete o crea un grupo de estudio sobre JavaScript, CSS,
+                      backend, y más. ¡Aprende y crece junto a otras
+                      programadoras!
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Te estás iniciando en el mundo de la tecnología? ¿Te has
+                      quedado atascada, necesitas ayuda con algo específico o
+                      simplemente quieres mejorar tus habilidades? ¡Estamos aquí
+                      para apoyarte! Únete o crea un grupo de estudio y aprende
+                      junto a otras programadoras.
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¡Escríbenos para más información!
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Ponentes para eventos */}
-              <div className="group relative overflow-hidden">
+              {/* Be a speaker */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
-                    background: "linear-gradient(to bottom right, #4737bb 0%, #ea43ff 100%)",
+                    background:
+                      "linear-gradient(to bottom right, #4737bb 0%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
 
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Heart
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Conviértete en Ponente
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Comparte tu conocimiento y experiencia en tecnología y
-                    programación. ¡Conviértete en ponente en nuestros eventos y
-                    comparte tu pasión con la comunidad!
-                  </p>
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <MicVocal
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Conviértete en Ponente
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Comparte tu conocimiento y experiencia en áreas STEM.
+                      ¡Conviértete en ponente en nuestros eventos y comparte tu
+                      pasión con la comunidad de mujeres en tecnología!
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Lista para inspirar a la comunidad? ¡Te esperamos como
+                      ponente!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      ¿Hablamos sobre tus ideas?
+                    </a>
+                  </div>
                 </div>
               </div>
-              {/* Comparte recursos */}
-              <div className="group relative overflow-hidden">
+
+              {/* Share resources */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
-                    background: "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
+                    background:
+                      "linear-gradient(135deg, #4737bb 0%, #7a52c7 50%, #ea43ff 100%)",
                   }}
                   className="absolute inset-0 transform transition-transform group-hover:scale-105"
                 />
 
-                <div className="relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                  <Heart
-                    size={32}
-                    style={{ color: "#ea4f33" }}
-                    className="mb-4 transition-transform group-hover:scale-110"
-                  />
-                  <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
-                    Comparte Recursos
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white">
-                    Comparte tus recursos, tutoriales, guías y más con la
-                    comunidad. ¡Ayuda a otras mujeres a aprender y crecer en
-                    tecnología!
-                  </p>
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <FolderOpen
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      Comparte Recursos
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Comparte tus recursos, tutoriales, guías y más con la
+                      comunidad. ¡Ayuda a otras mujeres a aprender y crecer en
+                      tecnología!
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¿Tienes recursos para compartir? ¡Envíalos a la comunidad!
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      Enviar recursos
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Empresas */}
+              <div className="group relative overflow-hidden flip-card-welcome mb-6">
+                <div
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #4737bb 0%, #ea43ff 50%)",
+                  }}
+                  className="absolute inset-0 transform transition-transform group-hover:scale-105"
+                />
+
+                <div className="flip-card-inner-welcome relative h-full w-full min-h-[400px]">
+                  <div className="flip-card-front-welcome relative bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 h-full border border-white/10 transition-all duration-300 group-hover:border-orange-500/50 group-hover:shadow-lg group-hover:shadow-orange-500/20">
+                    <Building
+                      size={32}
+                      style={{ color: "#ea4f33" }}
+                      className="mb-4 transition-transform group-hover:scale-110"
+                    />
+                    <h3 className="font-bold text-2xl mb-3 text-white group-hover:text-orange-400">
+                      ¿Compartes Nuestros Valores?
+                    </h3>
+                    <p className="text-gray-300 group-hover:text-white">
+                      Sé parte del cambio colaborando con FemCoders Club como
+                      anfitriona. Apoya eventos y talleres, y lidera el impulso
+                      hacia una tecnología más inclusiva y diversa.
+                    </p>
+                  </div>
+
+                  <div className="flip-card-back-welcome absolute inset-0 bg-[#4737bb] bg-opacity-90 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center justify-center text-white transform rotate-y-180">
+                    <p className="mb-4 text-lg font-semibold text-center">
+                      ¡Haz que tu empresa sea protagonista del cambio! Únete
+                      como anfitriona y fomenta la diversidad en tecnología.
+                    </p>
+                    <a
+                      href="mailto:femcodersclub@example.com"
+                      className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
+                    >
+                      Contáctanos
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
