@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { Comment } from "../../../../types/types";
-import { getApprovedComments } from "../../../../api/commentApi";
+import React from "react";
+import { Helmet } from "react-helmet";
+import "../../page/PostStyles.css";
+import CommentsSection from "../../../Blog/components/CommentsSection";
 import {
   BsGithub,
   BsInstagram,
@@ -11,86 +11,11 @@ import {
   BsFacebook,
 } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-import { Helmet } from "react-helmet";
-import "../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Aniversario: React.FC = () => {
-  const [comment, setComment] = useState("");
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [approvedComments, setApprovedComments] = useState<Comment[]>([]);
-  const form = useRef<HTMLFormElement | null>(null);
-
   const currentUrl = window.location.href;
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const approved = await getApprovedComments();
-        setApprovedComments(approved);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      }
-    };
-
-    fetchComments();
-  }, []);
-
-  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (!form.current) {
-      throw new Error("El formulario no fue encontrado");
-    }
-
-    const serviceId = import.meta.env.VITE_API_SERVICE_ID;
-    const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
-    const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
-
-    const templateParams = {
-      from_name: name,
-      message: comment,
-      to_name: "Irina",
-      postId: "1",
-    };
-
-    try {
-      await emailjs.send(serviceId, templateId, templateParams, apiKey);
-      setSubmitted(true);
-      setComment("");
-      setName("");
-
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          postId: 1,
-          content: comment,
-          userEmail: "",
-        }),
-      });
-      await response.json();
-    } catch (error) {
-      console.error("Error enviando comentario:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const publicationDate = "24 de octubre de 2023";
 
   return (
     <div className="blog-post">
@@ -173,12 +98,12 @@ const Aniversario: React.FC = () => {
       </div>
 
       <p className="intro-text">
-        🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy, 24 de octubre,
-        celebramos nuestro primer aniversario y estamos más emocionadas que
-        nunca. 🎉 Este año ha sido un viaje increíble, donde hemos creado un
-        espacio seguro y acogedor, permitiendo que más de 1500 mujeres
-        encuentren apoyo, inspiración y oportunidades para crecer juntas en el
-        mundo de la programación.
+        🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy, 24
+        de octubre, celebramos nuestro primer aniversario y estamos más
+        emocionadas que nunca. 🎉 Este año ha sido un viaje increíble, donde
+        hemos creado un espacio seguro y acogedor, permitiendo que más de 1500
+        mujeres encuentren apoyo, inspiración y oportunidades para crecer juntas
+        en el mundo de la programación.
       </p>
 
       <p className="intro-text">
@@ -315,11 +240,11 @@ const Aniversario: React.FC = () => {
           No olvides seguirnos en nuestras redes sociales y unirte a las
           conversaciones en{" "}
           <span>
-            {" "}
             <a
               href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
               target="_blank"
               rel="noopener noreferrer"
+              className="underline underline-offset-2"
             >
               Slack
             </a>
@@ -333,8 +258,7 @@ const Aniversario: React.FC = () => {
           Escrito por: <strong>femCoders Club</strong>
         </p>
         <p>
-          Actualización:{" "}
-          <strong>{new Date().toLocaleDateString()}</strong>
+          Fecha de publicación: <strong>{publicationDate}</strong>
         </p>
       </div>
 
@@ -344,60 +268,7 @@ const Aniversario: React.FC = () => {
         </a>
       </div>
 
-      <div className="comments-section">
-        <h3>¡Queremos saber de ti! 💬</h3>
-        <form ref={form} onSubmit={handleSubmit} className="comment-form">
-          <label htmlFor="name" className="visually-hidden">
-            Tu nombre
-          </label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={handleNameChange}
-            placeholder="Tu nombre"
-            required
-            className="comment-input"
-          />
-          <label htmlFor="comment" className="visually-hidden">
-            Escribe tu comentario aquí...
-          </label>
-          <textarea
-            id="comment"
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Escribe tu comentario aquí..."
-            required
-            className="comment-textarea"
-          />
-          <button type="submit" disabled={loading} className="comment-button">
-            {loading ? "Enviando..." : "Enviar comentario"}
-          </button>
-        </form>
-        {submitted && (
-          <p className="success-message">
-            Tu comentario ha sido enviado y está pendiente de moderación.
-            ¡Gracias por participar!
-          </p>
-        )}
-      </div>
-
-      <div className="approved-comments">
-        <h3>Lo que dicen nuestras lectoras 🌸</h3>
-        <ul className="comments-list">
-          {approvedComments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              <strong>{comment.userEmail}</strong>
-              <p>{comment.content}</p>
-              <small>
-                {format(new Date(comment.createdAt), "d 'de' MMMM 'de' yyyy", {
-                  locale: es,
-                })}
-              </small>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CommentsSection postId={1} />
     </div>
   );
 };

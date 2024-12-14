@@ -1,89 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { Comment } from "../../../../../types/types";
-import { getApprovedComments } from "../../../../../api/commentApi";
+import React from "react";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
-import "../../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import CommentsSection from "../../../../Blog/components/CommentsSection";
+import "../../../page/PostStyles.css";
 
 const FormandTablePost: React.FC = () => {
-  const [comment, setComment] = useState("");
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [approvedComments, setApprovedComments] = useState<Comment[]>([]);
-  const form = useRef<HTMLFormElement | null>(null);
-
   const currentUrl = window.location.href;
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const approved = await getApprovedComments();
-        setApprovedComments(approved);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      }
-    };
-
-    fetchComments();
-  }, []);
-
-  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (!form.current) {
-      throw new Error("El formulario no fue encontrado");
-    }
-
-    const serviceId = import.meta.env.VITE_API_SERVICE_ID;
-    const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
-    const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
-
-    const templateParams = {
-      from_name: name,
-      message: comment,
-      to_name: "femCoders",
-      postId: "6",
-    };
-
-    try {
-      await emailjs.send(serviceId, templateId, templateParams, apiKey);
-      setSubmitted(true);
-      setComment("");
-      setName("");
-
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          postId: 6,
-          content: comment,
-          userEmail: "",
-        }),
-      });
-      await response.json();
-    } catch (error) {
-      console.error("Error enviando comentario:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const publicationDate = "9 de noviembre de 2023";
 
   return (
     <div className="blog-post">
@@ -176,21 +101,17 @@ const FormandTablePost: React.FC = () => {
       </p>
 
       <div className="highlight-box">
-        <h2>¿Qué son los formularios y tablas en HTML? </h2>
+        <h2>¿Qué son los formularios y tablas en HTML?</h2>
         <p>
           Los formularios son como los cuestionarios digitales de una página
           web. Nos permiten recopilar datos de los usuarios, como su nombre,
           correo electrónico o preferencias. Por otro lado, las tablas son como
           hojas de cálculo dentro de una página. Sirven para organizar
           información de manera clara y concisa, como listas de precios,
-          horarios o resultados de una búsqueda. En conjunto, formularios y
-          tablas son herramientas indispensables para crear páginas web
-          dinámicas y que ofrecen una buena experiencia al usuario. Los
-          formularios permiten la interacción y la recopilación de datos,
-          mientras que las tablas facilitan la presentación de esa información
-          de manera organizada y fácil de entender.
+          horarios o resultados de una búsqueda.
         </p>
       </div>
+
       <div className="highlight-box">
         <h2>Elementos Clave Para Crear Formularios HTML</h2>
         <p>
@@ -589,6 +510,7 @@ const FormandTablePost: React.FC = () => {
                 href="https://www.typeform.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="highlight underline"
               >
                 Typeform
               </a>{" "}
@@ -597,6 +519,7 @@ const FormandTablePost: React.FC = () => {
                 href="https://www.jotform.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="highlight underline"
               >
                 JotForm
               </a>{" "}
@@ -611,6 +534,7 @@ const FormandTablePost: React.FC = () => {
                 href="https://datatables.net/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="highlight underline"
               >
                 DataTables
               </a>{" "}
@@ -619,6 +543,7 @@ const FormandTablePost: React.FC = () => {
                 href="https://www.ag-grid.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="highlight underline"
               >
                 Ag-Grid
               </a>{" "}
@@ -630,15 +555,23 @@ const FormandTablePost: React.FC = () => {
       </div>
 
       <div className="highlight-box">
-  <h2>¿Te gustaría practicar lo aprendido?</h2>
-  <p>
-    Te invitamos a explorar un{" "}<span>
-    <a href="https://github.com/femcodersclub/Formularios-Tablas-HTML-CSS" target="_blank" rel="noopener noreferrer">
-      ejemplo práctico de formularios y tablas
-    </a>{" "}</span>
-    que hemos preparado. ¡Pon en práctica tus conocimientos de HTML y CSS de una forma visual y dinámica!
-  </p>
-</div>
+        <h2>¿Te gustaría practicar lo aprendido?</h2>
+        <p>
+          Te invitamos a explorar un{" "}
+          <span>
+            <a
+              href="https://github.com/femcodersclub/Formularios-Tablas-HTML-CSS"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "underline" }}
+            >
+              ejemplo práctico de formularios y tablas
+            </a>{" "}
+          </span>
+          que hemos preparado. ¡Pon en práctica tus conocimientos de HTML y CSS
+          de una forma visual y dinámica!
+        </p>
+      </div>
 
       <div className="highlight-box conclusion">
         <h2>Conclusión</h2>
@@ -654,14 +587,14 @@ const FormandTablePost: React.FC = () => {
           evolución.
         </p>
       </div>
+
       <div className="author-info">
         <p>
           Escrito por: <strong>Irina Ichim</strong>
         </p>
         <p>Co-fundadora de femCoders Club</p>
         <p>
-          Fecha de publicación:{" "}
-          <strong>{new Date().toLocaleDateString()}</strong>
+          Fecha de publicación: <strong>{publicationDate}</strong>
         </p>
       </div>
 
@@ -671,56 +604,7 @@ const FormandTablePost: React.FC = () => {
         </a>
       </div>
 
-      <div className="comments-section">
-        <h3>¡Queremos saber de ti! 💬</h3>
-        <form ref={form} onSubmit={handleSubmit} className="comment-form">
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            placeholder="Tu nombre"
-            required
-            aria-label="Escribe tu nombre"
-            aria-required="true"
-            className="comment-input"
-          />
-          <textarea
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Escribe tu comentario aquí..."
-            required
-            aria-label="Escribe tu comentario"
-            aria-required="true"
-            className="comment-textarea"
-          />
-          <button type="submit" disabled={loading} className="comment-button">
-            {loading ? "Enviando..." : "Enviar comentario"}
-          </button>
-        </form>
-        {submitted && (
-          <p className="success-message">
-            Tu comentario ha sido enviado y está pendiente de moderación.
-            ¡Gracias por participar!
-          </p>
-        )}
-      </div>
-
-      <div className="approved-comments" role="complementary">
-        <h3>Lo que dicen nuestras lectoras 🌸</h3>
-        <ul className="comments-list">
-          {approvedComments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              <strong>{comment.userEmail}</strong>
-              <p>{comment.content}</p>
-              <small>
-                {format(new Date(comment.createdAt), "d 'de' MMMM 'de' yyyy", {
-                  locale: es,
-                })}
-              </small>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CommentsSection postId={6} />
     </div>
   );
 };

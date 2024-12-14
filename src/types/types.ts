@@ -14,12 +14,12 @@ export type User = {
   accesToken?: string;
 };
 
-export interface UnconnectedComment {
+export interface Comment {
   id: number;
   postId: number;
   content: string;
+  alias?: string;
   approved: boolean;
-  userEmail: string;
   createdAt: Date;
 }
 
@@ -166,15 +166,6 @@ export type ConfirmationModalProps = {
   onClose: () => void;
 };
 
-export interface Comment {
-  id: number;
-  postId: number;
-  content: string;
-  approved: boolean;
-  userEmail: string;
-  createdAt: Date;
-}
-
 export type Event = {
   id: string;
   name: string;
@@ -198,15 +189,12 @@ export interface EmailDto {
   userEmail: string;
   mentorshipType?: string;
   githubLink?: string;
-  description?: string; 
+  description?: string;
 }
-
 
 export type EmailResponse = {
   message: string;
-  
 };
-
 
 // export type MentorshipFormData = {
 //   mentorshipType: string;
@@ -221,21 +209,19 @@ export type EmailResponse = {
 //   speakerReason: string;
 // };
 
-
 // export type FormState = {
 //   successMessage: string;
 //   errorMessage: string;
 //   isLoading: boolean;
 // };
 
-
 export interface EmailDto {
   userEmail: string;
   mentorshipType?: string;
-  mentorshipTitle?: string; 
+  mentorshipTitle?: string;
   githubLink?: string;
   description?: string;
-  files?: File[]; // Campo para los archivos adjuntos (compatible con el DTO del backend)
+  files?: File[];
 }
 
 export type MentorshipFormData = {
@@ -245,8 +231,8 @@ export type MentorshipFormData = {
 
 export type ResourceFormData = {
   resourceDetails: string;
-  mentorshipTitle?: string; // Campo opcional para el título del recurso
-  files?: File[]; // Archivos adjuntos para recursos
+  mentorshipTitle?: string;
+  files?: File[];
 };
 
 export type SpeakerFormData = {

@@ -245,7 +245,7 @@ const BlogPage: React.FC = () => {
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            {["html", "javascript", "react", "css", "python", "femCoders"].map(
+            {["html", "javascript", "react", "css", "python", "femCoders Club"].map(
               (category) => (
                 <button
                   key={category}

@@ -1,89 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { Comment } from "../../../../../types/types";
-import { getApprovedComments } from "../../../../../api/commentApi";
+import React from "react";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
 import { Helmet } from "react-helmet";
-import "../../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import CommentsSection from "../../../../Blog/components/CommentsSection";
+import "../../../page/PostStyles.css";
 
 const IntroduccionHTML: React.FC = () => {
-  const [comment, setComment] = useState("");
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [approvedComments, setApprovedComments] = useState<Comment[]>([]);
-  const form = useRef<HTMLFormElement | null>(null);
-
   const currentUrl = window.location.href;
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const approved = await getApprovedComments();
-        setApprovedComments(approved);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-      }
-    };
-
-    fetchComments();
-  }, []);
-
-  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
-  };
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (!form.current) {
-      throw new Error("El formulario no fue encontrado");
-    }
-
-    const serviceId = import.meta.env.VITE_API_SERVICE_ID;
-    const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
-    const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
-
-    const templateParams = {
-      from_name: name,
-      message: comment,
-      to_name: "femCoders",
-      postId: "2",
-    };
-
-    try {
-      await emailjs.send(serviceId, templateId, templateParams, apiKey);
-      setSubmitted(true);
-      setComment("");
-      setName("");
-
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          postId: 2,
-          content: comment,
-          userEmail: "",
-        }),
-      });
-      await response.json();
-    } catch (error) {
-      console.error("Error enviando comentario:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const publicationDate = "14 de octubre de 2023";
 
   return (
     <div className="blog-post">
@@ -98,6 +23,7 @@ const IntroduccionHTML: React.FC = () => {
           content="HTML, programación, web, recursos, introducción"
         />
       </Helmet>
+
       <div className="post-image-container">
         <img
           src="/assets/html/Introduccion-HTML.png"
@@ -164,14 +90,16 @@ const IntroduccionHTML: React.FC = () => {
         </div>
       </div>
 
-      <p className="intro-text">
-        <strong>HTML (HyperText Markup Language)</strong> es el lenguaje
-        fundamental que da estructura a todas las páginas web. Actúa como el
-        esqueleto de un sitio web, organizando el contenido y permitiendo que
-        los navegadores, como Chrome o Firefox, lo interpreten y lo muestren
-        visualmente al usuario. Sin HTML, los navegadores no podrían entender ni
-        mostrar el contenido correctamente.
-      </p>
+      <div className="intro-text">
+        <p>
+          <strong>HTML (HyperText Markup Language)</strong> es el lenguaje
+          fundamental que da estructura a todas las páginas web. Actúa como el
+          esqueleto de un sitio web, organizando el contenido y permitiendo que
+          los navegadores, como Chrome o Firefox, lo interpreten y lo muestren
+          visualmente al usuario. Sin HTML, los navegadores no podrían entender
+          ni mostrar el contenido correctamente.
+        </p>
+      </div>
 
       <div className="highlight-box">
         <h2>¿Qué es HTML y por qué es importante 🌐✨?</h2>
@@ -328,6 +256,7 @@ const IntroduccionHTML: React.FC = () => {
                 href="https://caniuse.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="highlight underline"
               >
                 Can I Use
               </a>
@@ -511,6 +440,7 @@ const IntroduccionHTML: React.FC = () => {
               href="https://developer.mozilla.org/es/docs/Web/HTML"
               target="_blank"
               rel="noopener noreferrer"
+              className="highlight underline"
             >
               MDN Web Docs - HTML
             </a>
@@ -520,6 +450,7 @@ const IntroduccionHTML: React.FC = () => {
               href="https://www.w3schools.com/html/"
               target="_blank"
               rel="noopener noreferrer"
+              className="highlight underline"
             >
               W3Schools - HTML
             </a>
@@ -529,6 +460,7 @@ const IntroduccionHTML: React.FC = () => {
               href="https://html.com/"
               target="_blank"
               rel="noopener noreferrer"
+              className="highlight underline"
             >
               HTML.com
             </a>
@@ -538,6 +470,7 @@ const IntroduccionHTML: React.FC = () => {
               href="https://lenguajehtml.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="highlight underline"
             >
               Lenguaje HTML - Guía completa de HTML5
             </a>
@@ -555,67 +488,24 @@ const IntroduccionHTML: React.FC = () => {
           web moderna e interactiva.
         </p>
       </div>
+
       <div className="author-info">
-  <p>Escrito por: <strong>Irina Ichim</strong></p>
-  <p>Co-fundadora de femCoders Club</p>
-  <p>Fecha de publicación: <strong>{new Date().toLocaleDateString()}</strong></p>
-</div>
+        <p>
+          Escrito por: <strong>Irina Ichim</strong>
+        </p>
+        <p>Co-fundadora de femCoders Club</p>
+        {/* <p>Fecha de publicación: <strong>{new Date().toLocaleDateString()}</strong></p> */}
+        <p>
+          Fecha de publicación: <strong>{publicationDate}</strong>
+        </p>
+      </div>
       <div className="back-to-blog-container">
         <a href="/blog" className="back-to-blog">
           Volver al Blog
         </a>
       </div>
 
-      <div className="comments-section">
-        <h3>¡Queremos saber de ti! 💬</h3>
-        <form ref={form} onSubmit={handleSubmit} className="comment-form">
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            placeholder="Tu nombre"
-            required
-            aria-label="Escribe tu nombre"
-            aria-required="true"
-            className="comment-input"
-          />
-          <textarea
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Escribe tu comentario aquí..."
-            required
-            aria-label="Escribe tu comentario"
-            aria-required="true"
-            className="comment-textarea"
-          />
-          <button type="submit" disabled={loading} className="comment-button">
-            {loading ? "Enviando..." : "Enviar comentario"}
-          </button>
-        </form>
-        {submitted && (
-          <p className="success-message">
-            Tu comentario ha sido enviado y está pendiente de moderación.
-            ¡Gracias por participar!
-          </p>
-        )}
-      </div>
-
-      <div className="approved-comments" role="complementary">
-        <h3>Lo que dicen nuestras lectoras 🌸</h3>
-        <ul className="comments-list">
-          {approvedComments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              <strong>{comment.userEmail}</strong>
-              <p>{comment.content}</p>
-              <small>
-                {format(new Date(comment.createdAt), "d 'de' MMMM 'de' yyyy", {
-                  locale: es,
-                })}
-              </small>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CommentsSection postId={2} />
     </div>
   );
 };
