@@ -39,6 +39,11 @@ const Admin: React.FC = () => {
                 5. Otros Ajustes
               </Link>
             </li>
+            <li className="step">
+              <Link to="/admin/achievements" className="text-decoration-none">
+                5. Logros Usuarios
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="admin-main w-3/4 p-4">

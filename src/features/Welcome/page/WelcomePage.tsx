@@ -20,11 +20,15 @@ import {
   Building,
 } from "lucide-react";
 import "./WelcomePage.css";
+import { getUserAchievements } from "../../../api/achievementsApi";
 
 const WelcomePage = () => {
   const location = useLocation();
-  const state = (location.state as { userName: string }) || {};
-  const { userName } = state;
+  const state = (location.state as { userName: string; userId?: number }) || {};
+  const { userName, userId } = state;
+
+  const resolvedUserId =
+    userId || parseInt(localStorage.getItem("userId") || "0");
 
   const [selectedEmoji, setSelectedEmoji] = useState(
     localStorage.getItem("userEmoji") || null
@@ -36,6 +40,25 @@ const WelcomePage = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const displayName = userName || localStorage.getItem("userName") || "Usuario";
+
+  const defaultAchievement = {
+    id: 0,
+    icon: "🏆",
+    title: "Primera Conexión",
+    description: "¡Bienvenida a la comunidad!",
+  };
+
+  const {
+    data: userAchievements = [],
+    isLoading: loadingAchievements,
+    isError: achievementsError,
+  } = useQuery({
+    queryKey: ["userAchievements", resolvedUserId],
+    queryFn: () => getUserAchievements(resolvedUserId),
+    enabled: resolvedUserId > 0,
+  });
+
+  const combinedAchievements = [defaultAchievement, ...userAchievements];
 
   useEffect(() => {
     const storedStats = localStorage.getItem("emojiStats");
@@ -127,75 +150,6 @@ const WelcomePage = () => {
     queryKey: ["upcomingEvents"],
     queryFn: getUpcomingEvents,
   });
-
-  const achievements = [
-    {
-      icon: "🎉",
-      title: "Evento Asistido",
-      description: "¡Felicidades! Has asistido a 3 eventos.",
-    },
-    {
-      icon: "🏅",
-      title: "Contribuciones",
-      description: "Compartiste un recurso valioso con la comunidad.",
-    },
-    {
-      icon: "🏆",
-      title: "Primera Conexión",
-      description: "¡Bienvenida a la comunidad!",
-    },
-    {
-      icon: "📜",
-      title: "Quiz HTML Completo",
-      description:
-        "¡Has superado el quiz de HTML! Buen trabajo construyendo la base.",
-    },
-    {
-      icon: "🎨",
-      title: "Quiz CSS Completado",
-      description: "¡Excelente! Has demostrado un gran dominio de CSS.",
-    },
-    {
-      icon: "💻",
-      title: "Quiz JavaScript Aprobado",
-      description: "¡Felicidades! Dominas los fundamentos de JavaScript.",
-    },
-    {
-      icon: "🚀",
-      title: "Full Stack Básico Completado",
-      description:
-        "¡Wow! Completaste todos los quizzes de HTML, CSS y JavaScript. ¡Eres imparable!",
-    },
-    {
-      icon: "📚",
-      title: "Conocimiento Compartido",
-      description:
-        "Publicaste un post en nuestra sección de recursos. ¡Gracias por contribuir!",
-    },
-    {
-      icon: "🧑‍🏫",
-      title: "Mentoría Ofrecida",
-      description:
-        "Participaste como mentora en la comunidad y ayudaste a otras a crecer. ¡Eres increíble!",
-    },
-    {
-      icon: "✨",
-      title: "Semana del Código Completa",
-      description:
-        "¡Participaste cada día en la semana del código! Gran dedicación.",
-    },
-    {
-      icon: "💡",
-      title: "Idea Innovadora",
-      description:
-        "Propusiste una mejora que fue implementada en la comunidad. ¡Gracias por tu aporte!",
-    },
-    {
-      icon: "📝",
-      title: "Perfil completado",
-      description: "Felicidades, has completado tu perfil con éxito.",
-    },
-  ];
 
   const handleEmojiSelect = (emoji: string) => {
     setSelectedEmoji(emoji);
@@ -430,33 +384,42 @@ const WelcomePage = () => {
               </div>
             </div>
 
-            {/* Achievements Card */}
-            <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300 sidebar-nav">
+            <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300">
               <div className="flex items-center gap-4 mb-8">
                 <Award className="w-8 h-8 text-indigo-500" />
                 <h2>Tus Logros</h2>
               </div>
 
-              {/* Contenedor con scroll vertical */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto max-h-64 pr-2">
-                {achievements.map((achievement, index) => (
-                  <div
-                    key={index}
-                    className="group p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                      {achievement.icon}
+                {loadingAchievements ? (
+                  <p className="text-base text-gray-600">Cargando logros...</p>
+                ) : achievementsError ? (
+                  <p className="text-base text-gray-600">
+                    Error al cargar logros
+                  </p>
+                ) : combinedAchievements.length > 0 ? (
+                  combinedAchievements.map((achievement) => (
+                    <div
+                      key={achievement.id}
+                      className="group p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                        {achievement.icon}
+                      </div>
+                      <h5 className="font-semibold">{achievement.title}</h5>
+                      <p className="text-base lg:text-lg mt-4 text-custom-blue">
+                        {achievement.description}
+                      </p>
                     </div>
-                    <h5>{achievement.title}</h5>
-                    <p className="text-base lg:text-lg mt-4 text-custom-blue">
-                      {achievement.description}
-                    </p>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <p className="text-base text-gray-600">
+                    No tienes logros todavía.
+                  </p>
+                )}
               </div>
             </div>
           </div>
-
           {/* Welcome Card */}
           <div className="bg-white rounded-3xl shadow-2xl p-8 text-white mt-8 mx-auto max-w-full lg:max-w-6xl">
             <div className="max-w-xl mx-auto text-center mb-12">

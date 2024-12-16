@@ -244,3 +244,20 @@ export type FormState = {
   errorMessage: string;
   isLoading: boolean;
 };
+
+// Tipos para logros
+export type Achievement = {
+  id: number;
+  icon: string;
+  title: string;
+  description: string;
+};
+
+// Relación entre usuarios y logros
+export type UserAchievement = {
+  id: number;
+  userId: number;
+  achievementId: number;
+  user?: User; // Opcional si necesitas cargar datos del usuario relacionado
+  achievement?: Achievement; // Opcional si necesitas detalles del logro relacionado
+};
