@@ -388,10 +388,10 @@ const HomePage: React.FC = () => {
           </div>
           <div className="section-countdown">
   <div className="countdown-content">
-    {upcomingEvent ? (
-      <>
-        <h2>¡Próximo evento!</h2>
-        <div className="countdown">
+    <h2>¡Próximo evento!</h2>
+    <div className="countdown">
+      {upcomingEvent ? (
+        <>
           <div className="countdown-item">
             <span>{timeLeft.days}</span> días
           </div>
@@ -404,38 +404,41 @@ const HomePage: React.FC = () => {
           <div className="countdown-item">
             <span>{timeLeft.seconds}</span> segundos
           </div>
-        </div>
-        <h3 className="countdown-text">{upcomingEvent.name.text}</h3>
-      </>
-    ) : (
-      <>
-        <h2>Próximamente</h2>
+        </>
+      ) : (
         <video
-          src="/assets/videos/SinEvento.mp4"
+          src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
           className="no-event-video"
           autoPlay
           muted
           loop
           aria-label="Sin eventos programados por ahora"
+          onError={(e) => {
+            e.target.style.display = "none";
+            console.error("El video no se pudo cargar.");
+          }}
         />
-        <h3 className="countdown-text">¡No te pierdas nuestras próximas novedades!</h3>
-      </>
-    )}
+      )}
+    </div>
+    <h3 className="countdown-text">
+      {upcomingEvent
+        ? upcomingEvent.name.text
+        : "¡No te pierdas este evento especial!"}
+    </h3>
   </div>
-  <div className="event-card">
-    {upcomingEvent ? (
-      <>
-        <img
-          src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
-          alt="Próximo evento"
-        />
-        <Link to="/eventos">
-          <button className="secondary-button">Más información</button>
-        </Link>
-      </>
-    ) : null}
-  </div>
+  {upcomingEvent && (
+    <div className="event-card">
+      <img
+        src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
+        alt="Próximo evento"
+      />
+      <Link to="/eventos">
+        <button className="secondary-button">Más información</button>
+      </Link>
+    </div>
+  )}
 </div>
+
 
           {/* <div className="section-countdown">
             <div className="countdown-content">
