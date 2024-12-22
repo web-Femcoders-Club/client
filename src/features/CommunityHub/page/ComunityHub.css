@@ -1,0 +1,16 @@
+.comunity-hub {
+  padding: 3rem;
+  text-align: center;
+  background-color: #f9fafb;
+}
+
+.comunity-hub-header {
+  margin-top: 6rem;
+}
+
+.comunity-hub-diffs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}

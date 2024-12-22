@@ -22,7 +22,6 @@ const ManageAchievements: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
 
-  // Fetch usuarios
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -42,7 +41,6 @@ const ManageAchievements: React.FC = () => {
     fetchUsers();
   }, []);
 
-  // Fetch logros
   useEffect(() => {
     const fetchAchievements = async () => {
       try {
@@ -67,6 +65,10 @@ const ManageAchievements: React.FC = () => {
     }
 
     try {
+      console.log("Datos enviados:", {
+        achievementId: achievement.id,
+      });
+
       const response = await fetch(
         `/api/admin/users/${selectedUser}/achievements`,
         {
@@ -79,15 +81,24 @@ const ManageAchievements: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Error al asignar el logro.");
+        const errorData = await response.json();
+        console.error("Error al asignar el logro:", errorData);
+        throw new Error(
+          errorData.message || "Error desconocido al asignar el logro."
+        );
       }
+
+      const responseData = await response.json();
+      console.log("Respuesta recibida:", responseData);
 
       alert(
         `Logro "${achievement.title}" asignado con éxito al usuario ID ${selectedUser}.`
       );
     } catch (err) {
-      console.error(err);
-      alert("Hubo un error al asignar el logro.");
+      console.error("Error al asignar logro:", err);
+      alert(
+        "Hubo un error al asignar el logro. Revisa los detalles en la consola."
+      );
     }
   };
 

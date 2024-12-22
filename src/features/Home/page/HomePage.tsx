@@ -386,8 +386,58 @@ const HomePage: React.FC = () => {
               <br /> <FaStar color="#EA4F33" className="icon" />
             </p>
           </div>
-
           <div className="section-countdown">
+  <div className="countdown-content">
+    {upcomingEvent ? (
+      <>
+        <h2>¡Próximo evento!</h2>
+        <div className="countdown">
+          <div className="countdown-item">
+            <span>{timeLeft.days}</span> días
+          </div>
+          <div className="countdown-item">
+            <span>{timeLeft.hours}</span> horas
+          </div>
+          <div className="countdown-item">
+            <span>{timeLeft.minutes}</span> minutos
+          </div>
+          <div className="countdown-item">
+            <span>{timeLeft.seconds}</span> segundos
+          </div>
+        </div>
+        <h3 className="countdown-text">{upcomingEvent.name.text}</h3>
+      </>
+    ) : (
+      <>
+        <h2>Próximamente</h2>
+        <video
+          src="/assets/videos/SinEvento.mp4"
+          className="no-event-video"
+          autoPlay
+          muted
+          loop
+          aria-label="Sin eventos programados por ahora"
+        />
+        <h3 className="countdown-text">¡No te pierdas nuestras próximas novedades!</h3>
+      </>
+    )}
+  </div>
+  <div className="event-card">
+    {upcomingEvent ? (
+      <>
+        <img
+          src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
+          alt="Próximo evento"
+        />
+        <Link to="/eventos">
+          <button className="secondary-button">Más información</button>
+        </Link>
+      </>
+    ) : null}
+  </div>
+</div>
+
+          {/* <div className="section-countdown">
             <div className="countdown-content">
               <h2>¡Próximo evento!</h2>
               <div className="countdown">
@@ -421,7 +471,7 @@ const HomePage: React.FC = () => {
                 <button className="secondary-button">Más información</button>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

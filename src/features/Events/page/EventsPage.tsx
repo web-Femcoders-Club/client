@@ -125,7 +125,17 @@ const EventsPage = () => {
               );
             })
           ) : (
-            <p>No hay próximos eventos disponibles</p>
+            <div className="no-events">
+              <video
+                src="/assets/videos/SinEvento.mp4"
+                className="custom-video"
+                controls
+                autoPlay
+                loop
+                muted
+                aria-label="Video promocional: Próximamente más eventos de femCoders Club."
+              ></video>
+            </div>
           )}
         </div>
       </section>

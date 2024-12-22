@@ -6,6 +6,7 @@ const Noticias: React.FC = () => {
   return (
     <div className="noticias">
       <h2>Noticias</h2>
+
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
@@ -15,6 +16,21 @@ const Noticias: React.FC = () => {
             </p>
           </div>
           <Link to="/noticias/Aniversario" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h2>Querida comunidad femCoders Club, ¡felices fiestas! 👩‍💻🎄</h2>
+            <p className="intro-text">
+              Querida comunidad, os deseamos unas felices fiestas llenas de
+              innovación y éxito...
+            </p>
+          </div>
+          <Link to="/noticias/FelicitacionNavidad" className="secondary-button">
             Leer más
           </Link>
         </div>

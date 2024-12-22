@@ -10,7 +10,6 @@ const getAuthHeader = (token: string) => {
   return { Authorization: `Bearer ${token}` };
 };
 
-// Lógica para enviar correos relacionados con mentorías
 export const sendMentorshipEmail = async (
   emailData: EmailDto,
   token: string

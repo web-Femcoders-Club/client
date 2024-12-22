@@ -58,6 +58,23 @@ const WelcomePage = () => {
     enabled: resolvedUserId > 0,
   });
 
+  const [achievements, setAchievements] = useState([]);
+
+  useEffect(() => {
+    const fetchAchievements = async () => {
+      try {
+        const resolvedUserId = parseInt(localStorage.getItem("userId") || "0");
+        const data = await getUserAchievements(resolvedUserId);
+        setAchievements(data);
+        console.log("Logros obtenidos:", data);
+      } catch (error) {
+        console.error("Error recuperando los logros:", error);
+      }
+    };
+
+    fetchAchievements();
+  }, []);
+
   const combinedAchievements = [defaultAchievement, ...userAchievements];
 
   useEffect(() => {
@@ -262,8 +279,11 @@ const WelcomePage = () => {
           <ul className="space-y-2">
             {[
               { to: "/personaliza-perfil", text: "Personaliza tu perfil" },
-              { to: "/eventos", text: "Eventos" },
-              { to: "/recursos-exclusivos", text: "Recursos Exclusivos" },
+              { to: "/presentaciones-destacadas", text: "Presentaciones" },
+              {
+                to: "/recursos-comunidad-femcoders-club",
+                text: "Recursos Exclusivos",
+              },
               { to: "/mentoria", text: "¿Necesitas mentoría?" },
               { to: "/enviar-documentacion", text: "Enviar documentación" },
             ].map((item) => (
@@ -377,9 +397,16 @@ const WelcomePage = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="text-base lg:text-lg mt-4 text-custom-blue">
-                    No hay próximos eventos disponibles.
-                  </p>
+                  <div className="no-events-container">
+                    <video
+                      src="/assets/videos/SinEvento.mp4"
+                      className="no-event-video"
+                      autoPlay
+                      muted
+                      loop
+                      aria-label="Sin eventos programados por ahora"
+                    />
+                  </div>
                 )}
               </div>
             </div>
@@ -434,7 +461,6 @@ const WelcomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Create a project */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -475,7 +501,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Write a post */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -514,7 +539,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Be a community promoter */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -556,8 +580,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Propose ideas */}
-
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -596,7 +618,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Be a mentor */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -682,7 +703,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Be a speaker */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -724,7 +744,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Share resources */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -765,7 +784,6 @@ const WelcomePage = () => {
                 </div>
               </div>
 
-              {/* Empresas */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{

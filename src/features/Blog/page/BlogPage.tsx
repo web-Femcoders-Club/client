@@ -91,8 +91,7 @@ const BlogPage: React.FC = () => {
       type: "recurso",
       category: "html",
       title: "Introducción a las APIs en HTML",
-      description:
-        "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.",
+      description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.",
       createdAt: new Date("2024-10-15"),
     },
     {
@@ -113,6 +112,15 @@ const BlogPage: React.FC = () => {
         "Aprende cómo HTML se relaciona con frameworks modernos como React, Vue.js, Angular y Svelte para crear aplicaciones web dinámicas.",
       createdAt: new Date("2024-10-27"),
     },
+    {
+      id: 10,
+      type: "noticia",
+      category: "femCoders",
+      title: "femCoders Club -🎄 Felicitación Navideña 2024",
+      description:
+        "Querida comunidad, os deseamos unas felices fiestas llenas de innovación y éxito.",
+      createdAt: new Date("2024-12-22"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -122,7 +130,11 @@ const BlogPage: React.FC = () => {
     const matchSearch =
       normalizedTitle.includes(normalizedSearchQuery) ||
       normalizedDescription.includes(normalizedSearchQuery);
-    const matchCategory = !categoryFilter || post.category === categoryFilter;
+    const matchCategory =
+      !categoryFilter ||
+      (categoryFilter === "femCoders Club"
+        ? normalizedTitle.includes("femcoders")
+        : post.category === categoryFilter);
     return matchSearch && matchCategory;
   });
 
@@ -135,6 +147,8 @@ const BlogPage: React.FC = () => {
     switch (post.title) {
       case "femCoders Club - Primer Aniversario":
         return `/noticias/Aniversario`;
+      case "femCoders Club -🎄 Felicitación Navideña 2024":
+        return `/noticias/FelicitacionNavidad`;
       case "Introducción a HTML":
         return `/recursos/html/introduccion-html`;
       case "Elementos HTML Clave":
@@ -245,17 +259,22 @@ const BlogPage: React.FC = () => {
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
           <div className="category-buttons">
-            {["html", "javascript", "react", "css", "python", "femCoders Club"].map(
-              (category) => (
-                <button
-                  key={category}
-                  onClick={() => handleCategoryFilter(category)}
-                  className="button secondary-button"
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              )
-            )}
+            {[
+              "html",
+              "javascript",
+              "react",
+              "css",
+              "python",
+              "femCoders Club",
+            ].map((category) => (
+              <button
+                key={category}
+                onClick={() => handleCategoryFilter(category)}
+                className="button secondary-button"
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -290,7 +309,9 @@ const BlogPage: React.FC = () => {
               <h3>Publicaciones Recientes</h3>
               <div className="post-grid">
                 {posts
-                  .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+                  .sort(
+                    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+                  )
                   .slice(0, 3)
                   .map((post) => (
                     <div key={post.id} className="post-card">
