@@ -58,6 +58,7 @@ const WelcomePage = () => {
     enabled: resolvedUserId > 0,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [achievements, setAchievements] = useState([]);
 
   useEffect(() => {

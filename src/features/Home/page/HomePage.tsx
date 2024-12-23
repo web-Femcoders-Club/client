@@ -414,7 +414,7 @@ const HomePage: React.FC = () => {
           loop
           aria-label="Sin eventos programados por ahora"
           onError={(e) => {
-            e.target.style.display = "none";
+            (e.target as HTMLVideoElement).style.display = "none";
             console.error("El video no se pudo cargar.");
           }}
         />
