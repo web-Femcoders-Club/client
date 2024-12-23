@@ -48,7 +48,7 @@ const APIsHtml = lazy(
 const HtmlAvanzado = lazy(
   () => import("../features/Blog/posts/recursos/html/HtmlAvanzado")
 );
-// const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
+const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 const PersonalizaPerfil = lazy(
   () => import("../features/PersonalizaPerfil/page/PersonalizaPerfil")
 );
@@ -257,14 +257,14 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-          {/* <Route
+          <Route
             path="/welcome"
             element={
               <Layout>
                 <WelcomePage />
               </Layout>
             }
-          /> */}
+          />
           <Route
             path="/personaliza-perfil"
             element={
