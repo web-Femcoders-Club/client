@@ -397,16 +397,19 @@ const WelcomePage = () => {
                     </div>
                   ))
                 ) : (
-                  <div className="no-events-container">
-                    <video
-                      src="/assets/videos/SinEvento.mp4"
-                      className="no-event-video"
-                      autoPlay
-                      muted
-                      loop
-                      aria-label="Sin eventos programados por ahora"
-                    />
-                  </div>
+                  // <div className="no-events-container">
+                  //   <video
+                  //     src="/assets/videos/SinEvento.mp4"
+                  //     className="no-event-video"
+                  //     autoPlay
+                  //     muted
+                  //     loop
+                  //     aria-label="Sin eventos programados por ahora"
+                  //   />
+                  // </div>
+                  <p className="text-base text-gray-600">
+                    No hay eventos programados por ahora.
+                  </p>
                 )}
               </div>
             </div>

@@ -386,7 +386,7 @@ const HomePage: React.FC = () => {
               <br /> <FaStar color="#EA4F33" className="icon" />
             </p>
           </div>
-          <div className="section-countdown">
+          {/* <div className="section-countdown">
   <div className="countdown-content">
     <h2>¡Próximo evento!</h2>
     <div className="countdown">
@@ -437,10 +437,10 @@ const HomePage: React.FC = () => {
       </Link>
     </div>
   )}
-</div>
+</div> */}
 
 
-          {/* <div className="section-countdown">
+          <div className="section-countdown">
             <div className="countdown-content">
               <h2>¡Próximo evento!</h2>
               <div className="countdown">
@@ -474,7 +474,7 @@ const HomePage: React.FC = () => {
                 <button className="secondary-button">Más información</button>
               </Link>
             </div>
-          </div> */}
+          </div>
         </div>
       </section>
 
