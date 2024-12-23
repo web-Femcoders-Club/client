@@ -249,6 +249,7 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...dataToSend } = formData;
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user`,
