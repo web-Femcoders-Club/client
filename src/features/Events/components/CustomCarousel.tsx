@@ -126,6 +126,17 @@ const CustomCarousel = () => {
     {
       src: "/assets/semRush/crisMouta.jpg",
       text: "Cris Mouta, arquitecta convertida en programadora y formadora fullstack, nos mostró los fundamentos de la Programación Orientada a Objetos (POO), destacando la importancia de la creatividad y pasión en el desarrollo de software.",
+
+    },
+      {
+      src: "/assets/ultimosEventos2024/rocioCejudo.jpg",
+      text: "Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla. ",
+      
+    },
+    {
+      src: "/assets/ultimosEventos2024/lorenaSalvador.jpg",
+      text: "Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.",
+      
     },
     
   ];

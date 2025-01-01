@@ -117,6 +117,16 @@ const SponsorsTimeline = () => {
       website: "https://www.semrush.com/",
       backgroundImage: "assets/semRush/oficina-SemRush.jpg", 
     },
+    {
+      date: "2024-11-28",
+      sponsor: "SeatCode",
+      event: "Diseño, Accesibilidad y Ciberseguridad en el desarollo web",
+      description:
+        "En colaboración con SeatCode, exploramos tres pilares fundamentales para el desarrollo web moderno: diseño intuitivo, accesibilidad inclusiva y ciberseguridad sólida. Este evento destacó cómo estas áreas se complementan para construir experiencias digitales seguras, funcionales y accesibles para todas las personas. Gracias a SeatCode, nuestras asistentes pudieron aprender de profesionales destacadas en un entorno dinámico y lleno de inspiración.",
+      logo: "assets/UltimosEventos2024/logoSeatCode.jpg", 
+      website: "https://code.seat/",
+      backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg", 
+    },
   ];
 
   const handlePrev = () => {

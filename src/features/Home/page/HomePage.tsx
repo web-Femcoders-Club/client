@@ -38,6 +38,7 @@ const HomePage: React.FC = () => {
 
   const images = [
     "/eventoCarmenAnsio.jpg",
+    "/assets/UltimosEventos2024/LorenaSalvadorPonenteAccesibilidad.jpg",
     "/eventoFactoriaF5.jpg",
     "/mujeresTech.jpg",
     "/comunidadFemCodersClubEventoCriteo.jpg",
@@ -70,6 +71,8 @@ const HomePage: React.FC = () => {
     "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
     "/assets/semRush/AnaSemrush.jpg",
     "/assets/semRush/eventoSemrush.jpg",
+    "/assets/UltimosEventos2024/eventoSeatCode.jpg",
+    "/assets/UltimosEventos2024/eventoInteligenciaEmocional.jpg",
   ];
 
   const texts = [
@@ -386,7 +389,7 @@ const HomePage: React.FC = () => {
               <br /> <FaStar color="#EA4F33" className="icon" />
             </p>
           </div>
-          {/* <div className="section-countdown">
+          <div className="section-countdown">
   <div className="countdown-content">
     <h2>¡Próximo evento!</h2>
     <div className="countdown">
@@ -437,9 +440,9 @@ const HomePage: React.FC = () => {
       </Link>
     </div>
   )}
-</div> */}
+</div>
 
-
+{/* 
           <div className="section-countdown">
             <div className="countdown-content">
               <h2>¡Próximo evento!</h2>
@@ -474,7 +477,7 @@ const HomePage: React.FC = () => {
                 <button className="secondary-button">Más información</button>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
