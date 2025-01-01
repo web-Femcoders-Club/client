@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -59,7 +59,9 @@ const WelcomePage = () => {
     enabled: resolvedUserId > 0,
   });
 
-  const [achievements, setAchievements] = useState([]);
+  // const [achievements, setAchievements] = useState([]);
+  const [, setAchievements] = useState([]);
+  
 
   useEffect(() => {
     const fetchAchievements = async () => {
