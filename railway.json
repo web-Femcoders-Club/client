@@ -2,12 +2,26 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "pnpm install --no-frozen-lockfile && pnpm run build"
+    "phases": {
+      "setup": {
+        "commands": [
+          "corepack enable",
+          "corepack prepare pnpm@latest --activate"
+        ]
+      },
+      "install": {
+        "commands": [
+          "pnpm install --no-frozen-lockfile"
+        ]
+      },
+      "build": {
+        "commands": [
+          "pnpm run build"
+        ]
+      }
+    }
   },
   "deploy": {
-    "startCommand": "pnpm run dev",
-    "healthcheckPath": "/",
-    "healthcheckTimeout": 100,
-    "restartPolicyType": "never"
+    "startCommand": "pnpm run dev"
   }
 }
