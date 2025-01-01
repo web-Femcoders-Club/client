@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
