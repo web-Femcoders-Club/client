@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent, useRef } from "react";
-import emailjs from "@emailjs/browser";
+// import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import { FaUserFriends, FaBriefcase, FaStar } from "react-icons/fa";
@@ -172,37 +172,75 @@ const HomePage: React.FC = () => {
     );
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
+  //   if (!form.current) {
+  //     throw new Error("The form element is not found");
+  //   }
+
+  //   const formData = new FormData(form.current);
+
+  //   const serviceId = import.meta.env.VITE_API_SERVICE_ID;
+  //   const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
+  //   const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
+
+  //   const templateParams = {
+  //     to_email: "info@femcodersclub.com",
+  //     userName: formData.get("name"),
+  //     userLastName: formData.get("last-name"),
+  //     userEmail: formData.get("email"),
+  //     message: formData.get("message"),
+  //   };
+
+  //   emailjs
+  //     .send(serviceId, templateId, templateParams, apiKey)
+  //     .then((result) => {
+  //       console.log(result.text);
+  //       setShowMessage(true);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
     if (!form.current) {
       throw new Error("The form element is not found");
     }
-
+  
     const formData = new FormData(form.current);
-
-    const serviceId = import.meta.env.VITE_API_SERVICE_ID;
-    const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
-    const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
-
-    const templateParams = {
-      to_email: "info@femcodersclub.com",
-      userName: formData.get("name"),
-      userLastName: formData.get("last-name"),
-      userEmail: formData.get("email"),
+    const data = {
+      name: formData.get("name"),
+      lastName: formData.get("last-name"),
+      email: formData.get("email"),
       message: formData.get("message"),
     };
-
-    emailjs
-      .send(serviceId, templateId, templateParams, apiKey)
-      .then((result) => {
-        console.log(result.text);
-        setShowMessage(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/email-formulario/send`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error("Error enviando el formulario.");
+      }
+  
+      console.log("Formulario enviado con éxito");
+      setShowMessage(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
 
   return (
     <>
