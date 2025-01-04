@@ -49,6 +49,10 @@ const HtmlAvanzado = lazy(
   () => import("../features/Blog/posts/recursos/html/HtmlAvanzado")
 );
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
+const Bienvenido2025 = lazy(
+  () => import("../features/Blog/posts/noticias/Bienvenido2025")
+);
+
 const PersonalizaPerfil = lazy(
   () => import("../features/PersonalizaPerfil/page/PersonalizaPerfil")
 );
@@ -329,7 +333,17 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+           <Route
+          path="/noticias/Bienvenido2025"
+          element={
+            <Layout>
+              <Bienvenido2025 />
+            </Layout>
+          }
+        />
         </Routes>
+       
+        
       </Suspense>
 
       {modalType === "cookiePolicy" && (

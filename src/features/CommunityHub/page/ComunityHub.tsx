@@ -10,6 +10,7 @@ interface Resource {
   title: string;
   description: string;
   githubLink: string;
+  liveDemo?: string;
 }
 
 const ComunityHub: React.FC = () => {
@@ -17,61 +18,62 @@ const ComunityHub: React.FC = () => {
 
   const resources: Resource[] = [
     {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
-      title: "Frontend Moderno",
-      description: "Explora componentes de frontend con React y Tailwind CSS.",
-      githubLink: "https://github.com/tu-proyecto/frontend",
+      image1: "/assets/ComunityHub/collage.png",
+      title: "Cv4Coders",
+      description:
+        "Plantillas de CV personalizables creadas con HTML, CSS y JavaScript, diseñadas para profesionales del sector tecnológico. Crea currículums únicos y adapta cada plantilla a tu estilo y necesidades.",
+      githubLink: "https://github.com/femcodersclub/cv4Coders",
+      liveDemo: "https://femcodersclub.github.io/cv4Coders/", // Enlace correcto
     },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-      title: "Backend Sólido",
-      description: "APIs robustas construidas con Node.js y NestJS.",
-      githubLink: "https://github.com/tu-proyecto/backend",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-      title: "Aplicaciones Fullstack",
-      description: "Desarrollo de aplicaciones completas con React y Node.js.",
-      githubLink: "https://github.com/tu-proyecto/fullstack",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
-      title: "HTML Semántico",
-      description: "Prácticas accesibles con HTML5 y SEO.",
-      githubLink: "https://github.com/tu-proyecto/html-semantico",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-      title: "Backend Avanzado",
-      description: "Microservicios avanzados con NestJS y Docker.",
-      githubLink: "https://github.com/tu-proyecto/backend-avanzado",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-      title: "APIs RESTful",
-      description: "Crea APIs RESTful robustas usando Express.js.",
-      githubLink: "https://github.com/tu-proyecto/apis-rest",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
-      title: "Diseño UI/UX",
-      description: "Interfaces atractivas y funcionales.",
-      githubLink: "https://github.com/tu-proyecto/uiux",
-    },
-    {
-      image1:
-        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-      title: "Pruebas Unitarias",
-      description: "Escribe tests unitarios con Jest.",
-      githubLink: "https://github.com/tu-proyecto/tests",
-    },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    //   title: "Backend Sólido",
+    //   description: "APIs robustas construidas con Node.js y NestJS.",
+    //   githubLink: "https://github.com/tu-proyecto/backend",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    //   title: "Aplicaciones Fullstack",
+    //   description: "Desarrollo de aplicaciones completas con React y Node.js.",
+    //   githubLink: "https://github.com/tu-proyecto/fullstack",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
+    //   title: "HTML Semántico",
+    //   description: "Prácticas accesibles con HTML5 y SEO.",
+    //   githubLink: "https://github.com/tu-proyecto/html-semantico",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    //   title: "Backend Avanzado",
+    //   description: "Microservicios avanzados con NestJS y Docker.",
+    //   githubLink: "https://github.com/tu-proyecto/backend-avanzado",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    //   title: "APIs RESTful",
+    //   description: "Crea APIs RESTful robustas usando Express.js.",
+    //   githubLink: "https://github.com/tu-proyecto/apis-rest",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
+    //   title: "Diseño UI/UX",
+    //   description: "Interfaces atractivas y funcionales.",
+    //   githubLink: "https://github.com/tu-proyecto/uiux",
+    // },
+    // {
+    //   image1:
+    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    //   title: "Pruebas Unitarias",
+    //   description: "Escribe tests unitarios con Jest.",
+    //   githubLink: "https://github.com/tu-proyecto/tests",
+    // },
   ];
 
   const handleSearch = (query: string) => setSearchQuery(query);
@@ -114,8 +116,7 @@ const ComunityHub: React.FC = () => {
           <h1>¡Potencia tu código con FemCoders Club!</h1>
           <Buscar onSearch={handleSearch} />
           <p className="styled-paragraph">
-            ¡Empodera tus habilidades técnicas con FemCoders Club! En nuestros
-            repositorios de GitHub encontrarás una comunidad de mujeres
+            ¡Empodera tus habilidades técnicas con FemCoders Club! En nuestros <span><a href="https://github.com/femcodersclub" target="_blank" rel="noopener noreferrer " className="underline">repositorios de GitHub</a> </span>encontrarás una comunidad de mujeres
             programadoras que comparten sus conocimientos y proyectos. Desde
             tutoriales para principiantes hasta desafíos para desarrolladoras
             experimentadas, ¡aquí encontrarás el espacio perfecto para crecer y
@@ -132,6 +133,7 @@ const ComunityHub: React.FC = () => {
                 title={resource.title}
                 description={resource.description}
                 githubLink={resource.githubLink}
+                liveDemo={resource.liveDemo}
               />
             ))}
           </div>

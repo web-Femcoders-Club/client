@@ -121,6 +121,15 @@ const BlogPage: React.FC = () => {
         "Querida comunidad, os deseamos unas felices fiestas llenas de innovación y éxito.",
       createdAt: new Date("2024-12-22"),
     },
+    {
+      id: 11,
+      type: "noticia",
+      category: "femCoders",
+      title: "¡Bienvenidas a 2025 con FemCoders Club! 🎉",
+      description:
+        "Descubre los emocionantes planes y eventos que tenemos preparados para este nuevo año. 🌟",
+      createdAt: new Date("2025-01-03"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -165,6 +174,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/html/html-seo-accesibilidad`;
       case "Integración de Frameworks y Librerías":
         return `/recursos/html/integracion-frameworks`;
+        case "¡Bienvenidas a 2025 con FemCoders Club! 🎉":
+          return `/noticias/Bienvenido2025`;
       default:
         return `/`;
     }

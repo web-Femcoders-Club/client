@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -61,7 +60,6 @@ const WelcomePage = () => {
 
   // const [achievements, setAchievements] = useState([]);
   const [, setAchievements] = useState([]);
-  
 
   useEffect(() => {
     const fetchAchievements = async () => {
@@ -113,6 +111,7 @@ const WelcomePage = () => {
 
   const getMotivationalMessage = () => {
     const messages = [
+      "La tecnología debe ser un puente hacia la igualdad, no una barrera - Tarana Burke",
       "Las mujeres programadoras estamos cambiando el mundo, ¡una línea de código a la vez! 👩‍💻✨",
       "Tu perspectiva única hace que tu código sea especial. ¡Sigue brillando! 💫👑",
       "Ada Lovelace comenzó con un algoritmo. ¡Tú puedes crear lo que imagines! 🚀💪",
@@ -312,7 +311,6 @@ const WelcomePage = () => {
     </div>
   );
 
- 
   const Overlay = () =>
     (isSidebarOpen || isHovering) && (
       <div
@@ -326,7 +324,6 @@ const WelcomePage = () => {
       />
     );
 
- 
   const MenuTrigger = () => (
     <div
       className="lg:hidden fixed top-40 left-4 z-20 p-2 rounded-lg shadow-lg cursor-pointer"
@@ -400,19 +397,19 @@ const WelcomePage = () => {
                     </div>
                   ))
                 ) : (
-                  // <div className="no-events-container">
-                  //   <video
-                  //     src="/assets/videos/SinEvento.mp4"
-                  //     className="no-event-video"
-                  //     autoPlay
-                  //     muted
-                  //     loop
-                  //     aria-label="Sin eventos programados por ahora"
-                  //   />
-                  // </div>
-                  <p className="text-base text-gray-600">
-                    No hay eventos programados por ahora.
-                  </p>
+                  <div className="no-events-container">
+                    <video
+                      src="/assets/videos/SinEvento.mp4"
+                      className="no-event-video"
+                      autoPlay
+                      muted
+                      loop
+                      aria-label="Sin eventos programados por ahora"
+                    />
+                  </div>
+                  // <p className="text-base text-gray-600">
+                  //   No hay eventos programados por ahora.
+                  // </p>
                 )}
               </div>
             </div>
@@ -832,6 +829,34 @@ const WelcomePage = () => {
               </div>
             </div>
           </div>
+
+          {/* quiz para conseguir certificado html  
+          <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300">
+            <div className="flex items-center gap-4 mb-8">
+              <Award className="w-8 h-8 text-indigo-500" />
+              <h2>Obtén tu certificado de HTML</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-64 pr-2">
+              <div className="group relative p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <h1>🎓</h1>
+                </div>
+                <h5 className="font-semibold">Certificado de HTML</h5>
+                <p className="text-base lg:text-lg mt-4 text-custom-blue">
+                  ¡Completa el quiz de HTML y obtén tu certificado de
+                  programación web! ¡Demuestra tus habilidades y conocimientos en
+                  HTML!
+                </p>
+                <button
+                  className="px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition-all"
+                  onClick={() => history.push("/quiz-html")}
+                >
+                  ¡Comenzar el Quiz!
+                </button>
+              </div>
+            </div>
+          </div>*/}
         </div>
       </div>
     </div>

@@ -68,6 +68,8 @@
   color: #fdfdfd;
   font-weight: bold;
   text-decoration: underline;
+  cursor: pointer;
+  margin-top: 0.3rem;
 }
 
 .diff-link:hover {

@@ -6,6 +6,7 @@ interface DiffProps {
   title: string;
   description: string;
   githubLink: string;
+  liveDemo?: string; // Incluimos liveDemo como opcional
 }
 
 const DiffComponent: React.FC<DiffProps> = ({
@@ -13,6 +14,7 @@ const DiffComponent: React.FC<DiffProps> = ({
   title,
   description,
   githubLink,
+  liveDemo,
 }) => {
   const [dividerPosition, setDividerPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,17 +40,27 @@ const DiffComponent: React.FC<DiffProps> = ({
 
   return (
     <div ref={containerRef} className="diff-container">
-      <div className="diff-image">
-        <img src={image1} alt="Imagen del proyecto" />
-      </div>
+      {/* Enlace para la imagen con liveDemo */}
+      {liveDemo ? (
+        <a
+          href={liveDemo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="diff-image-link"
+        >
+          <div className="diff-image">
+            <img src={image1} alt={`Vista previa de ${title}`} />
+          </div>
+        </a>
+      ) : (
+        <div className="diff-image">
+          <img src={image1} alt={`Vista previa de ${title}`} />
+        </div>
+      )}
 
+      {/* Superposición con contenido */}
       <div className="diff-overlay" style={{ width: `${dividerPosition}%` }}>
         <div className="diff-content">
-          <img
-            src="/FemCodersClubLogo.png"
-            alt="FemCoders Club"
-            className="diff-logo"
-          />
           <h3 className="diff-title">{title}</h3>
           <p className="diff-description">{description}</p>
           <a
@@ -62,6 +74,7 @@ const DiffComponent: React.FC<DiffProps> = ({
         </div>
       </div>
 
+      {/* Divisor para ajustar el contenido */}
       <div
         className="diff-divider"
         style={{ left: `${dividerPosition}%` }}
@@ -74,3 +87,12 @@ const DiffComponent: React.FC<DiffProps> = ({
 };
 
 export default DiffComponent;
+
+
+
+
+
+
+
+
+

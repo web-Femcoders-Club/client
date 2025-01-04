@@ -35,6 +35,21 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h2>¡Bienvenidas a 2025 con FemCoders Club! 🎉</h2>
+            <p className="intro-text">
+              Comenzamos el año con grandes expectativas y nuevos retos para
+              nuestra comunidad. Descubre qué tenemos preparado...
+            </p>
+          </div>
+          <Link to="/noticias/Bienvenido2025" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
