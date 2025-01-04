@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent, useRef } from "react";
-// import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import { FaUserFriends, FaBriefcase, FaStar } from "react-icons/fa";
@@ -172,37 +171,6 @@ const HomePage: React.FC = () => {
     );
   };
 
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   if (!form.current) {
-  //     throw new Error("The form element is not found");
-  //   }
-
-  //   const formData = new FormData(form.current);
-
-  //   const serviceId = import.meta.env.VITE_API_SERVICE_ID;
-  //   const templateId = import.meta.env.VITE_API_TEMPLATE_ID;
-  //   const apiKey = import.meta.env.VITE_API_EMAILJS_KEY;
-
-  //   const templateParams = {
-  //     to_email: "info@femcodersclub.com",
-  //     userName: formData.get("name"),
-  //     userLastName: formData.get("last-name"),
-  //     userEmail: formData.get("email"),
-  //     message: formData.get("message"),
-  //   };
-
-  //   emailjs
-  //     .send(serviceId, templateId, templateParams, apiKey)
-  //     .then((result) => {
-  //       console.log(result.text);
-  //       setShowMessage(true);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
@@ -430,37 +398,34 @@ const HomePage: React.FC = () => {
           <div className="section-countdown">
   <div className="countdown-content">
     <h2>¡Próximo evento!</h2>
-    <div className="countdown">
-      {upcomingEvent ? (
-        <>
-          <div className="countdown-item">
-            <span>{timeLeft.days}</span> días
-          </div>
-          <div className="countdown-item">
-            <span>{timeLeft.hours}</span> horas
-          </div>
-          <div className="countdown-item">
-            <span>{timeLeft.minutes}</span> minutos
-          </div>
-          <div className="countdown-item">
-            <span>{timeLeft.seconds}</span> segundos
-          </div>
-        </>
-      ) : (
-        <video
-          src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
-          className="no-event-video"
-          autoPlay
-          muted
-          loop
-          aria-label="Sin eventos programados por ahora"
-          onError={(e) => {
-            (e.target as HTMLVideoElement).style.display = "none";
-            console.error("El video no se pudo cargar.");
-          }}
-        />
-      )}
-    </div>
+    {upcomingEvent ? (
+      <div className="countdown">
+        <div className="countdown-item">
+          <span>{timeLeft.days}</span> días
+        </div>
+        <div className="countdown-item">
+          <span>{timeLeft.hours}</span> horas
+        </div>
+        <div className="countdown-item">
+          <span>{timeLeft.minutes}</span> minutos
+        </div>
+        <div className="countdown-item">
+          <span>{timeLeft.seconds}</span> segundos
+        </div>
+      </div>
+    ) : (
+      <video
+        src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
+        className="no-event-video"
+        autoPlay
+        muted
+        loop
+        onError={(e) => {
+          console.error("El video no se pudo cargar.");
+          (e.target as HTMLVideoElement).style.display = "none";
+        }}
+      />
+    )}
     <h3 className="countdown-text">
       {upcomingEvent
         ? upcomingEvent.name.text
@@ -479,6 +444,7 @@ const HomePage: React.FC = () => {
     </div>
   )}
 </div>
+
 
 {/* 
           <div className="section-countdown">

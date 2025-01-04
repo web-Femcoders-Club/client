@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import React, { useState } from "react";
 // import axios from "axios";
 // import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@
 //     userLastName: "",
 //     userEmail: "",
 //     userPassword: "",
+//     confirmPassword: "",
 //     userTelephone: "",
 //     userGender: "",
 //     userRole: "",
@@ -48,6 +50,9 @@
 //     ) {
 //       return "La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número.";
 //     }
+//     if (formData.userPassword !== formData.confirmPassword) {
+//       return "Las contraseñas no coinciden.";
+//     }
 //     if (!/^\d{9,15}$/.test(formData.userTelephone)) {
 //       return "El número de teléfono no es válido.";
 //     }
@@ -65,9 +70,11 @@
 //       return;
 //     }
 //     try {
+//       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+//       const { confirmPassword, ...dataToSend } = formData;
 //       const response = await axios.post(
 //         `${import.meta.env.VITE_API_URL}/user`,
-//         formData
+//         dataToSend
 //       );
 //       console.log("Registration successful:", response.data);
 //       navigate("/login");
@@ -129,6 +136,15 @@
 //                 onChange={handleChange}
 //                 required
 //               />
+//               <label htmlFor="confirmPassword">Repetir Contraseña:</label>
+//               <input
+//                 type="password"
+//                 id="confirmPassword"
+//                 name="confirmPassword"
+//                 value={formData.confirmPassword}
+//                 onChange={handleChange}
+//                 required
+//               />
 //               <label htmlFor="userTelephone">Teléfono:</label>
 //               <input
 //                 type="text"
@@ -151,7 +167,7 @@
 //                 <option value="No binario">No binario</option>
 //                 <option value="Prefiero no decir">Prefiero no decir</option>
 //               </select>
-//               <label htmlFor="userRole">Rol:</label>
+//               {/* <label htmlFor="userRole">Rol:</label>
 //               <select
 //                 id="userRole"
 //                 name="userRole"
@@ -163,7 +179,7 @@
 //                 <option value="user">Usuario</option>
 //                 <option value="volunteer">Voluntario</option>
 //                 <option value="sponsor">Sponsor</option>
-//               </select>
+//               </select> */}
 //               {error && <p className="error-message">{error}</p>}
 //               <button type="submit" className="primary-button">
 //                 Registrarse
@@ -178,9 +194,11 @@
 
 // export default RegisterForm;
 
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 import "../../LogIn/page/LoginPage.css";
 import "../../LogIn/components/LoginForm.css";
 
@@ -196,6 +214,9 @@ const RegisterForm: React.FC = () => {
     userRole: "",
   });
   const [error, setError] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (
@@ -235,9 +256,9 @@ const RegisterForm: React.FC = () => {
     if (!/^\d{9,15}$/.test(formData.userTelephone)) {
       return "El número de teléfono no es válido.";
     }
-    if (!formData.userRole) {
-      return "Por favor, selecciona un rol.";
-    }
+    // if (!formData.userRole) {
+    //   return "Por favor, selecciona un rol.";
+    // }
     return "";
   };
 
@@ -249,7 +270,6 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { confirmPassword, ...dataToSend } = formData;
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user`,
@@ -261,6 +281,25 @@ const RegisterForm: React.FC = () => {
       setError("Error al registrarse. Inténtalo de nuevo.");
     }
   };
+
+  const passwordRequirements = [
+    {
+      met: formData.userPassword.length >= 8,
+      text: "Mínimo 8 caracteres",
+    },
+    {
+      met: /[A-Z]/.test(formData.userPassword),
+      text: "Al menos una mayúscula",
+    },
+    {
+      met: /[a-z]/.test(formData.userPassword),
+      text: "Al menos una minúscula",
+    },
+    {
+      met: /[0-9]/.test(formData.userPassword),
+      text: "Al menos un número",
+    },
+  ];
 
   return (
     <div className="login-page bg1">
@@ -307,23 +346,71 @@ const RegisterForm: React.FC = () => {
                 required
               />
               <label htmlFor="userPassword">Contraseña:</label>
-              <input
-                type="password"
-                id="userPassword"
-                name="userPassword"
-                value={formData.userPassword}
-                onChange={handleChange}
-                required
-              />
+              <div className="relative w-full">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="userPassword"
+                  name="userPassword"
+                  value={formData.userPassword}
+                  onChange={handleChange}
+                  onFocus={() => setPasswordFocus(true)}
+                  onBlur={() => setPasswordFocus(false)}
+                  required
+                  className="w-full pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+              
+              {passwordFocus && (
+                <div className="mt-2 p-3 bg-gray-50 rounded-md text-sm">
+                  <p className="font-medium mb-2">Requisitos de la contraseña:</p>
+                  {passwordRequirements.map((req, index) => (
+                    <div key={index} className="flex items-center gap-2 text-sm">
+                      <span className={req.met ? "text-green-500" : "text-red-500"}>
+                        {req.met ? "✓" : "×"}
+                      </span>
+                      <span className={req.met ? "text-green-700" : "text-gray-600"}>
+                        {req.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <label htmlFor="confirmPassword">Repetir Contraseña:</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
+              <div className="relative w-full">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  className="w-full pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+
               <label htmlFor="userTelephone">Teléfono:</label>
               <input
                 type="text"
@@ -332,6 +419,7 @@ const RegisterForm: React.FC = () => {
                 value={formData.userTelephone}
                 onChange={handleChange}
               />
+
               <label htmlFor="userGender">Género:</label>
               <select
                 id="userGender"
@@ -346,19 +434,7 @@ const RegisterForm: React.FC = () => {
                 <option value="No binario">No binario</option>
                 <option value="Prefiero no decir">Prefiero no decir</option>
               </select>
-              <label htmlFor="userRole">Rol:</label>
-              <select
-                id="userRole"
-                name="userRole"
-                value={formData.userRole}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Selecciona tu rol</option>
-                <option value="user">Usuario</option>
-                <option value="volunteer">Voluntario</option>
-                <option value="sponsor">Sponsor</option>
-              </select>
+
               {error && <p className="error-message">{error}</p>}
               <button type="submit" className="primary-button">
                 Registrarse
