@@ -202,7 +202,6 @@ const HomePage: React.FC = () => {
         throw new Error("Error enviando el formulario.");
       }
   
-      console.log("Formulario enviado con éxito");
       setShowMessage(true);
     } catch (error) {
       console.error(error);

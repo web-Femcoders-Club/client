@@ -129,6 +129,7 @@ const EventsPage = () => {
               <video
                 src="/assets/videos/SinEvento.mp4"
                 className="custom-video"
+                style={{ height: "350px", width: "auto" }}
                 controls
                 autoPlay
                 loop
@@ -136,7 +137,6 @@ const EventsPage = () => {
                 aria-label="Video promocional: Próximamente más eventos de femCoders Club."
               ></video>
             </div>
-            // <p>No hay eventos próximos disponibles</p>
           )}
         </div>
       </section>

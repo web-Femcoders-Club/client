@@ -194,7 +194,6 @@
 
 // export default RegisterForm;
 
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -256,9 +255,9 @@ const RegisterForm: React.FC = () => {
     if (!/^\d{9,15}$/.test(formData.userTelephone)) {
       return "El número de teléfono no es válido.";
     }
-    // if (!formData.userRole) {
-    //   return "Por favor, selecciona un rol.";
-    // }
+    if (!formData.userRole) {
+      return "Por favor, selecciona un rol.";
+    }
     return "";
   };
 
@@ -370,20 +369,44 @@ const RegisterForm: React.FC = () => {
                   )}
                 </button>
               </div>
-              
+
               {passwordFocus && (
-                <div className="mt-2 p-3 bg-gray-50 rounded-md text-sm">
-                  <p className="font-medium mb-2">Requisitos de la contraseña:</p>
-                  {passwordRequirements.map((req, index) => (
-                    <div key={index} className="flex items-center gap-2 text-sm">
-                      <span className={req.met ? "text-green-500" : "text-red-500"}>
-                        {req.met ? "✓" : "×"}
-                      </span>
-                      <span className={req.met ? "text-green-700" : "text-gray-600"}>
-                        {req.text}
-                      </span>
-                    </div>
-                  ))}
+                <div
+                  className="mt-1 p-2 bg-gray-50 rounded-md"
+                  style={{ fontSize: "12px", lineHeight: "1.2" }}
+                >
+                  <p
+                    className="text-gray-600 mb-1"
+                    style={{ marginBottom: "4px" }}
+                  >
+                    Requisitos:
+                  </p>
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                    {passwordRequirements.map((req, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-1"
+                        style={{ fontSize: "12px" }}
+                      >
+                        <span
+                          className={
+                            req.met ? "text-green-500" : "text-red-500"
+                          }
+                          style={{ fontSize: "12px" }}
+                        >
+                          {req.met ? "✓" : "×"}
+                        </span>
+                        <span
+                          className={
+                            req.met ? "text-green-700" : "text-gray-600"
+                          }
+                          style={{ fontSize: "12px" }}
+                        >
+                          {req.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
