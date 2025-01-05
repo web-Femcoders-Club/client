@@ -1,7 +1,11 @@
 import React, { FormEvent, useRef, useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  recipientEmail: string; // Interfaz para las props
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const form = useRef<HTMLFormElement | null>(null);
@@ -21,6 +25,7 @@ const ContactForm: React.FC = () => {
       email: formData.get("userEmail") as string,
       subject: formData.get("asunto") as string,
       message: formData.get("message") as string,
+      recipientEmail, // Incluimos recipientEmail en el cuerpo del formulario
     };
 
     try {
