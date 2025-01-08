@@ -167,19 +167,19 @@
 //                 <option value="No binario">No binario</option>
 //                 <option value="Prefiero no decir">Prefiero no decir</option>
 //               </select>
-//               {/* <label htmlFor="userRole">Rol:</label>
-//               <select
-//                 id="userRole"
-//                 name="userRole"
-//                 value={formData.userRole}
-//                 onChange={handleChange}
-//                 required
-//               >
-//                 <option value="">Selecciona tu rol</option>
-//                 <option value="user">Usuario</option>
-//                 <option value="volunteer">Voluntario</option>
-//                 <option value="sponsor">Sponsor</option>
-//               </select> */}
+              // {/* <label htmlFor="userRole">Rol:</label>
+              // <select
+              //   id="userRole"
+              //   name="userRole"
+              //   value={formData.userRole}
+              //   onChange={handleChange}
+              //   required
+              // >
+              //   <option value="">Selecciona tu rol</option>
+              //   <option value="user">Usuario</option>
+              //   <option value="volunteer">Voluntario</option>
+              //   <option value="sponsor">Sponsor</option>
+              // </select> */}
 //               {error && <p className="error-message">{error}</p>}
 //               <button type="submit" className="primary-button">
 //                 Registrarse
@@ -457,6 +457,19 @@ const RegisterForm: React.FC = () => {
                 <option value="No binario">No binario</option>
                 <option value="Prefiero no decir">Prefiero no decir</option>
               </select>
+              <label htmlFor="userRole">Rol:</label>
+              <select
+                id="userRole"
+                name="userRole"
+                value={formData.userRole}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Selecciona tu rol</option>
+                <option value="user">Usuario</option>
+                {/* <option value="volunteer">Voluntario</option>
+                <option value="sponsor">Sponsor</option> */}
+              </select> 
 
               {error && <p className="error-message">{error}</p>}
               <button type="submit" className="primary-button">
