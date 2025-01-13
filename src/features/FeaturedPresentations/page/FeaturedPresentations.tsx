@@ -99,6 +99,16 @@ const TimelineEvent = ({
 const FeaturedPresentation = () => {
   const presentations: Presentation[] = [
     {
+      title: "Accesibilidad y Ciberseguridad en el Desarrollo Web",
+      date: "2024-11-20",
+      description: `
+        Descubre cómo implementar accesibilidad desde el inicio del desarrollo web y su relación con la ciberseguridad. 
+        Rocío Cejudo aborda elementos clave como semántica en HTML, ARIA, validación y mensajes claros, 
+        y explica cómo evitar errores comunes. También se exploran amenazas de ciberseguridad como Malware, 
+        SQL Injection y estrategias de mitigación.`,
+      fileUrl: "/MaterialesEventos/presentaciónRocioCejudo.pdf",
+    },
+    {
       title:
         "Cómo Hacemos Nuestros Productos Accesibles: Retos y Enfoques de Pruebas",
       date: "2024-11-07",
@@ -110,7 +120,7 @@ const FeaturedPresentation = () => {
       title: "Cómo Personalizar tu Perfil de GitHub",
       date: "2024-03-18",
       description:
-        "Aprende a transformar tu perfil de GitHub en una herramienta profesional y atractiva con esta presentación de Maricarmen Chueco. Descubre consejos prácticos, recursos esenciales y herramientas clave para editar tu perfil desde cero, mejorar tu imagen profesional y optimizar tu README.md. Esta presentación está diseñada para diseñadores, desarrolladores y profesionales que buscan destacar en el mundo digital..",
+        "Aprende a transformar tu perfil de GitHub en una herramienta profesional y atractiva con esta presentación de Mari Carmen Chueco Oviedo. Descubre consejos prácticos, recursos esenciales y herramientas clave para editar tu perfil desde cero, mejorar tu imagen profesional y optimizar tu README.md. Esta presentación está diseñada para diseñadores, desarrolladores y profesionales que buscan destacar en el mundo digital..",
       fileUrl: "/MaterialesEventos/CustomizaPerfilGithub.pdf",
     },
     {
