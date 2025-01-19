@@ -102,43 +102,46 @@ const CSSSelectors: React.FC = () => {
       </div>
 
       <div className="intro-text">
-        <p>
-          En el post
-          <strong>
-            {" "}
-            <a href="/recursos/css/introduccion-css" title="Introducción a CSS">
-              Introducción a CSS
-            </a>
-          </strong>
-          , hablamos sobre la importancia de CSS en el diseño web. Hoy vamos a
-          profundizar en un tema esencial para cualquier desarrolladora:
-          <strong> los selectores de CSS.</strong> Desde los básicos hasta los
-          avanzados, aprenderemos a seleccionar elementos específicos del DOM y
-          aplicaremos estilos de manera precisa.
-        </p>
-        <p>
-          Para complementar este aprendizaje, hemos creado un mini-proyecto en
-          GitHub que puedes utilizar para practicar. Accede al repositorio aquí:
-          <a
-            href="https://github.com/femcodersclub/CssSelectors"
-            title="Repositorio GitHub de Selectores CSS"
-            target="_blank"
-            rel="noopener"
-          >
-            https://github.com/femcodersclub/CssSelectors
-          </a>
-          y también puedes ver una demostración en vivo en:
-          <a
-            href="https://femcodersclub.github.io/CssSelectors/"
-            title="Demostración en vivo de Selectores CSS"
-            target="_blank"
-            rel="noopener"
-          >
-            https://femcodersclub.github.io/CssSelectors/
-          </a>
-          .
-        </p>
-      </div>
+  <p>
+    En el post
+    <strong>
+      {" "}
+      <a href="/recursos/css/introduccion-css" title="Introducción a CSS">
+        Introducción a CSS
+      </a>
+    </strong>
+    , hablamos sobre la importancia de CSS en el diseño web. Hoy vamos a
+    profundizar en un tema esencial para cualquier desarrolladora:
+    <strong> los selectores de CSS.</strong> Desde los básicos hasta los
+    avanzados, aprenderemos a seleccionar elementos específicos del DOM y
+    aplicaremos estilos de manera precisa.
+  </p>
+  <p>
+    Para complementar este aprendizaje, hemos creado un mini-proyecto en GitHub
+    que puedes utilizar para practicar:
+    <br /><span>
+    👉 Repositorio en GitHub:{" "}
+    <a
+      href="https://github.com/femcodersclub/CssSelectors"
+      title="Repositorio GitHub de Selectores CSS"
+      target="_blank"
+      rel="noopener"
+    >
+      CssSelectors - Repositorio GitHub
+    </a>
+    <br />
+    🌐 Demostración en vivo:{" "}
+    <a
+      href="https://femcodersclub.github.io/CssSelectors/"
+      title="Demostración en vivo de Selectores CSS"
+      target="_blank"
+      rel="noopener"
+    >
+      CssSelectors - GitHub Pages
+    </a></span>
+  </p>
+</div>
+
 
       <div className="highlight-box">
         <h2>1. Selectores Básicos</h2>
