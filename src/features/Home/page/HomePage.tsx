@@ -173,11 +173,11 @@ const HomePage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     if (!form.current) {
       throw new Error("The form element is not found");
     }
-  
+
     const formData = new FormData(form.current);
     const data = {
       name: formData.get("name"),
@@ -185,7 +185,7 @@ const HomePage: React.FC = () => {
       email: formData.get("email"),
       message: formData.get("message"),
     };
-  
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/email-formulario/send`,
@@ -197,69 +197,78 @@ const HomePage: React.FC = () => {
           body: JSON.stringify(data),
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("Error enviando el formulario.");
       }
-  
+
       setShowMessage(true);
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   return (
     <>
       <Helmet>
-        <title>Eventos - FemCoders Club</title>
+        <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
+
         <meta
           name="description"
-          content="Explora los próximos y pasados eventos organizados por FemCoders Club. Una comunidad para mujeres apasionadas por la tecnología."
+          content="FemCoders Club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
         />
+
         <meta
           name="keywords"
-          content="FemCoders, eventos tecnológicos, mujeres en tecnología, programación, talleres de tecnología, comunidad tecnológica, eventos de coding, desarrollo web"
+          content="FemCoders Club, mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, liderazgo femenino, networking, desarrollo web, empoderamiento mujeres tech"
         />
-        <link rel="canonical" href="https://femcodersclub.com/eventos" />
 
-        <meta property="og:title" content="Eventos - FemCoders Club" />
+        <meta
+          name="author"
+          content="Irina Ichim, co-fundadora FemCoders Club"
+        />
+        <link rel="canonical" href="https://femcodersclub.com" />
+
+        <meta
+          property="og:title"
+          content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
+        />
         <meta
           property="og:description"
-          content="Descubre eventos pasados y próximos organizados por FemCoders Club. Únete a nuestra comunidad y participa en eventos tecnológicos únicos."
+          content="FemCoders Club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
         />
+        <meta property="og:url" content="https://femcodersclub.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://femcodersclub.com/eventos" />
         <meta
           property="og:image"
-          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
+          content="https://femcodersclub.com/cofundadorasFemCodersClub.jpg"
         />
+        <meta
+          property="og:image:alt"
+          content="Mujeres cofundadoras de FemCoders Club en un evento"
+        />
+        <meta property="og:locale" content="es_ES" />
         <meta property="og:site_name" content="FemCoders Club" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Eventos - FemCoders Club" />
         <meta
-          name="twitter:description"
-          content="Participa en eventos organizados por FemCoders Club, una comunidad dedicada a empoderar a mujeres en tecnología."
+          property="og:see_also"
+          content="https://www.instagram.com/femcoders_club/"
         />
         <meta
-          name="twitter:image"
-          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
+          property="og:see_also"
+          content="https://www.linkedin.com/company/fem-coders-club/"
         />
-
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
+        <meta
+          property="og:see_also"
+          content="https://www.youtube.com/@FemcodersClub"
         />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
+        <meta
+          property="og:see_also"
+          content="https://github.com/femcodersclub"
         />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta
+          property="og:see_also"
+          content="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+        />
       </Helmet>
 
       <section className="parallax bg1 full-height ">
@@ -395,57 +404,56 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           <div className="section-countdown">
-  <div className="countdown-content">
-    <h2>¡Próximo evento!</h2>
-    {upcomingEvent ? (
-      <div className="countdown">
-        <div className="countdown-item">
-          <span>{timeLeft.days}</span> días
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.hours}</span> horas
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.minutes}</span> minutos
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.seconds}</span> segundos
-        </div>
-      </div>
-    ) : (
-      <video
-        src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
-        className="no-event-video"
-        autoPlay
-        muted
-        loop
-        onError={(e) => {
-          console.error("El video no se pudo cargar.");
-          (e.target as HTMLVideoElement).style.display = "none";
-        }}
-      />
-    )}
-    <h3 className="countdown-text">
-      {upcomingEvent
-        ? upcomingEvent.name.text
-        : "¡No te pierdas este evento especial!"}
-    </h3>
-  </div>
-  {upcomingEvent && (
-    <div className="event-card">
-      <img
-        src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
-        alt="Próximo evento"
-      />
-      <Link to="/eventos">
-        <button className="secondary-button">Más información</button>
-      </Link>
-    </div>
-  )}
-</div>
+            <div className="countdown-content">
+              <h2>¡Próximo evento!</h2>
+              {upcomingEvent ? (
+                <div className="countdown">
+                  <div className="countdown-item">
+                    <span>{timeLeft.days}</span> días
+                  </div>
+                  <div className="countdown-item">
+                    <span>{timeLeft.hours}</span> horas
+                  </div>
+                  <div className="countdown-item">
+                    <span>{timeLeft.minutes}</span> minutos
+                  </div>
+                  <div className="countdown-item">
+                    <span>{timeLeft.seconds}</span> segundos
+                  </div>
+                </div>
+              ) : (
+                <video
+                  src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
+                  className="no-event-video"
+                  autoPlay
+                  muted
+                  loop
+                  onError={(e) => {
+                    console.error("El video no se pudo cargar.");
+                    (e.target as HTMLVideoElement).style.display = "none";
+                  }}
+                />
+              )}
+              <h3 className="countdown-text">
+                {upcomingEvent
+                  ? upcomingEvent.name.text
+                  : "¡No te pierdas este evento especial!"}
+              </h3>
+            </div>
+            {upcomingEvent && (
+              <div className="event-card">
+                <img
+                  src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
+                  alt="Próximo evento"
+                />
+                <Link to="/eventos">
+                  <button className="secondary-button">Más información</button>
+                </Link>
+              </div>
+            )}
+          </div>
 
-
-{/* 
+          {/* 
           <div className="section-countdown">
             <div className="countdown-content">
               <h2>¡Próximo evento!</h2>

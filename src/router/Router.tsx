@@ -52,6 +52,9 @@ const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
 const Bienvenido2025 = lazy(
   () => import("../features/Blog/posts/noticias/Bienvenido2025")
 );
+const CSSSelectors = lazy(
+  () => import("../features/Blog/posts/recursos/css/CSSSelectors")
+);
 
 const PersonalizaPerfil = lazy(
   () => import("../features/PersonalizaPerfil/page/PersonalizaPerfil")
@@ -334,6 +337,15 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          <Route
+  path="/recursos/css/selectores-css"
+  element={
+    <Layout>
+      <CSSSelectors />
+    </Layout>
+  }
+/>
+
            <Route
           path="/noticias/Bienvenido2025"
           element={

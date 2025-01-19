@@ -130,6 +130,15 @@ const BlogPage: React.FC = () => {
         "Descubre los emocionantes planes y eventos que tenemos preparados para este nuevo año. 🌟",
       createdAt: new Date("2025-01-03"),
     },
+    {
+      id: 12,
+      type: "recurso",
+      category: "css",
+      title: "Domina los Selectores en CSS",
+      description:
+        "Aprende a usar selectores básicos, avanzados y combinados en CSS con ejemplos prácticos y visuales.",
+      createdAt: new Date("2025-01-17"), 
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -176,6 +185,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/html/integracion-frameworks`;
         case "¡Bienvenidas a 2025 con FemCoders Club! 🎉":
           return `/noticias/Bienvenido2025`;
+          case "Domina los Selectores en CSS": 
+          return `/recursos/css/selectores-css`;
       default:
         return `/`;
     }

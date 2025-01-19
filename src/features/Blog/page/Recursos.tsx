@@ -155,6 +155,23 @@ const Recursos: React.FC = () => {
     </Link>
   </div>
 </div>
+<div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Domina los Selectores en CSS</h3>
+            <p className="intro-text">
+              Aprende a usar selectores básicos, avanzados y combinados en CSS con ejemplos prácticos y visuales.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/selectores-css"
+            className="secondary-button"
+            aria-label="Leer más sobre Domina los Selectores en CSS"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
 
     </div>
   );
