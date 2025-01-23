@@ -129,14 +129,18 @@ const CustomCarousel = () => {
 
     },
       {
-      src: "/assets/ultimosEventos2024/rocioCejudo.jpg",
+      src: "/assets/UltimosEventos2024/rocioCejudo.jpg",
       text: "Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla. ",
       
     },
     {
-      src: "/assets/ultimosEventos2024/lorenaSalvador.jpg",
+      src: "/assets/UltimosEventos2024/lorenaSalvador.jpg",
       text: "Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.",
       
+    },
+    {
+      src:"/assets/Eventos2025/ponentesFemCodersClub.jpg",
+      text:"En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. "
     },
     
   ];
