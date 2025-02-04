@@ -77,6 +77,8 @@ const ManageAchievements = lazy(
 const FelicitacionNavidad = lazy(
   () => import("../features/Blog/posts/noticias/FelicitacionNavidad")
 );
+const JobOffers = lazy(() => import("../features/JobOffers/page/JobOffers"));
+
 
 const ComunityHub = lazy(
   () => import("../features/CommunityHub/page/ComunityHub")
@@ -137,6 +139,15 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
+  path="/ofertas-de-trabajo"
+  element={
+    <Layout>
+      <JobOffers />
+    </Layout>
+  }
+/>
+
+          <Route
             path="/stats"
             element={
               <Layout>
@@ -176,7 +187,7 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-          
+
           <Route
             path="/login"
             element={
@@ -338,25 +349,23 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/recursos/css/selectores-css"
-  element={
-    <Layout>
-      <CSSSelectors />
-    </Layout>
-  }
-/>
+            path="/recursos/css/selectores-css"
+            element={
+              <Layout>
+                <CSSSelectors />
+              </Layout>
+            }
+          />
 
-           <Route
-          path="/noticias/Bienvenido2025"
-          element={
-            <Layout>
-              <Bienvenido2025 />
-            </Layout>
-          }
-        />
+          <Route
+            path="/noticias/Bienvenido2025"
+            element={
+              <Layout>
+                <Bienvenido2025 />
+              </Layout>
+            }
+          />
         </Routes>
-       
-        
       </Suspense>
 
       {modalType === "cookiePolicy" && (

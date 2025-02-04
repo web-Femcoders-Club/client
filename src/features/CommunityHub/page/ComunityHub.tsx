@@ -23,57 +23,16 @@ const ComunityHub: React.FC = () => {
       description:
         "Plantillas de CV personalizables creadas con HTML, CSS y JavaScript, diseñadas para profesionales del sector tecnológico. Crea currículums únicos y adapta cada plantilla a tu estilo y necesidades.",
       githubLink: "https://github.com/femcodersclub/cv4Coders",
-      liveDemo: "https://femcodersclub.github.io/cv4Coders/", // Enlace correcto
+      liveDemo: "https://femcodersclub.github.io/cv4Coders/",
     },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    //   title: "Backend Sólido",
-    //   description: "APIs robustas construidas con Node.js y NestJS.",
-    //   githubLink: "https://github.com/tu-proyecto/backend",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    //   title: "Aplicaciones Fullstack",
-    //   description: "Desarrollo de aplicaciones completas con React y Node.js.",
-    //   githubLink: "https://github.com/tu-proyecto/fullstack",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
-    //   title: "HTML Semántico",
-    //   description: "Prácticas accesibles con HTML5 y SEO.",
-    //   githubLink: "https://github.com/tu-proyecto/html-semantico",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    //   title: "Backend Avanzado",
-    //   description: "Microservicios avanzados con NestJS y Docker.",
-    //   githubLink: "https://github.com/tu-proyecto/backend-avanzado",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    //   title: "APIs RESTful",
-    //   description: "Crea APIs RESTful robustas usando Express.js.",
-    //   githubLink: "https://github.com/tu-proyecto/apis-rest",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1560717789-0ac7c58ac90a.webp",
-    //   title: "Diseño UI/UX",
-    //   description: "Interfaces atractivas y funcionales.",
-    //   githubLink: "https://github.com/tu-proyecto/uiux",
-    // },
-    // {
-    //   image1:
-    //     "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
-    //   title: "Pruebas Unitarias",
-    //   description: "Escribe tests unitarios con Jest.",
-    //   githubLink: "https://github.com/tu-proyecto/tests",
-    // },
+    {
+      image1: "/assets/ComunityHub/portfolios.png",
+      title: "Coders Portfolio",
+      description:
+        "Plantillas de portafolios para desarrolladoras web, diseñadas con React, TypeScript, TailwindCSS. Personaliza tu portafolio y destaca tus proyectos y habilidades técnicas.",
+      githubLink: "https://github.com/femcodersclub/CodersPortfolio.git",
+      liveDemo: "https://femcodersclub.github.io/CodersPortfolio/",
+    },
   ];
 
   const handleSearch = (query: string) => setSearchQuery(query);
@@ -106,8 +65,14 @@ const ComunityHub: React.FC = () => {
           content="Explora proyectos de frontend, backend, APIs y más en el Community Hub de FemCoders Club."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://femcodersclub.com/comunity-hub" />
-        <meta property="og:image" content="/assets/community-hub-thumbnail.jpg" />
+        <meta
+          property="og:url"
+          content="https://femcodersclub.com/comunity-hub"
+        />
+        <meta
+          property="og:image"
+          content="/assets/community-hub-thumbnail.jpg"
+        />
         <meta property="og:site_name" content="FemCoders Club" />
       </Helmet>
 
@@ -116,11 +81,22 @@ const ComunityHub: React.FC = () => {
           <h1>¡Potencia tu código con FemCoders Club!</h1>
           <Buscar onSearch={handleSearch} />
           <p className="styled-paragraph">
-            ¡Empodera tus habilidades técnicas con FemCoders Club! En nuestros <span><a href="https://github.com/femcodersclub" target="_blank" rel="noopener noreferrer " className="underline">repositorios de GitHub</a> </span>encontrarás una comunidad de mujeres
-            programadoras que comparten sus conocimientos y proyectos. Desde
-            tutoriales para principiantes hasta desafíos para desarrolladoras
-            experimentadas, ¡aquí encontrarás el espacio perfecto para crecer y
-            conectar con otras mujeres apasionadas por la tecnología.
+            ¡Empodera tus habilidades técnicas con FemCoders Club! En nuestros{" "}
+            <span>
+              <a
+                href="https://github.com/femcodersclub"
+                target="_blank"
+                rel="noopener noreferrer "
+                className="underline"
+              >
+                repositorios de GitHub
+              </a>{" "}
+            </span>
+            encontrarás una comunidad de mujeres programadoras que comparten sus
+            conocimientos y proyectos. Desde tutoriales para principiantes hasta
+            desafíos para desarrolladoras experimentadas, ¡aquí encontrarás el
+            espacio perfecto para crecer y conectar con otras mujeres
+            apasionadas por la tecnología.
           </p>
         </header>
 
@@ -144,4 +120,3 @@ const ComunityHub: React.FC = () => {
 };
 
 export default ComunityHub;
-

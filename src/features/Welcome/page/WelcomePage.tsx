@@ -280,6 +280,7 @@ const WelcomePage = () => {
         <nav className="mt-8 flex-1 overflow-y-auto">
           <ul className="space-y-2">
             {[
+              { to: "/ofertas-de-trabajo", text: "Ofertas de Trabajo" },
               { to: "/personaliza-perfil", text: "Personaliza tu perfil" },
               { to: "/presentaciones-destacadas", text: "Presentaciones" },
               {
