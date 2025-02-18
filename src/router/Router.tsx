@@ -78,6 +78,9 @@ const FelicitacionNavidad = lazy(
   () => import("../features/Blog/posts/noticias/FelicitacionNavidad")
 );
 const JobOffers = lazy(() => import("../features/JobOffers/page/JobOffers"));
+const BoxModel = lazy(
+  () => import("../features/Blog/posts/recursos/css/BoxModels")
+);
 
 
 const ComunityHub = lazy(
@@ -143,6 +146,14 @@ const RouterComponent: React.FC = () => {
   element={
     <Layout>
       <JobOffers />
+    </Layout>
+  }
+/>
+<Route
+  path="/recursos/css/box-model"
+  element={
+    <Layout>
+      <BoxModel />
     </Layout>
   }
 />

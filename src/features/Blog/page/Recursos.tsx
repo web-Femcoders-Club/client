@@ -108,7 +108,9 @@ const Recursos: React.FC = () => {
           <div>
             <h3>Introducción a las APIs en HTML: Potencia tus Proyectos Web</h3>
             <p className="intro-text">
-              Aprende a utilizar APIs en HTML para añadir funcionalidades avanzadas como geolocalización, almacenamiento y gráficos interactivos.
+              Aprende a utilizar APIs en HTML para añadir funcionalidades
+              avanzadas como geolocalización, almacenamiento y gráficos
+              interactivos.
             </p>
           </div>
           <Link
@@ -126,7 +128,9 @@ const Recursos: React.FC = () => {
           <div>
             <h3>HTML Avanzado para SEO y Accesibilidad</h3>
             <p className="intro-text">
-              Explora técnicas avanzadas de HTML, como microdatos, atributos ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu web.
+              Explora técnicas avanzadas de HTML, como microdatos, atributos
+              ARIA y lazy loading, para mejorar el SEO y la accesibilidad de tu
+              web.
             </p>
           </div>
           <Link
@@ -139,28 +143,30 @@ const Recursos: React.FC = () => {
         </div>
       </div>
       <div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>Integración de Frameworks y Librerías</h3>
-      <p className="intro-text">
-        Aprende cómo HTML se relaciona con frameworks modernos como React, Vue.js, Angular y Svelte para crear aplicaciones web dinámicas.
-      </p>
-    </div>
-    <Link
-      to="/recursos/html/integracion-frameworks"
-      className="secondary-button"
-      aria-label="Leer más sobre Integración de Frameworks y Librerías"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
-<div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Integración de Frameworks y Librerías</h3>
+            <p className="intro-text">
+              Aprende cómo HTML se relaciona con frameworks modernos como React,
+              Vue.js, Angular y Svelte para crear aplicaciones web dinámicas.
+            </p>
+          </div>
+          <Link
+            to="/recursos/html/integracion-frameworks"
+            className="secondary-button"
+            aria-label="Leer más sobre Integración de Frameworks y Librerías"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+      <div className="recurso-item bg1">
         <div className="noticia-content">
           <div>
             <h3>Domina los Selectores en CSS</h3>
             <p className="intro-text">
-              Aprende a usar selectores básicos, avanzados y combinados en CSS con ejemplos prácticos y visuales.
+              Aprende a usar selectores básicos, avanzados y combinados en CSS
+              con ejemplos prácticos y visuales.
             </p>
           </div>
           <Link
@@ -172,10 +178,26 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
-
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Box Model en CSS | Guía Completa para Frontend con FemCoders Club</h3>
+            <p className="intro-text">
+              Aprende a dominar el Box Model en CSS para mejorar el diseño y la
+              maquetación web.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/box-model"
+            className="secondary-button"
+            aria-label="Leer más sobre el Box Model en CSS"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Recursos;
-

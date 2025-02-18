@@ -139,6 +139,15 @@ const BlogPage: React.FC = () => {
         "Aprende a usar selectores básicos, avanzados y combinados en CSS con ejemplos prácticos y visuales.",
       createdAt: new Date("2025-01-17"), 
     },
+    {
+      id: 13,
+      type: "recurso",
+      category: "css",
+      title: "Box Model en CSS | Guía Completa para Frontend con FemCoders Club",
+      description: "Aprende a dominar el Box Model en CSS para mejorar el diseño y la maquetación web.",
+      createdAt: new Date("2025-02-16"),
+    },
+    
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -185,8 +194,11 @@ const BlogPage: React.FC = () => {
         return `/recursos/html/integracion-frameworks`;
         case "¡Bienvenidas a 2025 con FemCoders Club! 🎉":
           return `/noticias/Bienvenido2025`;
-          case "Domina los Selectores en CSS": 
+        case "Domina los Selectores en CSS": 
           return `/recursos/css/selectores-css`;
+          case "Box Model en CSS | Guía Completa para Frontend con FemCoders Club":
+            return `/recursos/css/box-model`;
+          
       default:
         return `/`;
     }
