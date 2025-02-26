@@ -416,10 +416,12 @@ const HomePage: React.FC = () => {
       /> 
     </h2>
   </div>
-  <p className="text-lg leading-relaxed text-gray-800">
+     <p className="text-lg leading-relaxed text-gray-800">
         Con el valiosísimo apoyo de <strong>InfoJobs, el portal más efectivo para encontrar trabajo,</strong> este evento se convierte en una oportunidad única para que <strong>mujeres con perfil junior</strong> impulsen su carrera en el sector tecnológico. 💡
         <br /><br />
-        <span>InfoJobs</span> está comprometido con <em>visibilizar</em> y <em>empoderar</em> a las mujeres en el sector tech, creando espacios donde el talento femenino puede brillar. Este evento no solo celebra el potencial de las programadoras, sino que también actúa como trampolín hacia <strong>nuevas oportunidades laborales</strong> y conexiones significativas. 🌟
+        <span>   <a href="https://www.infojobs.net" target="_blank" rel="noopener noreferrer" className=" underline">
+        InfoJobs
+        </a></span> está comprometido con <em>visibilizar</em> y <em>empoderar</em> a las mujeres en el sector tech, creando espacios donde el talento femenino puede brillar. Este evento no solo celebra el potencial de las programadoras, sino que también actúa como trampolín hacia <strong>nuevas oportunidades laborales</strong> y conexiones significativas. 🌟
         <br /><br />
         Únete a <span>FemCoders Club</span> y participa en una experiencia única llena de <strong>charlas inspiradoras</strong>, <strong>networking</strong> y la posibilidad de conectar con empresas tecnológicas. 
         <br /><br />

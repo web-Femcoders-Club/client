@@ -138,7 +138,9 @@ const InfoJobsEventSection = () => {
       <div className="mt-6">
         <h3 className="font-semibold">🎤 Acerca de este evento:</h3>
         <p className="styled-paragraph mt-2">
-          ¡El sector tecnológico necesita de más mujeres! Únete a nosotras el <strong>{eventDetails.date}</strong> a las <strong>{eventDetails.time}</strong> en las oficinas de <strong>InfoJobs,</strong> {eventDetails.location}, para celebrar la importancia de la presencia de mujeres en el sector tecnológico.
+          ¡El sector tecnológico necesita de más mujeres! Únete a nosotras el <strong>{eventDetails.date}</strong> a las <strong>{eventDetails.time}</strong> en las oficinas de  <span>   <a href="https://www.infojobs.net" target="_blank" rel="noopener noreferrer" className=" underline">
+        InfoJobs
+        </a></span> ({eventDetails.location}), para celebrar la importancia de la presencia de mujeres en el sector tecnológico.
         </p>
         <ul className="mt-4 space-y-2 text-lg" style={{ color: "#4737bb" }}>
           <li>💡 Disfruta de charlas inspiradoras de mujeres líderes en tecnología:
