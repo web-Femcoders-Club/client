@@ -196,6 +196,24 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>Flexbox: El poder de crear layouts flexibles</h3>
+      <p className="intro-text">
+        Aprende cómo Flexbox facilita la creación de diseños web flexibles y responsivos con propiedades clave y ejemplos prácticos.
+      </p>
+    </div>
+    <Link
+      to="/recursos/css/flexbox"
+      className="secondary-button"
+      aria-label="Leer más sobre Flexbox: El poder de crear layouts flexibles"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
+
     </div>
   );
 };

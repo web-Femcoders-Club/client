@@ -147,6 +147,16 @@ const BlogPage: React.FC = () => {
       description: "Aprende a dominar el Box Model en CSS para mejorar el diseño y la maquetación web.",
       createdAt: new Date("2025-02-16"),
     },
+    {
+      id: 14,
+      type: "recurso",
+      category: "css",
+      title: "Flexbox: El poder de crear layouts flexibles",
+      description:
+        "Descubre cómo Flexbox facilita la creación de diseños modernos y responsivos con ejemplos prácticos.",
+      createdAt: new Date("2025-03-05"), 
+    },
+    
     
   ];
 
@@ -198,6 +208,8 @@ const BlogPage: React.FC = () => {
           return `/recursos/css/selectores-css`;
           case "Box Model en CSS | Guía Completa para Frontend con FemCoders Club":
             return `/recursos/css/box-model`;
+            case "Flexbox: El poder de crear layouts flexibles":
+      return `/recursos/css/flexbox`; 
           
       default:
         return `/`;

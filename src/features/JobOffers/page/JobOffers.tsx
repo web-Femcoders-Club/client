@@ -123,14 +123,15 @@ const InfoJobsEventSection = () => {
               </div>
             </li>
             <li className="flex items-start gap-2">
-            <span>📄</span>
-            <div>
-              <strong className="styled-paragraph">Presenta tu CV actualizado:</strong>
-              <p className="text-blue-700">
-                Se recomienda llevar varias copias impresas de tu CV actualizado para presentarlo a las empresas participantes durante el evento.
-              </p>
-            </div>
-          </li>
+  <span>📄</span>
+  <div>
+    <strong className="styled-paragraph">Prepara tu CV:</strong>
+    <p className="text-blue-700">
+      Ten tu CV actualizado en formato digital.
+    </p>
+  </div>
+</li>
+
           </ol>
         </div>
       </div>
@@ -158,7 +159,11 @@ const InfoJobsEventSection = () => {
         <h3 className="font-semibold mt-6">⚡ Durante el evento:</h3>
 <ul className="mt-2 space-y-2 text-lg" style={{ color: "#4737bb" }}>
   <li>🚀 Participa en <strong>charlas inspiradoras</strong> lideradas por mujeres referentes en tecnología.</li>
-  <li>💼 Conéctate con <strong>empresas tech</strong> y accede a oportunidades laborales inscribiéndote a las ofertas en <strong>InfoJobs</strong>.</li>
+  <li>💼 Conéctate con <strong>empresas tech</strong>, como  <span>
+  <a href="https://www.between.tech/" target="_blank" rel="noopener noreferrer" className="underline">Between</a>, </span>
+  y accede a oportunidades laborales inscribiéndote a las ofertas en InfoJobs.
+</li>
+
   <li>📝 Obtén <strong>consejos prácticos</strong> para potenciar tu carrera en el sector tecnológico.</li>
   <li>👩‍💻 <strong>Amplía tu red</strong> con otras mujeres en tecnología y comparte experiencias.</li>
   <li>🤝 Disfruta de sesiones de <strong>networking</strong> con profesionales del sector.</li>

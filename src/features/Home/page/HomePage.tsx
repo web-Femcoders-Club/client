@@ -407,28 +407,36 @@ const HomePage: React.FC = () => {
  
      <div className="call-to-action">
      <div className="mb-4 text-center">
-    <h2 >
-      🚀 ¡Impulsa tu carrera en programación con<br />
-      <img 
-        src="/assets/Eventos2025/Infojobs.png" 
-        alt="Logo InfoJobs" 
-        className="w-30 h-20 inline mx-2"
-      /> 
-    </h2>
-  </div>
-     <p className="text-lg leading-relaxed text-gray-800">
-        Con el valiosísimo apoyo de <strong>InfoJobs, el portal más efectivo para encontrar trabajo,</strong> este evento se convierte en una oportunidad única para que <strong>mujeres con perfil junior</strong> impulsen su carrera en el sector tecnológico. 💡
-        <br /><br />
-        <span>   <a href="https://www.infojobs.net" target="_blank" rel="noopener noreferrer" className=" underline">
-        InfoJobs
-        </a></span> está comprometido con <em>visibilizar</em> y <em>empoderar</em> a las mujeres en el sector tech, creando espacios donde el talento femenino puede brillar. Este evento no solo celebra el potencial de las programadoras, sino que también actúa como trampolín hacia <strong>nuevas oportunidades laborales</strong> y conexiones significativas. 🌟
-        <br /><br />
-        Únete a <span>FemCoders Club</span> y participa en una experiencia única llena de <strong>charlas inspiradoras</strong>, <strong>networking</strong> y la posibilidad de conectar con empresas tecnológicas. 
-        <br /><br />
-        Se recomienda que las participantes lleven su <strong>CV actualizado</strong> en formato impreso, ya que algunas empresas pueden estar interesadas en conocer nuevos talentos.
-        <br /><br />
-        🚀 <span>¡No dejes pasar esta oportunidad!</span> Da el primer paso hacia tu futuro y sé parte de este evento impulsado por <strong>InfoJobs</strong>.
-      </p>
+  <h2 >
+    🚀 ¡Impulsa tu carrera en programación con
+  </h2>
+  <img 
+    src="/assets/Eventos2025/Infojobs.png" 
+    alt="Logo InfoJobs" 
+    className="w-30 h-20 mx-auto mt-2"
+  />
+</div>
+
+  <p className="text-lg leading-relaxed text-gray-800">
+  Gracias al apoyo de <strong>InfoJobs, el portal líder para encontrar oportunidades laborales,</strong> este evento está diseñado para conectar a mujeres en tecnología con empresas que buscan talento. 💡  
+  <br />
+  <span>
+    <a href="https://www.infojobs.net" target="_blank" rel="noopener noreferrer" className="underline">
+      InfoJobs
+    </a>
+  </span> apuesta por <em>impulsar la diversidad</em> en el sector tech, creando espacios donde más mujeres puedan crecer profesionalmente.  
+  <br /><br />
+  Durante el evento, tendrás la oportunidad de <strong>escuchar a mujeres talentosas y experimentadas en tecnología</strong>, quienes compartirán su conocimiento y experiencias para inspirar a la próxima generación de profesionales tech.  
+  <br /><br />
+  Además, empresas como<span> <a href="https://www.between.tech/" target="_blank" rel="noopener noreferrer" className="underline">Between</a> </span>estarán presentes, brindando la oportunidad de conectar con recruiters y explorar nuevas oportunidades laborales.  
+  <br />
+  Si estás buscando dar un paso más en tu carrera, <strong>te recomendamos llevar tu CV actualizado en formato digital.</strong>  
+  <br /><br />
+
+  🚀 <span>¡No te lo pierdas!</span> Inscríbete y forma parte de este evento con <strong>InfoJobs</strong>.
+</p>
+
+
 </div>
 
           <div className="section-countdown">
