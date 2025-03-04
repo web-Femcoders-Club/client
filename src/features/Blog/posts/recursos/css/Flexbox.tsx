@@ -17,9 +17,9 @@ const Flexbox: React.FC = () => {
           Flexbox: El poder de crear layouts flexibles | femCoders Club
         </title>
         <meta
-  name="description"
-  content="Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles."
-/>
+          name="description"
+          content="Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles."
+        />
 
         <meta
           name="keywords"
@@ -39,33 +39,36 @@ const Flexbox: React.FC = () => {
         <meta property="og:site_name" content="femCoders Club" />
         <meta property="og:locale" content="es_ES" />
         <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "Flexbox: El poder de crear layouts flexibles | femCoders Club",
-      "author": {
-        "@type": "Person",
-        "name": "Irina Ichim"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "femCoders Club",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://femcodersclub.com/assets/logo.png"
-        }
-      },
-      "datePublished": "2025-03-02",
-      "dateModified": "2025-03-02",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": currentUrl
-      },
-      "image": "https://femcodersclub.com/assets/css/flexbox.jpg",
-      "description": "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
-      "articleBody": "Flexbox ha revolucionado el diseño web, permitiendo crear layouts flexibles con menos esfuerzo..."
-    })}
-  </script>
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline:
+              "Flexbox: El poder de crear layouts flexibles | femCoders Club",
+            author: {
+              "@type": "Person",
+              name: "Irina Ichim",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "femCoders Club",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://femcodersclub.com/assets/logo.png",
+              },
+            },
+            datePublished: "2025-03-02",
+            dateModified: "2025-03-02",
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": currentUrl,
+            },
+            image: "https://femcodersclub.com/assets/css/flexbox.jpg",
+            description:
+              "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
+            articleBody:
+              "Flexbox ha revolucionado el diseño web, permitiendo crear layouts flexibles con menos esfuerzo...",
+          })}
+        </script>
       </Helmet>
 
       <div className="post-image-container">
@@ -341,29 +344,51 @@ const Flexbox: React.FC = () => {
         <br />
         <h2>Proyecto interactivo: ¡Experimenta con Flexbox!</h2>
         <p>
-      Para reforzar lo que hemos visto, hemos creado un  <strong>proyecto interactivo</strong> donde puedes experimentar con estas propiedades en acción.
-    </p>
+          Para reforzar lo que hemos visto, hemos creado un{" "}
+          <strong>proyecto interactivo</strong> donde puedes experimentar con
+          estas propiedades en acción.
+        </p>
 
-    <ul>
-      <li>🛠️ Navbar responsivo: construido con Flexbox.</li>
-      <li>🎯 Centrado de elementos: con `justify-content` y `align-items`.</li>
-      <li>🖼️ Galería adaptable: que se reorganiza automáticamente.</li>
-      <li>🎮 Controles interactivos: para cambiar propiedades de Flexbox.</li>
-    </ul>
-     
-      
-    <h3>🔗 Prueba el proyecto aquí: </h3> 
-    <br /> 
-     <p>🚀 Código en GitHub:  
-      👉 <span><a href="https://github.com/femcodersclub/demoFlexbox" target="_blank" rel="noopener noreferrer">
-        github.com/femcodersclub/demoFlexbox
-      </a> </span> </p>
-  
-    <p>  🌐 Demo en GitHub Pages:  
-      👉<span> <a href="https://femcodersclub.github.io/demoFlexbox/" target="_blank" rel="noopener noreferrer">
-        femcodersclub.github.io/demoFlexbox
-      </a>  </span>
-    </p>
+        <ul>
+          <li>🛠️ Navbar responsivo: construido con Flexbox.</li>
+          <li>
+            🎯 Centrado de elementos: con `justify-content` y `align-items`.
+          </li>
+          <li>🖼️ Galería adaptable: que se reorganiza automáticamente.</li>
+          <li>
+            🎮 Controles interactivos: para cambiar propiedades de Flexbox.
+          </li>
+        </ul>
+
+        <h3>🔗 Prueba el proyecto aquí: </h3>
+        <br />
+        <p>
+          🚀 Código en GitHub: 👉{" "}
+          <span>
+            <a
+              href="https://github.com/femcodersclub/demoFlexbox"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github.com/femcodersclub/demoFlexbox
+            </a>{" "}
+          </span>{" "}
+        </p>
+
+        <p>
+          {" "}
+          🌐 Demo en GitHub Pages: 👉
+          <span>
+            {" "}
+            <a
+              href="https://femcodersclub.github.io/demoFlexbox/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              femcodersclub.github.io/demoFlexbox
+            </a>{" "}
+          </span>
+        </p>
       </div>
 
       <div className="highlight-box">
