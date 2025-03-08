@@ -1,4 +1,4 @@
-import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube, BsGithub } from "react-icons/bs";
+import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube, BsGithub, BsTwitterX } from "react-icons/bs";
 import ApoyanosButton from "./ApoyanosButton";
 import SlackButton from "./SlackButton";
 import FemCodersClubLogo from "/negativeLogo.png";
@@ -56,6 +56,11 @@ const FccFooter = () => {
               >
                 <BsGithub />
               </a>
+              <a
+              href="https://x.com/FemCodersClub"
+              className="icon"
+              aria-label="X"
+              > <BsTwitterX /></a>
             </div>
             <p>O también:</p>
             <SlackButton />
