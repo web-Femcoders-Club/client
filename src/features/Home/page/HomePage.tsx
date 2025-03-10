@@ -295,12 +295,12 @@ const HomePage: React.FC = () => {
 
         <meta
           name="description"
-          content="FemCoders Club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
+          content="femCoders club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
         />
 
         <meta
           name="keywords"
-          content="FemCoders Club, mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, liderazgo femenino, networking, desarrollo web, empoderamiento mujeres tech"
+          content="FemCoders Club,femCoders club, femcodersclub,  mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, liderazgo femenino, networking, desarrollo web, empoderamiento mujeres tech"
         />
 
         <meta
