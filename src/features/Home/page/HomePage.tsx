@@ -564,132 +564,113 @@ const HomePage: React.FC = () => {
         </div>
       </section>
       <section className="parallax bg2 full-height">
-        <div
-          className="carousel-container"
-          data-aos="fade-in"
-          data-aos-duration="1000"
+  <div className="carousel-container">
+    <p
+      className="carousel-subheading"
+      tabIndex={0}
+      {...{ "aria-label": "Descripción de FemCoders Club y sus eventos" }}
+    >
+      En<span> FemCoders Club, </span>organizamos regularmente eventos que
+      no solo son educativos, sino también una oportunidad increíble para
+      conectar con otras mujeres en el <span>sector tech.</span> Nuestros
+      eventos incluyen talleres, charlas inspiradoras, y sesiones de
+      networking que te ayudarán a ampliar tus conocimientos y tu{" "}
+      <span>red de contactos.</span>
+      <br />
+      Consulta la galería para ver eventos pasados y cómo nuestras
+      miembros han crecido en{" "}
+      <span>liderazgo femenino en tecnología.</span>
+    </p>
+    <p
+      className="carousel-subheading-mobile"
+      tabIndex={0}
+      {...{
+        "aria-label":
+          "Descripción resumida de FemCoders Club y sus eventos",
+      }}
+    >
+      Nuestros eventos incluyen talleres, charlas inspiradoras, y sesiones
+      de networking que te ayudarán a ampliar tus conocimientos y tu{" "}
+      <span>red de contactos.</span>
+    </p>
+
+    <div
+      className="carousel"
+      role="region"
+      {...{ "aria-label": "Galería de eventos pasados" }}
+      {...{ "aria-live": isPlaying ? "off" : "polite" }}
+      tabIndex={0}
+      onKeyDown={handleCarouselKeyDown}
+    >
+      <div className="sr-only" {...{ "aria-live": "polite" }}>
+        {isPlaying
+          ? "El carrusel está rotando automáticamente. Presiona la barra espaciadora para pausar."
+          : "El carrusel está pausado. Presiona la barra espaciadora para reanudar la rotación. Usa las flechas izquierda y derecha para navegar."}
+      </div>
+
+      {images.map((image, index) => {
+        const isActive = index === carouselIndex;
+        return (
+          <div
+            key={index}
+            className={`carousel-item ${isActive ? "active" : ""} ${
+              !isPlaying && isActive ? "paused" : ""
+            }`}
+            role="group"
+            {...{ "aria-label": `Evento ${index + 1}` }}
+            {...{ "aria-hidden": isActive ? "false" : "true" }}
+          >
+            <img
+              src={image}
+              alt={`Evento ${index + 1} de FemCoders Club`}
+              tabIndex={isActive ? 0 : -1}
+              loading={index > 0 ? "lazy" : "eager"}
+            />
+          </div>
+        );
+      })}
+
+      <div
+        role="complementary"
+        {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
+      >
+        <CarouselWithText texts={texts} />
+      </div>
+    </div>
+
+    <div className="carousel-controls">
+      <div className="carousel-nav-controls">
+        <button
+          className="carousel-control prev"
+          onClick={prevSlide}
+          {...{ "aria-label": "Imagen anterior" }}
         >
-          <p
-            className="carousel-subheading"
-            data-aos="fade-up"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            tabIndex={0}
-            {...{ "aria-label": "Descripción de FemCoders Club y sus eventos" }}
-          >
-            En<span> FemCoders Club, </span>organizamos regularmente eventos que
-            no solo son educativos, sino también una oportunidad increíble para
-            conectar con otras mujeres en el <span>sector tech.</span> Nuestros
-            eventos incluyen talleres, charlas inspiradoras, y sesiones de
-            networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-            <span>red de contactos.</span>
-            <br />
-            Consulta la galería para ver eventos pasados y cómo nuestras
-            miembros han crecido en{" "}
-            <span>liderazgo femenino en tecnología.</span>
-          </p>
-          <p
-            className="carousel-subheading-mobile"
-            data-aos="fade-up"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            tabIndex={0}
-            {...{
-              "aria-label":
-                "Descripción resumida de FemCoders Club y sus eventos",
-            }}
-          >
-            Nuestros eventos incluyen talleres, charlas inspiradoras, y sesiones
-            de networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-            <span>red de contactos.</span>
-          </p>
+          ❮
+        </button>
 
-          <div
-            className="carousel"
-            data-aos="zoom-in"
-            data-aos-delay="400"
-            data-aos-duration="1200"
-            role="region"
-            {...{ "aria-label": "Galería de eventos pasados" }}
-            {...{ "aria-live": isPlaying ? "off" : "polite" }}
-            tabIndex={0}
-            onKeyDown={handleCarouselKeyDown}
-          >
-            <div className="sr-only" {...{ "aria-live": "polite" }}>
-              {isPlaying
-                ? "El carrusel está rotando automáticamente. Presiona la barra espaciadora para pausar."
-                : "El carrusel está pausado. Presiona la barra espaciadora para reanudar la rotación. Usa las flechas izquierda y derecha para navegar."}
-            </div>
+        <button
+          className="play-pause"
+          onClick={togglePlay}
+          {...{
+            "aria-label": isPlaying
+              ? "Pausar rotación automática"
+              : "Reanudar rotación automática",
+          }}
+        >
+          {isPlaying ? "⏸️" : "▶️"}
+        </button>
 
-            {images.map((image, index) => {
-              const isActive = index === carouselIndex;
-              return (
-                <div
-                  key={index}
-                  className={`carousel-item ${isActive ? "active" : ""} ${
-                    !isPlaying && isActive ? "paused" : ""
-                  }`}
-                  role="group"
-                  {...{ "aria-label": `Evento ${index + 1}` }}
-                  {...{ "aria-hidden": isActive ? "false" : "true" }}
-                >
-                  <img
-                    src={image}
-                    alt={`Evento ${index + 1} de FemCoders Club`}
-                    tabIndex={isActive ? 0 : -1}
-                  />
-                </div>
-              );
-            })}
-
-            <div
-              data-aos="fade-up"
-              data-aos-delay="800"
-              data-aos-anchor=".carousel"
-              role="complementary"
-              {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
-            >
-              <CarouselWithText texts={texts} />
-            </div>
-          </div>
-
-          <div
-            className="carousel-controls"
-            data-aos="fade-up"
-            data-aos-delay="700"
-          >
-            <div className="carousel-nav-controls">
-              <button
-                className="carousel-control prev"
-                onClick={prevSlide}
-                {...{ "aria-label": "Imagen anterior" }}
-              >
-                ❮
-              </button>
-
-              <button
-                className="play-pause"
-                onClick={togglePlay}
-                {...{
-                  "aria-label": isPlaying
-                    ? "Pausar rotación automática"
-                    : "Reanudar rotación automática",
-                }}
-              >
-                {isPlaying ? "⏸️" : "▶️"}
-              </button>
-
-              <button
-                className="carousel-control next"
-                onClick={nextSlide}
-                {...{ "aria-label": "Imagen siguiente" }}
-              >
-                ❯
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+        <button
+          className="carousel-control next"
+          onClick={nextSlide}
+          {...{ "aria-label": "Imagen siguiente" }}
+        >
+          ❯
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section className="parallax bg3">
         <div className="section-content">
