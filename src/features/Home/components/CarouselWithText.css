@@ -1,27 +1,32 @@
 .carousel-text-container {
   position: absolute;
-  bottom: 10px;
+  top: 500px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 
 .carousel-text {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   font-size: 1.2rem;
   color: #4737bb;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   max-width: 90%;
   margin: 0 5%;
+  position: absolute;
+  font-weight: 500;
+  border-left: 3px solid #EA4F33;
 }
 
 .carousel-text.active {
@@ -29,10 +34,54 @@
   transform: translateY(0);
 }
 
+/* Indicadores */
+.carousel-indicators {
+  position: absolute;
+  bottom: -25px; /* Ajustamos también los indicadores */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  width: 20px;
+  border-radius: 4px;
+  background-color: #EA4F33;
+}
+
+/* Enfoque por teclado */
+.carousel-text:focus {
+  outline: 2px solid #EA4F33;
+  outline-offset: 3px;
+}
+
 @media (max-width: 600px) {
   .carousel-text {
-    font-size: 0.7rem;
-    padding: 0.1rem;
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .carousel-indicators {
+    bottom: -20px;
+  }
+  
+  .indicator {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .indicator.active {
+    width: 14px;
   }
 }
 
@@ -41,9 +90,4 @@
     font-size: 1.1rem;
     padding: 0.9rem 1.8rem;
   }
-}
-
-.carousel-text.active {
-  opacity: 1;
-  transform: translateY(0);
 }

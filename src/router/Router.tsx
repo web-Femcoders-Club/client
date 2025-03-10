@@ -82,7 +82,9 @@ const BoxModel = lazy(
   () => import("../features/Blog/posts/recursos/css/BoxModels")
 );
 
-const Flexbox = lazy(() => import("../features/Blog/posts/recursos/css/Flexbox"));
+const Flexbox = lazy(
+  () => import("../features/Blog/posts/recursos/css/Flexbox")
+);
 
 const ComunityHub = lazy(
   () => import("../features/CommunityHub/page/ComunityHub")
@@ -143,21 +145,21 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/ofertas-de-trabajo"
-  element={
-    <Layout>
-      <JobOffers />
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/box-model"
-  element={
-    <Layout>
-      <BoxModel />
-    </Layout>
-  }
-/>
+            path="/ofertas-de-trabajo"
+            element={
+              <Layout>
+                <JobOffers />
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/box-model"
+            element={
+              <Layout>
+                <BoxModel />
+              </Layout>
+            }
+          />
 
           <Route
             path="/stats"
@@ -378,16 +380,15 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/recursos/css/flexbox"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <Flexbox />
-      </Suspense>
-    </Layout>
-  }
-/>
-
+            path="/recursos/css/flexbox"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <Flexbox />
+                </Suspense>
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
 
