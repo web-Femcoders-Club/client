@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloquear área administrativa
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://www.femcodersclub.com/sitemap.xml

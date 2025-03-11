@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import "./WelcomePage.css";
 import { getUserAchievements } from "../../../api/achievementsApi";
+import { Helmet } from "react-helmet";
+
 
 const WelcomePage = () => {
   const location = useLocation();
@@ -338,6 +340,11 @@ const WelcomePage = () => {
   );
 
   return (
+    <>
+    <Helmet>
+  <title>Bienvenida - FemCoders Club</title>
+  <meta name="description" content="Tu espacio para crecer, aprender y conectar con otras mujeres en tecnología. Explora recursos, eventos y oportunidades de mentoría en FemCoders Club." />
+</Helmet>
     <div className="flex min-h-screen bg1">
       <Overlay />
       <Sidebar />
@@ -861,6 +868,7 @@ const WelcomePage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
