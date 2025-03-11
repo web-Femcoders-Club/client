@@ -50,18 +50,15 @@ const publicRoutes: SitemapItemLoose[] = [
   { url: '/recursos/css/flexbox', changefreq: EnumChangefreq.MONTHLY, priority: 0.6, lastmod: currentDate },
 ];
 
-// Estas rutas NO se incluirán en el sitemap porque requieren autenticación
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const privateRoutes = [
-  '/ofertas-de-trabajo',
-  '/personaliza-perfil',
-  '/presentaciones-destacadas',
-  '/recursos-comunidad-femcoders-club',
-  '/mentoria',
-  '/enviar-documentacion',
-  '/welcome',
-  '/forgot-password',
-];
+// Estas rutas NO se incluirán en el sitemap porque requieren autenticación:
+// - /ofertas-de-trabajo
+// - /personaliza-perfil
+// - /presentaciones-destacadas
+// - /recursos-comunidad-femcoders-club
+// - /mentoria
+// - /enviar-documentacion
+// - /welcome
+// - /forgot-password
 
 async function generateSitemap() {
   const sitemap = new SitemapStream({ hostname });
