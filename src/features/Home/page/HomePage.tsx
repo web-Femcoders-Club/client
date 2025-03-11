@@ -290,152 +290,199 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
+<Helmet>
+  <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
+  
+  {/* Meta básico */}
+  <meta
+    name="description"
+    content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking. Aprende, comparte y crece en el mundo de la programación."
+  />
+  <meta
+    name="keywords"
+    content="femcoders club, fem coders club, mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, desarrollo web, mentorías tech, networking tecnológico, mujeres programadoras, formación en tecnología, diversidad en tech, oportunidades tech para mujeres"
+  />
+  <meta name="author" content="Irina Ichim, co-fundadora FemCoders Club" />
+  <link rel="canonical" href="https://www.femcodersclub.com" />
 
-        <meta
-          name="description"
-          content="femCoders club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
-        />
-
-        <meta
-          name="keywords"
-          content="FemCoders Club,femCoders club, femcodersclub,  mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, liderazgo femenino, networking, desarrollo web, empoderamiento mujeres tech"
-        />
-
-        <meta
-          name="author"
-          content="Irina Ichim, co-fundadora FemCoders Club"
-        />
-        <link rel="canonical" href="https://www.femcodersclub.com" />
-
-        <meta
-          property="og:title"
-          content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
-        />
-        <meta
-          property="og:description"
-          content="FemCoders Club: Una comunidad dedicada a empoderar a mujeres en tecnología. Únete a nuestros eventos, talleres y redes de networking para crecer en el sector tecnológico."
-        />
-        <meta property="og:url" content="https://www.femcodersclub.com" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
-        />
-        <meta
-          property="og:image:alt"
-          content="Mujeres cofundadoras de FemCoders Club en un evento"
-        />
-        <meta property="og:locale" content="es_ES" />
-        <meta property="og:site_name" content="FemCoders Club" />
-        <meta
-          property="og:see_also"
-          content="https://www.instagram.com/femcoders_club/"
-        />
-        <meta
-          property="og:see_also"
-          content="https://www.linkedin.com/company/fem-coders-club/"
-        />
-        <meta
-          property="og:see_also"
-          content="https://www.youtube.com/@FemcodersClub"
-        />
-        <meta
-          property="og:see_also"
-          content="https://github.com/femcodersclub"
-        />
-        <meta
-          property="og:see_also"
-          content="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-        />
-        <meta property="og:see_also" content="https://x.com/FemCodersClub" />
-
-        {/* Schema.org para Organización */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "FemCoders Club",
-            url: "https://www.femcodersclub.com",
-            logo: "https://www.femcodersclub.com/FemCodersClubLogo.png",
-            sameAs: [
-              "https://www.instagram.com/femcoders_club/",
-              "https://www.linkedin.com/company/fem-coders-club/",
-              "https://www.youtube.com/@FemcodersClub",
-              "https://github.com/femcodersclub",
-              "https://communityinviter.com/apps/femcodersclub/femcoders-club",
-            ],
-            description:
-              "Una comunidad dedicada a empoderar a mujeres en tecnología a través de eventos, talleres y networking.",
-          })}
-        </script>
-
-        {/* Schema.org para Sitio Web */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "FemCoders Club",
-            url: "https://www.femcodersclub.com",
-          })}
-        </script>
-
-        {/* Schema.org para Elementos de Navegación */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            itemListElement: [
-              {
-                "@type": "SiteNavigationElement",
-                position: 1,
-                name: "Sobre Nosotras",
-                description: "Conoce más sobre FemCoders Club y nuestra misión",
-                url: "https://www.femcodersclub.com/sobrenosotras",
-              },
-              {
-                "@type": "SiteNavigationElement",
-                position: 2,
-                name: "Equipo",
-                description: "Conoce al equipo detrás de FemCoders Club",
-                url: "https://www.femcodersclub.com/equipo",
-              },
-              {
-                "@type": "SiteNavigationElement",
-                position: 3,
-                name: "Eventos",
-                description:
-                  "Próximos eventos y talleres para mujeres en tecnología",
-                url: "https://www.femcodersclub.com/eventos",
-              },
-              {
-                "@type": "SiteNavigationElement",
-                position: 4,
-                name: "Contacto",
-                description: "Ponte en contacto con FemCoders Club",
-                url: "https://www.femcodersclub.com/contacto",
-              },
-              {
-                "@type": "SiteNavigationElement",
-                position: 5,
-                name: "Blog",
-                description:
-                  "Artículos, recursos y noticias sobre mujeres en tecnología",
-                url: "https://www.femcodersclub.com/blog",
-              },
-              {
-                "@type": "SiteNavigationElement",
-                position: 6,
-                name: "Iniciar Sesión",
-                description: "Accede a tu cuenta de FemCoders Club",
-                url: "https://www.femcodersclub.com/login",
-              },
-            ],
-          })}
-        </script>
-      </Helmet>
-
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
+  />
+  <meta
+    property="og:description"
+    content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking."
+  />
+  <meta property="og:url" content="https://www.femcodersclub.com" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:image"
+    content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
+  />
+  <meta property="og:image:alt" content="Mujeres cofundadoras de FemCoders Club en un evento" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="FemCoders Club" />
+  
+  {/* Enlaces a perfiles sociales */}
+  <meta property="og:see_also" content="https://www.instagram.com/femcoders_club/" />
+  <meta property="og:see_also" content="https://www.linkedin.com/company/fem-coders-club/" />
+  <meta property="og:see_also" content="https://www.youtube.com/@FemcodersClub" />
+  <meta property="og:see_also" content="https://github.com/femcodersclub" />
+  <meta property="og:see_also" content="https://communityinviter.com/apps/femcodersclub/femcoders-club" />
+  <meta property="og:see_also" content="https://x.com/FemCodersClub" />
+  
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología" />
+  <meta name="twitter:description" content="Comunidad dedicada a empoderar a mujeres en tecnología" />
+  <meta name="twitter:image" content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg" />
+  <meta name="twitter:site" content="@FemCodersClub" />
+  
+  {/* Schema.org para Organización */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FemCoders Club",
+      "alternateName": ["Fem Coders Club", "femcodersclub", "femCoders club", "FemCoders Club", "FEM CODERS CLUB"],
+      "url": "https://www.femcodersclub.com",
+      "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
+      "sameAs": [
+        "https://www.instagram.com/femcoders_club/",
+        "https://www.linkedin.com/company/fem-coders-club/",
+        "https://www.youtube.com/@FemcodersClub",
+        "https://github.com/femcodersclub",
+        "https://communityinviter.com/apps/femcodersclub/femcoders-club",
+        "https://x.com/FemCodersClub"
+      ],
+      "description": "Una comunidad dedicada a empoderar a mujeres en tecnología a través de eventos, talleres y networking.",
+      "foundingDate": "2023-10-24",
+      "email": "info@femcodersclub.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "España"
+      }
+    })}
+  </script>
+  
+  {/* Schema.org para Sitio Web */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FemCoders Club",
+      "url": "https://www.femcodersclub.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.femcodersclub.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    })}
+  </script>
+  
+  {/* Schema.org para Elementos de Navegación */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Sobre Nosotras",
+          "description": "Conoce más sobre FemCoders Club y nuestra misión",
+          "url": "https://www.femcodersclub.com/sobrenosotras",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Equipo",
+          "description": "Conoce al equipo detrás de FemCoders Club",
+          "url": "https://www.femcodersclub.com/equipo",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Eventos",
+          "description": "Próximos eventos y talleres para mujeres en tecnología",
+          "url": "https://www.femcodersclub.com/eventos",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Contacto",
+          "description": "Ponte en contacto con FemCoders Club",
+          "url": "https://www.femcodersclub.com/contacto",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Blog",
+          "description": "Artículos, recursos y noticias sobre mujeres en tecnología",
+          "url": "https://www.femcodersclub.com/blog",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Iniciar Sesión",
+          "description": "Accede a tu cuenta de FemCoders Club",
+          "url": "https://www.femcodersclub.com/login",
+        },
+      ],
+    })}
+  </script>
+  
+  {/* Schema.org para FAQ basado en tu componente FaqModal */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es FemCoders Club?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FemCoders Club, una comunidad con sede en Barcelona, se estableció en 2023 con su lanzamiento oficial el 24 de octubre. Fundado por un grupo de mujeres apasionadas, este colectivo tiene un objetivo unificador: contribuir al empoderamiento de otras mujeres en el ámbito digital y tecnológico. La misión fundamental de FemCoders Club es proporcionar un espacio inclusivo donde las mujeres puedan colaborar, aprender y crecer en campos relacionados con la tecnología."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son sus objetivos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Organizar masterclasses y sesiones inspiradoras, brindando oportunidades de aprendizaje y desarrollo personal a través de experiencias compartidas. Facilitar encuentros regulares donde las mujeres puedan conectarse, compartir experiencias y establecer conexiones significativas. Promover la inclusión y diversidad, asegurando que la comunidad sea acogedora para mujeres de diversos trasfondos y experiencias."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué debería unirme a esta comunidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unirte a FemCoders Club te brinda acceso a networking con mujeres profesionales en tecnología, eventos y talleres, desarrollo personal, apoyo al emprendimiento, inclusión y apoyo mutuo, y la oportunidad de contribuir a la diversidad en el sector tecnológico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo unirme a la comunidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si quieres formar parte de nuestra comunidad, puedes hacerlo a través de nuestro Slack. Puedes contactarnos por LinkedIn. También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo enterarme de los eventos de FemCoders Club?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FemCoders Club publica todos sus eventos a través de nuestra página web, Linkedin y nuestro canal de #eventos en slack."
+          }
+        }
+      ]
+    })}
+  </script>
+</Helmet>
       <section className="parallax bg1">
         <div className="content-container">
           <div
