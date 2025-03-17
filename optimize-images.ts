@@ -9,8 +9,9 @@ const __dirname = path.dirname(__filename);
 
 // 📂 Carpeta de entrada y salida
 const inputFolder = path.join(__dirname, "public");
-const outputFolderDesktop = path.join(__dirname, "public-optimized/desktop");
-const outputFolderMobile = path.join(__dirname, "public-optimized/mobile");
+const outputFolderOptimized = path.join(__dirname, "public-optimized");
+const outputFolderDesktop = path.join(outputFolderOptimized, "desktop");
+const outputFolderMobile = path.join(outputFolderOptimized, "mobile");
 
 // Crear carpetas si no existen
 fs.ensureDirSync(outputFolderDesktop);
@@ -22,7 +23,7 @@ const backgroundImages = new Set(["bg1.png", "bg2.png", "bg3.png", "bg4.png", "b
 // 📌 Tamaño mínimo para optimizar (evita imágenes pequeñas)
 const MIN_SIZE_KB = 100;
 
-// 🔍 Función para obtener todas las imágenes JPG/PNG en `public/`
+// 🔍 Función para obtener todas las imágenes dentro de `public/`
 const getAllImages = (dir: string): string[] => {
   let results: string[] = [];
   const list = fs.readdirSync(dir);
@@ -35,6 +36,22 @@ const getAllImages = (dir: string): string[] => {
       results = results.concat(getAllImages(filePath));
     } else if (/\.(jpg|jpeg|png)$/i.test(file)) {
       results.push(filePath);
+    }
+  });
+
+  return results;
+};
+
+// 🔍 Función para encontrar todas las carpetas en `public-optimized`
+const getAllFolders = (dir: string): string[] => {
+  let results: string[] = [];
+  const list = fs.readdirSync(dir);
+
+  list.forEach((file) => {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      results.push(filePath);
+      results = results.concat(getAllFolders(filePath)); // Buscar en subcarpetas
     }
   });
 
@@ -54,7 +71,7 @@ async function optimizeImages() {
       const outputDesktopPath = path.join(outputFolderDesktop, relativePath).replace(/\.(jpg|jpeg|png)$/, ".webp");
       const outputMobilePath = path.join(outputFolderMobile, relativePath).replace(/\.(jpg|jpeg|png)$/, ".webp");
 
-      // 📌 Crear carpetas en `public-optimized/`
+      // 📌 Crear carpetas necesarias en `public-optimized`
       fs.ensureDirSync(path.dirname(outputDesktopPath));
       fs.ensureDirSync(path.dirname(outputMobilePath));
 
@@ -103,8 +120,12 @@ async function optimizeImages() {
   }
 }
 
+// 📂 Mostrar todas las carpetas dentro de `public-optimized`
+console.log("📂 Carpetas en `public-optimized`:", getAllFolders(outputFolderOptimized));
+
 // 🚀 Ejecutar optimización
 optimizeImages();
+
 
 
 
