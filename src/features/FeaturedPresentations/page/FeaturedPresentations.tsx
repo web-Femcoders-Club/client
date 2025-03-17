@@ -1,11 +1,13 @@
 import { Helmet } from "react-helmet";
 import { Calendar, Download, Eye, PresentationIcon } from "lucide-react";
+import { useState } from "react";
 
 interface Presentation {
   title: string;
   date: string;
   description: string;
   fileUrl: string;
+  projectZipUrl?: string;
 }
 
 const TimelineEvent = ({
@@ -59,15 +61,18 @@ const TimelineEvent = ({
             </time>
           </div>
 
-          <p className="styled-paragraph">{presentation.description}</p>
-          <div className="flex gap-4 mt-4">
+          <div
+            className="styled-paragraph"
+            dangerouslySetInnerHTML={{ __html: presentation.description }}
+          ></div>
+          <div className="flex gap-4 mt-4 flex-wrap">
             <a
               href={presentation.fileUrl}
               className="primary-button flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
               download
             >
               <Download className="h-5 w-5 mr-2" />
-              Descargar
+              Descargar PDF
             </a>
             <a
               href={presentation.fileUrl}
@@ -78,6 +83,16 @@ const TimelineEvent = ({
               <Eye className="h-5 w-5 mr-2" />
               Ver Presentación
             </a>
+            {presentation.projectZipUrl && (
+              <a
+                href={presentation.projectZipUrl}
+                className="flex items-center px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+                download
+              >
+                <Download className="h-5 w-5 mr-2" />
+                Descargar Proyecto (RAR)
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -97,7 +112,23 @@ const TimelineEvent = ({
 };
 
 const FeaturedPresentation = () => {
+  // Añadir estado para la paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const presentationsPerPage = 2;
+
   const presentations: Presentation[] = [
+    {
+      title: "Réplica de Nike Store con React y JavaScript",
+      date: "2025-03-10",
+      description: `
+        Proyecto de <a href="https://www.linkedin.com/in/almudena-rendon-fernandez/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Almudena Rendón Fernández</a>, Software Developer y Top 10 Women in IT & Tech LinkedIn Spain. <br>
+        Esta réplica de Nike Store incluye diseño responsivo, carrito de compra con persistencia de datos, 
+        formularios con validación en tiempo real y envío de emails de confirmación.
+        Desarrollado principalmente con React, JavaScript y Node.js. Un excelente ejemplo de desarrollo web moderno enfocado en la experiencia de usuario.
+      `,
+      fileUrl: "/MaterialesEventos/NikeStoreAlmudenaRendon.pdf",
+      projectZipUrl: "/MaterialesEventos/NikeStoreAlmudenaRendon.rar",
+    },
     {
       title: "Accesibilidad y Ciberseguridad en el Desarrollo Web",
       date: "2024-11-20",
@@ -140,6 +171,34 @@ const FeaturedPresentation = () => {
     },
   ];
 
+  const sortedPresentations = [...presentations].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  const indexOfLastPresentation = currentPage * presentationsPerPage;
+  const indexOfFirstPresentation =
+    indexOfLastPresentation - presentationsPerPage;
+  const currentPresentations = sortedPresentations.slice(
+    indexOfFirstPresentation,
+    indexOfLastPresentation
+  );
+
+  const totalPages = Math.ceil(
+    sortedPresentations.length / presentationsPerPage
+  );
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -175,7 +234,7 @@ const FeaturedPresentation = () => {
             className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 hidden md:block"
             style={{ backgroundColor: "#4737bb " }}
           />
-          {presentations.map((presentation, index) => (
+          {currentPresentations.map((presentation, index) => (
             <TimelineEvent
               key={presentation.title + index}
               presentation={presentation}
@@ -183,6 +242,74 @@ const FeaturedPresentation = () => {
             />
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-10">
+            <div className="btn-group pagination-custom">
+              <button
+                className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
+                onClick={goToPreviousPage}
+                disabled={currentPage === 1}
+                aria-label="Página anterior"
+                title="Página anterior"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+                <span className="sr-only">Anterior</span>
+              </button>
+
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className={`btn ${
+                    currentPage === index + 1 ? "btn-active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                className={`btn ${
+                  currentPage === totalPages ? "btn-disabled" : ""
+                }`}
+                onClick={goToNextPage}
+                disabled={currentPage === totalPages}
+                aria-label="Página siguiente"
+                title="Página siguiente"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+                <span className="sr-only">Siguiente</span>
+              </button>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );

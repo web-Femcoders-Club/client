@@ -14,7 +14,7 @@ const BoxModels: React.FC = () => {
     <div className="blog-post">
    <Helmet>
 
-  <title>Box Model en CSS | Guía Completa para Frontend con FemCoders Club</title>
+  <title>Box Model en CSS | Guía Completa para Frontend</title>
 
  
   <meta
@@ -51,7 +51,7 @@ const BoxModels: React.FC = () => {
       </div>
 
       <h1 className="blog-post-title">
-      Box Model en CSS | Guía Completa para Frontend con FemCoders Club
+      Box Model en CSS | Guía Completa para Frontend 
       </h1>
 
       <div className="social-share">

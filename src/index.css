@@ -257,33 +257,36 @@ span {
 }
 
 .bg1 {
-  background-image: url("/bg1.png");
+  background-image: url("/public-optimized/desktop/bg1.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg2 {
-  background-image: url("/bg2.png");
+  background-image: url("/public-optimized/desktop/bg2.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg3 {
-  background-image: url("/bg3.png");
+  background-image: url("/public-optimized/desktop/bg3.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg4 {
-  background-image: url("/bg4.png");
+  background-image: url("/public-optimized/desktop/bg4.webp");
   background-size: cover;
   background-position: center;
 }
+
 .bg5 {
-  background-image: url("/bg5.png");
+  background-image: url("/public-optimized/desktop/bg5.webp");
   background-size: cover;
   background-position: center;
 }
+
+
 .form-container {
   display: flex;
   justify-content: center;

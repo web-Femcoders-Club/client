@@ -37,12 +37,30 @@ const EventsPage = () => {
     return <div>Error loading events. Please try again later.</div>;
   }
 
-  const paginatedEvents = pastEventsData?.slice(
+  const sortedPastEvents = pastEventsData
+    ? [...pastEventsData].sort(
+        (a, b) =>
+          new Date(b.start_local).getTime() - new Date(a.start_local).getTime()
+      )
+    : [];
+
+  const paginatedEvents = sortedPastEvents.slice(
     (currentPage - 1) * eventsPerPage,
     currentPage * eventsPerPage
   );
 
-  const totalPages = Math.ceil((pastEventsData?.length || 0) / eventsPerPage);
+  const totalPages = Math.ceil(sortedPastEvents.length / eventsPerPage);
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <>
@@ -65,10 +83,6 @@ const EventsPage = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://femcodersclub.com/eventos" />
-        <meta
-          property="og:image"
-          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
-        />
         <meta property="og:site_name" content="FemCoders Club" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -76,10 +90,6 @@ const EventsPage = () => {
         <meta
           name="twitter:description"
           content="Participa en eventos organizados por FemCoders Club, una comunidad dedicada a empoderar a mujeres en tecnología."
-        />
-        <meta
-          name="twitter:image"
-          content="https://femcodersclub.com/assets/event-thumbnail.jpg"
         />
       </Helmet>
 
@@ -197,21 +207,67 @@ const EventsPage = () => {
           )}
         </div>
 
-        <div className="flex justify-center mt-4">
-          <div className="btn-group pagination-custom">
-            {Array.from({ length: totalPages }, (_, index) => (
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-4">
+            <div className="btn-group pagination-custom">
               <button
-                key={index}
-                className={`btn ${
-                  currentPage === index + 1 ? "btn-active" : ""
-                }`}
-                onClick={() => setCurrentPage(index + 1)}
+                className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
+                onClick={goToPreviousPage}
+                disabled={currentPage === 1}
+                title="Previous Page"
               >
-                {index + 1}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
               </button>
-            ))}
+
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className={`btn ${
+                    currentPage === index + 1 ? "btn-active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                className={`btn ${
+                  currentPage === totalPages ? "btn-disabled" : ""
+                }`}
+                onClick={goToNextPage}
+                disabled={currentPage === totalPages}
+                title="Next Page"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );

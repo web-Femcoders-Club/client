@@ -89,6 +89,9 @@ const Flexbox = lazy(
 const ComunityHub = lazy(
   () => import("../features/CommunityHub/page/ComunityHub")
 );
+const ReplicaNike = lazy(
+  () => import("../features/Blog/posts/recursos/react/ReplicaNike")
+);
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -389,6 +392,16 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          <Route
+  path="/recursos/react/nike-store-replica"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <ReplicaNike />
+      </Suspense>
+    </Layout>
+  }
+/>
         </Routes>
       </Suspense>
 

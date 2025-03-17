@@ -181,7 +181,7 @@ const Recursos: React.FC = () => {
       <div className="recurso-item bg1">
         <div className="noticia-content">
           <div>
-            <h3>Box Model en CSS | Guía Completa para Frontend con FemCoders Club</h3>
+            <h3>Box Model en CSS | Guía Completa para Frontend </h3>
             <p className="intro-text">
               Aprende a dominar el Box Model en CSS para mejorar el diseño y la
               maquetación web.
@@ -213,6 +213,24 @@ const Recursos: React.FC = () => {
     </Link>
   </div>
 </div>
+<div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Réplica de Nike Store: E-commerce con React</h3>
+            <p className="intro-text">
+            Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, 
+              incluyendo carrito de compras, localStorage y formularios avanzados.
+            </p>
+          </div>
+          <Link
+            to="/recursos/react/nike-store-replica"
+            className="secondary-button"
+            aria-label="Leer más sobre la réplica de Nike Store con React"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
 
     </div>
   );

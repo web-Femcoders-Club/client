@@ -7,6 +7,8 @@ import CarouselWithText from "../components/CarouselWithText";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import OptimizedImage from "../../../../src/components/OptimizedImage";
+// import { sourceMapsEnabled } from "process";
 
 interface Event {
   start: {
@@ -52,42 +54,216 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
-    "/eventoCarmenAnsio.jpg",
-    "/assets/UltimosEventos2024/LorenaSalvadorPonenteAccesibilidad.jpg",
-    "/eventoFactoriaF5.jpg",
-    "/mujeresTech.jpg",
-    "/comunidadFemCodersClubEventoCriteo.jpg",
-    "/doscomunidadestech.jpeg",
-    "/eventoTecnologico8Marzo.jpg",
-    "/mujeresprogramadoras.jpg",
-    "/posit8Marzo.jpg",
-    "evento_techFemCodersClub.jpg",
-    "/comunidadesMujeresTecnologas.jpg",
-    "/AureaRodriguez.jpg",
-    "/asistentesfemCodersClubCriteo.jpg",
-    "/eventobufet.JPG",
-    "/apoyoMujeresTech.jpg",
-    "/EventoFactorial.jpg",
-    "/mujeresTechNetworking.jpg",
-    "/musicaconcodigo.jpeg",
-    "/eventoUnlokingData.jpg",
-    "/eventoLiderazgoMujer.jpg",
-    "/mujeres-ciberseguridad-femcoders-evento.png",
-    "/mujeresFemCodersClub.png",
-    "/networkingEventosFemCodersClub.png",
-    "/mujeresComunidadFemCodersClub.png",
-    "/networking.png",
-    "/eventoAdevintaFemCodersClub.png",
-    "/apoyomujeres.png",
-    "/comunidadDeMujeres.png",
-    "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.png",
-    "/assets/ML-ComunicacionAcertiva/EventoFemCodersClub-ComunicacionAcertiva.png",
-    "/assets/ML-ComunicacionAcertiva/desarolladora-fullstack-Irina-femCodersClub.png",
-    "/assets/ML-ComunicacionAcertiva/femcodersclubyponentes.png",
-    "/assets/semRush/AnaSemrush.jpg",
-    "/assets/semRush/eventoSemrush.jpg",
-    "/assets/UltimosEventos2024/eventoSeatCode.jpg",
-    "/assets/UltimosEventos2024/eventoInteligenciaEmocional.jpg",
+    {
+      src: "/assets/home-images/infoJobsCelebracion.webp",
+      alt: "Celebrando Dia de la Mujer en InfoJobs con FemCoders Club",
+      title: "Celebrando el Día de la Mujer en InfoJobs",
+    },
+    {
+      src: "/assets/home-images/mujereslideres.webp",
+      alt: "Mujeres inspiradoras en un evento de FemCoders Club",
+      title: "Mujeres que inspiran a la comunidad",
+    },
+    {
+      src: "/assets/home-images/eventoCarmenAnsio.webp",
+      alt: "Evento con Carmen Ansio en FemCoders Club",
+      title: "Evento con Carmen Ansio",
+    },
+    {
+      src: "/assets/UltimosEventos2024/LorenaSalvadorPonenteAccesibilidad.webp",
+      alt: "Lorena Salvador hablando sobre accesibilidad en un evento de FemCoders Club",
+      title: "Accesibilidad con Lorena Salvador",
+    },
+    {
+      src: "/assets/home-images/eventoFactoriaF5.webp",
+      alt: "Evento en Factoría F5 con desarrolladoras de FemCoders Club",
+      title: "Evento en Factoría F5",
+    },
+    {
+      src: "/assets/home-images/mujeresTech.webp",
+      alt: "Grupo de mujeres en tecnología en un evento de FemCoders Club",
+      title: "Mujeres en tecnología",
+    },
+    {
+      src: "/assets/home-images/comunidadFemCodersClubEventoCriteo.webp",
+      alt: "Miembros de FemCoders Club en un evento en Criteo",
+      title: "Evento en Criteo con FemCoders Club",
+    },
+    {
+      src: "/assets/home-images/doscomunidadestech.webp",
+      alt: "Dos comunidades tecnológicas colaborando en un evento",
+      title: "Colaboración entre comunidades tech",
+    },
+    {
+      src: "/assets/home-images/eventoTecnologico8Marzo.webp",
+      alt: "Evento tecnológico en el Día Internacional de la Mujer",
+      title: "8M: Mujeres en Tecnología",
+    },
+    {
+      src: "/assets/home-images/mujeresprogramadoras.webp",
+      alt: "Mujeres programadoras en un evento de FemCoders Club",
+      title: "Mujeres programadoras",
+    },
+    {
+      src: "/assets/home-images/eventoUnlokingData.webp",
+      alt: "Evento sobre datos e inteligencia artificial en FemCoders Club",
+      title: "Evento: Unlocking Data",
+    },
+    {
+      src: "/assets/home-images/mujeresFemCodersClub.webp",
+      alt: "Mujeres en la comunidad de FemCoders Club",
+      title: "Mujeres de FemCoders Club",
+    },
+    {
+      src: "/assets/home-images/posit8Marzo.webp",
+      alt: "Evento en el Día Internacional de la Mujer en FemCoders Club",
+      title: "8M: Positividad y Empoderamiento",
+    },
+    {
+      src: "/assets/home-images/evento_techFemCodersClub.webp",
+      alt: "Evento tecnológico en FemCoders Club",
+      title: "Evento Tech en FemCoders Club",
+    },
+    {
+      src: "/assets/home-images/comunidadesMujeresTecnologas.webp",
+      alt: "Comunidades de mujeres en tecnología colaborando en un evento",
+      title: "Comunidades de Mujeres en Tecnología",
+    },
+    {
+      src: "/assets/home-images/AureaRodriguez.webp",
+      alt: "Aurea Rodríguez en un evento de FemCoders Club",
+      title: "Aurea Rodríguez en FemCoders Club",
+    },
+    {
+      src: "/assets/home-images/asistentesfemCodersClubCriteo.webp",
+      alt: "Asistentes a un evento de FemCoders Club en Criteo",
+      title: "Asistentes en Criteo",
+    },
+    {
+      src: "/assets/home-images/apoyoMujeresTech.webp",
+      alt: "Mujeres en tecnología apoyándose mutuamente en un evento",
+      title: "Apoyo entre Mujeres Tech",
+    },
+    {
+      src: "/assets/home-images/EventoFactorial.webp",
+      alt: "Evento en Factorial con ponentes de FemCoders Club",
+      title: "Evento en Factorial",
+    },
+    {
+      src: "/assets/home-images/mujeresTechNetworking.webp",
+      alt: "Mujeres en tecnología en un evento de networking",
+      title: "Networking entre Mujeres Tech",
+    },
+    {
+      src: "/assets/home-images/musicaconcodigo.webp",
+      alt: "Evento de música y código en FemCoders Club",
+      title: "Música con Código",
+    },
+    {
+      src: "/assets/home-images/eventoLiderazgoMujer.webp",
+      alt: "Evento sobre liderazgo femenino en FemCoders Club",
+      title: "Liderazgo de la Mujer",
+    },
+    {
+      src: "/assets/home-images/eventoUnlokingData.webp",
+      alt: "Evento sobre datos e inteligencia artificial en FemCoders Club",
+      title: "Evento: Unlocking Data",
+    },
+    {
+      src: "/assets/home-images/mujeres-ciberseguridad-femcoders-evento.webp",
+      alt: "Mujeres en ciberseguridad en un evento de FemCoders Club",
+      title: "Mujeres en Ciberseguridad",
+    },
+    {
+      src: "/assets/home-images/networkingEventosFemCodersClub.webp",
+      alt: "Networking en eventos de FemCoders Club",
+      title: "Networking en Eventos",
+    },
+    {
+      src: "/assets/home-images/mujeresComunidadFemCodersClub.webp",
+      alt: "Mujeres en la comunidad de FemCoders Club",
+      title: "Mujeres en la Comunidad",
+    },
+    {
+      src: "/assets/home-images/comunidadDeMujeres.webp",
+      alt: "Mujeres en la comunidad de FemCoders Club",
+      title: "Mujeres en la Comunidad",
+    },
+    {
+      src: "/assets/home-images/mujeresFemCodersClub.webp",
+      alt: "Mujeres en un evento de FemCoders Club",
+      title: "Mujeres en FemCoders Club",
+    },
+    {
+      src: "/assets/home-images/networking.webp",
+      alt: "Networking en un evento de FemCoders Club",
+      title: "Networking en Evento",
+    },
+    {
+      src: "/assets/home-images/eventoAdevintaFemCodersClub.webp",
+      alt: "Evento en Adevinta con ponentes de FemCoders Club",
+      title: "Evento en Adevinta",
+    },
+    {
+      src: "/assets/home-images/apoyomujeres.webp",
+      alt: "Evento femCoders Club en Adevinta",
+      title: "Evento en Adevinta",
+    },
+    {
+      src: "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.webp",
+      alt: "Evento de comunicación asertiva en FemCoders Club",
+      title: "Evento de Comunicación Asertiva",
+    },
+    {
+      src: "/assets/home-images/comunidadDeMujeres.webp",
+      alt: "Comunidad de mujeres en un evento de FemCoders Club",
+      title: "Comunidad de Mujeres",
+    },
+    {
+      src: "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.webp",
+      alt: "Evento de comunicación asertiva en FemCoders Club",
+      title: "Evento de Comunicación Asertiva",
+    },
+    {
+      src: "/assets/ML-ComunicacionAcertiva/desarrolladora-fullstack-Irina-femCodersClub.webp",
+      alt: "Irina Ichim, desarrolladora fullstack y cofundadora de FemCoders Club",
+      title: "Irina Ichim, Desarrolladora Fullstack",
+    },
+    {
+      src: "/assets/home-images/LuciaCofundadora.webp",
+      alt: "Lucía, cofundadora de FemCoders Club",
+      title: "Lucía, Cofundadora",
+    },
+    {
+      src: "/assets/semRush/AnaSemrush.webp",
+      alt: "Ana organizadora del evento en Semrush",
+      title: "Ana en Semrush",
+    },
+    {
+      src: "/assets/semRush/eventoSemrush.webp",
+      alt: "Evento en Semrush organizado por FemCoders Club",
+      title: "Evento en Semrush",
+    },
+    {
+      src: "/assets/UltimosEventos2024/eventoSeatCode.webp",
+      alt: "Evento reciente en SeatCode con ponentes de FemCoders Club",
+      title: "Evento en SeatCode",
+    },
+    {
+      src: "/assets/UltimosEventos2024/eventoInteligenciaEmocional.webp",
+      alt: "Evento sobre inteligencia emocional en FemCoders Club",
+      title: "Inteligencia Emocional",
+    },
+    {
+      src: "/assets/home-images/chicasComunidadFemCodersClub.webp",
+      alt: "Chicas en la comunidad de FemCoders Club",
+      title: "Chicas en la Comunidad",
+    },
+    {
+      src: "/assets/home-images/NiltonInfoJobs.webp",
+      alt: "Nilton Navarro Flores presentando el evento de InfoJobs",
+      title: "Nilton Navarro Flores en InfoJobs",
+    },
   ];
 
   const texts = [
@@ -290,199 +466,239 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-<Helmet>
-  <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
-  
-  {/* Meta básico */}
-  <meta
-    name="description"
-    content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking. Aprende, comparte y crece en el mundo de la programación."
-  />
-  <meta
-    name="keywords"
-    content="femcoders club, fem coders club, mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, desarrollo web, mentorías tech, networking tecnológico, mujeres programadoras, formación en tecnología, diversidad en tech, oportunidades tech para mujeres"
-  />
-  <meta name="author" content="Irina Ichim, co-fundadora FemCoders Club" />
-  <link rel="canonical" href="https://www.femcodersclub.com" />
+      <Helmet>
+        <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
 
-  {/* Open Graph */}
-  <meta
-    property="og:title"
-    content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
-  />
-  <meta
-    property="og:description"
-    content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking."
-  />
-  <meta property="og:url" content="https://www.femcodersclub.com" />
-  <meta property="og:type" content="website" />
-  <meta
-    property="og:image"
-    content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
-  />
-  <meta property="og:image:alt" content="Mujeres cofundadoras de FemCoders Club en un evento" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:site_name" content="FemCoders Club" />
-  
-  {/* Enlaces a perfiles sociales */}
-  <meta property="og:see_also" content="https://www.instagram.com/femcoders_club/" />
-  <meta property="og:see_also" content="https://www.linkedin.com/company/fem-coders-club/" />
-  <meta property="og:see_also" content="https://www.youtube.com/@FemcodersClub" />
-  <meta property="og:see_also" content="https://github.com/femcodersclub" />
-  <meta property="og:see_also" content="https://communityinviter.com/apps/femcodersclub/femcoders-club" />
-  <meta property="og:see_also" content="https://x.com/FemCodersClub" />
-  
-  {/* Twitter Card */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología" />
-  <meta name="twitter:description" content="Comunidad dedicada a empoderar a mujeres en tecnología" />
-  <meta name="twitter:image" content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg" />
-  <meta name="twitter:site" content="@FemCodersClub" />
-  
-  {/* Schema.org para Organización */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "FemCoders Club",
-      "alternateName": ["Fem Coders Club", "femcodersclub", "femCoders club", "FemCoders Club", "FEM CODERS CLUB"],
-      "url": "https://www.femcodersclub.com",
-      "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
-      "sameAs": [
-        "https://www.instagram.com/femcoders_club/",
-        "https://www.linkedin.com/company/fem-coders-club/",
-        "https://www.youtube.com/@FemcodersClub",
-        "https://github.com/femcodersclub",
-        "https://communityinviter.com/apps/femcodersclub/femcoders-club",
-        "https://x.com/FemCodersClub"
-      ],
-      "description": "Una comunidad dedicada a empoderar a mujeres en tecnología a través de eventos, talleres y networking.",
-      "foundingDate": "2023-10-24",
-      "email": "info@femcodersclub.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "España"
-      }
-    })}
-  </script>
-  
-  {/* Schema.org para Sitio Web */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "FemCoders Club",
-      "url": "https://www.femcodersclub.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.femcodersclub.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    })}
-  </script>
-  
-  {/* Schema.org para Elementos de Navegación */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "Sobre Nosotras",
-          "description": "Conoce más sobre FemCoders Club y nuestra misión",
-          "url": "https://www.femcodersclub.com/sobrenosotras",
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 2,
-          "name": "Equipo",
-          "description": "Conoce al equipo detrás de FemCoders Club",
-          "url": "https://www.femcodersclub.com/equipo",
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 3,
-          "name": "Eventos",
-          "description": "Próximos eventos y talleres para mujeres en tecnología",
-          "url": "https://www.femcodersclub.com/eventos",
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 4,
-          "name": "Contacto",
-          "description": "Ponte en contacto con FemCoders Club",
-          "url": "https://www.femcodersclub.com/contacto",
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 5,
-          "name": "Blog",
-          "description": "Artículos, recursos y noticias sobre mujeres en tecnología",
-          "url": "https://www.femcodersclub.com/blog",
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 6,
-          "name": "Iniciar Sesión",
-          "description": "Accede a tu cuenta de FemCoders Club",
-          "url": "https://www.femcodersclub.com/login",
-        },
-      ],
-    })}
-  </script>
-  
-  {/* Schema.org para FAQ basado en tu componente FaqModal */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Qué es FemCoders Club?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "FemCoders Club, una comunidad con sede en Barcelona, se estableció en 2023 con su lanzamiento oficial el 24 de octubre. Fundado por un grupo de mujeres apasionadas, este colectivo tiene un objetivo unificador: contribuir al empoderamiento de otras mujeres en el ámbito digital y tecnológico. La misión fundamental de FemCoders Club es proporcionar un espacio inclusivo donde las mujeres puedan colaborar, aprender y crecer en campos relacionados con la tecnología."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuáles son sus objetivos?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Organizar masterclasses y sesiones inspiradoras, brindando oportunidades de aprendizaje y desarrollo personal a través de experiencias compartidas. Facilitar encuentros regulares donde las mujeres puedan conectarse, compartir experiencias y establecer conexiones significativas. Promover la inclusión y diversidad, asegurando que la comunidad sea acogedora para mujeres de diversos trasfondos y experiencias."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Por qué debería unirme a esta comunidad?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Unirte a FemCoders Club te brinda acceso a networking con mujeres profesionales en tecnología, eventos y talleres, desarrollo personal, apoyo al emprendimiento, inclusión y apoyo mutuo, y la oportunidad de contribuir a la diversidad en el sector tecnológico."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo puedo unirme a la comunidad?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Si quieres formar parte de nuestra comunidad, puedes hacerlo a través de nuestro Slack. Puedes contactarnos por LinkedIn. También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo puedo enterarme de los eventos de FemCoders Club?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "FemCoders Club publica todos sus eventos a través de nuestra página web, Linkedin y nuestro canal de #eventos en slack."
-          }
-        }
-      ]
-    })}
-  </script>
-</Helmet>
+        {/* Meta básico */}
+        <meta
+          name="description"
+          content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking. Aprende, comparte y crece en el mundo de la programación."
+        />
+        <meta
+          name="keywords"
+          content="femcoders club, fem coders club, mujeres en tecnología, comunidad tech, eventos tecnológicos, talleres de programación, desarrollo web, mentorías tech, networking tecnológico, mujeres programadoras, formación en tecnología, diversidad en tech, oportunidades tech para mujeres"
+        />
+        <meta
+          name="author"
+          content="Irina Ichim, co-fundadora FemCoders Club"
+        />
+        <link rel="canonical" href="https://www.femcodersclub.com" />
+
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
+        />
+        <meta
+          property="og:description"
+          content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking."
+        />
+        <meta property="og:url" content="https://www.femcodersclub.com" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
+        />
+        <meta
+          property="og:image:alt"
+          content="Mujeres cofundadoras de FemCoders Club en un evento"
+        />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        {/* Enlaces a perfiles sociales */}
+        <meta
+          property="og:see_also"
+          content="https://www.instagram.com/femcoders_club/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.linkedin.com/company/fem-coders-club/"
+        />
+        <meta
+          property="og:see_also"
+          content="https://www.youtube.com/@FemcodersClub"
+        />
+        <meta
+          property="og:see_also"
+          content="https://github.com/femcodersclub"
+        />
+        <meta
+          property="og:see_also"
+          content="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+        />
+        <meta property="og:see_also" content="https://x.com/FemCodersClub" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="FemCoders Club | Comunidad Líder de Mujeres en Tecnología"
+        />
+        <meta
+          name="twitter:description"
+          content="Comunidad dedicada a empoderar a mujeres en tecnología"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
+        />
+        <meta name="twitter:site" content="@FemCodersClub" />
+
+        {/* Schema.org para Organización */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "FemCoders Club",
+            alternateName: [
+              "Fem Coders Club",
+              "femcodersclub",
+              "femCoders club",
+              "FemCoders Club",
+              "FEM CODERS CLUB",
+            ],
+            url: "https://www.femcodersclub.com",
+            logo: "https://www.femcodersclub.com/FemCodersClubLogo.png",
+            sameAs: [
+              "https://www.instagram.com/femcoders_club/",
+              "https://www.linkedin.com/company/fem-coders-club/",
+              "https://www.youtube.com/@FemcodersClub",
+              "https://github.com/femcodersclub",
+              "https://communityinviter.com/apps/femcodersclub/femcoders-club",
+              "https://x.com/FemCodersClub",
+            ],
+            description:
+              "Una comunidad dedicada a empoderar a mujeres en tecnología a través de eventos, talleres y networking.",
+            foundingDate: "2023-10-24",
+            email: "info@femcodersclub.com",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "España",
+            },
+          })}
+        </script>
+
+        {/* Schema.org para Sitio Web */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "FemCoders Club",
+            url: "https://www.femcodersclub.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://www.femcodersclub.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          })}
+        </script>
+
+        {/* Schema.org para Elementos de Navegación */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: [
+              {
+                "@type": "SiteNavigationElement",
+                position: 1,
+                name: "Sobre Nosotras",
+                description: "Conoce más sobre FemCoders Club y nuestra misión",
+                url: "https://www.femcodersclub.com/sobrenosotras",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 2,
+                name: "Equipo",
+                description: "Conoce al equipo detrás de FemCoders Club",
+                url: "https://www.femcodersclub.com/equipo",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 3,
+                name: "Eventos",
+                description:
+                  "Próximos eventos y talleres para mujeres en tecnología",
+                url: "https://www.femcodersclub.com/eventos",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 4,
+                name: "Contacto",
+                description: "Ponte en contacto con FemCoders Club",
+                url: "https://www.femcodersclub.com/contacto",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 5,
+                name: "Blog",
+                description:
+                  "Artículos, recursos y noticias sobre mujeres en tecnología",
+                url: "https://www.femcodersclub.com/blog",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 6,
+                name: "Iniciar Sesión",
+                description: "Accede a tu cuenta de FemCoders Club",
+                url: "https://www.femcodersclub.com/login",
+              },
+            ],
+          })}
+        </script>
+
+        {/* Schema.org para FAQ basado en tu componente FaqModal */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "¿Qué es FemCoders Club?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "FemCoders Club, una comunidad con sede en Barcelona, se estableció en 2023 con su lanzamiento oficial el 24 de octubre. Fundado por un grupo de mujeres apasionadas, este colectivo tiene un objetivo unificador: contribuir al empoderamiento de otras mujeres en el ámbito digital y tecnológico. La misión fundamental de FemCoders Club es proporcionar un espacio inclusivo donde las mujeres puedan colaborar, aprender y crecer en campos relacionados con la tecnología.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cuáles son sus objetivos?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Organizar masterclasses y sesiones inspiradoras, brindando oportunidades de aprendizaje y desarrollo personal a través de experiencias compartidas. Facilitar encuentros regulares donde las mujeres puedan conectarse, compartir experiencias y establecer conexiones significativas. Promover la inclusión y diversidad, asegurando que la comunidad sea acogedora para mujeres de diversos trasfondos y experiencias.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Por qué debería unirme a esta comunidad?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Unirte a FemCoders Club te brinda acceso a networking con mujeres profesionales en tecnología, eventos y talleres, desarrollo personal, apoyo al emprendimiento, inclusión y apoyo mutuo, y la oportunidad de contribuir a la diversidad en el sector tecnológico.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cómo puedo unirme a la comunidad?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Si quieres formar parte de nuestra comunidad, puedes hacerlo a través de nuestro Slack. Puedes contactarnos por LinkedIn. También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cómo puedo enterarme de los eventos de FemCoders Club?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "FemCoders Club publica todos sus eventos a través de nuestra página web, Linkedin y nuestro canal de #eventos en slack.",
+                },
+              },
+            ],
+          })}
+        </script>
+      </Helmet>
       <section className="parallax bg1">
         <div className="content-container">
           <div
@@ -561,163 +777,173 @@ const HomePage: React.FC = () => {
             role="presentation"
           >
             <div className="photo-stack">
-              {(() => {
-                return (
-                  <div
-                    className={`photo ${
-                      currentPhotoIndex === 0 ? "photo-1" : "photo-2"
-                    }`}
-                    data-aos="zoom-in-up"
-                    data-aos-delay="300"
-                    {...{
-                      "aria-hidden": currentPhotoIndex !== 0 ? "true" : "false",
-                    }}
-                  >
-                    <div className="photo-gradient"></div>
-                    <img
-                      src="/cofundadorasFemCodersClub.jpg"
-                      alt="varias de las cofundadoras de FemCoders Club"
-                      title="Parte de las cofundadoras de FemCoders Club"
-                      tabIndex={currentPhotoIndex === 0 ? 0 : -1}
-                    />
-                  </div>
-                );
-              })()}
+              <div
+                className={`photo ${
+                  currentPhotoIndex === 0 ? "photo-1" : "photo-2"
+                }`}
+                data-aos="zoom-in-up"
+                data-aos-delay="300"
+                aria-hidden="false"
+              >
+                <div className="photo-gradient"></div>
+                <img
+                  src="/cofundadorasFemCodersClub.jpg"
+                  alt="varias de las cofundadoras de FemCoders Club"
+                  className="photo-image"
+                  title="Parte de las cofundadoras de FemCoders Club"
+                  tabIndex={currentPhotoIndex === 0 ? 0 : -1}
+                />
+              </div>
 
-              {(() => {
-                return (
-                  <div
-                    className={`photo ${
-                      currentPhotoIndex === 1 ? "photo-1" : "photo-2"
-                    }`}
-                    data-aos="zoom-in-down"
-                    data-aos-delay="600"
-                    {...{
-                      "aria-hidden": currentPhotoIndex !== 1 ? "true" : "false",
-                    }}
-                  >
-                    <div className="photo-gradient"></div>
-                    <img
-                      src="/femCodersClubCofundadoras.png"
-                      alt="Mujeres cofundadoras de FemCoders Club"
-                      title="Parte de las cofundadoras de FemCoders Club"
-                      tabIndex={currentPhotoIndex === 1 ? 0 : -1}
-                    />
-                  </div>
-                );
-              })()}
+              <div
+                className={`photo ${
+                  currentPhotoIndex === 1 ? "photo-1" : "photo-2"
+                }`}
+                data-aos="zoom-in-down"
+                data-aos-delay="600"
+                aria-hidden="true"
+              >
+                <div className="photo-gradient"></div>
+                <OptimizedImage
+                  src="/assets/home-images/femCodersClubCofundadoras.webp"
+                  alt="Mujeres cofundadoras de FemCoders Club"
+                  className="photo-image"
+                  title="Parte de las cofundadoras de FemCoders Club"
+                  tabIndex={currentPhotoIndex === 1 ? 0 : -1}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
       <section className="parallax bg2 full-height">
-  <div className="carousel-container">
-    <p
-      className="carousel-subheading"
-      tabIndex={0}
-      {...{ "aria-label": "Descripción de FemCoders Club y sus eventos" }}
-    >
-      En<span> FemCoders Club, </span>organizamos regularmente eventos que
-      no solo son educativos, sino también una oportunidad increíble para
-      conectar con otras mujeres en el <span>sector tech.</span> Nuestros
-      eventos incluyen talleres, charlas inspiradoras, y sesiones de
-      networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-      <span>red de contactos.</span>
-      <br />
-      Consulta la galería para ver eventos pasados y cómo nuestras
-      miembros han crecido en{" "}
-      <span>liderazgo femenino en tecnología.</span>
-    </p>
-    <p
-      className="carousel-subheading-mobile"
-      tabIndex={0}
-      {...{
-        "aria-label":
-          "Descripción resumida de FemCoders Club y sus eventos",
-      }}
-    >
-      Nuestros eventos incluyen talleres, charlas inspiradoras, y sesiones
-      de networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-      <span>red de contactos.</span>
-    </p>
-
-    <div
-      className="carousel"
-      role="region"
-      {...{ "aria-label": "Galería de eventos pasados" }}
-      {...{ "aria-live": isPlaying ? "off" : "polite" }}
-      tabIndex={0}
-      onKeyDown={handleCarouselKeyDown}
-    >
-      <div className="sr-only" {...{ "aria-live": "polite" }}>
-        {isPlaying
-          ? "El carrusel está rotando automáticamente. Presiona la barra espaciadora para pausar."
-          : "El carrusel está pausado. Presiona la barra espaciadora para reanudar la rotación. Usa las flechas izquierda y derecha para navegar."}
-      </div>
-
-      {images.map((image, index) => {
-        const isActive = index === carouselIndex;
-        return (
-          <div
-            key={index}
-            className={`carousel-item ${isActive ? "active" : ""} ${
-              !isPlaying && isActive ? "paused" : ""
-            }`}
-            role="group"
-            {...{ "aria-label": `Evento ${index + 1}` }}
-            {...{ "aria-hidden": isActive ? "false" : "true" }}
+        <div className="carousel-container">
+          <p
+            className="carousel-subheading"
+            tabIndex={0}
+            {...{ "aria-label": "Descripción de FemCoders Club y sus eventos" }}
           >
-            <img
-              src={image}
-              alt={`Evento ${index + 1} de FemCoders Club`}
-              tabIndex={isActive ? 0 : -1}
-              loading={index > 0 ? "lazy" : "eager"}
-            />
+            En<span> FemCoders Club, </span>organizamos regularmente eventos que
+            no solo son educativos, sino también una oportunidad increíble para
+            conectar con otras mujeres en el <span>sector tech.</span> Nuestros
+            eventos incluyen talleres, charlas inspiradoras, y sesiones de
+            networking que te ayudarán a ampliar tus conocimientos y tu{" "}
+            <span>red de contactos.</span>
+            <br />
+            Consulta la galería para ver eventos pasados y cómo nuestras
+            miembros han crecido en{" "}
+            <span>liderazgo femenino en tecnología.</span>
+          </p>
+          <p
+            className="carousel-subheading-mobile"
+            tabIndex={0}
+            {...{
+              "aria-label":
+                "Descripción resumida de FemCoders Club y sus eventos",
+            }}
+          >
+            Nuestros eventos incluyen talleres, charlas inspiradoras, y sesiones
+            de networking que te ayudarán a ampliar tus conocimientos y tu{" "}
+            <span>red de contactos.</span>
+          </p>
+
+          <div
+            className="carousel"
+            role="region"
+            {...{ "aria-label": "Galería de eventos pasados" }}
+            {...{ "aria-live": isPlaying ? "off" : "polite" }}
+            tabIndex={0}
+            onKeyDown={handleCarouselKeyDown}
+          >
+            <div className="sr-only" {...{ "aria-live": "polite" }}>
+              {isPlaying
+                ? "El carrusel está rotando automáticamente. Presiona la barra espaciadora para pausar."
+                : "El carrusel está pausado. Presiona la barra espaciadora para reanudar la rotación. Usa las flechas izquierda y derecha para navegar."}
+            </div>
+
+            {images.map(({ src, alt, title }, index) => {
+              const isActive = index === carouselIndex;
+
+              if (isActive) {
+                return (
+                  <div
+                    key={index}
+                    className={`carousel-item active ${
+                      !isPlaying ? "paused" : ""
+                    }`}
+                    role="group"
+                    aria-label={`Evento ${index + 1}`}
+                    aria-hidden="false"
+                  >
+                    <OptimizedImage
+                      src={src}
+                      alt={alt}
+                      title={title}
+                      className="carousel-image"
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    key={index}
+                    className="carousel-item"
+                    role="group"
+                    aria-label={`Evento ${index + 1}`}
+                    aria-hidden="true"
+                  >
+                    <OptimizedImage
+                      src={src}
+                      alt={alt}
+                      title={title}
+                      className="carousel-image"
+                    />
+                  </div>
+                );
+              }
+            })}
+
+            <div
+              role="complementary"
+              {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
+            >
+              <CarouselWithText texts={texts} />
+            </div>
           </div>
-        );
-      })}
 
-      <div
-        role="complementary"
-        {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
-      >
-        <CarouselWithText texts={texts} />
-      </div>
-    </div>
+          <div className="carousel-controls">
+            <div className="carousel-nav-controls">
+              <button
+                className="carousel-control prev"
+                onClick={prevSlide}
+                {...{ "aria-label": "Imagen anterior" }}
+              >
+                ❮
+              </button>
 
-    <div className="carousel-controls">
-      <div className="carousel-nav-controls">
-        <button
-          className="carousel-control prev"
-          onClick={prevSlide}
-          {...{ "aria-label": "Imagen anterior" }}
-        >
-          ❮
-        </button>
+              <button
+                className="play-pause"
+                onClick={togglePlay}
+                {...{
+                  "aria-label": isPlaying
+                    ? "Pausar rotación automática"
+                    : "Reanudar rotación automática",
+                }}
+              >
+                {isPlaying ? "⏸️" : "▶️"}
+              </button>
 
-        <button
-          className="play-pause"
-          onClick={togglePlay}
-          {...{
-            "aria-label": isPlaying
-              ? "Pausar rotación automática"
-              : "Reanudar rotación automática",
-          }}
-        >
-          {isPlaying ? "⏸️" : "▶️"}
-        </button>
-
-        <button
-          className="carousel-control next"
-          onClick={nextSlide}
-          {...{ "aria-label": "Imagen siguiente" }}
-        >
-          ❯
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+              <button
+                className="carousel-control next"
+                onClick={nextSlide}
+                {...{ "aria-label": "Imagen siguiente" }}
+              >
+                ❯
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="parallax bg3">
         <div className="section-content">
@@ -731,41 +957,17 @@ const HomePage: React.FC = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <h2>🚀 ¡Impulsa tu carrera en programación con</h2>
-              <img
-                src="/assets/Eventos2025/Infojobs.png"
-                alt="Logo InfoJobs"
-                className="sponsor-logo"
-                data-aos="zoom-in"
-                data-aos-delay="400"
-              />
+              <h2>Conócenos</h2>
             </div>
 
-            <p
-              className="text-lg leading-relaxed text-gray-800"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              Gracias al apoyo de{" "}
-              <strong>
-                InfoJobs, el portal líder para encontrar oportunidades
-                laborales,
-              </strong>{" "}
-              este evento está diseñado para conectar a mujeres en tecnología
-              con empresas que buscan talento. 💡
-              <br />
-              <span>
-                <a
-                  href="https://www.infojobs.net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="highlight-link"
-                >
-                  InfoJobs
-                </a>
-              </span>{" "}
-              apuesta por <em>impulsar la diversidad</em> en el sector tech,
-              creando espacios donde más mujeres puedan crecer profesionalmente.
+            <p data-aos="fade-up" data-aos-delay="300">
+              Si compartes nuestra pasión por la tecnología y nuestra filosofía
+              de <strong>visibilizar a las mujeres programadoras</strong>,
+              promoviendo su desarrollo profesional, te invitamos a unirte a
+              nuestra comunidad. Ya seas una mujer en tecnología que busca
+              crecer profesionalmente o una líder con años de experiencia
+              dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
+              <strong>FemCoders Club. </strong>
               <br />
               <br />
               <span
@@ -773,34 +975,13 @@ const HomePage: React.FC = () => {
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
-                Durante el evento, tendrás la oportunidad de{" "}
+                Además, extendemos una invitación a las empresas que se alinean
+                con nuestros valores para que colaboren con nosotras.{" "}
                 <strong>
-                  escuchar a mujeres talentosas y experimentadas en tecnología
+                  Juntas, podemos crear un entorno más inclusivo y equitativo en
+                  el sector tech.
                 </strong>
-                , quienes compartirán su conocimiento y experiencias para
-                inspirar a la próxima generación de profesionales tech.
               </span>
-              <br />
-              <br />
-              Además, empresas como
-              <span>
-                {" "}
-                <a
-                  href="https://www.between.tech/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="highlight-link"
-                >
-                  Between
-                </a>{" "}
-              </span>
-              estarán presentes, brindando la oportunidad de conectar con
-              recruiters y explorar nuevas oportunidades laborales.
-              <br />
-              Si estás buscando dar un paso más en tu carrera,{" "}
-              <strong>
-                te recomendamos llevar tu CV actualizado en formato digital.
-              </strong>
               <br />
               <br />
               <span
@@ -808,13 +989,13 @@ const HomePage: React.FC = () => {
                 data-aos="zoom-in"
                 data-aos-delay="500"
               >
-                🚀 <span>¡No te lo pierdas!</span> Inscríbete y forma parte de
-                este evento con <strong>InfoJobs</strong>.
+                🚀 <span>¡No te lo pierdas!</span> Acompáñanos en este viaje de
+                crecimiento profesional.
               </span>
             </p>
           </div>
 
-          <div
+          {/* <div
             className="section-countdown"
             data-aos="fade-left"
             data-aos-duration="1000"
@@ -907,6 +1088,155 @@ const HomePage: React.FC = () => {
                     Más información
                   </button>
                 </Link>
+              </div>
+            )}
+          </div> */}
+          <div
+            className="section-countdown"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
+            <div className="countdown-content">
+              <h2 data-aos="fade-down" data-aos-delay="300">
+                ¡Próximo evento!
+              </h2>
+              {upcomingEvent ? (
+                <div
+                  className="countdown"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="500"
+                  >
+                    <span>{timeLeft.days}</span> días
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="600"
+                  >
+                    <span>{timeLeft.hours}</span> horas
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="700"
+                  >
+                    <span>{timeLeft.minutes}</span> minutos
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="800"
+                  >
+                    <span>{timeLeft.seconds}</span> segundos
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="no-event-container"
+                  data-aos="fade-in"
+                  data-aos-delay="400"
+                >
+                  <video
+                    src={`${
+                      import.meta.env.BASE_URL
+                    }assets/videos/SinEvento.mp4`}
+                    className="no-event-video"
+                    autoPlay
+                    muted
+                    loop
+                    onError={(e) => {
+                      console.error("El video no se pudo cargar.");
+                      (e.target as HTMLVideoElement).style.display = "none";
+                    }}
+                  />
+                  <br />
+                  <div
+                    className="no-event-info text-left"
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    style={{
+                      color: "#2a2170",
+                      lineHeight: 1.5,
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    <p>
+                      Estamos preparando nuevos eventos emocionantes para la
+                      comunidad.
+                    </p>
+                    <p>
+                      Mientras tanto, te invitamos a explorar nuestros recursos
+                      y materiales.{" "}
+                    </p>
+                  </div>
+                  <br />
+                </div>
+              )}
+              <br />
+            </div>
+            {upcomingEvent ? (
+              <div
+                className="event-card"
+                data-aos="zoom-in"
+                data-aos-delay="600"
+              >
+                <div
+                  className="event-image-wrapper"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                >
+                  <img
+                    src={
+                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
+                    }
+                    alt="Próximo evento"
+                    className="event-image"
+                  />
+                </div>
+                <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
+                  <button className="secondary-button pulse-effect">
+                    Más información
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <div
+                className="event-placeholder-card"
+                data-aos="zoom-in"
+                data-aos-delay="600"
+              >
+                <div
+                  className="event-buttons"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                >
+                  <div
+                    className="event-buttons"
+                    data-aos="fade-up"
+                    data-aos-delay="700"
+                    style={{
+                      display: "flex",
+                      gap: "15px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Link to="/eventos">
+                      <button className="secondary-button">
+                        Ver eventos pasados
+                      </button>
+                    </Link>
+                    <Link to="/blog">
+                      <button className="primary-button">
+                        Explorar recursos
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -1039,51 +1369,75 @@ const HomePage: React.FC = () => {
             role="presentation"
           >
             <div className="photo-stack">
-              {(() => {
-                return (
-                  <div
-                    className={`photo ${
-                      currentPhotoIndex === 0 ? "photo-1" : "photo-2"
-                    }`}
-                    data-aos="zoom-in-up"
-                    data-aos-delay="300"
-                    {...{
-                      "aria-hidden": currentPhotoIndex !== 0 ? "true" : "false",
-                    }}
-                  >
-                    <div className="photo-gradient"></div>
-                    <img
-                      src="/fotoFemCodersClub.jpg"
-                      alt="Cofundadoras de FemCoders Club con perfiles en STEM"
-                      title="Cofundadoras de FemCoders Club con perfiles en STEM"
-                      tabIndex={currentPhotoIndex === 0 ? 0 : -1}
-                    />
-                  </div>
-                );
-              })()}
+              {/* Renderizado condicional para cada imagen */}
+              {currentPhotoIndex === 0 ? (
+                <div
+                  className="photo photo-1"
+                  data-aos="zoom-in-up"
+                  data-aos-delay="300"
+                  aria-hidden="false"
+                >
+                  <div className="photo-gradient"></div>
+                  <OptimizedImage
+                    src="/assets/home-images/fotoFemCodersClub.jpg"
+                    alt="Cofundadoras de FemCoders Club con perfiles en STEM"
+                    title="Cofundadoras de FemCoders Club con perfiles en STEM"
+                    className="photo-image"
+                    tabIndex={0}
+                  />
+                </div>
+              ) : (
+                <div
+                  className="photo photo-2"
+                  data-aos="zoom-in-up"
+                  data-aos-delay="300"
+                  aria-hidden="true"
+                >
+                  <div className="photo-gradient"></div>
+                  <OptimizedImage
+                    src="/assets/home-images/fotoFemCodersClub.jpg"
+                    alt="Cofundadoras de FemCoders Club con perfiles en STEM"
+                    title="Cofundadoras de FemCoders Club con perfiles en STEM"
+                    className="photo-image"
+                    tabIndex={-1}
+                  />
+                </div>
+              )}
 
-              {(() => {
-                return (
-                  <div
-                    className={`photo ${
-                      currentPhotoIndex === 1 ? "photo-1" : "photo-2"
-                    } photo-event`}
-                    data-aos="zoom-in-down"
-                    data-aos-delay="600"
-                    {...{
-                      "aria-hidden": currentPhotoIndex !== 1 ? "true" : "false",
-                    }}
-                  >
-                    <div className="photo-gradient"></div>
-                    <img
-                      src="/femcodersclubFinalEvento.jpg"
-                      alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
-                      title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
-                      tabIndex={currentPhotoIndex === 1 ? 0 : -1}
-                    />
-                  </div>
-                );
-              })()}
+              {/* Renderizado condicional para la segunda imagen */}
+              {currentPhotoIndex === 1 ? (
+                <div
+                  className="photo photo-1 photo-event"
+                  data-aos="zoom-in-down"
+                  data-aos-delay="600"
+                  aria-hidden="false"
+                >
+                  <div className="photo-gradient"></div>
+                  <OptimizedImage
+                    src="/assets/home-images/femcodersclubFinalEvento.jpg"
+                    alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
+                    title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
+                    className="photo-image"
+                    tabIndex={0}
+                  />
+                </div>
+              ) : (
+                <div
+                  className="photo photo-2 photo-event"
+                  data-aos="zoom-in-down"
+                  data-aos-delay="600"
+                  aria-hidden="true"
+                >
+                  <div className="photo-gradient"></div>
+                  <OptimizedImage
+                    src="/assets/home-images/femcodersclubFinalEvento.jpg"
+                    alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
+                    title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
+                    className="photo-image"
+                    tabIndex={-1}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

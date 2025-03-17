@@ -143,7 +143,7 @@ const BlogPage: React.FC = () => {
       id: 13,
       type: "recurso",
       category: "css",
-      title: "Box Model en CSS | Guía Completa para Frontend con FemCoders Club",
+      title: "Box Model en CSS | Guía Completa para Frontend",
       description: "Aprende a dominar el Box Model en CSS para mejorar el diseño y la maquetación web.",
       createdAt: new Date("2025-02-16"),
     },
@@ -157,7 +157,14 @@ const BlogPage: React.FC = () => {
       createdAt: new Date("2025-03-05"), 
     },
     
-    
+    {
+      id: 15, 
+      type: "recurso",
+      category: "react",
+      title: "Réplica de Nike Store: E-commerce con React",
+      description: "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
+      createdAt: new Date("2025-03-16"), 
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -206,10 +213,12 @@ const BlogPage: React.FC = () => {
           return `/noticias/Bienvenido2025`;
         case "Domina los Selectores en CSS": 
           return `/recursos/css/selectores-css`;
-          case "Box Model en CSS | Guía Completa para Frontend con FemCoders Club":
+          case "Box Model en CSS | Guía Completa para Frontend":
             return `/recursos/css/box-model`;
             case "Flexbox: El poder de crear layouts flexibles":
       return `/recursos/css/flexbox`; 
+      case "Réplica de Nike Store: E-commerce con React":
+  return `/recursos/react/nike-store-replica`;
           
       default:
         return `/`;
