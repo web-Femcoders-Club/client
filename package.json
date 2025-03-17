@@ -1,3 +1,4 @@
+
 {
   "name": "client",
   "private": true,
@@ -5,11 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate-sitemap && tsc && vite build",
+    "optimize": "tsx optimize-images.ts",
+    "build": "npm run generate-sitemap && npm run optimize && tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "start": "serve -s dist",
+    "start": "npm run optimize && serve -s dist",
     "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
   },
   "dependencies": {
