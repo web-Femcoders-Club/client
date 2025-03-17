@@ -112,6 +112,10 @@ async function optimizeImages() {
       }
     }
 
+    // Copiar imágenes optimizadas a `public/` para que Railway pueda servirlas
+    const outputFolderPublicOptimized = path.join(__dirname, "public", "public-optimized");
+    fs.copySync(outputFolderOptimized, outputFolderPublicOptimized);
+
     console.log(`✅ TODAS las imágenes han sido optimizadas correctamente en:`);
     console.log(`   🖥️ ${outputFolderDesktop} (Escritorio)`);
     console.log(`   📱 ${outputFolderMobile} (Móvil)`);
@@ -125,6 +129,7 @@ console.log("📂 Carpetas en `public-optimized`:", getAllFolders(outputFolderOp
 
 // 🚀 Ejecutar optimización
 optimizeImages();
+
 
 
 
