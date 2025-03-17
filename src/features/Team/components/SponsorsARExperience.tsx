@@ -127,6 +127,17 @@ const SponsorsTimeline = () => {
       website: "https://code.seat/",
       backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg", 
     },
+    {
+      "date": "2025-03-13",
+      "sponsor": "InfoJobs",
+      "event": "El sector tecnológico necesita de más mujeres",
+      "description": 
+        "Gracias al apoyo de InfoJobs, hemos celebrado un evento centrado en la importancia de la presencia femenina en el sector tecnológico. En un entorno inspirador, profesionales compartieron sus experiencias y aprendizajes para fomentar la diversidad en la industria. InfoJobs reafirma su compromiso con la reducción de la brecha de género en tecnología y su apuesta por un futuro más inclusivo, en el que el talento femenino tenga cada vez más oportunidades para crecer y destacar.",
+      "logo": "/logoinfojobs.jpeg",
+      "website": "https://www.infojobs.net/",
+      "backgroundImage": "/oficinaInfoJobs.jpeg"
+    }
+    
   ];
 
   const handlePrev = () => {

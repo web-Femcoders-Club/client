@@ -142,6 +142,11 @@ const CustomCarousel = () => {
       src:"/assets/Eventos2025/ponentesFemCodersClub.jpg",
       text:"En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. "
     },
+    {
+      src: "/ponentesEventoInfoJobs.jpg",
+  "text": "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología."
+
+    },
     
   ];
 
