@@ -55,12 +55,12 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
-      src: "/assets/home-images/infoJobsCelebracion.webp",
+      src: "public-optimized/assets/home-images/infoJobsCelebracion.webp",
       alt: "Celebrando Dia de la Mujer en InfoJobs con FemCoders Club",
       title: "Celebrando el Día de la Mujer en InfoJobs",
     },
     {
-      src: "/assets/home-images/mujereslideres.webp",
+      src: "public-optimized/assets/home-images/mujereslideres.webp",
       alt: "Mujeres inspiradoras en un evento de FemCoders Club",
       title: "Mujeres que inspiran a la comunidad",
     },
