@@ -468,11 +468,12 @@ const HomePage: React.FC = () => {
     <>
       <Helmet>
         <title>FemCoders Club | Comunidad Líder de Mujeres en Tecnología</title>
+        <meta name="robots" content="index, follow" />
 
         {/* Meta básico */}
         <meta
           name="description"
-          content="Comunidad dedicada a empoderar a mujeres en el sector tecnológico a través de eventos, talleres, mentorías y networking. Aprende, comparte y crece en el mundo de la programación."
+          content="Comunidad que empodera a mujeres en tecnología con eventos, talleres y networking. Aprende, comparte y crece en programación. Únete a femCoders Club."
         />
         <meta
           name="keywords"
