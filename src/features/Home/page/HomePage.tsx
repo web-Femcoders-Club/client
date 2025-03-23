@@ -250,7 +250,9 @@ const HomePage: React.FC = () => {
       title: "Nilton Navarro Flores en InfoJobs",
     },
     {
-      src:"/assets/home-images/codersEventoFemCodersClub.webp"
+      src:"/assets/home-images/codersEventoFemCodersClub.webp",
+      alt:"networking durante un evento de femCoders Club",
+      title:"networking evento femCoders Club"
     }
   ];
 
