@@ -16,7 +16,7 @@ const mobileFolder = path.join(publicOptimizedFolder, "mobile");
 // 📌 Configuración
 const CONFIG = {
   // Imágenes de fondo con tratamiento especial (alta resolución)
-  backgroundImages: new Set(["bg1.png", "bg2.png", "bg3.png", "bg4.png", "bg5.png"]),
+  backgroundImages: new Set(["bg1.webp", "bg2.webp", "bg3.webp", "bg4.webp", "bg5.webp"]),
   
   // Tamaño mínimo para optimizar (evita procesar imágenes ya pequeñas)
   // Cambiado a 0 para procesar todas las imágenes, sin importar el tamaño

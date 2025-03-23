@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
-import Slack from '/slack.jpg'; 
+
 import './Footer.css';
+import OptimizedImage from '../OptimizedImage';
 
 const SlackButton = () => {
   return (
     <div>
       <Link to="https://communityinviter.com/apps/femcodersclub/femcoders-club" className="slack-button">
-        <img src={Slack} alt="Slack Logo" />
+        <OptimizedImage
+          src="/slack.jpg"
+          alt="Slack Logo"
+          loading="eager"
+        />
         <span> Unirme al Slack </span>
       </Link>
     </div>

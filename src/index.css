@@ -257,31 +257,31 @@ span {
 }
 
 .bg1 {
-  background-image: url("/public-optimized/desktop/bg1.webp");
+  background-image: url("/public-optimized/desktop/assets/bg1.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg2 {
-  background-image: url("/public-optimized/desktop/bg2.webp");
+  background-image: url("/public-optimized/desktop/assets/bg2.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg3 {
-  background-image: url("/public-optimized/desktop/bg3.webp");
+  background-image: url("/public-optimized/desktop/assets/bg3.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg4 {
-  background-image: url("/public-optimized/desktop/bg4.webp");
+  background-image: url("/public-optimized/desktop/assets/bg4.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg5 {
-  background-image: url("/public-optimized/desktop/bg5.webp");
+  background-image: url("/public-optimized/desktop/assets/bg5.webp");
   background-size: cover;
   background-position: center;
 }

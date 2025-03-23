@@ -1,10 +1,11 @@
 import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube, BsGithub, BsTwitterX } from "react-icons/bs";
 import ApoyanosButton from "./ApoyanosButton";
 import SlackButton from "./SlackButton";
-import FemCodersClubLogo from "/negativeLogo.png";
+
 import "./Footer.css";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
+import OptimizedImage from "../OptimizedImage";
 
 const FccFooter = () => {
   const { openModal } = useContext(ModalContext);
@@ -14,9 +15,16 @@ const FccFooter = () => {
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-logo">
-            <a href="/">
-              <img src={FemCodersClubLogo} alt="Fem Coders Club Logo" />
-            </a>
+          <div className="footer-logo">
+  <a href="/" title="Fem Coders Club Home">
+    <OptimizedImage
+      src="/assets/negativeLogo.webp" 
+      alt="Fem Coders Club Logo"
+      loading="eager"
+      className="footer-logo-image"
+    />
+  </a>
+</div>
           </div>
           <div className="footer-social">
             <p>Síguenos en:</p>
