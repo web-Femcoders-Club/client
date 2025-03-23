@@ -70,11 +70,6 @@ const HomePage: React.FC = () => {
       title: "Evento con Carmen Ansio",
     },
     {
-      src: "/assets/UltimosEventos2024/LorenaSalvadorPonenteAccesibilidad.webp",
-      alt: "Lorena Salvador hablando sobre accesibilidad en un evento de FemCoders Club",
-      title: "Accesibilidad con Lorena Salvador",
-    },
-    {
       src: "/assets/home-images/eventoFactoriaF5.webp",
       alt: "Evento en Factoría F5 con desarrolladoras de FemCoders Club",
       title: "Evento en Factoría F5",
@@ -210,22 +205,17 @@ const HomePage: React.FC = () => {
       title: "Evento en Adevinta",
     },
     {
-      src: "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.webp",
-      alt: "Evento de comunicación asertiva en FemCoders Club",
-      title: "Evento de Comunicación Asertiva",
-    },
-    {
       src: "/assets/home-images/comunidadDeMujeres.webp",
       alt: "Comunidad de mujeres en un evento de FemCoders Club",
       title: "Comunidad de Mujeres",
     },
     {
-      src: "/assets/ML-ComunicacionAcertiva/comunidadfemCodersClub-eventoML.webp",
+      src: "/assets/ML-ComunicacionAcertiva/EventoFemCodersClub-ComunicacionAcertiva.webp",
       alt: "Evento de comunicación asertiva en FemCoders Club",
       title: "Evento de Comunicación Asertiva",
     },
     {
-      src: "/assets/ML-ComunicacionAcertiva/desarrolladora-fullstack-Irina-femCodersClub.webp",
+      src: "/assets/home-images/desarolladora-fullstack-Irina-femCodersClub.webp",
       alt: "Irina Ichim, desarrolladora fullstack y cofundadora de FemCoders Club",
       title: "Irina Ichim, Desarrolladora Fullstack",
     },
@@ -233,11 +223,6 @@ const HomePage: React.FC = () => {
       src: "/assets/home-images/LuciaCofundadora.webp",
       alt: "Lucía, cofundadora de FemCoders Club",
       title: "Lucía, Cofundadora",
-    },
-    {
-      src: "/assets/semRush/AnaSemrush.webp",
-      alt: "Ana organizadora del evento en Semrush",
-      title: "Ana en Semrush",
     },
     {
       src: "/assets/semRush/eventoSemrush.webp",
@@ -250,7 +235,7 @@ const HomePage: React.FC = () => {
       title: "Evento en SeatCode",
     },
     {
-      src: "/assets/UltimosEventos2024/eventoInteligenciaEmocional.webp",
+      src: "/assets/home-images/eventocontere.webp",
       alt: "Evento sobre inteligencia emocional en FemCoders Club",
       title: "Inteligencia Emocional",
     },
@@ -264,6 +249,9 @@ const HomePage: React.FC = () => {
       alt: "Nilton Navarro Flores presentando el evento de InfoJobs",
       title: "Nilton Navarro Flores en InfoJobs",
     },
+    {
+      src:"/assets/home-images/codersEventoFemCodersClub.webp"
+    }
   ];
 
   const texts = [
@@ -498,7 +486,7 @@ const HomePage: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
+          content="https://www.femcodersclub.com/cofundadoras-femCoders-club.webp"
         />
         <meta
           property="og:image:alt"
@@ -506,8 +494,6 @@ const HomePage: React.FC = () => {
         />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:site_name" content="FemCoders Club" />
-
-        {/* Enlaces a perfiles sociales */}
         <meta
           property="og:see_also"
           content="https://www.instagram.com/femcoders_club/"
@@ -529,8 +515,6 @@ const HomePage: React.FC = () => {
           content="https://communityinviter.com/apps/femcodersclub/femcoders-club"
         />
         <meta property="og:see_also" content="https://x.com/FemCodersClub" />
-
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -545,8 +529,6 @@ const HomePage: React.FC = () => {
           content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
         />
         <meta name="twitter:site" content="@FemCodersClub" />
-
-        {/* Schema.org para Organización */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -787,13 +769,15 @@ const HomePage: React.FC = () => {
                 aria-hidden="false"
               >
                 <div className="photo-gradient"></div>
-                <img
-                  src="/cofundadorasFemCodersClub.jpg"
-                  alt="varias de las cofundadoras de FemCoders Club"
-                  className="photo-image"
-                  title="Parte de las cofundadoras de FemCoders Club"
-                  tabIndex={currentPhotoIndex === 0 ? 0 : -1}
-                />
+                <div className="photo-gradient"></div>
+<OptimizedImage
+  src="/cofundadorasFemCodersClub.jpg"
+  alt="varias de las cofundadoras de FemCoders Club"
+  className="photo-image"
+  title="Parte de las cofundadoras de FemCoders Club"
+  tabIndex={currentPhotoIndex === 0 ? 0 : -1}
+  loading="eager"
+/>
               </div>
 
               <div
@@ -811,6 +795,7 @@ const HomePage: React.FC = () => {
                   className="photo-image"
                   title="Parte de las cofundadoras de FemCoders Club"
                   tabIndex={currentPhotoIndex === 1 ? 0 : -1}
+                   loading="eager"
                 />
               </div>
             </div>
@@ -878,7 +863,7 @@ const HomePage: React.FC = () => {
                   >
                     <OptimizedImage
                       src={src}
-                      alt={alt}
+                      alt={alt || "default alt text"}
                       title={title}
                       className="carousel-image"
                     />
@@ -895,7 +880,7 @@ const HomePage: React.FC = () => {
                   >
                     <OptimizedImage
                       src={src}
-                      alt={alt}
+                      alt={alt || "default alt text"}
                       title={title}
                       className="carousel-image"
                     />
@@ -995,103 +980,6 @@ const HomePage: React.FC = () => {
               </span>
             </p>
           </div>
-
-          {/* <div
-            className="section-countdown"
-            data-aos="fade-left"
-            data-aos-duration="1000"
-          >
-            <div className="countdown-content">
-              <h2 data-aos="fade-down" data-aos-delay="300">
-                ¡Próximo evento!
-              </h2>
-              {upcomingEvent ? (
-                <div
-                  className="countdown"
-                  data-aos="fade-up"
-                  data-aos-delay="400"
-                >
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="500"
-                  >
-                    <span>{timeLeft.days}</span> días
-                  </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="600"
-                  >
-                    <span>{timeLeft.hours}</span> horas
-                  </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="700"
-                  >
-                    <span>{timeLeft.minutes}</span> minutos
-                  </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="800"
-                  >
-                    <span>{timeLeft.seconds}</span> segundos
-                  </div>
-                </div>
-              ) : (
-                <video
-                  src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
-                  className="no-event-video"
-                  autoPlay
-                  muted
-                  loop
-                  onError={(e) => {
-                    console.error("El video no se pudo cargar.");
-                    (e.target as HTMLVideoElement).style.display = "none";
-                  }}
-                  data-aos="fade-in"
-                  data-aos-delay="400"
-                />
-              )}
-              <h3
-                className="countdown-text"
-                data-aos="fade-up"
-                data-aos-delay="500"
-              >
-                {upcomingEvent
-                  ? upcomingEvent.name.text
-                  : "¡No te pierdas este evento especial!"}
-              </h3>
-            </div>
-            {upcomingEvent && (
-              <div
-                className="event-card"
-                data-aos="zoom-in"
-                data-aos-delay="600"
-              >
-                <div
-                  className="event-image-wrapper"
-                  data-aos="fade-up"
-                  data-aos-delay="700"
-                >
-                  <img
-                    src={
-                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
-                    }
-                    alt="Próximo evento"
-                    className="event-image"
-                  />
-                </div>
-                <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
-                  <button className="secondary-button pulse-effect">
-                    Más información
-                  </button>
-                </Link>
-              </div>
-            )}
-          </div> */}
           <div
             className="section-countdown"
             data-aos="fade-left"
@@ -1331,13 +1219,14 @@ const HomePage: React.FC = () => {
             data-aos-duration="800"
           >
             <div className="form-card">
-              <img
-                src="/FemCodersClubLogo.png"
-                alt="femCoders Club Logo"
-                className="form-logo"
-                data-aos="zoom-in"
-                data-aos-delay="400"
-              />
+            <OptimizedImage
+    src="FemCodersClubLogo.png" 
+    alt="femCoders Club Logo"
+    className="form-logo"
+    title="FemCoders Club"
+    data-aos="zoom-in"
+    data-aos-delay="400"
+  />
               <form ref={form} onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input type="text" id="name" name="name" required />

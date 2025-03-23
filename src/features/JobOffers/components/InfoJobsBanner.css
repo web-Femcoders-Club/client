@@ -1,0 +1,91 @@
+.infojobs-banner {
+  position: relative;
+  overflow: hidden;
+  background: rgba(71, 55, 187, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Animaciones para los elementos */
+.infojobs-banner .animated-logo {
+  animation: float 4s ease-in-out infinite;
+}
+
+.infojobs-banner .step-icon {
+  animation: subtle-float 3s ease-in-out infinite;
+}
+
+.infojobs-banner .animated-step {
+  transition: all 0.3s ease;
+}
+
+.infojobs-banner .animated-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(71, 55, 187, 0.15);
+}
+
+.infojobs-banner .animated-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.infojobs-banner .animated-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(71, 55, 187, 0.25);
+}
+
+.infojobs-banner .animated-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.infojobs-banner .animated-button:hover::before {
+  transform: translateX(100%);
+}
+
+/* Animaciones */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Retardo en las animaciones para cada paso */
+.infojobs-banner .animated-step:nth-child(1) .step-icon {
+  animation-delay: 0s;
+}
+
+.infojobs-banner .animated-step:nth-child(2) .step-icon {
+  animation-delay: 0.5s;
+}
+
+.infojobs-banner .animated-step:nth-child(3) .step-icon {
+  animation-delay: 1s;
+}
+
+.infojobs-banner .animated-step:nth-child(4) .step-icon {
+  animation-delay: 1.5s;
+}
+
+/* Soporte para prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .infojobs-banner .animated-logo,
+  .infojobs-banner .step-icon,
+  .infojobs-banner .animated-button::before {
+    animation: none;
+    transition: none;
+  }
+}
+  
