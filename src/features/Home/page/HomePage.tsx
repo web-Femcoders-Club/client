@@ -783,23 +783,20 @@ const HomePage: React.FC = () => {
               </div>
 
               <div
-                className={`photo ${
-                  currentPhotoIndex === 1 ? "photo-1" : "photo-2"
-                }`}
-                data-aos="zoom-in-down"
-                data-aos-delay="600"
-                aria-hidden="true"
-              >
-                <div className="photo-gradient"></div>
-                <OptimizedImage
-                  src="/assets/home-images/femCodersClubCofundadoras.webp"
-                  alt="Mujeres cofundadoras de FemCoders Club"
-                  className="photo-image"
-                  title="Parte de las cofundadoras de FemCoders Club"
-                  tabIndex={currentPhotoIndex === 1 ? 0 : -1}
-                   loading="eager"
-                />
-              </div>
+  className={`photo ${currentPhotoIndex === 1 ? "photo-1" : "photo-2"}`}
+  data-aos="zoom-in-down"
+  data-aos-delay="600"
+>
+  <div className="photo-gradient"></div>
+  <OptimizedImage
+    src="/assets/home-images/femCodersClubCofundadoras.webp"
+    alt="Mujeres cofundadoras de FemCoders Club"
+    className="photo-image"
+    title="Parte de las cofundadoras de FemCoders Club"
+    tabIndex={currentPhotoIndex === 1 ? 0 : -1}
+    loading="eager"
+  />
+</div>
             </div>
           </div>
         </div>
@@ -1032,19 +1029,20 @@ const HomePage: React.FC = () => {
                   data-aos="fade-in"
                   data-aos-delay="400"
                 >
-                  <video
-                    src={`${
-                      import.meta.env.BASE_URL
-                    }assets/videos/SinEvento.mp4`}
-                    className="no-event-video"
-                    autoPlay
-                    muted
-                    loop
-                    onError={(e) => {
-                      console.error("El video no se pudo cargar.");
-                      (e.target as HTMLVideoElement).style.display = "none";
-                    }}
-                  />
+                <video
+  src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
+  className="no-event-video"
+  autoPlay
+  muted
+  loop
+  onError={(e) => {
+    
+    if ((e.target as HTMLVideoElement).error) {
+      console.error("El video no se pudo cargar.");
+      (e.target as HTMLVideoElement).style.display = "none";
+    }
+  }}
+/>
                   <br />
                   <div
                     className="no-event-info text-left"
@@ -1205,12 +1203,12 @@ const HomePage: React.FC = () => {
           data-aos="fade-down"
           data-aos-duration="800"
         >
-          <h4>
+          <p className="text-white">
             Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
             puedes contribuir a nuestra comunidad, por favor llena el
             formulario. Estamos aquí para asistirte y valoramos enormemente tu
             interés en apoyar a FemCoders Club. <br />
-          </h4>
+          </p>
         </div>
 
         <div className="form-and-photos">
