@@ -438,4 +438,23 @@ span {
     padding: 1.3rem;
     font-size: 1rem;
   }
+  .bg1 {
+    background-image: url("/public-optimized/mobile/assets/bg1.webp");
+  }
+
+  .bg2 {
+    background-image: url("/public-optimized/mobile/assets/bg2.webp");
+  }
+
+  .bg3 {
+    background-image: url("/public-optimized/mobile/assets/bg3.webp");
+  }
+
+  .bg4 {
+    background-image: url("/public-optimized/mobile/assets/bg4.webp");
+  }
+
+  .bg5 {
+    background-image: url("/public-optimized/mobile/assets/bg5.webp");
+  }
 }

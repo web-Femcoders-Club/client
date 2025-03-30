@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import OptimizedImage from "../../../components/OptimizedImage"; 
 import iconIdea from "/iconIdea.png";
 import "../page/AboutPage.css";
 
@@ -75,28 +76,75 @@ const Collapse: React.FC = () => {
   return (
     <div className="collapse-container">
       <div className="collapse-header">
-        <img src={iconIdea} className="icon-idea" alt="Icono Ideas" />
+        <OptimizedImage 
+          src={iconIdea} 
+          className="icon-idea icon-float" 
+          alt="Icono Ideas" 
+        />
         <h3>Nuestras Ideas</h3>
       </div>
-      <div className="ideas-list">
-        {ideas.map((idea, index) => (
-          <div
-            key={index}
-            className={`idea-card ${expandedIndex === index ? "expanded" : ""}`}
-            onClick={() => handleExpand(index)}
-          >
-            <div className="idea-card-title">{idea.title}</div>
-            {expandedIndex === index && (
-              <div className="idea-card-content">
-                <p style={{ fontSize: "1rem" }}>{idea.content}</p> 
+      
+      <div className="ideas-list" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1rem" }}>
+        {ideas.map((idea, index) => {
+          const isExpanded = expandedIndex === index;
+          
+          return (
+            <div
+              key={index}
+              className={`idea-card ${isExpanded ? "expanded" : ""}`}
+              onClick={() => handleExpand(index)}
+              style={{ 
+                background: isExpanded 
+                  ? "rgba(71, 55, 187, 0.7)" 
+                  : "rgba(71, 55, 187, 0.3)",
+                ...(isExpanded ? { gridColumn: "1 / -1" } : {}),
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                boxShadow: isExpanded 
+                  ? "0 10px 20px rgba(0, 0, 0, 0.2)" 
+                  : "0 4px 8px rgba(0, 0, 0, 0.1)",
+              }}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleExpand(index);
+                }
+              }}
+              role="button"
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div className="idea-card-title" style={{ 
+                  color: "#fdfdfd" 
+                }}>
+                  {idea.title}
+                </div>
+                <div style={{ 
+                  color: "#fdfdfd",
+                  fontSize: "1.5rem",
+                  fontWeight: "bold" 
+                }}>
+                  {isExpanded ? '−' : '+'}
+                </div>
               </div>
-            )}
-          </div>
-        ))}
+              
+              {isExpanded && (
+                <div className="idea-card-content">
+                  <p style={{ 
+                    fontSize: "1rem", 
+                    marginTop: "1rem",
+                    color: "#fdfdfd" 
+                  }}>
+                    {idea.content}
+                  </p> 
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default Collapse;
-

@@ -125,10 +125,11 @@ const Header: React.FC = () => {
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <nav className="navbar">
         <Link to="/" className="logo-link">
-          <img
+          <OptimizedImage
             src={FemCodersClubLogo}
+            alt="Logo de FemCoders Club"
             className="logo"
-            alt="Fem Coders Club Logo"
+            loading="eager"
           />
         </Link>
 
@@ -169,13 +170,13 @@ const Header: React.FC = () => {
                 onClick={handleAvatarClick}
                 title="User Avatar"
               >
-               <OptimizedImage
-  src={avatar || "/FemCodersClubLogo.png"}
-  alt="User Avatar"
-  className="avatar-icon"
-  title="Avatar de usuario"
-  loading="eager"
-/>
+                <OptimizedImage
+                  src={avatar || "/FemCodersClubLogo.png"}
+                  alt="User Avatar"
+                  className="avatar-icon"
+                  title="Avatar de usuario"
+                  loading="eager"
+                />
               </button>
 
               {dropdownOpen && (
@@ -211,4 +212,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

@@ -1,10 +1,4 @@
-.parallax {
-  background-attachment: fixed;
-}
 
-.full-height {
-  height: 100vh;
-}
 
 .contenedor {
   display: flex;
@@ -20,7 +14,7 @@
   align-items: center;
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
-  padding: 2rem;
+  padding: 1.5rem;
   gap: 5rem;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -66,7 +60,7 @@
 .card-about {
   width: 550px;
   height: 350px;
-  background: url("/bg1.png");
+  background: url("/public-optimized/desktop/assets/bg1.webp");
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
@@ -144,6 +138,15 @@
   text-align: left;
   margin-left: 20px;
 }
+
+ .icon-float {
+  animation: float 3s ease-in-out infinite;
+ }
+ @keyframes float {
+   0% { transform: translateY(0); }
+   50% { transform: translateY(-8px); }
+   100% { transform: translateY(0); }
+ }
 
 .commitment-section {
   display: flex;
@@ -323,5 +326,8 @@
   }
   .icon-idea {
     width: 30px;
+  }
+  .card-about {
+    background-image: url("/public-optimized/mobile/assets/bg1.webp");
   }
 }

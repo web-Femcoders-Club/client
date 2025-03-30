@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import OptimizedImage from "./../../../components/OptimizedImage"; 
 import iconEquity from "/iconEquity.png";
 import iconInclusion from "/iconInclusion.png";
 import iconVisibility from "/iconVisibility.png";
@@ -10,6 +11,7 @@ import iconEthics from "/iconEthics.png";
 import iconInnovation from "/iconInnovation.png";
 import iconBalance from "/iconBalance.png";
 import iconResponsibility from "/iconResponsibility.png";
+
 
 const cards = [
   {
@@ -73,21 +75,26 @@ interface CardProps {
   img: string;
   title: string;
   desc: string;
+  isActive: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ img, title, desc }) => (
+const Card: React.FC<CardProps> = ({ img, title, desc, isActive }) => (
   <div
-    className="flex flex-col items-center justify-center bg-dark py-7 px-3 rounded-3xl w-[300px] shadow-xl transition-transform transform hover:scale-105 relative"
+    className={`flex flex-col items-center justify-center bg-dark py-7 px-3 rounded-3xl w-[300px] shadow-xl transition-all duration-500 ${
+      isActive ? "scale-100 opacity-100" : "scale-95 opacity-0"
+    }`}
     style={{
       backgroundColor: "#4737bb",
       minHeight: "400px",
       position: "relative",
       zIndex: 1,
+      transform: isActive ? "translateY(0)" : "translateY(20px)",
     }}
     role="figure"
     aria-labelledby={`card-title-${title}`}
   >
     <div
+      className="card-background"
       style={{
         position: "absolute",
         top: 0,
@@ -100,8 +107,17 @@ const Card: React.FC<CardProps> = ({ img, title, desc }) => (
         zIndex: -1,
       }}
     ></div>
-    <img src={img} alt={`Icono de ${title}`} className="mb-4 w-16 h-16" />
-    <h3 id={`card-title-${title}`} className="text-xl font-bold text-white my-4">
+    <div className="icon-container animate-float">
+      <OptimizedImage 
+        src={img} 
+        alt={`Icono de ${title}`} 
+        className="mb-4 w-16 h-16"
+      />
+    </div>
+    <h3 
+      id={`card-title-${title}`} 
+      className="text-xl font-bold text-white my-4 animate-title-glow"
+    >
       {title}
     </h3>
     <p
@@ -119,34 +135,124 @@ const Card: React.FC<CardProps> = ({ img, title, desc }) => (
 
 const CarouselValues: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const itemsPerPage = 1;
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const intervalRef = useRef<number | null>(null);
+
+
+  const goToSlide = (index: number) => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    
+    
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      startAutoSlide();
+    }
+    
+ 
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
+  };
+
+ 
+  const nextSlide = () => {
+    const newIndex = (currentSlide + 1) % cards.length;
+    goToSlide(newIndex);
+  };
+
+  // Función para navegar a la diapositiva anterior
+  const prevSlide = () => {
+    const newIndex = (currentSlide - 1 + cards.length) % cards.length;
+    goToSlide(newIndex);
+  };
+
+  // Función para iniciar la reproducción automática
+  const startAutoSlide = () => {
+    intervalRef.current = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % cards.length);
+    }, 5000); // Aumentado a 5 segundos para dar más tiempo para leer
+  };
 
   useEffect(() => {
-    const nextSlide = () =>
-      setCurrentSlide((prev) => (prev + itemsPerPage) % cards.length);
-    const interval = setInterval(nextSlide, 3000);
-    return () => clearInterval(interval);
+    startAutoSlide();
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   return (
     <div
       className="carousel-container mx-auto px-4 relative"
-      style={{ minHeight: "400px" }}
+      style={{ minHeight: "450px" }}
       role="region"
       aria-label="Carrusel de valores"
     >
       <div className="flex overflow-hidden justify-center">
-        {cards
-          .slice(currentSlide, currentSlide + itemsPerPage)
-          .map((card, index) => (
-            <div key={index} className="mx-2">
-              <Card img={card.img} title={card.title} desc={card.desc} />
-            </div>
+        {cards.map((card, index) => (
+          <div 
+            key={index} 
+            className="mx-2 absolute transition-all duration-500"
+            style={{ 
+              opacity: currentSlide === index ? 1 : 0,
+              pointerEvents: currentSlide === index ? 'auto' : 'none',
+              transform: `translateX(${(index - currentSlide) * 320}px)`,
+            }}
+          >
+            <Card 
+              img={card.img} 
+              title={card.title} 
+              desc={card.desc} 
+              isActive={currentSlide === index}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Controles de navegación */}
+      <div className="flex justify-center mt-4">
+        <button 
+          onClick={prevSlide}
+          className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center mr-2 hover:bg-[#821ad4] transition-colors"
+          aria-label="Anterior valor"
+        >
+          &#8249;
+        </button>
+        
+        {/* Indicadores */}
+        <div className="flex space-x-2 mx-2">
+          {cards.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentSlide === index 
+                  ? 'bg-[#ea4f33] w-6' 
+                  : 'bg-[#4737bb] opacity-50 hover:opacity-75'
+              }`}
+              aria-label={`Ir al valor ${index + 1}`}
+              aria-current={currentSlide === index ? 'true' : 'false'}
+            />
           ))}
+        </div>
+        
+        <button 
+          onClick={nextSlide}
+          className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center ml-2 hover:bg-[#821ad4] transition-colors"
+          aria-label="Siguiente valor"
+        >
+          &#8250;
+        </button>
       </div>
     </div>
   );
 };
+
 
 export default CarouselValues;
 

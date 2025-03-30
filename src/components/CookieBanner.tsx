@@ -37,13 +37,19 @@ const CookieBanner: React.FC = () => {
 
     return (
         <div style={bannerStyle}>
-            <h4>
-                Usamos cookies para mejorar tu experiencia en nuestro sitio. Al usar nuestro sitio, aceptas las cookies. Lee nuestra <a href="#" onClick={handlePolicyClick} style={linkStyle}>Política de Cookies</a>.
-            </h4>
-            <div>
-                <button onClick={handleAccept} style={acceptButtonStyle}>Aceptar</button>
-                <button onClick={handleReject} style={rejectButtonStyle}>Rechazar</button>
-            </div>
+          <h4>
+  Utilizamos cookies para mejorar tu experiencia. Puedes{" "}
+  <strong>aceptarlas, rechazarlas</strong> o{" "}
+  <a href="#" onClick={handlePolicyClick} style={linkStyle}>
+    consultar nuestra política
+  </a>
+  .
+</h4>
+<div>
+  <button onClick={handleAccept} style={acceptButtonStyle}>Aceptar</button>
+  <button onClick={handleReject} style={rejectButtonStyle}>Rechazar</button>
+</div>
+
         </div>
     );
 };

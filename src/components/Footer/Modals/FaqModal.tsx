@@ -57,12 +57,14 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
     {
       question: "¿Qué diferencia a FemCoders Club de otras comunidades?",
       answer: [
-        "FemCoders Club se destaca por ofrecer algo más que una simple comunidad tecnológica. Nos diferenciamos al ser un espacio donde la colaboración y el consenso es el principal valor.",
-        'En lugar de limitarnos a compartir conocimientos, nos destacamos por fomentar un ambiente donde cada miembro es un catalizador para el crecimiento y la inspiración. Nos definimos por ser una "colectividad activa y dinámica".',
-        "En FemCoders Club, no solo te unes a un grupo, sino que participas en un movimiento colaborativo donde cada voz cuenta. La clave de nuestra diferenciación radica en nuestro enfoque en la acción conjunta.",
-        "A través de eventos, proyectos y una mentalidad proactiva. Únete a nuestra colectividad y sé parte de un movimiento que no solo abraza la diversidad, sino que también impulsa el progreso y la presencia activa de las mujeres en la vanguardia del cambio tecnológico.",
+        "FemCoders Club va más allá de ser una simple comunidad tecnológica. Nos diferenciamos por promover la colaboración, el consenso y el apoyo mutuo como base de todo lo que hacemos.",
+        "No solo compartimos conocimientos, sino que fomentamos un entorno donde cada mujer impulsa a las demás. Nos definimos como una colectividad activa y dinámica.",
+        "A través de eventos, proyectos y un enfoque proactivo, trabajamos para visibilizar el talento femenino y generar impacto real en el sector tech.",
+        "Además, buscamos activamente oportunidades laborales para nuestra comunidad, conectando a empresas con perfiles diversos y fomentando la inserción profesional de nuestras integrantes.",
+        "Únete a un movimiento que impulsa el cambio, abraza la diversidad y apuesta por un futuro tecnológico más inclusivo.",
       ],
     },
+
     {
       question: "¿Cómo puedo enterarme de los eventos de FemCoders Club?",
       answer: [
@@ -72,10 +74,12 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
     {
       question: "¿Cómo puedo unirme a la comunidad?",
       answer: [
-        "Si quieres formar parte de nuestra comunidad, puedes hacerlo a través de nuestro Slack. Puedes contactarnos por LinkedIn.",
-        "También puedes hacerlo asistiendo a uno de nuestros eventos online o presencial.",
+        "Unirte a FemCoders Club es muy fácil. Solo tienes que registrarte en nuestra web: https://www.femcodersclub.com/login.",
+        "Desde ahí podrás acceder a Slack, enterarte de eventos y empezar a conectar con otras mujeres en tecnología.",
+        "También puedes unirte asistiendo a uno de nuestros eventos online o presenciales, o contactándonos por LinkedIn si tienes dudas.",
       ],
     },
+
     {
       question: "¿Puedo unirme como promotora?",
       answer: [

@@ -11,8 +11,7 @@
     
     <!-- SEO mínimo (el resto será manejado por React Helmet) -->
     <title>FemCoders Club</title>
-    <meta name="description" content="Comunidad que empodera a mujeres en tecnología con eventos, talleres y networking. Aprende, comparte y crece en programación. Únete a femCoders Club."
-    data-react-helmet="true" />
+    <meta name="description" content="" data-react-helmet="true" />
     
     <!-- Precargas y recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +21,97 @@
       rel="stylesheet"
     />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
+    
+    <!-- Datos estructurados para navegación del sitio -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "Sobre Nosotras",
+            "description": "Conoce más sobre FemCoders Club y nuestra misión",
+            "url": "https://www.femcodersclub.com/sobrenosotras"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "Equipo",
+            "description": "Conoce al equipo detrás de FemCoders Club",
+            "url": "https://www.femcodersclub.com/equipo"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "Eventos",
+            "description": "Próximos eventos y talleres para mujeres en tecnología",
+            "url": "https://www.femcodersclub.com/eventos"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "Contacto",
+            "description": "Ponte en contacto con FemCoders Club",
+            "url": "https://www.femcodersclub.com/contacto"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 5,
+            "name": "Blog",
+            "description": "Artículos, recursos y noticias sobre mujeres en tecnología",
+            "url": "https://www.femcodersclub.com/blog"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 6,
+            "name": "Iniciar Sesión",
+            "description": "Accede a tu cuenta de FemCoders Club",
+            "url": "https://www.femcodersclub.com/login"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Datos estructurados del sitio web -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FemCoders Club",
+        "url": "https://www.femcodersclub.com",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.femcodersclub.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    
+    <!-- Datos estructurados de la organización -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FemCoders Club",
+        "alternateName": [
+          "Fem Coders Club",
+          "femcodersclub",
+          "femCoders club"
+        ],
+        "url": "https://www.femcodersclub.com",
+        "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
+        "sameAs": [
+          "https://www.instagram.com/femcoders_club/",
+          "https://www.linkedin.com/company/fem-coders-club/",
+          "https://www.youtube.com/@FemcodersClub",
+          "https://github.com/femcodersclub",
+          "https://communityinviter.com/apps/femcodersclub/femcoders-club",
+          "https://x.com/FemCodersClub"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

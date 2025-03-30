@@ -30,7 +30,8 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+     <div className="modal-content" role="dialog" aria-modal="true">
+
         <div className="modal-close">
           <button onClick={closeModal}>x</button>
         </div>

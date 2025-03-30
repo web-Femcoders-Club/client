@@ -58,33 +58,33 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      <section className="parallax bg1 full-height">
-        <div className="contenedor">
-          <div className="contenido-seccion">
-            <div className="banner-quienes-somos text-left">
-              <p>
-                El objetivo principal de <span>femCoders Club</span> es cerrar
-                la brecha de género en el ámbito digital y ser un referente que
-                promueva la inclusión femenina en el mundo tecnológico. Somos un
-                grupo de mujeres apasionadas por la tecnología que{" "}
-                <strong>
-                  trabajamos para fomentar la participación activa de las
-                  mujeres en el sector de TI.
-                </strong>
-              </p>
-            </div>
+<section className="parallax bg1 full-height">
+  <div className="contenedor">
+    <div className="contenido-seccion animate-fade-in">
+      <div className="banner-quienes-somos text-left">
+        <p className="text-animate">
+          El objetivo principal de <strong>femCoders Club</strong> es cerrar
+          la brecha de género en el ámbito digital y ser un referente que
+          promueva la inclusión femenina en el mundo tecnológico. <br />Somos un
+          grupo de mujeres apasionadas por la tecnología que{" "}
+          <strong className="highlight-text">
+            trabajamos para fomentar la participación activa de las
+            mujeres en el sector de TI.
+          </strong>
+        </p>
+      </div>
 
-            <div className="compromise-video">
-              <video
-                src={VideoInicialComunidad}
-                className="video"
-                controls
-                aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="compromise-video">
+        <video
+          src={VideoInicialComunidad}
+          className="video video-hover-effect"
+          controls
+          aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos"
+        />
+      </div>
+    </div>
+  </div>
+</section>
       <section className="parallax bg2 full-height">
         <div className="container-bg-3">
           <div className="card-container">
@@ -202,7 +202,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className="parallax bg4 full-height">
+      <section className="parallax bg4 ">
         <Collapse />
       </section>
     </>
