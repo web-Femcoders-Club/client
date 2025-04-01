@@ -4,25 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./FemCodersClubLogo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+  
     <!-- Verificación de sitios -->
     <meta name="google-site-verification" content="1z7dHnyblQkVTvwpU7eDrTN5P_PAU7yXZVL3yCdXN3k" />
     <meta name="msvalidate.01" content="257FF6930B602A0ED0B76C71EA492AE3" />
-    
-    <!-- SEO mínimo (el resto será manejado por React Helmet) -->
-    <title>FemCoders Club</title>
-    <meta name="description" content="" data-react-helmet="true" />
-    
-    <!-- Precargas y recursos críticos -->
+  
+    <!-- SEO mínimo (útil si falla Helmet o para react-snap) -->
+    <title>FemCoders Club | Comunidad de Mujeres en Tecnología</title>
+    <meta
+      name="description"
+      content="FemCoders Club: comunidad para mujeres en tecnología. Eventos, talleres, networking y recursos para crecer en programación."
+    />
+  
+    <!-- Precargas y recursos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Asap:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" media="print" onload="this.media='all'" />
-    
-    <!-- Datos estructurados para navegación del sitio -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+  
+    <!-- ✅ CORREGIDO: Datos estructurados navegación -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -31,41 +39,48 @@
           {
             "@type": "SiteNavigationElement",
             "position": 1,
+            "name": "Inicio",
+            "description": "Página principal de FemCoders Club",
+            "url": "https://www.femcodersclub.com/"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
             "name": "Sobre Nosotras",
             "description": "Conoce más sobre FemCoders Club y nuestra misión",
             "url": "https://www.femcodersclub.com/sobrenosotras"
           },
           {
             "@type": "SiteNavigationElement",
-            "position": 2,
+            "position": 3,
             "name": "Equipo",
             "description": "Conoce al equipo detrás de FemCoders Club",
             "url": "https://www.femcodersclub.com/equipo"
           },
           {
             "@type": "SiteNavigationElement",
-            "position": 3,
+            "position": 4,
             "name": "Eventos",
             "description": "Próximos eventos y talleres para mujeres en tecnología",
             "url": "https://www.femcodersclub.com/eventos"
           },
           {
             "@type": "SiteNavigationElement",
-            "position": 4,
+            "position": 5,
             "name": "Contacto",
             "description": "Ponte en contacto con FemCoders Club",
             "url": "https://www.femcodersclub.com/contacto"
           },
           {
             "@type": "SiteNavigationElement",
-            "position": 5,
+            "position": 6,
             "name": "Blog",
             "description": "Artículos, recursos y noticias sobre mujeres en tecnología",
             "url": "https://www.femcodersclub.com/blog"
           },
           {
             "@type": "SiteNavigationElement",
-            "position": 6,
+            "position": 7,
             "name": "Iniciar Sesión",
             "description": "Accede a tu cuenta de FemCoders Club",
             "url": "https://www.femcodersclub.com/login"
@@ -73,7 +88,7 @@
         ]
       }
     </script>
-    
+  
     <!-- Datos estructurados del sitio web -->
     <script type="application/ld+json">
       {
@@ -88,18 +103,14 @@
         }
       }
     </script>
-    
+  
     <!-- Datos estructurados de la organización -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "FemCoders Club",
-        "alternateName": [
-          "Fem Coders Club",
-          "femcodersclub",
-          "femCoders club"
-        ],
+        "alternateName": ["Fem Coders Club", "femcodersclub", "femCoders club", "fem coders"],
         "url": "https://www.femcodersclub.com",
         "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
         "sameAs": [
@@ -112,7 +123,15 @@
         ]
       }
     </script>
+    
+<script>
+  window.snapSaveState = () => {
+    // Puedes guardar datos si quieres restaurarlos más tarde
+  };
+</script>
+
   </head>
+  
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

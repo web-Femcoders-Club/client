@@ -4,6 +4,9 @@ import mkcert from "vite-plugin-mkcert";
 
 export default defineConfig({
   plugins: [react(), mkcert()],
+  build: {
+    target: 'es2019', 
+  },
   server: {
     proxy: {
       "/api": {

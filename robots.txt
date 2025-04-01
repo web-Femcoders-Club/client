@@ -4,5 +4,5 @@ Allow: /
 # Bloquear área administrativa
 Disallow: /admin/
 
-# Sitemap
+# Sitemap correcto
 Sitemap: https://www.femcodersclub.com/sitemap.xml
