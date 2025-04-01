@@ -3,18 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "optimize": "tsx optimize-images.ts",
+"scripts": {
+  "dev": "vite",
+  "optimize": "tsx optimize-images.ts",
   "build": "npm run generate-sitemap && npm run optimize && tsc && vite build",
-"postbuild": "rimraf dist/200.html && react-snap --no-fail",
-"build:seo": "npm run generate-sitemap && npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview --host",
-    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "start": "npm run optimize && serve -s dist",
-    "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
-  },
+  "postbuild": "rimraf dist/200.html && react-snap --no-fail",
+  "build:seo": "npm run generate-sitemap && npm run optimize && tsc && vite build",
+  "build:local-seo": "npm run generate-sitemap && npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
+  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview --host",
+  "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+  "start": "npm run optimize && serve -s dist",
+  "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
+},
 "reactSnap": {
   "inlineCss": true,
   "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
