@@ -142,7 +142,7 @@ const Header: React.FC = () => {
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           {[
-            { path: "/sobrenosotras", label: "Sobre Nosotras" },
+            { path: "/femcoders-quienes-somos", label: "Sobre Nosotras" },
             { path: "/equipo", label: "Equipo" },
             { path: "/eventos", label: "Eventos" },
             { path: "/contacto", label: "Contacto" },

@@ -3,19 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "optimize": "tsx optimize-images.ts",
-  "build": "npm run generate-sitemap && npm run optimize && tsc && vite build",
-  "build:seo": "npm run generate-sitemap && npm run optimize && tsc && vite build",
-  "build:local-seo": "npm run generate-sitemap && npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
-  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-  "preview": "vite preview --host",
-  "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-  "start": "npm run optimize && serve -s dist",
-  "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
-},
-"reactSnap": {
+  "scripts": {
+    "dev": "vite",
+    "optimize": "tsx optimize-images.ts",
+    "build": "npm run generate-sitemap && npm run optimize && tsc && vite build",
+    "build:seo": "npm run generate-sitemap && npm run optimize && tsc && vite build",
+    "build:local-seo": "npm run generate-sitemap && npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview --host",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "start": "npm run optimize && serve -s dist",
+    "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
+  },
+  "reactSnap": {
   "inlineCss": true,
   "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
   "minifyHtml": {
@@ -24,18 +24,19 @@
   "source": "dist",
   "timeout": 60000,
   "skipThirdPartyRequests": true,
-  "routes": [
-    "/",
-    "/sobrenosotras",
-    "/equipo",
-    "/eventos",
-    "/contacto",
-    "/blog",
-    "/login"
-  ],
-  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "crawl": true,
+  "removeBlobs": true,
+  "destinationDir": "dist",
+  "fixWebpackChunksIssue": false,
+  "removeStyleTags": false,
+  "concurrency": 4,
+  "ignoreForPrerender": ["/404"],
+  "minifyCss": {
+    "level": 1
+  }
 },
-"dependencies": {
+  "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "@tanstack/react-query": "^5.45.1",
     "aos": "^2.3.4",

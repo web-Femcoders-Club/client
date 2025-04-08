@@ -599,7 +599,7 @@ const HomePage: React.FC = () => {
         position: 2,
         name: "Sobre Nosotras",
         description: "Conoce más sobre FemCoders Club y nuestra misión",
-        url: "https://www.femcodersclub.com/sobrenosotras",
+        url: "https://www.femcodersclub.com/femcoders-quienes-somos",
       },
       {
         "@type": "SiteNavigationElement",

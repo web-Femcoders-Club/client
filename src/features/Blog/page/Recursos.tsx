@@ -232,6 +232,25 @@ const Recursos: React.FC = () => {
         </div>
       </div>
 
+      <div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>CSS Grid: Domina el sistema de cuadrículas en tu página web</h3>
+      <p className="intro-text">
+        Aprende cómo usar CSS Grid para crear layouts modernos, flexibles y precisos en tus proyectos web.
+      </p>
+    </div>
+    <Link
+      to="/recursos/css/css-grid"
+      className="secondary-button"
+      aria-label="Leer más sobre CSS Grid: Domina el sistema de cuadrículas en tu página web"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
+
+
     </div>
   );
 };

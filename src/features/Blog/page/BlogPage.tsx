@@ -165,6 +165,15 @@ const BlogPage: React.FC = () => {
       description: "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
       createdAt: new Date("2025-03-16"), 
     },
+    {
+      id: 16,
+      type: "recurso",
+      category: "css",
+      title: "CSS Grid: Domina el sistema de cuadrículas en tu página web",
+      description: "Aprende cómo usar CSS Grid para crear layouts modernos, flexibles y precisos en tus proyectos web.",
+      createdAt: new Date("2025-04-03"), 
+    },
+    
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -219,6 +228,9 @@ const BlogPage: React.FC = () => {
       return `/recursos/css/flexbox`; 
       case "Réplica de Nike Store: E-commerce con React":
   return `/recursos/react/nike-store-replica`;
+  case "CSS Grid: Domina el sistema de cuadrículas en tu página web":
+  return `/recursos/css/css-grid`;
+
           
       default:
         return `/`;

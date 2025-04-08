@@ -11,10 +11,12 @@ import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHT
 import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
 import EventsPage from "../features/Events/page/EventsPage";
 import Loader from "../components/Loader";
+import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
+import AboutPage from "../features/About/page/AboutPage";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
-const AboutPage = lazy(() => import("../features/About/page/AboutPage"));
+
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
 const Aniversario = lazy(
   () => import("../features/Blog/posts/noticias/Aniversario")
@@ -132,7 +134,7 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-            path="/sobrenosotras"
+            path="/femcoders-quienes-somos"
             element={
               <Layout>
                 <AboutPage />
@@ -393,15 +395,25 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/recursos/react/nike-store-replica"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <ReplicaNike />
-      </Suspense>
-    </Layout>
-  }
-/>
+            path="/recursos/react/nike-store-replica"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ReplicaNike />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/css-grid"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <CssGrid />
+                </Suspense>
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
 
