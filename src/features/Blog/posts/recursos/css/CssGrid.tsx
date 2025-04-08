@@ -243,9 +243,14 @@ const CssGrid: React.FC = () => {
     >
      ✨ Explora el código en GitHub 📂 ✨
     </a></span>
-   
+    <br />
+ <span>   <a href="https://femcodersclub.github.io/femcoders-css-grid-examples/"
+   target="_blank"
+   rel="noopener noreferrer">
+   Ver ejemplo en vivo
+</a></span>
   </div>
-  <br />
+  <br /><br />
   <h3>¿Cómo usar el proyecto?</h3>
   <ul>
     <li>

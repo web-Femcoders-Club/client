@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import OptimizedImage from "./../../../components/OptimizedImage"; 
+import OptimizedImage from "./../../../components/OptimizedImage";
 import iconEquity from "/iconEquity.png";
 import iconInclusion from "/iconInclusion.png";
 import iconVisibility from "/iconVisibility.png";
@@ -11,7 +11,6 @@ import iconEthics from "/iconEthics.png";
 import iconInnovation from "/iconInnovation.png";
 import iconBalance from "/iconBalance.png";
 import iconResponsibility from "/iconResponsibility.png";
-
 
 const cards = [
   {
@@ -108,14 +107,14 @@ const Card: React.FC<CardProps> = ({ img, title, desc, isActive }) => (
       }}
     ></div>
     <div className="icon-container animate-float">
-      <OptimizedImage 
-        src={img} 
-        alt={`Icono de ${title}`} 
+      <OptimizedImage
+        src={img}
+        alt={`Icono de ${title}`}
         className="mb-4 w-16 h-16"
       />
     </div>
-    <h3 
-      id={`card-title-${title}`} 
+    <h3
+      id={`card-title-${title}`}
       className="text-xl font-bold text-white my-4 animate-title-glow"
     >
       {title}
@@ -138,47 +137,41 @@ const CarouselValues: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
-
   const goToSlide = (index: number) => {
     if (isTransitioning) return;
-    
+
     setIsTransitioning(true);
     setCurrentSlide(index);
-    
-    
+
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       startAutoSlide();
     }
-    
- 
+
     setTimeout(() => {
       setIsTransitioning(false);
     }, 500);
   };
 
- 
   const nextSlide = () => {
     const newIndex = (currentSlide + 1) % cards.length;
     goToSlide(newIndex);
   };
 
-  // Función para navegar a la diapositiva anterior
   const prevSlide = () => {
     const newIndex = (currentSlide - 1 + cards.length) % cards.length;
     goToSlide(newIndex);
   };
 
-  // Función para iniciar la reproducción automática
   const startAutoSlide = () => {
     intervalRef.current = window.setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % cards.length);
-    }, 5000); // Aumentado a 5 segundos para dar más tiempo para leer
+    }, 5000);
   };
 
   useEffect(() => {
     startAutoSlide();
-    
+
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -195,53 +188,51 @@ const CarouselValues: React.FC = () => {
     >
       <div className="flex overflow-hidden justify-center">
         {cards.map((card, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="mx-2 absolute transition-all duration-500"
-            style={{ 
+            style={{
               opacity: currentSlide === index ? 1 : 0,
-              pointerEvents: currentSlide === index ? 'auto' : 'none',
+              pointerEvents: currentSlide === index ? "auto" : "none",
               transform: `translateX(${(index - currentSlide) * 320}px)`,
             }}
           >
-            <Card 
-              img={card.img} 
-              title={card.title} 
-              desc={card.desc} 
+            <Card
+              img={card.img}
+              title={card.title}
+              desc={card.desc}
               isActive={currentSlide === index}
             />
           </div>
         ))}
       </div>
 
-      {/* Controles de navegación */}
       <div className="flex justify-center mt-4">
-        <button 
+        <button
           onClick={prevSlide}
           className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center mr-2 hover:bg-[#821ad4] transition-colors"
           aria-label="Anterior valor"
         >
           &#8249;
         </button>
-        
-        {/* Indicadores */}
+
         <div className="flex space-x-2 mx-2">
           {cards.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
-                currentSlide === index 
-                  ? 'bg-[#ea4f33] w-6' 
-                  : 'bg-[#4737bb] opacity-50 hover:opacity-75'
+                currentSlide === index
+                  ? "bg-[#ea4f33] w-6"
+                  : "bg-[#4737bb] opacity-50 hover:opacity-75"
               }`}
               aria-label={`Ir al valor ${index + 1}`}
-              aria-current={currentSlide === index ? 'true' : 'false'}
+              aria-current={currentSlide === index ? "true" : "false"}
             />
           ))}
         </div>
-        
-        <button 
+
+        <button
           onClick={nextSlide}
           className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center ml-2 hover:bg-[#821ad4] transition-colors"
           aria-label="Siguiente valor"
@@ -253,6 +244,4 @@ const CarouselValues: React.FC = () => {
   );
 };
 
-
 export default CarouselValues;
-
