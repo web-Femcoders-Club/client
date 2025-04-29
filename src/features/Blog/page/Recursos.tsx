@@ -249,6 +249,23 @@ const Recursos: React.FC = () => {
     </Link>
   </div>
 </div>
+<div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>Estrategias avanzadas: Combinando Grid y Flexbox en CSS</h3>
+      <p className="intro-text">
+        Domina el arte de crear layouts modernos combinando CSS Grid y Flexbox con ejemplos prácticos y estrategias clave.
+      </p>
+    </div>
+    <Link
+      to="/recursos/css/css-grid-flexbox"
+      className="secondary-button"
+      aria-label="Leer más sobre estrategias avanzadas combinando Grid y Flexbox"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
 
 
     </div>

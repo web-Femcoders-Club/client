@@ -91,7 +91,8 @@ const BlogPage: React.FC = () => {
       type: "recurso",
       category: "html",
       title: "Introducción a las APIs en HTML",
-      description: "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.",
+      description:
+        "Explora cómo las APIs de HTML pueden potenciar tus proyectos web.",
       createdAt: new Date("2024-10-15"),
     },
     {
@@ -137,14 +138,15 @@ const BlogPage: React.FC = () => {
       title: "Domina los Selectores en CSS",
       description:
         "Aprende a usar selectores básicos, avanzados y combinados en CSS con ejemplos prácticos y visuales.",
-      createdAt: new Date("2025-01-17"), 
+      createdAt: new Date("2025-01-17"),
     },
     {
       id: 13,
       type: "recurso",
       category: "css",
       title: "Box Model en CSS | Guía Completa para Frontend",
-      description: "Aprende a dominar el Box Model en CSS para mejorar el diseño y la maquetación web.",
+      description:
+        "Aprende a dominar el Box Model en CSS para mejorar el diseño y la maquetación web.",
       createdAt: new Date("2025-02-16"),
     },
     {
@@ -154,26 +156,36 @@ const BlogPage: React.FC = () => {
       title: "Flexbox: El poder de crear layouts flexibles",
       description:
         "Descubre cómo Flexbox facilita la creación de diseños modernos y responsivos con ejemplos prácticos.",
-      createdAt: new Date("2025-03-05"), 
+      createdAt: new Date("2025-03-05"),
     },
-    
+
     {
-      id: 15, 
+      id: 15,
       type: "recurso",
       category: "react",
       title: "Réplica de Nike Store: E-commerce con React",
-      description: "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
-      createdAt: new Date("2025-03-16"), 
+      description:
+        "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
+      createdAt: new Date("2025-03-16"),
     },
     {
       id: 16,
       type: "recurso",
       category: "css",
       title: "CSS Grid: Domina el sistema de cuadrículas en tu página web",
-      description: "Aprende cómo usar CSS Grid para crear layouts modernos, flexibles y precisos en tus proyectos web.",
-      createdAt: new Date("2025-04-03"), 
+      description:
+        "Aprende cómo usar CSS Grid para crear layouts modernos, flexibles y precisos en tus proyectos web.",
+      createdAt: new Date("2025-04-03"),
     },
-    
+    {
+      id: 17,
+      type: "recurso",
+      category: "css",
+      title: "Estrategias avanzadas: Combinando Grid y Flexbox en CSS",
+      description:
+        "Domina el arte de combinar CSS Grid y Flexbox para crear layouts modernos, flexibles y responsivos.",
+      createdAt: new Date("2025-04-27"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -218,20 +230,20 @@ const BlogPage: React.FC = () => {
         return `/recursos/html/html-seo-accesibilidad`;
       case "Integración de Frameworks y Librerías":
         return `/recursos/html/integracion-frameworks`;
-        case "¡Bienvenidas a 2025 con FemCoders Club! 🎉":
-          return `/noticias/Bienvenido2025`;
-        case "Domina los Selectores en CSS": 
-          return `/recursos/css/selectores-css`;
-          case "Box Model en CSS | Guía Completa para Frontend":
-            return `/recursos/css/box-model`;
-            case "Flexbox: El poder de crear layouts flexibles":
-      return `/recursos/css/flexbox`; 
+      case "¡Bienvenidas a 2025 con FemCoders Club! 🎉":
+        return `/noticias/Bienvenido2025`;
+      case "Domina los Selectores en CSS":
+        return `/recursos/css/selectores-css`;
+      case "Box Model en CSS | Guía Completa para Frontend":
+        return `/recursos/css/box-model`;
+      case "Flexbox: El poder de crear layouts flexibles":
+        return `/recursos/css/flexbox`;
       case "Réplica de Nike Store: E-commerce con React":
-  return `/recursos/react/nike-store-replica`;
-  case "CSS Grid: Domina el sistema de cuadrículas en tu página web":
-  return `/recursos/css/css-grid`;
-
-          
+        return `/recursos/react/nike-store-replica`;
+      case "CSS Grid: Domina el sistema de cuadrículas en tu página web":
+        return `/recursos/css/css-grid`;
+      case "Estrategias avanzadas: Combinando Grid y Flexbox en CSS":
+        return `/recursos/css/css-grid-flexbox`;
       default:
         return `/`;
     }
@@ -376,9 +388,7 @@ const BlogPage: React.FC = () => {
               <h3>Publicaciones Recientes</h3>
               <div className="post-grid">
                 {posts
-                  .sort(
-                    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
-                  )
+                  .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
                   .slice(0, 3)
                   .map((post) => (
                     <div key={post.id} className="post-card">

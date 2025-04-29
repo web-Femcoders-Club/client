@@ -94,6 +94,9 @@ const ComunityHub = lazy(
 const ReplicaNike = lazy(
   () => import("../features/Blog/posts/recursos/react/ReplicaNike")
 );
+const CssGridFlexbox = lazy(
+  () => import("../features/Blog/posts/recursos/css/CssGridFlexbox")
+);
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -410,6 +413,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <CssGrid />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/css-grid-flexbox"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <CssGridFlexbox />
                 </Suspense>
               </Layout>
             }
