@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import OptimizedImage from "../../../components/OptimizedImage";
 import { FaLinkedin, FaCode, FaToolbox } from "react-icons/fa";
 import { MdOutlineDesignServices } from "react-icons/md";
