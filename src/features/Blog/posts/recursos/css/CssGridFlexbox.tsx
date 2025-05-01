@@ -245,9 +245,16 @@ const CssGridFlexbox: React.FC = () => {
         <p>
           A continuación, exploraremos 5 estrategias prácticas para combinar
           ambas tecnologías, todas implementadas en nuestro proyecto de ejemplo.
+          <ul className="micro-index">
+  <li><a href="#estrategia-1">1. Grid para la estructura general, Flexbox para los componentes internos</a></li>
+  <li><a href="#estrategia-2">2. Grid para posicionamiento asimétrico, Flexbox para alineación interna</a></li>
+  <li><a href="#estrategia-3">3. Grid con áreas nombradas y Flexbox para componentes</a></li>
+  <li><a href="#estrategia-4">4. Grid para responsividad automática, Flexbox para componentes</a></li>
+  <li><a href="#estrategia-5">5. Intercambio de layout basado en media queries</a></li>
+</ul>
         </p>
         <br />
-        <h3>
+        <h3 id="estrategia-1">
           1.: Grid para la estructura general, Flexbox para los componentes
           internos
         </h3>
@@ -299,7 +306,7 @@ const CssGridFlexbox: React.FC = () => {
           </a>{" "}
         </p>
         <br />
-        <h3>
+        <h3 id="estrategia-2">
           2.: Grid para posicionamiento asimétrico, Flexbox para alineación
           interna
         </h3>
@@ -352,7 +359,7 @@ const CssGridFlexbox: React.FC = () => {
           </a>{" "}
         </p>
         <br />
-        <h3>3.: Grid con áreas nombradas y Flexbox para componentes</h3>
+        <h3 id="estrategia-3">3.: Grid con áreas nombradas y Flexbox para componentes</h3>
 
 <p>
   Una de las grandes ventajas de <strong>CSS Grid</strong> es que podemos definir <strong>áreas de contenido</strong> fácilmente, haciendo que los layouts sean más claros y organizados.
@@ -426,7 +433,7 @@ const CssGridFlexbox: React.FC = () => {
 </p>
 <br />
 
-        <h3>
+        <h3 id="estrategia-4">
           4.: Grid para responsividad automática, Flexbox para componentes
         </h3>
         <p>
@@ -453,7 +460,7 @@ const CssGridFlexbox: React.FC = () => {
           manteniendo una estructura limpia y centrada en cada tarjeta.{" "}
         </p>
         <br />
-        <h3>5.: Intercambio de layout basado en media queries</h3>
+        <h3 id="estrategia-5">5.: Intercambio de layout basado en media queries</h3>
         <p>
           {" "}
           En esta estrategia, cambiamos de Grid a Flexbox (o viceversa) según el

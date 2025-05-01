@@ -1,0 +1,225 @@
+.special-thanks-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.special-thanks-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(71, 55, 187, 0.8);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(30px);
+  color: white;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  position: relative;
+}
+
+.heart-icon {
+  color: #ea4f33;
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+  filter: drop-shadow(0 0 5px rgba(234, 79, 51, 0.5));
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.section-intro {
+  margin-top: 1.5rem;
+  text-align: start;
+}
+
+.section-intro p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.promoters-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 1rem;
+  perspective: 1000px;
+}
+
+.promoter-card-wrapper {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.special-thanks-footer {
+  text-align: center;
+
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 1rem auto 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(71, 55, 187, 0.2);
+}
+
+.special-thanks-footer p {
+  font-size: 1.2rem;
+  color: #2a2170;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.collaborate-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(145deg, #4737bb, #821ad4);
+  color: white;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(71, 55, 187, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.collaborate-button:hover,
+.collaborate-button:focus {
+  background: linear-gradient(145deg, #821ad4, #ea4f33);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(130, 26, 212, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .section-intro p {
+    font-size: 1rem;
+  }
+
+  .special-thanks-footer p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .special-thanks-section {
+    padding: 3rem 1rem;
+  }
+
+  .section-header {
+    padding: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .heart-icon {
+    font-size: 1.6rem;
+  }
+
+  .section-intro p {
+    font-size: 0.95rem;
+  }
+
+  .special-thanks-footer {
+    padding: 1.5rem;
+  }
+
+  .special-thanks-footer p {
+    font-size: 1rem;
+  }
+
+  .collaborate-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .special-thanks-section {
+    padding: 2rem 0.8rem;
+  }
+
+  .section-header {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .heart-icon {
+    font-size: 1.4rem;
+  }
+
+  .section-intro p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .special-thanks-footer p {
+    font-size: 0.9rem;
+  }
+
+  .collaborate-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-icon {
+    animation: none;
+  }
+
+  .collaborate-button:hover {
+    transform: none;
+  }
+}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import OptimizedImage from "../../../components/OptimizedImage";
 
-const SponsorsTimeline = () => {
+const SponsorsARExperience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sponsorEvents = [
@@ -113,9 +114,9 @@ const SponsorsTimeline = () => {
       event: "Estrategias Clave en Tecnología: Accesibilidad y POO",
       description:
         "Gracias a Semrush, pudimos organizar un evento extraordinario con la participación de Daria Naydikova y Cris Mouta.  Las asistentes aprendieron sobre herramientas y enfoques para mejorar la accesibilidad y prevenir errores en productos, así como conceptos de POO de una manera lúdica y entretenida.",
-      logo: "assets/semRush/logoSemRush.png", 
+      logo: "assets/semRush/logoSemRush.png",
       website: "https://www.semrush.com/",
-      backgroundImage: "assets/semRush/oficina-SemRush.jpg", 
+      backgroundImage: "assets/semRush/oficina-SemRush.jpg",
     },
     {
       date: "2024-11-28",
@@ -123,21 +124,20 @@ const SponsorsTimeline = () => {
       event: "Diseño, Accesibilidad y Ciberseguridad en el desarollo web",
       description:
         "En colaboración con SeatCode, exploramos tres pilares fundamentales para el desarrollo web moderno: diseño intuitivo, accesibilidad inclusiva y ciberseguridad sólida. Este evento destacó cómo estas áreas se complementan para construir experiencias digitales seguras, funcionales y accesibles para todas las personas. Gracias a SeatCode, nuestras asistentes pudieron aprender de profesionales destacadas en un entorno dinámico y lleno de inspiración.",
-      logo: "assets/UltimosEventos2024/logoSeatCode.jpg", 
+      logo: "assets/UltimosEventos2024/logoSeatCode.jpg",
       website: "https://code.seat/",
-      backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg", 
+      backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg",
     },
     {
-      "date": "2025-03-13",
-      "sponsor": "InfoJobs",
-      "event": "El sector tecnológico necesita de más mujeres",
-      "description": 
+      date: "2025-03-13",
+      sponsor: "InfoJobs",
+      event: "El sector tecnológico necesita de más mujeres",
+      description:
         "Gracias al apoyo de InfoJobs, hemos celebrado un evento centrado en la importancia de la presencia femenina en el sector tecnológico. En un entorno inspirador, profesionales compartieron sus experiencias y aprendizajes para fomentar la diversidad en la industria. InfoJobs reafirma su compromiso con la reducción de la brecha de género en tecnología y su apuesta por un futuro más inclusivo, en el que el talento femenino tenga cada vez más oportunidades para crecer y destacar.",
-      "logo": "/logoinfojobs.jpeg",
-      "website": "https://www.infojobs.net/",
-      "backgroundImage": "/oficinaInfoJobs.jpeg"
-    }
-    
+      logo: "/logoinfojobs.jpeg",
+      website: "https://www.infojobs.net/",
+      backgroundImage: "/oficinaInfoJobs.jpeg",
+    },
   ];
 
   const handlePrev = () => {
@@ -149,6 +149,16 @@ const SponsorsTimeline = () => {
   const handleNext = () => {
     setActiveIndex((prevIndex) =>
       prevIndex < sponsorEvents.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+  const getOptimizedBackground = (path: string) => {
+    const isMobile = window.innerWidth <= 768;
+    const folder = isMobile ? "mobile" : "desktop";
+    const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+
+    return `/public-optimized/${folder}/${cleanPath}`.replace(
+      /\.(jpg|jpeg|png)$/i,
+      ".webp"
     );
   };
 
@@ -166,7 +176,9 @@ const SponsorsTimeline = () => {
     <div
       className="max-w-4xl mx-auto p-4"
       style={{
-        backgroundImage: `url(${activeEvent.backgroundImage})`,
+        backgroundImage: `url(${getOptimizedBackground(
+          activeEvent.backgroundImage
+        )})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "0.5rem",
@@ -195,8 +207,9 @@ const SponsorsTimeline = () => {
                 href={activeEvent.website}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={`Visit ${activeEvent.sponsor}'s website`}
               >
-                <img
+                <OptimizedImage
                   src={activeEvent.logo}
                   alt={activeEvent.sponsor}
                   className="w-25 h-20 mx-auto mb-2"
@@ -239,4 +252,4 @@ const SponsorsTimeline = () => {
   );
 };
 
-export default SponsorsTimeline;
+export default SponsorsARExperience;

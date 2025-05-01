@@ -1,78 +1,311 @@
-.card-promotora {
-  width: 300px;
-  height: 400px;
-  background: url("/bg1.png");
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 0 10px;
-  perspective: 1000px;
-  overflow: hidden;
+.promoter-card {
+  width: 350px;
+  height: 450px;
+  perspective: 2000px;
+  margin: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.flip-card-inner {
+.promoter-card:hover {
+  transform: translateY(-8px);
+}
+
+.promoter-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(130, 26, 212, 0.5);
+  border-radius: 16px;
+}
+
+.promoter-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d;
 }
 
-.card-promotora:hover .flip-card-inner {
+.is-flipped .promoter-card-inner {
   transform: rotateY(180deg);
 }
 
-.flip-card-front,
-.card-back {
+.promoter-card-front,
+.promoter-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
-.flip-card-front img {
-  width: 100px;
-  height: 100px;
+.promoter-card-front {
+  background: linear-gradient(
+    145deg,
+    rgba(71, 55, 187, 0.85),
+    rgba(130, 26, 212, 0.85)
+  );
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  color: white;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.promoter-image-container {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background-color: #fdfdfd;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  padding: 5px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.promoter-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.promoter-name {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.promoter-role {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #ffd9ce;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-icon {
+  color: #ea4f33;
+}
+
+.promoter-specialty {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.card-flip-hint {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
   padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  width: 80%;
+  margin: 0 auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.promoter-card:hover .card-flip-hint {
+  opacity: 1;
+}
+
+.promoter-card-back {
+  padding: 2rem;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  border: 1px solid rgba(71, 55, 187, 0.2);
+}
+
+.quote-container {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.quote-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #ea4f33;
+  opacity: 0.5;
+  font-size: 1rem;
+  margin-top: 1.9rem;
+}
+
+.promoter-description {
+  color: #2a2170;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 1.9rem;
+}
+
+.contribution-block {
+  background: #f8f5ff;
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 3px solid #4737bb;
+}
+
+.contribution-title {
+  color: #4737bb;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.contribution-text {
+  color: #2a2170;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.flip-back-button {
+  position: absolute;
+  top: 0.7rem;
+  left: 1rem;
+  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);
+}
+.promoter-social {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
   margin-bottom: 1rem;
 }
 
-.flip-card-front h3 {
-  color: #4737bb;
-  margin-top: 1rem;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-  padding: 1rem;
-  color: #4737bb;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.card-back p {
-  margin: 0.5rem 0;
-}
-
-.card-back a {
-  color: #0077b5;
+.linkedin-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  color: white;
   text-decoration: none;
-  transition: color 0.3s;
-  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 119, 181, 0.3);
 }
 
-.card-back a:hover {
-  color: #005582;
+.linkedin-link:hover,
+.linkedin-link:focus {
+  background: linear-gradient(145deg, #4737bb, #ea4f33);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(71, 55, 187, 0.4);
+  color: white;
 }
 
-.card-back strong {
-  font-size: 1.2rem;
-  color: #ea4f33;
+.linkedin-icon {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .promoter-card {
+    width: 300px;
+    height: 430px;
+    margin: 0.8rem;
+  }
+
+  .promoter-image-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .promoter-name {
+    font-size: 1.5rem;
+  }
+
+  .promoter-card-back {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .promoter-card {
+    width: 280px;
+    height: 400px;
+    margin: 0.6rem;
+  }
+
+  .promoter-image-container {
+    width: 120px;
+    height: 120px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .promoter-name {
+    font-size: 1.3rem;
+  }
+
+  .promoter-description {
+    font-size: 0.85rem;
+  }
+
+  .contribution-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promoter-card,
+  .promoter-card-inner,
+  .linkedin-link,
+  .flip-back-button {
+    transition: none;
+  }
+
+  .is-flipped .promoter-card-inner {
+    transition: none;
+  }
+
+  .promoter-card:hover {
+    transform: none;
+  }
+
+  .linkedin-link:hover {
+    transform: none;
+  }
 }

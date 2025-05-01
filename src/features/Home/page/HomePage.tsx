@@ -581,66 +581,66 @@ const HomePage: React.FC = () => {
           })}
         </script>
 
-  {/* Schema.org para Elementos de Navegación */}
-<script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: [
-      {
-        "@type": "SiteNavigationElement",
-        position: 1,
-        name: "Inicio",
-        description: "Página principal de FemCoders Club",
-        url: "https://www.femcodersclub.com/",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 2,
-        name: "Sobre Nosotras",
-        description: "Conoce más sobre FemCoders Club y nuestra misión",
-        url: "https://www.femcodersclub.com/femcoders-quienes-somos",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 3,
-        name: "Equipo",
-        description: "Conoce al equipo detrás de FemCoders Club",
-        url: "https://www.femcodersclub.com/equipo",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 4,
-        name: "Eventos",
-        description: "Próximos eventos y talleres para mujeres en tecnología",
-        url: "https://www.femcodersclub.com/eventos",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 5,
-        name: "Contacto",
-        description: "Ponte en contacto con FemCoders Club",
-        url: "https://www.femcodersclub.com/contacto",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 6,
-        name: "Blog",
-        description:
-          "Artículos, recursos y noticias sobre mujeres en tecnología",
-        url: "https://www.femcodersclub.com/blog",
-      },
-      {
-        "@type": "SiteNavigationElement",
-        position: 7,
-        name: "Iniciar Sesión",
-        description: "Accede a tu cuenta de FemCoders Club",
-        url: "https://www.femcodersclub.com/login",
-      },
-    ],
-  })}
-</script>
-
+        {/* Schema.org para Elementos de Navegación */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: [
+              {
+                "@type": "SiteNavigationElement",
+                position: 1,
+                name: "Inicio",
+                description: "Página principal de FemCoders Club",
+                url: "https://www.femcodersclub.com/",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 2,
+                name: "Sobre Nosotras",
+                description: "Conoce más sobre FemCoders Club y nuestra misión",
+                url: "https://www.femcodersclub.com/femcoders-quienes-somos",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 3,
+                name: "Equipo",
+                description: "Conoce al equipo detrás de FemCoders Club",
+                url: "https://www.femcodersclub.com/equipo",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 4,
+                name: "Eventos",
+                description:
+                  "Próximos eventos y talleres para mujeres en tecnología",
+                url: "https://www.femcodersclub.com/eventos",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 5,
+                name: "Contacto",
+                description: "Ponte en contacto con FemCoders Club",
+                url: "https://www.femcodersclub.com/contacto",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 6,
+                name: "Blog",
+                description:
+                  "Artículos, recursos y noticias sobre mujeres en tecnología",
+                url: "https://www.femcodersclub.com/blog",
+              },
+              {
+                "@type": "SiteNavigationElement",
+                position: 7,
+                name: "Iniciar Sesión",
+                description: "Accede a tu cuenta de FemCoders Club",
+                url: "https://www.femcodersclub.com/login",
+              },
+            ],
+          })}
+        </script>
 
         {/* Schema.org para FAQ basado en tu componente FaqModal */}
         <script type="application/ld+json">
@@ -1270,7 +1270,6 @@ const HomePage: React.FC = () => {
             role="presentation"
           >
             <div className="photo-stack">
-              {/* Renderizado condicional para cada imagen */}
               {currentPhotoIndex === 0 ? (
                 <div
                   className="photo photo-1"
@@ -1305,7 +1304,6 @@ const HomePage: React.FC = () => {
                 </div>
               )}
 
-              {/* Renderizado condicional para la segunda imagen */}
               {currentPhotoIndex === 1 ? (
                 <div
                   className="photo photo-1 photo-event"
