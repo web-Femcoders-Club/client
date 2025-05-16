@@ -989,7 +989,7 @@ const HomePage: React.FC = () => {
               >
                 {/* 🚀 <span>¡No te lo pierdas!</span> Acompáñanos en este viaje de
                 crecimiento profesional. */}
-                 🚀 <span>¡DataConnect: Inspire ideas. Learn from experts. Grow together!</span><br /> Ven preparada con tu CV digital y únete a nosotras el 28 de mayo. <a href="https://lnkd.in/d776skyt" target="_blank" rel="noopener noreferrer">¡Reserva tu entrada gratuita aquí!</a>
+                 🚀 <span>¡DataConnect: Inspire ideas. Learn from experts. Grow together!</span><br /> Ven preparada con tu CV digital y únete a nosotras el 28 de mayo. <a href="https://www.eventbrite.es/e/entradas-dataconnect-inspire-ideaslearn-from-experts-grow-together-1351889270199?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer">¡Reserva tu entrada gratuita aquí!</a>
               </span>
             </p>
           </div>

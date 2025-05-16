@@ -76,7 +76,7 @@ const EventHighlight = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="https://lnkd.in/d776skyt"
+              href="https://www.eventbrite.es/e/entradas-dataconnect-inspire-ideaslearn-from-experts-grow-together-1351889270199?aff=oddtdtcreator"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg2 hover:bg-opacity-90 transition-all shadow-md"
