@@ -8,7 +8,7 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
-// import { sourceMapsEnabled } from "process";
+
 
 interface Event {
   start: {
@@ -952,17 +952,19 @@ const HomePage: React.FC = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <h2>Conócenos</h2>
+              {/* <h2>Conócenos</h2> */}
+               <h2>DataConnect: Nuestro Próximo Evento</h2>
             </div>
 
             <p data-aos="fade-up" data-aos-delay="300">
-              Si compartes nuestra pasión por la tecnología y nuestra filosofía
+              {/* Si compartes nuestra pasión por la tecnología y nuestra filosofía
               de <strong>visibilizar a las mujeres programadoras</strong>,
               promoviendo su desarrollo profesional, te invitamos a unirte a
               nuestra comunidad. Ya seas una mujer en tecnología que busca
               crecer profesionalmente o una líder con años de experiencia
               dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
-              <strong>FemCoders Club. </strong>
+              <strong>FemCoders Club. </strong> */}
+              De la mano de <a href="https://www.infojobs.net/" target="_blank" rel="noopener noreferrer"><strong>InfoJobs</strong></a>, <a href="https://www.lewagon.com/es" target="_blank" rel="noopener noreferrer"><strong>Le Wagon</strong></a> y <a href="https://glovoapp.com/" target="_blank" rel="noopener noreferrer"><strong>Glovo</strong></a>, presentamos un evento único para inspirarte, aprender de profesionales del mundo data y conectar con una comunidad apasionada por el análisis y la visualización de datos. Un espacio donde compartiremos conocimientos, experiencias reales y las últimas tendencias en el sector de los datos.
               <br />
               <br />
               <span
@@ -970,12 +972,13 @@ const HomePage: React.FC = () => {
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
-                Además, extendemos una invitación a las empresas que se alinean
+                {/* Además, extendemos una invitación a las empresas que se alinean
                 con nuestros valores para que colaboren con nosotras.{" "}
                 <strong>
                   Juntas, podemos crear un entorno más inclusivo y equitativo en
                   el sector tech.
-                </strong>
+                </strong> */}
+                Queremos agradecer especialmente a <strong>InfoJobs</strong> por su apoyo constante a nuestra comunidad y por liderar esta iniciativa. El evento ofrecerá networking profesional, oportunidades de contratación para talento junior y senior, y una experiencia única con <strong>DJ Live Coding</strong>.
               </span>
               <br />
               <br />
@@ -984,8 +987,9 @@ const HomePage: React.FC = () => {
                 data-aos="zoom-in"
                 data-aos-delay="500"
               >
-                🚀 <span>¡No te lo pierdas!</span> Acompáñanos en este viaje de
-                crecimiento profesional.
+                {/* 🚀 <span>¡No te lo pierdas!</span> Acompáñanos en este viaje de
+                crecimiento profesional. */}
+                 🚀 <span>¡DataConnect: Inspire ideas. Learn from experts. Grow together!</span><br /> Ven preparada con tu CV digital y únete a nosotras el 28 de mayo. <a href="https://lnkd.in/d776skyt" target="_blank" rel="noopener noreferrer">¡Reserva tu entrada gratuita aquí!</a>
               </span>
             </p>
           </div>
@@ -1142,70 +1146,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Mantenemos los bloques comentados tal cual para que puedas recuperarlos cuando lo necesites */}
-        {/* <div className="call-to-action">
-    <h2>Conócenos</h2>
-    <p>
-      Si compartes nuestra pasión por la tecnología y nuestra filosofía
-      de <strong>visibilizar a las mujeres programadoras </strong>y
-      promover su desarrollo profesional, te invitamos a unirte a
-      nuestra comunidad. Ya seas una mujer en tecnología que busca
-      crecer profesionalmente o una líder con años de experiencia
-      dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
-      <strong>FemCoders Club. </strong>
-      <FaUserFriends color="#EA4F33" className="icon" />
-      Además, extendemos una invitación a las empresas que se alinean
-      con nuestros valores para que colaboren con nosotras.{" "}
-      <strong>
-        Juntas, podemos crear un entorno más inclusivo y equitativo en
-        el sector tech.
-      </strong>
-      <FaBriefcase color="#4737BB" className="icon" />
-      <br />
-      Te invitamos a nuestro próximo evento, una oportunidad increíble
-      para aprender, conectar y crecer. <br />
-      Consulta los detalles a continuación y únete a nosotras en esta{" "}
-      <strong>jornada de empoderamiento y aprendizaje. </strong>
-      <br /> <FaStar color="#EA4F33" className="icon" />
-    </p>
-  </div> */}
-
-        {/* 
-  <div className="section-countdown">
-    <div className="countdown-content">
-      <h2>¡Próximo evento!</h2>
-      <div className="countdown">
-        <div className="countdown-item">
-          <span>{timeLeft.days}</span> días
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.hours}</span> horas
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.minutes}</span> minutos
-        </div>
-        <div className="countdown-item">
-          <span>{timeLeft.seconds}</span> segundos
-        </div>
-      </div>
-      <h3 className="countdown-text">
-        {upcomingEvent
-          ? upcomingEvent.name.text
-          : "¡No te pierdas este evento especial!"}
-      </h3>
-    </div>
-    <div className="event-card">
-      {upcomingEvent && (
-        <img
-          src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
-          alt="Próximo evento"
-        />
-      )}
-      <Link to="/eventos">
-        <button className="secondary-button">Más información</button>
-      </Link>
-    </div>
-  </div> */}
       </section>
 
       <section className="parallax bg5">

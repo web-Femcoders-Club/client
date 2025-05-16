@@ -125,12 +125,13 @@ const Header: React.FC = () => {
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <nav className="navbar">
         <Link to="/" className="logo-link">
-          <OptimizedImage
-            src={FemCodersClubLogo}
-            alt="Logo de FemCoders Club"
-            className="logo"
-            loading="eager"
-          />
+         <OptimizedImage
+  src={FemCodersClubLogo}
+  alt="Logo de FemCoders Club"
+  className="logo"
+  loading="eager"
+/>
+
         </Link>
 
         <div

@@ -270,7 +270,8 @@ const BlogPage: React.FC = () => {
           content="FemCoders, blog de programación, recursos de desarrollo, noticias de tecnología, mujeres en tecnología, HTML, CSS, React, Python"
         />
 
-        <link rel="canonical" href="https://femcodersclub.com/blog" />
+        <link rel="canonical" href={`https://femcodersclub.com${location.pathname}`} />
+
 
         <meta property="og:title" content="Blog de FemCoders Club" />
         <meta

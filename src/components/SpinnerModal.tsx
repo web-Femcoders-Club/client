@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import Spinner from "./Spinner";
+import Spinner from "./FemSpinner";
 
 export const SpinerModal = ({ isVisible }: { isVisible: boolean }) => {
   if (!isVisible) {

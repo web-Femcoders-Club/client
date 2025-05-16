@@ -1,10 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, KeyboardEvent } from "react";
 import "./CustomCarousel.css";
+import OptimizedImage from "../../../components/OptimizedImage";
+
+interface CarouselImage {
+  src: string;
+  text: string;
+}
 
 const CustomCarousel = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselIndex, setCarouselIndex] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  const images = [
+  const images: CarouselImage[] = [
     {
       src: "/aurearodríguez.jpg",
       text: "Àurea Rodríguez, fuente de inspiración para la comunidad FemCoders Club.",
@@ -126,78 +133,144 @@ const CustomCarousel = () => {
     {
       src: "/assets/semRush/crisMouta.jpg",
       text: "Cris Mouta, arquitecta convertida en programadora y formadora fullstack, nos mostró los fundamentos de la Programación Orientada a Objetos (POO), destacando la importancia de la creatividad y pasión en el desarrollo de software.",
-
     },
-      {
+    {
       src: "/assets/UltimosEventos2024/rocioCejudo.jpg",
       text: "Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla. ",
-      
     },
     {
       src: "/assets/UltimosEventos2024/lorenaSalvador.jpg",
       text: "Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.",
-      
     },
     {
-      src:"/assets/Eventos2025/ponentesFemCodersClub.jpg",
-      text:"En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. "
+      src: "/assets/Eventos2025/ponentesFemCodersClub.jpg",
+      text: "En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. ",
     },
     {
       src: "/ponentesEventoInfoJobs.jpg",
-  "text": "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología."
-
+      text: "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.",
     },
-    
   ];
 
+  const preloadRange: number = 2;
+
   useEffect(() => {
-    const carouselInterval = setInterval(() => {
-      setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
+    let carouselInterval: NodeJS.Timeout | null = null;
+
+    if (!isPaused) {
+      carouselInterval = setInterval(() => {
+        setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 5000);
+    }
 
     return () => {
-      clearInterval(carouselInterval);
+      if (carouselInterval) {
+        clearInterval(carouselInterval);
+      }
     };
-  }, [images.length]);
+  }, [isPaused, images.length]);
+
+  const shouldPreloadImage = (index: number): boolean => {
+    const distance = Math.min(
+      Math.abs(index - carouselIndex),
+      Math.abs(index + images.length - carouselIndex),
+      Math.abs(index - images.length - carouselIndex)
+    );
+    return distance <= preloadRange;
+  };
+
+  const handlePrevious = (): void => {
+    setCarouselIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
+  const handleNext = (): void => {
+    setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === "ArrowLeft") {
+      handlePrevious();
+    } else if (e.key === "ArrowRight") {
+      handleNext();
+    } else if (e.key === " ") {
+      e.preventDefault();
+      setIsPaused(!isPaused);
+    }
+  };
 
   return (
-    <div className="custom-carousel-container">
+    <div
+      className="custom-carousel-container"
+      role="region"
+      aria-label="Carrusel de ponentes y eventos"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
       <div className="custom-carousel-wrapper">
         <div
           className="custom-carousel"
           style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
         >
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`custom-carousel-item ${
-                index === carouselIndex ? "active" : ""
-              }`}
-            >
-              <img src={image.src} alt={`Evento ${index + 1}`} />
-              <div className="custom-carousel-text">{image.text}</div>
-            </div>
-          ))}
+          {images.map((image, index) => {
+            const isCurrent = index === carouselIndex;
+            return (
+              <div
+                key={index}
+                className={`custom-carousel-item ${isCurrent ? "active" : ""}`}
+              >
+                {shouldPreloadImage(index) && (
+                  <OptimizedImage
+                    src={image.src}
+                    alt={`Ponente en evento de FemCoders Club: ${image.text}`}
+                    loading={
+                      Math.abs(index - carouselIndex) <= 1 ? "eager" : "lazy"
+                    }
+                    className="carousel-image"
+                  />
+                )}
+                <div className="custom-carousel-text">{image.text}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
       <button
         className="custom-carousel-control prev"
-        onClick={() =>
-          setCarouselIndex(
-            (prevIndex) => (prevIndex - 1 + images.length) % images.length
-          )
-        }
+        onClick={handlePrevious}
+        aria-label="Imagen anterior"
       >
         ❮
       </button>
+
       <button
         className="custom-carousel-control next"
-        onClick={() =>
-          setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length)
-        }
+        onClick={handleNext}
+        aria-label="Imagen siguiente"
       >
         ❯
       </button>
+
+      <button
+        className="pause-play-button"
+        onClick={() => setIsPaused(!isPaused)}
+        aria-label={
+          isPaused
+            ? "Reanudar reproducción automática"
+            : "Pausar reproducción automática"
+        }
+      >
+        {isPaused ? "▶" : "⏸"}
+      </button>
+
+      <div className="carousel-counter">
+        <span className="sr-only">
+          Imagen {carouselIndex + 1} de {images.length}
+        </span>
+        {carouselIndex + 1} / {images.length}
+      </div>
     </div>
   );
 };

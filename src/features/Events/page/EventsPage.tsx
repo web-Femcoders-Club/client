@@ -1,19 +1,29 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
-import FemSpinner from "../../../components/Spinner";
+import FemSpinner from "../../../components/FemSpinner";
+import { Event } from "../../../types/types";
 import CardEvent from "../components/CardEvent";
 import CustomCarousel from "../components/CustomCarousel";
-import "./EventsPage.css";
-import textofemcoders from "/textofemcodersclub.png";
-import bg4 from "/bg4.png";
-import { Helmet } from "react-helmet";
 import "./../../Home/page/Home.css";
-import { Event } from "../../../types/types";
+import "./EventsPage.css";
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 3;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const imageFolder = isMobile ? "mobile" : "desktop";
 
   const {
     data: pastEventsData,
@@ -65,43 +75,101 @@ const EventsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Eventos - FemCoders Club</title>
+        <title>Eventos Tech para Mujeres | FemCoders Club Barcelona</title>
         <meta
           name="description"
-          content="Explora los próximos y pasados eventos organizados por FemCoders Club. Una comunidad para mujeres apasionadas por la tecnología."
+          content="Explora los mejores eventos tecnológicos para mujeres en Barcelona organizados por FemCoders Club. Talleres, conferencias, networking y oportunidades profesionales en el sector tech. Únete a la comunidad líder de mujeres en tecnología."
         />
         <meta
           name="keywords"
-          content="FemCoders, eventos tecnológicos, mujeres en tecnología, programación, talleres de tecnología, comunidad tecnológica, eventos de coding, desarrollo web"
+          content="FemCoders Club, comunidad tech mujeres Barcelona, eventos tecnológicos femeninos, femcoders, networking tech mujeres, talleres programación Barcelona, mujeres en tecnología, comunidad tech femenina, DataConnect, eventos diversidad tecnológica, desarrollo profesional tech, oportunidades laborales tecnología"
         />
         <link rel="canonical" href="https://femcodersclub.com/eventos" />
 
-        <meta property="og:title" content="Eventos - FemCoders Club" />
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="Eventos Tech para Mujeres | FemCoders Club Barcelona"
+        />
         <meta
           property="og:description"
-          content="Descubre eventos pasados y próximos organizados por FemCoders Club. Únete a nuestra comunidad y participa en eventos tecnológicos únicos."
+          content="Descubre los mejores eventos tecnológicos para mujeres en Barcelona. Aprende, conecta y crece profesionalmente con la comunidad líder de mujeres en tech. ¡Únete a nosotras!"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://femcodersclub.com/eventos" />
         <meta property="og:site_name" content="FemCoders Club" />
+        <meta property="og:locale" content="es_ES" />
+        <meta
+          property="og:image"
+          content="https://femcodersclub.com/cofundadoras-femCoders-club.webp"
+        />
+        <meta
+          property="og:image:alt"
+          content="Evento de mujeres en tecnología organizado por FemCoders Club Barcelona"
+        />
 
+        {/* Twitter/X Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Eventos - FemCoders Club" />
+        <meta
+          name="twitter:title"
+          content="Eventos Tech para Mujeres | FemCoders Club Barcelona"
+        />
         <meta
           name="twitter:description"
-          content="Participa en eventos organizados por FemCoders Club, una comunidad dedicada a empoderar a mujeres en tecnología."
+          content="Únete a los mejores eventos tecnológicos para mujeres en Barcelona. Desarrollo profesional, networking y oportunidades en el sector tech."
         />
-      </Helmet>
+        <meta name="twitter:site" content="@FemCodersClub" />
+        <meta
+          name="twitter:image"
+          content="https://femcodersclub.com/cofundadoras-femCoders-club.webp"
+        />
+        <meta name="twitter:creator" content="@FemCodersClub" />
 
+        {/* Enlaces a redes sociales */}
+        <link rel="me" href="https://x.com/FemCodersClub" />
+        <link
+          rel="me"
+          href="https://www.linkedin.com/company/fem-coders-club/"
+        />
+        <link rel="me" href="https://www.instagram.com/femcoders_club/" />
+
+        {/* Datos estructurados para eventos */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EventSeries",
+            name: "Eventos FemCoders Club Barcelona",
+            description:
+              "Serie de eventos tecnológicos para mujeres organizados por FemCoders Club, la comunidad líder de mujeres en tecnología en Barcelona",
+            url: "https://www.femcodersclub.com/eventos",
+            location: {
+              "@type": "Place",
+              name: "Barcelona, España",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Barcelona",
+                addressRegion: "Cataluña",
+                addressCountry: "ES",
+              },
+            },
+            organizer: {
+              "@type": "Organization",
+              name: "FemCoders Club",
+              url: "https://www.femcodersclub.com",
+            },
+          })}
+        </script>
+      </Helmet>
       <section
+        className="background-image-mobile"
         style={{
-          backgroundImage: `url(${textofemcoders})`,
+          backgroundImage: `url(/public-optimized/${imageFolder}/textofemcodersclub.webp)`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center bottom",
         }}
-        className="background-image-mobile"
       >
-        <h1 className="text-eventos">Próximos eventos</h1>
+        <h1 className="text-eventos">Próximos eventos tech </h1>
+        <h2 className="text-eventos">conectando talento en tecnología</h2>
       </section>
 
       <section>
@@ -152,20 +220,31 @@ const EventsPage = () => {
       </section>
 
       <section className="parallax bg2 centered-section">
-        <h3 className="carousel-heading">
-          Gracias a todas las ponentes que empoderan a nuestra comunidad
-        </h3>
-        <p className="carousel-subheading">
-          Gracias a la colaboración de estas ponentes, nuestra comunidad se
-          fortalece a través del conocimiento, el empoderamiento y la conexión.
+        <h3>Expertas tecnológicas que lideran el cambio en el sector tech</h3>
+        <p className="carousel-subheading-enhanced">
+          <a
+            href="https://femcodersclub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-link"
+          >
+            FemCoders Club
+          </a>{" "}
+          conecta a mujeres profesionales del sector tecnológico con talento
+          emergente a través de eventos presenciales y online. Participan
+          mujeres referentes que, desde distintos ámbitos de la tecnología,
+          comparten conocimientos, experiencias y reflexiones para inspirar,
+          visibilizar y apoyar el crecimiento profesional de otras mujeres en el
+          sector.
         </p>
+
         <CustomCarousel />
       </section>
 
       <section
         className="pt-8 p-5"
         style={{
-          backgroundImage: `url(${bg4})`,
+          backgroundImage: `url(/public-optimized/${imageFolder}/bg4.webp)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
