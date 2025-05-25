@@ -266,6 +266,23 @@ const Recursos: React.FC = () => {
     </Link>
   </div>
 </div>
+<div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>Transiciones y Transformaciones CSS en 2D y 3D</h3>
+      <p className="intro-text">
+        Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones en 2D y 3D. Ideal para proyectos modernos y dinámicos.
+      </p>
+    </div>
+    <Link
+      to="/recursos/css/transiciones-transformaciones"
+      className="secondary-button"
+      aria-label="Leer más sobre Transiciones y Transformaciones CSS en 2D y 3D"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
 
 
     </div>

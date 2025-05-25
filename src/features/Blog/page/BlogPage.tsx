@@ -186,6 +186,16 @@ const BlogPage: React.FC = () => {
         "Domina el arte de combinar CSS Grid y Flexbox para crear layouts modernos, flexibles y responsivos.",
       createdAt: new Date("2025-04-27"),
     },
+    {
+  id: 18,
+  type: "recurso",
+  category: "css",
+  title: "Transiciones y Transformaciones CSS en 2D y 3D",
+  description:
+    "Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones 2D y 3D. Ideal para interfaces modernas.",
+  createdAt: new Date("2025-05-24"),
+},
+
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -244,6 +254,9 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/css-grid`;
       case "Estrategias avanzadas: Combinando Grid y Flexbox en CSS":
         return `/recursos/css/css-grid-flexbox`;
+        case "Transiciones y Transformaciones CSS en 2D y 3D":
+  return `/recursos/css/transiciones-transformaciones`;
+
       default:
         return `/`;
     }
@@ -330,10 +343,14 @@ const BlogPage: React.FC = () => {
         </nav>
       </header>
 
-      <section className="blog-section">
-        <h2>Descubre lo Último sobre femCoders Club</h2>
-        <p>Encuentra noticias, recursos, y más en nuestro blog.</p>
-      </section>
+    <section className="blog-section">
+  <h2>Descubre lo Último sobre femCoders Club</h2><br />
+  <p>
+    Encuentra <Link to="/blog/noticias" className="inline-link">noticias</Link>, <Link to="/blog/recursos" className="inline-link">recursos</Link> y más en nuestro blog. 
+    Aprende, comparte y crece con nosotras en el mundo tech.
+  </p>
+</section>
+
 
       <section className="blog-content">
         <div ref={recursosRef} className="categories-section">

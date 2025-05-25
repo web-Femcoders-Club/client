@@ -97,6 +97,10 @@ const ReplicaNike = lazy(
 const CssGridFlexbox = lazy(
   () => import("../features/Blog/posts/recursos/css/CssGridFlexbox")
 );
+const TransicionesyTransformaciones = lazy(
+  () => import("../features/Blog/posts/recursos/css/TransicionesyTransformaciones")
+);
+
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -427,6 +431,17 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          <Route
+  path="/recursos/css/transiciones-transformaciones"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <TransicionesyTransformaciones />
+      </Suspense>
+    </Layout>
+  }
+/>
+
         </Routes>
       </Suspense>
 

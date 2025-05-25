@@ -294,7 +294,7 @@ const AboutPage: React.FC = () => {
                 elijan crear comunidad para potenciar todo tipo de crecimiento.
                 Si quieres saber más sobre nuestras iniciativas, visita nuestra
                 sección de{" "}
-                <Link to="/blog" style={linkStyle}>
+                <Link to="/blog/noticias" style={linkStyle}>
                   blog
                 </Link>{" "}
                 o{" "}

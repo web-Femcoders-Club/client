@@ -111,6 +111,10 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
               e información que te enviamos o mostramos, mejoramos nuestro sitio
               y actividades, y realizamos investigaciones y análisis.
             </li>
+            <li>
+  Notificaciones sobre eventos: Si has asistido a alguno de nuestros eventos, es posible que recibas comunicaciones futuras con invitaciones a otros eventos organizados por FemCoders Club. Si no deseas recibir este tipo de correos, puedes hacérnoslo saber escribiéndonos a <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
+</li>
+
           </ul>
           {!showMore && (
             <button onClick={toggleShowMore} className="tertiary-button">
@@ -168,6 +172,11 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
                 sitios y servicios. Esta información puede ser combinada por
                 terceros proveedores de análisis.
               </p>
+              <h5>Uso de imágenes en eventos</h5>
+<p>
+  Durante nuestros eventos, podemos tomar fotografías o capturas de vídeo para documentar la actividad. Estas imágenes pueden ser utilizadas posteriormente en nuestras redes sociales, página web o materiales promocionales, siempre con el objetivo de visibilizar las actividades de la comunidad. Si no deseas que tu imagen sea publicada, puedes comunicarlo escribiéndonos a <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
+</p>
+
               <h5>Enlaces de terceros</h5>
               <p>
                 Nuestro sitio y servicios pueden contener enlaces a sitios web
