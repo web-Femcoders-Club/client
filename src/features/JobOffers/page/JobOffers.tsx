@@ -234,6 +234,8 @@ const JobOffers = () => {
           content="https://www.femcodersclub.com/ofertas-de-trabajo"
         />
       </Helmet>
+
+      {/* Banner Para Futuros Posts Relacionados con los eventos */}
 {/* 
       <EventHighlight /> */}
 
