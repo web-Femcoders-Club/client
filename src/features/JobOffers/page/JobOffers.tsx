@@ -3,7 +3,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import InfoJobsBanner from "../components/InfoJobsBanner";
 import OptimizedImage from "../../../components/OptimizedImage";
-import EventHighlight from "../components/EventHighlight";
+// import EventHighlight from "../components/EventHighlight";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
