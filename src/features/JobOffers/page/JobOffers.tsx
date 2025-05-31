@@ -234,8 +234,8 @@ const JobOffers = () => {
           content="https://www.femcodersclub.com/ofertas-de-trabajo"
         />
       </Helmet>
-
-      <EventHighlight />
+{/* 
+      <EventHighlight /> */}
 
       {/* Hero section */}
       <div

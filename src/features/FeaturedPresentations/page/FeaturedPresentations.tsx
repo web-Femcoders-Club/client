@@ -118,6 +118,35 @@ const FeaturedPresentation = () => {
 
   const presentations: Presentation[] = [
     {
+      title: "DataConnect: De la Comunicación a Data Analytics - Le Wagon",
+      date: "2025-05-31",
+      description: `
+        Presentación de <strong>Laura Pourtier</strong>, Data Analytics Teacher & Batch Manager en Le Wagon.
+        Descubre la inspiradora historia de transformación profesional de Laura, quien pasó de trabajar 
+        en comunicación y ONGs a convertirse en experta en análisis de datos. En esta charla, Laura 
+        comparte su experiencia como estudiante de Le Wagon y su evolución hasta convertirse en profesora, 
+        demostrando que "nunca pensé que trabajaría en tech, ahora enseño datos a personas como tú".
+        Incluye insights sobre el mercado laboral actual, estadísticas clave del sector tech, y cómo 
+        las habilidades técnicas son ahora esenciales en roles no técnicos como marketing, UX/UI, 
+        finanzas y RRHH.
+      `,
+      fileUrl: "/MaterialesEventos/LeWagonDataConnect.pdf",
+    },
+    {
+      title: "Bridging Worlds: Cómo la Cultura de Glovo Potencia el Talento en Data",
+      date: "2025-05-31", 
+      description: `
+        Presentación de <strong>Kevin Badía</strong> (Senior Data Analyst) y <strong>Pia Trnovec</strong> 
+        (Data Analyst) de Glovo. Explora cómo Glovo utiliza los datos en el core de sus operaciones para 
+        optimizar entregas en más de 1,500 ciudades y 23 países. Los ponentes comparten casos prácticos 
+        del equipo de Operations, incluyendo proyectos de Rider Demand Coverage, Courier Compensation 
+        y Delivery Assignations. Descubre su stack tecnológico (BigQuery, Looker, dbt, Airflow), 
+        la arquitectura Data Mesh, y cómo equilibran delivery time vs efficiency para maximizar el ROI.
+        Una perspectiva única sobre el uso de datos en una empresa multinacional de delivery.
+      `,
+      fileUrl: "/MaterialesEventos/GlovoDataConnect.pdf",
+    },
+    {
       title: "Réplica de Nike Store con React y JavaScript",
       date: "2025-03-10",
       description: `
