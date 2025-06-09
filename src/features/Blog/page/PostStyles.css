@@ -586,6 +586,11 @@ body {
 .creator-content div {
   flex: 1;
 }
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .framework-comparison-table {
   width: 100%;
   border-collapse: separate;
@@ -740,6 +745,18 @@ line-height: 1.4;
 .grid-carousel-dot:not(.active) {
   background-color: rgba(255, 255, 255, 0.5);
 }
+.video-post-blog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  border-radius: 10px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+}
 
 @media (max-width: 768px) {
   .blog-post-title {
@@ -869,4 +886,12 @@ line-height: 1.4;
   .grid-carousel-image {
     height: 300px;
   }
+  .video-post-blog{
+   height: 300px;
+  }
+  .framework-comparison-table {
+    font-size: 0.9rem;
+    min-width: 300px; /* fuerza scroll horizontal si es necesario */
+  }
+ 
 }

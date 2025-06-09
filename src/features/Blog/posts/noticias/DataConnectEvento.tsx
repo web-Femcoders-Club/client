@@ -173,14 +173,8 @@ const DataConnectEvento: React.FC = () => {
           {/* Video del evento DataConnect incrustado */}
           <video
             controls
-            width="100%"
-            style={{
-              maxWidth: "800px",
-              height: "auto",
-              marginLeft:"10%",
-              borderRadius: "10px",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
-            }}
+           
+            className="video-post-blog"
             poster="/assets/eventos/dataconnect-thumbnail.jpg"
           >
             <source src="/videoDataConnect-evento-femCodersClub.mp4" type="video/mp4" />
