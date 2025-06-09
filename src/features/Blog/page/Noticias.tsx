@@ -50,6 +50,19 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
+       <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h2>🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia</h2>
+            <p className="intro-text">
+              Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas...
+            </p>
+          </div>
+          <Link to="/noticias/DataConnectEvento" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

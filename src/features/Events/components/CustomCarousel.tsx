@@ -12,6 +12,18 @@ const CustomCarousel = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const images: CarouselImage[] = [
+      {
+      src: "/DataConnect-evento-femCodersClub-ponentes.png",
+      text: "En el evento Data Connect: Inspire ideas. Learn from experts. Grow together!, exploramos el poder de los datos con la colaboración de InfoJobs. Glovo y LeWagon.",
+    },
+     {
+      src: "/ponentesEventoInfoJobs.jpg",
+      text: "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.",
+    },
+      {
+      src: "/assets/Eventos2025/ponentesFemCodersClub.jpg",
+      text: "En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. ",
+    },
     {
       src: "/aurearodríguez.jpg",
       text: "Àurea Rodríguez, fuente de inspiración para la comunidad FemCoders Club.",
@@ -141,14 +153,6 @@ const CustomCarousel = () => {
     {
       src: "/assets/UltimosEventos2024/lorenaSalvador.jpg",
       text: "Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.",
-    },
-    {
-      src: "/assets/Eventos2025/ponentesFemCodersClub.jpg",
-      text: "En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. ",
-    },
-    {
-      src: "/ponentesEventoInfoJobs.jpg",
-      text: "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.",
     },
   ];
 

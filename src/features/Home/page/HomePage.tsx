@@ -54,6 +54,36 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
+     {
+      src: "/assets/home-images/organizadoresEventoDataConnect.webp",
+      alt: "Organizadores evento DataConnect FemCoders Club",
+      title: "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
+    },
+      {
+      src: "/assets/home-images/asistentes-evento-femCodersClub.webp",
+      alt: "Asistentes al evento DataConnect FemCoders Club",
+      title: "Asistentes comunidad femCodersClub durante el evento DataConnect",
+    },
+        {
+      src: "/assets/home-images/comunidad-data-evento-femCodersClub.webp",
+      alt: "Comunidad Data Connect durante el evento de FemCoders Club",
+      title: "Comunidad Data Connect durante el evento de FemCoders Club",
+    },
+          {
+      src: "/assets/home-images/comunidad-femcodersclub-dataconnect-barcelona.webp",
+      alt: "Comunidad FemCoders Club en DataConnect Barcelona",
+      title: "Comunidad FemCoders Club en DataConnect Barcelona",
+    },
+           {
+      src: "/assets/home-images/musica-codigo-evento-femCodersClub.webp",
+      alt: "Música y código en el evento de FemCoders Club",
+      title: "Música y Código en el Evento",
+    },
+            {
+      src: "/assets/home-images/femCodersClub-mujeresStem-eventoData.webp",
+      alt: "Mujeres en STEM durante el evento DataConnect de FemCoders Club",
+      title: "Mujeres en STEM en DataConnect",
+    },
     {
       src: "/assets/home-images/infoJobsCelebracion.webp",
       alt: "Celebrando Dia de la Mujer en InfoJobs con FemCoders Club",
@@ -1310,7 +1340,7 @@ const HomePage: React.FC = () => {
                 >
                   <div className="photo-gradient"></div>
                   <OptimizedImage
-                    src="/assets/home-images/fotoFemCodersClub.jpg"
+                    src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
                     alt="Cofundadoras de FemCoders Club con perfiles en STEM"
                     title="Cofundadoras de FemCoders Club con perfiles en STEM"
                     className="photo-image"
@@ -1326,7 +1356,7 @@ const HomePage: React.FC = () => {
                 >
                   <div className="photo-gradient"></div>
                   <OptimizedImage
-                    src="/assets/home-images/fotoFemCodersClub.jpg"
+                    src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
                     alt="Cofundadoras de FemCoders Club con perfiles en STEM"
                     title="Cofundadoras de FemCoders Club con perfiles en STEM"
                     className="photo-image"

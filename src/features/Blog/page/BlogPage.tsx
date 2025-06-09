@@ -195,6 +195,15 @@ const BlogPage: React.FC = () => {
     "Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones 2D y 3D. Ideal para interfaces modernas.",
   createdAt: new Date("2025-05-24"),
 },
+{
+      id: 19,
+      type: "noticia",
+      category: "femCoders",
+      title: "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia",
+      description:
+        "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas.",
+      createdAt: new Date("2025-06-02"),
+    },
 
   ];
 
@@ -256,6 +265,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/css-grid-flexbox`;
         case "Transiciones y Transformaciones CSS en 2D y 3D":
   return `/recursos/css/transiciones-transformaciones`;
+    case "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia":
+        return `/noticias/DataConnectEvento`;
 
       default:
         return `/`;

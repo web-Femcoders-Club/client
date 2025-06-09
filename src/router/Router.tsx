@@ -100,7 +100,9 @@ const CssGridFlexbox = lazy(
 const TransicionesyTransformaciones = lazy(
   () => import("../features/Blog/posts/recursos/css/TransicionesyTransformaciones")
 );
-
+const DataConnectEvento = lazy(
+  () => import("../features/Blog/posts/noticias/DataConnectEvento")
+);
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -194,6 +196,16 @@ const RouterComponent: React.FC = () => {
             element={
               <Layout>
                 <Aniversario />
+              </Layout>
+            }
+          />
+           <Route
+            path="/noticias/DataConnectEvento"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <DataConnectEvento />
+                </Suspense>
               </Layout>
             }
           />

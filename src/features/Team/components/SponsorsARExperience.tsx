@@ -6,6 +6,26 @@ const SponsorsARExperience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sponsorEvents = [
+        {
+      date: "2025-05-28",
+      sponsor: "InfoJobs, Glovo & LeWagon",
+      event: "DataConnect: Inspire ideas. Learn from experts. Grow together!",
+      description:
+        "En colaboración con InfoJobs, Glovo y LeWagon, hemos organizado un evento único que reunió a profesionales del sector tecnológico para compartir conocimientos y experiencias. Este evento fue una oportunidad para aprender de expertos en el campo de los datos y la tecnología, inspirar nuevas ideas y fomentar el crecimiento profesional. Gracias a la participación de estas empresas, logramos crear un espacio enriquecedor para todas las asistentes.",
+      logo: "/logoinfojobs.jpeg",
+      website: "https://www.infojobs.net/",
+      backgroundImage: "/evento-femCodersClub-InfoJobs-leWagon-Glovo.jpg",
+    },
+        {
+      date: "2025-03-13",
+      sponsor: "InfoJobs",
+      event: "El sector tecnológico necesita de más mujeres",
+      description:
+        "Gracias al apoyo de InfoJobs, hemos celebrado un evento centrado en la importancia de la presencia femenina en el sector tecnológico. En un entorno inspirador, profesionales compartieron sus experiencias y aprendizajes para fomentar la diversidad en la industria. InfoJobs reafirma su compromiso con la reducción de la brecha de género en tecnología y su apuesta por un futuro más inclusivo, en el que el talento femenino tenga cada vez más oportunidades para crecer y destacar.",
+      logo: "/logoinfojobs.jpeg",
+      website: "https://www.infojobs.net/",
+      backgroundImage: "/oficinaInfoJobs.jpeg",
+    },
     {
       date: "2023-11-24",
       sponsor: "El Canòdrom",
@@ -128,16 +148,7 @@ const SponsorsARExperience = () => {
       website: "https://code.seat/",
       backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg",
     },
-    {
-      date: "2025-03-13",
-      sponsor: "InfoJobs",
-      event: "El sector tecnológico necesita de más mujeres",
-      description:
-        "Gracias al apoyo de InfoJobs, hemos celebrado un evento centrado en la importancia de la presencia femenina en el sector tecnológico. En un entorno inspirador, profesionales compartieron sus experiencias y aprendizajes para fomentar la diversidad en la industria. InfoJobs reafirma su compromiso con la reducción de la brecha de género en tecnología y su apuesta por un futuro más inclusivo, en el que el talento femenino tenga cada vez más oportunidades para crecer y destacar.",
-      logo: "/logoinfojobs.jpeg",
-      website: "https://www.infojobs.net/",
-      backgroundImage: "/oficinaInfoJobs.jpeg",
-    },
+
   ];
 
   const handlePrev = () => {
