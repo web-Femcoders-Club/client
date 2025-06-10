@@ -235,7 +235,7 @@ const DataConnectEvento: React.FC = () => {
        <p>
           Con{" "}
           <a 
-            href="https://www.linkedin.com/in/karisha-mel%C3%A9ndez/" 
+            href="https://www.linkedin.com/in/karisssha/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="highlight-link"
