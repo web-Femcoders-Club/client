@@ -12,6 +12,7 @@ const CustomCarousel = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const images: CarouselImage[] = [
+   
       {
       src: "/DataConnect-evento-femCodersClub-ponentes.png",
       text: "En el evento Data Connect: Inspire ideas. Learn from experts. Grow together!, exploramos el poder de los datos con la colaboración de InfoJobs. Glovo y LeWagon.",

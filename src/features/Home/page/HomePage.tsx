@@ -985,7 +985,7 @@ const HomePage: React.FC = () => {
         <h2>Conócenos</h2>
       </div>
 
-      <p data-aos="fade-up" data-aos-delay="300">
+      {/* <p data-aos="fade-up" data-aos-delay="300">
         Si compartes nuestra pasión por la tecnología y nuestra filosofía
         de <strong>visibilizar a las mujeres programadoras</strong>,
         promoviendo su desarrollo profesional, te invitamos a unirte a
@@ -1004,7 +1004,34 @@ const HomePage: React.FC = () => {
         <br />
         <br />
      
-      </p>
+      </p> */}
+      <p data-aos="fade-up" data-aos-delay="300">
+ <strong>¡Este 19 de junio tenemos una invitada muy especial!</strong> Nos 
+  emociona anunciar que estaremos conversando con{" "}
+  <strong>Nadia Soledad Cavalleri</strong>, referente en QA y creadora de 
+  contenido, en una entrevista increíble donde conoceremos su trayectoria, 
+  experiencias y consejos para mujeres en tecnología. Puedes conocer más 
+  sobre su trabajo en su{" "}
+  <a href="https://nadiacavalleri.com.ar" target="_blank" rel="noopener noreferrer">
+    <strong>web oficial</strong>
+  </a>, seguirla en{" "}
+  <a href="https://www.linkedin.com/in/ncavalleri/" target="_blank" rel="noopener noreferrer">
+    <strong>LinkedIn</strong>
+  </a>{" "}
+  e{" "}
+  <a href="https://www.instagram.com/nadia.cavalleri.test/" target="_blank" rel="noopener noreferrer">
+    <strong>Instagram</strong>
+  </a>.
+  <br />
+  <br />
+  💡 <strong>Si alguna vez quisiste hacerle una pregunta, ¡esta es tu oportunidad!</strong>{" "}
+  Te invitamos a que nos dejes tus preguntas y las incluiremos en la conversación.
+  Esta es una oportunidad única para conectar con una de las voces más 
+  influyentes en el sector tech y obtener insights valiosos para tu carrera profesional.
+
+  <br />
+  <br />
+</p>
 
       {/* NUEVO CONTENIDO AGREGADO */}
       <div 
@@ -1055,7 +1082,7 @@ const HomePage: React.FC = () => {
       </div>
 
 
-
+{/* 
       <div 
         className="join-cta"
         data-aos="zoom-in"
@@ -1084,7 +1111,7 @@ const HomePage: React.FC = () => {
             </button>
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
 
     <div
