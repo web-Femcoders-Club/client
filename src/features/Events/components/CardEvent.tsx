@@ -149,7 +149,6 @@ interface CardEventProps {
   start: {
     local: string;
   };
-  eventType?: 'interview' | 'regular';
 }
 
 const CardEvent: React.FC<CardEventProps> = ({
@@ -160,12 +159,14 @@ const CardEvent: React.FC<CardEventProps> = ({
   description,
   eventUrl,
   start,
-  eventType = 'regular',
 }) => {
   const isPastEvent = new Date(start.local) < new Date();
   const defaultImage = "/apoyomujeres.png";
   const cardRef = useRef<HTMLDivElement>(null);
   const [isFlipped, setIsFlipped] = useState(false);
+
+  // Use eventUrl to avoid TypeScript warning (keeping for backward compatibility)
+  void eventUrl;
 
   const handleFrontKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -238,23 +239,13 @@ const CardEvent: React.FC<CardEventProps> = ({
             </div>
             <p className="text-bodyText text-contrast">{description}</p>
             {!isPastEvent && (
-              eventType === 'interview' ? (
-                <a 
-                  href="mailto:info@femcodersclub.com?subject=Preguntas para Nadia" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <button className="tertiary-button">Haz tus preguntas</button>
-                </a>
-              ) : (
-                <a 
-                  href={eventUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <button className="tertiary-button">Adquiere tu entrada</button>
-                </a>
-              )
+              <a 
+                href="mailto:info@femcodersclub.com?subject=Preguntas para Nadia" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <button className="tertiary-button">Haz tus preguntas</button>
+              </a>
             )}
 
             <button
