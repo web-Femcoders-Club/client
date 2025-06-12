@@ -145,9 +145,11 @@ interface CardEventProps {
   date: string;
   location: string;
   description: string;
+  eventUrl: string;
   start: {
     local: string;
   };
+  eventType?: 'interview' | 'regular';
 }
 
 const CardEvent: React.FC<CardEventProps> = ({
@@ -156,7 +158,9 @@ const CardEvent: React.FC<CardEventProps> = ({
   date,
   location,
   description,
+  eventUrl,
   start,
+  eventType = 'regular',
 }) => {
   const isPastEvent = new Date(start.local) < new Date();
   const defaultImage = "/apoyomujeres.png";
@@ -230,17 +234,27 @@ const CardEvent: React.FC<CardEventProps> = ({
                 className="opacity-70 h-4 icon-orange"
                 loading="eager"
               />
-              <p className="text-bodyText text-contrast/80">{location}</p>
+              <p className="text-bodyText text-contrast/80">{location || "Online"}</p>
             </div>
             <p className="text-bodyText text-contrast">{description}</p>
             {!isPastEvent && (
-              <a 
-                href="mailto:info@femcodersclub.com?subject=Preguntas para Nadia" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <button className="tertiary-button">Haz tus preguntas</button>
-              </a>
+              eventType === 'interview' ? (
+                <a 
+                  href="mailto:info@femcodersclub.com?subject=Preguntas para Nadia" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <button className="tertiary-button">Haz tus preguntas</button>
+                </a>
+              ) : (
+                <a 
+                  href={eventUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <button className="tertiary-button">Adquiere tu entrada</button>
+                </a>
+              )
             )}
 
             <button
