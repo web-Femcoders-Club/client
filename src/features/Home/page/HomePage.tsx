@@ -54,6 +54,11 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
+      {
+      src: "/assets/home-images/comunidad-tech-femcodersClub.webp",
+      alt: "Organizadores evento DataConnect FemCoders Club",
+      title: "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
+    },
      {
       src: "/assets/home-images/organizadoresEventoDataConnect.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
@@ -829,7 +834,7 @@ const HomePage: React.FC = () => {
               >
                 <div className="photo-gradient"></div>
                 <OptimizedImage
-                  src="/assets/home-images/femCodersClubCofundadoras.webp"
+                  src="/assets/home-images/Isadora.webp"
                   alt="Mujeres cofundadoras de FemCoders Club"
                   className="photo-image"
                   title="Parte de las cofundadoras de FemCoders Club"
@@ -1401,7 +1406,7 @@ const HomePage: React.FC = () => {
                 >
                   <div className="photo-gradient"></div>
                   <OptimizedImage
-                    src="/assets/home-images/femcodersclubFinalEvento.jpg"
+                    src="/assets/home-images/comunidad-tech-femcodersClub.jpg"
                     alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
                     title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
                     className="photo-image"
