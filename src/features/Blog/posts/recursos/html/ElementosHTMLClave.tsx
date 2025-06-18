@@ -12,19 +12,53 @@ const ElementosHTMLClave: React.FC = () => {
 
   return (
     <div className="blog-post">
-      <Helmet>
-        <title>
-          Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes
-        </title>
-        <meta
-          name="description"
-          content="Descubre cómo usar los encabezados, párrafos, enlaces, imágenes y más en HTML. Aprende la importancia del atributo alt y cómo usar emojis y videos en HTML."
-        />
-        <meta
-          name="keywords"
-          content="HTML, encabezados, párrafos, enlaces, imágenes, video, emojis"
-        />
-      </Helmet>
+  <Helmet>
+  <title>Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes</title>
+  <meta
+    name="description"
+    content="Descubre cómo usar encabezados, párrafos, enlaces, imágenes y más en HTML. Aprende buenas prácticas para estructurar contenido accesible y atractivo."
+  />
+  <meta
+    name="keywords"
+    content="HTML, etiquetas HTML, encabezados, párrafos, enlaces, imágenes, video en HTML, emojis, accesibilidad web"
+  />
+  <meta name="author" content="Irina Ichim" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={currentUrl} />
+
+  {/* Open Graph (Facebook, LinkedIn, etc.) */}
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:title"
+    content="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+  />
+  <meta
+    property="og:description"
+    content="Explora los elementos esenciales de HTML y aprende a enriquecer tus páginas web con imágenes, enlaces, emojis y videos."
+  />
+  <meta property="og:url" content={currentUrl} />
+  <meta
+    property="og:image"
+    content="https://www.femcodersclub.com/assets/html/Elementos-HTML-Clave.png"
+  />
+  <meta property="og:site_name" content="FemCoders Club" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+  />
+  <meta
+    name="twitter:description"
+    content="Aprende a usar encabezados, enlaces, imágenes, emojis y más en HTML para crear contenido accesible y moderno."
+  />
+  <meta
+    name="twitter:image"
+    content="https://www.femcodersclub.com/assets/html/Elementos-HTML-Clave.png"
+  />
+  <meta name="twitter:creator" content="@femcodersclub" />
+</Helmet>
 
       <div className="post-image-container">
         <img
@@ -92,17 +126,26 @@ const ElementosHTMLClave: React.FC = () => {
         </div>
       </div>
 
-      <div className="intro-text">
-        <p>
-          ¿Alguna vez te has preguntado cómo los encabezados organizan la
-          información en una página o cómo se crean enlaces que llevan a otros
-          sitios? En esta sección, exploraremos los elementos esenciales de HTML
-          que te permitirán estructurar tu contenido de forma clara y efectiva.
-          Además, aprenderás a añadir imágenes, videos y emojis para hacer tu
-          página más atractiva y accesible. ¡Vamos a sumergirnos en el mundo de
-          los elementos HTML clave!
-        </p>
-      </div>
+    <div className="intro-text">
+  <p>
+    ¿Alguna vez te has preguntado cómo los encabezados organizan la
+    información en una página o cómo se crean enlaces que llevan a otros
+    sitios? En esta sección, exploraremos los elementos esenciales de HTML
+    que te permitirán estructurar tu contenido de forma clara y efectiva.
+    Si aún no has leído nuestra{" "}
+    <a
+      href="/recursos/html/introduccion-html"
+      className="highlight underline"
+    >
+      introducción a HTML
+    </a>
+    , te recomendamos empezar por allí para comprender la base de este
+    lenguaje. Además, aprenderás a añadir imágenes, videos y emojis para hacer tu
+    página más atractiva y accesible. ¡Vamos a sumergirnos en el mundo de
+    los elementos HTML clave!
+  </p>
+</div>
+
 
       <div className="highlight-box">
         <h2>
@@ -368,11 +411,16 @@ const ElementosHTMLClave: React.FC = () => {
           multimedia, y no dudes en compartir tus descubrimientos con la
           comunidad. ¡Estamos emocionadas de ver lo que construirás!
         </p>
-        <p>
-          ¿Tienes alguna duda o te gustaría compartir algo? No olvides dejar un
-          comentario o seguirnos en nuestras redes sociales para más contenido
-          interesante.
-        </p>
+      <p>
+  ¿Tienes alguna duda o te gustaría compartir algo? No olvides dejar un
+  comentario o seguirnos en nuestras redes sociales para más contenido
+  interesante. Y si aún no formas parte de nuestra comunidad,{" "}
+  <a href="/register" className="highlight underline">
+    regístrate aquí
+  </a>{" "}
+  y comienza a aprender y compartir con femCoders Club.
+</p>
+
       </div>
 
       <div className="author-info">

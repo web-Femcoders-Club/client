@@ -12,14 +12,43 @@ const HTMLSemanticoYLayout: React.FC = () => {
   return (
     <div className="blog-post">
       <Helmet>
-        <title>HTML Semántico y Diseño de Layout</title>
+        <title>HTML Semántico y Diseño de Layout | FemCoders Club</title>
         <meta
           name="description"
           content="Explora el HTML semántico, su importancia para la accesibilidad y SEO, y cómo estructurar layouts de manera efectiva."
         />
         <meta
           name="keywords"
-          content="HTML, semántica, diseño, accesibilidad, SEO, layout"
+          content="HTML, semántica, diseño web, accesibilidad, SEO, layout, etiquetas semánticas, estructura web"
+        />
+        <meta name="author" content="Irina Ichim" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="HTML Semántico y Diseño de Layout" />
+        <meta
+          property="og:description"
+          content="Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web."
+        />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/html/html-semantico-y-layout"
+        />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/assets/html/ejemplo-layout.png"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="HTML Semántico y Diseño de Layout"
+        />
+        <meta
+          name="twitter:description"
+          content="Explora la importancia del HTML semántico para crear páginas accesibles y bien estructuradas."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.femcodersclub.com/assets/html/ejemplo-layout.png"
         />
       </Helmet>
 
@@ -93,7 +122,21 @@ const HTMLSemanticoYLayout: React.FC = () => {
           en la creación de páginas web efectivas. En este post, exploraremos
           qué es un layout, la importancia del HTML semántico, y cómo estas
           prácticas se relacionan para mejorar la accesibilidad y la experiencia
-          del usuario.
+          del usuario. Si estás empezando, te recomendamos comenzar por nuestra{" "}
+          <a
+            href="/recursos/html/introduccion-html"
+            className="highlight underline"
+          >
+            introducción a HTML
+          </a>{" "}
+          y continuar con los{" "}
+          <a
+            href="/recursos/html/elementos-html-clave"
+            className="highlight underline"
+          >
+            elementos clave de HTML
+          </a>{" "}
+          antes de sumergirte en esta parte más avanzada.
         </p>
       </div>
 
@@ -430,6 +473,32 @@ const HTMLSemanticoYLayout: React.FC = () => {
             </span>
           </li>
         </ul>
+        <p>
+          ¿Te ha gustado este artículo? Entonces también te puede interesar
+          nuestra{" "}
+          <a
+            href="/recursos/html/introduccion-html"
+            className="highlight underline"
+          >
+            introducción a HTML
+          </a>
+          , los{" "}
+          <a
+            href="/recursos/html/elementos-html-clave"
+            className="highlight underline"
+          >
+            elementos clave de HTML
+          </a>{" "}
+          y nuestra guía sobre{" "}
+          <a
+            href="/recursos/html/html-seo-accesibilidad"
+            className="highlight underline"
+          >
+            HTML, SEO y accesibilidad
+          </a>
+          . ¡Sigue explorando y mejorando tus habilidades!
+        </p>
+
         <p>
           Nos encantaría conocer tus experiencias y preguntas sobre HTML
           semántico y diseño de layouts. ¿Has implementado etiquetas semánticas

@@ -12,17 +12,48 @@ const IntroduccionHTML: React.FC = () => {
 
   return (
     <div className="blog-post">
-      <Helmet>
-        <title>Introducción a HTML: La base de la web</title>
-        <meta
-          name="description"
-          content="Conoce los fundamentos de HTML, su importancia y cómo se relaciona con CSS y JavaScript para crear páginas web modernas."
-        />
-        <meta
-          name="keywords"
-          content="HTML, programación, web, recursos, introducción"
-        />
-      </Helmet>
+   <Helmet>
+  <title>Introducción a HTML: La base de la web</title>
+  <meta
+    name="description"
+    content="Conoce los fundamentos de HTML, su importancia y cómo se relaciona con CSS y JavaScript para crear páginas web modernas."
+  />
+  <meta
+    name="keywords"
+    content="HTML, programación web, etiquetas HTML, introducción a HTML, femCoders Club"
+  />
+  <meta name="author" content="Irina Ichim" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={currentUrl} />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introducción a HTML: La base de la web" />
+  <meta
+    property="og:description"
+    content="Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS."
+  />
+  <meta property="og:url" content={currentUrl} />
+  <meta
+    property="og:image"
+    content="https://www.femcodersclub.com/assets/html/Introduccion-HTML.png"
+  />
+  <meta property="og:site_name" content="FemCoders Club" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Introducción a HTML: La base de la web" />
+  <meta
+    name="twitter:description"
+    content="Explora las bases de HTML y cómo estructurar contenido web accesible y moderno."
+  />
+  <meta
+    name="twitter:image"
+    content="https://www.femcodersclub.com/assets/html/Introduccion-HTML.png"
+  />
+  <meta name="twitter:creator" content="@femcodersclub" />
+</Helmet>
+
 
       <div className="post-image-container">
         <img
