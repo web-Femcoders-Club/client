@@ -737,9 +737,15 @@ const HomePage: React.FC = () => {
             tabIndex={0}
             aria-label="Sección principal de FemCoders Club"
           >
-            <h1 data-aos="fade-up" data-aos-delay="200" tabIndex={0}>
-              femCoders Club
-            </h1>
+           <div
+  className="heroe-fem"
+  data-aos="fade-up"
+  data-aos-delay="200"
+  tabIndex={0}
+>
+  femCoders Club
+</div>
+
             <h2 data-aos="fade-up" data-aos-delay="400" tabIndex={0}>
               Tu comunidad de mujeres en tecnología
               <svg
