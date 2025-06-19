@@ -50,6 +50,8 @@ const FrameworksIntegration: React.FC = () => {
           name="twitter:image"
           content="/assets/html/Frameworks-Integracion.png"
         />
+         <link rel="canonical" href={currentUrl} />
+
       </Helmet>
 
       <div className="post-image-container">
@@ -701,14 +703,16 @@ export class GreetingComponent {
 
       <div className="highlight-box conclusion">
         <h2>Conclusión</h2>
-        <p>
-          Los frameworks y librerías han transformado el desarrollo web,
-          haciendo que HTML sea más poderoso que nunca. Desde React hasta
-          Svelte, cada herramienta tiene su lugar. Elige la que se adapte mejor
-          a tus necesidades y no olvides apoyarte en los recursos y la comunidad
-          para seguir aprendiendo. ¡La tecnología no tiene límites, y tú
-          tampoco💻✨!
-        </p>
+      
+      
+    <p>
+  Los frameworks y librerías han revolucionado el desarrollo web, ampliando las posibilidades del HTML tradicional. Tecnologías como React o Svelte permiten construir interfaces dinámicas y eficientes, cada una con sus ventajas según el tipo de proyecto.
+  <br /><br />
+  En <a href="https://www.femcodersclub.com" target="_blank" rel="noopener noreferrer" className="highlight underline">femCoders Club</a>, por ejemplo, hemos desarrollado nuestra web con React. Además, en nuestro <a href="https://github.com/femcodersclub" target="_blank" rel="noopener noreferrer" className="highlight underline">repositorio de GitHub</a> encontrarás proyectos con <strong>Svelte</strong> y <strong>SvelteKit</strong>, como el <a href="https://github.com/femcodersclub/Efecto-Parallax-Svelte" target="_blank" rel="noopener noreferrer" className="highlight underline">efecto parallax</a> o la <a href="https://github.com/femcodersclub/Galeria-SvelteKit-Node.js-MySQL" target="_blank" rel="noopener noreferrer" className="highlight underline">galería full stack</a>.
+  <br /><br />
+  Elige siempre la herramienta que mejor se adapte a tus objetivos, y recuerda que la comunidad y los recursos compartidos son clave para seguir creciendo. ¡La tecnología evoluciona contigo, y tus posibilidades también 💻✨!
+</p>
+
       </div>
 
       <div className="author-info">

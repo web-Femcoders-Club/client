@@ -9,7 +9,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
 
-
 interface Event {
   start: {
     local: string;
@@ -54,37 +53,39 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
-      {
+    {
       src: "/assets/home-images/comunidad-tech-femcodersClub.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
-      title: "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
+      title:
+        "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
     },
-     {
+    {
       src: "/assets/home-images/organizadoresEventoDataConnect.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
-      title: "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
+      title:
+        "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
     },
-      {
+    {
       src: "/assets/home-images/asistentes-evento-femCodersClub.webp",
       alt: "Asistentes al evento DataConnect FemCoders Club",
       title: "Asistentes comunidad femCodersClub durante el evento DataConnect",
     },
-        {
+    {
       src: "/assets/home-images/comunidad-data-evento-femCodersClub.webp",
       alt: "Comunidad Data Connect durante el evento de FemCoders Club",
       title: "Comunidad Data Connect durante el evento de FemCoders Club",
     },
-          {
+    {
       src: "/assets/home-images/comunidad-femcodersclub-dataconnect-barcelona.webp",
       alt: "Comunidad FemCoders Club en DataConnect Barcelona",
       title: "Comunidad FemCoders Club en DataConnect Barcelona",
     },
-           {
+    {
       src: "/assets/home-images/musica-codigo-evento-femCodersClub.webp",
       alt: "Música y código en el evento de FemCoders Club",
       title: "Música y Código en el Evento",
     },
-            {
+    {
       src: "/assets/home-images/femCodersClub-mujeresStem-eventoData.webp",
       alt: "Mujeres en STEM durante el evento DataConnect de FemCoders Club",
       title: "Mujeres en STEM en DataConnect",
@@ -737,14 +738,14 @@ const HomePage: React.FC = () => {
             tabIndex={0}
             aria-label="Sección principal de FemCoders Club"
           >
-           <div
-  className="heroe-fem"
-  data-aos="fade-up"
-  data-aos-delay="200"
-  tabIndex={0}
->
-  femCoders Club
-</div>
+            <div
+              className="heroe-fem"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              tabIndex={0}
+            >
+              femCoders Club
+            </div>
 
             <h2 data-aos="fade-up" data-aos-delay="400" tabIndex={0}>
               Tu comunidad de mujeres en tecnología
@@ -981,331 +982,370 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-  <section className="parallax bg3">
-  <div className="section-content">
-    <div
-      className="call-to-action"
-      data-aos="fade-right"
-      data-aos-duration="1000"
-    >
-      <div
-        className="text-center"
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <h2>Conócenos</h2>
-      </div>
-
-      {/* <p data-aos="fade-up" data-aos-delay="300">
-        Si compartes nuestra pasión por la tecnología y nuestra filosofía
-        de <strong>visibilizar a las mujeres programadoras</strong>,
-        promoviendo su desarrollo profesional, te invitamos a unirte a
-        nuestra comunidad. Ya seas una mujer en tecnología que busca
-        crecer profesionalmente o una líder con años de experiencia
-        dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
-        <strong>FemCoders Club. </strong>
-        <br />
-        <br />
-        Además, extendemos una invitación a las empresas que se alinean
-        con nuestros valores para que colaboren con nosotras.{" "}
-        <strong>
-          Juntas, podemos crear un entorno más inclusivo y equitativo en
-          el sector tech.
-        </strong>
-        <br />
-        <br />
-     
-      </p> */}
-      <p data-aos="fade-up" data-aos-delay="300">
- <strong>¡Este 19 de junio tenemos una invitada muy especial!</strong> Nos 
-  emociona anunciar que estaremos conversando con{" "}
-  <strong>Nadia Soledad Cavalleri</strong>, referente en QA y creadora de 
-  contenido, en una entrevista increíble donde conoceremos su trayectoria, 
-  experiencias y consejos para mujeres en tecnología. Puedes conocer más 
-  sobre su trabajo en su{" "}
-  <a href="https://nadiacavalleri.com.ar" target="_blank" rel="noopener noreferrer">
-    <strong>web oficial</strong>
-  </a>, seguirla en{" "}
-  <a href="https://www.linkedin.com/in/ncavalleri/" target="_blank" rel="noopener noreferrer">
-    <strong>LinkedIn</strong>
-  </a>{" "}
-  e{" "}
-  <a href="https://www.instagram.com/nadia.cavalleri.test/" target="_blank" rel="noopener noreferrer">
-    <strong>Instagram</strong>
-  </a>.
-  <br />
-  <br />
-  💡 <strong>Si alguna vez quisiste hacerle una pregunta, ¡esta es tu oportunidad!</strong>{" "}
-  Te invitamos a que nos dejes tus preguntas y las incluiremos en la conversación.
-  Esta es una oportunidad única para conectar con una de las voces más 
-  influyentes en el sector tech y obtener insights valiosos para tu carrera profesional.
-
-  <br />
-  <br />
-</p>
-
-      {/* NUEVO CONTENIDO AGREGADO */}
-      <div 
-        className="community-stats"
-        data-aos="fade-up"
-        data-aos-delay="600"
-      >
-        <h3 data-aos="fade-up" data-aos-delay="700">
-          🌟 Nuestra comunidad
-        </h3>
-        <div 
-          className="stats-grid"
-          data-aos="fade-up"
-          data-aos-delay="800"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "20px",
-            margin: "20px 0",
-            textAlign: "center"
-          }}
-        >
-          <div className="stat-item" data-aos="zoom-in" data-aos-delay="900">
-            <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#6C63FF" }}>
-              1000+
-            </div>
-            <div style={{ fontSize: "0.9rem", opacity: 0.8, color: "#2a2170" }}>
-              Mujeres STEM
-            </div>
-          </div>
-          <div className="stat-item" data-aos="zoom-in" data-aos-delay="1000">
-            <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#6C63FF" }}>
-              25+
-            </div>
-            <div style={{ fontSize: "0.9rem", opacity: 0.8 , color: "#2a2170" }}>
-              Eventos realizados
-            </div>
-          </div>
-          <div className="stat-item" data-aos="zoom-in" data-aos-delay="1100">
-            <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#6C63FF" }}>
-              20+
-            </div>
-            <div style={{ fontSize: "0.9rem", opacity: 0.8, color: "#2a2170" }}>
-              Empresas colaboradoras
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-{/* 
-      <div 
-        className="join-cta"
-        data-aos="zoom-in"
-        data-aos-delay="1200"
-        style={{
-          textAlign: "center",
-          marginTop: "30px",
-          padding: "20px",
-          backgroundColor: "rgba(108, 99, 255, 0.1)",
-          borderRadius: "10px",
-          border: "2px solid rgba(108, 99, 255, 0.2)"
-        }}
-      >
-        <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
-          <strong>¿Lista para dar el siguiente paso en tu carrera tech?</strong>
-        </p>
-       <div style={{ display: "flex", gap: "15px", justifyContent: "center", flexWrap: "wrap" }}>
-          <Link to="/login">
-            <button className="primary-button pulse-effect">
-              Únete a la comunidad
-            </button>
-          </Link>
-          <Link to="/femcoders-quienes-somos">
-            <button className="secondary-button">
-              Conoce más sobre nosotras
-            </button>
-          </Link>
-        </div>
-      </div> */}
-    </div>
-
-    <div
-      className="section-countdown"
-      data-aos="fade-left"
-      data-aos-duration="1000"
-    >
-      {/* Tu código del countdown existente se mantiene igual */}
-      <div className="countdown-content">
-        <h2 data-aos="fade-down" data-aos-delay="300">
-          ¡Próximo evento!
-        </h2>
-        {upcomingEvent ? (
+      <section className="parallax bg3">
+        <div className="section-content">
           <div
-            className="countdown"
-            data-aos="fade-up"
-            data-aos-delay="400"
+            className="call-to-action"
+            data-aos="fade-right"
+            data-aos-duration="1000"
           >
             <div
-              className="countdown-item"
-              data-aos="flip-up"
-              data-aos-delay="500"
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
-              <span>{timeLeft.days}</span> días
+              <h2>Conócenos</h2>
             </div>
+
+            <p data-aos="fade-up" data-aos-delay="300">
+              Si compartes nuestra pasión por la tecnología y nuestra filosofía
+              de <strong>visibilizar a las mujeres programadoras</strong>,
+              promoviendo su desarrollo profesional, te invitamos a unirte a
+              nuestra comunidad. Ya seas una mujer en tecnología que busca
+              crecer profesionalmente o una líder con años de experiencia
+              dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
+              <strong>FemCoders Club. </strong>
+              <br />
+              <br />
+              Además, extendemos una invitación a las empresas que se alinean
+              con nuestros valores para que colaboren con nosotras.{" "}
+              <strong>
+                Juntas, podemos crear un entorno más inclusivo y equitativo en
+                el sector tech.
+              </strong>
+              <br />
+            </p>
+
+            <br />
+
+            {/* NUEVO CONTENIDO AGREGADO */}
             <div
-              className="countdown-item"
-              data-aos="flip-up"
+              className="community-stats"
+              data-aos="fade-up"
               data-aos-delay="600"
             >
-              <span>{timeLeft.hours}</span> horas
+              <h3 data-aos="fade-up" data-aos-delay="700">
+                🌟 Nuestra comunidad
+              </h3>
+              <div
+                className="stats-grid"
+                data-aos="fade-up"
+                data-aos-delay="800"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                  gap: "20px",
+                  margin: "20px 0",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  className="stat-item"
+                  data-aos="zoom-in"
+                  data-aos-delay="900"
+                >
+                  <div
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: "bold",
+                      color: "#6C63FF",
+                    }}
+                  >
+                    1000+
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "0.9rem",
+                      opacity: 0.8,
+                      color: "#2a2170",
+                    }}
+                  >
+                    Mujeres STEM
+                  </div>
+                </div>
+                <div
+                  className="stat-item"
+                  data-aos="zoom-in"
+                  data-aos-delay="1000"
+                >
+                  <div
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: "bold",
+                      color: "#6C63FF",
+                    }}
+                  >
+                    25+
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "0.9rem",
+                      opacity: 0.8,
+                      color: "#2a2170",
+                    }}
+                  >
+                    Eventos realizados
+                  </div>
+                </div>
+                <div
+                  className="stat-item"
+                  data-aos="zoom-in"
+                  data-aos-delay="1100"
+                >
+                  <div
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: "bold",
+                      color: "#6C63FF",
+                    }}
+                  >
+                    20+
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "0.9rem",
+                      opacity: 0.8,
+                      color: "#2a2170",
+                    }}
+                  >
+                    Empresas colaboradoras
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div
-              className="countdown-item"
-              data-aos="flip-up"
-              data-aos-delay="700"
-            >
-              <span>{timeLeft.minutes}</span> minutos
-            </div>
-            <div
-              className="countdown-item"
-              data-aos="flip-up"
-              data-aos-delay="800"
-            >
-              <span>{timeLeft.seconds}</span> segundos
-            </div>
-          </div>
-        ) : (
-          <div
-            className="no-event-container"
-            data-aos="fade-in"
-            data-aos-delay="400"
-          >
-            <video
-              src={`${
-                import.meta.env.BASE_URL
-              }assets/videos/SinEvento.mp4`}
-              className="no-event-video"
-              autoPlay
-              muted
-              loop
-              onError={(e) => {
-                if ((e.target as HTMLVideoElement).error) {
-                  console.error("El video no se pudo cargar.");
-                  (e.target as HTMLVideoElement).style.display = "none";
-                }
-              }}
-            />
-            <br />
-            <div
-              className="no-event-info"
-              data-aos="fade-up"
-              data-aos-delay="500"
+              className="join-cta"
+              data-aos="zoom-in"
+              data-aos-delay="1200"
               style={{
                 textAlign: "center",
-                padding: "20px 10px",
-                backgroundColor: "rgba(108, 99, 255, 0.05)",
-                borderRadius: "15px",
-                border: "2px dashed rgba(108, 99, 255, 0.3)"
+                marginTop: "30px",
+                padding: "20px",
+                backgroundColor: "rgba(108, 99, 255, 0.1)",
+                borderRadius: "10px",
+                border: "2px solid rgba(108, 99, 255, 0.2)",
               }}
             >
-              <div style={{ fontSize: "2.5rem", marginBottom: "15px" }}>
-                🔥
-              </div>
-              <h3 style={{ 
-                color: "#2a2170", 
-                fontSize: "1.5rem", 
-                fontWeight: "bold",
-                marginBottom: "10px"
-              }}>
-                ¡Grandes cosas están por venir!
-              </h3>
-              <p style={{
-                color: "#2a2170",
-                fontSize: "1.1rem",
-                lineHeight: 1.6,
-                marginBottom: "20px",
-                opacity: 0.9
-              }}>
-                Nuestro equipo está diseñando experiencias únicas que transformarán 
-                tu carrera tech. <strong>Mantente conectada</strong> para ser la primera 
-                en conocer nuestras próximas sorpresas.
+              <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
+                <strong>
+                  ¿Lista para dar el siguiente paso en tu carrera tech?
+                </strong>
               </p>
-              <div style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "10px",
-                fontSize: "1.2rem",
-                marginTop: "15px"
-              }}>
-                <span style={{ animation: "pulse 2s infinite" }}>✨</span>
-                <span style={{ animation: "pulse 2s infinite 0.5s" }}>🚀</span>
-                <span style={{ animation: "pulse 2s infinite 1s" }}>💜</span>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "15px",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Link to="/login">
+                  <button className="primary-button pulse-effect">
+                    Únete a la comunidad
+                  </button>
+                </Link>
+                <Link to="/femcoders-quienes-somos">
+                  <button className="secondary-button">
+                    Conoce más sobre nosotras
+                  </button>
+                </Link>
               </div>
             </div>
-            <br />
           </div>
-        )}
-        <br />
-      </div>
-      {upcomingEvent ? (
-        <div
-          className="event-card"
-          data-aos="zoom-in"
-          data-aos-delay="600"
-        >
+
           <div
-            className="event-image-wrapper"
-            data-aos="fade-up"
-            data-aos-delay="700"
+            className="section-countdown"
+            data-aos="fade-left"
+            data-aos-duration="1000"
           >
-            <img
-              src={
-                upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
-              }
-              alt="Próximo evento"
-              className="event-image"
-            />
-          </div>
-          <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
-            <button className="secondary-button pulse-effect">
-              Más información
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <div
-          className="event-placeholder-card"
-          data-aos="zoom-in"
-          data-aos-delay="600"
-        >
-          <div
-            className="event-buttons"
-            data-aos="fade-up"
-            data-aos-delay="700"
-          >
-            <div
-              className="event-buttons"
-              data-aos="fade-up"
-              data-aos-delay="700"
-              style={{
-                display: "flex",
-                gap: "15px",
-                justifyContent: "center",
-              }}
-            >
-              <Link to="/eventos">
-                <button className="secondary-button">
-                  Ver eventos pasados
-                </button>
-              </Link>
-              <Link to="/blog/recursos">
-                <button className="primary-button">
-                  Explorar recursos
-                </button>
-              </Link>
+            {/* Tu código del countdown existente se mantiene igual */}
+            <div className="countdown-content">
+              <h2 data-aos="fade-down" data-aos-delay="300">
+                ¡Próximo evento!
+              </h2>
+              {upcomingEvent ? (
+                <div
+                  className="countdown"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="500"
+                  >
+                    <span>{timeLeft.days}</span> días
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="600"
+                  >
+                    <span>{timeLeft.hours}</span> horas
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="700"
+                  >
+                    <span>{timeLeft.minutes}</span> minutos
+                  </div>
+                  <div
+                    className="countdown-item"
+                    data-aos="flip-up"
+                    data-aos-delay="800"
+                  >
+                    <span>{timeLeft.seconds}</span> segundos
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="no-event-container"
+                  data-aos="fade-in"
+                  data-aos-delay="400"
+                >
+                  <video
+                    src={`${
+                      import.meta.env.BASE_URL
+                    }assets/videos/SinEvento.mp4`}
+                    className="no-event-video"
+                    autoPlay
+                    muted
+                    loop
+                    onError={(e) => {
+                      if ((e.target as HTMLVideoElement).error) {
+                        console.error("El video no se pudo cargar.");
+                        (e.target as HTMLVideoElement).style.display = "none";
+                      }
+                    }}
+                  />
+                  <br />
+                  <div
+                    className="no-event-info"
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    style={{
+                      textAlign: "center",
+                      padding: "20px 10px",
+                      backgroundColor: "rgba(108, 99, 255, 0.05)",
+                      borderRadius: "15px",
+                      border: "2px dashed rgba(108, 99, 255, 0.3)",
+                    }}
+                  >
+                    <div style={{ fontSize: "2.5rem", marginBottom: "15px" }}>
+                      🔥
+                    </div>
+                    <h3
+                      style={{
+                        color: "#2a2170",
+                        fontSize: "1.5rem",
+                        fontWeight: "bold",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      ¡Grandes cosas están por venir!
+                    </h3>
+                    <p
+                      style={{
+                        color: "#2a2170",
+                        fontSize: "1.1rem",
+                        lineHeight: 1.6,
+                        marginBottom: "20px",
+                        opacity: 0.9,
+                      }}
+                    >
+                      Nuestro equipo está diseñando experiencias únicas que
+                      transformarán tu carrera tech.{" "}
+                      <strong>Mantente conectada</strong> para ser la primera en
+                      conocer nuestras próximas sorpresas.
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px",
+                        fontSize: "1.2rem",
+                        marginTop: "15px",
+                      }}
+                    >
+                      <span style={{ animation: "pulse 2s infinite" }}>✨</span>
+                      <span style={{ animation: "pulse 2s infinite 0.5s" }}>
+                        🚀
+                      </span>
+                      <span style={{ animation: "pulse 2s infinite 1s" }}>
+                        💜
+                      </span>
+                    </div>
+                  </div>
+                  <br />
+                </div>
+              )}
+              <br />
             </div>
+            {upcomingEvent ? (
+              <div
+                className="event-card"
+                data-aos="zoom-in"
+                data-aos-delay="600"
+              >
+                <div
+                  className="event-image-wrapper"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                >
+                  <img
+                    src={
+                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
+                    }
+                    alt="Próximo evento"
+                    className="event-image"
+                  />
+                </div>
+                <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
+                  <button className="secondary-button pulse-effect">
+                    Más información
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <div
+                className="event-placeholder-card"
+                data-aos="zoom-in"
+                data-aos-delay="600"
+              >
+                <div
+                  className="event-buttons"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                >
+                  <div
+                    className="event-buttons"
+                    data-aos="fade-up"
+                    data-aos-delay="700"
+                    style={{
+                      display: "flex",
+                      gap: "15px",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Link to="/eventos">
+                      <button className="secondary-button">
+                        Ver eventos pasados
+                      </button>
+                    </Link>
+                    <Link to="/blog/recursos">
+                      <button className="primary-button">
+                        Explorar recursos
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      )}
-    </div>
-  </div>
-</section>
+      </section>
 
       <section className="parallax bg5">
         <div

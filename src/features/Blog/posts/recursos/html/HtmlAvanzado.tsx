@@ -12,45 +12,36 @@ const HtmlAvanzado: React.FC = () => {
 
   return (
     <div className="blog-post">
-      <Helmet>
-        <title>HTML Avanzado para SEO y Accesibilidad | femCoders Club</title>
-        <meta
-          name="description"
-          content="Descubre cómo optimizar tu página web para SEO y accesibilidad utilizando HTML avanzado. Aprende sobre microdatos, RDFa, atributos ARIA y Lazy Loading para crear una web más inclusiva y eficiente."
-        />
-        <meta
-          name="keywords"
-          content="HTML avanzado, SEO, Accesibilidad, Microdatos, RDFa, Atributos ARIA, Lazy Loading, Desarrollo Web, femCoders Club, Web Components, WebAssembly, Mejores prácticas"
-        />
-        <meta
-          property="og:title"
-          content="HTML Avanzado para SEO y Accesibilidad | femCoders Club"
-        />
-        <meta
-          property="og:description"
-          content="Optimiza el SEO y la accesibilidad de tu web con HTML avanzado. Aprende sobre microdatos, RDFa, ARIA y técnicas de Lazy Loading."
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={currentUrl} />
-        <meta
-          property="og:image"
-          content="/assets/html/Introduccion-HTML.png"
-        />
-        <meta property="og:site_name" content="femCoders Club" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="HTML Avanzado para SEO y Accesibilidad | femCoders Club"
-        />
-        <meta
-          name="twitter:description"
-          content="Explora técnicas avanzadas de HTML para mejorar el SEO y la accesibilidad de tu web. Aprende sobre microdatos, RDFa, ARIA y Lazy Loading."
-        />
-        <meta
-          name="twitter:image"
-          content="/assets/html/Introduccion-HTML.png"
-        />
-      </Helmet>
+     <Helmet>
+  <title>HTML Avanzado para SEO y Accesibilidad | femCoders Club</title>
+
+  <meta
+    name="description"
+    content="Aprende a optimizar tu web con HTML avanzado. Mejora el SEO, la accesibilidad y el rendimiento usando microdatos, ARIA, Lazy Loading y más con femCoders Club."
+  />
+  <meta
+    name="keywords"
+    content="HTML avanzado, Accesibilidad Web, SEO técnico, Microdatos, RDFa, ARIA, Lazy Loading, Desarrollo Web, femCoders Club, Web Components, WebAssembly"
+  />
+
+  {/* Open Graph para compartir en redes */}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="HTML Avanzado para SEO y Accesibilidad | femCoders Club" />
+  <meta property="og:description" content="Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más." />
+  <meta property="og:url" content={currentUrl} />
+  <meta property="og:image" content="https://www.femcodersclub.com/assets/html/Html-Accesibilidad-SEO.jpg" />
+  <meta property="og:site_name" content="femCoders Club" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HTML Avanzado para SEO y Accesibilidad | femCoders Club" />
+  <meta name="twitter:description" content="Explora buenas prácticas de HTML para SEO y accesibilidad con ejemplos claros y modernos." />
+  <meta name="twitter:image" content="https://www.femcodersclub.com/assets/html/Html-Accesibilidad-SEO.jpg" />
+
+  {/* Canonical para evitar duplicados */}
+  <link rel="canonical" href={currentUrl} />
+</Helmet>
+
 
       <div className="post-image-container">
         <img
@@ -177,157 +168,189 @@ const HtmlAvanzado: React.FC = () => {
         </p>
       </div>
 
-      <div className="highlight-box">
-        <h2>Atributos ARIA para Mejorar la Accesibilidad♿️</h2>
-        <p>
-          Los{" "}
-          <strong>
-            atributos ARIA (Accessible Rich Internet Applications)
-          </strong>{" "}
-          se utilizan para hacer que las aplicaciones web sean más accesibles
-          para las personas con discapacidades. Añaden descripciones adicionales
-          a los elementos HTML para mejorar la interacción de los usuarios que
-          usan lectores de pantalla, permitiendo que todos los usuarios tengan
-          una experiencia más completa y equitativa.
-        </p>
-        <p>
-          Por ejemplo, puedes usar
-          <span>
-            {" "}
-            <code>aria-label</code>{" "}
-          </span>
-          para proporcionar una descripción a un botón que no tiene texto
-          visible, o{" "}
-          <span>
-            <code>role</code>{" "}
-          </span>
-          para definir el propósito de un elemento, de manera que los usuarios
-          que utilizan tecnologías de asistencia puedan entender mejor su
-          función.
-        </p>
-        <pre className="code-block bg3">
-          {`<button aria-label="Cerrar ventana">
+  <div className="highlight-box">
+  <h2>Atributos ARIA para Mejorar la Accesibilidad♿️</h2>
+  <p>
+    Los{" "}
+    <strong>
+      atributos ARIA (Accessible Rich Internet Applications)
+    </strong>{" "}
+    se utilizan para hacer que las aplicaciones web sean más accesibles
+    para las personas con discapacidades. Añaden descripciones adicionales
+    a los elementos HTML para mejorar la interacción de los usuarios que
+    usan lectores de pantalla, permitiendo que todos los usuarios tengan
+    una experiencia más completa y equitativa.
+  </p>
+  <p>
+    Por ejemplo, puedes usar
+    <span> <code>aria-label</code> </span>
+    para proporcionar una descripción a un botón que no tiene texto
+    visible, o{" "}
+    <span>
+      <code>role</code>
+    </span>{" "}
+    para definir el propósito de un elemento, de manera que los usuarios
+    que utilizan tecnologías de asistencia puedan entender mejor su
+    función.
+  </p>
+
+  <p>
+    👉 Puedes ver cómo lo aplicamos en nuestra sección de{" "}
+   <span> <a
+      href="/equipo"
+      className="highlight underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      equipo de FemCoders Club
+    </a></span>
+    , donde usamos <code>aria-label</code>, <code>role</code> y otros
+    atributos para que la experiencia sea accesible y coherente para
+    todas las personas.
+  </p>
+
+  <pre className="code-block bg3">
+    {`<button aria-label="Cerrar ventana">
   <svg aria-hidden="true" ...> <!-- Icono de cerrar -->
   </svg>
 </button>`}
-        </pre>
-        <p>
-          En el ejemplo anterior, el atributo{" "}
-          <strong>
-            <code>aria-label</code>
-          </strong>{" "}
-          se utiliza para proporcionar una descripción del botón, mientras que
-          el atributo{" "}
-          <strong>
-            {" "}
-            <code>aria-hidden="true"</code>
-          </strong>{" "}
-          asegura que el icono SVG no sea leído por el lector de pantalla,
-          evitando información redundante.
-        </p>
-        <p>
-          Otro ejemplo es el
-          <strong>
-            {" "}
-            uso de <code>role</code> para definir el propósito de un contenedor
-            como un <code>dialog</code> o un <code>alert</code>.
-          </strong>{" "}
-          <br />
-          Esto ayuda a los lectores de pantalla a proporcionar a los usuarios
-          una descripción más precisa del contenido.
-        </p>
-        <pre className="code-block bg3">
-          {`<div role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+  </pre>
+
+  <p>
+    En el ejemplo anterior, el atributo{" "}
+    <strong>
+      <code>aria-label</code>
+    </strong>{" "}
+    se utiliza para proporcionar una descripción del botón, mientras que
+    el atributo{" "}
+    <strong>
+      <code>aria-hidden="true"</code>
+    </strong>{" "}
+    asegura que el icono SVG no sea leído por el lector de pantalla,
+    evitando información redundante.
+  </p>
+  <p>
+    Otro ejemplo es el
+    <strong>
+      {" "}
+      uso de <code>role</code> para definir el propósito de un contenedor
+      como un <code>dialog</code> o un <code>alert</code>.
+    </strong>{" "}
+    <br />
+    Esto ayuda a los lectores de pantalla a proporcionar a los usuarios
+    una descripción más precisa del contenido.
+  </p>
+  <pre className="code-block bg3">
+    {`<div role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
   <h2 id="dialog-title">Confirmación de Eliminación</h2>
   <p id="dialog-description">¿Estás segura de que deseas eliminar este elemento?</p>
 </div>`}
-        </pre>
-        <p>
-          En este ejemplo, el uso del atributo <code>role="dialog"</code> junto
-          con <code>aria-labelledby</code> y <code>aria-describedby</code> ayuda
-          a los usuarios de lectores de pantalla a entender claramente el
-          propósito y el contenido del diálogo.
-        </p>
-      </div>
+  </pre>
+  <p>
+    En este ejemplo, el uso del atributo <code>role="dialog"</code> junto
+    con <code>aria-labelledby</code> y <code>aria-describedby</code> ayuda
+    a los usuarios de lectores de pantalla a entender claramente el
+    propósito y el contenido del diálogo.
+  </p>
+</div>
 
-      <div className="highlight-box">
-        <h2>Implementación de Lazy Loading para Optimizar el Rendimiento 🚀</h2>
-        <p>
-          La <strong>carga diferida (Lazy Loading)</strong> es una técnica que
-          revoluciona la forma en que cargamos los recursos de nuestras páginas
-          web. En lugar de cargar todas las imágenes, videos y otros elementos
-          al mismo tiempo, el Lazy Loading retrasa su carga hasta que son
-          necesarios, es decir, cuando están a punto de entrar en la vista del
-          usuario.
-        </p>
-        <p>¿Por qué es importante el Lazy Loading?</p>
-        <ul>
-          <li>
-            <strong>Mayor velocidad de carga:</strong> Reduce significativamente
-            el tiempo que tarda una página en cargarse, mejorando la experiencia
-            del usuario.
-          </li>
-          <li>
-            <strong>Menor consumo de datos:</strong> Ahorra ancho de banda,
-            especialmente en dispositivos móviles.
-          </li>
-          <li>
-            <strong>Mejor SEO:</strong> Los motores de búsqueda valoran la
-            velocidad de carga de las páginas, por lo que el Lazy Loading puede
-            contribuir a mejorar tu posicionamiento.
-          </li>
-        </ul>
-        <p>
-          Implementación sencilla:
-          <br />
-          Para implementar Lazy Loading en imágenes, simplemente añade el
-          atributo <code>loading="lazy"</code> a tus etiquetas{" "}
-          <code>&lt;img&gt;</code>:
-        </p>
-        <pre className="code-block bg3">
-          {`<img src="imagen-ejemplo.jpg" alt="Ejemplo de lazy loading" loading="lazy" />`}
-        </pre>
-        <p>
-          Esto asegura que la imagen solo se cargue cuando el usuario esté cerca
-          de verla, lo que mejora tanto la experiencia como el rendimiento de tu
-          página.
-        </p>
-        <p>¿Qué más puedes hacer?</p>
-        <ul>
-          <li>
-            <strong>Lazy Loading para otros elementos:</strong> Aplica el Lazy
-            Loading a iframes, videos y scripts para optimizar aún más la carga
-            de tu página.
-          </li>
-          <li>
-            <strong>Librerías y frameworks:</strong> Utiliza librerías como{" "}
-            <a
-              href="https://github.com/aFarkas/lazysizes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight underline"
-            >
-              lazysizes
-            </a>{" "}
-            para facilitar la implementación de Lazy Loading de manera más
-            personalizada y sin complicaciones.
-          </li>
-          <li>
-            <strong>Intersection Observer:</strong> Personaliza el
-            comportamiento del Lazy Loading con la API de{" "}
-            <a
-              href="https://developer.mozilla.org/es/docs/Web/API/Intersection_Observer_API"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight underline"
-            >
-              Intersection Observer
-            </a>{" "}
-            de JavaScript, permitiendo tener un mayor control sobre cuándo y
-            cómo se cargan los recursos.
-          </li>
-        </ul>
-      </div>
+<div className="highlight-box">
+  <h2>Implementación de Lazy Loading para Optimizar el Rendimiento 🚀</h2>
+  <p>
+    La <strong>carga diferida (Lazy Loading)</strong> es una técnica que
+    revoluciona la forma en que cargamos los recursos de nuestras páginas
+    web. En lugar de cargar todas las imágenes, videos y otros elementos
+    al mismo tiempo, el Lazy Loading retrasa su carga hasta que son
+    necesarios, es decir, cuando están a punto de entrar en la vista del
+    usuario.
+  </p>
+  <p>¿Por qué es importante el Lazy Loading?</p>
+  <ul>
+    <li>
+      <strong>Mayor velocidad de carga:</strong> Reduce significativamente
+      el tiempo que tarda una página en cargarse, mejorando la experiencia
+      del usuario.
+    </li>
+    <li>
+      <strong>Menor consumo de datos:</strong> Ahorra ancho de banda,
+      especialmente en dispositivos móviles.
+    </li>
+    <li>
+      <strong>Mejor SEO:</strong> Los motores de búsqueda valoran la
+      velocidad de carga de las páginas, por lo que el Lazy Loading puede
+      contribuir a mejorar tu posicionamiento.
+    </li>
+  </ul>
+  <p>
+    Implementación sencilla:
+    <br />
+    Para implementar Lazy Loading en imágenes, simplemente añade el
+    atributo <code>loading="lazy"</code> a tus etiquetas{" "}
+    <code>&lt;img&gt;</code>:
+  </p>
+  <pre className="code-block bg3">
+    {`<img src="imagen-ejemplo.jpg" alt="Ejemplo de lazy loading" loading="lazy" />`}
+  </pre>
+  <p>
+    Esto asegura que la imagen solo se cargue cuando el usuario esté cerca
+    de verla, lo que mejora tanto la experiencia como el rendimiento de tu
+    página.
+  </p>
+< br />
+  <p>
+    👉 En{" "}<strong>
+    <a
+      href="https://www.femcodersclub.com"
+      className="highlight underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      femcodersclub.com
+    </a>{" "}</strong>
+    aplicamos Lazy Loading tanto en imágenes como en rutas completas usando{" "}
+    <code>React.lazy()</code> y <code>Suspense</code>. Esto permite que
+    muchas secciones del sitio —como el blog, los recursos educativos o la
+    página del equipo— se carguen solo cuando el usuario accede a ellas,
+    optimizando la velocidad y el rendimiento en toda la plataforma.
+  </p>
+<br />
+  <p>¿Qué más puedes hacer?</p>
+  <ul>
+    <li>
+      <strong>Lazy Loading para otros elementos:</strong> Aplica el Lazy
+      Loading a iframes, videos y scripts para optimizar aún más la carga
+      de tu página.
+    </li>
+    <li>
+      <strong>Librerías y frameworks:</strong> Utiliza librerías como{" "}
+      <a
+        href="https://github.com/aFarkas/lazysizes"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="highlight underline"
+      >
+        lazysizes
+      </a>{" "}
+      para facilitar la implementación de Lazy Loading de manera más
+      personalizada y sin complicaciones.
+    </li>
+    <li>
+      <strong>Intersection Observer:</strong> Personaliza el
+      comportamiento del Lazy Loading con la API de{" "}
+      <a
+        href="https://developer.mozilla.org/es/docs/Web/API/Intersection_Observer_API"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="highlight underline"
+      >
+        Intersection Observer
+      </a>{" "}
+      de JavaScript, permitiendo tener un mayor control sobre cuándo y
+      cómo se cargan los recursos.
+    </li>
+  </ul>
+</div>
+
       <div className="highlight-box">
         {" "}
         <h2>
