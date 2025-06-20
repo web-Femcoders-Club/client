@@ -103,6 +103,9 @@ const TransicionesyTransformaciones = lazy(
 const DataConnectEvento = lazy(
   () => import("../features/Blog/posts/noticias/DataConnectEvento")
 );
+const EntrevistaNadiaTesting = lazy(
+  () => import("../features/Blog/posts/noticias/EntrevistaNadiaTesting")
+);
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -453,7 +456,16 @@ const RouterComponent: React.FC = () => {
     </Layout>
   }
 />
-
+<Route
+  path="/noticias/EntrevistaNadiaTesting"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <EntrevistaNadiaTesting />
+      </Suspense>
+    </Layout>
+  }
+/>
         </Routes>
       </Suspense>
 

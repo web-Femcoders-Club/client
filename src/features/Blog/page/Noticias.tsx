@@ -63,6 +63,19 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
+       <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h2>🎙️ Nadia Cavalleri: "El testing no es solo técnico, requiere pensamiento crítico y empatía"</h2>
+            <p className="intro-text">
+              Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri, una de las voces más influyentes en testing de Latinoamérica y España. Descubre su transición de psicóloga a líder en QA, consejos para automatización y su visión del futuro del testing con IA...
+            </p>
+          </div>
+          <Link to="/noticias/EntrevistaNadiaTesting" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

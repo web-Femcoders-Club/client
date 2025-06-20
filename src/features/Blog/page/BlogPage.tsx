@@ -204,7 +204,15 @@ const BlogPage: React.FC = () => {
         "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas.",
       createdAt: new Date("2025-06-02"),
     },
-
+ {
+      id: 20,
+      type: "noticia",
+      category: "femCoders",
+      title: "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"",
+      description:
+        "Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri, una de las voces más influyentes en testing de Latinoamérica y España. Descubre su transición de psicóloga a líder en QA, consejos para automatización y su visión del futuro del testing con IA.",
+      createdAt: new Date("2025-06-20"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -267,6 +275,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/css/transiciones-transformaciones`;
     case "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia":
         return `/noticias/DataConnectEvento`;
+ case "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"":
+        return `/noticias/EntrevistaNadiaTesting`;
 
       default:
         return `/`;
