@@ -1,6 +1,6 @@
 .event-card-custom {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   margin: 30px 0;
   perspective: 1000px;
 }
@@ -117,9 +117,9 @@
 }
 
 .event-card-image-custom {
-  width: 80%;
-  height: 300px;
-  object-fit: cover;
+  width: 85%;
+  height: 330px;
+  object-fit: contain;
   border-radius: 15px;
 }
 

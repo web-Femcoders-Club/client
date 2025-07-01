@@ -213,6 +213,15 @@ const BlogPage: React.FC = () => {
         "Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri, una de las voces más influyentes en testing de Latinoamérica y España. Descubre su transición de psicóloga a líder en QA, consejos para automatización y su visión del futuro del testing con IA.",
       createdAt: new Date("2025-06-20"),
     },
+    {
+  id: 21,
+  type: "recurso",
+  category: "css",
+  title: "Domina las Animaciones CSS: De Básico a Avanzado",
+  description:
+    "Aprende animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Incluye performance, accesibilidad y ejemplos reales con el proyecto 'Breathe' de mindfulness.",
+  createdAt: new Date("2025-07-01"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -277,7 +286,8 @@ const BlogPage: React.FC = () => {
         return `/noticias/DataConnectEvento`;
  case "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"":
         return `/noticias/EntrevistaNadiaTesting`;
-
+case "Domina las Animaciones CSS: De Básico a Avanzado":
+  return `/recursos/css/animaciones-css`;
       default:
         return `/`;
     }

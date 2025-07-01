@@ -112,11 +112,23 @@ const TimelineEvent = ({
 };
 
 const FeaturedPresentation = () => {
-  // Añadir estado para la paginación
   const [currentPage, setCurrentPage] = useState(1);
   const presentationsPerPage = 2;
 
   const presentations: Presentation[] = [
+       {
+      title: "Del requisito al exito",
+      date: "2025-06-27",
+      description: `Silvina Lucero nos compartió cómo transformar requisitos en software de calidad. Explicó qué hace un QA funcional con los requisitos y cómo detectarlos, validarlos y alinearlos con los objetivos del negocio desde el inicio del ciclo.`,
+      fileUrl: "/MaterialesEventos/SilvinaLuceroMQA.pdf",
+    },
+        {
+      title: "Accesibilidad en el Ciclo de QA: Estrategias y Herramientas",
+      date: "2025-06-27",
+      description: `Ana Lucía Silva presentó el modelo VISTA QA, una metodología para integrar la accesibilidad en todo el ciclo de calidad. Compartió herramientas, métricas y buenas prácticas para asegurar software inclusivo desde los requisitos hasta las pruebas.`,
+
+      fileUrl: "/MaterialesEventos/AnaLuciaSilvaMQA.pdf",
+    },
     {
       title: "DataConnect: De la Comunicación a Data Analytics - Le Wagon",
       date: "2025-05-31",

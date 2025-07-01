@@ -197,29 +197,31 @@ const Recursos: React.FC = () => {
         </div>
       </div>
       <div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>Flexbox: El poder de crear layouts flexibles</h3>
-      <p className="intro-text">
-        Aprende cómo Flexbox facilita la creación de diseños web flexibles y responsivos con propiedades clave y ejemplos prácticos.
-      </p>
-    </div>
-    <Link
-      to="/recursos/css/flexbox"
-      className="secondary-button"
-      aria-label="Leer más sobre Flexbox: El poder de crear layouts flexibles"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
-<div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Flexbox: El poder de crear layouts flexibles</h3>
+            <p className="intro-text">
+              Aprende cómo Flexbox facilita la creación de diseños web flexibles
+              y responsivos con propiedades clave y ejemplos prácticos.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/flexbox"
+            className="secondary-button"
+            aria-label="Leer más sobre Flexbox: El poder de crear layouts flexibles"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+      <div className="recurso-item bg1">
         <div className="noticia-content">
           <div>
             <h3>Réplica de Nike Store: E-commerce con React</h3>
             <p className="intro-text">
-            Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, 
-              incluyendo carrito de compras, localStorage y formularios avanzados.
+              Almudena Rendón Fernández te muestra cómo crear una réplica
+              profesional de Nike Store con React, incluyendo carrito de
+              compras, localStorage y formularios avanzados.
             </p>
           </div>
           <Link
@@ -233,58 +235,79 @@ const Recursos: React.FC = () => {
       </div>
 
       <div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>CSS Grid: Domina el sistema de cuadrículas en tu página web</h3>
-      <p className="intro-text">
-        Aprende cómo usar CSS Grid para crear layouts modernos, flexibles y precisos en tus proyectos web.
-      </p>
-    </div>
-    <Link
-      to="/recursos/css/css-grid"
-      className="secondary-button"
-      aria-label="Leer más sobre CSS Grid: Domina el sistema de cuadrículas en tu página web"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
-<div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>Estrategias avanzadas: Combinando Grid y Flexbox en CSS</h3>
-      <p className="intro-text">
-        Domina el arte de crear layouts modernos combinando CSS Grid y Flexbox con ejemplos prácticos y estrategias clave.
-      </p>
-    </div>
-    <Link
-      to="/recursos/css/css-grid-flexbox"
-      className="secondary-button"
-      aria-label="Leer más sobre estrategias avanzadas combinando Grid y Flexbox"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
-<div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>Transiciones y Transformaciones CSS en 2D y 3D</h3>
-      <p className="intro-text">
-        Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones en 2D y 3D. Ideal para proyectos modernos y dinámicos.
-      </p>
-    </div>
-    <Link
-      to="/recursos/css/transiciones-transformaciones"
-      className="secondary-button"
-      aria-label="Leer más sobre Transiciones y Transformaciones CSS en 2D y 3D"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
-
-
+        <div className="noticia-content">
+          <div>
+            <h3>CSS Grid: Domina el sistema de cuadrículas en tu página web</h3>
+            <p className="intro-text">
+              Aprende cómo usar CSS Grid para crear layouts modernos, flexibles
+              y precisos en tus proyectos web.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/css-grid"
+            className="secondary-button"
+            aria-label="Leer más sobre CSS Grid: Domina el sistema de cuadrículas en tu página web"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Estrategias avanzadas: Combinando Grid y Flexbox en CSS</h3>
+            <p className="intro-text">
+              Domina el arte de crear layouts modernos combinando CSS Grid y
+              Flexbox con ejemplos prácticos y estrategias clave.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/css-grid-flexbox"
+            className="secondary-button"
+            aria-label="Leer más sobre estrategias avanzadas combinando Grid y Flexbox"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Transiciones y Transformaciones CSS en 2D y 3D</h3>
+            <p className="intro-text">
+              Aprende a crear efectos visuales impactantes combinando
+              transiciones CSS con transformaciones en 2D y 3D. Ideal para
+              proyectos modernos y dinámicos.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/transiciones-transformaciones"
+            className="secondary-button"
+            aria-label="Leer más sobre Transiciones y Transformaciones CSS en 2D y 3D"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
+       <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Domina las Animaciones CSS: De Básico a Avanzado</h3>
+            <p className="intro-text">
+              Aprende animaciones CSS desde keyframes básicos hasta técnicas avanzadas. 
+              Incluye performance, accesibilidad y ejemplos reales con el proyecto 
+              "Breathe" de mindfulness.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/animaciones-css"
+            className="secondary-button"
+            aria-label="Leer más sobre Domina las Animaciones CSS: De Básico a Avanzado"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

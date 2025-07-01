@@ -12,19 +12,29 @@ const CustomCarousel = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const images: CarouselImage[] = [
-   
-      {
+    {
+      src: "/assets/Eventos2025/evento-mesQA-AnaLuciaSilva-SilvinaLucero-femcodersClub.png",
+      text: "Participación de Ana Lucía Silva y Silvina Lucero en el Mes del QA. Hablamos sobre accesibilidad en el ciclo de QA y cómo convertir requisitos en éxito.",
+    },
+
+    {
+      src: "/NadiaSoledadCavalleri-entrevista-femCodersClub.png",
+      text: "Entrevista con Nadia Soledad Cavalleri, experta en QA y ponente internacional. Un espacio online para aprender, inspirarse y preguntar en directo.",
+    },
+
+    {
       src: "/DataConnect-evento-femCodersClub-ponentes.png",
       text: "En el evento Data Connect: Inspire ideas. Learn from experts. Grow together!, exploramos el poder de los datos con la colaboración de InfoJobs. Glovo y LeWagon.",
     },
-     {
+    {
       src: "/ponentesEventoInfoJobs.jpg",
       text: "Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.",
     },
-      {
-      src: "/assets/Eventos2025/ponentesFemCodersClub.jpg",
-      text: "En el evento 'Iníciate en programación con FemCoders Club', organizado con Fundación Asti, Ana Lucía Silva Córdoba nos mostró las posibilidades de la Realidad Aumentada y Virtual con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen, Three.js, HTML, CSS y JavaScript. ",
+    {
+      src: "/assets/Eventos2025/AnaLuciaSilva-IrinaIchim-femCodersClub.png",
+      text: "En el evento 'Iníciate en programación', Ana Lucía Silva mostró proyectos en Realidad Aumentada con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen y Three.js.",
     },
+
     {
       src: "/aurearodríguez.jpg",
       text: "Àurea Rodríguez, fuente de inspiración para la comunidad FemCoders Club.",
