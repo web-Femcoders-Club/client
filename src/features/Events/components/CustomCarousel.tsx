@@ -13,7 +13,7 @@ const CustomCarousel = () => {
 
   const images: CarouselImage[] = [
     {
-      src: "/assets/Eventos2025/evento-mesQA-AnaLuciaSilva-SilvinaLucero-femcodersClub.png",
+      src: "/evento-mesQA-AnaLuciaSilva-SilvinaLucero-femcodersClub.png",
       text: "Participación de Ana Lucía Silva y Silvina Lucero en el Mes del QA. Hablamos sobre accesibilidad en el ciclo de QA y cómo convertir requisitos en éxito.",
     },
 
