@@ -12,30 +12,36 @@ const CSSSelectors: React.FC = () => {
 
   return (
     <div className="blog-post">
-      <Helmet>
-        <title>Domina los Selectores en CSS | femCoders Club</title>
-        <meta
-          name="description"
-          content="Guía completa para dominar los selectores CSS. Aprende selectores básicos, avanzados, combinados, y cómo utilizarlos con preprocesadores como Sass y Less."
-        />
-        <meta
-          name="keywords"
-          content="selectores básicos CSS, selectores avanzados CSS, selectores combinados CSS, modo oscuro CSS, pseudoclases CSS, pseudoelementos CSS, preprocesadores CSS, Sass, Less, selectores estructurales CSS, selectores de interfaz de usuario CSS, desarrollo web, diseño web"
-        />
-        <meta
-          property="og:title"
-          content="Domina los Selectores en CSS | femCoders Club"
-        />
-        <meta
-          property="og:description"
-          content="Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos."
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={currentUrl} />
-        <meta property="og:image" content="/assets/css/SelectoresCss.jpg" />
-        <meta property="og:site_name" content="femCoders Club" />
-        <meta property="og:locale" content="es_ES" />
-      </Helmet>
+   <Helmet>
+  <title>Domina los Selectores en CSS | femCoders Club</title>
+  <meta
+    name="description"
+    content="Guía completa para dominar los selectores CSS. Aprende selectores básicos, avanzados, combinados, y cómo utilizarlos con preprocesadores como Sass y Less."
+  />
+  <meta
+    name="keywords"
+    content="selectores básicos CSS, selectores avanzados CSS, selectores combinados CSS, modo oscuro CSS, pseudoclases CSS, pseudoelementos CSS, preprocesadores CSS, Sass, Less, selectores estructurales CSS, selectores de interfaz de usuario CSS, desarrollo web, diseño web"
+  />
+  <meta name="author" content="Irina Ichim" />
+
+  {/* Open Graph */}
+  <meta property="og:title" content="Domina los Selectores en CSS | femCoders Club" />
+  <meta property="og:description" content="Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={currentUrl} />
+  <meta property="og:image" content="/assets/css/SelectoresCss.jpg" />
+  <meta property="og:site_name" content="femCoders Club" />
+  <meta property="og:locale" content="es_ES" />
+
+  {/* Twitter Cards (añadido) */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Domina los Selectores en CSS | femCoders Club" />
+  <meta name="twitter:description" content="Explora todos los tipos de selectores CSS con ejemplos y práctica. Aprende a usarlos como una pro." />
+  <meta name="twitter:image" content="/assets/css/SelectoresCss.jpg" />
+
+  <link rel="canonical" href={currentUrl} />
+</Helmet>
+
 
       <div className="post-image-container">
         <img

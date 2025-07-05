@@ -222,6 +222,15 @@ const BlogPage: React.FC = () => {
     "Aprende animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Incluye performance, accesibilidad y ejemplos reales con el proyecto 'Breathe' de mindfulness.",
   createdAt: new Date("2025-07-01"),
 },
+{
+  id: 22,
+  type: "recurso",
+  category: "css",
+  title: "Responsive Design: De Principiante a Experta",
+  description:
+    "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first, breakpoints y container queries con ejemplos reales.",
+  createdAt: new Date("2025-07-04"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -288,6 +297,8 @@ const BlogPage: React.FC = () => {
         return `/noticias/EntrevistaNadiaTesting`;
 case "Domina las Animaciones CSS: De Básico a Avanzado":
   return `/recursos/css/animaciones-css`;
+  case "Responsive Design: De Principiante a Experta":
+  return `/recursos/css/responsive-design`;
       default:
         return `/`;
     }

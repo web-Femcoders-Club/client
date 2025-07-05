@@ -6,7 +6,18 @@ const SponsorsARExperience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sponsorEvents = [
-        {
+    {
+      date: "2025-07-05",
+      sponsor: "SheHub",
+      event: "Alianza con SheHub: Impulsando el talento femenino en tecnología",
+      description:
+        "SheHub es una plataforma de crecimiento profesional donde las mujeres obtienen experiencia laboral real trabajando en equipos tecnológicos lean y colaborativos guiados por mentoras. Las colaboradoras no solo practican — entregan resultados. A lo largo del camino, también fortalecen la confianza, la comunicación y las habilidades de resolución de problemas que importan en roles reales.",
+      logo: "/logo-shehub.png",
+      website: "https://shehub.es/",
+      backgroundImage: "/comunidad-SheHub.png",
+    },
+
+    {
       date: "2025-05-28",
       sponsor: "InfoJobs, Glovo & LeWagon",
       event: "DataConnect: Inspire ideas. Learn from experts. Grow together!",
@@ -16,7 +27,7 @@ const SponsorsARExperience = () => {
       website: "https://www.infojobs.net/",
       backgroundImage: "/evento-femCodersClub-InfoJobs-leWagon-Glovo.jpg",
     },
-        {
+    {
       date: "2025-03-13",
       sponsor: "InfoJobs",
       event: "El sector tecnológico necesita de más mujeres",
@@ -148,7 +159,6 @@ const SponsorsARExperience = () => {
       website: "https://code.seat/",
       backgroundImage: "assets/UltimosEventos2024/oficinaSeatCode.jpg",
     },
-
   ];
 
   const handlePrev = () => {
@@ -187,17 +197,19 @@ const SponsorsARExperience = () => {
     <div
       className="max-w-4xl mx-auto p-4"
       style={{
-        backgroundImage: `url(${getOptimizedBackground(
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${getOptimizedBackground(
           activeEvent.backgroundImage
         )})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundBlendMode: "overlay",
         borderRadius: "0.5rem",
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+        color: "#fff",
       }}
     >
       <div className="relative">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gray-200">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gray-200 ">
           <div
             className="h-full"
             style={{
@@ -208,7 +220,7 @@ const SponsorsARExperience = () => {
           ></div>
         </div>
 
-        <div className="mt-8 bg-white bg-opacity-75 rounded-lg shadow-lg p-6">
+        <div className="mt-8 bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <button onClick={handlePrev} aria-label="Evento anterior">
               <ChevronLeft />

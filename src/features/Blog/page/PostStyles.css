@@ -277,9 +277,9 @@ body {
   width: 100%;
   border-radius: 10px;
   height: 450px;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 .custom-video {
   margin-top: 4rem;
@@ -891,7 +891,7 @@ line-height: 1.4;
   }
   .framework-comparison-table {
     font-size: 0.9rem;
-    min-width: 300px; /* fuerza scroll horizontal si es necesario */
+    min-width: 300px; 
   }
  
 }

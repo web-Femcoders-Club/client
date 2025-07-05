@@ -109,7 +109,9 @@ const EntrevistaNadiaTesting = lazy(
 const AnimacionesCSS = lazy(
   () => import("../features/Blog/posts/recursos/css/AnimacionesCSS")
 );
-
+const ResponsiveDesign = lazy(
+  () => import("../features/Blog/posts/recursos/css/ResponsiveDesign")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -475,6 +477,16 @@ const RouterComponent: React.FC = () => {
     <Layout>
       <Suspense fallback={<Loader />}>
         <AnimacionesCSS />
+      </Suspense>
+    </Layout>
+  }
+/>
+<Route
+  path="/recursos/css/responsive-design"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <ResponsiveDesign />
       </Suspense>
     </Layout>
   }

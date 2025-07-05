@@ -308,6 +308,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+         <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Responsive Design: De Principiante a Experta</h3>
+            <p className="intro-text">
+              Domina el responsive design desde conceptos básicos hasta técnicas 
+              avanzadas. Comparación desktop-first vs mobile-first, breakpoints, 
+              container queries y tipografía fluida con ejemplos del proyecto ResponsiveShowcase.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/responsive-design"
+            className="secondary-button"
+            aria-label="Leer más sobre Responsive Design: De Principiante a Experta"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

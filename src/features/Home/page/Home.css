@@ -3,7 +3,7 @@
   position: relative;
   overflow: hidden;
 }
-.heroe-fem {
+/* .heroe-fem {
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
   font-size: 3.5rem;
@@ -12,7 +12,7 @@
                2px 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: flex-start;
-}
+} */
 
 
 .content-container {

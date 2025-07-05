@@ -12,17 +12,35 @@ const IntroduccionCSS: React.FC = () => {
 
   return (
     <div className="blog-post">
-      <Helmet>
-        <title>¿Qué es CSS y por qué es esencial para el diseño web?</title>
-        <meta
-          name="description"
-          content="Descubre qué es CSS, su importancia en el diseño web y cómo utilizarlo para estilizar tus páginas."
-        />
-        <meta
-          name="keywords"
-          content="CSS, diseño web, estilos, separación de contenido, tutorial CSS"
-        />
-      </Helmet>
+     <Helmet>
+  <title>¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club</title>
+  <meta
+    name="description"
+    content="Descubre qué es CSS, cómo funciona y por qué es esencial en el diseño web. Aprende a aplicarlo con ejemplos prácticos, selectores y enlaces a proyectos reales."
+  />
+  <meta
+    name="keywords"
+    content="CSS, introducción a CSS, qué es CSS, estilos web, diseño web, HTML y CSS, tutorial CSS básico, femCoders Club"
+  />
+  <meta name="author" content="Irina Ichim" />
+
+  {/* Open Graph (para redes sociales) */}
+  <meta property="og:title" content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club" />
+  <meta property="og:description" content="Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar." />
+  <meta property="og:image" content="/assets/css/IntroduccionCss.png" />
+  <meta property="og:url" content={currentUrl} />
+  <meta property="og:type" content="article" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="¿Qué es CSS y cómo usarlo para diseñar páginas web?" />
+  <meta name="twitter:description" content="Guía básica de CSS con ejemplos, selectores y buenas prácticas. Aprende con femCoders Club y mejora tus habilidades en diseño web." />
+  <meta name="twitter:image" content="/assets/css/IntroduccionCss.png" />
+
+  {/* Canonical */}
+  <link rel="canonical" href={currentUrl} />
+</Helmet>
+
 
       <div className="post-image-container">
         <img
