@@ -1,10 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
-import "../../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import "../../../page/PostStyles.css";
 
 const IntroduccionCSS: React.FC = () => {
   const currentUrl = window.location.href;
@@ -12,35 +12,73 @@ const IntroduccionCSS: React.FC = () => {
 
   return (
     <div className="blog-post">
-     <Helmet>
-  <title>¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club</title>
-  <meta
-    name="description"
-    content="Descubre qué es CSS, cómo funciona y por qué es esencial en el diseño web. Aprende a aplicarlo con ejemplos prácticos, selectores y enlaces a proyectos reales."
-  />
-  <meta
-    name="keywords"
-    content="CSS, introducción a CSS, qué es CSS, estilos web, diseño web, HTML y CSS, tutorial CSS básico, femCoders Club"
-  />
-  <meta name="author" content="Irina Ichim" />
+      <Helmet>
+        <title>
+          ¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club
+        </title>
+        <meta
+          name="description"
+          content="Descubre qué es CSS, cómo funciona y por qué es esencial en el diseño web. Aprende a aplicarlo con ejemplos prácticos, selectores y enlaces a proyectos reales."
+        />
+        <meta
+          name="keywords"
+          content="CSS, introducción a CSS, qué es CSS, estilos web, diseño web, HTML y CSS, tutorial CSS básico, femCoders Club"
+        />
 
-  {/* Open Graph (para redes sociales) */}
-  <meta property="og:title" content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club" />
-  <meta property="og:description" content="Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar." />
-  <meta property="og:image" content="/assets/css/IntroduccionCss.png" />
-  <meta property="og:url" content={currentUrl} />
-  <meta property="og:type" content="article" />
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/css/introduccion-css"
+        />
 
-  {/* Twitter Card */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="¿Qué es CSS y cómo usarlo para diseñar páginas web?" />
-  <meta name="twitter:description" content="Guía básica de CSS con ejemplos, selectores y buenas prácticas. Aprende con femCoders Club y mejora tus habilidades en diseño web." />
-  <meta name="twitter:image" content="/assets/css/IntroduccionCss.png" />
+        {/* Directivas para motores de búsqueda */}
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
 
-  {/* Canonical */}
-  <link rel="canonical" href={currentUrl} />
-</Helmet>
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club"
+        />
+        <meta
+          property="og:description"
+          content="Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar."
+        />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/css/introduccion-css"
+        />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/assets/css/IntroduccionCss.png"
+        />
+        <meta property="og:site_name" content="femCoders Club" />
 
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="¿Qué es CSS y cómo usarlo para diseñar páginas web?" />
+        <meta name="twitter:description" content="Guía básica de CSS con ejemplos, selectores y buenas prácticas. Aprende con femCoders Club y mejora tus habilidades en diseño web." />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/assets/css/IntroduccionCss.png" />
+
+        {/* Metadatos de artículo */}
+        <meta property="article:published_time" content="2024-11-15T12:00:00Z" />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="CSS" />
+        <meta property="article:tag" content="Introducción" />
+        <meta property="article:tag" content="Diseño Web" />
+        <meta property="article:tag" content="Tutorial" />
+
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
+      </Helmet>
 
       <div className="post-image-container">
         <img

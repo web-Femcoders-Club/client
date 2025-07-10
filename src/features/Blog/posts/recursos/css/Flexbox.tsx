@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -20,11 +20,25 @@ const Flexbox: React.FC = () => {
           name="description"
           content="Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles."
         />
-
         <meta
           name="keywords"
-          content="Flexbox, CSS, diseño web, layouts flexibles, responsive design"
+          content="Flexbox, CSS, diseño web, layouts flexibles, responsive design, desarrollo web, femCoders Club"
         />
+
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/css/flexbox"
+        />
+
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
+
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
         <meta
           property="og:title"
           content="Flexbox: El poder de crear layouts flexibles | femCoders Club"
@@ -33,11 +47,37 @@ const Flexbox: React.FC = () => {
           property="og:description"
           content="Descubre cómo utilizar Flexbox en CSS para crear layouts flexibles y responsivos. Ejemplos prácticos y consejos para mejorar tu diseño web."
         />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={currentUrl} />
-        <meta property="og:image" content="/assets/css/flexbox.jpg" />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/css/flexbox"
+        />
+        <meta property="og:image" content="https://www.femcodersclub.com/assets/css/flexbox.jpg" />
         <meta property="og:site_name" content="femCoders Club" />
         <meta property="og:locale" content="es_ES" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Flexbox: El poder de crear layouts flexibles" />
+        <meta name="twitter:description" content="Aprende Flexbox en CSS para crear layouts flexibles y responsivos. Guía completa con ejemplos prácticos y proyectos interactivos." />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/assets/css/flexbox.jpg" />
+
+        {/* Metadatos de artículo */}
+        <meta
+          property="article:published_time"
+          content="2025-03-02T12:00:00Z"
+        />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="CSS" />
+        <meta property="article:tag" content="Flexbox" />
+        <meta property="article:tag" content="Layout" />
+        <meta property="article:tag" content="Responsive" />
+
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
+
+        {/* Schema.org structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -53,16 +93,16 @@ const Flexbox: React.FC = () => {
               name: "femCoders Club",
               logo: {
                 "@type": "ImageObject",
-                url: "https://femcodersclub.com/assets/logo.png",
+                url: "https://www.femcodersclub.com/assets/logo.png",
               },
             },
             datePublished: "2025-03-02",
             dateModified: "2025-03-02",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": currentUrl,
+              "@id": "https://www.femcodersclub.com/recursos/css/flexbox",
             },
-            image: "https://femcodersclub.com/assets/css/flexbox.jpg",
+            image: "https://www.femcodersclub.com/assets/css/flexbox.jpg",
             description:
               "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
             articleBody:

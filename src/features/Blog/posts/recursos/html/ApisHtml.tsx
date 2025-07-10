@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -24,6 +24,21 @@ const ApisHtml: React.FC = () => {
           name="keywords"
           content="HTML, APIs HTML, Geolocalización, Web Storage, Canvas, WebRTC, Video, Audio, WebSockets, Desarrollo Web, Programación, femCoders Club"
         />
+        
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/html/apis-html"
+        />
+        
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
+
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
         <meta
           property="og:title"
           content="Guía Completa: APIs en HTML para Proyectos Web - femCoders Club"
@@ -33,10 +48,16 @@ const ApisHtml: React.FC = () => {
           content="Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras."
         />
         <meta
-          property="og:image"
-          content="/assets/html/Elementos-HTML-Clave.png"
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/html/apis-html"
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/assets/html/ApisHtml.png"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -48,11 +69,23 @@ const ApisHtml: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="/assets/html/Elementos-HTML-Clave.png"
+          content="https://www.femcodersclub.com/assets/html/ApisHtml.png"
         />
-        <link rel="canonical" href={currentUrl} />
-<meta name="author" content="Irina Ichim" />
 
+        {/* Metadatos de artículo */}
+        <meta
+          property="article:published_time"
+          content="2023-11-09T12:00:00Z"
+        />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="HTML" />
+        <meta property="article:tag" content="APIs" />
+        <meta property="article:tag" content="JavaScript" />
+
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
       </Helmet>
 
       <div className="post-image-container">

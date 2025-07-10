@@ -1,10 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
-import "../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../components/CommentsSection";
+import "../../page/PostStyles.css";
 
 const DataConnectEvento: React.FC = () => {
   const currentUrl = window.location.href;
@@ -28,8 +28,14 @@ const DataConnectEvento: React.FC = () => {
         {/* Metadatos canónicos */}
         <link
           rel="canonical"
-          href="https://www.femcodersclub.com/blog/dataconnect-evento-barcelona-mayo-2025"
+          href="https://www.femcodersclub.com/noticias/DataConnectEvento"
         />
+
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="FemCoders Club" />
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
@@ -43,7 +49,7 @@ const DataConnectEvento: React.FC = () => {
         />
         <meta
           property="og:url"
-          content="https://www.femcodersclub.com/blog/dataconnect-evento-barcelona-mayo-2025"
+          content="https://www.femcodersclub.com/noticias/DataConnectEvento"
         />
         <meta
           property="og:image"
@@ -81,7 +87,6 @@ const DataConnectEvento: React.FC = () => {
 
         {/* Metadatos adicionales */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="index, follow" />
         <meta name="language" content="Spanish" />
       </Helmet>
 

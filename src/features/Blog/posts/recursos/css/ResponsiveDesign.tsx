@@ -1,10 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
-import "../../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import "../../../page/PostStyles.css";
 
 const ResponsiveDesign: React.FC = () => {
   const currentUrl = window.location.href;
@@ -30,6 +30,11 @@ const ResponsiveDesign: React.FC = () => {
           rel="canonical"
           href="https://www.femcodersclub.com/recursos/css/responsive-design"
         />
+        
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
@@ -80,7 +85,6 @@ const ResponsiveDesign: React.FC = () => {
 
         {/* Metadatos adicionales */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="index, follow" />
         <meta name="language" content="Spanish" />
       </Helmet>
 

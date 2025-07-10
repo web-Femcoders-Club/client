@@ -1,11 +1,11 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
-import "../../../page/PostStyles.css";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import SimpleGridCarousel from "../../../components/SimpleGridCarousel";
+import "../../../page/PostStyles.css";
 
 
 const CssGrid: React.FC = () => {
@@ -28,6 +28,12 @@ const CssGrid: React.FC = () => {
   {/* Metadatos canónicos */}
   <link rel="canonical" href="https://www.femcodersclub.com/recursos/css/css-grid" />
   
+  {/* Directivas para motores de búsqueda */}
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+  <meta name="author" content="Irina Ichim" />
+  
   {/* Open Graph para compartir en redes sociales */}
   <meta property="og:type" content="article" />
   <meta property="og:title" content="CSS Grid: Domina el sistema de cuadrículas en tu página web" />
@@ -43,16 +49,16 @@ const CssGrid: React.FC = () => {
   <meta name="twitter:image" content="https://www.femcodersclub.com/public-optimized/desktop/assets/css/CssGrid.webp" />
   
   {/* Metadatos de artículo */}
-  <meta property="article:published_time" content={new Date().toISOString()} />
+  <meta property="article:published_time" content="2025-01-15T12:00:00Z" />
   <meta property="article:author" content="Irina Ichim" />
   <meta property="article:section" content="Desarrollo Web" />
   <meta property="article:tag" content="CSS" />
   <meta property="article:tag" content="Grid" />
   <meta property="article:tag" content="Frontend" />
+  <meta property="article:tag" content="Layout" />
   
   {/* Metadatos adicionales */}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
   <meta name="language" content="Spanish" />
 </Helmet>
 

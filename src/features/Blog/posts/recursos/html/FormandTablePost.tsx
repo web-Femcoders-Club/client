@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -13,15 +13,60 @@ const FormandTablePost: React.FC = () => {
   return (
     <div className="blog-post">
       <Helmet>
-        <title>Formularios y Tablas en HTML</title>
+        <title>Formularios y Tablas en HTML | FemCoders Club</title>
         <meta
           name="description"
-          content="Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes."
+          content="Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos y mejores prácticas."
         />
         <meta
           name="keywords"
-          content="HTML, formularios, tablas, estructura HTML, tablas en HTML, formularios en HTML"
+          content="HTML, formularios, tablas, estructura HTML, tablas en HTML, formularios en HTML, desarrollo web, FemCoders Club"
         />
+
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/html/formularios-y-tablas"
+        />
+
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
+
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Formularios y Tablas en HTML | FemCoders Club" />
+        <meta property="og:description" content="Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos." />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/html/formularios-y-tablas"
+        />
+        <meta property="og:image" content="https://www.femcodersclub.com/assets/html/Formularios-Tablas-HTML.png" />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Formularios y Tablas en HTML | FemCoders Club" />
+        <meta name="twitter:description" content="Guía completa para crear formularios y tablas en HTML con ejemplos prácticos, mejores prácticas y casos de uso." />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/assets/html/Formularios-Tablas-HTML.png" />
+
+        {/* Metadatos de artículo */}
+        <meta
+          property="article:published_time"
+          content="2023-11-09T12:00:00Z"
+        />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="HTML" />
+        <meta property="article:tag" content="Formularios" />
+        <meta property="article:tag" content="Tablas" />
+        <meta property="article:tag" content="Estructura" />
+
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
       </Helmet>
       <div className="post-image-container">
         <img

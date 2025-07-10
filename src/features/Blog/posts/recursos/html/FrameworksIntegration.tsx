@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -22,6 +22,21 @@ const FrameworksIntegration: React.FC = () => {
           name="keywords"
           content="HTML, Frameworks, React, Angular, Vue.js, Svelte, Desarrollo Web, femCoders Club, Comparativa de Frameworks, Librerías, Programación Frontend"
         />
+
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/html/integracion-frameworks"
+        />
+
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
+
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
         <meta
           property="og:title"
           content="Integración de Frameworks y Librerías | femCoders Club"
@@ -30,13 +45,17 @@ const FrameworksIntegration: React.FC = () => {
           property="og:description"
           content="Explora cómo combinar HTML con frameworks modernos como React y Svelte para crear aplicaciones dinámicas y escalables."
         />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={currentUrl} />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/html/integracion-frameworks"
+        />
         <meta
           property="og:image"
-          content="/assets/html/Frameworks-Integracion.png"
+          content="https://www.femcodersclub.com/assets/html/Frameworks-Integracion.png"
         />
         <meta property="og:site_name" content="femCoders Club" />
+
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -48,10 +67,24 @@ const FrameworksIntegration: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="/assets/html/Frameworks-Integracion.png"
+          content="https://www.femcodersclub.com/assets/html/Frameworks-Integracion.png"
         />
-         <link rel="canonical" href={currentUrl} />
 
+        {/* Metadatos de artículo */}
+        <meta
+          property="article:published_time"
+          content="2023-11-14T12:00:00Z"
+        />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="HTML" />
+        <meta property="article:tag" content="Frameworks" />
+        <meta property="article:tag" content="React" />
+        <meta property="article:tag" content="Svelte" />
+
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
       </Helmet>
 
       <div className="post-image-container">

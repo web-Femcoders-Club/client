@@ -71,12 +71,12 @@
 // generateSitemap().catch(console.error);
 
 // src/utils/generate-sitemap.ts
-import { SitemapStream, EnumChangefreq, SitemapItemLoose } from 'sitemap';
-import { createWriteStream } from 'fs';
-import { Readable } from 'stream';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
 import fg from 'fast-glob';
+import { createWriteStream } from 'fs';
+import { dirname, resolve } from 'path';
+import { EnumChangefreq, SitemapItemLoose, SitemapStream } from 'sitemap';
+import { Readable } from 'stream';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -107,6 +107,39 @@ const staticRoutes: SitemapItemLoose[] = [
   { url: '/register', changefreq: EnumChangefreq.MONTHLY, priority: 0.5, lastmod: currentDate },
 ];
 
+// 🗺️ Mapeo explícito de archivos a rutas canónicas reales
+const fileToRouteMapping: Record<string, string> = {
+  // HTML Resources
+  '/recursos/html/IntroduccionHTML': '/recursos/html/introduccion-html',
+  '/recursos/html/ElementosHTMLClave': '/recursos/html/elementos-html-clave',
+  '/recursos/html/HTMLSemanticoYLayout': '/recursos/html/html-semantico',
+  '/recursos/html/FormandTablePost': '/recursos/html/formularios-y-tablas',
+  '/recursos/html/ApisHtml': '/recursos/html/apis-html',
+  '/recursos/html/HtmlAvanzado': '/recursos/html/html-seo-accesibilidad',
+  '/recursos/html/FrameworksIntegration': '/recursos/html/integracion-frameworks',
+  
+  // CSS Resources
+  '/recursos/css/IntroduccionCss': '/recursos/css/introduccion-css',
+  '/recursos/css/CSSSelectors': '/recursos/css/selectores-css',
+  '/recursos/css/BoxModels': '/recursos/css/box-model',
+  '/recursos/css/Flexbox': '/recursos/css/flexbox',
+  '/recursos/css/CssGrid': '/recursos/css/css-grid',
+  '/recursos/css/CssGridFlexbox': '/recursos/css/css-grid-flexbox',
+  '/recursos/css/AnimacionesCSS': '/recursos/css/animaciones-css', 
+  '/recursos/css/ResponsiveDesign': '/recursos/css/responsive-design',
+  '/recursos/css/TransicionesyTransformaciones': '/recursos/css/transiciones-transformaciones',
+  
+  // React Resources
+  '/recursos/react/ReplicaNike': '/recursos/react/nike-store-replica',
+  
+  // Noticias - MANTENER camelCase como en el router
+  '/recursos/noticias/Aniversario': '/noticias/Aniversario',
+  '/recursos/noticias/Bienvenido2025': '/noticias/Bienvenido2025',
+  '/recursos/noticias/DataConnectEvento': '/noticias/DataConnectEvento',
+  '/recursos/noticias/EntrevistaNadiaTesting': '/noticias/EntrevistaNadiaTesting',
+  '/recursos/noticias/FelicitacionNavidad': '/noticias/FelicitacionNavidad',
+};
+
 // 🧠 Generar rutas dinámicas desde carpetas de posts
 async function getDynamicRoutes(): Promise<SitemapItemLoose[]> {
   const baseDirs = ['src/features/Blog/posts/recursos', 'src/features/Blog/posts/noticias'];
@@ -120,7 +153,10 @@ async function getDynamicRoutes(): Promise<SitemapItemLoose[]> {
         .replace(/\/index\.tsx$/, '') // quitamos index.tsx si lo hay
         .replace(/\.tsx$/, ''); // quitamos extensión .tsx
 
-      return cleanPath;
+      // 🎯 Usar mapeo explícito para obtener la ruta canónica real
+      const canonicalRoute = fileToRouteMapping[cleanPath] || cleanPath;
+      
+      return canonicalRoute;
     })
     .filter(route => !excludedRoutes.includes(route)) // excluimos rutas protegidas
     .map(route => ({

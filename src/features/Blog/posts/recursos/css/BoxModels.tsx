@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -12,35 +12,63 @@ const BoxModels: React.FC = () => {
 
   return (
     <div className="blog-post">
-   <Helmet>
+      <Helmet>
+        <title>Box Model en CSS | Guía Completa para Frontend</title>
+        <meta
+          name="description"
+          content="Aprende todo sobre el Box Model en CSS con ejemplos, optimización y mejores prácticas. FemCoders Club te ayuda a mejorar tu diseño web y frontend."
+        />
+        <meta
+          name="keywords"
+          content="CSS, Box Model, diseño web, frontend, maquetación, desarrollo web, espacio en elementos, estilos en CSS, FemCoders Club, optimización CSS, femCoders Club"
+        />
 
-  <title>Box Model en CSS | Guía Completa para Frontend</title>
+        {/* Metadatos canónicos */}
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/recursos/css/box-model"
+        />
 
- 
-  <meta
-    name="description"
-    content="Aprende todo sobre el Box Model en CSS con ejemplos, optimización y mejores prácticas. FemCoders Club te ayuda a mejorar tu diseño web y frontend."
-  />
+        {/* Directivas para motores de búsqueda */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <meta name="author" content="Irina Ichim" />
 
- 
-  <meta
-    name="keywords"
-    content="CSS, Box Model, diseño web, frontend, maquetación, desarrollo web, espacio en elementos, estilos en CSS, FemCoders Club, optimización CSS, femCoders Club"
-  />
+        {/* Open Graph para compartir en redes sociales */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Box Model en CSS | Guía Completa con FemCoders Club" />
+        <meta property="og:description" content="Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club." />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/recursos/css/box-model"
+        />
+        <meta property="og:image" content="https://www.femcodersclub.com/assets/css/boxModel.jpg" />
+        <meta property="og:site_name" content="FemCoders Club" />
+        <meta property="og:locale" content="es_ES" />
 
- 
-  <meta property="og:title" content="Box Model en CSS | Guía Completa con FemCoders Club" />
-  <meta property="og:description" content="Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content={currentUrl} />
-  <meta property="og:image" content="/assets/css/boxModel.jpg" />
-  <meta property="og:site_name" content="FemCoders Club" />
-  <meta property="og:locale" content="es_ES" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Box Model en CSS | Guía Completa para Frontend" />
+        <meta name="twitter:description" content="Aprende Box Model en CSS con ejemplos prácticos, optimización y mejores prácticas para diseño web profesional." />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/assets/css/boxModel.jpg" />
 
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-</Helmet>
+        {/* Metadatos de artículo */}
+        <meta
+          property="article:published_time"
+          content="2025-02-16T12:00:00Z"
+        />
+        <meta property="article:author" content="Irina Ichim" />
+        <meta property="article:section" content="Desarrollo Web" />
+        <meta property="article:tag" content="CSS" />
+        <meta property="article:tag" content="Box Model" />
+        <meta property="article:tag" content="Frontend" />
+        <meta property="article:tag" content="Diseño Web" />
 
+        {/* Metadatos adicionales */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="Spanish" />
+      </Helmet>
 
       <div className="post-image-container">
         <img
@@ -898,7 +926,7 @@ html, body {
 
             <div className="bg-gray-100 p-4 border border-gray-300 rounded-lg shadow-md mt-4 flex flex-col space-y-4">
               <div className="bg-blue-200 p-4">📦 Elemento 1 con margin</div>
-              <div className="bg-green-200 p-4">
+              <div className="bg-green-200 p-4 mt-4 clear-both">
                 📦 Elemento 2 con padding (sin colapso)
               </div>
             </div>

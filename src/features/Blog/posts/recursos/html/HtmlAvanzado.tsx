@@ -1,7 +1,7 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { FaSlack, FaTiktok } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
@@ -24,11 +24,26 @@ const HtmlAvanzado: React.FC = () => {
     content="HTML avanzado, Accesibilidad Web, SEO técnico, Microdatos, RDFa, ARIA, Lazy Loading, Desarrollo Web, femCoders Club, Web Components, WebAssembly"
   />
 
-  {/* Open Graph para compartir en redes */}
+  {/* Metadatos canónicos */}
+  <link
+    rel="canonical"
+    href="https://www.femcodersclub.com/recursos/html/html-seo-accesibilidad"
+  />
+
+  {/* Directivas para motores de búsqueda */}
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+  <meta name="author" content="Irina Ichim" />
+
+  {/* Open Graph para compartir en redes sociales */}
   <meta property="og:type" content="article" />
   <meta property="og:title" content="HTML Avanzado para SEO y Accesibilidad | femCoders Club" />
   <meta property="og:description" content="Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más." />
-  <meta property="og:url" content={currentUrl} />
+  <meta
+    property="og:url"
+    content="https://www.femcodersclub.com/recursos/html/html-seo-accesibilidad"
+  />
   <meta property="og:image" content="https://www.femcodersclub.com/assets/html/Html-Accesibilidad-SEO.jpg" />
   <meta property="og:site_name" content="femCoders Club" />
 
@@ -38,8 +53,21 @@ const HtmlAvanzado: React.FC = () => {
   <meta name="twitter:description" content="Explora buenas prácticas de HTML para SEO y accesibilidad con ejemplos claros y modernos." />
   <meta name="twitter:image" content="https://www.femcodersclub.com/assets/html/Html-Accesibilidad-SEO.jpg" />
 
-  {/* Canonical para evitar duplicados */}
-  <link rel="canonical" href={currentUrl} />
+  {/* Metadatos de artículo */}
+  <meta
+    property="article:published_time"
+    content="2023-11-05T12:00:00Z"
+  />
+  <meta property="article:author" content="Irina Ichim" />
+  <meta property="article:section" content="Desarrollo Web" />
+  <meta property="article:tag" content="HTML" />
+  <meta property="article:tag" content="SEO" />
+  <meta property="article:tag" content="Accesibilidad" />
+  <meta property="article:tag" content="ARIA" />
+
+  {/* Metadatos adicionales */}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="language" content="Spanish" />
 </Helmet>
 
 
