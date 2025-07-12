@@ -112,6 +112,9 @@ const AnimacionesCSS = lazy(
 const ResponsiveDesign = lazy(
   () => import("../features/Blog/posts/recursos/css/ResponsiveDesign")
 );
+const AccesibilidadCSS = lazy(
+  () => import("../features/Blog/posts/recursos/css/AccesibilidadCSS")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -487,6 +490,16 @@ const RouterComponent: React.FC = () => {
     <Layout>
       <Suspense fallback={<Loader />}>
         <ResponsiveDesign />
+      </Suspense>
+    </Layout>
+  }
+/>
+<Route
+  path="/recursos/css/accesibilidad-css"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <AccesibilidadCSS />
       </Suspense>
     </Layout>
   }

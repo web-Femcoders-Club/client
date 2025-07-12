@@ -327,6 +327,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+ <div className="noticia-content">
+   <div>
+     <h3>Accesibilidad en CSS: Diseñando Experiencias Inclusivas</h3>
+     <p className="intro-text">
+       Aprende a crear CSS accesible con contrastes adecuados, tipografía inclusiva, 
+       navegación por teclado y respeto por las preferencias del usuario. Guía completa 
+       con ejemplos reales de sitios web y proyectos prácticos.
+     </p>
+   </div>
+   <Link
+     to="/recursos/css/accesibilidad-css"
+     className="secondary-button"
+     aria-label="Leer más sobre Accesibilidad en CSS: Diseñando Experiencias Inclusivas"
+   >
+     Leer más
+   </Link>
+ </div>
+</div>
     </div>
   );
 };

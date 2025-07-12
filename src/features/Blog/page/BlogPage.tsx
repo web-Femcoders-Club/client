@@ -231,6 +231,15 @@ const BlogPage: React.FC = () => {
     "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first, breakpoints y container queries con ejemplos reales.",
   createdAt: new Date("2025-07-04"),
 },
+{
+  id: 23,
+  type: "recurso",
+  category: "css",
+  title: "Accesibilidad en CSS: Diseñando Experiencias Inclusivas",
+  description:
+    "Aprende a crear CSS accesible con contrastes adecuados, tipografía inclusiva, navegación por teclado y respeto por las preferencias del usuario. Guía completa con ejemplos reales.",
+  createdAt: new Date("2025-07-12"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -299,6 +308,8 @@ case "Domina las Animaciones CSS: De Básico a Avanzado":
   return `/recursos/css/animaciones-css`;
   case "Responsive Design: De Principiante a Experta":
   return `/recursos/css/responsive-design`;
+  case "Accesibilidad en CSS: Diseñando Experiencias Inclusivas":
+  return `/recursos/css/accesibilidad-css`;
       default:
         return `/`;
     }

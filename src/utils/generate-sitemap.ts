@@ -132,12 +132,12 @@ const fileToRouteMapping: Record<string, string> = {
   // React Resources
   '/recursos/react/ReplicaNike': '/recursos/react/nike-store-replica',
   
-  // Noticias - MANTENER camelCase como en el router
-  '/recursos/noticias/Aniversario': '/noticias/Aniversario',
-  '/recursos/noticias/Bienvenido2025': '/noticias/Bienvenido2025',
-  '/recursos/noticias/DataConnectEvento': '/noticias/DataConnectEvento',
-  '/recursos/noticias/EntrevistaNadiaTesting': '/noticias/EntrevistaNadiaTesting',
-  '/recursos/noticias/FelicitacionNavidad': '/noticias/FelicitacionNavidad',
+  // Noticias - CORREGIR: quitar /recursos del mapeo
+  '/noticias/Aniversario': '/noticias/Aniversario',
+  '/noticias/Bienvenido2025': '/noticias/Bienvenido2025',
+  '/noticias/DataConnectEvento': '/noticias/DataConnectEvento',
+  '/noticias/EntrevistaNadiaTesting': '/noticias/EntrevistaNadiaTesting',
+  '/noticias/FelicitacionNavidad': '/noticias/FelicitacionNavidad',
 };
 
 // 🧠 Generar rutas dinámicas desde carpetas de posts
