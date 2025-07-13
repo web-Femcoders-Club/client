@@ -1,3 +1,4 @@
+/* TU CÓDIGO CSS ORIGINAL - SIN MODIFICAR */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -68,6 +69,7 @@
   width: 100%;
   max-width: 600px;
 }
+
 @media (max-width: 768px) {
   .contact-main {
     flex-direction: column;
@@ -94,5 +96,382 @@
 
   .contact-form-section {
     max-width: 100%;
+  }
+}
+
+/* NUEVAS CLASES AGREGADAS - SIN MODIFICAR LAS EXISTENTES */
+
+/* Sección de razones para contactar */
+.contact-reasons-wrapper {
+  background-color: #f7f4fa;
+  padding: 4rem 2rem;
+}
+
+.contact-reasons-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-reasons-title {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ea4f33;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 3rem;
+}
+
+.contact-reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-reason-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-reason-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(71, 55, 187, 0.3);
+}
+
+.contact-reason-icon {
+  font-size: 3rem;
+  color: #ea4f33;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-reason-item:hover .contact-reason-icon {
+  transform: scale(1.1);
+}
+
+.contact-reason-item h3 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  color: #4737bb;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.contact-reason-item p {
+  color: #2a2170;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Sección de Slack */
+.contact-slack-wrapper {
+  background: linear-gradient(135deg, #4737bb, #2a2170);
+  padding: 4rem 2rem;
+}
+
+.contact-slack-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.contact-slack-icon {
+  font-size: 4rem;
+  color: #ea4f33;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-slack-container:hover .contact-slack-icon {
+  transform: scale(1.1);
+}
+
+.contact-slack-container h3 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #ea4f33;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.contact-slack-container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.contact-slack-btn {
+  background-color: #ea4f33;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.contact-slack-btn:hover {
+  background-color: #821ad4;
+  color: #fdfdfd;
+  transform: scale(1.1);
+}
+
+/* Sección de email directo */
+.contact-email-wrapper {
+  background-color: white;
+  padding: 4rem 2rem;
+}
+
+.contact-email-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-email-container h3 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  color: #4737bb;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.contact-email-container p {
+  color: #2a2170;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+}
+
+.contact-email-direct {
+  color: #ea4f33;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.contact-email-direct:hover {
+  color: #4737bb;
+}
+
+/* Sección del formulario con contexto */
+.contact-form-wrapper {
+  background-color: #f7f4fa;
+  padding: 4rem 2rem;
+}
+
+.contact-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-form-container h3 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  color: #ea4f33;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form-container p {
+  color: #2a2170;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Banner final CTA */
+.contact-cta-wrapper {
+  background: linear-gradient(135deg, #2a2170, #4737bb);
+  padding: 4rem 2rem;
+}
+
+.contact-cta-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.contact-cta-container h2 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #ea4f33;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.contact-cta-container p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+}
+
+.contact-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-cta-btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.contact-cta-primary {
+  background-color: #ea4f33;
+  color: white;
+  border: none;
+}
+
+.contact-cta-primary:hover {
+  background-color: #821ad4;
+  color: #fdfdfd;
+  transform: scale(1.1);
+}
+
+.contact-cta-secondary {
+  background-color: #8937bb;
+  color: white;
+  border: none;
+}
+
+.contact-cta-secondary:hover {
+  background-color: #4737bb;
+  color: #ea4f33;
+  transform: scale(1.1);
+}
+
+/* Responsive para las nuevas secciones */
+@media (max-width: 768px) {
+  .contact-reasons-wrapper,
+  .contact-slack-wrapper,
+  .contact-email-wrapper,
+  .contact-form-wrapper,
+  .contact-cta-wrapper {
+    padding: 2rem 1rem;
+  }
+  
+  .contact-reasons-title {
+    font-size: 1.7rem;
+  }
+  
+  .contact-reasons-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-reason-item {
+    padding: 1.5rem;
+  }
+  
+  .contact-reason-item h3 {
+    font-size: 1.2rem;
+  }
+  
+  .contact-reason-item p {
+    font-size: 0.875rem;
+  }
+  
+  .contact-slack-icon {
+    font-size: 3rem;
+  }
+  
+  .contact-slack-container h3,
+  .contact-email-container h3 {
+    font-size: 1.2rem;
+  }
+  
+  .contact-form-container h3 {
+    font-size: 1.1rem;
+  }
+  
+  .contact-slack-container p,
+  .contact-email-container p,
+  .contact-form-container p {
+    font-size: 0.875rem;
+  }
+  
+  .contact-cta-container h2 {
+    font-size: 1.7rem;
+  }
+  
+  .contact-cta-container p {
+    font-size: 0.875rem;
+  }
+  
+  .contact-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-cta-btn,
+  .contact-slack-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-reasons-title {
+    font-size: 1.1rem;
+  }
+  
+  .contact-reason-item {
+    padding: 1rem;
+  }
+  
+  .contact-reason-icon {
+    font-size: 2.5rem;
+  }
+  
+  .contact-reason-item h3 {
+    font-size: 0.9rem;
+  }
+  
+  .contact-slack-icon {
+    font-size: 2.5rem;
+  }
+  
+  .contact-slack-container h3,
+  .contact-email-container h3,
+  .contact-form-container h3 {
+    font-size: 0.9rem;
+  }
+  
+  .contact-cta-container h2 {
+    font-size: 1.1rem;
   }
 }
