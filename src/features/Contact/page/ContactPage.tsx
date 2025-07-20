@@ -1,15 +1,15 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import {
-  BsSpotify,
+  BsGithub,
   BsInstagram,
   BsLinkedin,
+  BsSpotify,
   BsYoutube,
-  BsGithub,
 } from "react-icons/bs";
-import { FaSlack, FaRocket, FaUsers, FaLightbulb } from "react-icons/fa";
+import { FaLightbulb, FaRocket, FaSlack, FaUsers } from "react-icons/fa";
 import ContactForm from "../components/ContactForm";
 import "./ContactPage.css";
-import { Helmet } from "react-helmet";
 
 const ContactPage: React.FC = () => {
   const recipientEmail = "info@femcodersclub.com";
@@ -17,27 +17,27 @@ const ContactPage: React.FC = () => {
   return (
     <div className="contact-page">
       <Helmet>
-        <title>Contacto - FemCoders Club</title>
+        <title>Contacto - FemCoders Club | Únete a Nuestra Comunidad Tech</title>
         <meta
           name="description"
-          content="Ponte en contacto con nosotras en FemCoders Club. Participa, consulta o colabora con nuestra comunidad de mujeres apasionadas por la tecnología."
+          content="Conéctate con FemCoders Club. Únete a nuestra comunidad de mujeres en tecnología, participa en eventos, recibe mentoring o colabora en proyectos. ¡Tu voz importa!"
         />
         <meta
           name="keywords"
-          content="contacto, FemCoders Club, mujeres en tecnología, comunidad tecnológica, redes sociales, consulta, colaboración, empoderamiento femenino, desarrollo web"
+          content="contacto femcoders club, mujeres tecnología, comunidad tech, mentoring, eventos tecnología, colaboración, slack femcoders, networking mujeres"
         />
-        <link rel="canonical" href="https://femcodersclub.com/contacto" />
+        <link rel="canonical" href="https://www.femcodersclub.com/contacto" />
 
-        <meta property="og:title" content="Contacto - FemCoders Club" />
+        <meta property="og:title" content="Contacto - FemCoders Club | Únete a Nuestra Comunidad" />
         <meta
           property="og:description"
-          content="Ponte en contacto con FemCoders Club y colabora con nuestra comunidad de mujeres en tecnología."
+          content="Conecta con la mayor comunidad hispanohablante de mujeres en tecnología. Eventos, mentoring, networking y oportunidades de crecimiento profesional."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://femcodersclub.com/contacto" />
+        <meta property="og:url" content="https://www.femcodersclub.com/contacto" />
         <meta
           property="og:image"
-          content="/assets/femcoders-contact-thumbnail.jpg"
+          content="https://www.femcodersclub.com/assets/femcoders-contact-social.jpg"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
@@ -45,11 +45,11 @@ const ContactPage: React.FC = () => {
         <meta name="twitter:title" content="Contacto - FemCoders Club" />
         <meta
           name="twitter:description"
-          content="Consulta, participa o colabora con FemCoders Club, una comunidad para mujeres apasionadas por la tecnología."
+          content="Únete a la comunidad de mujeres tech más grande en español. Networking, mentoring y oportunidades de crecimiento."
         />
         <meta
           name="twitter:image"
-          content="/assets/femcoders-contact-thumbnail.jpg"
+          content="https://www.femcodersclub.com/assets/femcoders-contact-social.jpg"
         />
       </Helmet>
 
@@ -196,18 +196,6 @@ const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Sección del formulario con contexto */}
-      {/* <section className="contact-form-wrapper">
-        <div className="contact-form-container">
-          <h3>¿Tienes una propuesta?</h3>
-          <p>
-            ¿Tienes una propuesta de colaboración, quieres patrocinar un evento o 
-            simplemente quieres contarnos tu historia? Escríbenos:
-          </p>
-        </div>
-      </section> */}
-
-      {/* Banner final */}
       <section className="contact-cta-wrapper">
         <div className="contact-cta-container">
           <h2>¿Lista para dar el siguiente paso?</h2>

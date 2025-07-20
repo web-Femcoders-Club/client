@@ -241,29 +241,320 @@ body {
   margin-bottom: 1rem;
 }
 
+@keyframes move-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes move-border-fast {
+  to {
+    background-position: 400% 0;
+  }
+}
+
+@keyframes auto-pulse {
+  0%,
+  85%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  7% {
+    transform: scale(1.03) translateY(-1px);
+  }
+  15% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes auto-pulse-active {
+  0%,
+  85%,
+  100% {
+    transform: scale(1) translateY(-2px);
+  }
+  7% {
+    transform: scale(1.06) translateY(-3px);
+  }
+  15% {
+    transform: scale(1) translateY(-2px);
+  }
+}
+
+/* Keyframes para el movimiento CONSTANTE del gradiente */
+@keyframes move-border-constant {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
+}
+
+@keyframes move-border-fast {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
+}
+
+/* Animación de scale automático para cada botón - más natural */
+@keyframes auto-pulse {
+  0%, 85%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  7% {
+    transform: scale(1.03) translateY(-1px);
+  }
+  15% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Versión para botones activos - más natural */
+@keyframes auto-pulse-active {
+  0%, 85%, 100% {
+    transform: scale(1) translateY(-2px);
+  }
+  7% {
+    transform: scale(1.06) translateY(-3px);
+  }
+  15% {
+    transform: scale(1) translateY(-2px);
+  }
+}
+
 .category-buttons {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 2rem 0;
 }
 
 .category-buttons button {
-  padding: 0.5rem 1rem;
+  /* Estructura base del botón */
+  position: relative;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
-  background: #4737bb;
-  color: white;
+  border-radius: 25px;
+  background: white;
+  color: #4737bb;
   font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  /* Para crear el efecto de borde gradiente */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  
+  /* Animación automática de scale - timing más natural y fluido */
+  animation: auto-pulse 12s ease-in-out infinite;
+}
+
+/* Delays más suaves para crear efecto de onda natural */
+.category-buttons button:nth-child(1) {
+  animation-delay: 0s;
+}
+.category-buttons button:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.category-buttons button:nth-child(3) {
+  animation-delay: 1.6s;
+}
+.category-buttons button:nth-child(4) {
+  animation-delay: 2.4s;
+}
+.category-buttons button:nth-child(5) {
+  animation-delay: 3.2s;
+}
+.category-buttons button:nth-child(6) {
+  animation-delay: 4s;
+}
+
+/* Borde gradiente como pseudo-elemento - SIEMPRE en movimiento */
+.category-buttons button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(90deg, #4737bb, #ea4f33, #2a2170, #8937bb, #4737bb, #ea4f33);
+  background-size: 400% 100%;
+  border-radius: 27px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  z-index: -1;
+  
+  /* MOVIMIENTO CONSTANTE - nunca para */
+  animation: move-border-constant 6s linear infinite;
+}
+
+/* Estado hover - solo animación del gradiente */
+.category-buttons button:hover::before {
+  animation: move-border-fast 3s linear infinite;
 }
 
 .category-buttons button:hover {
-  background: #ea4f33;
-  transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(71, 55, 187, 0.25);
+  /* Mantenemos el background original - sin cambios */
 }
 
+/* Estado activo - botón seleccionado */
+.category-buttons button.active {
+  background: #4737bb;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(71, 55, 187, 0.4);
+  
+  /* Animación diferente para botones activos - timing más natural */
+  animation: auto-pulse-active 12s ease-in-out infinite;
+}
+
+/* Mantener los delays suaves para botones activos también */
+.category-buttons button.active:nth-child(1) {
+  animation-delay: 0s;
+}
+.category-buttons button.active:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.category-buttons button.active:nth-child(3) {
+  animation-delay: 1.6s;
+}
+.category-buttons button.active:nth-child(4) {
+  animation-delay: 2.4s;
+}
+.category-buttons button.active:nth-child(5) {
+  animation-delay: 3.2s;
+}
+.category-buttons button.active:nth-child(6) {
+  animation-delay: 4s;
+}
+
+.category-buttons button.active::before {
+  background: linear-gradient(90deg, #4737bb, #ea4f33, #2a2170, #8937bb, #4737bb, #ea4f33);
+  background-size: 400% 100%;
+  /* Movimiento más lento para botones activos */
+  animation: move-border-constant 8s linear infinite;
+}
+
+/* Estado activo + hover */
+.category-buttons button.active:hover {
+  background: #6d2c95;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(109, 44, 149, 0.4);
+}
+
+.category-buttons button.active:hover::before {
+  /* Hover en botón activo - más rápido aún */
+  animation: move-border-fast 1.5s linear infinite;
+}
+
+/* Styling para el contenido del botón */
+.category-buttons button .button-content {
+  position: relative;
+  z-index: 1;
+  font-family: "Asap Condensed", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Focus para accesibilidad */
+.category-buttons button:focus {
+  outline: 2px solid #4737bb;
+  outline-offset: 2px;
+}
+
+/* Estado pressed - pausa temporalmente la animación automática */
+.category-buttons button:active {
+  animation-play-state: paused;
+}
+
+/* Colores de texto por tecnología (mantenemos variedad en texto) */
+/* HTML */
+.category-buttons button:nth-child(1) {
+  color: #e34c26;
+}
+.category-buttons button:nth-child(1).active {
+  background: #e34c26;
+}
+
+/* JavaScript */
+.category-buttons button:nth-child(2) {
+  color: #d4ac0d;
+}
+.category-buttons button:nth-child(2).active {
+  background: #d4ac0d;
+}
+
+/* React */
+.category-buttons button:nth-child(3) {
+  color: #61dafb;
+}
+.category-buttons button:nth-child(3).active {
+  background: #61dafb;
+}
+
+/* CSS */
+.category-buttons button:nth-child(4) {
+  color: #1572b6;
+}
+.category-buttons button:nth-child(4).active {
+  background: #1572b6;
+}
+
+/* Python */
+.category-buttons button:nth-child(5) {
+  color: #3776ab;
+}
+.category-buttons button:nth-child(5).active {
+  background: #3776ab;
+}
+
+/* FemCoders Club */
+.category-buttons button:nth-child(6) {
+  color: #e91e63;
+}
+.category-buttons button:nth-child(6).active {
+  background: #e91e63;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .category-buttons {
+    gap: 0.5rem;
+  }
+  
+  .category-buttons button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-buttons button {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.9rem;
+  }
+}
 .blog-post {
   max-width: 1100px;
   margin: 0 auto;
@@ -535,8 +826,6 @@ body {
   color: #4737bb;
 }
 
-
-
 .creators-section {
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -544,7 +833,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 
 .creator-item {
   background: #f9f9f9;
@@ -554,8 +842,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   list-style-type: none;
-
-
 }
 
 .creator-item:hover {
@@ -678,8 +964,8 @@ body {
 .grid-carousel-caption h3 {
   margin: 0 0 5px 0;
   font-size: 1.5rem;
-color:#fdfdfd;
-line-height: 1.4;
+  color: #fdfdfd;
+  line-height: 1.4;
 }
 
 .grid-carousel-caption p {
@@ -754,8 +1040,7 @@ line-height: 1.4;
   max-width: 800px;
   height: 500px;
   border-radius: 10px;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -886,12 +1171,11 @@ line-height: 1.4;
   .grid-carousel-image {
     height: 300px;
   }
-  .video-post-blog{
-   height: 300px;
+  .video-post-blog {
+    height: 300px;
   }
   .framework-comparison-table {
     font-size: 0.9rem;
-    min-width: 300px; 
+    min-width: 300px;
   }
- 
 }

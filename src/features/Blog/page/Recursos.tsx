@@ -346,6 +346,25 @@ const Recursos: React.FC = () => {
    </Link>
  </div>
 </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>SASS: Lleva tu CSS al siguiente nivel</h3>
+            <p className="intro-text">
+              Domina SASS desde variables básicas hasta arquitectura 7-1 profesional. 
+              Tutorial completo con proyecto interactivo FemPalette, comparación con CSS 
+              Custom Properties y ejemplos reales para revolucionar tu flujo de trabajo.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/sass-next-level"
+            className="secondary-button"
+            aria-label="Leer más sobre SASS: Lleva tu CSS al siguiente nivel"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Buscar from "../components/Buscar";
-import "./PostStyles.css";
 import Noticias from "./Noticias";
+import "./PostStyles.css";
 import Recursos from "./Recursos";
 
 const BlogPage: React.FC = () => {
@@ -187,15 +187,15 @@ const BlogPage: React.FC = () => {
       createdAt: new Date("2025-04-27"),
     },
     {
-  id: 18,
-  type: "recurso",
-  category: "css",
-  title: "Transiciones y Transformaciones CSS en 2D y 3D",
-  description:
-    "Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones 2D y 3D. Ideal para interfaces modernas.",
-  createdAt: new Date("2025-05-24"),
-},
-{
+      id: 18,
+      type: "recurso",
+      category: "css",
+      title: "Transiciones y Transformaciones CSS en 2D y 3D",
+      description:
+        "Aprende a crear efectos visuales impactantes combinando transiciones CSS con transformaciones 2D y 3D. Ideal para interfaces modernas.",
+      createdAt: new Date("2025-05-24"),
+    },
+    {
       id: 19,
       type: "noticia",
       category: "femCoders",
@@ -204,7 +204,7 @@ const BlogPage: React.FC = () => {
         "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas.",
       createdAt: new Date("2025-06-02"),
     },
- {
+    {
       id: 20,
       type: "noticia",
       category: "femCoders",
@@ -214,32 +214,41 @@ const BlogPage: React.FC = () => {
       createdAt: new Date("2025-06-20"),
     },
     {
-  id: 21,
-  type: "recurso",
-  category: "css",
-  title: "Domina las Animaciones CSS: De Básico a Avanzado",
-  description:
-    "Aprende animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Incluye performance, accesibilidad y ejemplos reales con el proyecto 'Breathe' de mindfulness.",
-  createdAt: new Date("2025-07-01"),
-},
-{
-  id: 22,
-  type: "recurso",
-  category: "css",
-  title: "Responsive Design: De Principiante a Experta",
-  description:
-    "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first, breakpoints y container queries con ejemplos reales.",
-  createdAt: new Date("2025-07-04"),
-},
-{
-  id: 23,
-  type: "recurso",
-  category: "css",
-  title: "Accesibilidad en CSS: Diseñando Experiencias Inclusivas",
-  description:
-    "Aprende a crear CSS accesible con contrastes adecuados, tipografía inclusiva, navegación por teclado y respeto por las preferencias del usuario. Guía completa con ejemplos reales.",
-  createdAt: new Date("2025-07-12"),
-},
+      id: 21,
+      type: "recurso",
+      category: "css",
+      title: "Domina las Animaciones CSS: De Básico a Avanzado",
+      description:
+        "Aprende animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Incluye performance, accesibilidad y ejemplos reales con el proyecto 'Breathe' de mindfulness.",
+      createdAt: new Date("2025-07-01"),
+    },
+    {
+      id: 22,
+      type: "recurso",
+      category: "css",
+      title: "Responsive Design: De Principiante a Experta",
+      description:
+        "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first, breakpoints y container queries con ejemplos reales.",
+      createdAt: new Date("2025-07-04"),
+    },
+    {
+      id: 23,
+      type: "recurso",
+      category: "css",
+      title: "Accesibilidad en CSS: Diseñando Experiencias Inclusivas",
+      description:
+        "Aprende a crear CSS accesible con contrastes adecuados, tipografía inclusiva, navegación por teclado y respeto por las preferencias del usuario. Guía completa con ejemplos reales.",
+      createdAt: new Date("2025-07-12"),
+    },
+    {
+      id: 24,
+      type: "recurso",
+      category: "css",
+      title: "SASS: Lleva tu CSS al siguiente nivel",
+      description:
+        "Domina SASS desde variables básicas hasta arquitectura 7-1 profesional. Tutorial completo con proyecto interactivo FemPalette, comparación con CSS Custom Properties y ejemplos reales.",
+      createdAt: new Date("2025-07-20"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -298,18 +307,20 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/css-grid`;
       case "Estrategias avanzadas: Combinando Grid y Flexbox en CSS":
         return `/recursos/css/css-grid-flexbox`;
-        case "Transiciones y Transformaciones CSS en 2D y 3D":
-  return `/recursos/css/transiciones-transformaciones`;
-    case "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia":
+      case "Transiciones y Transformaciones CSS en 2D y 3D":
+        return `/recursos/css/transiciones-transformaciones`;
+      case "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia":
         return `/noticias/DataConnectEvento`;
- case "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"":
+      case "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"":
         return `/noticias/EntrevistaNadiaTesting`;
-case "Domina las Animaciones CSS: De Básico a Avanzado":
-  return `/recursos/css/animaciones-css`;
-  case "Responsive Design: De Principiante a Experta":
-  return `/recursos/css/responsive-design`;
-  case "Accesibilidad en CSS: Diseñando Experiencias Inclusivas":
-  return `/recursos/css/accesibilidad-css`;
+      case "Domina las Animaciones CSS: De Básico a Avanzado":
+        return `/recursos/css/animaciones-css`;
+      case "Responsive Design: De Principiante a Experta":
+        return `/recursos/css/responsive-design`;
+      case "Accesibilidad en CSS: Diseñando Experiencias Inclusivas":
+        return `/recursos/css/accesibilidad-css`;
+      case "SASS: Lleva tu CSS al siguiente nivel":
+        return `/recursos/css/sass-next-level`;
       default:
         return `/`;
     }
@@ -408,24 +419,26 @@ case "Domina las Animaciones CSS: De Básico a Avanzado":
       <section className="blog-content">
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
-          <div className="category-buttons">
-            {[
-              "html",
-              "javascript",
-              "react",
-              "css",
-              "python",
-              "femCoders Club",
-            ].map((category) => (
-              <button
-                key={category}
-                onClick={() => handleCategoryFilter(category)}
-                className="button secondary-button"
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
-          </div>
+         <div className="category-buttons">
+  {[
+    "html",
+    "javascript", 
+    "react",
+    "css",
+    "python",
+    "femCoders Club",
+  ].map((category) => (
+    <button
+      key={category}
+      onClick={() => handleCategoryFilter(category)}
+      className={categoryFilter === category ? "active" : ""}
+    >
+      <span className="button-content">
+        {category.charAt(0).toUpperCase() + category.slice(1)}
+      </span>
+    </button>
+  ))}
+</div>
         </div>
 
         {categoryFilter || searchQuery ? (

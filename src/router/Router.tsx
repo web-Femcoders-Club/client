@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import CookiePolicyModal from "../components/Footer/Modals/Cookies";
 import FaqModal from "../components/Footer/Modals/FaqModal";
 import PrivacyPolicyModal from "../components/Footer/Modals/Privacidad";
 import Layout from "../components/Layout/Layout";
+import Loader from "../components/Loader";
 import { ModalContext } from "../context/ModalContext";
-import useIdleTimer from "../hooks/useIdleTimer";
-import logPageView from "../utils/logPageView";
+import AboutPage from "../features/About/page/AboutPage";
+import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
 import EventsPage from "../features/Events/page/EventsPage";
-import Loader from "../components/Loader";
-import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
-import AboutPage from "../features/About/page/AboutPage";
+import useIdleTimer from "../hooks/useIdleTimer";
+import logPageView from "../utils/logPageView";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
@@ -115,6 +115,10 @@ const ResponsiveDesign = lazy(
 const AccesibilidadCSS = lazy(
   () => import("../features/Blog/posts/recursos/css/AccesibilidadCSS")
 );
+const SassNextLevel = lazy(
+  () => import("../features/Blog/posts/recursos/css/SassNextLevel")
+);
+
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -500,6 +504,16 @@ const RouterComponent: React.FC = () => {
     <Layout>
       <Suspense fallback={<Loader />}>
         <AccesibilidadCSS />
+      </Suspense>
+    </Layout>
+  }
+/>
+<Route
+  path="/recursos/css/sass-next-level"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <SassNextLevel />
       </Suspense>
     </Layout>
   }

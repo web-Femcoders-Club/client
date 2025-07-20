@@ -1,13 +1,13 @@
-import { useState, useEffect, FormEvent, useRef } from "react";
-import { Link } from "react-router-dom";
-import ConfirmationModal from "../../Contact/components/ConfirmationModal";
-import { Helmet } from "react-helmet";
-import "./Home.css";
-import CarouselWithText from "../components/CarouselWithText";
-import { getUpcomingEvents } from "../../../api/eventsApi";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
+import { getUpcomingEvents } from "../../../api/eventsApi";
+import ConfirmationModal from "../../Contact/components/ConfirmationModal";
+import CarouselWithText from "../components/CarouselWithText";
+import "./Home.css";
 
 interface Event {
   start: {

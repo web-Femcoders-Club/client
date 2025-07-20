@@ -24,20 +24,108 @@
 .logo-link {
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+@keyframes logo-breathe {
+  0% { 
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) opacity(1) saturate(1) hue-rotate(0deg);
+  }
+  15% { 
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
+    transform: scale(1.015) rotate(-0.5deg);
+    filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(-2deg);
+  }
+  30% { 
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
+    transform: scale(1.015) rotate(0.5deg);
+    filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(2deg);
+  }
+  
+  45% { 
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
+    transform: scale(1.025) rotate(1deg);
+    filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(4deg);
+  }
+  
+  50% { 
+    box-shadow: 
+      0 6px 15px rgba(255, 255, 255, 0.52), 
+      0 12px 25px rgba(234, 79, 51, 0.15),
+      0 0 15px rgba(234, 79, 51, 0.2);
+    transform: scale(1.03) rotate(1.2deg);
+    filter: brightness(1.06) opacity(0.88) saturate(1.1) hue-rotate(5deg);
+  }
+  
+
+  55% { 
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
+    transform: scale(1.025) rotate(0.8deg);
+    filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(3deg);
+  }
+  
+  /* Exhalación más rápida */
+  75% { 
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
+    transform: scale(1.015) rotate(0.3deg);
+    filter: brightness(1.02) opacity(0.95) saturate(1.03) hue-rotate(1deg);
+  }
+  
+  /* Pausa natural al final */
+  85% { 
+    box-shadow: 0 4px 11px rgba(255, 255, 255, 0.42), 0 9px 16px rgba(0, 0, 0, 0.18);
+    transform: scale(1.005) rotate(0.1deg);
+    filter: brightness(1.01) opacity(0.98) saturate(1.01) hue-rotate(0.5deg);
+  }
+  
+  100% { 
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) opacity(1) saturate(1) hue-rotate(0deg);
+  }
+}
+
+/* Animación de pulso mejorada para hover */
+@keyframes border-pulse {
+  0%, 100% { 
+    filter: brightness(1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4)) saturate(1.2);
+    transform: scale(1.1) rotate(-1deg);
+  }
+  50% { 
+    filter: brightness(1.15) drop-shadow(0 0 15px rgba(234, 79, 51, 0.7)) saturate(1.4);
+    transform: scale(1.12) rotate(1deg);
+  }
 }
 
 .logo {
   width: 70px;
   height: auto;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), filter 0.3s ease;
   border-radius: 10%;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
   border-radius: 15%;
+  cursor: pointer;
+  animation: logo-breathe 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* Al hacer hover, efecto más dramático */
 .logo:hover {
-  transform: scale(1.05);
-  border-radius: 15%;
+  animation: border-pulse 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* Versión más sutil para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+  }
+  
+  .logo:hover {
+    animation: none;
+    transform: scale(1.05);
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4));
+  }
 }
 
 .menu-toggle {
@@ -270,8 +358,10 @@
 
   .logo {
     width: 50px;
+    /* En móvil, 4 segundos - más rápido que antes */
+    animation: logo-breathe 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
-
+  
   .nav-links.open {
     max-height: 200px;
   }
