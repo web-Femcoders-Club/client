@@ -341,7 +341,6 @@ body {
 }
 
 .category-buttons button {
-  /* Estructura base del botón */
   position: relative;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -353,16 +352,11 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-  /* Para crear el efecto de borde gradiente */
   border: 2px solid transparent;
   background-clip: padding-box;
-  
-  /* Animación automática de scale - timing más natural y fluido */
   animation: auto-pulse 12s ease-in-out infinite;
 }
 
-/* Delays más suaves para crear efecto de onda natural */
 .category-buttons button:nth-child(1) {
   animation-delay: 0s;
 }
@@ -382,7 +376,7 @@ body {
   animation-delay: 4s;
 }
 
-/* Borde gradiente como pseudo-elemento - SIEMPRE en movimiento */
+
 .category-buttons button::before {
   content: '';
   position: absolute;
@@ -482,54 +476,24 @@ body {
   animation-play-state: paused;
 }
 
-/* Colores de texto por tecnología (mantenemos variedad en texto) */
-/* HTML */
-.category-buttons button:nth-child(1) {
-  color: #e34c26;
-}
-.category-buttons button:nth-child(1).active {
-  background: #e34c26;
-}
-
-/* JavaScript */
-.category-buttons button:nth-child(2) {
-  color: #d4ac0d;
-}
-.category-buttons button:nth-child(2).active {
-  background: #d4ac0d;
-}
-
-/* React */
-.category-buttons button:nth-child(3) {
-  color: #61dafb;
-}
-.category-buttons button:nth-child(3).active {
-  background: #61dafb;
-}
-
-/* CSS */
-.category-buttons button:nth-child(4) {
-  color: #1572b6;
-}
-.category-buttons button:nth-child(4).active {
-  background: #1572b6;
-}
-
-/* Python */
-.category-buttons button:nth-child(5) {
-  color: #3776ab;
-}
-.category-buttons button:nth-child(5).active {
-  background: #3776ab;
-}
-
-/* FemCoders Club */
+.category-buttons button:nth-child(1),
+.category-buttons button:nth-child(2),
+.category-buttons button:nth-child(3),
+.category-buttons button:nth-child(4),
+.category-buttons button:nth-child(5),
 .category-buttons button:nth-child(6) {
-  color: #e91e63;
+  color: #8937bb;
 }
+
+.category-buttons button:nth-child(1).active,
+.category-buttons button:nth-child(2).active,
+.category-buttons button:nth-child(3).active,
+.category-buttons button:nth-child(4).active,
+.category-buttons button:nth-child(5).active,
 .category-buttons button:nth-child(6).active {
-  background: #e91e63;
+  background: transparent;
 }
+
 
 /* Responsivo */
 @media (max-width: 768px) {

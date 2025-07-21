@@ -13,7 +13,8 @@
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "start": "npm run optimize && serve -s dist",
-    "generate-sitemap": "tsx src/utils/generate-sitemap.ts"
+    "generate-sitemap": "tsx src/utils/generate-sitemap.ts",
+    "indexnow": "node indexnow.mjs"
   },
   "reactSnap": {
   "inlineCss": true,
