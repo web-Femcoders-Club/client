@@ -12,7 +12,15 @@ const data = JSON.stringify({
     'https://www.femcodersclub.com/blog',
     'https://www.femcodersclub.com/contacto',
     'https://www.femcodersclub.com/femcoders-quienes-somos',
-    'https://www.femcodersclub.com/login'
+    'https://www.femcodersclub.com/login',
+    // 👇 Añade aquí los HTML estáticos
+    'https://www.femcodersclub.com/static-seo/index.html',
+    'https://www.femcodersclub.com/static-seo/eventos.html',
+    'https://www.femcodersclub.com/static-seo/equipo.html',
+    'https://www.femcodersclub.com/static-seo/blog.html',
+    'https://www.femcodersclub.com/static-seo/contacto.html',
+    'https://www.femcodersclub.com/static-seo/femcoders-quienes-somos.html',
+    'https://www.femcodersclub.com/static-seo/login.html'
   ]
 });
 
