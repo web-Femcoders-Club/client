@@ -3,40 +3,88 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+ "scripts": {
     "dev": "vite",
     "optimize": "tsx optimize-images.ts",
     "build": "npm run generate-sitemap && npm run optimize && tsc && vite build",
-    "build:seo": "npm run generate-sitemap && npm run optimize && tsc && vite build",
     "build:local-seo": "npm run generate-sitemap && npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "start": "npm run optimize && serve -s dist",
     "generate-sitemap": "tsx src/utils/generate-sitemap.ts",
-    "indexnow": "node indexnow.mjs"
+    "indexnow": "node indexnow.mjs",
+    "build:bing": "pnpm run build && pnpm run preview & sleep 5 && node generateStaticPages.js && pkill -f 'vite.*preview'",
+    "build:bing:windows": "pnpm run build && start /B pnpm run preview && timeout /t 5 && tsx generateStaticPages.ts && taskkill /F /IM node.exe /FI \"COMMANDLINE:*vite*preview*\"",
+    "generate:static": "tsx generateStaticPages.ts"
   },
   "reactSnap": {
-  "inlineCss": true,
-  "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
-  "minifyHtml": {
-    "collapseWhitespace": true
+    "include": [
+      "/recursos/html/apis-html",
+      "/recursos/html/elementos-html-clave",
+      "/recursos/html/formularios-y-tablas",
+      "/recursos/html/integracion-frameworks",
+      "/recursos/html/html-seo-accesibilidad",
+      "/recursos/html/html-semantico",
+      "/recursos/html/introduccion-html",
+      "/recursos/css/accesibilidad-css",
+      "/recursos/css/animaciones-css",
+      "/recursos/css/box-model",
+      "/recursos/css/css-grid",
+      "/recursos/css/css-grid-flexbox",
+      "/recursos/css/selectores-css",
+      "/recursos/css/flexbox",
+      "/recursos/css/introduccion-css",
+      "/recursos/css/responsive-design",
+      "/recursos/css/sass-next-level",
+      "/recursos/css/transiciones-transformaciones",
+      "/recursos/react/nike-store-replica",
+      "/noticias/Aniversario",
+      "/noticias/Bienvenido2025",
+      "/noticias/DataConnectEvento",
+      "/noticias/EntrevistaNadiaTesting",
+      "/noticias/FelicitacionNavidad"
+    ],
+    "crawl": false,
+    "waitFor": 500,
+    "removeBlobs": true,
+    "fixWebpackChunksIssue": false,
+    "skipThirdPartyRequests": true,
+    "concurrency": 1,
+    "timeout": 20000,
+    "source": "dist",
+    "destinationDir": "dist",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--no-first-run",
+      "--no-zygote",
+      "--disable-gpu",
+      "--disable-extensions",
+      "--disable-web-security",
+      "--disable-features=VizDisplayCompositor"
+    ],
+    "inlineCss": true,
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": false
+    },
+    "minifyCss": {
+      "level": 1
+    },
+    "ignoreForPrerender": [
+      "/404",
+      "/admin/*",
+      "/register/*"
+    ],
+    "removeStyleTags": false,
+    "asyncScriptTags": false,
+    "cacheAjaxRequests": false,
+    "preloadImages": false
   },
-  "source": "dist",
-  "timeout": 60000,
-  "skipThirdPartyRequests": true,
-  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  "crawl": true,
-  "removeBlobs": true,
-  "destinationDir": "dist",
-  "fixWebpackChunksIssue": false,
-  "removeStyleTags": false,
-  "concurrency": 4,
-  "ignoreForPrerender": ["/404"],
-  "minifyCss": {
-    "level": 1
-  }
-},
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
     "@tanstack/react-query": "^5.45.1",
@@ -80,6 +128,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "puppeteer": "^21.11.0",
     "tailwindcss": "^3.4.3",
     "tsx": "^4.19.3",
     "typescript": "^5.2.2",
