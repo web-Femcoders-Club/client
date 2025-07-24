@@ -1,9 +1,12 @@
-// generateStaticPages.js - Genera páginas estáticas BRUTALMENTE
+// generateStaticPages.js – Genera páginas estáticas optimizadas para SEO
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 
-// URLs más importantes para Bing
+const BASE_URL = 'https://localhost:4173'; // ⚠️ Ajusta este valor según el puerto que te dé Vite Preview
+const OUTPUT_DIR = './dist-static';
+
+// Rutas importantes a generar
 const importantUrls = [
   '/',
   '/femcoders-quienes-somos',
@@ -15,159 +18,109 @@ const importantUrls = [
   '/recursos'
 ];
 
-const baseUrl = 'http://localhost:5173'; // Puerto de Vite dev
-const outputDir = './dist-static';
-
 async function generateStaticPages() {
   console.log('🚀 INICIANDO GENERACIÓN BRUTAL DE PÁGINAS ESTÁTICAS...');
-  
-  // Crear directorio de salida
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+
+  // Esperar 5 segundos para asegurarse de que el servidor está activo
+  await new Promise(resolve => setTimeout(resolve, 5000));
+
+  // Crear carpeta de salida si no existe
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
+  // Lanzar Puppeteer con configuración para HTTPS
   const browser = await puppeteer.launch({
     headless: 'new',
+    ignoreHTTPSErrors: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
   const page = await browser.newPage();
-  
-  // Configurar viewport y user agent
+
+  // Configurar agente de usuario como Bingbot
   await page.setViewport({ width: 1200, height: 800 });
   await page.setUserAgent('Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)');
 
   for (const url of importantUrls) {
+    const fullUrl = `${BASE_URL}${url}`;
+    const fileName = url === '/' ? 'index.html' : `${url.replace(/^\//, '').replace(/\//g, '-')}.html`;
+    const filePath = path.join(OUTPUT_DIR, fileName);
+
     try {
       console.log(`📄 Generando: ${url}`);
-      
-      const fullUrl = `${baseUrl}${url}`;
-      await page.goto(fullUrl, { 
+
+      await page.goto(fullUrl, {
         waitUntil: 'networkidle0',
-        timeout: 30000 
+        timeout: 30000
       });
 
-      // Esperar un poco más para que todo se renderice
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(2000); // Espera adicional por seguridad
 
-      // Obtener el HTML completo renderizado
       const html = await page.content();
-
-      // Limpiar y mejorar el HTML para SEO
       const optimizedHtml = optimizeHtmlForSEO(html, url);
 
-      // Determinar nombre del archivo
-      const fileName = url === '/' ? 'index.html' : `${url.replace(/^\//, '').replace(/\//g, '-')}.html`;
-      const filePath = path.join(outputDir, fileName);
-
-      // Guardar archivo
       fs.writeFileSync(filePath, optimizedHtml, 'utf8');
       console.log(`✅ Guardado: ${fileName}`);
-
     } catch (error) {
-      console.error(`❌ Error generando ${url}:`, error.message);
-      // Continúa con la siguiente página incluso si hay errores
+      console.error(`❌ Error generando ${url}: ${error.message}`);
     }
   }
 
   await browser.close();
+
   console.log('🎉 ¡GENERACIÓN COMPLETADA! Bing va a estar FELIZ 🎉');
-  console.log(`📁 Archivos guardados en: ${outputDir}`);
+  console.log(`📁 Archivos guardados en: ${OUTPUT_DIR}`);
 }
 
+// Inserta JSON-LD estructurado para SEO
 function optimizeHtmlForSEO(html, url) {
-  // Inyectar JSON-LD estructurado según la página
   const jsonLd = generateJsonLd(url);
-  
-  // Insertar JSON-LD antes del cierre de </head>
-  const optimizedHtml = html.replace(
+  return html.replace(
     '</head>',
     `  <script type="application/ld+json">${JSON.stringify(jsonLd, null, 2)}</script>\n</head>`
   );
-
-  return optimizedHtml;
 }
 
+// Define estructuras semánticas específicas por URL
 function generateJsonLd(url) {
+  const base = "https://www.femcodersclub.com";
+
   const baseJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "FemCoders Club",
-    "url": "https://www.femcodersclub.com",
+    "url": base,
     "description": "Comunidad de mujeres en tecnología. Talleres, eventos y recursos para impulsar la carrera profesional de las mujeres en el sector tech.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.femcodersclub.com/search?q={search_term_string}",
+      "target": `${base}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string"
     }
   };
 
-  // Navegación del sitio
-  const siteNavigation = {
+  const nav = {
     "@context": "https://schema.org",
     "@type": "SiteNavigationElement",
     "hasPart": [
-      {
-        "@type": "SiteNavigationElement",
-        "position": 1,
-        "name": "Inicio",
-        "description": "Página principal de FemCoders Club",
-        "url": "https://www.femcodersclub.com/"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 2,
-        "name": "Sobre Nosotras",
-        "description": "Conoce más sobre FemCoders Club y nuestra misión",
-        "url": "https://www.femcodersclub.com/femcoders-quienes-somos"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 3,
-        "name": "Equipo",
-        "description": "Conoce al equipo detrás de FemCoders Club",
-        "url": "https://www.femcodersclub.com/equipo"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 4,
-        "name": "Eventos",
-        "description": "Próximos eventos y talleres para mujeres en tecnología",
-        "url": "https://www.femcodersclub.com/eventos"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 5,
-        "name": "Contacto",
-        "description": "Ponte en contacto con FemCoders Club",
-        "url": "https://www.femcodersclub.com/contacto"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 6,
-        "name": "Blog",
-        "description": "Artículos, recursos y noticias sobre mujeres en tecnología",
-        "url": "https://www.femcodersclub.com/blog"
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 7,
-        "name": "Iniciar Sesión",
-        "description": "Accede a tu cuenta de FemCoders Club",
-        "url": "https://www.femcodersclub.com/login"
-      }
+      { "@type": "SiteNavigationElement", "position": 1, "name": "Inicio", "url": `${base}/` },
+      { "@type": "SiteNavigationElement", "position": 2, "name": "Sobre Nosotras", "url": `${base}/femcoders-quienes-somos` },
+      { "@type": "SiteNavigationElement", "position": 3, "name": "Equipo", "url": `${base}/equipo` },
+      { "@type": "SiteNavigationElement", "position": 4, "name": "Eventos", "url": `${base}/eventos` },
+      { "@type": "SiteNavigationElement", "position": 5, "name": "Contacto", "url": `${base}/contacto` },
+      { "@type": "SiteNavigationElement", "position": 6, "name": "Blog", "url": `${base}/blog` },
+      { "@type": "SiteNavigationElement", "position": 7, "name": "Iniciar Sesión", "url": `${base}/login` }
     ]
   };
 
-  // JSON-LD específico según la página
   switch (url) {
     case '/':
-      return [baseJsonLd, siteNavigation, {
+      return [baseJsonLd, nav, {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "FemCoders Club",
-        "url": "https://www.femcodersclub.com",
-        "logo": "https://www.femcodersclub.com/logo.png",
+        "url": base,
+        "logo": `${base}/logo.png`,
         "description": "Comunidad líder de mujeres en tecnología en España",
         "foundingDate": "2019",
         "contactPoint": {
@@ -176,7 +129,6 @@ function generateJsonLd(url) {
           "contactType": "customer support"
         }
       }];
-
     case '/femcoders-quienes-somos':
       return [baseJsonLd, {
         "@context": "https://schema.org",
@@ -184,7 +136,6 @@ function generateJsonLd(url) {
         "name": "Sobre FemCoders Club",
         "description": "Conoce nuestra historia, misión y valores como comunidad de mujeres en tecnología"
       }];
-
     case '/eventos':
       return [baseJsonLd, {
         "@context": "https://schema.org",
@@ -192,7 +143,6 @@ function generateJsonLd(url) {
         "name": "Eventos FemCoders Club",
         "description": "Talleres, conferencias y networking para mujeres en tecnología"
       }];
-
     case '/blog':
       return [baseJsonLd, {
         "@context": "https://schema.org",
@@ -200,11 +150,10 @@ function generateJsonLd(url) {
         "name": "Blog FemCoders Club",
         "description": "Artículos sobre tecnología, carrera profesional y diversidad en tech"
       }];
-
     default:
-      return [baseJsonLd, siteNavigation];
+      return [baseJsonLd, nav];
   }
 }
 
-// Ejecutar la generación
+// Ejecutar
 generateStaticPages().catch(console.error);
