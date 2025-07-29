@@ -13,7 +13,6 @@ import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLa
 import EventsPage from "../features/Events/page/EventsPage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
-
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
 
@@ -117,6 +116,9 @@ const AccesibilidadCSS = lazy(
 );
 const SassNextLevel = lazy(
   () => import("../features/Blog/posts/recursos/css/SassNextLevel")
+);
+const CssVariablesSass = lazy(
+  () => import("../features/Blog/posts/recursos/css/CssVariablesSass")
 );
 
 const RouterComponent: React.FC = () => {
@@ -514,6 +516,16 @@ const RouterComponent: React.FC = () => {
     <Layout>
       <Suspense fallback={<Loader />}>
         <SassNextLevel />
+      </Suspense>
+    </Layout>
+  }
+/>
+<Route
+  path="/recursos/css/css-variables-vs-sass"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <CssVariablesSass />
       </Suspense>
     </Layout>
   }

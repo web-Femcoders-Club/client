@@ -249,6 +249,15 @@ const BlogPage: React.FC = () => {
         "Domina SASS desde variables básicas hasta arquitectura 7-1 profesional. Tutorial completo con proyecto interactivo FemPalette, comparación con CSS Custom Properties y ejemplos reales.",
       createdAt: new Date("2025-07-20"),
     },
+    {
+  id: 25,
+  type: "recurso",
+  category: "css",
+  title: "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto",
+  description:
+    "Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. Guía completa con ejemplos prácticos, arquitectura híbrida y migración estratégica.",
+  createdAt: new Date("2025-07-28"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -321,6 +330,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/accesibilidad-css`;
       case "SASS: Lleva tu CSS al siguiente nivel":
         return `/recursos/css/sass-next-level`;
+        case "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto":
+  return `/recursos/css/css-variables-vs-sass`;
       default:
         return `/`;
     }

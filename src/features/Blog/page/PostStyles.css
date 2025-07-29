@@ -1006,6 +1006,32 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.highlight-link {
+  color: #ff6b35; /* Color naranja del texto */
+  text-decoration: none; /* Sin subrayado por defecto */
+  position: relative; /* Para el pseudo-elemento */
+  font-weight: 600; /* Texto un poco más grueso */
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+.highlight-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Posición del subrayado */
+  left: 0;
+  width: 0; /* Empieza sin ancho */
+  height: 2px; /* Grosor de la línea */
+  background-color: #ff6b35; /* Color naranja de la línea */
+  transition: width 0.3s ease; /* Animación del ancho */
+}
+
+.highlight-link:hover::after {
+  width: 100%; /* Se expande al 100% en hover */
+}
+
+.highlight-link:hover {
+  color: #e55a2b; /* Color ligeramente más oscuro en hover */
+}
 
 @media (max-width: 768px) {
   .blog-post-title {

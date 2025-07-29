@@ -365,7 +365,27 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h3>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto</h3>
+      <p className="intro-text">
+        Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. 
+        Guía completa con ejemplos prácticos, arquitectura híbrida y migración 
+        estratégica para crear sistemas de theming dinámicos y escalables.
+      </p>
     </div>
+    <Link
+      to="/recursos/css/css-variables-vs-sass"
+      className="secondary-button"
+      aria-label="Leer más sobre CSS Variables vs Sass: Cuándo usar cada una para máximo impacto"
+    >
+      Leer más
+    </Link>
+  </div>
+</div>
+    </div>
+    
   );
 };
 
