@@ -199,7 +199,8 @@ const BlogPage: React.FC = () => {
       id: 19,
       type: "noticia",
       category: "femCoders",
-      title: "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia",
+      title:
+        "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia",
       description:
         "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas.",
       createdAt: new Date("2025-06-02"),
@@ -208,7 +209,8 @@ const BlogPage: React.FC = () => {
       id: 20,
       type: "noticia",
       category: "femCoders",
-      title: "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"",
+      title:
+        '🎙️ Nadia Cavalleri: "El testing no es solo técnico, requiere pensamiento crítico y empatía"',
       description:
         "Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri, una de las voces más influyentes en testing de Latinoamérica y España. Descubre su transición de psicóloga a líder en QA, consejos para automatización y su visión del futuro del testing con IA.",
       createdAt: new Date("2025-06-20"),
@@ -250,14 +252,24 @@ const BlogPage: React.FC = () => {
       createdAt: new Date("2025-07-20"),
     },
     {
-  id: 25,
-  type: "recurso",
-  category: "css",
-  title: "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto",
-  description:
-    "Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. Guía completa con ejemplos prácticos, arquitectura híbrida y migración estratégica.",
-  createdAt: new Date("2025-07-28"),
-},
+      id: 25,
+      type: "recurso",
+      category: "css",
+      title: "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto",
+      description:
+        "Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. Guía completa con ejemplos prácticos, arquitectura híbrida y migración estratégica.",
+      createdAt: new Date("2025-07-28"),
+    },
+    {
+      id: 26,
+      type: "recurso",
+      category: "css",
+      title:
+        "El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance",
+      description:
+        "Descubre cómo optimizar CSS para mejorar performance web. De 81 a 97 en PageSpeed: técnicas avanzadas, Critical CSS, selectores eficientes y herramientas de medición 2025.",
+      createdAt: new Date("2025-08-02"),
+    },
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -320,7 +332,7 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/transiciones-transformaciones`;
       case "🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia":
         return `/noticias/DataConnectEvento`;
-      case "🎙️ Nadia Cavalleri: \"El testing no es solo técnico, requiere pensamiento crítico y empatía\"":
+      case '🎙️ Nadia Cavalleri: "El testing no es solo técnico, requiere pensamiento crítico y empatía"':
         return `/noticias/EntrevistaNadiaTesting`;
       case "Domina las Animaciones CSS: De Básico a Avanzado":
         return `/recursos/css/animaciones-css`;
@@ -330,8 +342,10 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/accesibilidad-css`;
       case "SASS: Lleva tu CSS al siguiente nivel":
         return `/recursos/css/sass-next-level`;
-        case "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto":
-  return `/recursos/css/css-variables-vs-sass`;
+      case "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto":
+        return `/recursos/css/css-variables-vs-sass`;
+      case "El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance":
+        return `/recursos/css/css-performance-optimization`;
       default:
         return `/`;
     }
@@ -358,8 +372,10 @@ const BlogPage: React.FC = () => {
           content="FemCoders, blog de programación, recursos de desarrollo, noticias de tecnología, mujeres en tecnología, HTML, CSS, React, Python"
         />
 
-        <link rel="canonical" href={`https://femcodersclub.com${location.pathname}`} />
-
+        <link
+          rel="canonical"
+          href={`https://femcodersclub.com${location.pathname}`}
+        />
 
         <meta property="og:title" content="Blog de FemCoders Club" />
         <meta
@@ -418,38 +434,46 @@ const BlogPage: React.FC = () => {
         </nav>
       </header>
 
-    <section className="blog-section">
-  <h2>Descubre lo Último sobre femCoders Club</h2><br />
-  <p>
-    Encuentra <Link to="/blog/noticias" className="inline-link">noticias</Link>, <Link to="/blog/recursos" className="inline-link">recursos</Link> y más en nuestro blog. 
-    Aprende, comparte y crece con nosotras en el mundo tech.
-  </p>
-</section>
-
+      <section className="blog-section">
+        <h2>Descubre lo Último sobre femCoders Club</h2>
+        <br />
+        <p>
+          Encuentra{" "}
+          <Link to="/blog/noticias" className="inline-link">
+            noticias
+          </Link>
+          ,{" "}
+          <Link to="/blog/recursos" className="inline-link">
+            recursos
+          </Link>{" "}
+          y más en nuestro blog. Aprende, comparte y crece con nosotras en el
+          mundo tech.
+        </p>
+      </section>
 
       <section className="blog-content">
         <div ref={recursosRef} className="categories-section">
           <h3>Temas Populares</h3>
-         <div className="category-buttons">
-  {[
-    "html",
-    "javascript", 
-    "react",
-    "css",
-    "python",
-    "femCoders Club",
-  ].map((category) => (
-    <button
-      key={category}
-      onClick={() => handleCategoryFilter(category)}
-      className={categoryFilter === category ? "active" : ""}
-    >
-      <span className="button-content">
-        {category.charAt(0).toUpperCase() + category.slice(1)}
-      </span>
-    </button>
-  ))}
-</div>
+          <div className="category-buttons">
+            {[
+              "html",
+              "javascript",
+              "react",
+              "css",
+              "python",
+              "femCoders Club",
+            ].map((category) => (
+              <button
+                key={category}
+                onClick={() => handleCategoryFilter(category)}
+                className={categoryFilter === category ? "active" : ""}
+              >
+                <span className="button-content">
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {categoryFilter || searchQuery ? (

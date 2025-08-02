@@ -97,7 +97,8 @@ const CssGridFlexbox = lazy(
   () => import("../features/Blog/posts/recursos/css/CssGridFlexbox")
 );
 const TransicionesyTransformaciones = lazy(
-  () => import("../features/Blog/posts/recursos/css/TransicionesyTransformaciones")
+  () =>
+    import("../features/Blog/posts/recursos/css/TransicionesyTransformaciones")
 );
 const DataConnectEvento = lazy(
   () => import("../features/Blog/posts/noticias/DataConnectEvento")
@@ -119,6 +120,9 @@ const SassNextLevel = lazy(
 );
 const CssVariablesSass = lazy(
   () => import("../features/Blog/posts/recursos/css/CssVariablesSass")
+);
+const CssPerformancePost = lazy(
+  () => import("../features/Blog/posts/recursos/css/CssPerformancePost")
 );
 
 const RouterComponent: React.FC = () => {
@@ -216,7 +220,7 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-           <Route
+          <Route
             path="/noticias/DataConnectEvento"
             element={
               <Layout>
@@ -461,75 +465,85 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/recursos/css/transiciones-transformaciones"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <TransicionesyTransformaciones />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/noticias/EntrevistaNadiaTesting"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <EntrevistaNadiaTesting />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/animaciones-css"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <AnimacionesCSS />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/responsive-design"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <ResponsiveDesign />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/accesibilidad-css"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <AccesibilidadCSS />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/sass-next-level"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <SassNextLevel />
-      </Suspense>
-    </Layout>
-  }
-/>
-<Route
-  path="/recursos/css/css-variables-vs-sass"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <CssVariablesSass />
-      </Suspense>
-    </Layout>
-  }
-/>
+            path="/recursos/css/transiciones-transformaciones"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <TransicionesyTransformaciones />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/EntrevistaNadiaTesting"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <EntrevistaNadiaTesting />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/animaciones-css"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <AnimacionesCSS />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/responsive-design"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ResponsiveDesign />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/accesibilidad-css"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <AccesibilidadCSS />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/sass-next-level"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <SassNextLevel />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/css-variables-vs-sass"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <CssVariablesSass />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/css-performance-optimization"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <CssPerformancePost />
+                </Suspense>
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
 

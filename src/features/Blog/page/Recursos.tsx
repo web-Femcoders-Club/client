@@ -384,6 +384,25 @@ const Recursos: React.FC = () => {
     </Link>
   </div>
 </div>
+ <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance</h3>
+            <p className="intro-text">
+              Descubre cómo optimizar CSS para mejorar performance web. De 81 a 97 en PageSpeed: 
+              técnicas avanzadas, Critical CSS, selectores eficientes y herramientas de medición 2025. 
+              Caso real con femCoders Club y plan de acción de 7 días.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/css-performance-optimization"
+            className="secondary-button"
+            aria-label="Leer más sobre El Lado Oculto del CSS: Optimización de Performance"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
     
   );

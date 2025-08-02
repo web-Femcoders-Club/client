@@ -1017,20 +1017,20 @@ body {
 .highlight-link::after {
   content: '';
   position: absolute;
-  bottom: -2px; /* Posición del subrayado */
+  bottom: -2px;
   left: 0;
-  width: 0; /* Empieza sin ancho */
-  height: 2px; /* Grosor de la línea */
-  background-color: #ff6b35; /* Color naranja de la línea */
-  transition: width 0.3s ease; /* Animación del ancho */
+  width: 0; 
+  height: 2px; 
+  background-color: #ff6b35; 
+  transition: width 0.3s ease; 
 }
 
 .highlight-link:hover::after {
-  width: 100%; /* Se expande al 100% en hover */
+  width: 100%; 
 }
 
 .highlight-link:hover {
-  color: #e55a2b; /* Color ligeramente más oscuro en hover */
+  color: #e55a2b;
 }
 
 @media (max-width: 768px) {
