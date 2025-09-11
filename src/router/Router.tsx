@@ -124,6 +124,9 @@ const CssVariablesSass = lazy(
 const CssPerformancePost = lazy(
   () => import("../features/Blog/posts/recursos/css/CssPerformancePost")
 );
+const PreguntasHTMLEntrevistas = lazy(
+  () => import("../features/Blog/posts/recursos/html/PreguntasHTMLEntrevistas")
+);
 
 const RouterComponent: React.FC = () => {
   const location = useLocation();
@@ -540,6 +543,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <CssPerformancePost />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/html/quiz-html-entrevistas"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <PreguntasHTMLEntrevistas />
                 </Suspense>
               </Layout>
             }

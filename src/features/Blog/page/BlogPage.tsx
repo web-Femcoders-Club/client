@@ -270,6 +270,14 @@ const BlogPage: React.FC = () => {
         "Descubre cómo optimizar CSS para mejorar performance web. De 81 a 97 en PageSpeed: técnicas avanzadas, Critical CSS, selectores eficientes y herramientas de medición 2025.",
       createdAt: new Date("2025-08-02"),
     },
+{
+  id: 27,
+  type: "recurso",
+  category: "html",
+  title: "🎯 Quiz HTML para Entrevistas Técnicas",
+  description: "Prepárate para entrevistas técnicas con 30 preguntas interactivas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
+  createdAt: new Date("2025-09-15"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -346,6 +354,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/css-variables-vs-sass`;
       case "El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance":
         return `/recursos/css/css-performance-optimization`;
+        case "🎯 Quiz HTML para Entrevistas Técnicas":
+  return `/recursos/html/quiz-html-entrevistas`;
       default:
         return `/`;
     }

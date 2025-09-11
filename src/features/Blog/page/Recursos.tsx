@@ -365,46 +365,27 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
-      <div className="recurso-item bg1">
-  <div className="noticia-content">
-    <div>
-      <h3>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto</h3>
-      <p className="intro-text">
-        Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. 
-        Guía completa con ejemplos prácticos, arquitectura híbrida y migración 
-        estratégica para crear sistemas de theming dinámicos y escalables.
-      </p>
-    </div>
-    <Link
-      to="/recursos/css/css-variables-vs-sass"
-      className="secondary-button"
-      aria-label="Leer más sobre CSS Variables vs Sass: Cuándo usar cada una para máximo impacto"
-    >
-      Leer más
-    </Link>
-  </div>
-</div>
- <div className="recurso-item bg1">
+
+       <div className="recurso-item bg1">
         <div className="noticia-content">
           <div>
-            <h3>El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance</h3>
+            <h3>🎯 Quiz HTML para Entrevistas Técnicas</h3>
             <p className="intro-text">
-              Descubre cómo optimizar CSS para mejorar performance web. De 81 a 97 en PageSpeed: 
-              técnicas avanzadas, Critical CSS, selectores eficientes y herramientas de medición 2025. 
-              Caso real con femCoders Club y plan de acción de 7 días.
+              Prepárate para entrevistas técnicas con 30 preguntas interactivas de HTML. 
+              3 niveles de dificultad, explicaciones detalladas y feedback personalizado 
+              para dominar los conceptos clave.
             </p>
           </div>
           <Link
-            to="/recursos/css/css-performance-optimization"
+            to="/recursos/html/quiz-html-entrevistas"
             className="secondary-button"
-            aria-label="Leer más sobre El Lado Oculto del CSS: Optimización de Performance"
+            aria-label="Hacer el Quiz HTML para Entrevistas Técnicas"
           >
-            Leer más
+            Hacer Quiz
           </Link>
         </div>
       </div>
     </div>
-    
   );
 };
 
