@@ -683,6 +683,80 @@
   align-items: center;
 }
 
+/* Añade estos estilos a tu Home.css existente */
+
+/* Nueva sección parallax para noticias */
+.parallax.bg6 {
+  background: linear-gradient(
+    135deg,
+    rgba(71, 55, 187, 0.9) 0%,
+    rgba(109, 44, 149, 0.8) 50%,
+    rgba(234, 79, 51, 0.9) 100%
+  ),
+  url('/assets/backgrounds/news-bg.webp') center/cover fixed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.parallax.bg6::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+/* Alternativa sin imagen de fondo */
+.parallax.bg6-alt {
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 50%,
+    #f1f5f9 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* Contenedor especial para la sección de noticias */
+.news-section-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Estilos para cuando está sobre fondo oscuro */
+.parallax.bg6 .news-slider-header h2 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.parallax.bg6 .news-slider-header p {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive para móviles */
+@media
+
 @media (max-width: 768px) {
   .parallax {
     background-attachment: scroll;
@@ -736,12 +810,7 @@
   }
 
   .photo-stack .photo-gradient {
-    background: radial-gradient(
-      circle at center,
-      rgba(234, 79, 51, 0) 50%,
-      rgba(109, 44, 149, 0.25) 75%,
-      rgba(71, 55, 187, 0.4) 100%
-    );
+  background: rgba(71, 55, 187, 0.1);
   }
   .photo-stack .photo img {
     border-radius: 0.75rem;
@@ -776,7 +845,9 @@
   }
   .carousel-item img {
     object-fit: cover;
+    transform: none;
   }
+  
   .carousel-controls {
     padding: 12px 15px;
   }
@@ -789,8 +860,14 @@
     height: 45px;
     font-size: 18px;
   }
+  .carousel-item::after {
+    background: rgba(71, 55, 187, 0.2); 
+     transform: scale(1.01);
+  }
   .carousel-controls {
     height: 100px;
+    backdrop-filter: none; 
+    background: rgba(255, 255, 255, 0.9);
   }
   .carousel-control {
     width: 40px;
@@ -819,6 +896,18 @@
     margin: 1rem;
     max-width: 100%;
   }
+
+    .call-to-action,
+  .section-countdown {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .call-to-action:hover,
+  .section-countdown:hover {
+    transform: none; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
   .call-to-action h2,
   .countdown-content h2 {
     font-size: 1.4rem;
@@ -924,4 +1013,24 @@
     max-width: 100%;
   }
 
+}
+
+/* Añade al final del CSS */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  /* Simplifica gradientes animados */
+  .call-to-action::before,
+  .section-countdown::before {
+    animation: none;
+    background: linear-gradient(90deg, #ea4f33, #4737bb);
+  }
+  
+  .pulse-effect:after,
+  .cta-text {
+    animation: none;
+  }
+  
+  .photo-stack .photo-1,
+  .photo-stack .photo-2 {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
 }

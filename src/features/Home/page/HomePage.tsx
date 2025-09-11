@@ -8,6 +8,7 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import CarouselWithText from "../components/CarouselWithText";
 import "./Home.css";
+import NewsSlider from '../components/NewsSlider';
 
 interface Event {
   start: {
@@ -489,6 +490,39 @@ const HomePage: React.FC = () => {
       console.error(error);
     }
   };
+const newsData = [
+  {
+    id: '1',
+    title: 'Ana Lucía Silva Córdoba: Profesional Digital Referente 2025',
+    description: 'Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.',
+    image: 'assets/home-images/anaLuciaSilva.webp', 
+    imageAlt: 'Ana Lucía Silva Córdoba - Profesional Digital Referente 2025',
+    date: '9 Septiembre 2025',
+    category: 'Reconocimientos',
+    link: 'https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/'
+  },
+  {
+    id: '2',
+    title: 'Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas',
+    description: 'Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.',
+    image: 'assets/html/HTML-Quiz-Entrevistas.webp', 
+    imageAlt: 'Quiz interactivo de HTML para entrevistas técnicas',
+    date: '11 Septiembre 2025',
+    category: 'Recursos',
+    link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
+  },
+  {
+    id: '3',
+    title: 'Liliana Dalmarco Regresa a FemCoders Club',
+    description: 'Con gran alegría anunciamos el regreso de Liliana Dalmarco a nuestra comunidad. Como parte de nuestras fundadoras legacy, su visión y dedicación fueron fundamentales en los inicios de FemCoders Club. Ahora vuelve para continuar impulsando nuestro crecimiento y misión.',
+    image: 'assets/home-images/lilianaDalmarco.webp', 
+    imageAlt: 'Liliana Dalmarco regresa a FemCoders Club',
+    date: '25 Agosto 2025',
+    category: 'Equipo',
+    link: 'https://www.femcodersclub.com/equipo'
+  }
+];
+  
 
   return (
     <>
@@ -1207,6 +1241,7 @@ const HomePage: React.FC = () => {
                     autoPlay
                     muted
                     loop
+                    preload="none"
                     onError={(e) => {
                       if ((e.target as HTMLVideoElement).error) {
                         console.error("El video no se pudo cargar.");
@@ -1340,6 +1375,16 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+       <div className="full-height d-flex flex-column justify-content-center align-items-center parallax bg6">
+      <NewsSlider 
+        newsItems={newsData}
+        autoPlay={true}
+        autoPlayInterval={6000}
+        showDots={true}
+        showArrows={true}
+      />
+    </div>
 
       <section className="parallax bg5">
         <div
