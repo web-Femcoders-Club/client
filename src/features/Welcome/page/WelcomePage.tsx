@@ -18,11 +18,14 @@ import {
   MicVocal,
   FolderOpen,
   Building,
+  MapPin,
+  Clock,
+  ExternalLink,
 } from "lucide-react";
 import "./WelcomePage.css";
 import { getUserAchievements } from "../../../api/achievementsApi";
 import { Helmet } from "react-helmet";
-
+import OptimizedImage from "../../../components/OptimizedImage";
 
 const WelcomePage = () => {
   const location = useLocation();
@@ -60,7 +63,6 @@ const WelcomePage = () => {
     enabled: resolvedUserId > 0,
   });
 
-  // const [achievements, setAchievements] = useState([]);
   const [, setAchievements] = useState([]);
 
   useEffect(() => {
@@ -119,16 +121,13 @@ const WelcomePage = () => {
       "Ada Lovelace comenzó con un algoritmo. ¡Tú puedes crear lo que imagines! 🚀💪",
       "Cada mujer en tech abre camino para las demás. ¡Juntas somos más fuertes! 👭💻",
       "Tu voz y tu código son importantes. ¡El mundo tech necesita más mujeres como tú! 🎤💪",
-
       "Programa con confianza, debuggea sin miedo. ¡Eres más capaz de lo que crees! 🔍✨",
       "Detrás de cada error hay una lección. ¡Aprende y brilla más fuerte! 💎📚",
       "Tu código tiene el poder de inspirar a otras mujeres en tech. ¡Compártelo! 🌟💝",
       "Las grandes desarrolladoras también comenzaron con su primer 'Hola Mundo'. ¡Sigue adelante! 🌱💫",
-
       "Somos una comunidad de mujeres tech apoyándonos mutuamente. ¡Nunca estás sola! 👩‍💻👩‍💻",
       "Tu éxito inspira a otras mujeres a unirse al mundo tech. ¡Sigue rompiendo barreras! 🌈💪",
       "Cada commit es un paso más hacia la diversidad en tech. ¡Tú marcas la diferencia! 🎯💕",
-
       "¡Hoy es un gran día para romper barreras en el mundo tech! 🚀",
       "El código no tiene género, ¡tu talento tampoco! 💪",
       "Juntas creamos, aprendemos y crecemos en tecnología 👩‍💻",
@@ -139,15 +138,12 @@ const WelcomePage = () => {
       "Tu código cuenta una historia única. ¡Escríbelo con tu estilo! 📖✨",
       "Los mejores productos nacen de equipos diversos. ¡Tu perspectiva es valiosa! 🌍💡",
       "Documenta con amor, testea con poder. ¡Tu código refleja tu excelencia! 📝💪",
-
       "Grace Hopper nos enseñó a no temer a los bugs. ¡Debuggea con valentía! 🐛✨",
       "Katherine Johnson calculó trayectorias espaciales. ¡Tú también puedes alcanzar las estrellas! 🚀⭐",
       "Las mujeres ENIAC programaron el primer computador. ¡Sigamos haciendo historia! 💫👩‍💻",
-
       "Tu potencial en tech no tiene límites. ¡Rompe el techo de cristal! 💎🔨",
       "Cada proyecto es una oportunidad para demostrar tu talento. ¡Brilla! ✨👑",
       "El futuro de la tecnología necesita tu visión única. ¡Créalo! 🎯💫",
-
       "Tómate un respiro cuando lo necesites. ¡Las mejores ideas llegan con mente fresca! 🧘‍♀️💆‍♀️",
       "Celebra cada pequeña victoria en tu viaje como desarrolladora. ¡Te lo mereces! 🎉👑",
       "Balance entre código y autocuidado. ¡Ambos son importantes! 💝🌸",
@@ -183,6 +179,17 @@ const WelcomePage = () => {
     setEmojiStats(updatedStats);
     localStorage.setItem("emojiStats", JSON.stringify(updatedStats));
   };
+
+  // Función para calcular días hasta el evento
+  const getDaysUntilEvent = (eventDate: string) => {
+    const now = new Date();
+    const event = new Date(eventDate);
+    const diff = event.getTime() - now.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return days;
+  };
+
+
 
   const Sidebar = () => (
     <div
@@ -342,9 +349,9 @@ const WelcomePage = () => {
   return (
     <>
     <Helmet>
-  <title>Bienvenida - FemCoders Club</title>
-  <meta name="description" content="Tu espacio para crecer, aprender y conectar con otras mujeres en tecnología. Explora recursos, eventos y oportunidades de mentoría en FemCoders Club." />
-</Helmet>
+      <title>Bienvenida - FemCoders Club</title>
+      <meta name="description" content="Tu espacio para crecer, aprender y conectar con otras mujeres en tecnología. Explora recursos, eventos y oportunidades de mentoría en FemCoders Club." />
+    </Helmet>
     <div className="flex min-h-screen bg1">
       <Overlay />
       <Sidebar />
@@ -367,6 +374,7 @@ const WelcomePage = () => {
 
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+            {/* SECCIÓN DE EVENTOS MEJORADA */}
             <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-[#4737bb]">
               <div className="flex items-center gap-4 mb-8">
                 <Calendar className="w-8 h-8 text-indigo-500" />
@@ -386,40 +394,120 @@ const WelcomePage = () => {
                 ) : upcomingEvents?.length ? (
                   upcomingEvents.map((event, index) => (
                     <div
-                      key={index}
+                      key={event.id || index}
                       className="group relative border-l-4 border-indigo-500 pl-6 py-4 bg-gradient-to-r from-white to-gray-50 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-white rounded-r-xl shadow-md hover:shadow-lg transition-all duration-300"
                     >
-                      <h5>{event.name}</h5>
-                      <p className="text-sm text-indigo-500 mt-2 font-medium">
-                        {new Date(event.start_local).toLocaleString("es-ES", {
-                          weekday: "long",
-                          month: "long",
-                          day: "numeric",
-                          hour: "numeric",
-                          minute: "numeric",
-                        })}
-                      </p>
-                      <p className="text-base lg:text-lg mt-4 text-custom-blue">
+                      <div className="flex justify-between items-start mb-3">
+                        <h5 className="font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors pr-4">
+                          {event.name}
+                        </h5>
+                        {event.logo_url && (
+                          <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 shadow-sm">
+                            {event.logo_url && (
+  <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+    <OptimizedImage
+      src={event.logo_url}
+      alt={`Logo ${event.name}`}
+      className="w-full h-full object-cover"
+    />
+  </div>
+)}
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-indigo-400" />
+                          <p className="text-sm text-indigo-600 font-medium">
+                            {new Date(event.start_local).toLocaleString("es-ES", {
+                              weekday: "long",
+                              month: "long",
+                              day: "numeric",
+                              hour: "numeric",
+                              minute: "numeric",
+                            })}
+                          </p>
+                        </div>
+                        {/* Mini countdown */}
+                        {(() => {
+                          const days = getDaysUntilEvent(event.start_local);
+                          
+                          if (days > 0) {
+                            return (
+                              <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-medium flex items-center gap-1">
+                                <Calendar className="w-3 h-3" />
+                                {days === 1 ? 'Mañana' : `${days}d`}
+                              </span>
+                            );
+                          } else if (days === 0) {
+                            return (
+                              <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium flex items-center gap-1 animate-pulse">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                ¡Hoy!
+                              </span>
+                            );
+                          }
+                          return null;
+                        })()}
+                      </div>
+
+                      {event.location && (
+                        <div className="flex items-center gap-2 mb-3">
+                          <MapPin className="w-4 h-4 text-gray-400" />
+                          <p className="text-sm text-gray-600 line-clamp-1">{event.location}</p>
+                        </div>
+                      )}
+                      
+                      <p className="text-sm text-custom-blue line-clamp-3 mb-4">
                         {event.description}
                       </p>
+
+                      {event.event_url && (
+                        <div className="flex justify-end opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <a
+                            href={event.event_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 font-medium bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-all duration-200"
+                          >
+                            Ver detalles
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   ))
                 ) : (
-                  <div className="no-events-container">
-                    <video
-                      src="/assets/videos/SinEvento.mp4"
-                      className="no-event-video"
-                      autoPlay
-                      muted
-                      loop
-                      aria-label="Sin eventos programados por ahora"
-                    />
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <div className="no-events-container mb-6">
+                      <video
+                        src="/assets/videos/SinEvento.mp4"
+                        className="no-event-video w-32 h-32 rounded-lg mx-auto opacity-80"
+                        autoPlay
+                        muted
+                        loop
+                        aria-label="Sin eventos programados por ahora"
+                      />
+                    </div>
+                    <p className="text-gray-500 font-medium">No hay eventos programados</p>
+                    <p className="text-sm text-gray-400 mt-1">Te avisaremos cuando tengamos novedades</p>
                   </div>
-                  // <p className="text-base text-gray-600">
-                  //   No hay eventos programados por ahora.
-                  // </p>
                 )}
               </div>
+
+              {/* Footer con enlace a todos los eventos */}
+              {(upcomingEvents && upcomingEvents.length > 0) && (
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <Link
+                    to="/eventos"
+                    className="flex items-center justify-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition-colors group"
+                  >
+                    Ver todos los eventos
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              )}
             </div>
 
             <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300">
@@ -458,8 +546,10 @@ const WelcomePage = () => {
               </div>
             </div>
           </div>
-          {/* Welcome Card */}
+          
+          {/* Welcome Card - resto del componente igual */}
           <div className="bg-white rounded-3xl shadow-2xl p-8 text-white mt-8 mx-auto max-w-full lg:max-w-6xl">
+            {/* ... resto del contenido igual ... */}
             <div className="max-w-xl mx-auto text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
                 <Rocket size={36} className="text-orange-500 animate-bounce" />
@@ -472,6 +562,7 @@ const WelcomePage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Todas las tarjetas de comunidad iguales */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -503,7 +594,7 @@ const WelcomePage = () => {
                       ¡Esta es tu oportunidad para conectar y crecer juntas!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¡Contáctanos!
@@ -512,6 +603,7 @@ const WelcomePage = () => {
                 </div>
               </div>
 
+              {/* Resto de tarjetas de la comunidad - copio las restantes del archivo original */}
               <div className="group relative overflow-hidden flip-card-welcome mb-6">
                 <div
                   style={{
@@ -541,7 +633,7 @@ const WelcomePage = () => {
                       post y comparte tu conocimiento!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¡Contáctanos!
@@ -582,7 +674,7 @@ const WelcomePage = () => {
                       empieza a hacer la diferencia hoy mismo!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       Enviar correo
@@ -620,7 +712,7 @@ const WelcomePage = () => {
                       ¡Tus ideas son importantes! Comparte tus propuestas.
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¡Queremos escucharte!
@@ -662,7 +754,7 @@ const WelcomePage = () => {
                       mentoría y comparte tu conocimiento con otras mujeres!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¡Contáctanos para más detalles!
@@ -705,7 +797,7 @@ const WelcomePage = () => {
                       junto a otras programadoras.
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¡Escríbenos para más información!
@@ -746,7 +838,7 @@ const WelcomePage = () => {
                       ponente!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       ¿Hablamos sobre tus ideas?
@@ -786,7 +878,7 @@ const WelcomePage = () => {
                       ¿Tienes recursos para compartir? ¡Envíalos a la comunidad!
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       Enviar recursos
@@ -827,7 +919,7 @@ const WelcomePage = () => {
                       como anfitriona y fomenta la diversidad en tecnología.
                     </p>
                     <a
-                      href="mailto:femcodersclub@example.com"
+                      href="mailto:femcodersclub@gmail.com"
                       className="px-4 py-2 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-all"
                     >
                       Contáctanos
@@ -837,34 +929,6 @@ const WelcomePage = () => {
               </div>
             </div>
           </div>
-
-          {/* quiz para conseguir certificado html  
-          <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300">
-            <div className="flex items-center gap-4 mb-8">
-              <Award className="w-8 h-8 text-indigo-500" />
-              <h2>Obtén tu certificado de HTML</h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-64 pr-2">
-              <div className="group relative p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                  <h1>🎓</h1>
-                </div>
-                <h5 className="font-semibold">Certificado de HTML</h5>
-                <p className="text-base lg:text-lg mt-4 text-custom-blue">
-                  ¡Completa el quiz de HTML y obtén tu certificado de
-                  programación web! ¡Demuestra tus habilidades y conocimientos en
-                  HTML!
-                </p>
-                <button
-                  className="px-4 py-2 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition-all"
-                  onClick={() => history.push("/quiz-html")}
-                >
-                  ¡Comenzar el Quiz!
-                </button>
-              </div>
-            </div>
-          </div>*/}
         </div>
       </div>
     </div>

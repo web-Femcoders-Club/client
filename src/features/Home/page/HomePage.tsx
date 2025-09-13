@@ -9,6 +9,7 @@ import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import CarouselWithText from "../components/CarouselWithText";
 import "./Home.css";
 import NewsSlider from '../components/NewsSlider';
+import GitHubProjects from '../components/GitHubProjects';
 
 interface Event {
   start: {
@@ -522,7 +523,117 @@ const newsData = [
     link: 'https://www.femcodersclub.com/equipo'
   }
 ];
-  
+
+const githubProjectsData = [
+  {
+    id: '1',
+    name: 'FemPalette - Generador SASS',
+    description: 'Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.',
+    techStack: ['SASS', 'JavaScript', 'HTML', 'CSS'],
+    githubUrl: 'https://github.com/femcodersclub/sass-color-generator',
+    demoUrl: 'https://femcodersclub.github.io/sass-color-generator/', 
+   image: 'assets/css/fempalette-generator.gif',
+    imageAlt: 'Generador de variables SASS - FemPalette',
+    author: 'Irina Ichim',
+    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
+    lastUpdated: '2 meses atrás',
+    stars: 1,
+    language: 'SASS',
+    postUrl: 'https://www.femcodersclub.com/recursos/css/sass-next-level', 
+    postTitle: 'SASS: Lleva tu CSS al siguiente nivel',
+    difficulty: 'Intermedio'
+  },
+  {
+    id: '2',
+    name: 'Efecto Parallax con Svelte',
+    description: 'Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.',
+    techStack: ['Svelte', 'CSS', 'JavaScript'],
+    githubUrl: 'https://github.com/femcodersclub/Efecto-Parallax-Svelte',
+    demoUrl: 'https://efecto-parallax-svelte.vercel.app/',
+    image: 'assets/home-images/efecto-parallax-svelte.webp',
+    imageAlt: 'Efecto Parallax desarrollado con Svelte',
+    author: 'FemCoders Club',
+    authorAvatar: 'assets/FemCodersClubLogo.webp',
+    lastUpdated: '2024',
+    stars: 1,
+    language: 'Svelte',
+    postUrl: '',
+    postTitle: 'Creando efectos parallax con Svelte',
+    difficulty: 'Intermedio'
+  },
+  {
+    id: '3',
+    name: 'Canvas Text Animation',
+    description: 'Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.',
+    techStack: ['JavaScript', 'HTML5 Canvas', 'CSS'],
+    githubUrl: 'https://github.com/femcodersclub/CanvasTextAnimation',
+    demoUrl: 'https://femcodersclub.github.io/CanvasTextAnimation/', 
+    image: 'assets/html/ApisHtml.webp',
+    imageAlt: 'Animaciones de texto con Canvas',
+    author: 'Irina Ichim',
+    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
+    lastUpdated: '2024',
+    stars: 1,
+    language: 'JavaScript',
+    postUrl: 'https://www.femcodersclub.com/recursos/html/apis-html',
+    postTitle: 'Introducción a las APIs en HTML: Potencia tus Proyectos Web',
+    difficulty: 'Básico'
+  },
+  {
+    id: '4',
+    name: 'Mindfulness CSS App',
+    description: 'Aplicación web de mindfulness y respiración guiada, creada completamente con CSS puro y JavaScript mínimo. Demuestra el poder del CSS moderno.',
+    techStack: ['CSS', 'JavaScript', 'HTML'],
+    githubUrl: 'https://github.com/femcodersclub/AnimacionesCSS',
+    demoUrl: 'https://femcodersclub.github.io/AnimacionesCSS/',
+    image: 'assets/css/breathe-app-demo.gif',
+    imageAlt: 'Aplicación de mindfulness con CSS puro',
+    author: 'Irina Ichim',
+    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
+    lastUpdated: '3 meses atrás',
+    stars: 2,
+    language: 'CSS',
+    postUrl: 'https://www.femcodersclub.com/recursos/css/animaciones-css',
+    postTitle: 'Domina las Animaciones CSS De Básico a Avanzado',
+    difficulty: 'Intermedio'
+  },
+  {
+    id: '5',
+    name: 'CodersPortfolio',
+    description: 'Portfolio profesional desarrollado con TypeScript. Template moderno y responsive que puedes personalizar para mostrar tus proyectos y habilidades.',
+    techStack: ['TypeScript', 'CSS', 'React'],
+    githubUrl: 'https://github.com/femcodersclub/CodersPortfolio',
+    demoUrl: 'https://femcodersclub.github.io/CodersPortfolio/',
+    image: 'assets/home-images/coders-portfolio.webp',
+    imageAlt: 'Portfolio profesional con TypeScript',
+    author: 'Irina Ichim',
+   authorAvatar: 'assets/FemCodersClubLogo.webp',
+    lastUpdated: '7 meses atrás',
+    stars: 3,
+    language: 'TypeScript',
+    postUrl: '',
+    postTitle: 'CodersPortfolio',
+    difficulty: 'Intermedio'
+  },
+  {
+    id: '6',
+    name: 'Nike Store React',
+    description: 'Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.',
+    techStack: ['React'],
+    githubUrl: 'https://github.com/Almudena-Rendon', 
+    demoUrl: 'https://nike-store-omega-nine.vercel.app/',
+    image: 'assets/react/nike-store-replica.webp',
+    imageAlt: 'Nike Store desarrollada con React',
+    author: 'Almudena Rendón',
+    authorAvatar: 'assets/home-images/almudena.webp',
+    lastUpdated: 'marzo 2025',
+    stars: 3,
+    language: 'React',
+    postUrl: 'https://www.femcodersclub.com/recursos/react/nike-store-replica',
+    postTitle: 'Réplica de Nike Store con React: Un Proyecto E-commerce Completo',
+    difficulty: 'Intermedio'
+  }
+];
 
   return (
     <>
@@ -1323,13 +1434,11 @@ const newsData = [
                   data-aos="fade-up"
                   data-aos-delay="700"
                 >
-                  <img
-                    src={
-                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
-                    }
-                    alt="Próximo evento"
-                    className="event-image"
-                  />
+                  <OptimizedImage
+  src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
+  alt="Próximo evento"
+  className="event-image"
+/>
                 </div>
                 <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
                   <button className="secondary-button pulse-effect">
@@ -1376,7 +1485,7 @@ const newsData = [
         </div>
       </section>
 
-       <div className="full-height d-flex flex-column justify-content-center align-items-center parallax bg6">
+       <section className="full-height d-flex flex-column justify-content-center align-items-center parallax bg2">
       <NewsSlider 
         newsItems={newsData}
         autoPlay={true}
@@ -1384,21 +1493,31 @@ const newsData = [
         showDots={true}
         showArrows={true}
       />
-    </div>
-
+    </section>
+<section className="projects-section bg1">
+       <GitHubProjects 
+  projects={githubProjectsData}
+  maxProjects={6}  
+  showFilters={true}
+  autoRotate={true} 
+  rotateInterval={8000}
+/>
+      </section>
       <section className="parallax bg5">
-        <div
-          className="content-text"
-          data-aos="fade-down"
-          data-aos-duration="800"
-        >
-          <p className="text-white">
-            Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
-            puedes contribuir a nuestra comunidad, por favor llena el
-            formulario. Estamos aquí para asistirte y valoramos enormemente tu
-            interés en apoyar a FemCoders Club. <br />
-          </p>
-        </div>
+       
+       <div
+  className="content-text"
+  style={{ width: '100%', maxWidth: '100vw' }}
+  data-aos="fade-down"
+  data-aos-duration="800"
+>
+  <p className="text-white">
+    Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
+    puedes contribuir a nuestra comunidad, por favor llena el
+    formulario. Estamos aquí para asistirte y valoramos enormemente tu
+    interés en apoyar a FemCoders Club. <br />
+  </p>
+</div>
 
         <div className="form-and-photos">
           <div

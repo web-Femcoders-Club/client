@@ -138,7 +138,7 @@ const ReplicaNike: React.FC = () => {
 
       <div className="intro-text">
         <p>
-          ¡Estamos emocionadas de presentar un impresionante proyecto que han compartido con nuestra comunidad! <span><a href="https://www.linkedin.com/in/almudena-rendon/" target="_blank" rel="noopener noreferrer" className="underline">Almudena Rendón Fernández</a></span>, Software Developer y Top 10 Women in IT & Tech LinkedIn Spain, ha desarrollado una increíble réplica de la Nike Store utilizando tecnologías modernas de desarrollo web. Este proyecto es un excelente ejemplo de las capacidades de React para crear experiencias de e-commerce completas y profesionales.
+          ¡Estamos emocionadas de presentar un impresionante proyecto que han compartido con nuestra comunidad! <span><a href="https://www.linkedin.com/in/almudena-rendon-fernandez/" target="_blank" rel="noopener noreferrer" className="underline">Almudena Rendón Fernández</a></span>, Software Developer y Top 10 Women in IT & Tech LinkedIn Spain, ha desarrollado una increíble réplica de la Nike Store utilizando tecnologías modernas de desarrollo web. Este proyecto es un excelente ejemplo de las capacidades de React para crear experiencias de e-commerce completas y profesionales.
         </p>
       </div>
 

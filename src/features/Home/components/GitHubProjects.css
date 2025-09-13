@@ -1,0 +1,483 @@
+/* GitHubProjects.css - Versión Compacta  */
+
+ .github-projects-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.projects-header h2 {
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #4737bb;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #4737bb, #ea4f33);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-header p {
+  color: #2a2170;
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.projects-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(71, 55, 187, 0.2);
+  color: #4737bb;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+  border-color: #4737bb;
+  background: rgba(71, 55, 187, 0.1);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #4737bb, #5a4bd4);
+  color: white;
+  border-color: #4737bb;
+}
+
+
+.featured-project {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.featured-project.animating {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.featured-project-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.featured-project:hover .featured-image {
+  transform: scale(1.05);
+}
+
+.featured-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(71, 55, 187, 0.1) 0%,
+    rgba(234, 79, 51, 0.1) 100%
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+
+.featured-badge {
+  background: linear-gradient(135deg, #ea4f33, #ff6b47);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(234, 79, 51, 0.3);
+}
+
+.project-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-end;
+}
+
+.project-stats span {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2a2170;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+
+.collaboration-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(71, 55, 187, 0.9) 0%,
+    rgba(71, 55, 187, 0.7) 50%,
+    transparent 100%
+  );
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.featured-project:hover .collaboration-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.collaboration-overlay h4 {
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+}
+
+.collaboration-overlay p {
+  font-size: 0.8rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.btn-collaborate-overlay {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.btn-collaborate-overlay:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  color: white;
+}
+
+
+.featured-project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #2a2170;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(71, 55, 187, 0.2);
+}
+
+.author-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #2a2170;
+  font-size: 0.8rem;
+}
+
+.last-updated {
+  color: #6b7280;
+  font-size: 0.7rem;
+}
+
+.difficulty-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 1.2rem;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-title {
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2a2170;
+  margin: 0 0 0.8rem 0;
+  line-height: 1.2;
+}
+
+.project-description {
+  color: #2a2170;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  background: rgba(71, 55, 187, 0.1);
+  color: #4737bb;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid rgba(71, 55, 187, 0.2);
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-post {
+  padding: 0.6rem 1.2rem;
+  border-radius: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4737bb, #5a4bd4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(71, 55, 187, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(71, 55, 187, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.btn-secondary {
+  background: rgba(71, 55, 187, 0.1);
+  color: #4737bb;
+  border: 2px solid rgba(71, 55, 187, 0.3);
+}
+
+.btn-secondary:hover {
+  background: #4737bb;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-post {
+  background: linear-gradient(135deg, #ea4f33, #ff6b47);
+  color: white;
+  box-shadow: 0 4px 15px rgba(234, 79, 51, 0.3);
+}
+
+.btn-post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 79, 51, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.featured-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(71, 55, 187, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: #4737bb;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: #4737bb;
+}
+
+@media (max-width: 1024px) {
+  .featured-project {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-project-image {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .github-projects-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .projects-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .projects-filters {
+    gap: 0.3rem;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  
+  .featured-project-content {
+    padding: 1rem;
+  }
+  
+  .project-title {
+    font-size: 1.3rem;
+  }
+  
+  .project-actions {
+    flex-direction: column;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-post {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .collaboration-overlay {
+    position: static;
+    opacity: 1;
+    transform: none;
+    background: linear-gradient(135deg, rgba(71, 55, 187, 0.1), rgba(234, 79, 51, 0.1));
+    color: #2a2170;
+    margin-top: 1rem;
+    border-radius: 1rem;
+  }
+  
+  .btn-collaborate-overlay {
+    background: linear-gradient(135deg, #ea4f33, #ff6b47);
+    color: white;
+    border: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-projects-container {
+    padding: 1rem 0.75rem;
+  }
+  
+  .projects-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .projects-filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    min-width: 100px;
+  }
+  
+  .featured-project-image {
+    height: 180px;
+  }
+  
+  .featured-project-content {
+    padding: 0.75rem;
+  }
+  
+  .project-title {
+    font-size: 1.2rem;
+  }
+  
+  .project-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+}

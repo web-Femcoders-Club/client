@@ -30,7 +30,6 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
-  // Limitamos a las últimas 3 noticias
   const latestNews = newsItems.slice(0, 3);
 
   useEffect(() => {
@@ -122,7 +121,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
       >
         {latestNews.map((news, index) => {
           const isActive = index === currentSlide;
-          const isImageLeft = index % 2 === 0; // Alterna: par = imagen izquierda, impar = imagen derecha
+          const isImageLeft = index % 2 === 0; 
 
           return (
             <div
@@ -149,7 +148,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
                       className="news-image"
                       loading="lazy"
                       onError={(e) => {
-                        // Fallback a la imagen original si falla la optimizada
+                  
                         const imgElement = e.target as HTMLImageElement;
                         imgElement.src = news.image;
                         imgElement.onerror = null;
@@ -185,7 +184,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
           );
         })}
 
-        {/* Controles de navegación */}
+     
         {showArrows && latestNews.length > 1 && (
           <div className="news-controls">
             <button
@@ -205,7 +204,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
           </div>
         )}
 
-        {/* Indicadores de pausa/play */}
+  
         {autoPlay && latestNews.length > 1 && (
           <button
             className="news-play-pause"
@@ -217,7 +216,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
         )}
       </div>
 
-      {/* Indicadores de posición */}
+ 
       {showDots && latestNews.length > 1 && (
         <div className="news-indicators">
           {latestNews.map((_, index) => (
