@@ -494,6 +494,16 @@ const HomePage: React.FC = () => {
 const newsData = [
   {
     id: '1',
+    title: '🎉 ¡Somos Community Partner de HackBarna 2025!',
+    description: 'FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.',
+    image: 'assets/Eventos2025/hackbarna-femcodersclub.webp',
+    imageAlt: 'FemCoders Club Community Partner HackBarna 2025',
+    date: '30 Septiembre 2025',
+    category: 'Partnership',
+    link: 'https://www.femcodersclub.com/blog/noticias/HackBarna2025'
+  },
+  {
+    id: '2',
     title: 'Ana Lucía Silva Córdoba: Profesional Digital Referente 2025',
     description: 'Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.',
     image: 'assets/home-images/anaLuciaSilva.webp', 
@@ -503,7 +513,7 @@ const newsData = [
     link: 'https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/'
   },
   {
-    id: '2',
+    id: '3',
     title: 'Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas',
     description: 'Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.',
     image: 'assets/html/HTML-Quiz-Entrevistas.webp', 
@@ -513,7 +523,7 @@ const newsData = [
     link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Liliana Dalmarco Regresa a FemCoders Club',
     description: 'Con gran alegría anunciamos el regreso de Liliana Dalmarco a nuestra comunidad. Como parte de nuestras fundadoras legacy, su visión y dedicación fueron fundamentales en los inicios de FemCoders Club. Ahora vuelve para continuar impulsando nuestro crecimiento y misión.',
     image: 'assets/home-images/lilianaDalmarco.webp', 

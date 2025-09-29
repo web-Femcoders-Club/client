@@ -10,7 +10,7 @@ import {
   BsYoutube,
   BsFacebook,
 } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
+import { FaSlack, FaTiktok } from "react-icons/fa"; 
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 const Aniversario: React.FC = () => {

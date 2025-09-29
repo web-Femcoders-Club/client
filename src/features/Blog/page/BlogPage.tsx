@@ -278,6 +278,14 @@ const BlogPage: React.FC = () => {
   description: "Prepárate para entrevistas técnicas con 30 preguntas interactivas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
   createdAt: new Date("2025-09-15"),
 },
+{
+  id: 28,
+  type: "noticia",
+  category: "femCoders Club",
+  title: "🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de HackBarna 2025",
+  description: "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ.",
+  createdAt: new Date("2025-09-30"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -356,6 +364,8 @@ const BlogPage: React.FC = () => {
         return `/recursos/css/css-performance-optimization`;
         case "🎯 Quiz HTML para Entrevistas Técnicas":
   return `/recursos/html/quiz-html-entrevistas`;
+  case "🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de HackBarna 2025":
+  return `/noticias/HackBarna2025`;
       default:
         return `/`;
     }

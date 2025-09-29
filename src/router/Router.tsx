@@ -13,9 +13,12 @@ import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLa
 import EventsPage from "../features/Events/page/EventsPage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
+
+
+
+
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
-
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
 const Aniversario = lazy(
   () => import("../features/Blog/posts/noticias/Aniversario")
@@ -126,6 +129,9 @@ const CssPerformancePost = lazy(
 );
 const PreguntasHTMLEntrevistas = lazy(
   () => import("../features/Blog/posts/recursos/html/PreguntasHTMLEntrevistas")
+);
+const HackBarna2025Announcement = lazy(
+  () => import("../features/Blog/posts/noticias/HackBarna2025Announcement")
 );
 
 const RouterComponent: React.FC = () => {
@@ -557,6 +563,16 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          <Route
+  path="/noticias/HackBarna2025"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <HackBarna2025Announcement />
+      </Suspense>
+    </Layout>
+  }
+/>
         </Routes>
       </Suspense>
 

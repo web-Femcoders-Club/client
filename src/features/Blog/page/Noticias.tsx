@@ -76,6 +76,19 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="noticia-item bg1">
+  <div className="noticia-content">
+    <div>
+      <h2>🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de HackBarna 2025</h2>
+      <p className="intro-text">
+        FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ...
+      </p>
+    </div>
+    <Link to="/noticias/HackBarna2025" className="secondary-button">
+      Leer más
+    </Link>
+  </div>
+</div>
     </div>
   );
 };
