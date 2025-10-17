@@ -385,6 +385,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+        <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>🎯 Quiz CSS para Entrevistas Técnicas</h3>
+            <p className="intro-text">
+              Prepárate para entrevistas técnicas con 30 preguntas interactivas de CSS. 
+              Desde Box Model hasta CSS Grid, Custom Properties y Performance. 
+              3 niveles de dificultad con explicaciones detalladas.
+            </p>
+          </div>
+          <Link
+            to="/recursos/css/quiz-css-entrevistas"
+            className="secondary-button"
+            aria-label="Hacer el Quiz CSS para Entrevistas Técnicas"
+          >
+            Hacer Quiz
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

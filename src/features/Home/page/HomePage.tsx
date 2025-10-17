@@ -500,7 +500,7 @@ const newsData = [
     imageAlt: 'FemCoders Club Community Partner HackBarna 2025',
     date: '30 Septiembre 2025',
     category: 'Partnership',
-    link: 'https://www.femcodersclub.com/blog/noticias/HackBarna2025'
+    link: 'https://www.femcodersclub.com/noticias/HackBarna2025'
   },
   {
     id: '2',
@@ -514,6 +514,16 @@ const newsData = [
   },
   {
     id: '3',
+    title: '🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas',
+    description: '¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.',
+    image: 'assets/css/CSS-Quiz-Entrevistas.webp',
+    imageAlt: 'Quiz interactivo de CSS para entrevistas técnicas - FemCoders Club',
+    date: '17 Octubre 2025',
+    category: 'Recursos',
+    link: 'https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas'
+  },
+  {
+    id: '4',
     title: 'Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas',
     description: 'Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.',
     image: 'assets/html/HTML-Quiz-Entrevistas.webp', 
@@ -523,7 +533,7 @@ const newsData = [
     link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Liliana Dalmarco Regresa a FemCoders Club',
     description: 'Con gran alegría anunciamos el regreso de Liliana Dalmarco a nuestra comunidad. Como parte de nuestras fundadoras legacy, su visión y dedicación fueron fundamentales en los inicios de FemCoders Club. Ahora vuelve para continuar impulsando nuestro crecimiento y misión.',
     image: 'assets/home-images/lilianaDalmarco.webp', 
@@ -533,7 +543,6 @@ const newsData = [
     link: 'https://www.femcodersclub.com/equipo'
   }
 ];
-
 const githubProjectsData = [
   {
     id: '1',

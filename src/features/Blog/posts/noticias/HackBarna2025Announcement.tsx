@@ -12,7 +12,7 @@ const HackBarna2025Announcement: React.FC = () => {
   const publicationDate = "29 de septiembre de 2025";
   const currentUrl = "https://www.femcodersclub.com/blog/femcoders-club-community-partner-hackbarna-2025";
 
-  return (
+  return ( 
     <div className="blog-post">
       <Helmet>
         <title>¡FemCoders Club es Community Partner de HackBarna 2025! | FemCoders Club</title>
@@ -161,7 +161,43 @@ const HackBarna2025Announcement: React.FC = () => {
         centrado en inteligencia artificial y con sponsors de la talla que tiene HackBarna... y nosotras 
         formando parte como community partner. Ha sido uno de esos momentos donde dices "¡guau, hemos llegado lejos!"
       </p>
+<div className="highlight-box">
+        <h2>✨ Irina Ichim: Nuestra cofundadora como mentora del hackathon</h2>
+        
+        <p>
+          Y aquí viene algo que nos llena de orgullo de manera muy especial: <strong>
+          <a 
+            href="https://www.linkedin.com/in/irina-ichim-desarrolladora/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            Irina Ichim
+          </a></strong>, una de las cofundadoras de FemCoders Club, ha sido invitada como 
+          <strong> mentora de HackBarna 2025</strong>.
+        </p>
 
+        <p>
+          Irina viene del mundo del emprendimiento y trae esa visión estratégica y de negocio al desarrollo 
+          full-stack, con un enfoque especial en backend. Su experiencia combina lo mejor de ambos mundos: 
+          entender el producto desde la perspectiva empresarial mientras construye soluciones técnicas sólidas.
+        </p>
+
+       <p style={{ marginTop: "20px" }}>
+  Que una de nuestras cofundadoras esté como mentora oficial en HackBarna es la confirmación de que{" "}
+  <a 
+    href="https://www.femcodersclub.com" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="highlight-link"
+  >
+    FemCoders Club
+  </a>{" "}
+  no solo habla de inclusión y diversidad, sino que está activamente construyéndola. 
+  Y desde aquí queremos animar a todas las chicas STEM a que se animen a participar en eventos como 
+  este. ¡Este es vuestro espacio también!
+</p>
+      </div>
       <div className="highlight-box">
         <h2>🤝 Agradecimientos que nacen del corazón</h2>
         

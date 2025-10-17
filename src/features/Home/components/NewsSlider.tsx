@@ -30,7 +30,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
-  const latestNews = newsItems.slice(0, 3);
+  const latestNews = newsItems.slice(0, 5);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;

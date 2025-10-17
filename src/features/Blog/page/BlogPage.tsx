@@ -286,6 +286,14 @@ const BlogPage: React.FC = () => {
   description: "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ.",
   createdAt: new Date("2025-09-30"),
 },
+{
+  id: 29,
+  type: "recurso",
+  category: "css",
+  title: "🎯 Quiz CSS para Entrevistas Técnicas",
+  description: "Prepárate para entrevistas técnicas con 30 preguntas interactivas de CSS. Desde Box Model hasta Grid, Custom Properties y Performance optimization.",
+  createdAt: new Date("2025-10-17"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -366,6 +374,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/html/quiz-html-entrevistas`;
   case "🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de HackBarna 2025":
   return `/noticias/HackBarna2025`;
+  case "🎯 Quiz CSS para Entrevistas Técnicas":
+  return `/recursos/css/quiz-css-entrevistas`;
       default:
         return `/`;
     }

@@ -14,9 +14,6 @@ import EventsPage from "../features/Events/page/EventsPage";
 import useIdleTimer from "../hooks/useIdleTimer";
 import logPageView from "../utils/logPageView";
 
-
-
-
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
@@ -132,6 +129,9 @@ const PreguntasHTMLEntrevistas = lazy(
 );
 const HackBarna2025Announcement = lazy(
   () => import("../features/Blog/posts/noticias/HackBarna2025Announcement")
+);
+const PreguntasCSSEntrevistas = lazy(
+  () => import("../features/Blog/posts/recursos/css/PreguntasCSSEntrevistas")
 );
 
 const RouterComponent: React.FC = () => {
@@ -564,15 +564,25 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-  path="/noticias/HackBarna2025"
-  element={
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <HackBarna2025Announcement />
-      </Suspense>
-    </Layout>
-  }
-/>
+            path="/noticias/HackBarna2025"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <HackBarna2025Announcement />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/css/quiz-css-entrevistas"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <PreguntasCSSEntrevistas />
+                </Suspense>
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
 
