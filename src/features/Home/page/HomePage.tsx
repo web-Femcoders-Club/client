@@ -506,7 +506,7 @@ const newsData = [
     id: '2',
     title: 'Ana Lucía Silva Córdoba: Profesional Digital Referente 2025',
     description: 'Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.',
-    image: 'assets/home-images/anaLuciaSilva.webp', 
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1762387200&v=beta&t=dpDrekJ2t8_NuZRPJYDPYzUXYY5P8Z-KhZaDD5ar674', 
     imageAlt: 'Ana Lucía Silva Córdoba - Profesional Digital Referente 2025',
     date: '9 Septiembre 2025',
     category: 'Reconocimientos',
@@ -532,16 +532,16 @@ const newsData = [
     category: 'Recursos',
     link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
   },
-  {
-    id: '5',
-    title: 'Liliana Dalmarco Regresa a FemCoders Club',
-    description: 'Con gran alegría anunciamos el regreso de Liliana Dalmarco a nuestra comunidad. Como parte de nuestras fundadoras legacy, su visión y dedicación fueron fundamentales en los inicios de FemCoders Club. Ahora vuelve para continuar impulsando nuestro crecimiento y misión.',
-    image: 'assets/home-images/lilianaDalmarco.webp', 
-    imageAlt: 'Liliana Dalmarco regresa a FemCoders Club',
-    date: '25 Agosto 2025',
-    category: 'Equipo',
-    link: 'https://www.femcodersclub.com/equipo'
-  }
+ {
+  id: '5',
+  title: 'Nuevo Recurso: Canal de WhatsApp JuniorJobs',
+  description: 'Daniel García Baena, profesor y entusiasta de la enseñanza, ha creado un canal de WhatsApp donde cada domingo publica ofertas actualizadas para developers junior en España y LATAM. Un recurso 100% gratuito recomendado por MoureDev, Linkfy y Genbeta.',
+  image: 'https://media.licdn.com/dms/image/v2/C4D03AQEPEQNKkYk-Mw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516927817715?e=1762387200&v=beta&t=NzlgjPB4PDanspT-t0BcIqZuCX_YpH6oWVw2osoFNa4',
+  imageAlt: 'Daniel García Baena - Creador del canal JuniorJobs',
+  date: '20 Octubre 2025',
+  category: 'Recursos',
+  link: 'https://www.femcodersclub.com/ofertas-de-trabajo'
+}
 ];
 const githubProjectsData = [
   {

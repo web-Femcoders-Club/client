@@ -94,9 +94,23 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
     }
   };
 
+  // Función para determinar si es una URL externa
+  const isExternalUrl = (url: string) => {
+    return url.startsWith('http://') || url.startsWith('https://');
+  };
+
+  // Función para obtener la ruta de la imagen
+  const getImagePath = (image: string, size: 'mobile' | 'desktop') => {
+    if (isExternalUrl(image)) {
+      return image;
+    }
+    const imagePath = image.startsWith('/') ? image.slice(1) : image;
+    return `/public-optimized/${size}/${imagePath}`.replace(/\.(jpg|jpeg|png|webp)$/i, ".webp");
+  };
+
   if (!latestNews.length) {
     return (
-      <section className="news-slider-container ">
+      <section className="news-slider-container">
         <div className="news-slider-empty">
           <h3>Próximamente nuevas actualizaciones</h3>
           <p>Mantente atenta a las últimas noticias de FemCoders Club</p>
@@ -121,7 +135,8 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
       >
         {latestNews.map((news, index) => {
           const isActive = index === currentSlide;
-          const isImageLeft = index % 2 === 0; 
+          const isImageLeft = index % 2 === 0;
+          const isExternal = isExternalUrl(news.image);
 
           return (
             <div
@@ -133,29 +148,44 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
             >
               <div className="news-slide-content">
                 <div className="news-image-container">
-                  <picture>
-                    <source
-                      srcSet={`/public-optimized/mobile/${news.image.startsWith('/') ? news.image.slice(1) : news.image}`.replace(/\.(jpg|jpeg|png|webp)$/i, ".webp")}
-                      media="(max-width: 768px)"
-                    />
-                    <source
-                      srcSet={`/public-optimized/desktop/${news.image.startsWith('/') ? news.image.slice(1) : news.image}`.replace(/\.(jpg|jpeg|png|webp)$/i, ".webp")}
-                      media="(min-width: 769px)"
-                    />
-                    <img
-                      src={`/public-optimized/desktop/${news.image.startsWith('/') ? news.image.slice(1) : news.image}`.replace(/\.(jpg|jpeg|png|webp)$/i, ".webp")}
-                      alt={news.imageAlt}
-                      className="news-image"
-                      loading="lazy"
-                      onError={(e) => {
-                  
-                        const imgElement = e.target as HTMLImageElement;
-                        imgElement.src = news.image;
-                        imgElement.onerror = null;
-                      }}
-                    />
-                  </picture>
-                  <div className="news-image-overlay"></div>
+                  {isExternal ? (
+                    // Para URLs externas, usar img directo con estilo de perfil
+                    <>
+                      <img
+                        src={news.image}
+                        alt={news.imageAlt}
+                        className="news-image news-image-external"
+                        loading="lazy"
+                      />
+                      <div className="news-image-overlay"></div>
+                    </>
+                  ) : (
+                    // Para imágenes locales, usar picture con optimización
+                    <>
+                      <picture>
+                        <source
+                          srcSet={getImagePath(news.image, 'mobile')}
+                          media="(max-width: 768px)"
+                        />
+                        <source
+                          srcSet={getImagePath(news.image, 'desktop')}
+                          media="(min-width: 769px)"
+                        />
+                        <img
+                          src={getImagePath(news.image, 'desktop')}
+                          alt={news.imageAlt}
+                          className="news-image"
+                          loading="lazy"
+                          onError={(e) => {
+                            const imgElement = e.target as HTMLImageElement;
+                            imgElement.src = news.image;
+                            imgElement.onerror = null;
+                          }}
+                        />
+                      </picture>
+                      <div className="news-image-overlay"></div>
+                    </>
+                  )}
                 </div>
 
                 <div className="news-text-container">
@@ -184,7 +214,6 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
           );
         })}
 
-     
         {showArrows && latestNews.length > 1 && (
           <div className="news-controls">
             <button
@@ -204,7 +233,6 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
           </div>
         )}
 
-  
         {autoPlay && latestNews.length > 1 && (
           <button
             className="news-play-pause"
@@ -216,7 +244,6 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
         )}
       </div>
 
- 
       {showDots && latestNews.length > 1 && (
         <div className="news-indicators">
           {latestNews.map((_, index) => (
