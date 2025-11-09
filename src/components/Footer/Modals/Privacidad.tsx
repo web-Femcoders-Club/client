@@ -6,15 +6,13 @@ interface PrivacyPolicyModalProps {
   closeModal: () => void;
 }
 
-const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
-  closeModal,
-}) => {
+const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) => {
   const { openModal } = useContext(ModalContext);
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
+  const toggleShowMore = (): void => {
+    setShowMore((prev) => !prev);
   };
 
   useEffect(() => {
@@ -23,198 +21,242 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
     }
   }, [showMore]);
 
-  const handleCookiesPolicyClick = () => {
+  const handleCookiesPolicyClick = (): void => {
     closeModal();
     openModal("cookiePolicy");
   };
 
   return (
     <div className="modal-overlay">
-     <div className="modal-content" role="dialog" aria-modal="true">
-
+      <div
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        style={{ maxWidth: "900px" }} 
+      >
         <div className="modal-close">
           <button onClick={closeModal}>x</button>
         </div>
+
         <div>
-          <h3>Política de Privacidad y Términos de Uso</h3>
+          <h3>Política de Privacidad de FemCoders Club</h3>
+          <h4>Fecha de entrada en vigor: 29.09.2025</h4>
         </div>
+
         <div className="modal-body" ref={modalRef}>
           <p>
-            En <span>FemCoders Club</span>, valoramos profundamente tu
-            privacidad. Esta{" "}
-            <strong>Política de Privacidad y los Términos de Uso</strong>{" "}
-            describe cómo recopilamos, usamos y divulgamos la información
-            obtenida de nuestras integrantes en nuestro directorio web. <br />
-            Al proporcionarnos tu información, aceptas que tu información
-            personal se manejará según lo descrito en esta Política. Tu uso de
-            nuestro sitio y cualquier disputa sobre la privacidad están sujetos
-            a esta <strong>Política y a los Términos de Uso</strong> de nuestro
-            sitio, que incluyen limitaciones aplicables a los daños y la
-            resolución de disputas. <br />
-            Los Términos de Uso del sitio web de FemCoders Club se incorporan
-            por referencia en esta Política.
+            En <strong>FemCoders Club</strong> nos tomamos muy en serio la privacidad de las personas
+            que forman parte de nuestra comunidad. Esta Política de Privacidad explica qué datos
+            recopilamos, con qué finalidad y cuáles son tus derechos. Nos comprometemos a tratar la
+            información personal de forma responsable, transparente y conforme al Reglamento General
+            de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).
           </p>
 
-          <br />
-          <h5>¿Qué información recopilamos sobre ti y por qué?</h5>
+          <h5>1. Responsable del Tratamiento</h5>
           <p>
-            Podemos recopilar información sobre ti directamente cuando te
-            registras en el directorio mediante el formulario web de nuestro
-            sitio o cuando envías una consulta a través del formulario
-            correspondiente. También podemos recopilar información durante
-            encuestas eventuales que realicemos.
-          </p>
-          <p>
-            <span>Información que podemos solicitarte:</span>
+            <strong>Nombre:</strong> FemCoders Club (asociación sin ánimo de lucro)
             <br />
-            ● Te pediremos que te registres en nuestro directorio para acceder a
-            ciertos servicios, como recibir beneficios o acceder a contenido
-            específico en nuestro sitio web. En estas áreas, podemos solicitar
-            tu nombre, dirección de correo electrónico y otra información
-            opcional, como detalles sobre tu formación académica.
-            <br />● También podemos administrar cuestionarios, encuestas y otras
-            herramientas de investigación, solicitándote información como parte
-            de tu participación. Estas actividades siempre serán opcionales y de
-            participación voluntaria.
-          </p>
-
-          <p>
-            <span>Información que recopilamos automáticamente:</span>
+            <strong>NIF: G22435788</strong>
             <br />
-            Podemos recopilar automáticamente información sobre tu uso de
-            nuestro sitio a través de cookies, balizas web (también conocidas
-            como "web beacons" o "clear GIFs"), archivos de registro y otras
-            tecnologías. Esto incluye tu nombre de dominio, tipo de navegador y
-            sistema operativo, páginas web visitadas, enlaces seleccionados,
-            dirección IP, tiempo de visita y URL de referencia. Para más
-            detalles, consulta la sección{" "}
-            <button onClick={handleCookiesPolicyClick} className="link-button">
-              {" "}
-              Política de Cookies
-            </button>{" "}
-            a continuación.
+            <strong>Domicilio social:</strong> Calle Concepció Arenal 165 08027 Barcelona (Canòdrom, Barcelona)
+            <br />
+            <strong>Correo electrónico de contacto:</strong>{" "}
+            <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>
           </p>
 
-          <h5>¿Cómo usamos tu información?</h5>
-          <p>
-            Utilizamos la información que nos brindas, incluida tu información
-            personal, para los siguientes propósitos:
-          </p>
+          <h5>2. Datos que Recopilamos y Finalidades</h5>
           <ul>
             <li>
-              Generar estadísticas y comunicarnos contigo: Utilizamos tu
-              información para generar estadísticas, comunicarnos contigo y
-              responder a tus consultas y solicitudes.
+              <strong>Formulario de contacto:</strong> nombre, correo electrónico y mensaje, para
+              responder tus consultas.
             </li>
             <li>
-              Personalizar contenido e información: Personalizamos el contenido
-              e información que te enviamos o mostramos, mejoramos nuestro sitio
-              y actividades, y realizamos investigaciones y análisis.
+              <strong>Inscripción a eventos:</strong> nombre, correo electrónico y datos logísticos
+              necesarios, para gestionar tu participación y enviarte información relacionada.
             </li>
             <li>
-  Notificaciones sobre eventos: Si has asistido a alguno de nuestros eventos, es posible que recibas comunicaciones futuras con invitaciones a otros eventos organizados por FemCoders Club. Si no deseas recibir este tipo de correos, puedes hacérnoslo saber escribiéndonos a <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
-</li>
-
+              <strong>Newsletter:</strong> dirección de correo electrónico, solo si te suscribes
+              voluntariamente, para enviarte noticias de nuestras actividades.
+            </li>
+            <li>
+              <strong>Directorio de integrantes:</strong> datos básicos como nombre, email y datos
+              opcionales (formación, perfil profesional), visibles solo para otras integrantes.
+            </li>
+            <li>
+              <strong>Encuestas internas:</strong> participación voluntaria; los datos se usan de
+              forma agregada y anónima para mejorar nuestras actividades.
+            </li>
+            <li>
+              <strong>Cookies técnicas:</strong> necesarias para el correcto funcionamiento del
+              sitio web. No usamos cookies de terceros ni de analítica. Más info en la{" "}
+              <button onClick={handleCookiesPolicyClick} className="link-button">
+                Política de Cookies
+              </button>
+              .
+            </li>
+            <li>
+              <strong>Fotografías y vídeos de eventos:</strong> ver el apartado específico más
+              abajo.
+            </li>
           </ul>
+
           {!showMore && (
             <button onClick={toggleShowMore} className="tertiary-button">
               Saber más
             </button>
           )}
+
           {showMore && (
             <>
-              <h5>¿Cómo compartimos tu información?</h5>
-              <p>Podemos compartir tu información de las siguientes maneras:</p>
+              <h5>3. Base Legal del Tratamiento</h5>
+              <p>Tratamos tus datos sobre las siguientes bases jurídicas:</p>
               <ul>
                 <li>
-                  Compartir con otros miembros: Cualquier información que
-                  autorices a publicar será visible para otros miembros en el
-                  sitio.
+                  <strong>Consentimiento expreso:</strong> cuando te inscribes, participas o te
+                  suscribes voluntariamente.
                 </li>
                 <li>
-                  Proveedores de servicios:Podemos compartir la información con
-                  proveedores de servicios que nos ayudan a operar y mejorar
-                  nuestro sitio.
-                </li>
-                <li>
-                  Cumplimiento legal: Podemos divulgar información si creemos
-                  que es necesario para cumplir con una ley, regulación o
-                  proceso legal, o para proteger la seguridad, los derechos y la
-                  propiedad de FemCoders Club y nuestros usuarios.
+                  <strong>Interés legítimo:</strong> para la difusión de actividades y la gestión
+                  interna de eventos y comunidad.
                 </li>
               </ul>
-              <h5>Nuestro uso de cookies y otros mecanismos de seguimiento</h5>
               <p>
-                Utilizamos cookies, GIFs transparentes y otras tecnologías para
-                rastrear información sobre tu uso de nuestro sitio y servicios.
-                Podemos combinar esta información con otra información personal
-                que recopilamos de ti.
+                No realizamos decisiones automatizadas ni elaboramos perfiles basados únicamente en
+                el tratamiento automatizado de tus datos.
               </p>
-              <p>
-                <button
-                  onClick={handleCookiesPolicyClick}
-                  className="link-button"
-                >
-                  {" "}
-                  Política de Cookies
-                </button>{" "}
-                Transferimos identificadores alfanuméricos a tu computadora
-                mediante tu navegador web. Puedes ajustar las opciones de tu
-                navegador para bloquearlas.
-                <br />
-                <strong>GIFs transparentes:</strong> Son pequeños gráficos
-                incrustados de forma invisible en las páginas web para rastrear
-                actividades. Los utilizamos para administrar el contenido y
-                recopilar estadísticas.
-                <br />
-                <strong>Análisis de terceros:</strong> Utilizamos dispositivos y
-                aplicaciones automatizadas para evaluar el uso de nuestros
-                sitios y servicios. Esta información puede ser combinada por
-                terceros proveedores de análisis.
-              </p>
-              <h5>Uso de imágenes en eventos</h5>
-<p>
-  Durante nuestros eventos, podemos tomar fotografías o capturas de vídeo para documentar la actividad. Estas imágenes pueden ser utilizadas posteriormente en nuestras redes sociales, página web o materiales promocionales, siempre con el objetivo de visibilizar las actividades de la comunidad. Si no deseas que tu imagen sea publicada, puedes comunicarlo escribiéndonos a <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
-</p>
 
-              <h5>Enlaces de terceros</h5>
+              <h5>4. Conservación de los Datos</h5>
               <p>
-                Nuestro sitio y servicios pueden contener enlaces a sitios web
-                de terceros. El acceso y uso de estos sitios no está gobernado
-                por esta Política, sino por las políticas de privacidad de los
-                sitios web de terceros.
+                Tus datos se conservarán el tiempo necesario para cumplir la finalidad para la que
+                fueron recogidos o hasta que solicites su supresión. A modo orientativo:
               </p>
-              <h5>Comunicaciones de nosotras</h5>
+              <ul>
+                <li>
+                  <strong>Contacto:</strong> hasta responder la consulta y cerrar el seguimiento.
+                </li>
+                <li>
+                  <strong>Newsletter:</strong> hasta que solicites la baja.
+                </li>
+                <li>
+                  <strong>Eventos:</strong> hasta la finalización del evento y la publicación del
+                  material relacionado.
+                </li>
+              </ul>
+
+              <h5>5. Cesiones de Datos y Encargados del Tratamiento</h5>
               <p>
-                Podemos enviarte correos electrónicos informativos periódicos.
-                Puedes optar por no recibir dichas comunicaciones siguiendo las
-                instrucciones de exclusión que figuran en el correo electrónico.
+                No compartimos tus datos personales con terceros, salvo obligación legal o cuando
+                sea estrictamente necesario para prestar un servicio.
               </p>
-              <h5>Seguridad de tu información personal</h5>
               <p>
-                Hemos implementado medidas de seguridad para proteger la
-                información que recopilamos, pero ninguna medida puede
-                garantizar el 100% de seguridad.
+                Podemos utilizar plataformas externas (como servicios de formularios, gestión de
+                eventos o boletines) que actúan como encargados del tratamiento bajo contratos
+                adecuados conforme al RGPD. Actualmente usamos <strong>Eventbrite</strong> para la
+                gestión de algunos eventos.
               </p>
-              <h5>Cambios a esta política</h5>
+
+              <h5>6. Transferencias Internacionales de Datos</h5>
               <p>
-                Esta Política está vigente a partir de la Fecha de vigencia
-                establecida anteriormente. Podemos cambiarla ocasionalmente, por
-                lo que te recomendamos revisarla periódicamente. Publicaremos
-                cualquier cambio aquí y, si es relevante, te notificaremos con
-                antelación.
+                Algunos de nuestros proveedores tecnológicos (como plataformas de eventos o
+                infraestructura técnica) pueden estar ubicados fuera del Espacio Económico Europeo
+                o tener infraestructuras en varios países. En esos casos, nos aseguramos de que
+                existan garantías adecuadas, como decisiones de adecuación de la Comisión Europea o
+                cláusulas contractuales tipo aprobadas por la UE.
               </p>
-              <h5>Contacto</h5>
+
+              <h5>7. Tus Derechos</h5>
               <p>
-                Tu privacidad es importante para nosotras. Si tienes alguna
-                pregunta o inquietud, no dudes en ponerte en contacto con
-                nosotras en{" "}
+                Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición,
+                limitación del tratamiento y portabilidad escribiendo a{" "}
+                <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>. También puedes
+                retirar tu consentimiento en cualquier momento.
+              </p>
+              <p>
+                Si consideras que no se ha respetado tu derecho a la protección de datos, puedes
+                presentar una reclamación ante la Agencia Española de Protección de Datos (
+                <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">
+                  www.aepd.es
+                </a>
+                ).
+              </p>
+
+              <h5>8. Seguridad</h5>
+              <p>
+                Aplicamos medidas técnicas y organizativas razonables para proteger tus datos. El
+                sitio web se aloja en <strong>Railway</strong>, utiliza <strong>Cloudflare</strong>{" "}
+                como intermediario de red y el dominio está gestionado con <strong>Arsys</strong>.
+                Todos estos proveedores ofrecen garantías de protección de datos conforme al RGPD.
+              </p>
+
+              <h5>9. Uso de Imágenes en Eventos y Actividades</h5>
+              <p>
+                Durante nuestros eventos, podemos tomar fotografías o vídeos con el objetivo de
+                documentar y visibilizar las actividades de la comunidad. Estas imágenes pueden ser
+                utilizadas en:
+              </p>
+              <ul>
+                <li>Nuestra web oficial: https://femcodersclub.com</li>
+                <li>Redes sociales oficiales de FemCoders Club</li>
+                <li>Materiales divulgativos o promocionales propios</li>
+              </ul>
+              <p>
+                Siempre con fines informativos y nunca con fines comerciales. No usamos las imágenes
+                en contextos ajenos.
+              </p>
+              <p>
+                <strong>Base legal:</strong> interés legítimo de la asociación en difundir sus
+                actividades y, en su caso, consentimiento expreso.
+              </p>
+              <p>
+                <strong>Derecho de oposición:</strong> si no deseas aparecer en las imágenes, puedes
+                comunicarlo antes o durante el evento. También puedes solicitar la retirada de una
+                imagen escribiendo a{" "}
+                <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
+              </p>
+              <p>
+                <strong>Menores:</strong> FemCoders Club no publicará imágenes de menores de 14 años
+                sin el consentimiento explícito de su madre, padre o tutor legal.
+              </p>
+
+              <h5>10. Uso de Cookies</h5>
+              <p>
+                Solo utilizamos cookies propias de carácter técnico necesarias para el
+                funcionamiento del sitio. No usamos cookies de terceros, ni de seguimiento ni de
+                publicidad. No almacenamos información personal mediante cookies.
+              </p>
+              <p>
+                Puedes configurar tu navegador para bloquearlas, aunque esto puede afectar al
+                funcionamiento de algunas secciones del sitio. Para más detalles, consulta la{" "}
+                <button onClick={handleCookiesPolicyClick} className="link-button">
+                  Política de Cookies
+                </button>
+                .
+              </p>
+
+              <h5>11. Participación en Redes Sociales</h5>
+              <p>
+                La participación en nuestras redes sociales se rige por las políticas de privacidad
+                de cada plataforma. FemCoders Club no extrae datos personales desde estas
+                plataformas, salvo que se establezca un contacto directo por mensaje o formulario
+                externo.
+              </p>
+
+              <h5>12. Cambios a esta Política</h5>
+              <p>
+                Podemos actualizar esta política para adaptarla a cambios legales o funcionales. Te
+                avisaremos por medios razonables si se introducen cambios relevantes.
+              </p>
+
+              <h5>13. Contacto</h5>
+              <p>
+                Para cualquier duda, ejercicio de derechos o comentarios sobre esta política,
+                escríbenos a{" "}
                 <a href="mailto:info@femcodersclub.com">
-                  {" "}
                   <span>info@femcodersclub.com</span>
                 </a>
                 .
               </p>
+
               <div className="flex justify-start mt-4">
                 <button onClick={closeModal} className="tertiary-button">
                   Aceptar
@@ -229,3 +271,6 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
 };
 
 export default PrivacyPolicyModal;
+
+
+

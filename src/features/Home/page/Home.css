@@ -47,99 +47,853 @@
   align-items: center;
   object-fit: cover;
 }
+/* ========================================
+   ESFERAS DE INFLUENCIA v3.1
+   Animación elegante con INTERCAMBIO natural
+   Aspect ratio 3:2.5 | Las cofundadoras se alternan al frente
+   ======================================== */
 
-.photo-stack {
+.esferas-container {
   position: relative;
-  width: 80%;
-  margin-top: 2.5rem;
-  margin-left: auto;
-  height: 32rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  height: 520px;
+  perspective: 1000px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+  overflow: visible;
+  transform: translate(20px, 66px); 
 }
 
-.photo-stack .photo {
-  border-radius: 1rem;
-  position: relative;
+/* ========================================
+   ESFERA BASE - Contenedor de imagen
+   ======================================== */
+.leadership-sphere {
+  position: absolute;
+  width: 60%; /* un poco más ligera que 65% */
+  aspect-ratio: 3 / 2.5;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 0.9s cubic-bezier(0.33, 0.0, 0.22, 1),
+    opacity 0.6s ease-out;
+  
+  /* Sombra suave y elegante */
+  box-shadow:
+    0 20px 60px rgba(108, 99, 255, 0.15),
+    0 8px 25px rgba(234, 79, 51, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+  /* Borde sutil con gradiente */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg,
+      rgba(108, 99, 255, 0.3) 0%,
+      rgba(234, 79, 51, 0.3) 100%
+    ) border-box;
 }
 
-.photo-stack .photo-gradient {
+/* ========================================
+   ESFERA PRINCIPAL - Cofundadora líder
+   ======================================== */
+.leadership-sphere.primary {
+  top: 8%;
+  left: 8%;
+  z-index: 10;
+  transform: translateZ(8px) scale(1.02);
+  animation: primaryInfluence 16s ease-in-out infinite;
+}
+
+/* ========================================
+   ESFERA SECUNDARIA - Cofundadora apoyo
+   ======================================== */
+.leadership-sphere.secondary {
+  top: 25%;
+  right: 5%;
+  z-index: 8;
+  transform: translateZ(-14px) scale(0.94);
+  animation: secondaryInfluence 16s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+/* ========================================
+   ANIMACIÓN: Influencia principal ULTRA-FLUIDA (natural)
+   ======================================== */
+@keyframes primaryInfluence {
+  /* Arranca delante, liderando suave */
+  0% {
+    transform:
+      translateZ(8px)
+      rotateY(0deg)
+      rotateX(0deg)
+      scale(1.02)
+      translateX(0)
+      translateY(0);
+    opacity: 1;
+    z-index: 15;
+  }
+
+  12.5% {
+    transform:
+      translateZ(14px)
+      rotateY(2deg)
+      rotateX(-0.8deg)
+      scale(1.04)
+      translateX(3px)
+      translateY(-2px);
+    opacity: 1;
+    z-index: 15;
+  }
+
+  /* Pico de liderazgo, más grande (ancha y alta) */
+  25% {
+    transform:
+      translateZ(20px)
+      rotateY(3deg)
+      rotateX(-1.3deg)
+      scale(1.08)
+      translateX(7px)
+      translateY(-4px);
+    opacity: 1;
+    z-index: 15;
+  }
+
+  37.5% {
+    transform:
+      translateZ(13px)
+      rotateY(2deg)
+      rotateX(-0.9deg)
+      scale(1.04)
+      translateX(4px)
+      translateY(-3px);
+    opacity: 0.97;
+    z-index: 14;
+  }
+
+  /* Empieza a “ceder” hacia el fondo */
+  50% {
+    transform:
+      translateZ(2px)
+      rotateY(0deg)
+      rotateX(0deg)
+      scale(0.99)
+      translateX(0)
+      translateY(0);
+    opacity: 0.93;
+    z-index: 11;
+  }
+
+  62.5% {
+    transform:
+      translateZ(-8px)
+      rotateY(-1.8deg)
+      rotateX(0.8deg)
+      scale(0.96)
+      translateX(-4px)
+      translateY(3px);
+    opacity: 0.88;
+    z-index: 8;
+  }
+
+  /* Punto más en segundo plano, pero sin exagerar */
+  75% {
+    transform:
+      translateZ(-14px)
+      rotateY(-2.6deg)
+      rotateX(1.2deg)
+      scale(0.94)
+      translateX(-7px)
+      translateY(4px);
+    opacity: 0.85;
+    z-index: 7;
+  }
+
+  87.5% {
+    transform:
+      translateZ(-5px)
+      rotateY(-1deg)
+      rotateX(0.4deg)
+      scale(0.97)
+      translateX(-2px)
+      translateY(1px);
+    opacity: 0.9;
+    z-index: 10;
+  }
+
+  /* Vuelve al protagonismo inicial de forma simétrica */
+  100% {
+    transform:
+      translateZ(8px)
+      rotateY(0deg)
+      rotateX(0deg)
+      scale(1.02)
+      translateX(0)
+      translateY(0);
+    opacity: 1;
+    z-index: 15;
+  }
+}
+
+/* ========================================
+   ANIMACIÓN: Influencia secundaria ULTRA-FLUIDA (natural)
+   Suavizado especial al entrar al frente
+   ======================================== */
+@keyframes secondaryInfluence {
+  /* Empieza un poco más atrás */
+  0% {
+    transform:
+      translateZ(-14px)
+      rotateY(0deg)
+      rotateX(0deg)
+      scale(0.94)
+      translateX(0)
+      translateY(0);
+    opacity: 0.88;
+    z-index: 8;
+  }
+
+  12.5% {
+    transform:
+      translateZ(-10px)
+      rotateY(-0.8deg)
+      rotateX(0.4deg)
+      scale(0.96)
+      translateX(-2px)
+      translateY(1px);
+    opacity: 0.9;
+    z-index: 8;
+  }
+
+  25% {
+    transform:
+      translateZ(-4px)
+      rotateY(-1.6deg)
+      rotateX(0.9deg)
+      scale(0.99)
+      translateX(-4px)
+      translateY(2px);
+    opacity: 0.93;
+    z-index: 9;
+  }
+
+  /* Pre-entrada: ya casi delante, pero aún sin “golpe” */
+  37.5% {
+    transform:
+      translateZ(2px)
+      rotateY(-2.4deg)
+      rotateX(1.3deg)
+      scale(1.02)
+      translateX(-6px)
+      translateY(3px);
+    opacity: 0.96;
+    z-index: 12;
+  }
+
+  /* Entrada progresiva al frente */
+  45% {
+    transform:
+      translateZ(7px)
+      rotateY(-3deg)
+      rotateX(1.6deg)
+      scale(1.05)
+      translateX(-7px)
+      translateY(4px);
+    opacity: 0.98;
+    z-index: 15;
+  }
+
+  /* Pico de protagonismo: más ancha y alta */
+  52.5% {
+    transform:
+      translateZ(12px)
+      rotateY(-3.4deg)
+      rotateX(1.9deg)
+      scale(1.08)
+      translateX(-9px)
+      translateY(5px);
+    opacity: 1;
+    z-index: 19;
+  }
+
+  60% {
+    transform:
+      translateZ(10px)
+      rotateY(-3.2deg)
+      rotateX(1.7deg)
+      scale(1.06)
+      translateX(-8px)
+      translateY(4px);
+    opacity: 0.99;
+    z-index: 18;
+  }
+
+  72.5% {
+    transform:
+      translateZ(6px)
+      rotateY(-2.6deg)
+      rotateX(1.3deg)
+      scale(1.03)
+      translateX(-7px)
+      translateY(3px);
+    opacity: 0.96;
+    z-index: 15;
+  }
+
+  85% {
+    transform:
+      translateZ(0px)
+      rotateY(-1.5deg)
+      rotateX(0.8deg)
+      scale(0.99)
+      translateX(-4px)
+      translateY(2px);
+    opacity: 0.92;
+    z-index: 11;
+  }
+
+  /* Vuelve a su rol de apoyo */
+  100% {
+    transform:
+      translateZ(-14px)
+      rotateY(0deg)
+      rotateX(0deg)
+      scale(0.94)
+      translateX(0)
+      translateY(0);
+    opacity: 0.88;
+    z-index: 8;
+  }
+}
+
+/* ========================================
+   IMAGEN: Configuración elegante
+   ======================================== */
+.leadership-sphere img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 18px;
+  filter: contrast(1.05) saturate(1.08) brightness(1.02);
+  transition: filter 3s ease;
+}
+
+/* Movimiento Ken Burns sutil sincronizado con intercambio */
+.leadership-sphere.primary img {
+  animation: elegantKenBurnsPrimary 16s ease-in-out infinite;
+}
+
+.leadership-sphere.secondary img {
+  animation: elegantKenBurnsSecondary 16s ease-in-out infinite;
+}
+
+@keyframes elegantKenBurnsPrimary {
+  0%, 100% {
+    transform: scale(1.02) translate(0, 0);
+  }
+  
+  15% {
+    transform: scale(1.04) translate(-0.5%, 0.2%);
+  }
+  
+  25% {
+    transform: scale(1.06) translate(-1%, 0.5%);
+  }
+  
+  42% {
+    transform: scale(1.03) translate(-0.2%, 0.1%);
+  }
+  
+  58% {
+    transform: scale(1.01) translate(0.5%, -0.3%);
+  }
+  
+  75% {
+    transform: scale(1.02) translate(0.2%, -0.1%);
+  }
+  
+  85% {
+    transform: scale(1.04) translate(-0.5%, 0.2%);
+  }
+}
+
+@keyframes elegantKenBurnsSecondary {
+  0%, 100% {
+    transform: scale(1.02) translate(0, 0);
+  }
+  
+  15% {
+    transform: scale(1.025) translate(0.1%, -0.1%);
+  }
+  
+  25% {
+    transform: scale(1.03) translate(0.3%, -0.2%);
+  }
+  
+  42% {
+    transform: scale(1.05) translate(-0.8%, 0.5%);
+  }
+  
+  58% {
+    transform: scale(1.07) translate(-1.2%, 0.8%);
+  }
+  
+  65% {
+    transform: scale(1.075) translate(-1.3%, 0.7%);
+  }
+  
+  75% {
+    transform: scale(1.05) translate(-1%, 0.5%);
+  }
+  
+  85% {
+    transform: scale(1.03) translate(-0.6%, 0.3%);
+  }
+}
+
+/* ========================================
+   AURA DE INFLUENCIA CON INTERCAMBIO
+   ======================================== */
+.leadership-sphere::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background:
+    conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(108, 99, 255, 0.35) 0deg,
+      rgba(234, 79, 51, 0.25) 180deg,
+      rgba(108, 99, 255, 0.35) 360deg
+    );
+  border-radius: 24px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(14px);
+}
+
+.leadership-sphere.primary::before {
+  animation: influenceAuraPrimary 16s ease-in-out infinite;
+}
+
+.leadership-sphere.secondary::before {
+  animation: influenceAuraSecondary 16s ease-in-out infinite;
+}
+
+@keyframes influenceAuraPrimary {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1) rotate(0deg);
+    filter: blur(14px);
+  }
+  
+  10% {
+    opacity: 0.18;
+    transform: scale(1.05) rotate(15deg);
+    filter: blur(15px);
+  }
+  
+  20% {
+    opacity: 0.45;
+    transform: scale(1.12) rotate(40deg);
+    filter: blur(17px);
+  }
+  
+  30% {
+    opacity: 0.55;
+    transform: scale(1.16) rotate(60deg);
+    filter: blur(18px);
+  }
+  
+  40% {
+    opacity: 0.3;
+    transform: scale(1.08) rotate(90deg);
+    filter: blur(16px);
+  }
+  
+  55% {
+    opacity: 0.12;
+    transform: scale(0.97) rotate(150deg);
+    filter: blur(13px);
+  }
+  
+  70% {
+    opacity: 0.08;
+    transform: scale(0.94) rotate(190deg);
+    filter: blur(12px);
+  }
+  
+  85% {
+    opacity: 0.22;
+    transform: scale(1.04) rotate(260deg);
+    filter: blur(15px);
+  }
+  
+  95% {
+    opacity: 0.1;
+    transform: scale(1.01) rotate(320deg);
+    filter: blur(14px);
+  }
+}
+
+@keyframes influenceAuraSecondary {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1) rotate(0deg);
+    filter: blur(14px);
+  }
+  
+  10% {
+    opacity: 0.1;
+    transform: scale(0.97) rotate(10deg);
+    filter: blur(15px);
+  }
+  
+  25% {
+    opacity: 0.22;
+    transform: scale(0.95) rotate(30deg);
+    filter: blur(16px);
+  }
+  
+  35% {
+    opacity: 0.35;
+    transform: scale(1.04) rotate(60deg);
+    filter: blur(18px);
+  }
+  
+  45% {
+    opacity: 0.6;
+    transform: scale(1.14) rotate(90deg);
+    filter: blur(19px);
+  }
+  
+  58% {
+    opacity: 0.78;
+    transform: scale(1.2) rotate(135deg);
+    filter: blur(20px);
+  }
+  
+  68% {
+    opacity: 0.7;
+    transform: scale(1.16) rotate(160deg);
+    filter: blur(19px);
+  }
+  
+  78% {
+    opacity: 0.42;
+    transform: scale(1.07) rotate(200deg);
+    filter: blur(17px);
+  }
+  
+  90% {
+    opacity: 0.18;
+    transform: scale(0.96) rotate(280deg);
+    filter: blur(15px);
+  }
+}
+
+/* ========================================
+   INDICADORES DE LIDERAZGO CON INTERCAMBIO
+   ======================================== */
+.leadership-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 15;
+}
+
+.leadership-sphere.primary .leadership-indicator {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(234, 79, 51, 1) 0%,
+      rgba(234, 79, 51, 0.3) 100%
+    );
+  animation: primaryLeadershipPulse 16s ease-in-out infinite;
+}
+
+.leadership-sphere.secondary .leadership-indicator {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(108, 99, 255, 1) 0%,
+      rgba(108, 99, 255, 0.3) 100%
+    );
+  animation: secondaryLeadershipPulse 16s ease-in-out infinite;
+}
+
+@keyframes primaryLeadershipPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  
+  20% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  
+  25% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  
+  35% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+  
+  55% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  
+  80% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes secondaryLeadershipPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  
+  25% {
+    opacity: 0.75;
+    transform: scale(1.1);
+  }
+  
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  
+  65% {
+    opacity: 0.95;
+    transform: scale(1.3);
+  }
+  
+  80% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+}
+
+/* ========================================
+   REFLEJO SUTIL
+   ======================================== */
+.leadership-sphere::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
-  background: radial-gradient(
-    circle at center,
-    rgba(234, 79, 51, 0) 40%,
-    rgba(109, 44, 149, 0.3) 70%,
-    rgba(71, 55, 187, 0.5) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
-}
-
-.photo-stack .photo img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 1rem;
-  position: relative;
-  z-index: 1;
-  border: none;
-  object-fit: cover;
-}
-
-.photo-stack .photo-1 {
-  position: absolute;
   right: 0;
-  bottom: 0;
-  z-index: 2;
-  width: 80%;
-  height: 26rem;
-  box-shadow: -10px 10px 0 #ea4f33, 0 4px 8px rgba(0, 0, 0, 0.1);
-  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-}
-
-.photo-stack .photo-2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 75%;
-  height: 25rem;
-  transform: rotate(-5deg);
-  border: none;
+  height: 30%;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 100%
+    );
+  border-radius: 20px 20px 0 0;
   pointer-events: none;
-  box-shadow: 10px 10px 0 #4737bb, 0 4px 8px rgba(0, 0, 0, 0.1);
-  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+  opacity: 0.8;
 }
 
-.photo-stack .photo.photo-event img {
-  width: 100%;
-  height: 100%;
-  margin-top: 0;
-  margin-left: 0;
-  transform: none;
-  object-fit: cover;
-  object-position: center center;
+/* ========================================
+   HOVER: Interacción elegante
+   ======================================== */
+@media (hover: hover) and (pointer: fine) {
+  .esferas-container:hover .leadership-sphere:not(:hover) {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+
+  .leadership-sphere:hover {
+    transform: translateZ(24px) scale(1.06) !important;
+    transition: transform 0.6s cubic-bezier(0.33, 0.0, 0.22, 1);
+    z-index: 30 !important;
+  }
+  
+  .leadership-sphere:hover::before {
+    opacity: 0.85 !important;
+    filter: blur(20px) !important;
+  }
 }
 
-.photo-stack .photo {
-  transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+/* ========================================
+   RESPONSIVE: Tablets
+   ======================================== */
+@media (max-width: 768px) {
+  .esferas-container {
+    max-width: 600px;
+    height: 400px;
+    perspective: 800px;
+  }
+  
+  .leadership-sphere {
+    width: 68%;
+  }
+  
+  .leadership-sphere.secondary {
+    right: 2%;
+  }
 }
 
-.photo-stack .photo img {
-  transition: transform 1.2s ease;
+/* ========================================
+   RESPONSIVE: Mobile
+   ======================================== */
+@media (max-width: 480px) {
+  .esferas-container {
+    max-width: 100%;
+    height: 320px;
+    perspective: 650px;
+    transform: translate(-15px, 0);
+  }
+  
+  .leadership-sphere {
+    width: 75%;
+    border-radius: 16px;
+  }
+  
+  .leadership-sphere.primary {
+    top: 6%;
+    left: 6%;
+  }
+
+  .leadership-sphere.secondary {
+    top: 26%;
+    right: 0%;
+  }
+  
+  .leadership-sphere img {
+    border-radius: 14px;
+  }
+  
+  .leadership-indicator {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Versión mobile: menos profundidad, pero mismo concepto de “más grande al frente” */
+  @keyframes primaryInfluence {
+    0% {
+      transform: translateZ(6px) rotateY(0deg) rotateX(0deg) scale(1.01) translateX(0) translateY(0);
+      opacity: 1;
+      z-index: 15;
+    }
+    25% {
+      transform: translateZ(10px) rotateY(2deg) rotateX(-0.8deg) scale(1.05) translateX(4px) translateY(-2px);
+      opacity: 1;
+    }
+    50% {
+      transform: translateZ(-6px) rotateY(-2deg) rotateX(0.8deg) scale(0.96) translateX(-4px) translateY(3px);
+      opacity: 0.9;
+    }
+    75% {
+      transform: translateZ(-3px) rotateY(-1deg) rotateX(0.4deg) scale(0.98) translateX(-2px) translateY(1px);
+      opacity: 0.95;
+    }
+    100% {
+      transform: translateZ(6px) rotateY(0deg) rotateX(0deg) scale(1.01) translateX(0) translateY(0);
+      opacity: 1;
+      z-index: 15;
+    }
+  }
+
+  @keyframes secondaryInfluence {
+    0% {
+      transform: translateZ(-10px) rotateY(0deg) rotateX(0deg) scale(0.94) translateX(0) translateY(0);
+      opacity: 0.88;
+      z-index: 8;
+    }
+    25% {
+      transform: translateZ(-3px) rotateY(-1.6deg) rotateX(0.8deg) scale(0.97) translateX(-3px) translateY(2px);
+      opacity: 0.93;
+    }
+    50% {
+      transform: translateZ(8px) rotateY(-2.6deg) rotateX(1.3deg) scale(1.05) translateX(-6px) translateY(3px);
+      opacity: 1;
+    }
+    75% {
+      transform: translateZ(2px) rotateY(-1.2deg) rotateX(0.7deg) scale(1.0) translateX(-3px) translateY(1px);
+      opacity: 0.94;
+    }
+    100% {
+      transform: translateZ(-10px) rotateY(0deg) rotateX(0deg) scale(0.94) translateX(0) translateY(0);
+      opacity: 0.88;
+      z-index: 8;
+    }
+  }
+
+  .leadership-sphere::before {
+    filter: blur(12px);
+  }
 }
 
-.photo-stack .photo-1,
-.photo-stack .photo-2 {
-  transition: opacity 2s cubic-bezier(0.25, 0.1, 0.25, 1),
-    transform 2s cubic-bezier(0.25, 0.1, 0.25, 1),
-    box-shadow 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+/* ========================================
+   ACCESIBILIDAD: Movimiento reducido
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .leadership-sphere,
+  .leadership-sphere img,
+  .leadership-sphere::before {
+    animation: none !important;
+  }
+  
+  .leadership-sphere {
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+  }
+  
+  .leadership-sphere.primary {
+    transform: translateZ(0) rotateY(0deg) scale(1);
+    opacity: 1;
+    z-index: 15;
+  }
+  
+  .leadership-sphere.secondary {
+    transform: translateZ(-10px) rotateY(-2deg) scale(0.95);
+    opacity: 0.9;
+    z-index: 8;
+  }
+  
+  .leadership-indicator {
+    animation: simplePulse 3s ease-in-out infinite !important;
+  }
+  
+  @keyframes simplePulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
 }
+
+/* ========================================
+   OPTIMIZACIÓN: Rendimiento
+   ======================================== */
+.leadership-sphere {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+.leadership-sphere img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+}
+
+
 .curved-line {
   width: 5.75rem;
   height: 0.9375rem;

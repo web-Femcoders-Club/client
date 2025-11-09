@@ -47,7 +47,6 @@ img {
   user-select: none;
 }
 
-
 .primary-button {
   background-color: #ea4f33;
   color: white;
@@ -193,18 +192,20 @@ span {
 }
 
 .modal-content {
-  background: linear-gradient(to right, #6d2c95, #4737bb);
+  background: #f7f4fa;
   padding: 2rem;
-  width: 100%;
-  max-width: 700px;
+  width: 95%;
+  max-width: 900px;
   border-radius: 24px;
   overflow-y: auto;
-  max-height: 70%;
-  color: #fff;
+  max-height: 80%;
+  color: #2a2170;
   direction: ltr;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  border: 1px solid #4737bb;
 }
 
 .modal-close {
@@ -221,6 +222,10 @@ span {
   transition: color 0.3s;
 }
 
+.modal-close button:hover {
+  color: #bb3f28;
+}
+
 .modal-header {
   margin-bottom: 1rem;
 }
@@ -231,9 +236,12 @@ span {
   text-align: left;
   flex-grow: 1;
 }
+
 .modal-body p {
   font-size: 1.2rem;
+  color: #2a2170;
 }
+
 .faq-question {
   display: flex;
   justify-content: space-between;
@@ -285,7 +293,6 @@ span {
   background-size: cover;
   background-position: center;
 }
-
 
 .form-container {
   display: flex;
@@ -365,7 +372,6 @@ span {
   opacity: 0;
 }
 
-
 .content-text {
   width: 100%;
   margin: 0 auto;
@@ -386,7 +392,6 @@ span {
 }
 
 @media (max-width: 768px) {
-
   h1 {
     font-size: 1.7rem;
   }

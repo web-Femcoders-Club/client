@@ -91,6 +91,13 @@ const FccFooter = () => {
               </a>
               <a
                 href="#"
+                onClick={() => openModal("legalNotice")}
+                className="cookie-link"
+              >
+                Aviso Legal
+              </a>
+              <a
+                href="#"
                 onClick={() => openModal("faq")}
                 className="cookie-link"
               >

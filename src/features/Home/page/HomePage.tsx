@@ -493,7 +493,19 @@ const HomePage: React.FC = () => {
   };
 const newsData = [
   {
-    id: '1',
+  id: '1',
+  title: '🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData',
+  description:
+    'Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto “Vive Actiu Gent Gran” busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.',
+  image: 'assets/home-images/finalista-ranking-20opendata.webp',
+  imageAlt:
+    'Irina Ichim finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025',
+  date: '6 Noviembre 2025',
+  category: 'Reconocimientos',
+  link: 'https://viuactiu-gentgran-iota.vercel.app/'
+},
+  {
+    id: '2',
     title: '🎉 ¡Somos Community Partner de HackBarna 2025!',
     description: 'FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.',
     image: 'assets/Eventos2025/hackbarna-femcodersclub.webp',
@@ -503,17 +515,17 @@ const newsData = [
     link: 'https://www.femcodersclub.com/noticias/HackBarna2025'
   },
   {
-    id: '2',
+    id: '3',
     title: 'Ana Lucía Silva Córdoba: Profesional Digital Referente 2025',
     description: 'Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1762387200&v=beta&t=dpDrekJ2t8_NuZRPJYDPYzUXYY5P8Z-KhZaDD5ar674', 
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1764201600&v=beta&t=yC-8V5n4Ra41_SKneMlJia6Pz-DtIdiS8LhL-QOemxo', 
     imageAlt: 'Ana Lucía Silva Córdoba - Profesional Digital Referente 2025',
     date: '9 Septiembre 2025',
     category: 'Reconocimientos',
     link: 'https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/'
   },
   {
-    id: '3',
+    id: '4',
     title: '🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas',
     description: '¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.',
     image: 'assets/css/CSS-Quiz-Entrevistas.webp',
@@ -523,7 +535,7 @@ const newsData = [
     link: 'https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas',
     description: 'Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.',
     image: 'assets/html/HTML-Quiz-Entrevistas.webp', 
@@ -532,16 +544,7 @@ const newsData = [
     category: 'Recursos',
     link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
   },
- {
-  id: '5',
-  title: 'Nuevo Recurso: Canal de WhatsApp JuniorJobs',
-  description: 'Daniel García Baena, profesor y entusiasta de la enseñanza, ha creado un canal de WhatsApp donde cada domingo publica ofertas actualizadas para developers junior en España y LATAM. Un recurso 100% gratuito recomendado por MoureDev, Linkfy y Genbeta.',
-  image: 'https://media.licdn.com/dms/image/v2/C4D03AQEPEQNKkYk-Mw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516927817715?e=1762387200&v=beta&t=NzlgjPB4PDanspT-t0BcIqZuCX_YpH6oWVw2osoFNa4',
-  imageAlt: 'Daniel García Baena - Creador del canal JuniorJobs',
-  date: '20 Octubre 2025',
-  category: 'Recursos',
-  link: 'https://www.femcodersclub.com/ofertas-de-trabajo'
-}
+
 ];
 const githubProjectsData = [
   {
@@ -962,49 +965,35 @@ const githubProjectsData = [
               </Link>
             </div>
           </div>
-
-          <div
+   <div
             data-aos="fade-left"
-            data-aos-duration="1500"
+            data-aos-duration="2000"
             data-aos-easing="ease-out-cubic"
+            data-aos-delay="400"
             className="image-content"
             role="presentation"
+            aria-label="Cofundadoras de FemCoders Club demostrando liderazgo e influencia"
           >
-            <div className="photo-stack">
-              <div
-                className={`photo ${
-                  currentPhotoIndex === 0 ? "photo-1" : "photo-2"
-                }`}
-                data-aos="zoom-in-up"
-                data-aos-delay="300"
-                aria-hidden="false"
-              >
-                <div className="photo-gradient"></div>
-                <div className="photo-gradient"></div>
+            <div className="esferas-container">
+              
+              {/* Esfera principal - Liderazgo primario */}
+              <div className="leadership-sphere primary">
+                <div className="leadership-indicator"></div>
                 <OptimizedImage
-                  src="/cofundadorasFemCodersClub.jpg"
-                  alt="varias de las cofundadoras de FemCoders Club"
-                  className="photo-image"
-                  title="Parte de las cofundadoras de FemCoders Club"
-                  tabIndex={currentPhotoIndex === 0 ? 0 : -1}
+                     src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
+                  alt="Cofundadoras de FemCoders Club: líderes inspiradoras en tecnología"
+                  title="Liderazgo e influencia: Cofundadoras de FemCoders Club"
                   loading="eager"
                 />
               </div>
 
-              <div
-                className={`photo ${
-                  currentPhotoIndex === 1 ? "photo-1" : "photo-2"
-                }`}
-                data-aos="zoom-in-down"
-                data-aos-delay="600"
-              >
-                <div className="photo-gradient"></div>
+              {/* Esfera secundaria - Liderazgo complementario */}
+              <div className="leadership-sphere secondary">
+                <div className="leadership-indicator"></div>
                 <OptimizedImage
-                  src="/assets/home-images/Isadora.webp"
-                  alt="Mujeres cofundadoras de FemCoders Club"
-                  className="photo-image"
-                  title="Parte de las cofundadoras de FemCoders Club"
-                  tabIndex={currentPhotoIndex === 1 ? 0 : -1}
+                  src="/fundadorasFemCodersClub.png"
+                  alt="Elvia, Lili y Silvina: fundadoras de FemCoders Club impulsando la comunidad tech"
+                  title="Elvia, Lili y Silvina - Fundadoras legacy de FemCoders Club"
                   loading="eager"
                 />
               </div>
@@ -1522,141 +1511,103 @@ const githubProjectsData = [
   rotateInterval={8000}
 />
       </section>
-      <section className="parallax bg5">
-       
-       <div
-  className="content-text"
-  style={{ width: '100%', maxWidth: '100vw' }}
-  data-aos="fade-down"
-  data-aos-duration="800"
->
-  <p className="text-white">
-    Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
-    puedes contribuir a nuestra comunidad, por favor llena el
-    formulario. Estamos aquí para asistirte y valoramos enormemente tu
-    interés en apoyar a FemCoders Club. <br />
-  </p>
-</div>
+<section className="parallax bg5">
+  {/* Texto superior */}
+  <div
+    className="content-text"
+    style={{ width: "100%", maxWidth: "100vw" }}
+    data-aos="fade-down"
+    data-aos-duration="800"
+  >
+    <p className="text-white">
+      Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
+      puedes contribuir a nuestra comunidad, por favor llena el formulario.
+      Estamos aquí para asistirte y valoramos enormemente tu interés en apoyar a
+      FemCoders Club.
+      <br />
+    </p>
+  </div>
 
-        <div className="form-and-photos">
-          <div
-            className="form-container"
-            data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="800"
-          >
-            <div className="form-card">
-              <OptimizedImage
-                src="FemCodersClubLogo.png"
-                alt="femCoders Club Logo"
-                className="form-logo"
-                title="FemCoders Club"
-                data-aos="zoom-in"
-                data-aos-delay="400"
-              />
-              <form ref={form} onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input type="text" id="name" name="name" required />
-                  <label htmlFor="name">Nombre</label>
-                </div>
-                <div className="form-group">
-                  <input type="text" id="last-name" name="last-name" required />
-                  <label htmlFor="last-name">Apellidos</label>
-                </div>
-                <div className="form-group">
-                  <input type="email" id="email" name="email" required />
-                  <label htmlFor="email">Email</label>
-                </div>
-                <div className="form-group">
-                  <textarea id="message" name="message" required></textarea>
-                  <label htmlFor="message">Mensaje</label>
-                </div>
-                <button type="submit" className="accent-button">
-                  Enviar
-                </button>
-              </form>
-            </div>
+  {/* Bloque principal: formulario + imágenes */}
+  <div className="form-and-photos">
+    {/* FORMULARIO */}
+    <div
+      className="form-container"
+      data-aos="fade-right"
+      data-aos-delay="200"
+      data-aos-duration="900"
+      data-aos-easing="ease-out-sine"
+    >
+      <div className="form-card">
+        <OptimizedImage
+          src="FemCodersClubLogo.png"
+          alt="femCoders Club Logo"
+          className="form-logo"
+          title="FemCoders Club"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        />
+        <form ref={form} onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input type="text" id="name" name="name" required />
+            <label htmlFor="name">Nombre</label>
           </div>
-
-          <div
-            className="image-content"
-            data-aos="fade-left"
-            data-aos-duration="1500"
-            data-aos-easing="ease-out-cubic"
-            role="presentation"
-          >
-            <div className="photo-stack">
-              {currentPhotoIndex === 0 ? (
-                <div
-                  className="photo photo-1"
-                  data-aos="zoom-in-up"
-                  data-aos-delay="300"
-                  aria-hidden="false"
-                >
-                  <div className="photo-gradient"></div>
-                  <OptimizedImage
-                    src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
-                    alt="Cofundadoras de FemCoders Club con perfiles en STEM"
-                    title="Cofundadoras de FemCoders Club con perfiles en STEM"
-                    className="photo-image"
-                    tabIndex={0}
-                  />
-                </div>
-              ) : (
-                <div
-                  className="photo photo-2"
-                  data-aos="zoom-in-up"
-                  data-aos-delay="300"
-                  aria-hidden="true"
-                >
-                  <div className="photo-gradient"></div>
-                  <OptimizedImage
-                    src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
-                    alt="Cofundadoras de FemCoders Club con perfiles en STEM"
-                    title="Cofundadoras de FemCoders Club con perfiles en STEM"
-                    className="photo-image"
-                    tabIndex={-1}
-                  />
-                </div>
-              )}
-
-              {currentPhotoIndex === 1 ? (
-                <div
-                  className="photo photo-1 photo-event"
-                  data-aos="zoom-in-down"
-                  data-aos-delay="600"
-                  aria-hidden="false"
-                >
-                  <div className="photo-gradient"></div>
-                  <OptimizedImage
-                    src="/assets/home-images/comunidad-tech-femcodersClub.jpg"
-                    alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
-                    title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
-                    className="photo-image"
-                    tabIndex={0}
-                  />
-                </div>
-              ) : (
-                <div
-                  className="photo photo-2 photo-event"
-                  data-aos="zoom-in-down"
-                  data-aos-delay="600"
-                  aria-hidden="true"
-                >
-                  <div className="photo-gradient"></div>
-                  <OptimizedImage
-                    src="/assets/home-images/femcodersclubFinalEvento.jpg"
-                    alt="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024 dedicado a las mujeres tech"
-                    title="Cofundadoras de FemCoders Club en el evento del 8 de Marzo 2024"
-                    className="photo-image"
-                    tabIndex={-1}
-                  />
-                </div>
-              )}
-            </div>
+          <div className="form-group">
+            <input type="text" id="last-name" name="last-name" required />
+            <label htmlFor="last-name">Apellidos</label>
           </div>
+          <div className="form-group">
+            <input type="email" id="email" name="email" required />
+            <label htmlFor="email">Email</label>
+          </div>
+          <div className="form-group">
+            <textarea id="message" name="message" required></textarea>
+            <label htmlFor="message">Mensaje</label>
+          </div>
+          <button type="submit" className="accent-button">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {/* IMÁGENES CON EFECTO "ESFERAS DE INFLUENCIA LIGERO" */}
+    <div
+      className="image-content"
+      data-aos="fade-up-left"
+      data-aos-duration="1400"
+      data-aos-easing="ease-in-out-sine"
+      data-aos-delay="200"
+      role="presentation"
+      aria-label="Cofundadoras de FemCoders Club compartiendo experiencias"
+    >
+      <div className="esferas-container bg5-variant">
+        {/* Esfera principal */}
+        <div className="leadership-sphere primary">
+          <div className="leadership-indicator"></div>
+          <OptimizedImage
+            src="/fundadoras-asociacion-femCodersClub.png"
+            alt="Cofundadoras de FemCoders Club participando en charlas STEM"
+            title="Cofundadoras de FemCoders Club participando en charlas STEM"
+            loading="eager"
+          />
         </div>
-      </section>
+
+        {/* Esfera secundaria */}
+        <div className="leadership-sphere secondary">
+          <div className="leadership-indicator"></div>
+          <OptimizedImage
+            src="/empoderando-mujeres.png"
+            alt="Fundadoras de FemCoders Club empoderando mujeres en STEM"
+            title="fundadoras de FemCoders Club empoderando mujeres en STEM"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <ConfirmationModal
         isVisible={showMessage}

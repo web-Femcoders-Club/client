@@ -6,92 +6,121 @@ interface CookiePolicyModalProps {
   closeModal: () => void;
 }
 
-const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({
-  closeModal,
-}) => {
+const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => {
   const { openModal } = useContext(ModalContext);
 
-  const handlePrivacyPolicyClick = () => {
+  const handlePrivacyPolicyClick = (): void => {
     closeModal();
     openModal("privacyPolicy");
   };
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <article
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-policy-title"
+        style={{ maxWidth: "900px" }}
+      >
         <div className="modal-close">
-          <button onClick={closeModal}>x</button>
+          <button onClick={closeModal} aria-label="Cerrar política de cookies">
+            x
+          </button>
         </div>
 
-        <div>
-          <h3>Política de cookies</h3>
-        </div>
+        <header>
+          <h3 id="cookie-policy-title">Política de Cookies de FemCoders Club</h3>
+          <p>
+            <time dateTime="2025-11-09">Fecha de entrada en vigor: 29.09.2025</time>
+          </p>
+        </header>
 
         <div className="modal-body">
-          <p>
-            Las cookies son pequeños fragmentos de texto que se almacenan en tu navegador cuando visitas una página web. Sirven para que el sitio recuerde tu visita y funcione correctamente.
-          </p>
+          <section>
+            <h5>1. ¿Qué son las Cookies?</h5>
+            <p>
+              Las <strong>cookies</strong> son pequeños archivos de texto que se almacenan en tu navegador o dispositivo cuando visitas una página web. Su función es permitir que el sitio recuerde tu visita, mantenga sesiones activas y funcione correctamente.
+            </p>
+          </section>
 
-          <h3>Aviso de Cookies</h3>
-          <p>
-            Solo usamos cookies técnicas esenciales para garantizar el correcto funcionamiento de esta web. No utilizamos cookies de seguimiento ni con fines publicitarios. Aquí te explicamos cómo funcionan y cómo las gestionamos.
-          </p>
+          <section>
+            <h5>2. Nuestro Compromiso y Uso de Cookies</h5>
+            <p>
+              En <strong>FemCoders Club</strong>, nuestra prioridad es tu privacidad. Por ello, <strong>solo utilizamos cookies técnicas o estrictamente necesarias</strong> para garantizar el correcto funcionamiento y la seguridad de esta web.
+            </p>
+            <p>
+              <strong>No utilizamos</strong> cookies de seguimiento, de análisis, publicitarias, de perfiles de usuario ni de terceros con fines comerciales.
+            </p>
+            <p>
+              Al utilizar únicamente cookies esenciales, <strong>no requerimos</strong> de un banner de consentimiento u opciones de configuración. Presentamos esta política con fines informativos y de total <strong>transparencia</strong>.
+            </p>
+          </section>
 
-          <h3>¿Qué son las cookies?</h3>
-          <p>
-            Son archivos de texto que se guardan en tu dispositivo cuando visitas un sitio web. Permiten funciones básicas como mantener sesiones activas o guardar preferencias temporales.
-          </p>
-          <p>
-  Al no utilizar cookies de análisis ni publicidad, no es necesario que aceptes o configures nada. Te mostramos esta política únicamente con fines informativos.
-</p>
+          <section>
+            <h5>3. Cookies Utilizadas</h5>
+            <p>En FemCoders Club utilizamos cookies únicamente para:</p>
+            <ul>
+              <li>Garantizar el funcionamiento y rendimiento básico del sitio web.</li>
+              <li>Recordar ciertas preferencias básicas de la persona usuaria.</li>
+            </ul>
+          </section>
 
-          <h3>¿Cómo usamos las cookies?</h3>
-          <p>
-            En FemCoders Club utilizamos cookies únicamente para:
-          </p>
-          <ul>
-            <li>Garantizar el funcionamiento y rendimiento del sitio.</li>
-            <li>Recordar ciertas preferencias básicas del usuario.</li>
-          </ul>
-          <p>
-            No compartimos tus datos con fines comerciales. Sin embargo, podemos compartir información limitada con:
-          </p>
-          <ul>
-            <li>
-              <strong>Proveedores de servicios:</strong> Plataformas como Railway u otros servicios técnicos que nos ayudan a alojar y mantener esta web.
-            </li>
-            <li>
-              <strong>Cumplimiento legal:</strong> En caso de obligación legal, podríamos compartir información necesaria con las autoridades competentes.
-            </li>
-          </ul>
+          <section>
+            <h5>4. Gestión de tus Cookies</h5>
+            <p>
+              Puedes <strong>controlar y/o eliminar</strong> las cookies en cualquier momento a través de la configuración de tu navegador.
+            </p>
+            <p>
+              <span role="img" aria-label="Advertencia">⚠️</span> <strong>Importante:</strong> La desactivación de las cookies técnicas puede <strong>afectar al funcionamiento correcto</strong> de esta página web, impidiendo el uso de ciertas funcionalidades esenciales.
+            </p>
+          </section>
 
-          <h3>¿Cómo puedes gestionar las cookies?</h3>
-          <p>
-            Puedes controlar y/o eliminar las cookies desde la configuración de tu navegador. Ten en cuenta que desactivar algunas puede afectar al funcionamiento de esta página.
-          </p>
+          <section>
+            <h5>5. Intercambio de Información Técnica</h5>
+            <p>
+              No compartimos tus datos para fines comerciales. Sin embargo, para el funcionamiento técnico de la plataforma, es posible que se trate información técnica limitada relacionada con la gestión del servicio junto a nuestros <strong>Proveedores de Servicios</strong> y bajo <strong>Cumplimiento Legal</strong>:
+            </p>
+            <ul>
+              <li>
+                <strong>Proveedores de servicios:</strong> Plataformas como Railway u otros
+                servicios técnicos que nos ayudan a alojar y mantener esta web, así como
+                servicios de red como Cloudflare y la gestión de dominio con Arsys.
+              </li>
+              <li>
+                <strong>Cumplimiento legal:</strong> En caso de obligación legal, podríamos
+                compartir información necesaria con las autoridades competentes.
+              </li>
+            </ul>
+          </section>
 
-          <h3>Política de Privacidad</h3>
-          <p>
-            Si deseas más información sobre cómo tratamos tus datos, consulta nuestra{" "}
-            <button onClick={handlePrivacyPolicyClick} className="link-button">
-              política de privacidad
-            </button>
-            .
-          </p>
+          <section>
+            <h5>6. Política de Privacidad</h5>
+            <p>
+              Si deseas más información sobre cómo tratamos tus datos personales, consulta
+              nuestra{" "}
+              <button onClick={handlePrivacyPolicyClick} className="link-button">
+                política de privacidad
+              </button>
+              .
+            </p>
+          </section>
 
-          <h3>Contacto</h3>
-          <p>
-            Si tienes dudas o preguntas, puedes escribirnos a{" "}
-            <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
-          </p>
+          <section>
+            <h5>7. Contacto</h5>
+            <p>
+              Si tienes dudas o preguntas sobre esta política de cookies, puedes escribirnos a{" "}
+              <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>.
+            </p>
+          </section>
         </div>
 
-        <div className="modal-footer">
+        <footer className="modal-footer">
           <button onClick={closeModal} className="tertiary-button">
             Aceptar
           </button>
-        </div>
-      </div>
+        </footer>
+      </article>
     </div>
   );
 };

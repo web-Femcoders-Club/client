@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import CookiePolicyModal from "../components/Footer/Modals/Cookies";
 import FaqModal from "../components/Footer/Modals/FaqModal";
+import LegalNoticeModal from "../components/Footer/Modals/LegalNoticeModalProps";
 import PrivacyPolicyModal from "../components/Footer/Modals/Privacidad";
 import Layout from "../components/Layout/Layout";
 import Loader from "../components/Loader";
@@ -586,11 +587,15 @@ const RouterComponent: React.FC = () => {
         </Routes>
       </Suspense>
 
+
       {modalType === "cookiePolicy" && (
         <CookiePolicyModal closeModal={closeModal} />
       )}
       {modalType === "privacyPolicy" && (
         <PrivacyPolicyModal closeModal={closeModal} />
+      )}
+      {modalType === "legalNotice" && (
+        <LegalNoticeModal closeModal={closeModal} />
       )}
       {modalType === "faq" && <FaqModal closeModal={closeModal} />}
     </>
