@@ -13,6 +13,10 @@ const CustomCarousel = () => {
 
   const images: CarouselImage[] = [
     {
+ src: "/evento-InfoJobs-NttData-femCodersClub.png",
+      text: "Liderando la revolución de la IA con talento femenino en tecnología, en colaboración con InfoJobs y NTT Data.",
+    },
+    {
       src: "/evento-mesQA-AnaLuciaSilva-SilvinaLucero-femcodersClub.png",
       text: "Participación de Ana Lucía Silva y Silvina Lucero en el Mes del QA. Hablamos sobre accesibilidad en el ciclo de QA y cómo convertir requisitos en éxito.",
     },

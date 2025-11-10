@@ -8,8 +8,8 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import CarouselWithText from "../components/CarouselWithText";
 import "./Home.css";
-import NewsSlider from '../components/NewsSlider';
-import GitHubProjects from '../components/GitHubProjects';
+import NewsSlider from "../components/NewsSlider";
+import GitHubProjects from "../components/GitHubProjects";
 
 interface Event {
   start: {
@@ -55,6 +55,50 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
+    {
+      src: "/assets/Eventos2025/aprendiendo-sobre-IA.webp",
+      alt: "Aprendiendo sobre IA y liderazgo tecnológico femenino",
+      title:
+        "Evento de IA y liderazgo tecnológico femenino organizado por FemCoders Club, InfoJobs y NttData",
+    },
+    {
+      src: "/assets/Eventos2025/femCodersClub-comunidad-inclusiva.webp",
+      alt: "Comunidad tech inclusiva organizada por FemCoders Club",
+      title: "Evento de comunidad tech inclusiva organizado por FemCoders Club",
+    },
+    {
+      src: "/assets/Eventos2025/igualdad-en-tecnologia.webp",
+      alt: "No le pongas género, ponle talento",
+      title:
+        "Charla inspiradora, igualdad en tecnologia, talento sin género, IA con propósito",
+    },
+    {
+      src: "/assets/Eventos2025/panel-ponentes-mujeres.webp",
+      alt: "Ponentes mujeres, comunidad tecnológica, diversidad STEM",
+      title:
+        "Panel de mujeres expertas en IA compartiendo experiencias y conocimientos",
+    },
+    {
+      src: "/assets/Eventos2025/publico-evento-IA-femCodersClub.webp",
+      alt: "Público asistente al evento de IA organizado por FemCoders Club",
+      title: "Participantes de FemCoders Club en evento de IA en Barcelona",
+    },
+    {
+      src: "/assets/Eventos2025/evento-inteligencia-artificial-AnnaVia.webp",
+      alt: "Anna Via comparte su experiencia inspiradora sobre IA",
+      title: "mujeres lideres en IA",
+    },
+    {
+      src: "/assets/Eventos2025/IA-perspectiva-femenina.webp",
+      alt: "IA desde una perspectiva femenina",
+      title: "Evento sobre IA desde una perspectiva femenina",
+    },
+    {
+      src: "/assets/Eventos2025/comunidad-tech-inclusiva.webp",
+      alt: "Evento tech en Barcelona organizado por InfoJobs, NttData y FemCoders Club",
+      title:
+        "Networking y aprendizaje en el evento de tecnología inclusiva organizado por InfoJobs, NttData y FemCoders Club",
+    },
     {
       src: "/assets/home-images/comunidad-tech-femcodersClub.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
@@ -491,171 +535,184 @@ const HomePage: React.FC = () => {
       console.error(error);
     }
   };
-const newsData = [
-  {
-  id: '1',
-  title: '🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData',
-  description:
-    'Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto “Vive Actiu Gent Gran” busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.',
-  image: 'assets/home-images/finalista-ranking-20opendata.webp',
-  imageAlt:
-    'Irina Ichim finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025',
-  date: '6 Noviembre 2025',
-  category: 'Reconocimientos',
-  link: 'https://viuactiu-gentgran-iota.vercel.app/'
-},
-  {
-    id: '2',
-    title: '🎉 ¡Somos Community Partner de HackBarna 2025!',
-    description: 'FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.',
-    image: 'assets/Eventos2025/hackbarna-femcodersclub.webp',
-    imageAlt: 'FemCoders Club Community Partner HackBarna 2025',
-    date: '30 Septiembre 2025',
-    category: 'Partnership',
-    link: 'https://www.femcodersclub.com/noticias/HackBarna2025'
-  },
-  {
-    id: '3',
-    title: 'Ana Lucía Silva Córdoba: Profesional Digital Referente 2025',
-    description: 'Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1764201600&v=beta&t=yC-8V5n4Ra41_SKneMlJia6Pz-DtIdiS8LhL-QOemxo', 
-    imageAlt: 'Ana Lucía Silva Córdoba - Profesional Digital Referente 2025',
-    date: '9 Septiembre 2025',
-    category: 'Reconocimientos',
-    link: 'https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/'
-  },
-  {
-    id: '4',
-    title: '🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas',
-    description: '¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.',
-    image: 'assets/css/CSS-Quiz-Entrevistas.webp',
-    imageAlt: 'Quiz interactivo de CSS para entrevistas técnicas - FemCoders Club',
-    date: '17 Octubre 2025',
-    category: 'Recursos',
-    link: 'https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas'
-  },
-  {
-    id: '5',
-    title: 'Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas',
-    description: 'Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.',
-    image: 'assets/html/HTML-Quiz-Entrevistas.webp', 
-    imageAlt: 'Quiz interactivo de HTML para entrevistas técnicas',
-    date: '11 Septiembre 2025',
-    category: 'Recursos',
-    link: 'https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas'
-  },
-
-];
-const githubProjectsData = [
-  {
-    id: '1',
-    name: 'FemPalette - Generador SASS',
-    description: 'Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.',
-    techStack: ['SASS', 'JavaScript', 'HTML', 'CSS'],
-    githubUrl: 'https://github.com/femcodersclub/sass-color-generator',
-    demoUrl: 'https://femcodersclub.github.io/sass-color-generator/', 
-   image: 'assets/css/fempalette-generator.gif',
-    imageAlt: 'Generador de variables SASS - FemPalette',
-    author: 'Irina Ichim',
-    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
-    lastUpdated: '2 meses atrás',
-    stars: 1,
-    language: 'SASS',
-    postUrl: 'https://www.femcodersclub.com/recursos/css/sass-next-level', 
-    postTitle: 'SASS: Lleva tu CSS al siguiente nivel',
-    difficulty: 'Intermedio'
-  },
-  {
-    id: '2',
-    name: 'Efecto Parallax con Svelte',
-    description: 'Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.',
-    techStack: ['Svelte', 'CSS', 'JavaScript'],
-    githubUrl: 'https://github.com/femcodersclub/Efecto-Parallax-Svelte',
-    demoUrl: 'https://efecto-parallax-svelte.vercel.app/',
-    image: 'assets/home-images/efecto-parallax-svelte.webp',
-    imageAlt: 'Efecto Parallax desarrollado con Svelte',
-    author: 'FemCoders Club',
-    authorAvatar: 'assets/FemCodersClubLogo.webp',
-    lastUpdated: '2024',
-    stars: 1,
-    language: 'Svelte',
-    postUrl: '',
-    postTitle: 'Creando efectos parallax con Svelte',
-    difficulty: 'Intermedio'
-  },
-  {
-    id: '3',
-    name: 'Canvas Text Animation',
-    description: 'Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.',
-    techStack: ['JavaScript', 'HTML5 Canvas', 'CSS'],
-    githubUrl: 'https://github.com/femcodersclub/CanvasTextAnimation',
-    demoUrl: 'https://femcodersclub.github.io/CanvasTextAnimation/', 
-    image: 'assets/html/ApisHtml.webp',
-    imageAlt: 'Animaciones de texto con Canvas',
-    author: 'Irina Ichim',
-    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
-    lastUpdated: '2024',
-    stars: 1,
-    language: 'JavaScript',
-    postUrl: 'https://www.femcodersclub.com/recursos/html/apis-html',
-    postTitle: 'Introducción a las APIs en HTML: Potencia tus Proyectos Web',
-    difficulty: 'Básico'
-  },
-  {
-    id: '4',
-    name: 'Mindfulness CSS App',
-    description: 'Aplicación web de mindfulness y respiración guiada, creada completamente con CSS puro y JavaScript mínimo. Demuestra el poder del CSS moderno.',
-    techStack: ['CSS', 'JavaScript', 'HTML'],
-    githubUrl: 'https://github.com/femcodersclub/AnimacionesCSS',
-    demoUrl: 'https://femcodersclub.github.io/AnimacionesCSS/',
-    image: 'assets/css/breathe-app-demo.gif',
-    imageAlt: 'Aplicación de mindfulness con CSS puro',
-    author: 'Irina Ichim',
-    authorAvatar: 'assets/home-images/desarolladora-profesional-irina.webp',
-    lastUpdated: '3 meses atrás',
-    stars: 2,
-    language: 'CSS',
-    postUrl: 'https://www.femcodersclub.com/recursos/css/animaciones-css',
-    postTitle: 'Domina las Animaciones CSS De Básico a Avanzado',
-    difficulty: 'Intermedio'
-  },
-  {
-    id: '5',
-    name: 'CodersPortfolio',
-    description: 'Portfolio profesional desarrollado con TypeScript. Template moderno y responsive que puedes personalizar para mostrar tus proyectos y habilidades.',
-    techStack: ['TypeScript', 'CSS', 'React'],
-    githubUrl: 'https://github.com/femcodersclub/CodersPortfolio',
-    demoUrl: 'https://femcodersclub.github.io/CodersPortfolio/',
-    image: 'assets/home-images/coders-portfolio.webp',
-    imageAlt: 'Portfolio profesional con TypeScript',
-    author: 'Irina Ichim',
-   authorAvatar: 'assets/FemCodersClubLogo.webp',
-    lastUpdated: '7 meses atrás',
-    stars: 3,
-    language: 'TypeScript',
-    postUrl: '',
-    postTitle: 'CodersPortfolio',
-    difficulty: 'Intermedio'
-  },
-  {
-    id: '6',
-    name: 'Nike Store React',
-    description: 'Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.',
-    techStack: ['React'],
-    githubUrl: 'https://github.com/Almudena-Rendon', 
-    demoUrl: 'https://nike-store-omega-nine.vercel.app/',
-    image: 'assets/react/nike-store-replica.webp',
-    imageAlt: 'Nike Store desarrollada con React',
-    author: 'Almudena Rendón',
-    authorAvatar: 'assets/home-images/almudena.webp',
-    lastUpdated: 'marzo 2025',
-    stars: 3,
-    language: 'React',
-    postUrl: 'https://www.femcodersclub.com/recursos/react/nike-store-replica',
-    postTitle: 'Réplica de Nike Store con React: Un Proyecto E-commerce Completo',
-    difficulty: 'Intermedio'
-  }
-];
+  const newsData = [
+    {
+      id: "1",
+      title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
+      description:
+        "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto “Vive Actiu Gent Gran” busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
+      image: "assets/home-images/finalista-ranking-20opendata.webp",
+      imageAlt:
+        "Irina Ichim finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025",
+      date: "6 Noviembre 2025",
+      category: "Reconocimientos",
+      link: "https://viuactiu-gentgran-iota.vercel.app/",
+    },
+    {
+      id: "2",
+      title: "🎉 ¡Somos Community Partner de HackBarna 2025!",
+      description:
+        "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.",
+      image: "assets/Eventos2025/hackbarna-femcodersclub.webp",
+      imageAlt: "FemCoders Club Community Partner HackBarna 2025",
+      date: "30 Septiembre 2025",
+      category: "Partnership",
+      link: "https://www.femcodersclub.com/noticias/HackBarna2025",
+    },
+    {
+      id: "3",
+      title: "Ana Lucía Silva Córdoba: Profesional Digital Referente 2025",
+      description:
+        "Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.",
+      image:
+        "https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1764201600&v=beta&t=yC-8V5n4Ra41_SKneMlJia6Pz-DtIdiS8LhL-QOemxo",
+      imageAlt: "Ana Lucía Silva Córdoba - Profesional Digital Referente 2025",
+      date: "9 Septiembre 2025",
+      category: "Reconocimientos",
+      link: "https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/",
+    },
+    {
+      id: "4",
+      title: "🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas",
+      description:
+        "¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.",
+      image: "assets/css/CSS-Quiz-Entrevistas.webp",
+      imageAlt:
+        "Quiz interactivo de CSS para entrevistas técnicas - FemCoders Club",
+      date: "17 Octubre 2025",
+      category: "Recursos",
+      link: "https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas",
+    },
+    {
+      id: "5",
+      title: "Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas",
+      description:
+        "Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.",
+      image: "assets/html/HTML-Quiz-Entrevistas.webp",
+      imageAlt: "Quiz interactivo de HTML para entrevistas técnicas",
+      date: "11 Septiembre 2025",
+      category: "Recursos",
+      link: "https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas",
+    },
+  ];
+  const githubProjectsData = [
+    {
+      id: "1",
+      name: "FemPalette - Generador SASS",
+      description:
+        "Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.",
+      techStack: ["SASS", "JavaScript", "HTML", "CSS"],
+      githubUrl: "https://github.com/femcodersclub/sass-color-generator",
+      demoUrl: "https://femcodersclub.github.io/sass-color-generator/",
+      image: "assets/css/fempalette-generator.gif",
+      imageAlt: "Generador de variables SASS - FemPalette",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "2 meses atrás",
+      stars: 1,
+      language: "SASS",
+      postUrl: "https://www.femcodersclub.com/recursos/css/sass-next-level",
+      postTitle: "SASS: Lleva tu CSS al siguiente nivel",
+      difficulty: "Intermedio",
+    },
+    {
+      id: "2",
+      name: "Efecto Parallax con Svelte",
+      description:
+        "Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.",
+      techStack: ["Svelte", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/femcodersclub/Efecto-Parallax-Svelte",
+      demoUrl: "https://efecto-parallax-svelte.vercel.app/",
+      image: "assets/home-images/efecto-parallax-svelte.webp",
+      imageAlt: "Efecto Parallax desarrollado con Svelte",
+      author: "FemCoders Club",
+      authorAvatar: "assets/FemCodersClubLogo.webp",
+      lastUpdated: "2024",
+      stars: 1,
+      language: "Svelte",
+      postUrl: "",
+      postTitle: "Creando efectos parallax con Svelte",
+      difficulty: "Intermedio",
+    },
+    {
+      id: "3",
+      name: "Canvas Text Animation",
+      description:
+        "Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.",
+      techStack: ["JavaScript", "HTML5 Canvas", "CSS"],
+      githubUrl: "https://github.com/femcodersclub/CanvasTextAnimation",
+      demoUrl: "https://femcodersclub.github.io/CanvasTextAnimation/",
+      image: "assets/html/ApisHtml.webp",
+      imageAlt: "Animaciones de texto con Canvas",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "2024",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/html/apis-html",
+      postTitle: "Introducción a las APIs en HTML: Potencia tus Proyectos Web",
+      difficulty: "Básico",
+    },
+    {
+      id: "4",
+      name: "Mindfulness CSS App",
+      description:
+        "Aplicación web de mindfulness y respiración guiada, creada completamente con CSS puro y JavaScript mínimo. Demuestra el poder del CSS moderno.",
+      techStack: ["CSS", "JavaScript", "HTML"],
+      githubUrl: "https://github.com/femcodersclub/AnimacionesCSS",
+      demoUrl: "https://femcodersclub.github.io/AnimacionesCSS/",
+      image: "assets/css/breathe-app-demo.gif",
+      imageAlt: "Aplicación de mindfulness con CSS puro",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "3 meses atrás",
+      stars: 2,
+      language: "CSS",
+      postUrl: "https://www.femcodersclub.com/recursos/css/animaciones-css",
+      postTitle: "Domina las Animaciones CSS De Básico a Avanzado",
+      difficulty: "Intermedio",
+    },
+    {
+      id: "5",
+      name: "CodersPortfolio",
+      description:
+        "Portfolio profesional desarrollado con TypeScript. Template moderno y responsive que puedes personalizar para mostrar tus proyectos y habilidades.",
+      techStack: ["TypeScript", "CSS", "React"],
+      githubUrl: "https://github.com/femcodersclub/CodersPortfolio",
+      demoUrl: "https://femcodersclub.github.io/CodersPortfolio/",
+      image: "assets/home-images/coders-portfolio.webp",
+      imageAlt: "Portfolio profesional con TypeScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/FemCodersClubLogo.webp",
+      lastUpdated: "7 meses atrás",
+      stars: 3,
+      language: "TypeScript",
+      postUrl: "",
+      postTitle: "CodersPortfolio",
+      difficulty: "Intermedio",
+    },
+    {
+      id: "6",
+      name: "Nike Store React",
+      description:
+        "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
+      techStack: ["React"],
+      githubUrl: "https://github.com/Almudena-Rendon",
+      demoUrl: "https://nike-store-omega-nine.vercel.app/",
+      image: "assets/react/nike-store-replica.webp",
+      imageAlt: "Nike Store desarrollada con React",
+      author: "Almudena Rendón",
+      authorAvatar: "assets/home-images/almudena.webp",
+      lastUpdated: "marzo 2025",
+      stars: 3,
+      language: "React",
+      postUrl:
+        "https://www.femcodersclub.com/recursos/react/nike-store-replica",
+      postTitle:
+        "Réplica de Nike Store con React: Un Proyecto E-commerce Completo",
+      difficulty: "Intermedio",
+    },
+  ];
 
   return (
     <>
@@ -965,7 +1022,7 @@ const githubProjectsData = [
               </Link>
             </div>
           </div>
-   <div
+          <div
             data-aos="fade-left"
             data-aos-duration="2000"
             data-aos-easing="ease-out-cubic"
@@ -975,12 +1032,11 @@ const githubProjectsData = [
             aria-label="Cofundadoras de FemCoders Club demostrando liderazgo e influencia"
           >
             <div className="esferas-container">
-              
               {/* Esfera principal - Liderazgo primario */}
               <div className="leadership-sphere primary">
                 <div className="leadership-indicator"></div>
                 <OptimizedImage
-                     src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
+                  src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
                   alt="Cofundadoras de FemCoders Club: líderes inspiradoras en tecnología"
                   title="Liderazgo e influencia: Cofundadoras de FemCoders Club"
                   loading="eager"
@@ -1092,7 +1148,10 @@ const githubProjectsData = [
               role="complementary"
               {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
             >
-              <CarouselWithText texts={texts} />
+              <CarouselWithText
+                texts={texts}
+                currentImageIndex={carouselIndex}
+              />
             </div>
           </div>
 
@@ -1443,10 +1502,12 @@ const githubProjectsData = [
                   data-aos-delay="700"
                 >
                   <OptimizedImage
-  src={upcomingEvent.logo?.original?.url || "/apoyomujeres.png"}
-  alt="Próximo evento"
-  className="event-image"
-/>
+                    src={
+                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
+                    }
+                    alt="Próximo evento"
+                    className="event-image"
+                  />
                 </div>
                 <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
                   <button className="secondary-button pulse-effect">
@@ -1493,121 +1554,120 @@ const githubProjectsData = [
         </div>
       </section>
 
-       <section className="full-height d-flex flex-column justify-content-center align-items-center parallax bg2">
-      <NewsSlider 
-        newsItems={newsData}
-        autoPlay={true}
-        autoPlayInterval={6000}
-        showDots={true}
-        showArrows={true}
-      />
-    </section>
-<section className="projects-section bg1">
-       <GitHubProjects 
-  projects={githubProjectsData}
-  maxProjects={6}  
-  showFilters={true}
-  autoRotate={true} 
-  rotateInterval={8000}
-/>
-      </section>
-<section className="parallax bg5">
-  {/* Texto superior */}
-  <div
-    className="content-text"
-    style={{ width: "100%", maxWidth: "100vw" }}
-    data-aos="fade-down"
-    data-aos-duration="800"
-  >
-    <p className="text-white">
-      Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
-      puedes contribuir a nuestra comunidad, por favor llena el formulario.
-      Estamos aquí para asistirte y valoramos enormemente tu interés en apoyar a
-      FemCoders Club.
-      <br />
-    </p>
-  </div>
-
-  {/* Bloque principal: formulario + imágenes */}
-  <div className="form-and-photos">
-    {/* FORMULARIO */}
-    <div
-      className="form-container"
-      data-aos="fade-right"
-      data-aos-delay="200"
-      data-aos-duration="900"
-      data-aos-easing="ease-out-sine"
-    >
-      <div className="form-card">
-        <OptimizedImage
-          src="FemCodersClubLogo.png"
-          alt="femCoders Club Logo"
-          className="form-logo"
-          title="FemCoders Club"
-          data-aos="zoom-in"
-          data-aos-delay="400"
+      <section className="full-height d-flex flex-column justify-content-center align-items-center parallax bg2">
+        <NewsSlider
+          newsItems={newsData}
+          autoPlay={true}
+          autoPlayInterval={6000}
+          showDots={true}
+          showArrows={true}
         />
-        <form ref={form} onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input type="text" id="name" name="name" required />
-            <label htmlFor="name">Nombre</label>
-          </div>
-          <div className="form-group">
-            <input type="text" id="last-name" name="last-name" required />
-            <label htmlFor="last-name">Apellidos</label>
-          </div>
-          <div className="form-group">
-            <input type="email" id="email" name="email" required />
-            <label htmlFor="email">Email</label>
-          </div>
-          <div className="form-group">
-            <textarea id="message" name="message" required></textarea>
-            <label htmlFor="message">Mensaje</label>
-          </div>
-          <button type="submit" className="accent-button">
-            Enviar
-          </button>
-        </form>
-      </div>
-    </div>
-
-    {/* IMÁGENES CON EFECTO "ESFERAS DE INFLUENCIA LIGERO" */}
-    <div
-      className="image-content"
-      data-aos="fade-up-left"
-      data-aos-duration="1400"
-      data-aos-easing="ease-in-out-sine"
-      data-aos-delay="200"
-      role="presentation"
-      aria-label="Cofundadoras de FemCoders Club compartiendo experiencias"
-    >
-      <div className="esferas-container bg5-variant">
-        {/* Esfera principal */}
-        <div className="leadership-sphere primary">
-          <div className="leadership-indicator"></div>
-          <OptimizedImage
-            src="/fundadoras-asociacion-femCodersClub.png"
-            alt="Cofundadoras de FemCoders Club participando en charlas STEM"
-            title="Cofundadoras de FemCoders Club participando en charlas STEM"
-            loading="eager"
-          />
+      </section>
+      <section className="projects-section bg1">
+        <GitHubProjects
+          projects={githubProjectsData}
+          maxProjects={6}
+          showFilters={true}
+          autoRotate={true}
+          rotateInterval={8000}
+        />
+      </section>
+      <section className="parallax bg5">
+        {/* Texto superior */}
+        <div
+          className="content-text"
+          style={{ width: "100%", maxWidth: "100vw" }}
+          data-aos="fade-down"
+          data-aos-duration="800"
+        >
+          <p className="text-white">
+            Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
+            puedes contribuir a nuestra comunidad, por favor llena el
+            formulario. Estamos aquí para asistirte y valoramos enormemente tu
+            interés en apoyar a FemCoders Club.
+            <br />
+          </p>
         </div>
 
-        {/* Esfera secundaria */}
-        <div className="leadership-sphere secondary">
-          <div className="leadership-indicator"></div>
-          <OptimizedImage
-            src="/empoderando-mujeres.png"
-            alt="Fundadoras de FemCoders Club empoderando mujeres en STEM"
-            title="fundadoras de FemCoders Club empoderando mujeres en STEM"
-            loading="eager"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        {/* Bloque principal: formulario + imágenes */}
+        <div className="form-and-photos">
+          {/* FORMULARIO */}
+          <div
+            className="form-container"
+            data-aos="fade-right"
+            data-aos-delay="200"
+            data-aos-duration="900"
+            data-aos-easing="ease-out-sine"
+          >
+            <div className="form-card">
+              <OptimizedImage
+                src="FemCodersClubLogo.png"
+                alt="femCoders Club Logo"
+                className="form-logo"
+                title="FemCoders Club"
+                data-aos="zoom-in"
+                data-aos-delay="400"
+              />
+              <form ref={form} onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input type="text" id="name" name="name" required />
+                  <label htmlFor="name">Nombre</label>
+                </div>
+                <div className="form-group">
+                  <input type="text" id="last-name" name="last-name" required />
+                  <label htmlFor="last-name">Apellidos</label>
+                </div>
+                <div className="form-group">
+                  <input type="email" id="email" name="email" required />
+                  <label htmlFor="email">Email</label>
+                </div>
+                <div className="form-group">
+                  <textarea id="message" name="message" required></textarea>
+                  <label htmlFor="message">Mensaje</label>
+                </div>
+                <button type="submit" className="accent-button">
+                  Enviar
+                </button>
+              </form>
+            </div>
+          </div>
 
+          {/* IMÁGENES CON EFECTO "ESFERAS DE INFLUENCIA LIGERO" */}
+          <div
+            className="image-content"
+            data-aos="fade-up-left"
+            data-aos-duration="1400"
+            data-aos-easing="ease-in-out-sine"
+            data-aos-delay="200"
+            role="presentation"
+            aria-label="Cofundadoras de FemCoders Club compartiendo experiencias"
+          >
+            <div className="esferas-container bg5-variant">
+              {/* Esfera principal */}
+              <div className="leadership-sphere primary">
+                <div className="leadership-indicator"></div>
+                <OptimizedImage
+                  src="/fundadoras-asociacion-femCodersClub.png"
+                  alt="Cofundadoras de FemCoders Club participando en charlas STEM"
+                  title="Cofundadoras de FemCoders Club participando en charlas STEM"
+                  loading="eager"
+                />
+              </div>
+
+              {/* Esfera secundaria */}
+              <div className="leadership-sphere secondary">
+                <div className="leadership-indicator"></div>
+                <OptimizedImage
+                  src="/empoderando-mujeres.png"
+                  alt="Fundadoras de FemCoders Club empoderando mujeres en STEM"
+                  title="fundadoras de FemCoders Club empoderando mujeres en STEM"
+                  loading="eager"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ConfirmationModal
         isVisible={showMessage}
