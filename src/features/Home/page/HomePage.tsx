@@ -7,9 +7,9 @@ import OptimizedImage from "../../../../src/components/OptimizedImage";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import CarouselWithText from "../components/CarouselWithText";
-import "./Home.css";
-import NewsSlider from "../components/NewsSlider";
 import GitHubProjects from "../components/GitHubProjects";
+import NewsSlider from "../components/NewsSlider";
+import "./Home.css";
 
 interface Event {
   start: {
@@ -1034,7 +1034,13 @@ const HomePage: React.FC = () => {
             <div className="esferas-container">
               {/* Esfera principal - Liderazgo primario */}
               <div className="leadership-sphere primary">
-                <div className="leadership-indicator"></div>
+                <div 
+                  className="leadership-indicator" 
+                  data-tooltip="Pausar/Reanudar animación"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Pausar o reanudar animación de imágenes"
+                ></div>
                 <OptimizedImage
                   src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
                   alt="Cofundadoras de FemCoders Club: líderes inspiradoras en tecnología"
@@ -1045,7 +1051,13 @@ const HomePage: React.FC = () => {
 
               {/* Esfera secundaria - Liderazgo complementario */}
               <div className="leadership-sphere secondary">
-                <div className="leadership-indicator"></div>
+                <div 
+                  className="leadership-indicator" 
+                  data-tooltip="Pausar/Reanudar animación"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Pausar o reanudar animación de imágenes"
+                ></div>
                 <OptimizedImage
                   src="/fundadorasFemCodersClub.png"
                   alt="Elvia, Lili y Silvina: fundadoras de FemCoders Club impulsando la comunidad tech"
@@ -1258,7 +1270,7 @@ const HomePage: React.FC = () => {
                       color: "#6C63FF",
                     }}
                   >
-                    1000+
+                    1300+
                   </div>
                   <div
                     style={{
@@ -1645,7 +1657,13 @@ const HomePage: React.FC = () => {
             <div className="esferas-container bg5-variant">
               {/* Esfera principal */}
               <div className="leadership-sphere primary">
-                <div className="leadership-indicator"></div>
+                <div 
+                  className="leadership-indicator" 
+                  data-tooltip="Pausar/Reanudar animación"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Pausar o reanudar animación de imágenes"
+                ></div>
                 <OptimizedImage
                   src="/fundadoras-asociacion-femCodersClub.png"
                   alt="Cofundadoras de FemCoders Club participando en charlas STEM"
@@ -1656,7 +1674,13 @@ const HomePage: React.FC = () => {
 
               {/* Esfera secundaria */}
               <div className="leadership-sphere secondary">
-                <div className="leadership-indicator"></div>
+                <div 
+                  className="leadership-indicator" 
+                  data-tooltip="Pausar/Reanudar animación"
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Pausar o reanudar animación de imágenes"
+                ></div>
                 <OptimizedImage
                   src="/empoderando-mujeres.png"
                   alt="Fundadoras de FemCoders Club empoderando mujeres en STEM"

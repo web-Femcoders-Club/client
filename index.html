@@ -7,8 +7,9 @@
 
     <!-- Verificación de sitios -->
     <meta name="google-site-verification" content="1z7dHnyblQkVTvwpU7eDrTN5P_PAU7yXZVL3yCdXN3k" />
+    <meta name="msvalidate.01" content="PENDIENTE_OBTENER_EN_BING_WEBMASTER_TOOLS" />
 
-    <!-- SEO mejorado -->
+    <!-- SEO básico (React-Helmet lo sobrescribirá en cada página) -->
     <title>FemCoders Club | Comunidad de Mujeres en Tecnología</title>
     <meta
       name="description"
@@ -20,17 +21,17 @@
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <meta name="revisit-after" content="1 days" />
 
-    <!-- QUITAR canonical del index.html - cada página React define el suyo -->
+    <!-- Hreflang -->
     <link rel="alternate" hreflang="es" href="https://www.femcodersclub.com/" />
 
-    <!-- Open Graph - Valores por defecto, se sobrescriben en cada página -->
+    <!-- Open Graph - Valores por defecto -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.femcodersclub.com/" />
     <meta property="og:title" content="FemCoders Club | Comunidad de Mujeres en Tecnología" />
     <meta property="og:description" content="FemCoders Club: comunidad para mujeres en tecnología. Eventos, talleres, networking y recursos para crecer en programación." />
     <meta property="og:image" content="https://www.femcodersclub.com/FemCodersClubLogo.png" />
 
-    <!-- Twitter Card - Valores por defecto, se sobrescriben en cada página -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@FemCodersClub" />
     <meta name="twitter:title" content="FemCoders Club | Comunidad de Mujeres en Tecnología" />
@@ -95,7 +96,7 @@
             "@type": "SiteNavigationElement",
             "position": 3,
             "name": "Equipo",
-            "description": "Conoce al equipo detrás de FemCoders Club", 
+            "description": "Conoce al equipo detrás de FemCoders Club",
             "url": "https://www.femcodersclub.com/equipo"
           },
           {
@@ -187,62 +188,16 @@
         }
       }
     </script>
-
-    <script>
-      window.snapSaveState = () => {
-        // Puedes guardar datos si quieres restaurarlos más tarde
-      };
-      
-      // Ayuda a Bing a entender que es una SPA
-      window.addEventListener('load', function() {
-        if (typeof window.history.pushState === 'function') {
-          // Notifica a los crawlers sobre cambios de estado
-          document.dispatchEvent(new Event('spa-navigation'));
-        }
-      });
-    </script>
   </head>
 
   <body>
-    <!-- Contenido SEO para crawlers - No afecta detección React -->
-    <header class="visually-hidden">
-      <h1>FemCoders Club - Comunidad de Mujeres en Tecnología</h1>
-      <nav aria-label="Navegación principal">
-        <a href="/" aria-label="Ir a la página de inicio">Inicio</a>
-        <a href="/femcoders-quienes-somos" aria-label="Conocer sobre nosotras">Sobre Nosotras</a>
-        <a href="/equipo" aria-label="Ver el equipo">Equipo</a>
-        <a href="/eventos" aria-label="Ver eventos">Eventos</a>
-        <a href="/blog" aria-label="Leer el blog">Blog</a>
-        <a href="/contacto" aria-label="Página de contacto">Contacto</a>
-        <a href="/login" aria-label="Iniciar sesión">Login</a>
-      </nav>
-    </header>
-
-    <!-- Contenido estructurado para SEO -->
-    <main class="visually-hidden" aria-hidden="true">
-      <section>
-        <h2>Eventos y Talleres de Programación</h2>
-        <p>Participa en eventos exclusivos, talleres de programación y sesiones de networking diseñadas específicamente para mujeres en tecnología.</p>
-      </section>
-      
-      <section>
-        <h2>Comunidad Activa</h2>
-        <p>Únete a más de 1000 mujeres profesionales en tecnología. Comparte experiencias, aprende y crece profesionalmente.</p>
-      </section>
-      
-      <section>
-        <h2>Recursos y Mentorías</h2>
-        <p>Accede a recursos exclusivos, programas de mentoría y oportunidades laborales en el sector tecnológico.</p>
-      </section>
-    </main>
-    
-    <!-- Contenido de fallback para motores de búsqueda que no ejecutan JS bien -->
+    <!-- Solo contenido para navegadores SIN JavaScript -->
     <noscript>
       <div style="max-width: 1200px; margin: 0 auto; padding: 20px; font-family: 'Roboto', Arial, sans-serif; line-height: 1.6; color: #333;">
         <header style="text-align: center; margin-bottom: 40px;">
-          <h1 style="color: #ea4f33; font-size: 2.5rem; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">FemCoders Club</h1>
-          <p style="font-size: 1.2rem; color: #4737bb; font-weight: bold;">Comunidad de Mujeres en Tecnología - Aplicación Web React</p>
-          <p style="font-size: 1rem; color: #666; margin-top: 10px;">Esta es una aplicación web React que requiere JavaScript para funcionar completamente.</p>
+          <h1 style="color: #ea4f33; font-size: 2.5rem; margin-bottom: 10px;">FemCoders Club</h1>
+          <p style="font-size: 1.2rem; color: #4737bb; font-weight: bold;">Comunidad de Mujeres en Tecnología</p>
+          <p style="font-size: 1rem; color: #666; margin-top: 10px;">Esta aplicación requiere JavaScript para funcionar completamente.</p>
         </header>
         
         <main>
@@ -299,30 +254,9 @@
       </div>
     </noscript>
     
+    <!-- Aquí React monta la aplicación -->
     <div id="root"></div>
-    
-    <style>
-      .visually-hidden {
-        position: absolute !important;
-        width: 1px !important;
-        height: 1px !important;
-        margin: -1px !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-        clip: rect(0 0 0 0) !important;
-        white-space: nowrap !important;
-        border: 0 !important;
-      }
-      
-      /* Asegurar que React monte normalmente */
-      #root {
-        min-height: 100vh;
-        width: 100%;
-      }
-    </style>
 
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-
