@@ -1,8 +1,48 @@
+/* ========================================
+   VARIABLES CSS - Design System
+   ======================================== */
+:root {
+  /* Colores principales */
+  --color-primary: #ea4f33;
+  --color-secondary: #4737bb;
+  --color-accent: #6c63ff;
+  --color-text-dark: #2a2170;
+  --color-white: #fdfdfd;
+  
+  /* Sombras */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.8rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transiciones */
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.6s cubic-bezier(0.33, 0.0, 0.22, 1);
+  
+  /* Fuentes */
+  --font-primary: "Roboto", sans-serif;
+  --font-heading: "Asap Condensed", sans-serif;
+}
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-primary);
 }
 .parallax {
   min-height: 100vh;
@@ -48,34 +88,34 @@ img {
 }
 
 .primary-button {
-  background-color: #ea4f33;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
-  transition: transform 0.2s ease-in-out;
+  transition: transform var(--transition-fast);
 }
 
 .primary-button:hover {
   background-color: #821ad4;
-  color: #fdfdfd;
+  color: var(--color-white);
   transform: scale(1.1);
 }
 
 .secondary-button {
   background-color: #821ad4;
-  color: white;
+  color: var(--color-white);
   border: none;
-  transition: transform 0.2s ease-in-out;
+  transition: transform var(--transition-fast);
 }
 
 .secondary-button:hover {
-  background-color: #ea4f33;
-  color: #fdfdfd;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   transform: scale(1.1);
 }
 
 .tertiary-button {
-  background-color: #ea4f33;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   padding: 8px 16px;
   border: none;
 }
@@ -86,14 +126,14 @@ img {
 
 .accent-button {
   background-color: #8937bb;
-  color: white;
+  color: var(--color-white);
   padding: 8px 16px;
   border: none;
 }
 
 .accent-button:hover {
-  background-color: #4737bb;
-  color: #ea4f33;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
   scale: 1.1;
 }
 .accent-button:active {
@@ -106,74 +146,74 @@ img {
 .tertiary-button,
 .accent-button {
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-primary);
 }
 .submit-btn {
-  background-color: #ea4f33;
-  color: white;
-  padding: 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-sm);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-weight: bold;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .submit-btn:hover {
-  background-color: #4737bb;
+  background-color: var(--color-secondary);
 }
 .send-icon {
   margin-right: 8px;
 }
 
 h1 {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 3.5rem;
-  color: #ea4f33;
+  color: var(--color-primary);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   justify-content: left;
 }
 
 h2 {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.8rem;
-  color: #4737bb;
+  color: var(--color-secondary);
   line-height: 1.2;
 }
 
 h3 {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-weight: semibold;
-  color: #ea4f33;
+  color: var(--color-primary);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   font-size: 2rem;
 }
 
 h4 {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1rem;
 }
 
 h5 {
-  font-family: "Asap Condensed", sans-serif;
+  font-family: var(--font-heading);
   font-weight: bold;
   font-size: 1.5rem;
-  color: #ea4f33;
+  color: var(--color-primary);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 span {
-  color: #ea4f33;
+  color: var(--color-primary);
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -193,19 +233,19 @@ span {
 
 .modal-content {
   background: #f7f4fa;
-  padding: 2rem;
+  padding: var(--spacing-lg);
   width: 95%;
   max-width: 900px;
   border-radius: 24px;
   overflow-y: auto;
   max-height: 80%;
-  color: #2a2170;
+  color: var(--color-text-dark);
   direction: ltr;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
-  border: 1px solid #4737bb;
+  border: 1px solid var(--color-secondary);
 }
 
 .modal-close {
@@ -216,10 +256,10 @@ span {
 .modal-close button {
   background: none;
   border: none;
-  color: #ea4f33;
+  color: var(--color-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color var(--transition-fast);
 }
 
 .modal-close button:hover {
@@ -239,7 +279,7 @@ span {
 
 .modal-body p {
   font-size: 1.2rem;
-  color: #2a2170;
+  color: var(--color-text-dark);
 }
 
 .faq-question {
@@ -249,9 +289,9 @@ span {
 }
 
 .faq-answer {
-  padding: 0.5rem 0 0 1rem;
-  margin-top: 0.5rem;
-  color: #fdfdfd;
+  padding: var(--spacing-xs) 0 0 var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+  color: var(--color-white);
 }
 
 .modal-body ul {
@@ -302,9 +342,9 @@ span {
 
 .form-card {
   background: #ffffff;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
+  padding: var(--spacing-lg);
   max-width: 500px;
   width: 100%;
   text-align: center;
@@ -327,19 +367,19 @@ span {
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid #4737bb;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-secondary);
   font-size: 1rem;
   background: #f7f4fa;
-  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  background: #fdfdfd;
-  border-color: #4737bb;
-  box-shadow: 0 0 10px #4737bb, 0 0 20px rgba(71, 55, 187, 0.5);
+  background: var(--color-white);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 10px var(--color-secondary), 0 0 20px rgba(71, 55, 187, 0.5);
 }
 
 .form-group label {
@@ -349,11 +389,11 @@ span {
   transform: translateY(1.5rem);
   background: #fff;
   padding: 0 0.25rem;
-  color: #4737bb;
+  color: var(--color-secondary);
   font-size: 1rem;
   pointer-events: none;
-  transition: transform 0.3s ease, color 0.3s ease, font-size 0.3s ease,
-    top 0.3s ease;
+  transition: transform var(--transition-fast), color var(--transition-fast), font-size var(--transition-fast),
+    top var(--transition-fast);
 }
 
 .form-group input:focus + label,
@@ -361,7 +401,7 @@ span {
 .form-group input:not(:placeholder-shown) + label,
 .form-group textarea:not(:placeholder-shown) + label {
   transform: translateY(-0.75rem);
-  color: #4737bb;
+  color: var(--color-secondary);
   font-size: 0.75rem;
 }
 
@@ -375,18 +415,18 @@ span {
 .content-text {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  border-radius: 0.5rem;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 2;
   text-align: center;
-  color: white;
+  color: var(--color-white);
   line-height: 1.5;
   font-size: 1.5rem;
   background: rgba(71, 55, 187, 0.7);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-card);
   margin-top: -150px;
   margin-bottom: 5rem;
 }
