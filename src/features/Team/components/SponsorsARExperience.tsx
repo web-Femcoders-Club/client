@@ -1,8 +1,7 @@
-import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import OptimizedImage from "../../../components/OptimizedImage";
 
-// Tipos
 interface SponsorEvent {
   date: string;
   sponsor: string;
@@ -23,8 +22,28 @@ interface JsonLdEvent {
   position: number;
 }
 
-
 const SPONSOR_EVENTS: SponsorEvent[] = [
+  {
+  date: "2025-10-29",
+  sponsor: "InfoJobs & NTT DATA",
+  event: "Liderar la revolución de la IA con talento femenino",
+  description:
+    "Un encuentro en las oficinas de InfoJobs, en colaboración con NTT DATA, donde mujeres referentes compartieron cómo están impulsando la innovación en inteligencia artificial desde el liderazgo y la tecnología.",
+  logo: "/logoinfojobs.jpeg",
+  website: "https://www.infojobs.net/",
+  backgroundImage: "/NTTData-InfoJobs-FemCodersClub.jpg"
+},
+{
+  date: "2025-10-11",
+  sponsor: "HackBarna 2025",
+  event: "FemCoders Club: Community Partner en HackBarna 2025",
+  description:
+    "HackBarna nos ha elegido como Community Partner para su edición 2025, un hackathon de alto nivel celebrado en el HQ de Glovo y centrado en inteligencia artificial. Una edición muy especial para nosotras, con Irina Ichim participando como mentora oficial.",
+  logo: "/logoHackBarna.jpeg",
+  website: "https://hackbarna.com/en/aisummit25",
+  backgroundImage: "/oficinasGlovo.png"
+}
+,
   {
     date: "2025-07-05",
     sponsor: "SheHub",
@@ -35,7 +54,6 @@ const SPONSOR_EVENTS: SponsorEvent[] = [
     website: "https://shehub.es/",
     backgroundImage: "/comunidad-SheHub.png",
   },
-
   {
     date: "2025-05-28",
     sponsor: "InfoJobs, Glovo & LeWagon",
@@ -44,7 +62,7 @@ const SPONSOR_EVENTS: SponsorEvent[] = [
       "En colaboración con InfoJobs, Glovo y LeWagon, hemos organizado un evento único que reunió a profesionales del sector tecnológico para compartir conocimientos y experiencias. Este evento fue una oportunidad para aprender de expertos en el campo de los datos y la tecnología, inspirar nuevas ideas y fomentar el crecimiento profesional. Gracias a la participación de estas empresas, logramos crear un espacio enriquecedor para todas las asistentes.",
     logo: "/logoinfojobs.jpeg",
     website: "https://www.infojobs.net/",
-    backgroundImage: "/evento-femCodersClub-InfoJobs-leWagon-Glovo.jpg",
+    backgroundImage: "/eventos-femCodersClub-InfoJobs-leWagon-Glovo.jpg",
   },
   {
     date: "2025-03-13",
@@ -163,7 +181,7 @@ const SPONSOR_EVENTS: SponsorEvent[] = [
     sponsor: "Semrush",
     event: "Estrategias Clave en Tecnología: Accesibilidad y POO",
     description:
-      "Gracias a Semrush, pudimos organizar un evento extraordinario con la participación de Daria Naydikova y Cris Mouta.  Las asistentes aprendieron sobre herramientas y enfoques para mejorar la accesibilidad y prevenir errores en productos, así como conceptos de POO de una manera lúdica y entretenida.",
+      "Gracias a Semrush, pudimos organizar un evento extraordinario con la participación de Daria Naydikova y Cris Mouta.  Las asistentes aprendieron sobre herramientas y enfoques para mejorar la accesibilidad y prevenir errores en productos, así como conceptos de POO de una manera lúdica y entretenida.",
     logo: "assets/semRush/logoSemRush.png",
     website: "https://www.semrush.com/",
     backgroundImage: "assets/semRush/oficina-SemRush.jpg",
@@ -180,19 +198,24 @@ const SPONSOR_EVENTS: SponsorEvent[] = [
   },
 ];
 
+
+const normalizeImagePath = (path: string) => path.startsWith("/") ? path : `/${path}`;
+
 const SponsorsARExperience = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  
+  const [isUserInteracting, setIsUserInteracting] = useState(false); 
   const intervalRef = useRef<number | null>(null);
-  const isUserInteractingRef = useRef(false);
+  
   const [isMobile, setIsMobile] = useState<boolean>(() =>
     typeof window !== "undefined" ? window.innerWidth <= 768 : false
   );
 
   const sponsorEvents = SPONSOR_EVENTS;
+  const totalEvents = sponsorEvents.length;
 
-  // Resize
   useEffect(() => {
     if (typeof window === "undefined") return;
     let t: number | undefined;
@@ -215,30 +238,32 @@ const SponsorsARExperience = () => {
           ? ev.backgroundImage.slice(1)
           : ev.backgroundImage;
         const folder = isMobile ? "mobile" : "desktop";
-        return `/public-optimized/${folder}/${raw}`.replace(
+        return `/public-optimized/${folder}/${raw.replace(
           /\.(jpg|jpeg|png)$/i,
           ".webp"
-        );
+        )}`;
       }),
     [isMobile, sponsorEvents]
   );
-
+  
   const activeEvent = sponsorEvents[activeIndex];
 
-  const nextAuto = useCallback(
-    () =>
-      setActiveIndex((prev) =>
-        prev < sponsorEvents.length - 1 ? prev + 1 : 0
-      ),
-    [sponsorEvents.length]
+  const next = useCallback(
+    () => setActiveIndex((prev) => (prev + 1) % totalEvents),
+    [totalEvents]
+  );
+  const prev = useCallback(
+    () => setActiveIndex((prev) => (prev - 1 + totalEvents) % totalEvents),
+    [totalEvents]
   );
 
   const startLoop = useCallback(() => {
     if (intervalRef.current !== null) return;
+    
     intervalRef.current = window.setInterval(() => {
-      if (isPlaying && !isHovered && !isUserInteractingRef.current) nextAuto();
+      if (isAutoPlaying && !isHovered && !isUserInteracting) next();
     }, 5000);
-  }, [isPlaying, isHovered, nextAuto]);
+  }, [isAutoPlaying, isHovered, isUserInteracting, next]);
 
   const stopLoop = useCallback(() => {
     if (intervalRef.current !== null) {
@@ -246,42 +271,55 @@ const SponsorsARExperience = () => {
       intervalRef.current = null;
     }
   }, []);
-
+  
   useEffect(() => {
-    if (isPlaying) startLoop();
+    if (isAutoPlaying && !isUserInteracting && !isHovered) {
+      startLoop();
+    } else {
+      stopLoop();
+    }
     return () => stopLoop();
-  }, [isPlaying, startLoop, stopLoop]);
-
+  }, [isAutoPlaying, isUserInteracting, isHovered, startLoop, stopLoop]);
+  
   const temporaryPause = () => {
-    setIsPlaying(false);
+    setIsAutoPlaying(false);
+    setIsUserInteracting(true);
+    
     setTimeout(() => {
-      isUserInteractingRef.current = false;
-      setIsPlaying(true);
-    }, 6000);
+      setIsUserInteracting(false);
+      setIsAutoPlaying(true);
+    }, 6000); 
   };
+  
   const handlePrev = () => {
-    isUserInteractingRef.current = true;
-    setActiveIndex((i) => (i > 0 ? i - 1 : sponsorEvents.length - 1));
+    prev();
     temporaryPause();
   };
+  
   const handleNext = () => {
-    isUserInteractingRef.current = true;
-    setActiveIndex((i) => (i < sponsorEvents.length - 1 ? i + 1 : 0));
+    next();
     temporaryPause();
   };
+  
   const goTo = (idx: number) => {
-    isUserInteractingRef.current = true;
     setActiveIndex(idx);
     temporaryPause();
   };
+  
   const togglePlay = () => {
-    setIsPlaying((p) => !p);
-    isUserInteractingRef.current = false;
+    const newPlayingState = !isAutoPlaying;
+    setIsAutoPlaying(newPlayingState);
+    
+    setIsUserInteracting(true); 
+    
+    setTimeout(() => {
+        setIsUserInteracting(false);
+    }, 50); 
   };
 
   const progressPercent = useMemo(
-    () => ((activeIndex + 1) / sponsorEvents.length) * 100,
-    [activeIndex, sponsorEvents.length]
+    () => ((activeIndex + 1) / totalEvents) * 100,
+    [activeIndex, totalEvents]
   );
 
   const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -299,7 +337,7 @@ const SponsorsARExperience = () => {
         e.preventDefault();
         break;
       case "End":
-        goTo(sponsorEvents.length - 1);
+        goTo(totalEvents - 1);
         e.preventDefault();
         break;
       case " ":
@@ -310,7 +348,6 @@ const SponsorsARExperience = () => {
     }
   };
 
-  // JSON-LD (array estable -> deps vacías)
   const jsonLd: { "@context": string; "@type": string; itemListElement: JsonLdEvent[] } =
     useMemo(
       () => ({
@@ -335,27 +372,28 @@ const SponsorsARExperience = () => {
             position: i + 1,
           })),
       }),
-      []
+      [sponsorEvents]
     );
 
   return (
     <div
-      className="max-w-4xl mx-auto p-4"
+      className="mx-auto p-4 sponsor-experience-carousel"
       style={{
+        maxWidth: "1200px",
         backgroundImage: `linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)), url(${optimizedBackgrounds[activeIndex]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundBlendMode: "overlay",
-        borderRadius: "0.5rem",
-        boxShadow: "0 8px 16px rgba(0,0,0,0.3)",
-        color: "#fff",
+        borderRadius: "var(--radius-sm)", 
+        boxShadow: "var(--shadow-medium)", 
+        color: "var(--color-white)",
       }}
       role="region"
-      aria-label="Carrusel de aliados y empresas colaboradoras"
+      aria-roledescription="Carrusel de empresas colaboradoras"
+      aria-label={`Patrocinador ${activeIndex + 1} de ${totalEvents}`} 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
-        isUserInteractingRef.current = false;
       }}
     >
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -364,52 +402,62 @@ const SponsorsARExperience = () => {
         onKeyDown={handleKey}
         tabIndex={0}
         role="group"
-        aria-roledescription="carousel"
+        aria-roledescription="slide"
+        aria-label={`Evento con ${activeEvent.sponsor}. Puedes navegar con las flechas del teclado.`} 
       >
-        {/* Región accesible para estado (evita aria-live dinámico en el contenedor) */}
-        <div className="sr-only" aria-live="polite">
-          {`Slide ${activeIndex + 1} de ${sponsorEvents.length}: ${
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          {`Mostrando Patrocinador ${activeIndex + 1} de ${totalEvents}: ${
             activeEvent.event || activeEvent.sponsor
-          }`}
-          {isPlaying ? " (auto avanzando)" : " (pausado)"}
+          }. ${isAutoPlaying ? "Rotación automática." : "Rotación pausada."}`}
         </div>
 
-        {/* Barra de progreso */}
         <div className="absolute top-0 left-0 w-full h-2 bg-gray-200" aria-hidden="true">
           <div
             className="h-full"
             style={{
-              backgroundColor: "#4737bb",
-              transition: "width .5s ease",
+              backgroundColor: "var(--color-secondary)",
+              transition: "width .5s var(--transition-fast)", 
               width: `${progressPercent}%`,
             }}
           />
         </div>
 
         <div className="mt-8 bg-white bg-opacity-80 rounded-lg shadow-lg p-6" id={`slide-${activeIndex}`}>
-          <div className="flex items-center justify-between mb-4 gap-2">
-            <button onClick={handlePrev} aria-label="Anterior patrocinador">
+          <div className="flex items-center justify-between mb-4 gap-2 text-gray-800">
+            <button 
+                onClick={handlePrev} 
+                aria-controls={`slide-${activeIndex}`}
+                aria-label="Anterior patrocinador"
+                style={{ color: "var(--color-text-dark)" }} 
+            >
               <ChevronLeft />
             </button>
 
             <button
               onClick={togglePlay}
-              aria-label={isPlaying ? "Pausar rotación" : "Reanudar rotación"}
+              aria-label={isAutoPlaying ? "Pausar rotación" : "Reanudar rotación"}
+              className="play-pause-button" 
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "4px",
-                background: "#4737bb",
-                color: "#fff",
+                background: "var(--color-secondary)",
+                color: "var(--color-white)",
                 padding: "6px 12px",
-                borderRadius: "6px",
-                fontSize: ".8rem",
+                borderRadius: "var(--radius-sm)",
+                fontSize: "0.8rem",
               }}
             >
-              {isPlaying ? "Pausar" : "Play"}
+              {isAutoPlaying ? <Pause size={16} /> : <Play size={16} />} 
+              {isAutoPlaying ? "Pausar" : "Play"}
             </button>
 
-            <button onClick={handleNext} aria-label="Siguiente patrocinador">
+            <button 
+                onClick={handleNext} 
+                aria-controls={`slide-${activeIndex}`}
+                aria-label="Siguiente patrocinador"
+                style={{ color: "var(--color-text-dark)" }}
+            >
               <ChevronRight />
             </button>
           </div>
@@ -417,7 +465,7 @@ const SponsorsARExperience = () => {
           <div className="text-center">
             <p
               className="text-sm mb-2 flex items-center justify-center"
-              style={{ color: "#821ad4" }}
+              style={{ color: "var(--color-accent)" }}
             >
               <Calendar className="w-4 h-4 mr-1" />
               {new Date(activeEvent.date).toLocaleDateString("es-ES", {
@@ -434,48 +482,45 @@ const SponsorsARExperience = () => {
               style={{ textDecoration: "none" }}
             >
               <OptimizedImage
-                src={
-                  activeEvent.logo.startsWith("/")
-                    ? activeEvent.logo
-                    : "/" + activeEvent.logo
-                }
+                src={normalizeImagePath(activeEvent.logo)}
                 alt={`Logo de ${activeEvent.sponsor}`}
-                className="w-24 h-20 mx-auto mb-2"
+                className="w-36 h-28 mx-auto mb-2 object-contain"
                 loading="lazy"
-                /* removed decoding (no existe en props) */
               />
             </a>
-            <h3 style={{ color: "#4737bb", marginBottom: "0.25rem" }}>
+            <h3 style={{ color: "var(--color-secondary)", marginBottom: "0.25rem" }}>
               {activeEvent.sponsor}
             </h3>
             {activeEvent.event && (
               <h4
                 style={{
-                  color: "#2a2170",
+                
+                  color: "var(--color-text-dark)",
                   fontWeight: 600,
-                  marginBottom: ".5rem",
+                  marginBottom: "0.5rem",
                 }}
               >
                 {activeEvent.event}
               </h4>
             )}
-            <p style={{ color: "#2a2170", lineHeight: 1.4 }}>
+           
+            <p style={{ color: "var(--color-text-dark)", lineHeight: 1.4 }}>
               {activeEvent.description}
             </p>
             <p
               style={{
-                fontSize: ".7rem",
+                fontSize: "0.7rem",
                 opacity: 0.7,
                 marginTop: "0.75rem",
+                color: "var(--color-text-dark)"
               }}
             >
-              {activeIndex + 1} / {sponsorEvents.length}
+              {activeIndex + 1} / {totalEvents}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Indicadores */}
       <ol
         className="mt-6 flex justify-center flex-wrap gap-2"
         aria-label="Paginación del carrusel"
@@ -495,8 +540,9 @@ const SponsorsARExperience = () => {
                 style={{
                   width: selected ? 14 : 10,
                   height: selected ? 14 : 10,
-                  background: selected ? "#4737bb" : "#d1d5db",
-                  border: selected ? "2px solid #2a2170" : "1px solid #cbd5e1",
+               
+                  background: selected ? "var(--color-secondary)" : "#d1d5db",
+                  border: selected ? "2px solid var(--color-text-dark)" : "1px solid #cbd5e1",
                   transition: "all .3s",
                 }}
               />
@@ -509,4 +555,3 @@ const SponsorsARExperience = () => {
 };
 
 export default SponsorsARExperience;
-

@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaLinkedin, FaTimes } from "react-icons/fa";
-import { PiFileMagnifyingGlassBold } from "react-icons/pi";
 import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
-import { HiUserGroup } from "react-icons/hi";
-import { useState, useEffect, useRef } from "react";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
@@ -17,23 +15,53 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     queryFn: getMember,
   });
 
+  const [expandedId, setExpandedId] = useState<number | null>(null);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [rotationIndex, setRotationIndex] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
-  const getFilteredMembers = () => {
+  // Memoizar función getFilteredMembers para evitar warnings de dependencias
+  const getFilteredMembers = useCallback(() => {
     if (!data || !Array.isArray(data)) return [];
 
     if (filter === "active") {
-      return data.slice(0, 4);
+      return data.filter(member => member.memberRole === "Cofundadora");
     } else if (filter === "inactive") {
-      // Los últimos 3 miembros como inactivos
-      return data.slice(4);
+      return data.filter(member => member.memberRole === "Cofundadora Legacy");
     }
 
     return data;
-  };
+  }, [data, filter]);
+
+  // Orden base de los miembros (consistente)
+  const baseMembers = useMemo(() => {
+    return getFilteredMembers();
+  }, [getFilteredMembers]);
+
+  // Rotación equitativa: cada miembro pasa por todas las posiciones
+  const rotatedMembers = useMemo(() => {
+    if (baseMembers.length === 0) return [];
+    
+    // Rotamos el array según el índice de rotación
+    const rotated = [...baseMembers];
+    const actualRotation = rotationIndex % baseMembers.length;
+    
+    // Rotar array: mover los primeros 'actualRotation' elementos al final
+    return [...rotated.slice(actualRotation), ...rotated.slice(0, actualRotation)];
+  }, [baseMembers, rotationIndex]);
+
+  // Auto-rotación cada 30 segundos
+  useEffect(() => {
+    if (baseMembers.length === 0) return;
+
+    const intervalId = setInterval(() => {
+      setRotationIndex(prev => prev + 1);
+    }, 30000); // 30 segundos
+
+    return () => clearInterval(intervalId);
+  }, [baseMembers.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -55,9 +83,12 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     };
   }, [selectedMember]);
 
-  const handleClick = (member: Member) => {
-    setSelectedMember(member);
+  const handleToggleExpand = (memberId: number) => {
+    setExpandedId(expandedId === memberId ? null : memberId);
+  };
 
+  const handleOpenModal = (member: Member) => {
+    setSelectedMember(member);
     previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
   };
 
@@ -104,9 +135,7 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     );
   }
 
-  const filteredMembers = getFilteredMembers();
-
-  if (filteredMembers.length === 0) {
+  if (rotatedMembers.length === 0) {
     return (
       <div className="text-center py-4">
         <p>No se encontraron miembros del equipo en esta categoría.</p>
@@ -115,168 +144,157 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   }
 
   return (
-    <div
-      className={`card-team-member-container ${
-        filter === "inactive" ? "inactive-members" : ""
-      }`}
+    <section
+      className={`team-grid ${filter === "inactive" ? "inactive-members" : ""}`}
+      aria-label={
+        filter === "active" 
+          ? "Equipo actual de FemCoders Club" 
+          : filter === "inactive"
+          ? "Cofundadoras Legacy de FemCoders Club"
+          : "Miembros del equipo de FemCoders Club"
+      }
     >
-      {filteredMembers.map((member) => {
-        const isExpanded = selectedMember?.idMember === member.idMember;
+      {rotatedMembers.map((member, index) => {
+        const isExpanded = expandedId === member.idMember;
 
         return (
-          <div
-            key={member.idMember}
-            className={`card-team-member ${
-              filter === "inactive" ? "inactive-card" : ""
+          <article
+            key={`${member.idMember}-${rotationIndex}`}
+            className={`team-card ${isExpanded ? "expanded" : ""} ${
+              filter === "inactive" ? "legacy-card" : ""
             }`}
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-offset="100"
+            style={{ 
+              animation: 'crossFadeIn 1s ease-out forwards',
+              animationDelay: `${index * 0.12}s`,
+              opacity: 0
+            }}
           >
-            <div className="card-team-member-content">
-              <div className="card-team-member-image">
+            {filter === "inactive" && (
+              <span className="legacy-badge">Legacy</span>
+            )}
+
+            {/* Contenido siempre visible */}
+            <div className="team-card-main">
+              <figure className="team-card-avatar">
                 <img
                   src={member.memberImage}
-                  alt={`${member.memberName} ${member.memberLastName}, ${member.memberRole}`}
+                  alt=""
                   loading="lazy"
-                  width="100"
-                  height="100"
+                  width="120"
+                  height="120"
                 />
-              </div>
+              </figure>
 
-              <div className="card-team-member-details">
-                <h3 className="card-team-member-title">
+              <div className="team-card-info">
+                <h3 className="team-card-name">
                   {member.memberName} {member.memberLastName}
                 </h3>
-
-                <div className="info-block">
-                  <HiUserGroup className="team-icon" aria-hidden="true" />
-                  <span className="info-content role">{member.memberRole}</span>
-                </div>
-
-                <div className="info-block linkedin-block">
-                  <a
-                    href={member.memberLinkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="linkedin-icon-link"
-                    aria-label={`LinkedIn de ${member.memberName} ${member.memberLastName}`}
-                  >
-                    <FaLinkedin className="linkedin-icon" aria-hidden="true" />
-                    <span className="linkedin-text">LinkedIn</span>
-                  </a>
-                </div>
-
-                <div className="info-block">
-                  <PiFileMagnifyingGlassBold
-                    className="team-icon"
-                    aria-hidden="true"
-                  />
-                  <span className="info-content">
-                    <strong>{member.memberDescription.slice(0, 60)}...</strong>
-                  </span>
-                </div>
+                <p className="team-card-role">{member.memberRole}</p>
               </div>
+
+              <nav className="team-card-actions" aria-label={`Acciones para ${member.memberName}`}>
+                <a
+                  href={member.memberLinkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="team-linkedin-link"
+                  aria-label={`Ver perfil de LinkedIn de ${member.memberName} ${member.memberLastName}`}
+                >
+                  <FaLinkedin aria-hidden="true" />
+                </a>
+
+<button
+  className="team-expand-btn"
+  onClick={() => handleToggleExpand(member.idMember)}
+>
+  {isExpanded ? "-" : "+"}
+</button>
+
+
+              </nav>
             </div>
 
-            {isExpanded ? (
-              <button
-                className="secondary-button-team"
-                onClick={() => handleClick(member)}
-                aria-expanded="true"
-                aria-controls={`modal-${member.idMember}`}
+            {/* Descripción expandible con scroll */}
+            {isExpanded && (
+              <div 
+                className="team-card-description"
+                id={`desc-${member.idMember}`}
+                role="region"
+                aria-label={`Descripción de ${member.memberName} ${member.memberLastName}`}
               >
-                Ver más
-              </button>
-            ) : (
-              <button
-                className="secondary-button-team"
-                onClick={() => handleClick(member)}
-                aria-expanded="false"
-                aria-controls={`modal-${member.idMember}`}
-              >
-                Ver más
-              </button>
-            )}
-
-            {filter === "inactive" && (
-              <div className="inactive-badge" aria-label="Cofundadora Emerita">
-                Legacy
+                <div className="team-card-description-content">
+                  <p>{member.memberDescription}</p>
+                </div>
+                
+                <button
+                  className="team-modal-trigger"
+                  onClick={() => handleOpenModal(member)}
+                  aria-label={`Ver perfil completo de ${member.memberName} ${member.memberLastName}`}
+                >
+                  Ver perfil completo
+                </button>
               </div>
             )}
-          </div>
+          </article>
         );
       })}
 
+      {/* MODAL para perfil completo */}
       {selectedMember && (
         <div
-          className="modal-overlay-non-blocking"
+          className="modal-overlay"
           role="dialog"
           aria-modal="true"
           aria-labelledby={`modal-title-${selectedMember.idMember}`}
-          id={`modal-${selectedMember.idMember}`}
           onClick={handleOverlayClick}
         >
-          <div
-            className="modal-content-non-blocking"
-            ref={modalRef}
-            tabIndex={-1}
-          >
+          <article className="modal-card" ref={modalRef} tabIndex={-1}>
             <button
-              className="modal-close-button"
+              className="modal-close"
               onClick={handleCloseModal}
-              aria-label="Cerrar ventana"
+              aria-label="Cerrar modal"
               ref={closeButtonRef}
             >
-              <FaTimes className="modal-close-icon" aria-hidden="true" />
+              <FaTimes aria-hidden="true" />
             </button>
 
-            <div className="modal-header-team">
-              <img
-                src={selectedMember.memberImage}
-                alt={`${selectedMember.memberName} ${selectedMember.memberLastName}`}
-                className="modal-image"
-                width="130"
-                height="130"
-              />
-              <h4
-                className="modal-title-team"
-                id={`modal-title-${selectedMember.idMember}`}
-              >
+            <header className="modal-header">
+              <figure className="modal-avatar">
+                <img
+                  src={selectedMember.memberImage}
+                  alt=""
+                  width="120"
+                  height="120"
+                />
+              </figure>
+              
+              <h4 className="modal-title" id={`modal-title-${selectedMember.idMember}`}>
                 {selectedMember.memberName} {selectedMember.memberLastName}
               </h4>
+              
               <p className="modal-role">{selectedMember.memberRole}</p>
+            </header>
 
+            <section className="modal-body">
+              <p>{selectedMember.memberDescription}</p>
+            </section>
+
+            <footer className="modal-footer">
               <a
                 href={selectedMember.memberLinkedin}
-                className="modal-linkedin-button"
+                className="modal-linkedin-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`LinkedIn de ${selectedMember.memberName} ${selectedMember.memberLastName}`}
+                aria-label={`Abrir perfil de LinkedIn de ${selectedMember.memberName}`}
               >
-                <FaLinkedin
-                  className="modal-linkedin-icon"
-                  aria-hidden="true"
-                />
-                <span>Perfil de LinkedIn</span>
+                <FaLinkedin aria-hidden="true" />
+                Ver en LinkedIn
               </a>
-            </div>
-            <div className="modal-body-team">
-              <p>{selectedMember.memberDescription}</p>
-            </div>
-            <div className="modal-footer-team">
-              <button
-                className="button-card"
-                onClick={handleCloseModal}
-                aria-label="Cerrar"
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
+            </footer>
+          </article>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
