@@ -56,11 +56,6 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
-      src: "/assets/Eventos2025/segundoAniversario-femCoders Club.webp",
-      alt: "Segundo Aniversario de FemCoders Club - Celebrando nuestra comunidad y logros",
-      title: "Celebración del Segundo Aniversario de FemCoders Club",
-    },
-    {
       src: "/assets/Eventos2025/aprendiendo-sobre-IA.webp",
       alt: "Aprendiendo sobre IA y liderazgo tecnológico femenino",
       title:
