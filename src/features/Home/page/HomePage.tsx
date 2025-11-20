@@ -56,6 +56,11 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
+      src: "/assets/Eventos2025/segundoAniversario-femCoders Club.webp",
+      alt: "Segundo Aniversario de FemCoders Club - Celebrando nuestra comunidad y logros",
+      title: "Celebración del Segundo Aniversario de FemCoders Club",
+    },
+    {
       src: "/assets/Eventos2025/aprendiendo-sobre-IA.webp",
       alt: "Aprendiendo sobre IA y liderazgo tecnológico femenino",
       title:
@@ -548,8 +553,19 @@ const HomePage: React.FC = () => {
       category: "Reconocimientos",
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
-    {
+        {
       id: "2",
+      title: "Segundo Aniversario de FemCoders Club",
+      description:
+        "Dos años de crecimiento imparable: de un espacio seguro para mujeres tech a una Asociación con más de 1.300 miembros, +35 eventos y +30 empresas colaboradoras. Conoce al equipo fundador, nuestros logros más importantes y cómo juntas seguimos construyendo una comunidad que no deja de crecer.",
+      image: "assets/Eventos2025/segundoAniversario-femCodersClub.webp",
+      imageAlt: "Segundo Aniversario de FemCoders Club - Celebrando nuestra comunidad y logros",
+      date: "24 Octubre 2025",
+      category: "Comunidad",
+      link: "/noticias/segundo-aniversario",
+    },
+    {
+      id: "3",
       title: "🎉 ¡Somos Community Partner de HackBarna 2025!",
       description:
         "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.",
@@ -559,18 +575,7 @@ const HomePage: React.FC = () => {
       category: "Partnership",
       link: "https://www.femcodersclub.com/noticias/HackBarna2025",
     },
-    {
-      id: "3",
-      title: "Ana Lucía Silva Córdoba: Profesional Digital Referente 2025",
-      description:
-        "Nuestra compañera Ana Lucía Silva Córdoba ha sido galardonada como Profesional Digital Referente 2025 en los prestigiosos Premios Dona TIC. Un reconocimiento merecido a su trayectoria desde la docencia rural hacia la tecnología inclusiva con una red femenina global.",
-      image:
-        "https://media.licdn.com/dms/image/v2/D4D03AQHU-Umzsfkdtg/profile-displayphoto-crop_800_800/B4DZizDmlyGkAQ-/0/1755350725495?e=1764201600&v=beta&t=yC-8V5n4Ra41_SKneMlJia6Pz-DtIdiS8LhL-QOemxo",
-      imageAlt: "Ana Lucía Silva Córdoba - Profesional Digital Referente 2025",
-      date: "9 Septiembre 2025",
-      category: "Reconocimientos",
-      link: "https://donadigital.cat/ana-lucia-silva-de-la-docencia-rural-a-la-tecnologia-inclusiva-amb-una-xarxa-femenina-global/",
-    },
+
     {
       id: "4",
       title: "🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas",

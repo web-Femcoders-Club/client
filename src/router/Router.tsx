@@ -134,7 +134,9 @@ const HackBarna2025Announcement = lazy(
 const PreguntasCSSEntrevistas = lazy(
   () => import("../features/Blog/posts/recursos/css/PreguntasCSSEntrevistas")
 );
-
+const SegundoAniversarioFemCodersClub = lazy(
+  () => import("../features/Blog/posts/noticias/SegundoAniversarioFemCodersClub")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -584,6 +586,16 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+   <Route
+  path="/noticias/segundo-aniversario"
+  element={
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <SegundoAniversarioFemCodersClub />
+      </Suspense>
+    </Layout>
+  }
+/>
         </Routes>
       </Suspense>
 

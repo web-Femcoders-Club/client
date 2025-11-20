@@ -294,6 +294,14 @@ const BlogPage: React.FC = () => {
   description: "Prepárate para entrevistas técnicas con 30 preguntas interactivas de CSS. Desde Box Model hasta Grid, Custom Properties y Performance optimization.",
   createdAt: new Date("2025-10-17"),
 },
+{
+  id: 30,
+  type: "noticia",
+  category: "femCoders",
+  title: "🎂 Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro",
+  description: "Celebramos dos años de FemCoders Club: de un espacio seguro a una Asociación con +1.300 mujeres, +35 eventos y +30 empresas. Descubre nuestro equipo fundador, logros y visión tecnológica con IA.",
+  createdAt: new Date("2025-10-24"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -376,6 +384,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/HackBarna2025`;
   case "🎯 Quiz CSS para Entrevistas Técnicas":
   return `/recursos/css/quiz-css-entrevistas`;
+ case "🎂 Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro":
+  return `/noticias/segundo-aniversario`;
       default:
         return `/`;
     }

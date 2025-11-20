@@ -50,12 +50,18 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
-       <div className="noticia-item bg1">
+      <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
-            <h2>🎬 Revive la magia del DataConnect: una tarde que marcó la diferencia</h2>
+            <h2>
+              🎬 Revive la magia del DataConnect: una tarde que marcó la
+              diferencia
+            </h2>
             <p className="intro-text">
-              Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada épica de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen y accede a las presentaciones completas...
+              Más de 70 personas se reunieron en InfoJobs Barcelona para una
+              jornada épica de Big Data, networking y comunidad. Revive los
+              mejores momentos con nuestro video resumen y accede a las
+              presentaciones completas...
             </p>
           </div>
           <Link to="/noticias/DataConnectEvento" className="secondary-button">
@@ -63,28 +69,63 @@ const Noticias: React.FC = () => {
           </Link>
         </div>
       </div>
-       <div className="noticia-item bg1">
+      <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
-            <h2>🎙️ Nadia Cavalleri: "El testing no es solo técnico, requiere pensamiento crítico y empatía"</h2>
+            <h2>
+              🎙️ Nadia Cavalleri: "El testing no es solo técnico, requiere
+              pensamiento crítico y empatía"
+            </h2>
             <p className="intro-text">
-              Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri, una de las voces más influyentes en testing de Latinoamérica y España. Descubre su transición de psicóloga a líder en QA, consejos para automatización y su visión del futuro del testing con IA...
+              Revive nuestra entrevista exclusiva con Nadia Soledad Cavalleri,
+              una de las voces más influyentes en testing de Latinoamérica y
+              España. Descubre su transición de psicóloga a líder en QA,
+              consejos para automatización y su visión del futuro del testing
+              con IA...
             </p>
           </div>
-          <Link to="/noticias/EntrevistaNadiaTesting" className="secondary-button">
+          <Link
+            to="/noticias/EntrevistaNadiaTesting"
+            className="secondary-button"
+          >
             Leer más
           </Link>
         </div>
       </div>
       <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h2>
+              🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de
+              HackBarna 2025
+            </h2>
+            <p className="intro-text">
+              FemCoders Club es oficialmente Community Partner de HackBarna
+              2025, el hackathon de IA más importante de Barcelona. Una
+              oportunidad única para nuestra comunidad del 11-12 de octubre en
+              Glovo HQ...
+            </p>
+          </div>
+          <Link to="/noticias/HackBarna2025" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+    <div className="noticia-item bg1">
   <div className="noticia-content">
     <div>
-      <h2>🎉 ¡Noticia que nos llena de orgullo! Somos Community Partner de HackBarna 2025</h2>
+      <h2>
+        Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro
+        equipo y el futuro
+      </h2>
       <p className="intro-text">
-        FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ...
+        Celebramos dos años de FemCoders Club: de un espacio seguro a una
+        Asociación con +1.300 mujeres, +35 eventos y +30 empresas.
+        Descubre nuestro equipo fundador, logros y visión tecnológica con
+        IA...
       </p>
     </div>
-    <Link to="/noticias/HackBarna2025" className="secondary-button">
+    <Link to="/noticias/segundo-aniversario" className="secondary-button">
       Leer más
     </Link>
   </div>
