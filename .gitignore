@@ -27,3 +27,6 @@ dist-ssr
 /EventoCard
 .env.local
 
+# Documentation
+documentation/
+
