@@ -302,6 +302,14 @@ const BlogPage: React.FC = () => {
   description: "Celebramos dos años de FemCoders Club: de un espacio seguro a una Asociación con +1.300 mujeres, +35 eventos y +30 empresas. Descubre nuestro equipo fundador, logros y visión tecnológica con IA.",
   createdAt: new Date("2025-10-24"),
 },
+{
+  id: 31,
+  type: "recurso",
+  category: "javascript",
+  title: "De HTML y CSS a JavaScript: Cuando Tu Web Cobra Vida",
+  description: "El salto de maquetadora a programadora explicado con fundamentos profundos: execution context, closures, event loop, prototypes. De HTML/CSS a programación real con ejemplos del día a día.",
+  createdAt: new Date("2025-11-25"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -386,6 +394,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/css/quiz-css-entrevistas`;
  case "🎂 Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro":
   return `/noticias/segundo-aniversario`;
+ case "De HTML y CSS a JavaScript: Cuando Tu Web Cobra Vida":
+  return `/recursos/js/fundamentos-javascript-profundos`;
       default:
         return `/`;
     }

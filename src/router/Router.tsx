@@ -137,6 +137,9 @@ const PreguntasCSSEntrevistas = lazy(
 const SegundoAniversarioFemCodersClub = lazy(
   () => import("../features/Blog/posts/noticias/SegundoAniversarioFemCodersClub")
 );
+const FundamentosJavaScript = lazy(
+  () => import("../features/Blog/posts/recursos/js/FundamentosJavaScript")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -596,6 +599,16 @@ const RouterComponent: React.FC = () => {
     </Layout>
   }
 />
+          <Route
+            path="/recursos/js/fundamentos-javascript-profundos"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <FundamentosJavaScript />
+                </Suspense>
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
 

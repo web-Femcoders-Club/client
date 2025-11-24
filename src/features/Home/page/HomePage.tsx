@@ -543,13 +543,24 @@ const HomePage: React.FC = () => {
         "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto “Vive Actiu Gent Gran” busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
       image: "assets/home-images/finalista-ranking-20opendata.webp",
       imageAlt:
-        "Irina Ichim finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025",
+        "Ana Lucía Silva Córdoba finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025",
       date: "6 Noviembre 2025",
       category: "Reconocimientos",
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
-        {
+    {
       id: "2",
+      title: "🚀 Los Fundamentos de JavaScript que Realmente Importan",
+      description:
+        "De HTML/CSS a JavaScript: El salto de maquetadora a programadora explicado sin tecnicismos. Descubre cómo funciona JavaScript por dentro con ejemplos reales del día a día. Aprende closures, event loop, this, prototypes y más fundamentos profundos que te convertirán en una desarrolladora que entiende por qué funciona su código.",
+      image: "assets/javascript/fundamentos-javascript.webp",
+      imageAlt: "Fundamentos profundos de JavaScript - De HTML/CSS a programación real",
+      date: "24 Noviembre 2025",
+      category: "Recursos",
+      link: "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos",
+    },
+        {
+      id: "3",
       title: "Segundo Aniversario de FemCoders Club",
       description:
         "Dos años de crecimiento imparable: de un espacio seguro para mujeres tech a una Asociación con más de 1.300 miembros, +35 eventos y +30 empresas colaboradoras. Conoce al equipo fundador, nuestros logros más importantes y cómo juntas seguimos construyendo una comunidad que no deja de crecer.",
@@ -560,7 +571,7 @@ const HomePage: React.FC = () => {
       link: "/noticias/segundo-aniversario",
     },
     {
-      id: "3",
+      id: "4",
       title: "🎉 ¡Somos Community Partner de HackBarna 2025!",
       description:
         "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.",
@@ -572,7 +583,7 @@ const HomePage: React.FC = () => {
     },
 
     {
-      id: "4",
+      id: "5",
       title: "🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas",
       description:
         "¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.",
@@ -582,17 +593,6 @@ const HomePage: React.FC = () => {
       date: "17 Octubre 2025",
       category: "Recursos",
       link: "https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas",
-    },
-    {
-      id: "5",
-      title: "Nuevo Quiz de HTML: Prepárate para Entrevistas Técnicas",
-      description:
-        "Hemos lanzado un completo quiz de HTML diseñado especialmente para prepararte en entrevistas técnicas. Una herramienta interactiva que te ayudará a refrescar conceptos clave y ganar confianza en procesos de selección.",
-      image: "assets/html/HTML-Quiz-Entrevistas.webp",
-      imageAlt: "Quiz interactivo de HTML para entrevistas técnicas",
-      date: "11 Septiembre 2025",
-      category: "Recursos",
-      link: "https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas",
     },
   ];
   const githubProjectsData = [

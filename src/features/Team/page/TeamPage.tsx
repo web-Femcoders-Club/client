@@ -492,8 +492,8 @@ const TeamPage = () => {
 </Helmet>
 
       {/* SECCIÓN 0 – Intro y Equipo Actual */}
-      <section className="parallax bg1 w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32">
-        <h1 className="sr-only">Nuestro Equipo de Liderazgo - FemCoders Club, Asociación</h1>
+      <section className="parallax bg1 w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-intro-heading">
+        <h1 id="team-intro-heading" className="sr-only">Nuestro Equipo de Liderazgo - FemCoders Club, Asociación</h1>
 
         <div data-aos="fade-up" data-aos-delay="100" className="w-full mt-20">
           <p className="styled-paragraph">
@@ -518,8 +518,8 @@ const TeamPage = () => {
 
         <h2
           id="equipo-actual"
-          // Usando una clase (asumiendo que la defines en tu CSS para usar var(--color-primary))
           className="text-3xl font-semibold text-team-primary-heading mb-6"
+          tabIndex={0}
         >
           Nuestro Equipo Actual
         </h2>
@@ -532,9 +532,9 @@ const TeamPage = () => {
       </section>
 
       {/* SECCIÓN - Valores del Equipo */}
-      <section className="team-values-section bg2 py-12 px-4 md:px-8 lg:px-16 xl:px-32">
+      <section className="team-values-section bg2 py-12 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-values-heading">
         <div data-aos="fade-up" className="text-center mb-10">
-          <h2 className="sponsors-title">
+          <h2 id="team-values-heading" className="sponsors-title" tabIndex={0}>
             Nuestros Valores
           </h2>
           <p style={{ color: "white", fontSize: "1.1rem", maxWidth: "800px", margin: "0 auto" }}>
@@ -542,13 +542,14 @@ const TeamPage = () => {
           </p>
         </div>
         
-        <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "2rem", marginTop: "2rem" }}>
+        <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "2rem", marginTop: "2rem" }} role="list" aria-label="Lista de valores del equipo">
           {teamValues.map((value, index) => (
             <div
               key={index}
               className="value-card"
               data-aos="flip-left"
               data-aos-delay={100 + index * 100}
+              role="listitem"
               style={{
                 background: "white",
                 borderRadius: "var(--radius-lg)",
@@ -559,7 +560,7 @@ const TeamPage = () => {
                 border: "2px solid transparent"
               }}
             >
-              <div className="benefit-icon-container">
+              <div className="benefit-icon-container" aria-hidden="true">
                 {value.icon}
               </div>
               <h3 style={{ color: "var(--color-primary)", fontSize: "1.3rem", marginBottom: "0.8rem", fontWeight: "600" }}>
@@ -574,9 +575,9 @@ const TeamPage = () => {
       </section>
 
       {/* SECCIÓN - Logros del Equipo */}
-      <section className="team-achievements-section bg1 py-10 px-4 md:px-8 lg:px-16 xl:px-32">
+      <section className="team-achievements-section bg1 py-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-impact-heading">
         <div data-aos="zoom-in" className="text-center mb-8">
-          <h2 style={{ color: "var(--color-secondary)", fontSize: "2rem", marginBottom: "0.5rem" }}>
+          <h2 id="team-impact-heading" style={{ color: "var(--color-secondary)", fontSize: "2rem", marginBottom: "0.5rem" }} tabIndex={0}>
             Nuestro Impacto
           </h2>
           <p style={{ color: "var(--color-text-dark)", fontSize: "1rem" }}>
@@ -584,12 +585,14 @@ const TeamPage = () => {
           </p>
         </div>
         
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", maxWidth: "1200px", margin: "0 auto" }} role="list" aria-label="Estadísticas de logros">
           {teamAchievements.map((achievement, index) => (
-            <div
+            <article
               key={index}
               data-aos="fade-up"
               data-aos-delay={100 + index * 100}
+              role="listitem"
+              aria-label={`${achievement.number} ${achievement.label}`}
               style={{
                 textAlign: "center",
                 padding: "2rem 1rem",
@@ -599,25 +602,24 @@ const TeamPage = () => {
                 transition: "transform 0.3s ease"
               }}
             >
-              <div className="benefit-icon-container">
+              <div className="benefit-icon-container" aria-hidden="true">
                 {achievement.icon}
               </div>
-              <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "var(--color-secondary)", marginBottom: "0.5rem" }}>
+              <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "var(--color-secondary)", marginBottom: "0.5rem" }} aria-hidden="true">
                 {achievement.number}
               </div>
-              <div style={{ color: "var(--color-text-dark)", fontSize: "1rem", fontWeight: "500" }}>
+              <div style={{ color: "var(--color-text-dark)", fontSize: "1rem", fontWeight: "500" }} aria-hidden="true">
                 {achievement.label}
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="parallax bg2">
+      <section className="parallax bg2" aria-labelledby="sponsors-heading">
         <div className="sponsors-container">
           <div className="sponsors-header" data-aos="fade-up">
-            {/* El color del título ya se define en .sponsors-title en TeamPage.css usando var(--color-primary) */}
-            <h2 className="sponsors-title">Empresas que Impulsan el Cambio</h2>
+            <h2 id="sponsors-heading" className="sponsors-title" tabIndex={0}>Empresas que Impulsan el Cambio</h2>
 
             <div className="sponsors-intro">
               <p>
@@ -645,24 +647,26 @@ const TeamPage = () => {
         className="become-sponsor-section bg1"
         data-aos="fade-up"
         data-aos-delay="300"
+        aria-labelledby="become-sponsor-heading"
       >
-        <h3 className="become-sponsor-title">
+        <h3 id="become-sponsor-heading" className="become-sponsor-title" tabIndex={0}>
           Sé parte del cambio en la industria tecnológica
         </h3>
 
-        <div className="benefits-grid">
+        <div className="benefits-grid" role="list" aria-label="Beneficios de ser sponsor">
           {sponsorshipBenefits.map((benefit, index) => (
-            <div
+            <article
               key={index}
               className="benefit-card"
               data-aos="zoom-in"
               data-aos-delay={300 + index * 100}
+              role="listitem"
             >
              
-              <div className="benefit-icon-container">{benefit.icon}</div>
+              <div className="benefit-icon-container" aria-hidden="true">{benefit.icon}</div>
               <h4 className="benefit-title">{benefit.title}</h4>
               <p className="benefit-description">{benefit.description}</p>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -677,8 +681,8 @@ const TeamPage = () => {
           <div className="cta-buttons">
             <a
               href="mailto:partnerships@femcodersclub.com"
-            
               className="partnership-button"
+              aria-label="Enviar correo para colaborar como partner de FemCoders Club"
             >
               <p>Quiero colaborar</p>
             </a>

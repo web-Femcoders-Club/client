@@ -202,7 +202,8 @@ h3 {
 h4 {
   font-family: var(--font-heading);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.7rem;
+  color:var( --color-text-dark);
 }
 
 h5 {
