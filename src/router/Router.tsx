@@ -12,7 +12,7 @@ import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
 import ElementosHTMLClave from "../features/Blog/posts/recursos/html/ElementosHTMLClave";
 import HtmlSemantico from "../features/Blog/posts/recursos/html/HTMLSemanticoYLayout";
 import EventsPage from "../features/Events/page/EventsPage";
-import useIdleTimer from "../hooks/useIdleTimer";
+import useIdleTimer from "../hooks/useIdleTimer"
 import logPageView from "../utils/logPageView";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
@@ -20,7 +20,7 @@ const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
 const Aniversario = lazy(
   () => import("../features/Blog/posts/noticias/Aniversario")
-);
+); 
 const IntroduccionHTML = lazy(
   () => import("../features/Blog/posts/recursos/html/IntroduccionHTML")
 );
