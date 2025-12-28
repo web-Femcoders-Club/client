@@ -51,7 +51,16 @@ const data = JSON.stringify({
   key: '6befac582d614d1bb40630f1ea6aeca2',
   keyLocation: 'https://www.femcodersclub.com/6befac582d614d1bb40630f1ea6aeca2.txt',
   urlList: [
-    'https://www.femcodersclub.com/'
+    'https://www.femcodersclub.com/',
+    'https://www.femcodersclub.com/blog',
+    'https://www.femcodersclub.com/eventos',
+    'https://www.femcodersclub.com/equipo',
+    'https://www.femcodersclub.com/femcoders-quienes-somos',
+    'https://www.femcodersclub.com/contacto',
+    'https://www.femcodersclub.com/noticias/felices-fiestas-2025',
+    'https://www.femcodersclub.com/noticias/segundo-aniversario',
+    'https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos',
+    'https://www.femcodersclub.com/noticias/HackBarna2025'
   ]
 });
 
