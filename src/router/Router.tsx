@@ -140,6 +140,9 @@ const SegundoAniversarioFemCodersClub = lazy(
 const FundamentosJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/FundamentosJavaScript")
 );
+const FelicesFiestas2025 = lazy(
+  () => import("../features/Blog/posts/noticias/FelicesFiestas2025")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -436,6 +439,14 @@ const RouterComponent: React.FC = () => {
             element={
               <Layout>
                 <Bienvenido2025 />
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/felices-fiestas-2025"
+            element={
+              <Layout>
+                <FelicesFiestas2025 />
               </Layout>
             }
           />

@@ -538,9 +538,21 @@ const HomePage: React.FC = () => {
   const newsData = [
     {
       id: "1",
+      title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
+      description:
+        "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
+      image: "assets/noticias/navidad-femCodersClub.webp",
+      imageAlt:
+        "Felices fiestas de FemCoders Club - Cerrando 2025 y proyectando 2026",
+      date: "28 Diciembre 2025",
+      category: "Comunidad",
+      link: "/noticias/felices-fiestas-2025",
+    },
+    {
+      id: "2",
       title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
       description:
-        "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto “Vive Actiu Gent Gran” busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
+        "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto 'Vive Actiu Gent Gran' busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
       image: "assets/home-images/finalista-ranking-20opendata.webp",
       imageAlt:
         "Ana Lucía Silva Córdoba finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025",
@@ -549,7 +561,7 @@ const HomePage: React.FC = () => {
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
     {
-      id: "2",
+      id: "3",
       title: "🚀 Los Fundamentos de JavaScript que Realmente Importan",
       description:
         "De HTML/CSS a JavaScript: El salto de maquetadora a programadora explicado sin tecnicismos. Descubre cómo funciona JavaScript por dentro con ejemplos reales del día a día. Aprende closures, event loop, this, prototypes y más fundamentos profundos que te convertirán en una desarrolladora que entiende por qué funciona su código.",
@@ -559,8 +571,8 @@ const HomePage: React.FC = () => {
       category: "Recursos",
       link: "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos",
     },
-        {
-      id: "3",
+    {
+      id: "4",
       title: "Segundo Aniversario de FemCoders Club",
       description:
         "Dos años de crecimiento imparable: de un espacio seguro para mujeres tech a una Asociación con más de 1.300 miembros, +35 eventos y +30 empresas colaboradoras. Conoce al equipo fundador, nuestros logros más importantes y cómo juntas seguimos construyendo una comunidad que no deja de crecer.",
@@ -571,7 +583,7 @@ const HomePage: React.FC = () => {
       link: "/noticias/segundo-aniversario",
     },
     {
-      id: "4",
+      id: "5",
       title: "🎉 ¡Somos Community Partner de HackBarna 2025!",
       description:
         "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.",
@@ -580,19 +592,6 @@ const HomePage: React.FC = () => {
       date: "30 Septiembre 2025",
       category: "Partnership",
       link: "https://www.femcodersclub.com/noticias/HackBarna2025",
-    },
-
-    {
-      id: "5",
-      title: "🎯 Nuevo Quiz CSS: Domina las Entrevistas Técnicas",
-      description:
-        "¡Lanzamos nuestro quiz interactivo de CSS! 30 preguntas desde conceptos básicos hasta técnicas avanzadas: Flexbox, Grid, Custom Properties, Performance y más. La herramienta perfecta para preparar tus entrevistas técnicas con confianza.",
-      image: "assets/css/CSS-Quiz-Entrevistas.webp",
-      imageAlt:
-        "Quiz interactivo de CSS para entrevistas técnicas - FemCoders Club",
-      date: "17 Octubre 2025",
-      category: "Recursos",
-      link: "https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas",
     },
   ];
   const githubProjectsData = [

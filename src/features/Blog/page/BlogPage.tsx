@@ -310,6 +310,14 @@ const BlogPage: React.FC = () => {
   description: "El salto de maquetadora a programadora explicado con fundamentos profundos: execution context, closures, event loop, prototypes. De HTML/CSS a programación real con ejemplos del día a día.",
   createdAt: new Date("2025-11-25"),
 },
+{
+  id: 32,
+  type: "noticia",
+  category: "femCoders",
+  title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
+  description: "Las fiestas están aquí. Cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas.",
+  createdAt: new Date("2025-12-28"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -396,6 +404,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/segundo-aniversario`;
  case "De HTML y CSS a JavaScript: Cuando Tu Web Cobra Vida":
   return `/recursos/js/fundamentos-javascript-profundos`;
+ case "Felices fiestas: FemCoders Club cierra 2025 y sigue":
+  return `/noticias/felices-fiestas-2025`;
       default:
         return `/`;
     }
