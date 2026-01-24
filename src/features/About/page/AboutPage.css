@@ -1,3 +1,15 @@
+.about-main-heading {
+  display: block !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 768px) {
+  .about-main-heading {
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
 .contenedor {
   display: flex;
   flex-direction: column;

@@ -91,7 +91,7 @@ const AboutPage: React.FC = () => {
       <section className="parallax bg1 full-height">
         <div className="contenedor">
           <h1
-            className="hide-on-mobile"
+            className="about-main-heading"
             style={{
               fontSize: "2rem",
               color: "#4737bb",

@@ -493,7 +493,7 @@ const TeamPage = () => {
 
       {/* SECCIÓN 0 – Intro y Equipo Actual */}
       <section className="parallax bg1 w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-intro-heading">
-        <h1 id="team-intro-heading" className="sr-only">Nuestro Equipo de Liderazgo - FemCoders Club, Asociación</h1>
+        <h1 id="team-intro-heading" className="team-main-heading">Nuestro Equipo de Liderazgo</h1>
 
         <div data-aos="fade-up" data-aos-delay="100" className="w-full mt-20">
           <p className="styled-paragraph">
