@@ -538,6 +538,18 @@ const HomePage: React.FC = () => {
   const newsData = [
     {
       id: "1",
+      title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
+      description:
+        "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
+      image: "/assets/javascript/event-loop-javascript.webp",
+      imageAlt:
+        "Event Loop en JavaScript - Guía completa sobre asincronía",
+      date: "24 Enero 2026",
+      category: "Recursos",
+      link: "/recursos/js/event-loop-javascript",
+    },
+    {
+      id: "2",
       title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
       description:
         "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
@@ -549,7 +561,7 @@ const HomePage: React.FC = () => {
       link: "/noticias/felices-fiestas-2025",
     },
     {
-      id: "2",
+      id: "3",
       title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
       description:
         "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto 'Vive Actiu Gent Gran' busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
@@ -561,7 +573,7 @@ const HomePage: React.FC = () => {
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
     {
-      id: "3",
+      id: "4",
       title: "🚀 Los Fundamentos de JavaScript que Realmente Importan",
       description:
         "De HTML/CSS a JavaScript: El salto de maquetadora a programadora explicado sin tecnicismos. Descubre cómo funciona JavaScript por dentro con ejemplos reales del día a día. Aprende closures, event loop, this, prototypes y más fundamentos profundos que te convertirán en una desarrolladora que entiende por qué funciona su código.",
@@ -572,7 +584,7 @@ const HomePage: React.FC = () => {
       link: "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos",
     },
     {
-      id: "4",
+      id: "5",
       title: "Segundo Aniversario de FemCoders Club",
       description:
         "Dos años de crecimiento imparable: de un espacio seguro para mujeres tech a una Asociación con más de 1.300 miembros, +35 eventos y +30 empresas colaboradoras. Conoce al equipo fundador, nuestros logros más importantes y cómo juntas seguimos construyendo una comunidad que no deja de crecer.",
@@ -582,21 +594,29 @@ const HomePage: React.FC = () => {
       category: "Comunidad",
       link: "/noticias/segundo-aniversario",
     },
-    {
-      id: "5",
-      title: "🎉 ¡Somos Community Partner de HackBarna 2025!",
-      description:
-        "FemCoders Club es oficialmente Community Partner de HackBarna 2025, el hackathon de IA más importante de Barcelona. Una oportunidad única para nuestra comunidad del 11-12 de octubre en Glovo HQ con sponsors como Anthropic, ElevenLabs y Hugging Face.",
-      image: "assets/Eventos2025/hackbarna-femcodersclub.webp",
-      imageAlt: "FemCoders Club Community Partner HackBarna 2025",
-      date: "30 Septiembre 2025",
-      category: "Partnership",
-      link: "https://www.femcodersclub.com/noticias/HackBarna2025",
-    },
   ];
   const githubProjectsData = [
     {
       id: "1",
+      name: "API Resilience Wrapper",
+      description:
+        "Wrapper que añade resiliencia a cualquier API: retry automático con backoff exponencial, circuit breaker, rate limiting, timeout y fallback. Aprende patrones profesionales para manejar fallos de red.",
+      techStack: ["TypeScript", "JavaScript", "API Design"],
+      githubUrl: "https://github.com/femcodersclub/API-Resilience-Wrapper",
+      demoUrl: "https://femcodersclub.github.io/API-Resilience-Wrapper/",
+      image: "/assets/javascript/api-resilience-wrapper.webp",
+      imageAlt: "API Resilience Wrapper - Patrones de resiliencia para APIs",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "enero 2026",
+      stars: 1,
+      language: "TypeScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/event-loop-javascript",
+      postTitle: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
+      difficulty: "Avanzado",
+    },
+    {
+      id: "2",
       name: "FemPalette - Generador SASS",
       description:
         "Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.",
@@ -615,7 +635,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "2",
+      id: "3",
       name: "Efecto Parallax con Svelte",
       description:
         "Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.",
@@ -634,7 +654,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "3",
+      id: "4",
       name: "Canvas Text Animation",
       description:
         "Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.",
@@ -653,7 +673,7 @@ const HomePage: React.FC = () => {
       difficulty: "Básico",
     },
     {
-      id: "4",
+      id: "5",
       name: "Mindfulness CSS App",
       description:
         "Aplicación web de mindfulness y respiración guiada, creada completamente con CSS puro y JavaScript mínimo. Demuestra el poder del CSS moderno.",
@@ -672,7 +692,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "5",
+      id: "6",
       name: "CodersPortfolio",
       description:
         "Portfolio profesional desarrollado con TypeScript. Template moderno y responsive que puedes personalizar para mostrar tus proyectos y habilidades.",
@@ -691,7 +711,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "6",
+      id: "7",
       name: "Nike Store React",
       description:
         "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",

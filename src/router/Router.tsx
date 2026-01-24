@@ -140,6 +140,9 @@ const SegundoAniversarioFemCodersClub = lazy(
 const FundamentosJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/FundamentosJavaScript")
 );
+const EventLoopJavaScript = lazy(
+  () => import("../features/Blog/posts/recursos/js/EventLoopJavaScript")
+);
 const FelicesFiestas2025 = lazy(
   () => import("../features/Blog/posts/noticias/FelicesFiestas2025")
 );
@@ -616,6 +619,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <FundamentosJavaScript />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/event-loop-javascript"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <EventLoopJavaScript />
                 </Suspense>
               </Layout>
             }

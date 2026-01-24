@@ -318,6 +318,14 @@ const BlogPage: React.FC = () => {
   description: "Las fiestas están aquí. Cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas.",
   createdAt: new Date("2025-12-28"),
 },
+{
+  id: 33,
+  type: "recurso",
+  category: "javascript",
+  title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
+  description: "Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks, Promises, async/await y AbortController con ejemplos prácticos.",
+  createdAt: new Date("2026-01-24"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -406,6 +414,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/fundamentos-javascript-profundos`;
  case "Felices fiestas: FemCoders Club cierra 2025 y sigue":
   return `/noticias/felices-fiestas-2025`;
+ case "Event Loop en JavaScript: Cómo Funciona la Asincronía":
+  return `/recursos/js/event-loop-javascript`;
       default:
         return `/`;
     }
