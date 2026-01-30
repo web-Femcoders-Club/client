@@ -261,3 +261,19 @@ export type UserAchievement = {
   user?: User; // Opcional si necesitas cargar datos del usuario relacionado
   achievement?: Achievement; // Opcional si necesitas detalles del logro relacionado
 };
+
+// Tipos para estadísticas de admin
+export interface RecentRegistration {
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  createdAt: string | null;
+}
+
+export interface UserStats {
+  totalUsers: number;
+  newThisWeek: number;
+  newThisMonth: number;
+  recentRegistrations: RecentRegistration[];
+}

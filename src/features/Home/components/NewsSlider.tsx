@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './NewsSlider.css';
 
-interface NewsItem {
+export interface NewsItem {
   id: string;
   title: string;
-  description: string;
+  description: string | React.ReactNode;
   image: string;
   imageAlt: string;
   date: string;

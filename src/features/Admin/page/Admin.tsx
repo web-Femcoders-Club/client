@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Route, Routes } from 'react-router-dom';
 import ManageComments from '../components/comment/ManageComments';
+import UserStats from '../components/user/UserStats';
 import './Admin.css';
 
 const Admin: React.FC = () => {
@@ -21,39 +22,45 @@ const Admin: React.FC = () => {
           <div className="admin-sidebar w-1/4 p-4">
             <ul className="steps steps-vertical">
               <li className="step">
+                <Link to="/admin/stats" className="text-decoration-none">
+                  1. Estadísticas Usuarias
+                </Link>
+              </li>
+              <li className="step">
                 <Link to="/admin/members" className="text-decoration-none">
-                  1. Gestionar Miembros
+                  2. Gestionar Miembros
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/sponsors" className="text-decoration-none">
-                  2. Gestionar Patrocinadores
+                  3. Gestionar Patrocinadores
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/volunteers" className="text-decoration-none">
-                  3. Gestionar Voluntarios
+                  4. Gestionar Voluntarios
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/comments" className="text-decoration-none">
-                  4. Gestionar Comentarios
+                  5. Gestionar Comentarios
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/settings" className="text-decoration-none">
-                  5. Otros Ajustes
+                  6. Otros Ajustes
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/achievements" className="text-decoration-none">
-                  5. Logros Usuarios
+                  7. Logros Usuarios
                 </Link>
               </li>
             </ul>
           </div>
           <div className="admin-main w-3/4 p-4">
             <Routes>
+              <Route path="stats" element={<UserStats />} />
               <Route path="comments" element={<ManageComments />} />
             </Routes>
           </div>

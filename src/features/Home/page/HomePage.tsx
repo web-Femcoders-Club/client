@@ -8,8 +8,9 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
 import CarouselWithText from "../components/CarouselWithText";
 import GitHubProjects from "../components/GitHubProjects";
-import NewsSlider from "../components/NewsSlider";
+import NewsSlider, { NewsItem } from "../components/NewsSlider";
 import "./Home.css";
+import "../../../features/Blog/page/PostStyles.css";
 
 interface Event {
   start: {
@@ -535,9 +536,33 @@ const HomePage: React.FC = () => {
       console.error(error);
     }
   };
-  const newsData = [
+  const newsData: NewsItem[] = [
     {
-      id: "1",
+  id: "1",
+  title: "FemCoders Club, Community Partner oficial de Talent Arena 2026",
+  description: (
+    <>
+      FemCoders Club se une a{" "}
+      <a
+        href="https://talentarena.tech/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="highlight-link"
+      >
+        Talent Arena 2026
+      </a>
+      , el principal evento europeo de talento digital que se celebra junto al Mobile World Congress Barcelona. Una oportunidad única para conectar, visibilizar y potenciar el talento femenino en tecnología a nivel europeo.
+    </>
+  ),
+  image: "/assets/noticias/talent-arena-2026-partnership.webp",
+  imageAlt:
+    "FemCoders Club Community Partner de Talent Arena 2026 en MWC Barcelona",
+  date: "30 Enero 2026",
+  category: "Colaboraciones",
+  // link: "/noticias/talent-arena-2026-partnership",
+},
+    {
+      id: "2",
       title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
       description:
         "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
@@ -549,7 +574,7 @@ const HomePage: React.FC = () => {
       link: "/recursos/js/event-loop-javascript",
     },
     {
-      id: "2",
+      id: "3",
       title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
       description:
         "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
@@ -561,7 +586,7 @@ const HomePage: React.FC = () => {
       link: "/noticias/felices-fiestas-2025",
     },
     {
-      id: "3",
+      id: "4",
       title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
       description:
         "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto 'Vive Actiu Gent Gran' busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
@@ -573,7 +598,7 @@ const HomePage: React.FC = () => {
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
     {
-      id: "4",
+      id: "5",
       title: "🚀 Los Fundamentos de JavaScript que Realmente Importan",
       description:
         "De HTML/CSS a JavaScript: El salto de maquetadora a programadora explicado sin tecnicismos. Descubre cómo funciona JavaScript por dentro con ejemplos reales del día a día. Aprende closures, event loop, this, prototypes y más fundamentos profundos que te convertirán en una desarrolladora que entiende por qué funciona su código.",
@@ -583,17 +608,7 @@ const HomePage: React.FC = () => {
       category: "Recursos",
       link: "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos",
     },
-    {
-      id: "5",
-      title: "Segundo Aniversario de FemCoders Club",
-      description:
-        "Dos años de crecimiento imparable: de un espacio seguro para mujeres tech a una Asociación con más de 1.300 miembros, +35 eventos y +30 empresas colaboradoras. Conoce al equipo fundador, nuestros logros más importantes y cómo juntas seguimos construyendo una comunidad que no deja de crecer.",
-      image: "assets/Eventos2025/segundoAniversario-femCodersClub.webp",
-      imageAlt: "Segundo Aniversario de FemCoders Club - Celebrando nuestra comunidad y logros",
-      date: "24 Octubre 2025",
-      category: "Comunidad",
-      link: "/noticias/segundo-aniversario",
-    },
+   
   ];
   const githubProjectsData = [
     {
