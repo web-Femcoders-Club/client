@@ -559,7 +559,7 @@ const HomePage: React.FC = () => {
     "FemCoders Club Community Partner de Talent Arena 2026 en MWC Barcelona",
   date: "30 Enero 2026",
   category: "Colaboraciones",
-  // link: "/noticias/talent-arena-2026-partnership",
+  link: "/noticias/talent-arena-2026-partnership",
 },
     {
       id: "2",
