@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getUserStats } from "../../../../api/adminApi";
-import { UserStats as UserStatsType } from "../../../../types/types";
-import { Users, UserPlus, CalendarDays, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { getUserStats, getAchievementStats } from "../../../../api/adminApi";
+import { UserStats as UserStatsType, AchievementStats } from "../../../../types/types";
+import { Users, UserPlus, CalendarDays, Loader2, ChevronLeft, ChevronRight, Trophy, Award } from "lucide-react";
 
 const ITEMS_PER_PAGE = 5;
 
 const UserStats: React.FC = () => {
   const [stats, setStats] = useState<UserStatsType | null>(null);
+  const [achievementStats, setAchievementStats] = useState<AchievementStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,8 +17,12 @@ const UserStats: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getUserStats();
-        setStats(data);
+        const [userData, achievementData] = await Promise.all([
+          getUserStats(),
+          getAchievementStats().catch(() => null),
+        ]);
+        setStats(userData);
+        setAchievementStats(achievementData);
       } catch (err) {
         console.error("Error fetching user stats:", err);
         setError("No se pudieron cargar las estadísticas. Inténtalo de nuevo.");
@@ -140,6 +145,91 @@ const UserStats: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Achievement Stats Section */}
+      {achievementStats && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+            <Trophy className="inline-block w-5 h-5 mr-2" />
+            Estadísticas de Logros
+          </h2>
+
+          {/* Achievement Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#EC4899" }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-500 text-sm font-medium">Total Logros Asignados</p>
+                  <p className="text-3xl font-bold mt-1" style={{ color: "#EC4899" }}>
+                    {achievementStats.totalAchievementsAssigned}
+                  </p>
+                </div>
+                <div className="p-3 rounded-full" style={{ backgroundColor: "#EC489920" }}>
+                  <Trophy className="w-6 h-6" style={{ color: "#EC4899" }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#6366F1" }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-500 text-sm font-medium">Usuarias con Logros</p>
+                  <p className="text-3xl font-bold mt-1" style={{ color: "#6366F1" }}>
+                    {achievementStats.usersWithAchievements}
+                  </p>
+                </div>
+                <div className="p-3 rounded-full" style={{ backgroundColor: "#6366F120" }}>
+                  <Award className="w-6 h-6" style={{ color: "#6366F1" }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Popular Achievements Table */}
+          {achievementStats.achievementsByType.length > 0 && (
+            <div className="bg-white rounded-xl shadow-md p-6">
+              <h3 className="text-lg font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+                Logros más populares
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="table w-full border border-gray-200">
+                  <thead>
+                    <tr style={{ backgroundColor: "#8B5CF610" }}>
+                      <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                        Logro
+                      </th>
+                      <th className="p-4 text-center font-semibold" style={{ color: "#8B5CF6" }}>
+                        Usuarias
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {achievementStats.achievementsByType
+                      .sort((a, b) => b.usersCount - a.usersCount)
+                      .slice(0, 5)
+                      .map((achievement) => (
+                        <tr key={achievement.id} className="hover:bg-gray-50 border-b border-gray-100">
+                          <td className="p-4">
+                            <span className="text-2xl mr-2">{achievement.icon}</span>
+                            {achievement.title}
+                          </td>
+                          <td className="p-4 text-center">
+                            <span
+                              className="px-3 py-1 rounded-full text-sm font-medium"
+                              style={{ backgroundColor: "#8B5CF620", color: "#8B5CF6" }}
+                            >
+                              {achievement.usersCount}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Recent Registrations Table */}
       <div className="bg-white rounded-xl shadow-md p-6">

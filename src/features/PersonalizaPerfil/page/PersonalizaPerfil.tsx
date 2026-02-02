@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { Camera, RotateCw, RotateCcw } from "lucide-react";
+import { Camera, RotateCcw, RotateCw } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { assignAchievementByAdmin } from "../../../api/achievementsApi";
 import "./ProfileCard.css";
 
 const PersonalizaPerfil: React.FC = () => {
@@ -82,6 +83,9 @@ const PersonalizaPerfil: React.FC = () => {
       return;
     }
 
+    const hadPreviousAvatar = !!userData.avatar;
+    const hasNewAvatar = !!userData.newAvatar;
+
     try {
       const authToken = sessionStorage.getItem("authToken");
       await axios.put(
@@ -106,7 +110,20 @@ const PersonalizaPerfil: React.FC = () => {
           avatar: userData.newAvatar,
           newAvatar: null,
         }));
+
+        // Asignar logro si es la primera vez que sube o modifica el avatar
+        // Logro ID 11 = "Perfil completado"
+        if (!hadPreviousAvatar || hasNewAvatar) {
+          try {
+            await assignAchievementByAdmin(Number(userData.userId), 11);
+            console.log("Logro de perfil completado asignado");
+          } catch (achievementError) {
+            console.log("El logro ya fue asignado o hubo un error:", achievementError);
+          }
+        }
       }
+
+      alert("Perfil actualizado correctamente");
     } catch (error) {
       alert(
         "Hubo un problema al actualizar el perfil. Por favor, inténtalo de nuevo."

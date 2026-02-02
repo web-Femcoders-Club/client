@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import OptimizedImage from "../../../components/OptimizedImage";
 
 interface CardEventProps {
@@ -26,26 +26,29 @@ const CardEvent: React.FC<CardEventProps> = ({
   const defaultImage = "/apoyomujeres.png";
   const cardRef = useRef<HTMLDivElement>(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
-  const handleFrontKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      setIsFlipped(true);
-    }
-  };
-  const handleMouseEnter = () => {
-    setIsFlipped(true);
-  };
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
-  const handleBackButtonClick = (e: React.MouseEvent) => {
+  const toggleFlip = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsFlipped(false);
+    setIsFlipped(!isFlipped);
   };
 
-  const handleBackKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape") {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
       e.preventDefault();
-      setIsFlipped(false);
+      setIsFlipped(!isFlipped);
     }
   };
 
@@ -53,19 +56,18 @@ const CardEvent: React.FC<CardEventProps> = ({
     <div
       className="event-card-custom"
       ref={cardRef}
-      onKeyDown={isFlipped ? handleBackKeyDown : undefined}
+      onKeyDown={handleKeyDown}
     >
       <div
-        className={`event-flip-card-inner-custom ${isFlipped ? "flipped" : ""}`}
-        style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0)" }}
+        className={`event-flip-card-inner-custom ${isFlipped ? "flipped" : ""} ${prefersReducedMotion ? "no-animation" : ""}`}
+        style={{ 
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0)",
+          transition: prefersReducedMotion ? "none" : "transform 0.6s"
+        }}
       >
         <div
           className="event-flip-card-front-custom"
-          onMouseEnter={handleMouseEnter}
-          onKeyDown={handleFrontKeyDown}
-          tabIndex={isFlipped ? -1 : 0}
-          aria-label={`Evento: ${title}. Presiona Enter para ver detalles`}
-          role="button"
+          style={{ pointerEvents: isFlipped ? "none" : "auto" }}
         >
           <h2 className="event-card-title-custom">{title}</h2>
           <OptimizedImage
@@ -74,9 +76,45 @@ const CardEvent: React.FC<CardEventProps> = ({
             className="event-card-image-custom"
             loading="lazy"
           />
+          {/* Botón para ver detalles */}
+          <button
+            type="button"
+            className="flip-icon-button front"
+            onClick={toggleFlip}
+            onKeyDown={handleKeyDown}
+            aria-label={`Ver detalles del evento: ${title}`}
+            title="Ver detalles"
+            tabIndex={0}
+            style={{ 
+              pointerEvents: 'auto',
+              zIndex: 1000,
+              position: 'absolute',
+              bottom: '15px',
+              left: '10px'
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </button>
         </div>
 
-        <div className="event-flip-card-back-custom">
+        <div 
+          className="event-flip-card-back-custom"
+          style={{ pointerEvents: isFlipped ? "auto" : "none" }}
+        >
           <div className="event-card-body-custom">
             <div className="flex items-center gap-2 mb-2">
               <OptimizedImage
@@ -99,34 +137,43 @@ const CardEvent: React.FC<CardEventProps> = ({
             <p className="text-bodyText text-contrast">{description}</p>
             {!isPastEvent && (
               <a href={eventUrl} target="_blank" rel="noopener noreferrer">
-                <button className="tertiary-button">Adquiere tu entrada</button>
+                <button type="button" className="tertiary-button">Adquiere tu entrada</button>
               </a>
             )}
-
-            <button
-              className="flip-icon-button back"
-              onClick={handleBackButtonClick}
-              aria-label="Volver a la imagen del evento"
-              title="Volver a la imagen del evento"
-              tabIndex={isFlipped ? 0 : -1}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 8 8 12 12 16"></polyline>
-                <line x1="16" y1="12" x2="8" y2="12"></line>
-              </svg>
-            </button>
           </div>
+          {/* Botón para volver a la imagen */}
+          <button
+            type="button"
+            className="flip-icon-button back"
+            onClick={toggleFlip}
+            onKeyDown={handleKeyDown}
+            aria-label="Volver a la imagen del evento"
+            title="Volver a la imagen"
+            tabIndex={0}
+            style={{ 
+              pointerEvents: 'auto',
+              zIndex: 1000,
+              position: 'absolute',
+              bottom: '15px',
+              right: '15px'
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 8 8 12 12 16"></polyline>
+              <line x1="16" y1="12" x2="8" y2="12"></line>
+            </svg>
+          </button>
         </div>
       </div>
     </div>

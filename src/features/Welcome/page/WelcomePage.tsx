@@ -1,31 +1,31 @@
-import { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getUpcomingEvents } from "../../../api/eventsApi";
 import {
-  Calendar,
-  Award,
-  ChevronRight,
-  Menu,
-  X,
-  Rocket,
-  Book,
-  Users,
-  Heart,
-  Megaphone,
-  Lightbulb,
-  BookOpen,
-  MicVocal,
-  FolderOpen,
-  Building,
-  MapPin,
-  Clock,
-  ExternalLink,
+    Award,
+    Book,
+    BookOpen,
+    Building,
+    Calendar,
+    ChevronRight,
+    Clock,
+    ExternalLink,
+    FolderOpen,
+    Heart,
+    Lightbulb,
+    MapPin,
+    Megaphone,
+    Menu,
+    MicVocal,
+    Rocket,
+    Users,
+    X,
 } from "lucide-react";
-import "./WelcomePage.css";
-import { getUserAchievements } from "../../../api/achievementsApi";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link, useLocation } from "react-router-dom";
+import { getUserAchievements } from "../../../api/achievementsApi";
+import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
+import "./WelcomePage.css";
 
 const WelcomePage = () => {
   const location = useLocation();
@@ -33,7 +33,9 @@ const WelcomePage = () => {
   const { userName, userId } = state;
 
   const resolvedUserId =
-    userId || parseInt(localStorage.getItem("userId") || "0");
+    userId || 
+    parseInt(localStorage.getItem("userId") || "0") ||
+    parseInt(sessionStorage.getItem("userId") || "0");
 
   const [selectedEmoji, setSelectedEmoji] = useState(
     localStorage.getItem("userEmoji") || null
@@ -61,24 +63,9 @@ const WelcomePage = () => {
     queryKey: ["userAchievements", resolvedUserId],
     queryFn: () => getUserAchievements(resolvedUserId),
     enabled: resolvedUserId > 0,
+    staleTime: 0,
+    cacheTime: 0,
   });
-
-  const [, setAchievements] = useState([]);
-
-  useEffect(() => {
-    const fetchAchievements = async () => {
-      try {
-        const resolvedUserId = parseInt(localStorage.getItem("userId") || "0");
-        const data = await getUserAchievements(resolvedUserId);
-        setAchievements(data);
-        console.log("Logros obtenidos:", data);
-      } catch (error) {
-        console.error("Error recuperando los logros:", error);
-      }
-    };
-
-    fetchAchievements();
-  }, []);
 
   const combinedAchievements = [defaultAchievement, ...userAchievements];
 
@@ -513,7 +500,7 @@ const WelcomePage = () => {
             <div className="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 p-6 lg:p-8 border border-gray-100 hover:border-indigo-300">
               <div className="flex items-center gap-4 mb-8">
                 <Award className="w-8 h-8 text-indigo-500" />
-                <h2>Tus Logros</h2>
+                <h2>Tus Logros ({combinedAchievements.length})</h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto max-h-64 pr-2">
@@ -524,9 +511,9 @@ const WelcomePage = () => {
                     Error al cargar logros
                   </p>
                 ) : combinedAchievements.length > 0 ? (
-                  combinedAchievements.map((achievement) => (
+                  combinedAchievements.map((achievement, index) => (
                     <div
-                      key={achievement.id}
+                      key={`achievement-${achievement.id}-${index}`}
                       className="group p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">

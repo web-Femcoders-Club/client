@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
@@ -407,11 +407,51 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
 ];
 
 const PreguntasCSSEntrevistas: React.FC = () => {
-  const postId = 29; 
+  const postId = 29;
   const publicationDate = "17 de octubre de 2025";
+  const [achievementModal, setAchievementModal] = useState<{
+    show: boolean;
+    title: string;
+    message: string;
+  }>({ show: false, title: "", message: "" });
 
-  const handleQuizComplete = (results: QuizResults) => {
+  const handleQuizComplete = async (results: QuizResults) => {
     console.log("Quiz CSS completado:", results);
+
+    const userId = sessionStorage.getItem("userId");
+    const authToken = sessionStorage.getItem("authToken");
+
+    if (userId && authToken) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/quizzes/complete/${userId}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${authToken}`,
+            },
+            body: JSON.stringify({ quizType: "css" }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.achievementUnlocked) {
+          setAchievementModal({
+            show: true,
+            title: data.achievementUnlocked,
+            message: data.message,
+          });
+        }
+      } catch (error) {
+        console.error("Error registrando quiz:", error);
+      }
+    }
+  };
+
+  const closeAchievementModal = () => {
+    setAchievementModal({ show: false, title: "", message: "" });
   };
 
   const downloadStudyGuide = () => {
@@ -988,6 +1028,76 @@ Fecha: ${publicationDate}
       </div>
 
       <CommentsSection postId={postId} />
+
+      {achievementModal.show && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={closeAchievementModal}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "20px",
+              padding: "40px",
+              maxWidth: "450px",
+              textAlign: "center",
+              boxShadow: "0 10px 40px rgba(71, 55, 187, 0.3)",
+              animation: "fadeIn 0.3s ease-out",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ fontSize: "4rem", marginBottom: "20px" }}>🏆</div>
+            <h2
+              style={{
+                color: "#4737bb",
+                marginBottom: "15px",
+                fontSize: "1.8rem",
+              }}
+            >
+              ¡Logro Desbloqueado!
+            </h2>
+            <h3
+              style={{
+                color: "#6d2c95",
+                marginBottom: "20px",
+                fontSize: "1.4rem",
+              }}
+            >
+              {achievementModal.title}
+            </h3>
+            <p style={{ color: "#666", marginBottom: "25px", lineHeight: 1.6 }}>
+              {achievementModal.message}
+            </p>
+            <button
+              onClick={closeAchievementModal}
+              style={{
+                backgroundColor: "#4737bb",
+                color: "white",
+                border: "none",
+                padding: "12px 30px",
+                borderRadius: "8px",
+                fontSize: "1rem",
+                fontWeight: "bold",
+                cursor: "pointer",
+                transition: "background-color 0.3s ease",
+              }}
+            >
+              ¡Genial!
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

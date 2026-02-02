@@ -277,3 +277,52 @@ export interface UserStats {
   newThisMonth: number;
   recentRegistrations: RecentRegistration[];
 }
+
+// Tipos para estadísticas de logros (admin)
+export interface AchievementByType {
+  id: number;
+  title: string;
+  icon: string;
+  usersCount: number;
+}
+
+export interface AchievementStats {
+  totalAchievementsAssigned: number;
+  usersWithAchievements: number;
+  achievementsByType: AchievementByType[];
+}
+
+export interface UserWithAchievements {
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  hasAvatar: boolean;
+  createdAt: string | null;
+  achievementsCount: number;
+  achievements: Achievement[];
+}
+
+export interface RecentAchievement {
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  achievementId: number;
+  achievementTitle: string;
+  achievementIcon: string;
+}
+
+// Tipos para paginación
+export interface Pagination {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: Pagination;
+}

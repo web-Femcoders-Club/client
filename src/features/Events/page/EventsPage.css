@@ -42,6 +42,21 @@
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
+
+/* Deshabilitar animación para usuarios con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .event-flip-card-inner-custom {
+    transition: none;
+  }
+  
+  .flip-icon-button {
+    transition: none;
+  }
+}
+
+.event-flip-card-inner-custom.no-animation {
+  transition: none;
+}
 .event-card-custom:focus-visible {
   box-shadow: 0 0 0 3px rgba(71, 55, 187, 0.5);
   border-radius: 15px;
@@ -62,7 +77,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  z-index: 100;
+  pointer-events: auto;
 }
 
 .flip-icon-button:hover, .flip-icon-button:focus-visible {
@@ -72,12 +88,19 @@
 .flip-icon-button:focus-visible {
   box-shadow: 0 0 0 3px rgba(71, 55, 187, 0.5);
 }
-.event-flip-card-front-custom {
-  cursor: pointer;
-  outline: none;
+.flip-icon-button.front {
+  left: 10px;
+  right: auto;
 }
-.event-card-custom:hover .event-flip-card-inner-custom.flipped {
-  transform: rotateY(180deg); 
+
+.flip-icon-button.back {
+  z-index: 1000;
+  bottom: 15px;
+  right: 15px;
+}
+.event-flip-card-front-custom {
+  cursor: default;
+  outline: none;
 }
 .event-flip-card-front-custom:focus-visible {
   outline: 3px solid rgba(71, 55, 187, 0.5);
@@ -114,6 +137,8 @@
   color: #fdfdfd;
   padding: 5rem;
   font-size: 1.3rem;
+  pointer-events: auto;
+  position: relative;
 }
 
 .event-card-image-custom {
@@ -133,6 +158,13 @@
 .event-card-body-custom {
   padding: 10px;
   text-align: left;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.event-card-body-custom * {
+  pointer-events: auto;
 }
 
 .icon-orange {
