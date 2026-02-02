@@ -326,6 +326,14 @@ const BlogPage: React.FC = () => {
   description: "Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks, Promises, async/await y AbortController con ejemplos prácticos.",
   createdAt: new Date("2026-01-24"),
 },
+{
+  id: 34,
+  type: "noticia",
+  category: "femCoders",
+  title: "FemCoders Club es Community Partner de Talent Arena",
+  description: "Celebramos una alianza basada en valores compartidos: diversidad, talento colectivo e innovación. Descubre qué significa esta colaboración para nuestra comunidad.",
+  createdAt: new Date("2026-02-02"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -416,6 +424,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/felices-fiestas-2025`;
  case "Event Loop en JavaScript: Cómo Funciona la Asincronía":
   return `/recursos/js/event-loop-javascript`;
+ case "FemCoders Club es Community Partner de Talent Arena":
+  return `/noticias/talent-arena-2026-partnership`;
       default:
         return `/`;
     }

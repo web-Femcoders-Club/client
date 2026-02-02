@@ -146,6 +146,9 @@ const EventLoopJavaScript = lazy(
 const FelicesFiestas2025 = lazy(
   () => import("../features/Blog/posts/noticias/FelicesFiestas2025")
 );
+const TalentArenaPartnership = lazy(
+  () => import("../features/Blog/posts/noticias/TalentArenaPartnership")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -629,6 +632,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <EventLoopJavaScript />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/talent-arena-2026-partnership"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <TalentArenaPartnership />
                 </Suspense>
               </Layout>
             }

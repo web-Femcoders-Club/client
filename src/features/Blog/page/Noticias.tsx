@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>FemCoders Club es Community Partner de Talent Arena</h2>
+            <p className="intro-text">
+              Celebramos una alianza basada en valores compartidos: diversidad, talento colectivo e innovación. Descubre qué significa esta colaboración para nuestra comunidad...
+            </p>
+          </div>
+          <Link to="/noticias/talent-arena-2026-partnership" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>Felices fiestas: FemCoders Club cierra 2025 y sigue</h2>
             <p className="intro-text">
               Las fiestas están aquí. Cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades...
