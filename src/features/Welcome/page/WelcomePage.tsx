@@ -64,10 +64,13 @@ const WelcomePage = () => {
     queryFn: () => getUserAchievements(resolvedUserId),
     enabled: resolvedUserId > 0,
     staleTime: 0,
-    cacheTime: 0,
+    gcTime: 0,
   });
 
-  const combinedAchievements = [defaultAchievement, ...userAchievements];
+  const combinedAchievements = [
+    defaultAchievement, 
+    ...(Array.isArray(userAchievements) ? userAchievements : [])
+  ];
 
   useEffect(() => {
     const storedStats = localStorage.getItem("emojiStats");
