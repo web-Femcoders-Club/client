@@ -563,6 +563,18 @@ const HomePage: React.FC = () => {
 },
     {
       id: "2",
+      title: "Manipulaci\u00f3n del DOM como una Ingeniera",
+      description:
+        "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulaci\u00f3n del DOM con un proyecto pr\u00e1ctico: Smart Analytics Tracker.",
+      image: "/assets/javascript/manipulacion-dom-ingeniera.png",
+      imageAlt:
+        "Manipulaci\u00f3n del DOM como una Ingeniera - femCoders Club",
+      date: "8 Febrero 2026",
+      category: "Recursos",
+      link: "/recursos/js/manipulacion-dom-ingeniera",
+    },
+    {
+      id: "3",
       title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
       description:
         "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
@@ -574,7 +586,7 @@ const HomePage: React.FC = () => {
       link: "/recursos/js/event-loop-javascript",
     },
     {
-      id: "3",
+      id: "4",
       title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
       description:
         "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
@@ -586,7 +598,7 @@ const HomePage: React.FC = () => {
       link: "/noticias/felices-fiestas-2025",
     },
     {
-      id: "4",
+      id: "5",
       title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
       description:
         "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto 'Vive Actiu Gent Gran' busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
@@ -597,22 +609,30 @@ const HomePage: React.FC = () => {
       category: "Reconocimientos",
       link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
-    {
-      id: "5",
-      title: "🚀 Los Fundamentos de JavaScript que Realmente Importan",
-      description:
-        "De HTML/CSS a JavaScript: El salto de maquetadora a programadora explicado sin tecnicismos. Descubre cómo funciona JavaScript por dentro con ejemplos reales del día a día. Aprende closures, event loop, this, prototypes y más fundamentos profundos que te convertirán en una desarrolladora que entiende por qué funciona su código.",
-      image: "assets/javascript/fundamentos-javascript.webp",
-      imageAlt: "Fundamentos profundos de JavaScript - De HTML/CSS a programación real",
-      date: "24 Noviembre 2025",
-      category: "Recursos",
-      link: "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos",
-    },
    
   ];
   const githubProjectsData = [
     {
       id: "1",
+      name: "Smart Analytics Tracker",
+      description:
+        "Sistema de analytics inteligente que demuestra Event Delegation, IntersectionObserver, MutationObserver y Custom Events. Detecta rage clicks, mide visibilidad real de elementos y trackea scroll con arquitectura desacoplada.",
+      techStack: ["JavaScript", "DOM API", "Event Delegation"],
+      githubUrl: "https://github.com/femcodersclub/smart-analytics-tracker",
+      demoUrl: "https://femcodersclub.github.io/smart-analytics-tracker/",
+      image: "/assets/javascript/dashboard-metricas.png",
+      imageAlt: "Smart Analytics Tracker - Dashboard de m\u00e9tricas en tiempo real",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "febrero 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera",
+      postTitle: "Manipulaci\u00f3n del DOM como una Ingeniera",
+      difficulty: "Avanzado",
+    },
+    {
+      id: "2",
       name: "API Resilience Wrapper",
       description:
         "Wrapper que añade resiliencia a cualquier API: retry automático con backoff exponencial, circuit breaker, rate limiting, timeout y fallback. Aprende patrones profesionales para manejar fallos de red.",
@@ -631,7 +651,7 @@ const HomePage: React.FC = () => {
       difficulty: "Avanzado",
     },
     {
-      id: "2",
+      id: "3",
       name: "FemPalette - Generador SASS",
       description:
         "Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.",
@@ -650,7 +670,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "3",
+      id: "4",
       name: "Efecto Parallax con Svelte",
       description:
         "Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.",

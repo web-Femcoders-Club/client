@@ -149,6 +149,9 @@ const FelicesFiestas2025 = lazy(
 const TalentArenaPartnership = lazy(
   () => import("../features/Blog/posts/noticias/TalentArenaPartnership")
 );
+const ManipulacionDomIngeniera = lazy(
+  () => import("../features/Blog/posts/recursos/js/ManipulacionDomIngeniera")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -642,6 +645,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <TalentArenaPartnership />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/manipulacion-dom-ingeniera"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ManipulacionDomIngeniera />
                 </Suspense>
               </Layout>
             }

@@ -334,6 +334,14 @@ const BlogPage: React.FC = () => {
   description: "Celebramos una alianza basada en valores compartidos: diversidad, talento colectivo e innovación. Descubre qué significa esta colaboración para nuestra comunidad.",
   createdAt: new Date("2026-02-02"),
 },
+{
+  id: 35,
+  type: "recurso",
+  category: "javascript",
+  title: "Manipulación del DOM como una Ingeniera",
+  description: "Aprende manipulación del DOM con enfoque de ingeniería: Event Delegation, DocumentFragment, IntersectionObserver, MutationObserver y Custom Events. Proyecto práctico Smart Analytics Tracker.",
+  createdAt: new Date("2026-02-08"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -426,6 +434,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/event-loop-javascript`;
  case "FemCoders Club es Community Partner de Talent Arena":
   return `/noticias/talent-arena-2026-partnership`;
+ case "Manipulación del DOM como una Ingeniera":
+  return `/recursos/js/manipulacion-dom-ingeniera`;
       default:
         return `/`;
     }
