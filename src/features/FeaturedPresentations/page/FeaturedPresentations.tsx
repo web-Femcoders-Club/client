@@ -21,38 +21,21 @@ const TimelineEvent = ({
 
   return (
     <div
-      className={`group relative flex flex-col md:flex-row ${
+      className={`timeline-event group relative flex flex-col md:flex-row ${
         isLeftAligned ? "" : "md:flex-row-reverse"
-      } items-center mb-16 hover:transform hover:scale-[1.02] transition-all duration-300`}
+      } items-center mb-16`}
     >
-      <div
-        className="absolute left-1/2 h-full w-px -translate-x-1/2 hidden md:block"
-        style={{ backgroundColor: "#4737bb " }}
-      />
-      <div
-        className="absolute left-1/2 top-1/2 w-4 h-4 rounded-full -translate-x-1/2 -translate-y-1/2 hidden md:block
-  before:absolute before:w-8 before:h-8 before:rounded-full before:-left-2 before:-top-2 before:opacity-50
-  group-hover:scale-110 transition-all duration-300"
-        style={{
-          backgroundColor: "#ea4f33",
-        }}
-      ></div>
+      <div className="timeline-connector absolute left-1/2 h-full w-px -translate-x-1/2 hidden md:block" />
+      <div className="timeline-dot absolute left-1/2 top-1/2 w-5 h-5 rounded-full -translate-x-1/2 -translate-y-1/2 hidden md:block" />
 
       <div
         className={`md:w-1/2 p-6 ${isLeftAligned ? "md:pr-12" : "md:pl-12"}`}
       >
-        <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 mt">
+        <div className="timeline-card">
           <h3>{presentation.title}</h3>
-          <div className="flex items-center gap-2 text-sm mt-2">
-            <Calendar className="h-4 w-4" style={{ color: "#ea4f33" }} />
-            <time
-              dateTime={presentation.date}
-              style={{
-                color: "#2a2170",
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-              }}
-            >
+          <div className="flex items-center gap-2 mt-2">
+            <Calendar className="h-4 w-4 timeline-date-icon" />
+            <time dateTime={presentation.date} className="timeline-date">
               {new Date(presentation.date).toLocaleDateString("es-ES", {
                 year: "numeric",
                 month: "long",
@@ -65,10 +48,10 @@ const TimelineEvent = ({
             className="styled-paragraph"
             dangerouslySetInnerHTML={{ __html: presentation.description }}
           ></div>
-          <div className="flex gap-4 mt-4 flex-wrap">
+          <div className="timeline-actions">
             <a
               href={presentation.fileUrl}
-              className="primary-button flex items-center px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+              className="primary-button flex items-center px-4 py-2 rounded-lg"
               download
             >
               <Download className="h-5 w-5 mr-2" />
@@ -78,7 +61,7 @@ const TimelineEvent = ({
               href={presentation.fileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="secondary-button flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-300"
+              className="secondary-button flex items-center px-4 py-2 rounded-lg"
             >
               <Eye className="h-5 w-5 mr-2" />
               Ver Presentación
@@ -86,7 +69,7 @@ const TimelineEvent = ({
             {presentation.projectZipUrl && (
               <a
                 href={presentation.projectZipUrl}
-                className="flex items-center px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+                className="timeline-download-project flex items-center px-4 py-2 rounded-lg"
                 download
               >
                 <Download className="h-5 w-5 mr-2" />
@@ -96,16 +79,12 @@ const TimelineEvent = ({
           </div>
         </div>
       </div>
-      <div className="md:w-1/2 p-6">
-        <div className="transform transition-all duration-300 hover:scale-[1.02]">
-          <iframe
-            src={presentation.fileUrl}
-            title={presentation.title}
-            className="w-full rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            style={{ height: "350px" }}
-            loading="lazy"
-          />
-        </div>
+      <div className="timeline-preview md:w-1/2 p-6">
+        <iframe
+          src={presentation.fileUrl}
+          title={presentation.title}
+          loading="lazy"
+        />
       </div>
     </div>
   );
@@ -113,9 +92,28 @@ const TimelineEvent = ({
 
 const FeaturedPresentation = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const presentationsPerPage = 2;
+  const presentationsPerPage = 4;
 
   const presentations: Presentation[] = [
+    {
+      title: "CV Tech vs Selección IT: Mejora tu CV y comunica tu propuesta de valor",
+      date: "2026-02-12",
+      description: `
+        Presentación de <a href="https://www.linkedin.com/in/jennifer-c-neyra/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Jennifer C. Neyra</a>, HR Consultant y Headhunter.
+        Evento organizado por femCoders Club en colaboración con Canòdrom - Ateneu d'Innovació Digital i Democràtica.
+        Jennifer comparte tips importantes sobre cómo optimizar tu CV en el sector IT y cómo comunicar tu propuesta de valor de forma estratégica para destacar en los procesos de selección.
+      `,
+      fileUrl: "/MaterialesEventos/cv-tech.pdf",
+    },
+    {
+      title: "Ejemplo práctico: CV optimizado para ATS en el sector IT",
+      date: "2026-02-12",
+      description: `
+        Material complementario de <a href="https://www.linkedin.com/in/jennifer-c-neyra/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Jennifer C. Neyra</a>.
+        Ejemplo práctico de un CV optimizado para sistemas ATS (Applicant Tracking System), mostrando cómo estructurar y presentar tu experiencia para superar los filtros automáticos de selección en el sector IT.
+      `,
+      fileUrl: "/MaterialesEventos/ats-cv-tech.pdf",
+    },
        {
       title: "Del requisito al exito",
       date: "2025-06-27",
@@ -257,9 +255,8 @@ const FeaturedPresentation = () => {
           <div className="flex items-center gap-4 justify-center">
             <h1>Presentaciones Destacadas</h1>
             <PresentationIcon
-              className="h-12 w-12"
+              className="h-12 w-12 timeline-header-icon"
               aria-hidden="true"
-              style={{ color: "#ea4f33" }}
             />
           </div>
           <p className="styled-paragraph">
@@ -270,11 +267,8 @@ const FeaturedPresentation = () => {
           </p>
         </div>
 
-        <div className="relative">
-          <div
-            className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 hidden md:block"
-            style={{ backgroundColor: "#4737bb " }}
-          />
+        <div className="timeline-container relative">
+          <div className="timeline-line absolute left-1/2 top-0 h-full -translate-x-1/2 hidden md:block" />
           {currentPresentations.map((presentation, index) => (
             <TimelineEvent
               key={presentation.title + index}

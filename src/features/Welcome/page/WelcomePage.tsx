@@ -68,9 +68,12 @@ const WelcomePage = () => {
   });
 
   const combinedAchievements = [
-    defaultAchievement, 
-    ...(Array.isArray(userAchievements) ? userAchievements : [])
-  ];
+    defaultAchievement,
+    ...(Array.isArray(userAchievements) ? userAchievements : []),
+  ].filter(
+    (achievement, index, self) =>
+      index === self.findIndex((a) => a.title === achievement.title)
+  );
 
   useEffect(() => {
     const storedStats = localStorage.getItem("emojiStats");

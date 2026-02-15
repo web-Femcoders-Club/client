@@ -538,7 +538,25 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
-  id: "1",
+      id: "1",
+      title: "CV Tech vs Selección IT: Recursos disponibles para miembros",
+      description: (
+        <>
+          ¿Te perdiste el evento con{" "}
+          <strong>Jennifer C. Neyra</strong> sobre cómo optimizar tu CV en el sector IT?
+          La presentación y un ejemplo práctico de CV optimizado para ATS ya están disponibles
+          en nuestra sección de Presentaciones Destacadas.{" "}
+          <strong>Regístrate o inicia sesión</strong> para acceder a estos recursos exclusivos.
+        </>
+      ),
+      image: "/assets/noticias/JenniferNeyra.webp",
+      imageAlt: "CV Tech vs Selección IT - Recursos del evento con Jennifer C. Neyra",
+      date: "12 Febrero 2026",
+      category: "Eventos",
+      link: "/login",
+    },
+    {
+  id: "2",
   title: "FemCoders Club, Community Partner oficial de Talent Arena 2026",
   description: (
     <>
@@ -562,7 +580,7 @@ const HomePage: React.FC = () => {
   link: "/noticias/talent-arena-2026-partnership",
 },
     {
-      id: "2",
+      id: "3",
       title: "Manipulaci\u00f3n del DOM como una Ingeniera",
       description:
         "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulaci\u00f3n del DOM con un proyecto pr\u00e1ctico: Smart Analytics Tracker.",
@@ -574,7 +592,7 @@ const HomePage: React.FC = () => {
       link: "/recursos/js/manipulacion-dom-ingeniera",
     },
     {
-      id: "3",
+      id: "4",
       title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
       description:
         "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
@@ -586,7 +604,7 @@ const HomePage: React.FC = () => {
       link: "/recursos/js/event-loop-javascript",
     },
     {
-      id: "4",
+      id: "5",
       title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
       description:
         "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
@@ -596,18 +614,6 @@ const HomePage: React.FC = () => {
       date: "28 Diciembre 2025",
       category: "Comunidad",
       link: "/noticias/felices-fiestas-2025",
-    },
-    {
-      id: "5",
-      title: "🏆 Ana Lucía Silva Córdoba: Finalista en el Ranking #20OpenData",
-      description:
-        "Nuestra cofundadora Ana Lucía Silva Córdoba ha obtenido el 3er puesto en el Ranking #20OpenData: Herramientas digitales para el envejecimiento saludable, promovido por Iniciativa Barcelona Open Data durante el Smart City Expo World Congress 2025. Su proyecto 'Vive Actiu Gent Gran' busca centralizar información sobre recursos y programas para el envejecimiento activo en Cataluña, utilizando datos abiertos oficiales.",
-      image: "assets/home-images/finalista-ranking-20opendata.webp",
-      imageAlt:
-        "Ana Lucía Silva Córdoba finalista del Ranking #20OpenData en el Smart City Expo World Congress 2025",
-      date: "6 Noviembre 2025",
-      category: "Reconocimientos",
-      link: "https://viuactiu-gentgran-iota.vercel.app/",
     },
    
   ];
