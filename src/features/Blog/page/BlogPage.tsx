@@ -342,6 +342,14 @@ const BlogPage: React.FC = () => {
   description: "Aprende manipulación del DOM con enfoque de ingeniería: Event Delegation, DocumentFragment, IntersectionObserver, MutationObserver y Custom Events. Proyecto práctico Smart Analytics Tracker.",
   createdAt: new Date("2026-02-08"),
 },
+{
+  id: 37,
+  type: "recurso",
+  category: "javascript",
+  title: "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript",
+  description: "El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con una state machine interactiva y domina bind, call, apply.",
+  createdAt: new Date("2026-03-01"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -436,6 +444,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/talent-arena-2026-partnership`;
  case "Manipulación del DOM como una Ingeniera":
   return `/recursos/js/manipulacion-dom-ingeniera`;
+ case "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript":
+  return `/recursos/js/closures-scope-context`;
       default:
         return `/`;
     }

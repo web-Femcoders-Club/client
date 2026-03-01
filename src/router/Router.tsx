@@ -152,6 +152,9 @@ const TalentArenaPartnership = lazy(
 const ManipulacionDomIngeniera = lazy(
   () => import("../features/Blog/posts/recursos/js/ManipulacionDomIngeniera")
 );
+const ClosuresScopeContext = lazy(
+  () => import("../features/Blog/posts/recursos/js/ClosuresScopeContext")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -655,6 +658,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ManipulacionDomIngeniera />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/closures-scope-context"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ClosuresScopeContext />
                 </Suspense>
               </Layout>
             }

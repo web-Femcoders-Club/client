@@ -57,6 +57,11 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
+      src: "/assets/eventos2026/cv-tech-jennifer.webp",
+      alt: "Taller presencial Propuesta de Valor con Jennifer C. Neyra en el Canòdrom",
+      title: "Taller Presencial: Propuesta de Valor con Jennifer C. Neyra — Canòdrom 2026",
+    },
+    {
       src: "/assets/Eventos2025/aprendiendo-sobre-IA.webp",
       alt: "Aprendiendo sobre IA y liderazgo tecnológico femenino",
       title:
@@ -538,7 +543,36 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "6",
+      title: "Segundo taller con Jennifer Neyra: la presentación ya está disponible",
+      description: (
+        <>
+          ¿Estuviste en el taller presencial del 26 de febrero en el Canòdrom?
+          La presentación de{" "}
+          <strong>Jennifer C. Neyra</strong> sobre propuesta de valor profesional
+          ya está disponible en nuestra sección de Presentaciones Destacadas.{" "}
+          <strong>Regístrate o inicia sesión</strong> para acceder a este recurso exclusivo.
+        </>
+      ),
+      image: "/assets/eventos2026/cv-tech-jennifer.webp",
+      imageAlt: "Segundo taller Propuesta de Valor con Jennifer C. Neyra en el Canòdrom",
+      date: "26 Febrero 2026",
+      category: "Eventos",
+      link: "/login",
+    },
+    {
       id: "1",
+      title: "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript",
+      description:
+        "El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con una state machine interactiva y domina bind, call y apply.",
+      image: "/assets/javascript/closures-scope-context.webp",
+      imageAlt: "Closures, Scope y Context en JavaScript - State Machine femCoders Club",
+      date: "1 Marzo 2026",
+      category: "Recursos",
+      link: "/recursos/js/closures-scope-context",
+    },
+    {
+      id: "2",
       title: "CV Tech vs Selección IT: Recursos disponibles para miembros",
       description: (
         <>
@@ -549,14 +583,14 @@ const HomePage: React.FC = () => {
           <strong>Regístrate o inicia sesión</strong> para acceder a estos recursos exclusivos.
         </>
       ),
-      image: "/assets/noticias/JenniferNeyra.webp",
+      image: "/assets/eventos2026/cv-tech-jennifer.webp",
       imageAlt: "CV Tech vs Selección IT - Recursos del evento con Jennifer C. Neyra",
       date: "12 Febrero 2026",
       category: "Eventos",
       link: "/login",
     },
     {
-  id: "2",
+  id: "3",
   title: "FemCoders Club, Community Partner oficial de Talent Arena 2026",
   description: (
     <>
@@ -580,7 +614,7 @@ const HomePage: React.FC = () => {
   link: "/noticias/talent-arena-2026-partnership",
 },
     {
-      id: "3",
+      id: "4",
       title: "Manipulaci\u00f3n del DOM como una Ingeniera",
       description:
         "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulaci\u00f3n del DOM con un proyecto pr\u00e1ctico: Smart Analytics Tracker.",
@@ -592,7 +626,7 @@ const HomePage: React.FC = () => {
       link: "/recursos/js/manipulacion-dom-ingeniera",
     },
     {
-      id: "4",
+      id: "5",
       title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
       description:
         "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
@@ -602,24 +636,30 @@ const HomePage: React.FC = () => {
       date: "24 Enero 2026",
       category: "Recursos",
       link: "/recursos/js/event-loop-javascript",
-    },
-    {
-      id: "5",
-      title: "Felices fiestas: FemCoders Club cierra 2025 y sigue",
-      description:
-        "Las fiestas están aquí y cerramos 2025 con más de 1,300 mujeres, logros reales y conexiones auténticas. Proyectamos un 2026 lleno de oportunidades, colaboraciones y crecimiento juntas. Gracias por hacer de FemCoders Club este espacio tan especial.",
-      image: "assets/noticias/navidad-femCodersClub.webp",
-      imageAlt:
-        "Felices fiestas de FemCoders Club - Cerrando 2025 y proyectando 2026",
-      date: "28 Diciembre 2025",
-      category: "Comunidad",
-      link: "/noticias/felices-fiestas-2025",
-    },
-   
+    }, 
   ];
   const githubProjectsData = [
     {
       id: "1",
+      name: "State Machine — Wizard de Perfil",
+      description:
+        "Wizard de configuración de perfil profesional implementado como una state machine. Demuestra closures, scope léxico, this y bind/call/apply en acción — cada paso del wizard muestra en tiempo real cómo funcionan estos mecanismos.",
+      techStack: ["JavaScript", "State Machine", "IIFE"],
+      githubUrl: "https://github.com/femcodersclub/state-machine",
+      demoUrl: "https://femcodersclub.github.io/state-machine/",
+      image: "/assets/javascript/state-machine-scope.webp",
+      imageAlt: "State Machine Wizard — Closures, Scope y Context en JavaScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "marzo 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/closures-scope-context",
+      postTitle: "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript",
+      difficulty: "Avanzado",
+    },
+    {
+      id: "2",
       name: "Smart Analytics Tracker",
       description:
         "Sistema de analytics inteligente que demuestra Event Delegation, IntersectionObserver, MutationObserver y Custom Events. Detecta rage clicks, mide visibilidad real de elementos y trackea scroll con arquitectura desacoplada.",
@@ -638,7 +678,7 @@ const HomePage: React.FC = () => {
       difficulty: "Avanzado",
     },
     {
-      id: "2",
+      id: "3",
       name: "API Resilience Wrapper",
       description:
         "Wrapper que añade resiliencia a cualquier API: retry automático con backoff exponencial, circuit breaker, rate limiting, timeout y fallback. Aprende patrones profesionales para manejar fallos de red.",
@@ -657,7 +697,7 @@ const HomePage: React.FC = () => {
       difficulty: "Avanzado",
     },
     {
-      id: "3",
+      id: "4",
       name: "FemPalette - Generador SASS",
       description:
         "Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.",
@@ -676,7 +716,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "4",
+      id: "5",
       name: "Efecto Parallax con Svelte",
       description:
         "Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.",
@@ -695,7 +735,7 @@ const HomePage: React.FC = () => {
       difficulty: "Intermedio",
     },
     {
-      id: "4",
+      id: "6",
       name: "Canvas Text Animation",
       description:
         "Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.",
@@ -712,65 +752,6 @@ const HomePage: React.FC = () => {
       postUrl: "https://www.femcodersclub.com/recursos/html/apis-html",
       postTitle: "Introducción a las APIs en HTML: Potencia tus Proyectos Web",
       difficulty: "Básico",
-    },
-    {
-      id: "5",
-      name: "Mindfulness CSS App",
-      description:
-        "Aplicación web de mindfulness y respiración guiada, creada completamente con CSS puro y JavaScript mínimo. Demuestra el poder del CSS moderno.",
-      techStack: ["CSS", "JavaScript", "HTML"],
-      githubUrl: "https://github.com/femcodersclub/AnimacionesCSS",
-      demoUrl: "https://femcodersclub.github.io/AnimacionesCSS/",
-      image: "assets/css/breathe-app-demo.gif",
-      imageAlt: "Aplicación de mindfulness con CSS puro",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "3 meses atrás",
-      stars: 2,
-      language: "CSS",
-      postUrl: "https://www.femcodersclub.com/recursos/css/animaciones-css",
-      postTitle: "Domina las Animaciones CSS De Básico a Avanzado",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "6",
-      name: "CodersPortfolio",
-      description:
-        "Portfolio profesional desarrollado con TypeScript. Template moderno y responsive que puedes personalizar para mostrar tus proyectos y habilidades.",
-      techStack: ["TypeScript", "CSS", "React"],
-      githubUrl: "https://github.com/femcodersclub/CodersPortfolio",
-      demoUrl: "https://femcodersclub.github.io/CodersPortfolio/",
-      image: "assets/home-images/coders-portfolio.webp",
-      imageAlt: "Portfolio profesional con TypeScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/FemCodersClubLogo.webp",
-      lastUpdated: "7 meses atrás",
-      stars: 3,
-      language: "TypeScript",
-      postUrl: "",
-      postTitle: "CodersPortfolio",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "7",
-      name: "Nike Store React",
-      description:
-        "Almudena Rendón Fernández te muestra cómo crear una réplica profesional de Nike Store con React, incluyendo carrito de compras, localStorage y formularios avanzados.",
-      techStack: ["React"],
-      githubUrl: "https://github.com/Almudena-Rendon",
-      demoUrl: "https://nike-store-omega-nine.vercel.app/",
-      image: "assets/react/nike-store-replica.webp",
-      imageAlt: "Nike Store desarrollada con React",
-      author: "Almudena Rendón",
-      authorAvatar: "assets/home-images/almudena.webp",
-      lastUpdated: "marzo 2025",
-      stars: 3,
-      language: "React",
-      postUrl:
-        "https://www.femcodersclub.com/recursos/react/nike-store-replica",
-      postTitle:
-        "Réplica de Nike Store con React: Un Proyecto E-commerce Completo",
-      difficulty: "Intermedio",
     },
   ];
 

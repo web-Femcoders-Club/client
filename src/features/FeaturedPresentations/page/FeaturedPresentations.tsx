@@ -114,6 +114,16 @@ const FeaturedPresentation = () => {
       `,
       fileUrl: "/MaterialesEventos/ats-cv-tech.pdf",
     },
+    {
+      title: "Taller Presencial: Propuesta de Valor con Jennifer Neyra - Sesión 2",
+      date: "2026-02-26",
+      description: `
+        Segunda sesión presencial con <a href="https://www.linkedin.com/in/jennifer-c-neyra/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Jennifer C. Neyra</a>, HR Consultant y Headhunter.
+        Taller organizado por femCoders Club en el Canòdrom - Ateneu d'Innovació Digital i Democràtica.
+        En esta segunda sesión, Jennifer profundiza en cómo construir y comunicar tu propuesta de valor profesional para destacar en los procesos de selección del sector IT.
+      `,
+      fileUrl: "/MaterialesEventos/propuesta-de-valor.pdf",
+    },
        {
       title: "Del requisito al exito",
       date: "2025-06-27",

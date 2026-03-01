@@ -13,6 +13,10 @@ const CustomCarousel = () => {
 
   const images: CarouselImage[] = [
     {
+      src: "/assets/eventos2026/eventoJenniferNeyra.webp",
+      text: "Segundo taller presencial con Jennifer C. Neyra en el Canòdrom: cómo construir y comunicar tu propuesta de valor para destacar en los procesos de selección del sector IT.",
+    },
+    {
  src: "/evento-InfoJobs-NttData-femCodersClub.png",
       text: "Liderando la revolución de la IA con talento femenino en tecnología, en colaboración con InfoJobs y NTT Data.",
     },
