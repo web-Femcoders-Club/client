@@ -149,6 +149,9 @@ const FelicesFiestas2025 = lazy(
 const TalentArenaPartnership = lazy(
   () => import("../features/Blog/posts/noticias/TalentArenaPartnership")
 );
+const MarzoEventos2026 = lazy(
+  () => import("../features/Blog/posts/noticias/MarzoEventos2026")
+);
 const ManipulacionDomIngeniera = lazy(
   () => import("../features/Blog/posts/recursos/js/ManipulacionDomIngeniera")
 );
@@ -648,6 +651,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <TalentArenaPartnership />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/marzo-2026-eventos"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <MarzoEventos2026 />
                 </Suspense>
               </Layout>
             }

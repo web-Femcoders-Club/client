@@ -343,6 +343,14 @@ const BlogPage: React.FC = () => {
   createdAt: new Date("2026-02-08"),
 },
 {
+  id: 36,
+  type: "noticia",
+  category: "femCoders",
+  title: "El mes en que dejamos de pedir permiso para ocupar espacio",
+  description: "Talent Arena, el primer evento de Claude en Barcelona, una invitación del Gobierno que no esperábamos y una tarde con InfoJobs. Marzo 2026 ha sido un mes que deja huella.",
+  createdAt: new Date("2026-03-06"),
+},
+{
   id: 37,
   type: "recurso",
   category: "javascript",
@@ -444,6 +452,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/talent-arena-2026-partnership`;
  case "Manipulación del DOM como una Ingeniera":
   return `/recursos/js/manipulacion-dom-ingeniera`;
+ case "El mes en que dejamos de pedir permiso para ocupar espacio":
+  return `/noticias/marzo-2026-eventos`;
  case "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript":
   return `/recursos/js/closures-scope-context`;
       default:
@@ -608,9 +618,23 @@ const BlogPage: React.FC = () => {
               <div className="post-grid">
                 {posts
                   .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-                  .slice(0, 3)
+                  .slice(0, 6)
                   .map((post) => (
                     <div key={post.id} className="post-card">
+                      <div className="post-card-meta">
+                        <span className="post-category-badge">
+                          {post.category === "femCoders" || post.category === "femCoders Club"
+                            ? "FemCoders Club"
+                            : post.category}
+                        </span>
+                        <span className="post-date">
+                          {post.createdAt.toLocaleDateString("es-ES", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </span>
+                      </div>
                       <h4>{post.title}</h4>
                       <p className="intro-text">{post.description}</p>
                       <Link

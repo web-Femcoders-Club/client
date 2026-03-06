@@ -543,6 +543,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "7",
+      title: "El mes en que dejamos de pedir permiso para ocupar espacio",
+      description:
+        "Talent Arena, el primer evento de Claude en Barcelona, una invitación del Gobierno que no esperábamos y una tarde con InfoJobs. Marzo 2026 ha sido un mes que deja huella.",
+      image: "/banner-2026-talentArena.png",
+      imageAlt: "FemCoders Club — Eventos de marzo 2026: Talent Arena, Claude y InfoJobs",
+      date: "6 Marzo 2026",
+      category: "Noticias",
+      link: "/noticias/marzo-2026-eventos",
+    },
+    {
       id: "6",
       title: "Segundo taller con Jennifer Neyra: la presentación ya está disponible",
       description: (
@@ -625,20 +636,36 @@ const HomePage: React.FC = () => {
       category: "Recursos",
       link: "/recursos/js/manipulacion-dom-ingeniera",
     },
-    {
-      id: "5",
-      title: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
-      description:
-        "Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos para dominar el código asíncrono.",
-      image: "/assets/javascript/event-loop-javascript.webp",
-      imageAlt:
-        "Event Loop en JavaScript - Guía completa sobre asincronía",
-      date: "24 Enero 2026",
-      category: "Recursos",
-      link: "/recursos/js/event-loop-javascript",
-    }, 
   ];
   const githubProjectsData = [
+    {
+      id: "7",
+      name: "Mujeres que Transforman el Futuro",
+      description: (
+        <>
+          Landing page para el evento &lsquo;Estructuras en Movimiento: Mujeres que Transforman el Futuro&rsquo;. Una página diseñada para inspirar e informar sobre el próximo evento de FemCoders Club, con reserva de entradas a través de{" "}
+          <a
+            href="https://www.eventbrite.es/e/entradas-estructuras-en-movimiento-mujeres-que-transforman-el-futuro-1984505957741?aff=oddtdtcreator"
+            className="highlight-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Eventbrite
+          </a>
+        </>
+      ),
+      techStack: ["HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/femcodersclub/mujeres-que-transforman-el-futuro",
+      demoUrl: "https://femcodersclub.github.io/mujeres-que-transforman-el-futuro/",
+      image: "mujeres-que-transforman-futuro.png",
+      imageAlt: "Mujeres que Transforman el Futuro — Landing de evento FemCoders Club",
+      author: "Ana Lucía Silva Córdoba",
+      authorAvatar: "assets/home-images/anaLuciaSilva.png",
+      lastUpdated: "marzo 2026",
+      stars: 1,
+      language: "HTML",
+      difficulty: "Intermedio",
+    },
     {
       id: "1",
       name: "State Machine — Wizard de Perfil",
@@ -1619,7 +1646,7 @@ const HomePage: React.FC = () => {
       <section className="projects-section bg1">
         <GitHubProjects
           projects={githubProjectsData}
-          maxProjects={6}
+          maxProjects={7}
           showFilters={true}
           autoRotate={true}
           rotateInterval={8000}

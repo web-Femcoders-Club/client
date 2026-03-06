@@ -219,7 +219,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
-  text-align: center;
+  text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
   width: 100%;
@@ -231,7 +231,7 @@ body {
 }
 
 .post-card h4 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #4737bb;
   margin-bottom: 1rem;
 }
@@ -406,17 +406,6 @@ body {
   /* Mantenemos el background original - sin cambios */
 }
 
-/* Estado activo - botón seleccionado */
-.category-buttons button.active {
-  background: #4737bb;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(71, 55, 187, 0.4);
-  
-  /* Animación diferente para botones activos - timing más natural */
-  animation: auto-pulse-active 12s ease-in-out infinite;
-}
-
 /* Mantener los delays suaves para botones activos también */
 .category-buttons button.active:nth-child(1) {
   animation-delay: 0s;
@@ -435,25 +424,6 @@ body {
 }
 .category-buttons button.active:nth-child(6) {
   animation-delay: 4s;
-}
-
-.category-buttons button.active::before {
-  background: linear-gradient(90deg, #4737bb, #ea4f33, #2a2170, #8937bb, #4737bb, #ea4f33);
-  background-size: 400% 100%;
-  /* Movimiento más lento para botones activos */
-  animation: move-border-constant 8s linear infinite;
-}
-
-/* Estado activo + hover */
-.category-buttons button.active:hover {
-  background: #6d2c95;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(109, 44, 149, 0.4);
-}
-
-.category-buttons button.active:hover::before {
-  /* Hover en botón activo - más rápido aún */
-  animation: move-border-fast 1.5s linear infinite;
 }
 
 /* Styling para el contenido del botón */
@@ -476,24 +446,54 @@ body {
   animation-play-state: paused;
 }
 
-.category-buttons button:nth-child(1),
-.category-buttons button:nth-child(2),
-.category-buttons button:nth-child(3),
-.category-buttons button:nth-child(4),
-.category-buttons button:nth-child(5),
-.category-buttons button:nth-child(6) {
-  color: #8937bb;
+
+
+/* Pantallas grandes — consistencia en monitores anchos */
+@media (min-width: 1200px) {
+  .category-buttons {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .category-buttons button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .post-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
-.category-buttons button:nth-child(1).active,
-.category-buttons button:nth-child(2).active,
-.category-buttons button:nth-child(3).active,
-.category-buttons button:nth-child(4).active,
-.category-buttons button:nth-child(5).active,
-.category-buttons button:nth-child(6).active {
-  background: transparent;
+/* Publicaciones recientes — meta info */
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
+.post-category-badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4737bb, #8937bb);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.post-date {
+  font-size: 0.8rem;
+  color: #888;
+}
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -526,6 +526,10 @@ body {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-image-container {
+  margin: 2.5rem 0;
 }
 
 .blog-post-image {

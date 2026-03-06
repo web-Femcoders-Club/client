@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>El mes en que dejamos de pedir permiso para ocupar espacio</h2>
+            <p className="intro-text">
+              Talent Arena, el primer evento de Claude en Barcelona, una invitación que no esperábamos y una tarde con InfoJobs. Marzo 2026 ha sido un mes que deja huella...
+            </p>
+          </div>
+          <Link to="/noticias/marzo-2026-eventos" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>FemCoders Club es Community Partner de Talent Arena</h2>
             <p className="intro-text">
               Celebramos una alianza basada en valores compartidos: diversidad, talento colectivo e innovación. Descubre qué significa esta colaboración para nuestra comunidad...

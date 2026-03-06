@@ -4,7 +4,7 @@ import './GitHubProjects.css';
 interface Project {
   id: string;
   name: string;
-  description: string;
+  description: string | React.ReactNode;
   techStack: string[];
   githubUrl: string;
   demoUrl?: string;
