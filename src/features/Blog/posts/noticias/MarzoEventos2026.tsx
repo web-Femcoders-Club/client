@@ -265,7 +265,16 @@ const MarzoEventos2026: React.FC = () => {
         </p>
         <br />
         <p>
-          El evento fue una tarde de conversaciones honestas sobre IA, con gente que la está usando de verdad y no solo hablando de ella. Exactamente el tipo de espacio que nos gusta.
+          El evento fue una tarde de conversaciones honestas sobre IA, con gente que la está usando de verdad y no solo hablando de ella. Exactamente el tipo de espacio que nos gusta. Si quieres estar al tanto de los próximos eventos de la comunidad,{" "}
+          <a
+            href="https://luma.com/claudecommunity"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            síguelos aquí
+          </a>
+          .
         </p>
         <br />
         <p>
