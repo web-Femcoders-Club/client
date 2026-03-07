@@ -326,3 +326,68 @@ export interface PaginatedResponse<T> {
   data: T[];
   pagination: Pagination;
 }
+
+// CRM Types
+export interface CrmStats {
+  uniqueAttendees: number;
+  repeatAttendees: number;
+  totalRegistrations: number;
+  topAttendees: CrmTopAttendee[];
+  eventStats: CrmEventStat[];
+}
+
+export interface CrmTopAttendee {
+  email: string;
+  firstName: string;
+  lastName: string;
+  eventsAttended: number;
+}
+
+export interface CrmEventStat {
+  eventId: string;
+  eventName: string;
+  attendeesCount: number;
+}
+
+export interface CrmAttendee {
+  email: string;
+  firstName: string;
+  lastName: string;
+  dni: string | null;
+  eventsAttended: number;
+}
+
+export interface CrmAttendeePaginated {
+  data: CrmAttendee[];
+  pagination: Pagination;
+}
+
+export interface CrmAttendeeDetail extends CrmAttendee {
+  events: CrmAttendeeEvent[];
+}
+
+export interface CrmAttendeeEvent {
+  eventId: string;
+  name: string;
+  date: string;
+  location: string;
+  eventUrl: string;
+}
+
+export interface CrmEventAttendee {
+  firstName: string;
+  lastName: string;
+  email: string;
+  dni: string | null;
+}
+
+export interface CrmEventAttendeesResponse {
+  event: {
+    id: string;
+    name: string;
+    date: string;
+    location: string;
+  };
+  totalAttendees: number;
+  attendees: CrmEventAttendee[];
+}
