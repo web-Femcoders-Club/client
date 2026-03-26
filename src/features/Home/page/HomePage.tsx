@@ -28,7 +28,9 @@ interface Event {
 }
 
 const HomePage: React.FC = () => {
-  const [upcomingEvent, setUpcomingEvent] = useState<Event | null>(null);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [activeEventIndex, setActiveEventIndex] = useState(0);
+  const [isEventTransitioning, setIsEventTransitioning] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -377,12 +379,11 @@ const HomePage: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchUpcomingEvent = async () => {
+    const fetchUpcomingEvents = async () => {
       try {
         const events = await getUpcomingEvents();
         if (events && events.length > 0) {
-          const nextEvent = events[0];
-          const adaptedEvent: Event = {
+          const adaptedEvents: Event[] = events.map((nextEvent) => ({
             id: nextEvent.id,
             start: {
               local: nextEvent.start_local,
@@ -397,30 +398,44 @@ const HomePage: React.FC = () => {
                   },
                 }
               : undefined,
-          };
-
-          const eventDate = new Date(adaptedEvent.start.local);
-          setUpcomingEvent(adaptedEvent);
-          setTimeLeft(calculateTimeLeft(eventDate));
+          }));
+          setUpcomingEvents(adaptedEvents);
+          setTimeLeft(calculateTimeLeft(new Date(adaptedEvents[0].start.local)));
         }
       } catch (error) {
-        console.error("Error fetching upcoming event:", error);
+        console.error("Error fetching upcoming events:", error);
       }
     };
 
-    fetchUpcomingEvent();
+    fetchUpcomingEvents();
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (upcomingEvent) {
-        const eventDate = new Date(upcomingEvent.start.local);
+      if (upcomingEvents.length > 0) {
+        const eventDate = new Date(upcomingEvents[activeEventIndex].start.local);
         setTimeLeft(calculateTimeLeft(eventDate));
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [upcomingEvent]);
+  }, [upcomingEvents, activeEventIndex]);
+
+  useEffect(() => {
+    if (upcomingEvents.length <= 1) return;
+    const carouselTimer = setInterval(() => {
+      setIsEventTransitioning(true);
+      setTimeout(() => {
+        setActiveEventIndex((prev) => (prev + 1) % upcomingEvents.length);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setIsEventTransitioning(false);
+          });
+        });
+      }, 600);
+    }, 8000);
+    return () => clearInterval(carouselTimer);
+  }, [upcomingEvents]);
 
   useEffect(() => {
     const photoInterval = setInterval(() => {
@@ -1450,186 +1465,191 @@ const HomePage: React.FC = () => {
               <h2 data-aos="fade-down" data-aos-delay="300">
                 ¡Próximo evento!
               </h2>
-              {upcomingEvent ? (
+
+              {upcomingEvents.length > 0 ? (
                 <div
-                  className="countdown"
-                  data-aos="fade-up"
-                  data-aos-delay="400"
+                  className={`event-carousel-slide${isEventTransitioning ? " transitioning" : ""}`}
                 >
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="500"
-                  >
-                    <span>{timeLeft.days}</span> días
+                  {upcomingEvents.length > 1 && (
+                    <p className="event-name-label">
+                      {upcomingEvents[activeEventIndex]?.name?.text}
+                    </p>
+                  )}
+
+                  <div className="countdown">
+                    <div className="countdown-item">
+                      <span>{timeLeft.days}</span> días
+                    </div>
+                    <div className="countdown-item">
+                      <span>{timeLeft.hours}</span> horas
+                    </div>
+                    <div className="countdown-item">
+                      <span>{timeLeft.minutes}</span> minutos
+                    </div>
+                    <div className="countdown-item">
+                      <span>{timeLeft.seconds}</span> segundos
+                    </div>
                   </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="600"
-                  >
-                    <span>{timeLeft.hours}</span> horas
-                  </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="700"
-                  >
-                    <span>{timeLeft.minutes}</span> minutos
-                  </div>
-                  <div
-                    className="countdown-item"
-                    data-aos="flip-up"
-                    data-aos-delay="800"
-                  >
-                    <span>{timeLeft.seconds}</span> segundos
+
+                  <div className="event-card">
+                    <div className="event-image-wrapper">
+                      <OptimizedImage
+                        src={
+                          upcomingEvents[activeEventIndex]?.logo?.original
+                            ?.url || "/apoyomujeres.png"
+                        }
+                        alt="Próximo evento"
+                        className="event-image"
+                      />
+                    </div>
+                    {upcomingEvents.length > 1 && (
+                      <div className="event-carousel-dots">
+                        {upcomingEvents.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`event-dot${idx === activeEventIndex ? " active" : ""}`}
+                            onClick={() => {
+                              if (idx === activeEventIndex) return;
+                              setIsEventTransitioning(true);
+                              setTimeout(() => {
+                                setActiveEventIndex(idx);
+                                requestAnimationFrame(() => {
+                                  requestAnimationFrame(() => {
+                                    setIsEventTransitioning(false);
+                                  });
+                                });
+                              }, 600);
+                            }}
+                            aria-label={`Ver evento ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                    <Link to="/eventos">
+                      <button className="secondary-button pulse-effect">
+                        Más información
+                      </button>
+                    </Link>
                   </div>
                 </div>
               ) : (
-                <div
-                  className="no-event-container"
-                  data-aos="fade-in"
-                  data-aos-delay="400"
-                >
-                  <video
-                    src={`${
-                      import.meta.env.BASE_URL
-                    }assets/videos/SinEvento.mp4`}
-                    className="no-event-video"
-                    autoPlay
-                    muted
-                    loop
-                    preload="none"
-                    onError={(e) => {
-                      if ((e.target as HTMLVideoElement).error) {
-                        console.error("El video no se pudo cargar.");
-                        (e.target as HTMLVideoElement).style.display = "none";
-                      }
-                    }}
-                  />
-                  <br />
+                <>
                   <div
-                    className="no-event-info"
-                    data-aos="fade-up"
-                    data-aos-delay="500"
-                    style={{
-                      textAlign: "center",
-                      padding: "20px 10px",
-                      backgroundColor: "rgba(108, 99, 255, 0.05)",
-                      borderRadius: "15px",
-                      border: "2px dashed rgba(108, 99, 255, 0.3)",
-                    }}
+                    className="no-event-container"
+                    data-aos="fade-in"
+                    data-aos-delay="400"
                   >
-                    <div style={{ fontSize: "2.5rem", marginBottom: "15px" }}>
-                      🔥
-                    </div>
-                    <h3
-                      style={{
-                        color: "#2a2170",
-                        fontSize: "1.5rem",
-                        fontWeight: "bold",
-                        marginBottom: "10px",
+                    <video
+                      src={`${
+                        import.meta.env.BASE_URL
+                      }assets/videos/SinEvento.mp4`}
+                      className="no-event-video"
+                      autoPlay
+                      muted
+                      loop
+                      preload="none"
+                      onError={(e) => {
+                        if ((e.target as HTMLVideoElement).error) {
+                          console.error("El video no se pudo cargar.");
+                          (e.target as HTMLVideoElement).style.display = "none";
+                        }
                       }}
-                    >
-                      ¡Grandes cosas están por venir!
-                    </h3>
-                    <p
-                      style={{
-                        color: "#2a2170",
-                        fontSize: "1.1rem",
-                        lineHeight: 1.6,
-                        marginBottom: "20px",
-                        opacity: 0.9,
-                      }}
-                    >
-                      Nuestro equipo está diseñando experiencias únicas que
-                      transformarán tu carrera tech.{" "}
-                      <strong>Mantente conectada</strong> para ser la primera en
-                      conocer nuestras próximas sorpresas.
-                    </p>
+                    />
+                    <br />
                     <div
+                      className="no-event-info"
+                      data-aos="fade-up"
+                      data-aos-delay="500"
+                      style={{
+                        textAlign: "center",
+                        padding: "20px 10px",
+                        backgroundColor: "rgba(108, 99, 255, 0.05)",
+                        borderRadius: "15px",
+                        border: "2px dashed rgba(108, 99, 255, 0.3)",
+                      }}
+                    >
+                      <div style={{ fontSize: "2.5rem", marginBottom: "15px" }}>
+                        🔥
+                      </div>
+                      <h3
+                        style={{
+                          color: "#2a2170",
+                          fontSize: "1.5rem",
+                          fontWeight: "bold",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        ¡Grandes cosas están por venir!
+                      </h3>
+                      <p
+                        style={{
+                          color: "#2a2170",
+                          fontSize: "1.1rem",
+                          lineHeight: 1.6,
+                          marginBottom: "20px",
+                          opacity: 0.9,
+                        }}
+                      >
+                        Nuestro equipo está diseñando experiencias únicas que
+                        transformarán tu carrera tech.{" "}
+                        <strong>Mantente conectada</strong> para ser la primera
+                        en conocer nuestras próximas sorpresas.
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          gap: "10px",
+                          fontSize: "1.2rem",
+                          marginTop: "15px",
+                        }}
+                      >
+                        <span style={{ animation: "pulse 2s infinite" }}>
+                          ✨
+                        </span>
+                        <span
+                          style={{ animation: "pulse 2s infinite 0.5s" }}
+                        >
+                          🚀
+                        </span>
+                        <span style={{ animation: "pulse 2s infinite 1s" }}>
+                          💜
+                        </span>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                  <div
+                    className="event-placeholder-card"
+                    data-aos="zoom-in"
+                    data-aos-delay="600"
+                  >
+                    <div
+                      className="event-buttons"
+                      data-aos="fade-up"
+                      data-aos-delay="700"
                       style={{
                         display: "flex",
+                        gap: "15px",
                         justifyContent: "center",
-                        gap: "10px",
-                        fontSize: "1.2rem",
-                        marginTop: "15px",
                       }}
                     >
-                      <span style={{ animation: "pulse 2s infinite" }}>✨</span>
-                      <span style={{ animation: "pulse 2s infinite 0.5s" }}>
-                        🚀
-                      </span>
-                      <span style={{ animation: "pulse 2s infinite 1s" }}>
-                        💜
-                      </span>
+                      <Link to="/eventos">
+                        <button className="secondary-button">
+                          Ver eventos pasados
+                        </button>
+                      </Link>
+                      <Link to="/blog/recursos">
+                        <button className="primary-button">
+                          Explorar recursos
+                        </button>
+                      </Link>
                     </div>
                   </div>
-                  <br />
-                </div>
+                </>
               )}
-              <br />
             </div>
-            {upcomingEvent ? (
-              <div
-                className="event-card"
-                data-aos="zoom-in"
-                data-aos-delay="600"
-              >
-                <div
-                  className="event-image-wrapper"
-                  data-aos="fade-up"
-                  data-aos-delay="700"
-                >
-                  <OptimizedImage
-                    src={
-                      upcomingEvent.logo?.original?.url || "/apoyomujeres.png"
-                    }
-                    alt="Próximo evento"
-                    className="event-image"
-                  />
-                </div>
-                <Link to="/eventos" data-aos="fade-up" data-aos-delay="800">
-                  <button className="secondary-button pulse-effect">
-                    Más información
-                  </button>
-                </Link>
-              </div>
-            ) : (
-              <div
-                className="event-placeholder-card"
-                data-aos="zoom-in"
-                data-aos-delay="600"
-              >
-                <div
-                  className="event-buttons"
-                  data-aos="fade-up"
-                  data-aos-delay="700"
-                >
-                  <div
-                    className="event-buttons"
-                    data-aos="fade-up"
-                    data-aos-delay="700"
-                    style={{
-                      display: "flex",
-                      gap: "15px",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Link to="/eventos">
-                      <button className="secondary-button">
-                        Ver eventos pasados
-                      </button>
-                    </Link>
-                    <Link to="/blog/recursos">
-                      <button className="primary-button">
-                        Explorar recursos
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </section>

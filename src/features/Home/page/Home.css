@@ -1430,6 +1430,55 @@
   box-shadow: var(--shadow-card);
 }
 
+/* Event carousel */
+.event-carousel-slide {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.event-carousel-slide.transitioning {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.event-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px 0 8px;
+}
+
+.event-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(108, 99, 255, 0.3);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.event-dot.active {
+  background-color: var(--color-primary);
+  transform: scale(1.4);
+}
+
+.event-dot:hover:not(.active) {
+  background-color: rgba(108, 99, 255, 0.6);
+  transform: scale(1.2);
+}
+
+.event-name-label {
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+  min-height: 1.4em;
+  transition: opacity 0.4s ease;
+}
+
 .parallax.bg5 {
   min-height: 100vh;
   display: flex;
