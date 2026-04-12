@@ -59,6 +59,11 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
+      src:"/assets/eventos2026/evento-estructurasEnMovimiento.webp",
+      alt: "Celebrando Dia de la Mujer en InfoJobs con FemCoders Club y EY",
+      title: " Evento Estructuras en Movimiento: Mujeres que Transforman el Futuro — 8 de marzo 2026",
+    },
+    {
       src: "/assets/eventos2026/cv-tech-jennifer.webp",
       alt: "Taller presencial Propuesta de Valor con Jennifer C. Neyra en el Canòdrom",
       title: "Taller Presencial: Propuesta de Valor con Jennifer C. Neyra — Canòdrom 2026",
@@ -81,63 +86,21 @@ const HomePage: React.FC = () => {
         "Charla inspiradora, igualdad en tecnologia, talento sin género, IA con propósito",
     },
     {
-      src: "/assets/Eventos2025/panel-ponentes-mujeres.webp",
-      alt: "Ponentes mujeres, comunidad tecnológica, diversidad STEM",
-      title:
-        "Panel de mujeres expertas en IA compartiendo experiencias y conocimientos",
-    },
-    {
       src: "/assets/Eventos2025/publico-evento-IA-femCodersClub.webp",
       alt: "Público asistente al evento de IA organizado por FemCoders Club",
       title: "Participantes de FemCoders Club en evento de IA en Barcelona",
     },
     {
-      src: "/assets/Eventos2025/evento-inteligencia-artificial-AnnaVia.webp",
-      alt: "Anna Via comparte su experiencia inspiradora sobre IA",
-      title: "mujeres lideres en IA",
-    },
-    {
-      src: "/assets/Eventos2025/IA-perspectiva-femenina.webp",
-      alt: "IA desde una perspectiva femenina",
-      title: "Evento sobre IA desde una perspectiva femenina",
-    },
-    {
-      src: "/assets/Eventos2025/comunidad-tech-inclusiva.webp",
-      alt: "Evento tech en Barcelona organizado por InfoJobs, NttData y FemCoders Club",
-      title:
-        "Networking y aprendizaje en el evento de tecnología inclusiva organizado por InfoJobs, NttData y FemCoders Club",
-    },
-    {
       src: "/assets/home-images/comunidad-tech-femcodersClub.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
       title:
-        "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
+        "Irina, Isadora,Lucia, Silvina, parte de las cofundadoras de FemCoders Club",
     },
     {
       src: "/assets/home-images/organizadoresEventoDataConnect.webp",
       alt: "Organizadores evento DataConnect FemCoders Club",
       title:
         "femCoders Club, InfoJobs, LeWagon y Glovo, organizando DataConnect",
-    },
-    {
-      src: "/assets/home-images/asistentes-evento-femCodersClub.webp",
-      alt: "Asistentes al evento DataConnect FemCoders Club",
-      title: "Asistentes comunidad femCodersClub durante el evento DataConnect",
-    },
-    {
-      src: "/assets/home-images/comunidad-data-evento-femCodersClub.webp",
-      alt: "Comunidad Data Connect durante el evento de FemCoders Club",
-      title: "Comunidad Data Connect durante el evento de FemCoders Club",
-    },
-    {
-      src: "/assets/home-images/comunidad-femcodersclub-dataconnect-barcelona.webp",
-      alt: "Comunidad FemCoders Club en DataConnect Barcelona",
-      title: "Comunidad FemCoders Club en DataConnect Barcelona",
-    },
-    {
-      src: "/assets/home-images/musica-codigo-evento-femCodersClub.webp",
-      alt: "Música y código en el evento de FemCoders Club",
-      title: "Música y Código en el Evento",
     },
     {
       src: "/assets/home-images/femCodersClub-mujeresStem-eventoData.webp",
@@ -150,29 +113,14 @@ const HomePage: React.FC = () => {
       title: "Celebrando el Día de la Mujer en InfoJobs",
     },
     {
-      src: "/assets/home-images/mujereslideres.webp",
-      alt: "Mujeres inspiradoras en un evento de FemCoders Club",
-      title: "Mujeres que inspiran a la comunidad",
-    },
-    {
       src: "/assets/home-images/eventoCarmenAnsio.webp",
       alt: "Evento con Carmen Ansio en FemCoders Club",
       title: "Evento con Carmen Ansio",
     },
     {
-      src: "/assets/home-images/eventoFactoriaF5.webp",
-      alt: "Evento en Factoría F5 con desarrolladoras de FemCoders Club",
-      title: "Evento en Factoría F5",
-    },
-    {
       src: "/assets/home-images/mujeresTech.webp",
       alt: "Grupo de mujeres en tecnología en un evento de FemCoders Club",
       title: "Mujeres en tecnología",
-    },
-    {
-      src: "/assets/home-images/comunidadFemCodersClubEventoCriteo.webp",
-      alt: "Miembros de FemCoders Club en un evento en Criteo",
-      title: "Evento en Criteo con FemCoders Club",
     },
     {
       src: "/assets/home-images/doscomunidadestech.webp",
@@ -185,34 +133,14 @@ const HomePage: React.FC = () => {
       title: "8M: Mujeres en Tecnología",
     },
     {
-      src: "/assets/home-images/mujeresprogramadoras.webp",
-      alt: "Mujeres programadoras en un evento de FemCoders Club",
-      title: "Mujeres programadoras",
-    },
-    {
       src: "/assets/home-images/eventoUnlokingData.webp",
       alt: "Evento sobre datos e inteligencia artificial en FemCoders Club",
       title: "Evento: Unlocking Data",
     },
     {
-      src: "/assets/home-images/mujeresFemCodersClub.webp",
-      alt: "Mujeres en la comunidad de FemCoders Club",
-      title: "Mujeres de FemCoders Club",
-    },
-    {
       src: "/assets/home-images/posit8Marzo.webp",
       alt: "Evento en el Día Internacional de la Mujer en FemCoders Club",
       title: "8M: Positividad y Empoderamiento",
-    },
-    {
-      src: "/assets/home-images/evento_techFemCodersClub.webp",
-      alt: "Evento tecnológico en FemCoders Club",
-      title: "Evento Tech en FemCoders Club",
-    },
-    {
-      src: "/assets/home-images/comunidadesMujeresTecnologas.webp",
-      alt: "Comunidades de mujeres en tecnología colaborando en un evento",
-      title: "Comunidades de Mujeres en Tecnología",
     },
     {
       src: "/assets/home-images/AureaRodriguez.webp",
@@ -235,11 +163,6 @@ const HomePage: React.FC = () => {
       title: "Evento en Factorial",
     },
     {
-      src: "/assets/home-images/mujeresTechNetworking.webp",
-      alt: "Mujeres en tecnología en un evento de networking",
-      title: "Networking entre Mujeres Tech",
-    },
-    {
       src: "/assets/home-images/musicaconcodigo.webp",
       alt: "Evento de música y código en FemCoders Club",
       title: "Música con Código",
@@ -250,39 +173,9 @@ const HomePage: React.FC = () => {
       title: "Liderazgo de la Mujer",
     },
     {
-      src: "/assets/home-images/eventoUnlokingData.webp",
-      alt: "Evento sobre datos e inteligencia artificial en FemCoders Club",
-      title: "Evento: Unlocking Data",
-    },
-    {
-      src: "/assets/home-images/mujeres-ciberseguridad-femcoders-evento.webp",
-      alt: "Mujeres en ciberseguridad en un evento de FemCoders Club",
-      title: "Mujeres en Ciberseguridad",
-    },
-    {
-      src: "/assets/home-images/networkingEventosFemCodersClub.webp",
-      alt: "Networking en eventos de FemCoders Club",
-      title: "Networking en Eventos",
-    },
-    {
-      src: "/assets/home-images/mujeresComunidadFemCodersClub.webp",
-      alt: "Mujeres en la comunidad de FemCoders Club",
-      title: "Mujeres en la Comunidad",
-    },
-    {
       src: "/assets/home-images/comunidadDeMujeres.webp",
       alt: "Mujeres en la comunidad de FemCoders Club",
       title: "Mujeres en la Comunidad",
-    },
-    {
-      src: "/assets/home-images/mujeresFemCodersClub.webp",
-      alt: "Mujeres en un evento de FemCoders Club",
-      title: "Mujeres en FemCoders Club",
-    },
-    {
-      src: "/assets/home-images/networking.webp",
-      alt: "Networking en un evento de FemCoders Club",
-      title: "Networking en Evento",
     },
     {
       src: "/assets/home-images/eventoAdevintaFemCodersClub.webp",
@@ -290,24 +183,9 @@ const HomePage: React.FC = () => {
       title: "Evento en Adevinta",
     },
     {
-      src: "/assets/home-images/apoyomujeres.webp",
-      alt: "Evento femCoders Club en Adevinta",
-      title: "Evento en Adevinta",
-    },
-    {
-      src: "/assets/home-images/comunidadDeMujeres.webp",
-      alt: "Comunidad de mujeres en un evento de FemCoders Club",
-      title: "Comunidad de Mujeres",
-    },
-    {
       src: "/assets/ML-ComunicacionAcertiva/EventoFemCodersClub-ComunicacionAcertiva.webp",
       alt: "Evento de comunicación asertiva en FemCoders Club",
       title: "Evento de Comunicación Asertiva",
-    },
-    {
-      src: "/assets/home-images/desarolladora-fullstack-Irina-femCodersClub.webp",
-      alt: "Irina Ichim, desarrolladora fullstack y cofundadora de FemCoders Club",
-      title: "Irina Ichim, Desarrolladora Fullstack",
     },
     {
       src: "/assets/home-images/LuciaCofundadora.webp",
@@ -315,24 +193,9 @@ const HomePage: React.FC = () => {
       title: "Lucía, Cofundadora",
     },
     {
-      src: "/assets/semRush/eventoSemrush.webp",
-      alt: "Evento en Semrush organizado por FemCoders Club",
-      title: "Evento en Semrush",
-    },
-    {
       src: "/assets/UltimosEventos2024/eventoSeatCode.webp",
       alt: "Evento reciente en SeatCode con ponentes de FemCoders Club",
       title: "Evento en SeatCode",
-    },
-    {
-      src: "/assets/home-images/eventocontere.webp",
-      alt: "Evento sobre inteligencia emocional en FemCoders Club",
-      title: "Inteligencia Emocional",
-    },
-    {
-      src: "/assets/home-images/chicasComunidadFemCodersClub.webp",
-      alt: "Chicas en la comunidad de FemCoders Club",
-      title: "Chicas en la Comunidad",
     },
     {
       src: "/assets/home-images/NiltonInfoJobs.webp",
@@ -1353,7 +1216,7 @@ const HomePage: React.FC = () => {
                       color: "#6C63FF",
                     }}
                   >
-                    1300+
+                    1500+
                   </div>
                   <div
                     style={{
@@ -1377,7 +1240,7 @@ const HomePage: React.FC = () => {
                       color: "#6C63FF",
                     }}
                   >
-                    25+
+                    40+
                   </div>
                   <div
                     style={{
@@ -1401,7 +1264,7 @@ const HomePage: React.FC = () => {
                       color: "#6C63FF",
                     }}
                   >
-                    20+
+                    30+
                   </div>
                   <div
                     style={{

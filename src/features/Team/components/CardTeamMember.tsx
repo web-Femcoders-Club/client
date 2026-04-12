@@ -180,8 +180,8 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
                   src={member.memberImage}
                   alt=""
                   loading="lazy"
-                  width="120"
-                  height="120"
+                  width="140"
+                  height="140"
                 />
               </figure>
 

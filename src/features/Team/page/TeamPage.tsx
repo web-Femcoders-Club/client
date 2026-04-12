@@ -42,7 +42,7 @@ const TeamPage = () => {
 
   const teamAchievements = [
     {
-      number: "1300+",
+      number: "1500+",
       label: "Miembros activas",
       icon: <FaUsers />
     },

@@ -12,6 +12,10 @@ const CustomCarousel = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const images: CarouselImage[] = [
+      {
+      src: "/assets/eventos2026/ponencias-femeninas-femCodersClub.webp",
+      text: "Ponencias femeninas en el evento de FemCoders Club, destacando el talento y la experiencia de nuestras ponentes en el sector tecnológico.",
+    },
     {
       src: "/assets/eventos2026/eventoJenniferNeyra.webp",
       text: "Segundo taller presencial con Jennifer C. Neyra en el Canòdrom: cómo construir y comunicar tu propuesta de valor para destacar en los procesos de selección del sector IT.",
