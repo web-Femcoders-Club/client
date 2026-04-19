@@ -9,6 +9,7 @@ import {
   CrmAttendeePaginated,
   CrmAttendeeDetail,
   CrmEventAttendeesResponse,
+  CrmUsersCrosscheck,
 } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -99,6 +100,13 @@ export const getCrmEventAttendees = async (eventId: string): Promise<CrmEventAtt
 
 export const getCrmAttendeeByDni = async (dni: string): Promise<CrmAttendeeDetail> => {
   const response = await axios.get(`${API_URL}/admin/crm/attendees/by-dni/${encodeURIComponent(dni)}`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const getCrmUsersCrosscheck = async (): Promise<CrmUsersCrosscheck> => {
+  const response = await axios.get(`${API_URL}/admin/crm/users-crosscheck`, {
     headers: getAuthHeaders(),
   });
   return response.data;

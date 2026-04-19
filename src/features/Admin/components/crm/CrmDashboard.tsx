@@ -6,6 +6,7 @@ import {
   getCrmAttendeeByDni,
   getCrmExportUrl,
   getCrmEventAttendees,
+  getCrmUsersCrosscheck,
 } from "../../../../api/adminApi";
 import {
   CrmStats,
@@ -13,17 +14,20 @@ import {
   CrmAttendeeDetail,
   CrmEventStat,
   CrmEventAttendeesResponse,
+  CrmUsersCrosscheck,
   Pagination,
 } from "../../../../types/types";
 import {
   Users,
   Repeat,
   CalendarDays,
+  Calendar,
   Loader2,
   ChevronLeft,
   ChevronRight,
   Download,
   X,
+  Search,
 } from "lucide-react";
 
 type Tab = "stats" | "attendees";
@@ -31,6 +35,8 @@ type Tab = "stats" | "attendees";
 const CrmDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>("stats");
   const [stats, setStats] = useState<CrmStats | null>(null);
+  const [crosscheck, setCrosscheck] = useState<CrmUsersCrosscheck | null>(null);
+  const [crosscheckSearch, setCrossCheckSearch] = useState("");
   const [attendees, setAttendees] = useState<CrmAttendee[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,6 +58,7 @@ const CrmDashboard: React.FC = () => {
   // Panel de asistentes de un evento concreto (desde tab stats)
   const [eventPanel, setEventPanel] = useState<CrmEventAttendeesResponse | null>(null);
   const [eventPanelLoading, setEventPanelLoading] = useState(false);
+  const [eventPanelSearch, setEventPanelSearch] = useState("");
   const eventPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,8 +66,12 @@ const CrmDashboard: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getCrmStats();
-        setStats(data);
+        const [statsData, crosscheckData] = await Promise.all([
+          getCrmStats(),
+          getCrmUsersCrosscheck(),
+        ]);
+        setStats(statsData);
+        setCrosscheck(crosscheckData);
       } catch {
         setError("No se pudieron cargar las estadísticas del CRM.");
       } finally {
@@ -78,8 +89,8 @@ const CrmDashboard: React.FC = () => {
         setLoading(true);
         setError(null);
         const data = await getCrmAttendees(
-          currentPage,
-          20,
+          filterEventId ? 1 : currentPage,
+          filterEventId ? 1000 : 20,
           filterEventId || undefined,
           dateFrom || undefined,
           dateTo || undefined
@@ -97,6 +108,7 @@ const CrmDashboard: React.FC = () => {
 
   const loadEventAttendees = (eventId: string) => {
     setEventPanel(null);
+    setEventPanelSearch("");
     setEventPanelLoading(true);
     getCrmEventAttendees(eventId)
       .then((data) => {
@@ -112,6 +124,8 @@ const CrmDashboard: React.FC = () => {
     setSelectedAttendee(null);
     setError(null);
   }, [filterText]);
+
+  const isFilteredByEvent = !!filterEventId;
 
   // Deduplica por email en caso de que el backend devuelva duplicados
   const uniqueAttendees = Array.from(
@@ -219,7 +233,7 @@ const CrmDashboard: React.FC = () => {
       {activeTab === "stats" && stats && (
         <div>
           {/* Summary cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#4737bb" }}>
               <div className="flex items-center justify-between">
                 <div>
@@ -258,6 +272,20 @@ const CrmDashboard: React.FC = () => {
                 </div>
                 <div className="p-3 rounded-full" style={{ backgroundColor: "#10B98120" }}>
                   <CalendarDays className="w-6 h-6" style={{ color: "#10B981" }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#F59E0B" }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-gray-500 text-sm font-medium">Total de eventos</p>
+                  <p className="text-3xl font-bold mt-1" style={{ color: "#F59E0B" }}>
+                    {stats.totalEvents ?? stats.eventStats.length}
+                  </p>
+                </div>
+                <div className="p-3 rounded-full" style={{ backgroundColor: "#F59E0B20" }}>
+                  <Calendar className="w-6 h-6" style={{ color: "#F59E0B" }} />
                 </div>
               </div>
             </div>
@@ -348,6 +376,76 @@ const CrmDashboard: React.FC = () => {
             </div>
           )}
 
+          {/* Cruce usuarios registrados vs asistentes */}
+          {crosscheck && (
+            <div className="bg-white rounded-xl shadow-md p-6 mt-6">
+              <h2 className="text-lg font-semibold mb-1" style={{ color: "#4737bb" }}>
+                Usuarias registradas en la plataforma
+              </h2>
+              <div className="flex flex-wrap gap-6 mb-4">
+                <span className="text-sm text-gray-500">
+                  Total registradas: <strong className="text-gray-800">{crosscheck.totalUsers}</strong>
+                </span>
+                <span className="text-sm" style={{ color: "#10B981" }}>
+                  Han asistido a algún evento: <strong>{crosscheck.attendedAtLeastOne}</strong>
+                </span>
+                <span className="text-sm" style={{ color: "#ea4f33" }}>
+                  Nunca han asistido: <strong>{crosscheck.neverAttended}</strong>
+                </span>
+              </div>
+              <div className="relative mb-4">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={crosscheckSearch}
+                  onChange={(e) => setCrossCheckSearch(e.target.value)}
+                  placeholder="Buscar por nombre o email..."
+                  className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+              </div>
+              <div className="overflow-x-auto">
+                <table className="table w-full border border-gray-200">
+                  <thead>
+                    <tr style={{ backgroundColor: "#4737bb10" }}>
+                      <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
+                      <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Email</th>
+                      <th className="p-3 text-center text-sm font-semibold" style={{ color: "#4737bb" }}>Eventos asistidos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {crosscheck.users
+                      .filter((u) => {
+                        const q = crosscheckSearch.toLowerCase();
+                        return !q ||
+                          `${u.userName} ${u.userLastName}`.toLowerCase().includes(q) ||
+                          u.userEmail.toLowerCase().includes(q);
+                      })
+                      .map((u) => (
+                        <tr key={u.idUser} className="border-b border-gray-100 hover:bg-gray-50">
+                          <td className="p-3 text-sm font-medium">{u.userName} {u.userLastName}</td>
+                          <td className="p-3 text-sm text-gray-600">{u.userEmail}</td>
+                          <td className="p-3 text-center">
+                            {u.eventsAttended === 0 ? (
+                              <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-400">
+                                Nunca
+                              </span>
+                            ) : (
+                              <span
+                                className="px-3 py-1 rounded-full text-sm font-medium"
+                                style={{ backgroundColor: "#10B98120", color: "#10B981" }}
+                              >
+                                {u.eventsAttended}
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
           {/* Panel asistentes de evento concreto */}
           {(eventPanelLoading || eventPanel) && (
             <div ref={eventPanelRef} className="mt-6 bg-gray-50 rounded-xl border border-gray-200 p-6 relative">
@@ -367,38 +465,69 @@ const CrmDashboard: React.FC = () => {
                 </div>
               )}
 
-              {eventPanel && !eventPanelLoading && (
-                <div>
-                  <h3 className="text-lg font-semibold mb-1" style={{ color: "#4737bb" }}>
-                    {eventPanel.event.name}
-                  </h3>
-                  <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500 mb-4">
-                    <span>{formatDate(eventPanel.event.date)}</span>
-                    <span>{eventPanel.event.location}</span>
-                    <span className="font-medium" style={{ color: "#ea4f33" }}>{eventPanel.totalAttendees} asistentes</span>
-                  </div>
-                  <div className="overflow-x-auto">
-                    <table className="table w-full border border-gray-200 bg-white">
-                      <thead>
-                        <tr style={{ backgroundColor: "#4737bb10" }}>
-                          <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
-                          <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Email</th>
-                          <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>DNI</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {eventPanel.attendees.map((a) => (
-                          <tr key={a.email} className="border-b border-gray-100 hover:bg-gray-50">
-                            <td className="p-3 text-sm font-medium">{a.firstName} {a.lastName}</td>
-                            <td className="p-3 text-sm text-gray-600">{a.email}</td>
-                            <td className="p-3 text-sm text-gray-500">{a.dni || "—"}</td>
+              {eventPanel && !eventPanelLoading && (() => {
+                const q = eventPanelSearch.toLowerCase();
+                const filteredEventAttendees = q
+                  ? eventPanel.attendees.filter((a) =>
+                      `${a.firstName} ${a.lastName}`.toLowerCase().includes(q) ||
+                      a.email.toLowerCase().includes(q) ||
+                      (a.dni ?? "").toLowerCase().includes(q)
+                    )
+                  : eventPanel.attendees;
+                return (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1" style={{ color: "#4737bb" }}>
+                      {eventPanel.event.name}
+                    </h3>
+                    <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500 mb-4">
+                      <span>{formatDate(eventPanel.event.date)}</span>
+                      <span>{eventPanel.event.location}</span>
+                      <span className="font-medium" style={{ color: "#ea4f33" }}>{eventPanel.totalAttendees} asistentes</span>
+                    </div>
+                    <div className="relative mb-4">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="text"
+                        value={eventPanelSearch}
+                        onChange={(e) => setEventPanelSearch(e.target.value)}
+                        placeholder="Buscar por nombre, email o DNI..."
+                        className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                      />
+                      {eventPanelSearch && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          {filteredEventAttendees.length} resultado{filteredEventAttendees.length !== 1 ? "s" : ""}
+                        </p>
+                      )}
+                    </div>
+                    <div className="overflow-x-auto">
+                      <table className="table w-full border border-gray-200 bg-white">
+                        <thead>
+                          <tr style={{ backgroundColor: "#4737bb10" }}>
+                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
+                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Email</th>
+                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>DNI</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {filteredEventAttendees.length === 0 ? (
+                            <tr>
+                              <td colSpan={3} className="p-6 text-center text-gray-400 text-sm">
+                                No hay asistentes que coincidan con "{eventPanelSearch}"
+                              </td>
+                            </tr>
+                          ) : filteredEventAttendees.map((a) => (
+                            <tr key={a.email} className="border-b border-gray-100 hover:bg-gray-50">
+                              <td className="p-3 text-sm font-medium">{a.firstName} {a.lastName}</td>
+                              <td className="p-3 text-sm text-gray-600">{a.email}</td>
+                              <td className="p-3 text-sm text-gray-500">{a.dni || "—"}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
             </div>
           )}
 
@@ -586,12 +715,14 @@ const CrmDashboard: React.FC = () => {
                     type="text"
                     value={filterText}
                     onChange={(e) => setFilterText(e.target.value)}
-                    placeholder="Filtrar por nombre, apellido, email o DNI... (haz clic en una fila para ver el detalle)"
+                    placeholder={isFilteredByEvent ? "Buscar en este evento..." : "Filtrar por nombre, apellido, email o DNI... (haz clic en una fila para ver el detalle)"}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
                   />
                   {filterText && (
                     <p className="text-xs text-gray-400 mt-1">
-                      {filteredAttendees.length} resultado{filteredAttendees.length !== 1 ? "s" : ""} en esta página
+                      {isFilteredByEvent
+                        ? `${filteredAttendees.length} resultado${filteredAttendees.length !== 1 ? "s" : ""} de ${uniqueAttendees.length} asistentes en este evento`
+                        : `${filteredAttendees.length} resultado${filteredAttendees.length !== 1 ? "s" : ""} en esta página`}
                     </p>
                   )}
                 </div>
@@ -637,7 +768,7 @@ const CrmDashboard: React.FC = () => {
                 </div>
 
                 {/* Pagination */}
-                {pagination && pagination.totalPages > 1 && (
+                {!isFilteredByEvent && pagination && pagination.totalPages > 1 && (
                   <div className="flex justify-center items-center gap-2 mt-6">
                     <button
                       type="button"

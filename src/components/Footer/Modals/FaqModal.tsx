@@ -8,7 +8,7 @@ interface FaqModalProps {
 const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  const faqs = [
+  const faqs: { question: string; answer: React.ReactNode[] }[] = [
     {
       question: "¿Qué es FemCoders Club?",
       answer: [
@@ -95,6 +95,20 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "● Voluntariado: Los empleados de las empresas pueden ofrecer su tiempo como voluntarios para ayudar a FemCoders Club con la organización de eventos, la creación de contenido, la gestión de redes sociales u otras tareas.",
         "● Difusión: Las empresas pueden ayudar a FemCoders Club a difundir su mensaje y aumentar su visibilidad compartiendo información sobre la organización en sus redes sociales, sitio web y boletines informativos.",
         "● Ofertas de trabajo: Las empresas pueden considerar y dar prioridad a las mujeres de FemCoders Club en sus procesos de selección de personal.",
+      ],
+    },
+    {
+      question: "¿Cómo puedo darme de baja de las comunicaciones?",
+      answer: [
+        "Respetamos tu derecho a gestionar las comunicaciones que recibes de FemCoders Club.",
+        "Si en algún momento deseas dejar de recibir nuestros emails, puedes hacerlo de dos formas:",
+        "● Desde el email: cada comunicación que enviamos incluye un enlace de baja al pie del mensaje. Solo tienes que hacer clic en él.",
+        <>● Desde nuestra web: accede a la{" "}
+          <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>
+            página de gestión de comunicaciones
+          </a>
+          , introduce tu dirección de email y te enviaremos un enlace de confirmación.</>,
+        "La baja se procesa de forma inmediata una vez confirmada. Si tienes cualquier duda, escríbenos a info@femcodersclub.com.",
       ],
     },
   ];

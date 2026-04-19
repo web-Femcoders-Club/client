@@ -41,6 +41,9 @@ const ForgotPasswordForm = lazy(
 const ResetPasswordForm = lazy(
   () => import("../features/ForgotPassword/page/ResetPasswordForm")
 );
+const UnsubscribePage = lazy(
+  () => import("../features/Unsubscribe/page/UnsubscribePage")
+);
 const FormAndTablePost = lazy(
   () => import("../features/Blog/posts/recursos/html/FormandTablePost")
 );
@@ -317,6 +320,14 @@ const RouterComponent: React.FC = () => {
             element={
               <Layout>
                 <ResetPasswordForm />
+              </Layout>
+            }
+          />
+          <Route
+            path="/baja-email"
+            element={
+              <Layout>
+                <UnsubscribePage />
               </Layout>
             }
           />

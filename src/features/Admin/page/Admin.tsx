@@ -4,6 +4,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import ManageComments from '../components/comment/ManageComments';
 import UserStats from '../components/user/UserStats';
 import CrmDashboard from '../components/crm/CrmDashboard';
+import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import './Admin.css';
 
 const Admin: React.FC = () => {
@@ -62,6 +63,11 @@ const Admin: React.FC = () => {
                   8. CRM Asistentes
                 </Link>
               </li>
+              <li className="step">
+                <Link to="/admin/unsubscribed" className="text-decoration-none">
+                  9. Bajas de email
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="admin-main w-3/4 p-4">
@@ -69,6 +75,7 @@ const Admin: React.FC = () => {
               <Route path="stats" element={<UserStats />} />
               <Route path="comments" element={<ManageComments />} />
               <Route path="crm/*" element={<CrmDashboard />} />
+              <Route path="unsubscribed" element={<UnsubscribeList />} />
             </Routes>
           </div>
         </div>

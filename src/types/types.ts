@@ -332,6 +332,7 @@ export interface CrmStats {
   uniqueAttendees: number;
   repeatAttendees: number;
   totalRegistrations: number;
+  totalEvents: number;
   topAttendees: CrmTopAttendee[];
   eventStats: CrmEventStat[];
 }
@@ -355,6 +356,21 @@ export interface CrmAttendee {
   lastName: string;
   dni: string | null;
   eventsAttended: number;
+}
+
+export interface CrmUserCrosscheck {
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  eventsAttended: number;
+}
+
+export interface CrmUsersCrosscheck {
+  totalUsers: number;
+  attendedAtLeastOne: number;
+  neverAttended: number;
+  users: CrmUserCrosscheck[];
 }
 
 export interface CrmAttendeePaginated {
@@ -390,4 +406,17 @@ export interface CrmEventAttendeesResponse {
   };
   totalAttendees: number;
   attendees: CrmEventAttendee[];
+}
+
+export type UnsubscribeStatus = "ok" | "already" | "invalid";
+
+export interface UnsubscribeResponse {
+  status: UnsubscribeStatus;
+}
+
+export interface UnsubscribedEmailRecord {
+  id: number;
+  email: string;
+  unsubscribedAt: string;
+  source: string | null;
 }

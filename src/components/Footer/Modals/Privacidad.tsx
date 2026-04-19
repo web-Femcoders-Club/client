@@ -179,6 +179,12 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 </a>
                 ).
               </p>
+              <p>
+                <strong>Baja de comunicaciones:</strong> Si deseas dejar de recibir comunicaciones
+                de FemCoders Club, puedes{" "}
+                <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>solicitar tu baja aquí</a>. Recibirás un email de
+                confirmación con un enlace para completar el proceso.
+              </p>
 
               <h5>8. Seguridad</h5>
               <p>
