@@ -56,7 +56,7 @@ const RegisterForm: React.FC = () => {
     if (formData.userPassword !== formData.confirmPassword) {
       return "Las contraseñas no coinciden.";
     }
-    if (!/^\d{9,15}$/.test(formData.userTelephone)) {
+    if (formData.userTelephone && !/^\d{9,15}$/.test(formData.userTelephone)) {
       return "El número de teléfono no es válido.";
     }
     if (!formData.userRole) {
