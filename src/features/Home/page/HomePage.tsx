@@ -58,6 +58,9 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
+    { src:"/assets/eventos2026/evento-softSkills-Canodrom.webp",
+      alt: "Evento Soft Skills: Comunicación Asertiva en el Ambiente Laboral organizado por FemCoders Club",
+      title:"Soft Skills: Comunicación Asertiva en el Ambiente Laboral -15 de abril 2026"},
     {
       src:"/assets/eventos2026/evento-estructurasEnMovimiento.webp",
       alt: "Celebrando Dia de la Mujer en InfoJobs con FemCoders Club y EY",
