@@ -56,7 +56,7 @@ const EstructurasDatosJS: React.FC = () => {
         <meta property="og:url" content={currentUrl} />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/assets/javascript/lru-cache-js.webp"
+          content="https://www.femcodersclub.com/assets/javascript/estructuras-datos-js.webp"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
@@ -71,7 +71,7 @@ const EstructurasDatosJS: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.femcodersclub.com/assets/javascript/lru-cache-js.webp"
+          content="https://www.femcodersclub.com/assets/javascript/estructuras-datos-js.webp"
         />
 
         <meta property="article:published_time" content="2026-04-25T10:00:00Z" />
@@ -977,15 +977,15 @@ procesarEvento(e); // "Ya procesado, ignorando"
           <div style={{ margin: "25px 0" }}>
             <picture>
               <source
-                srcSet="/public-optimized/mobile/assets/javascript/lru-cache-js.webp"
+                srcSet="/public-optimized/mobile/assets/javascript/lru-cache-proyecto.webp"
                 media="(max-width: 768px)"
               />
               <source
-                srcSet="/public-optimized/desktop/assets/javascript/lru-cache-js.webp"
+                srcSet="/public-optimized/desktop/assets/javascript/lru-cache-proyecto.webp"
                 media="(min-width: 769px)"
               />
               <img
-                src="/public-optimized/desktop/assets/javascript/lru-cache-js.webp"
+                src="/public-optimized/desktop/assets/javascript/lru-cache-proyecto.webp"
                 alt="Proyecto LRU Cache en GitHub — demo de uso, 15 tests pasados y benchmark Map vs Array"
                 className="blog-post-image"
                 loading="lazy"
