@@ -24,6 +24,16 @@ interface JsonLdEvent {
 
 const SPONSOR_EVENTS: SponsorEvent[] = [
   {
+    date: "2026-03-01",
+    sponsor: "Extraordinary",
+    event: "Alianza con Extraordinary: networking de calidad para mujeres en tecnología",
+    description:
+      "Desde marzo de 2026, FemCoders Club y Extraordinary unen fuerzas para acercar oportunidades reales a las mujeres en tecnología. Extraordinary es una app de networking que conecta a profesionales basándose en intereses y objetivos, no en casualidades. Gracias a esta colaboración, nuestra comunidad cuenta con mayor visibilidad profesional, conexiones de calidad y el apoyo de la red siempre a mano. Disponible en Google Play.",
+    logo: "assets/equipoFemCodersClub/logoExtraordinary.png",
+    website: "https://play.google.com/store/apps/details?id=com.extraordinayversion1&hl=es_419",
+    backgroundImage: "assets/equipoFemCodersClub/extraordinary_women_in_barcelona.jpeg",
+  },
+  {
   date: "2025-10-29",
   sponsor: "InfoJobs & NTT DATA",
   event: "Liderar la revolución de la IA con talento femenino",

@@ -358,6 +358,14 @@ const BlogPage: React.FC = () => {
   description: "El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con una state machine interactiva y domina bind, call, apply.",
   createdAt: new Date("2026-03-01"),
 },
+{
+  id: 38,
+  type: "recurso",
+  category: "javascript",
+  title: "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+  description: "Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.",
+  createdAt: new Date("2026-04-25"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -456,6 +464,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/marzo-2026-eventos`;
  case "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript":
   return `/recursos/js/closures-scope-context`;
+ case "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet":
+  return `/recursos/js/estructuras-datos-js`;
       default:
         return `/`;
     }

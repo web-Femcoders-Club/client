@@ -390,8 +390,8 @@ const Recursos: React.FC = () => {
           <div>
             <h3>🎯 Quiz CSS para Entrevistas Técnicas</h3>
             <p className="intro-text">
-              Prepárate para entrevistas técnicas con 30 preguntas interactivas de CSS. 
-              Desde Box Model hasta CSS Grid, Custom Properties y Performance. 
+              Prepárate para entrevistas técnicas con 30 preguntas interactivas de CSS.
+              Desde Box Model hasta CSS Grid, Custom Properties y Performance.
               3 niveles de dificultad con explicaciones detalladas.
             </p>
           </div>
@@ -401,6 +401,25 @@ const Recursos: React.FC = () => {
             aria-label="Hacer el Quiz CSS para Entrevistas Técnicas"
           >
             Hacer Quiz
+          </Link>
+        </div>
+      </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet</h3>
+            <p className="intro-text">
+              Aprende cuándo usar Map, Set, WeakMap y WeakSet en JavaScript. Proyecto
+              práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google,
+              Meta y Amazon.
+            </p>
+          </div>
+          <Link
+            to="/recursos/js/estructuras-datos-js"
+            className="secondary-button"
+            aria-label="Leer más sobre Estructuras de Datos Avanzadas en JavaScript"
+          >
+            Leer más
           </Link>
         </div>
       </div>

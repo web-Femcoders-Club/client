@@ -161,6 +161,9 @@ const ManipulacionDomIngeniera = lazy(
 const ClosuresScopeContext = lazy(
   () => import("../features/Blog/posts/recursos/js/ClosuresScopeContext")
 );
+const EstructurasDatosJS = lazy(
+  () => import("../features/Blog/posts/recursos/js/EstructurasDatosJS")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -692,6 +695,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ClosuresScopeContext />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/estructuras-datos-js"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <EstructurasDatosJS />
                 </Suspense>
               </Layout>
             }

@@ -424,6 +424,51 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "9",
+      title: "FemCoders Club colabora con Extraordinary: networking real para mujeres en tecnología",
+      description: (
+        <>
+          Desde marzo de 2026 colaboramos con{" "}
+          <strong>Extraordinary</strong>, la app de networking diseñada para
+          conectar a mujeres profesionales basándose en intereses y objetivos
+          reales. Visibilidad, conexiones de calidad y comunidad en tu bolsillo.{" "}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.extraordinayversion1&hl=es_419"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            Descarga la app
+          </a>{" "}
+          ·{" "}
+          <a
+            href="https://www.linkedin.com/company/extraordinary-women-in-barcelona/posts/?feedView=all"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            LinkedIn
+          </a>
+        </>
+      ),
+      image: "/assets/equipoFemCodersClub/colaboracion-femCodersClub-Extraordinary.png",
+      imageAlt: "Colaboración FemCoders Club y Extraordinary — networking para mujeres en tecnología",
+      date: "Marzo 2026",
+      category: "Colaboraciones",
+      link: "/equipo#sponsors-heading",
+    },
+    {
+      id: "8",
+      title: "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+      description:
+        "Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.",
+      image: "/assets/javascript/estructuras-datos-js.webp",
+      imageAlt: "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+      date: "25 Abril 2026",
+      category: "Recursos",
+      link: "/recursos/js/estructuras-datos-js",
+    },
+    {
       id: "7",
       title: "El mes en que dejamos de pedir permiso para ocupar espacio",
       description:
@@ -507,18 +552,36 @@ const HomePage: React.FC = () => {
 },
     {
       id: "4",
-      title: "Manipulaci\u00f3n del DOM como una Ingeniera",
+      title: "Manipulación del DOM como una Ingeniera",
       description:
-        "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulaci\u00f3n del DOM con un proyecto pr\u00e1ctico: Smart Analytics Tracker.",
+        "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulación del DOM con un proyecto práctico: Smart Analytics Tracker.",
       image: "/assets/javascript/manipulacion-dom-ingeniera.png",
-      imageAlt:
-        "Manipulaci\u00f3n del DOM como una Ingeniera - femCoders Club",
+      imageAlt: "Manipulación del DOM como una Ingeniera - femCoders Club",
       date: "8 Febrero 2026",
       category: "Recursos",
       link: "/recursos/js/manipulacion-dom-ingeniera",
     },
   ];
   const githubProjectsData = [
+    {
+      id: "8",
+      name: "LRU Cache — Estructuras de Datos con Map",
+      description:
+        "Implementación de un LRU Cache usando Map de JavaScript. Incluye caché de llamadas a API, 15 tests, benchmark Map vs Array (7x más rápido en lecturas) y LRUCacheWithStats para monitorizar hit ratio y evictions.",
+      techStack: ["JavaScript", "Map", "TDD"],
+      githubUrl: "https://github.com/femcodersclub/lru-cache-js",
+      demoUrl: "https://github.com/femcodersclub/lru-cache-js",
+      image: "/assets/javascript/lru-cache-proyecto.webp",
+      imageAlt: "LRU Cache implementado con Map en JavaScript — femCoders Club",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "abril 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/estructuras-datos-js",
+      postTitle: "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+      difficulty: "Avanzado",
+    },
     {
       id: "7",
       name: "Mujeres que Transforman el Futuro",
