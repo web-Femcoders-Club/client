@@ -164,6 +164,9 @@ const ClosuresScopeContext = lazy(
 const EstructurasDatosJS = lazy(
   () => import("../features/Blog/posts/recursos/js/EstructurasDatosJS")
 );
+const PatronesDisenioJavaScript = lazy(
+  () => import("../features/Blog/posts/recursos/js/PatronesDisenioJavaScript")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -705,6 +708,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <EstructurasDatosJS />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/patrones-diseno-javascript"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <PatronesDisenioJavaScript />
                 </Suspense>
               </Layout>
             }

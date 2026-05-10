@@ -424,6 +424,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "10",
+      title: "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
+      description:
+        "Module, Observer, Proxy, Decorator y composición funcional en menos de 300 líneas. Proyecto práctico: reactive-store-js, un sistema de estado reactivo que implementa cinco patrones trabajando juntos.",
+      image: "/assets/javascript/patrones-diseno-javascript.webp",
+      imageAlt: "Patrones de Diseño en JavaScript Puro — femCoders Club",
+      date: "10 Mayo 2026",
+      category: "Recursos",
+      link: "/recursos/js/patrones-diseno-javascript",
+    },
+    {
       id: "9",
       title: "FemCoders Club colabora con Extraordinary: networking real para mujeres en tecnología",
       description: (
@@ -550,19 +561,27 @@ const HomePage: React.FC = () => {
   category: "Colaboraciones",
   link: "/noticias/talent-arena-2026-partnership",
 },
-    {
-      id: "4",
-      title: "Manipulación del DOM como una Ingeniera",
-      description:
-        "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Aprende a construir sistemas robustos de manipulación del DOM con un proyecto práctico: Smart Analytics Tracker.",
-      image: "/assets/javascript/manipulacion-dom-ingeniera.png",
-      imageAlt: "Manipulación del DOM como una Ingeniera - femCoders Club",
-      date: "8 Febrero 2026",
-      category: "Recursos",
-      link: "/recursos/js/manipulacion-dom-ingeniera",
-    },
   ];
   const githubProjectsData = [
+    {
+      id: "9",
+      name: "reactive-store-js — Sistema de Estado Reactivo",
+      description:
+        "Sistema de estado reactivo en menos de 300 líneas que implementa cinco patrones de diseño trabajando juntos: Observer para suscripciones, Proxy para interceptación reactiva, Memento para undo/redo, Façade en la API pública y composición funcional. Incluye dashboard de métricas con DevTools integradas.",
+      techStack: ["JavaScript", "Proxy API", "Design Patterns"],
+      githubUrl: "https://github.com/femcodersclub/reactive-store-js",
+      demoUrl: "https://femcodersclub.github.io/reactive-store-js/demo/",
+      image: "/assets/javascript/reactive-store-dashboard.webp",
+      imageAlt: "reactive-store-js — Dashboard de métricas con DevTools integradas",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "mayo 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/patrones-diseno-javascript",
+      postTitle: "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
+      difficulty: "Avanzado",
+    },
     {
       id: "8",
       name: "LRU Cache — Estructuras de Datos con Map",

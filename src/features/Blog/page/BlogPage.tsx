@@ -366,6 +366,14 @@ const BlogPage: React.FC = () => {
   description: "Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.",
   createdAt: new Date("2026-04-25"),
 },
+{
+  id: 39,
+  type: "recurso",
+  category: "javascript",
+  title: "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
+  description: "Aprende los patrones de diseño más importantes en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js en menos de 300 líneas.",
+  createdAt: new Date("2026-05-10"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -466,6 +474,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/closures-scope-context`;
  case "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet":
   return `/recursos/js/estructuras-datos-js`;
+ case "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo":
+  return `/recursos/js/patrones-diseno-javascript`;
       default:
         return `/`;
     }

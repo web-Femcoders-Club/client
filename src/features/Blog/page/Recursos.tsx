@@ -423,6 +423,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo</h3>
+            <p className="intro-text">
+              Aprende los patrones de diseño más importantes en JavaScript moderno:
+              Module, Observer, Proxy, Decorator y composición funcional. Proyecto
+              práctico: reactive-store-js en menos de 300 líneas.
+            </p>
+          </div>
+          <Link
+            to="/recursos/js/patrones-diseno-javascript"
+            className="secondary-button"
+            aria-label="Leer más sobre Patrones de Diseño en JavaScript Puro"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
