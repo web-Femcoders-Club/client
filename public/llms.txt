@@ -1,0 +1,76 @@
+# FemCoders Club
+
+## About
+
+FemCoders Club is a Spanish tech community and registered association founded on October 24, 2023, in Barcelona, Spain. Its mission is to empower women in technology by providing education, mentoring, networking and professional development resources. The community is open to women and people from underrepresented groups in tech across Spain and Latin America.
+
+## Facts
+
+- Founded: October 24, 2023
+- Location: Barcelona, Spain
+- Legal status: Registered association (Asociación)
+- Language: Spanish
+- Members: 1,500+
+- Events organized: 40+
+- Partner companies: 30+
+- Focus areas: web development, JavaScript, CSS, HTML, React, artificial intelligence, open source, women in tech, diversity in technology
+
+## Founders
+
+FemCoders Club was co-founded by six women:
+
+1. Irina Ichim — Fullstack Software Developer, AI Specialist, Backend Java Mentor
+   LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
+
+2. Ana Lucía Silva Córdoba — Master in Big Data & Data Science, Fullstack Developer, Tech Trainer, DonaTIC 2024 award winner
+   LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
+
+3. Elvia Benedith — Full-stack Web Developer and Civil Engineer, Pokecode
+   LinkedIn: https://www.linkedin.com/in/elvia-benedith
+
+4. Silvina Lucero Calderón — Full Stack Web Developer, QA Functional Tester
+   LinkedIn: https://www.linkedin.com/in/silvina-lucero
+
+5. Liliana Dalmarco — Fullstack Developer, Scrum Master, Project Manager
+   LinkedIn: https://www.linkedin.com/in/lilianadalmarco
+
+6. Isadora Matias — Full Stack Developer, Designer, Visual Communication
+   LinkedIn: https://www.linkedin.com/in/isadoramatias/
+
+## Topics
+
+FemCoders Club publishes technical content and organizes events on the following topics:
+
+- Women in technology and diversity in tech
+- Web development (HTML, CSS, JavaScript, React)
+- JavaScript fundamentals, ES Modules, event loop, closures, design patterns, data structures
+- CSS layouts, animations, accessibility, responsive design, performance
+- Artificial intelligence and AI tools for developers
+- Open source contribution (Decidim, Ruby on Rails ecosystem)
+- Career development for women in tech
+- Civic technology and digital participation
+
+## Partners and Collaborators
+
+Strategic partners: InfoJobs, Glovo
+Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom, PokeCode, FactoriaF5, Adevinta, Factorial HR, Criteo, Dynatrace, Codurance, Semrush, SeatCode, Extraordinary
+
+## Links
+
+- Website: https://www.femcodersclub.com
+- Blog: https://www.femcodersclub.com/blog
+- Resources: https://www.femcodersclub.com/blog/recursos
+- Events: https://www.femcodersclub.com/eventos
+- Team: https://www.femcodersclub.com/equipo
+- About: https://www.femcodersclub.com/femcoders-quienes-somos
+- LinkedIn: https://www.linkedin.com/company/fem-coders-club/
+- GitHub: https://github.com/femcodersclub
+- YouTube: https://www.youtube.com/@FemcodersClub
+- Instagram: https://www.instagram.com/femcoders_club/
+- Twitter/X: https://x.com/FemCodersClub
+- Slack community: https://communityinviter.com/apps/femcodersclub/femcoders-club
+
+## Contact
+
+- General: info@femcodersclub.com
+- Partnerships: partnerships@femcodersclub.com
