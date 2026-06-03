@@ -167,6 +167,12 @@ const EstructurasDatosJS = lazy(
 const PatronesDisenioJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/PatronesDisenioJavaScript")
 );
+const ModulosArquitecturaEscalable = lazy(
+  () => import("../features/Blog/posts/recursos/js/ModulosArquitecturaEscalable")
+);
+const TallerDecidimElvia = lazy(
+  () => import("../features/Blog/posts/noticias/TallerDecidimElvia")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -718,6 +724,26 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <PatronesDisenioJavaScript />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/modulos-arquitectura-escalable"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ModulosArquitecturaEscalable />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/taller-decidim-elvia"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <TallerDecidimElvia />
                 </Suspense>
               </Layout>
             }

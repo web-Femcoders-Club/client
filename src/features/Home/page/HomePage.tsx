@@ -58,6 +58,16 @@ const HomePage: React.FC = () => {
   }, [carouselIndex, currentPhotoIndex]);
 
   const images = [
+    {
+      src: "/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp",
+      alt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club, mayo 2026",
+      title: "Taller práctico sobre Decidim con Elvia Benedith (Pokecode) — Canòdrom, mayo 2026",
+    },
+    {
+      src: "/assets/eventos2026/evento-github-2026.webp",
+      alt: "Evento de GitHub en FemCoders Club con ponentes femeninas",
+      title: "Evento de GitHub en FemCoders Club — 2026",
+    },
     { src:"/assets/eventos2026/evento-softSkills-Canodrom.webp",
       alt: "Evento Soft Skills: Comunicación Asertiva en el Ambiente Laboral organizado por FemCoders Club",
       title:"Soft Skills: Comunicación Asertiva en el Ambiente Laboral -15 de abril 2026"},
@@ -424,6 +434,28 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "12",
+      title: "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
+      description:
+        "Crónica del taller práctico en el Canòdrom con Elvia Benedith (Pokecode): levantamos Decidim en local, exploramos su arquitectura Rails modular y descubrimos que contribuir al open source está más cerca de lo que parece.",
+      image: "/assets/noticias/taller-decidim-elvia.jpeg",
+      imageAlt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club mayo 2026",
+      date: "3 Junio 2026",
+      category: "Noticias",
+      link: "/noticias/taller-decidim-elvia",
+    },
+    {
+      id: "11",
+      title: "Módulos y Arquitectura Escalable en JavaScript",
+      description:
+        "ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto que va a crecer. Proyecto práctico: Productivity Dashboard, un dashboard modular en vanilla JavaScript con tres widgets independientes.",
+      image: "/assets/javascript/modulos-arquitectura-escalable.webp",
+      imageAlt: "Módulos y Arquitectura Escalable en JavaScript — femCoders Club",
+      date: "3 Junio 2026",
+      category: "Recursos",
+      link: "/recursos/js/modulos-arquitectura-escalable",
+    },
+    {
       id: "10",
       title: "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
       description:
@@ -563,6 +595,25 @@ const HomePage: React.FC = () => {
 },
   ];
   const githubProjectsData = [
+    {
+      id: "10",
+      name: "productivity-dashboard-js — Dashboard Modular",
+      description:
+        "Dashboard modular con tres widgets independientes — Pomodoro, tracker de hábitos y notas con autoguardado — construido en vanilla JavaScript sin ninguna dependencia externa. Dynamic import, sistema de plugins extensible y 17 tests incluidos.",
+      techStack: ["JavaScript", "ES Modules", "Dynamic Import"],
+      githubUrl: "https://github.com/femcodersclub/productivity-dashboard-js",
+      demoUrl: "https://femcodersclub.github.io/productivity-dashboard-js/",
+      image: "/assets/javascript/modulos-arquitectura-escalable.webp",
+      imageAlt: "productivity-dashboard-js — Dashboard Modular en vanilla JavaScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "junio 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/modulos-arquitectura-escalable",
+      postTitle: "Módulos y Arquitectura Escalable en JavaScript",
+      difficulty: "Avanzado",
+    },
     {
       id: "9",
       name: "reactive-store-js — Sistema de Estado Reactivo",

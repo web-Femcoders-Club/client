@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails</h2>
+            <p className="intro-text">
+              El 27 de mayo nos reunimos en el Canòdrom con Elvia Benedith (Pokecode) para explorar Decidim por dentro: entorno local con Docker, arquitectura Rails modular y una mañana de código, preguntas y comunidad...
+            </p>
+          </div>
+          <Link to="/noticias/taller-decidim-elvia" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>El mes en que dejamos de pedir permiso para ocupar espacio</h2>
             <p className="intro-text">
               Talent Arena, el primer evento de Claude en Barcelona, una invitación que no esperábamos y una tarde con InfoJobs. Marzo 2026 ha sido un mes que deja huella...

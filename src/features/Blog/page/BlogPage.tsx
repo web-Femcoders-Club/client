@@ -374,6 +374,22 @@ const BlogPage: React.FC = () => {
   description: "Aprende los patrones de diseño más importantes en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js en menos de 300 líneas.",
   createdAt: new Date("2026-05-10"),
 },
+{
+  id: 40,
+  type: "recurso",
+  category: "javascript",
+  title: "Módulos y Arquitectura Escalable en JavaScript",
+  description: "ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto que va a crecer. Proyecto práctico: Productivity Dashboard, un dashboard modular en vanilla JavaScript con tres widgets independientes.",
+  createdAt: new Date("2026-06-02"),
+},
+{
+  id: 41,
+  type: "noticia",
+  category: "femCoders",
+  title: "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
+  description: "Crónica del taller práctico en el Canòdrom con Elvia Benedith (Pokecode): levantamos Decidim en local, exploramos su arquitectura Rails modular y descubrimos que contribuir al open source está más cerca de lo que parece.",
+  createdAt: new Date("2026-06-03"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -476,6 +492,10 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/estructuras-datos-js`;
  case "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo":
   return `/recursos/js/patrones-diseno-javascript`;
+ case "Módulos y Arquitectura Escalable en JavaScript":
+  return `/recursos/js/modulos-arquitectura-escalable`;
+ case "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails":
+  return `/noticias/taller-decidim-elvia`;
       default:
         return `/`;
     }
