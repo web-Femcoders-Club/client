@@ -495,7 +495,7 @@ const BlogPage: React.FC = () => {
  case "Módulos y Arquitectura Escalable en JavaScript":
   return `/recursos/js/modulos-arquitectura-escalable`;
  case "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails":
-  return `/noticias/taller-decidim-elvia`;
+  return `/noticias/taller-decidim-hacks`;
       default:
         return `/`;
     }

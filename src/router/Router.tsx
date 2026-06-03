@@ -739,7 +739,7 @@ const RouterComponent: React.FC = () => {
             }
           />
           <Route
-            path="/noticias/taller-decidim-elvia"
+            path="/noticias/taller-decidim-hacks"
             element={
               <Layout>
                 <Suspense fallback={<Loader />}>

@@ -15,7 +15,7 @@ const Noticias: React.FC = () => {
               El 27 de mayo nos reunimos en el Canòdrom con Elvia Benedith (Pokecode) para explorar Decidim por dentro: entorno local con Docker, arquitectura Rails modular y una mañana de código, preguntas y comunidad...
             </p>
           </div>
-          <Link to="/noticias/taller-decidim-elvia" className="secondary-button">
+          <Link to="/noticias/taller-decidim-hacks" className="secondary-button">
             Leer más
           </Link>
         </div>
