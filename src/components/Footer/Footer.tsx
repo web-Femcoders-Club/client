@@ -16,10 +16,10 @@ const FccFooter = () => {
         <div className="footer-top">
           <div className="footer-logo">
           <div className="footer-logo">
-  <a href="/" title="Fem Coders Club Home">
+  <a href="/" title="FemCoders Club Home">
     <OptimizedImage
-      src="/assets/negativeLogo.webp" 
-      alt="Fem Coders Club Logo"
+      src="/assets/negativeLogo.webp"
+      alt="FemCoders Club Logo"
       loading="eager"
       className="footer-logo-image"
     />
