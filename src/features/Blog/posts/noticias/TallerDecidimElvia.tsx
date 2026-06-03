@@ -45,7 +45,7 @@ const TallerDecidimElvia: React.FC = () => {
         />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/assets/noticias/taller-decidim-hacks.jpeg"
+          content="https://www.femcodersclub.com/assets/noticias/taller-decidim-elvia.jpeg"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
@@ -60,7 +60,7 @@ const TallerDecidimElvia: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.femcodersclub.com/assets/noticias/taller-decidim-hacks.jpeg"
+          content="https://www.femcodersclub.com/assets/noticias/taller-decidim-elvia.jpeg"
         />
 
         <meta
@@ -84,21 +84,21 @@ const TallerDecidimElvia: React.FC = () => {
       <div className="post-image-container">
         <picture>
           <source
-            srcSet="/public-optimized/mobile/assets/noticias/taller-decidim-hacks.webp"
+            srcSet="/public-optimized/mobile/assets/noticias/taller-decidim-elvia.webp"
             media="(max-width: 768px)"
           />
           <source
-            srcSet="/public-optimized/desktop/assets/noticias/taller-decidim-hacks.webp"
+            srcSet="/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp"
             media="(min-width: 769px)"
           />
           <img
-            src="/public-optimized/desktop/assets/noticias/taller-decidim-hacks.webp"
+            src="/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp"
             alt="Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club, mayo 2026"
             className="blog-post-image"
             loading="lazy"
             onError={(e) => {
               (e.target as HTMLImageElement).src =
-                "/assets/noticias/taller-decidim-hacks.jpeg";
+                "/assets/noticias/taller-decidim-elvia.jpeg";
               (e.target as HTMLImageElement).onerror = null;
             }}
           />

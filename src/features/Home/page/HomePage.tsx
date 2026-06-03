@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
-      src: "/public-optimized/desktop/assets/noticias/taller-decidim-hacks.webp",
+      src: "/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp",
       alt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club, mayo 2026",
       title: "Taller práctico sobre Decidim con Elvia Benedith (Pokecode) — Canòdrom, mayo 2026",
     },
@@ -438,7 +438,7 @@ const HomePage: React.FC = () => {
       title: "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
       description:
         "Crónica del taller práctico en el Canòdrom con Elvia Benedith (Pokecode): levantamos Decidim en local, exploramos su arquitectura Rails modular y descubrimos que contribuir al open source está más cerca de lo que parece.",
-      image: "/assets/noticias/taller-decidim-hacks.jpeg",
+      image: "/assets/noticias/taller-decidim-elvia.jpeg",
       imageAlt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club mayo 2026",
       date: "3 Junio 2026",
       category: "Noticias",
