@@ -248,18 +248,19 @@ const TallerDecidimElvia: React.FC = () => {
         </p>
         <br />
         <p>
-          El proceso no estuvo exento de los momentos habituales de cualquier
-          configuración de entorno: contenedores que tardaban más de lo esperado,
-          dependencias que pedían versiones específicas, terminales donde cada
-          portátil contaba su propia historia. Y aun así, o precisamente por
-          eso, fue uno de los momentos más ricos del taller: porque las preguntas
-          que surgen cuando algo no va como esperas son las que mejor enseñan.
-        </p>
-        <br />
-        <p>
-          Elvia fue navegando cada situación con una calma y una claridad que se
-          nota solo en quien entiende la tecnología desde dentro y no desde el
-          manual. Explicó el porqué de cada paso, no solo el cómo.
+          Elvia y el equipo de{" "}
+          <a
+            href="https://pokecode.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            Pokecode
+          </a>{" "}
+          estuvieron atentas a cualquier duda o incidencia que pudiera surgir,
+          resolviendo cada situación con una calma y una claridad que se nota
+          solo en quien entiende la tecnología desde dentro. Explicaron el porqué
+          de cada paso, no solo el cómo.
         </p>
       </div>
 
