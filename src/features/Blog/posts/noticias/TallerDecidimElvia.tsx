@@ -192,13 +192,17 @@ const TallerDecidimElvia: React.FC = () => {
           >
             Pokecode
           </a>{" "}
-          y junto a personas con perfiles muy diversos, dedicamos una mañana a
-          descubrir cómo funciona la plataforma por dentro, cómo levantar un
-          entorno local y qué posibilidades ofrece para quienes desean
-          contribuir o personalizar sus instalaciones.
+          —empresa colaboradora oficial de Decidim especializada en soluciones
+          de participación ciudadana y democracia digital— y junto a personas
+          con perfiles muy diversos, dedicamos una mañana a descubrir cómo
+          hackear Decidim desde dentro: levantar un entorno local, explorar su
+          arquitectura y realizar pequeñas personalizaciones en un entorno
+          seguro.
         </p>
         <br />
         <p>
+          El evento estaba abierto a cualquier persona interesada,
+          independientemente de su experiencia o trayectoria profesional.
           No fue un taller de diapositivas. Fue un taller de terminal abierta,
           preguntas reales y aprendizaje compartido.
         </p>
@@ -355,6 +359,12 @@ const TallerDecidimElvia: React.FC = () => {
         </p>
         <br />
         <p>
+          Hubo un momento en que alguien miró el reloj y ya habían pasado dos
+          horas sin que nadie se hubiera dado cuenta. Esa es la mejor medida de
+          que algo funcionó.
+        </p>
+        <br />
+        <p>
           El Canòdrom, como espacio, acompañó perfectamente: mesas largas donde
           cabía la colaboración, luz natural, y ese ambiente que tiene cuando la
           gente lleva los portátiles en serio y no de adorno.
@@ -375,15 +385,51 @@ const TallerDecidimElvia: React.FC = () => {
           >
             decidim-hacks
           </a>
-          , un repositorio con ejemplos prácticos, personalizaciones y hacks
-          útiles para quien quiera adentrarse en el ecosistema Decidim. Es un
-          punto de partida mucho más accesible que empezar desde cero con la
-          documentación oficial.
+          , un repositorio con ejemplos prácticos, personalizaciones y
+          ejercicios estructurados para practicar a tu propio ritmo. Es el
+          mismo entorno que usamos en el taller — y el punto de partida más
+          accesible para adentrarse en el ecosistema Decidim.
         </p>
         <br />
         <p>
-          Si el taller te despertó curiosidad y quieres trastear por tu
-          cuenta, este es el sitio:
+          Para reproducir el entorno exacto que usamos durante la sesión:
+        </p>
+        <br />
+        <div className="code-block bg3">
+          <pre>
+            {`git clone https://github.com/openpoke/decidim-hacks.git
+cd decidim-hacks
+git pull
+docker compose up`}
+          </pre>
+        </div>
+        <br />
+        <p>
+          Una vez iniciado, accede a{" "}
+          <code>localhost:3000</code> y <code>localhost:8080</code>.
+          Dentro del repositorio encontrarás los ejercicios para seguir
+          explorando a tu ritmo.
+        </p>
+        <br />
+        <p>
+          Si quieres leer la experiencia en primera persona, Elvia la cuenta
+          en su propio blog:
+        </p>
+        <br />
+        <a
+          href="https://pokecode.net/es/blog/es/hacking-decidim-la-master-class-que-mai-vaig-imaginar-impartir"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="highlight-link"
+          style={{ display: "inline-block", marginBottom: "1rem" }}
+        >
+          Hacking Decidim: la master class que mai vaig imaginar impartir →
+        </a>
+        <br />
+        <br />
+        <p>
+          Si te quedaste con ganas de más o quieres que organicemos esta
+          sesión de nuevo, no dudes en escribirnos:
         </p>
         <br />
         <a
