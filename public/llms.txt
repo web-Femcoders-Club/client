@@ -44,6 +44,7 @@ FemCoders Club publishes technical content and organizes events on the following
 - Women in technology and diversity in tech
 - Web development (HTML, CSS, JavaScript, React)
 - JavaScript fundamentals, ES Modules, event loop, closures, design patterns, data structures
+- Browser Web APIs: IndexedDB, Web Crypto API (AES-GCM, PBKDF2), File System Access API, Web Workers
 - CSS layouts, animations, accessibility, responsive design, performance
 - Artificial intelligence and AI tools for developers
 - Open source contribution (Decidim, Ruby on Rails ecosystem)
@@ -60,6 +61,7 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Website: https://www.femcodersclub.com
 - Blog: https://www.femcodersclub.com/blog
 - Resources: https://www.femcodersclub.com/blog/recursos
+- Latest JS post: https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion
 - Events: https://www.femcodersclub.com/eventos
 - Team: https://www.femcodersclub.com/equipo
 - About: https://www.femcodersclub.com/femcoders-quienes-somos

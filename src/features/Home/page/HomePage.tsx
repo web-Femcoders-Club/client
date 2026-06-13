@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "13",
+      title: "Web APIs de nueva generación en JavaScript: más allá del localStorage",
+      description:
+        "IndexedDB, Web Crypto API y File System Access API: persistencia estructurada, encriptación AES-GCM-256 real y acceso a ficheros sin servidor. Proyecto práctico: Encrypted Private Notes, sin dependencias externas.",
+      image: "/assets/javascript/web-apis-nueva-generacion.webp",
+      imageAlt: "Web APIs de nueva generación en JavaScript — femCoders Club",
+      date: "12 Junio 2026",
+      category: "Recursos",
+      link: "/recursos/js/web-apis-nueva-generacion",
+    },
+    {
       id: "12",
       title: "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
       description:
@@ -569,32 +580,27 @@ const HomePage: React.FC = () => {
       category: "Eventos",
       link: "/login",
     },
-    {
-  id: "3",
-  title: "FemCoders Club, Community Partner oficial de Talent Arena 2026",
-  description: (
-    <>
-      FemCoders Club se une a{" "}
-      <a
-        href="https://talentarena.tech/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="highlight-link"
-      >
-        Talent Arena 2026
-      </a>
-      , el principal evento europeo de talento digital que se celebra junto al Mobile World Congress Barcelona. Una oportunidad única para conectar, visibilizar y potenciar el talento femenino en tecnología a nivel europeo.
-    </>
-  ),
-  image: "/assets/noticias/talent-arena-2026-partnership.webp",
-  imageAlt:
-    "FemCoders Club Community Partner de Talent Arena 2026 en MWC Barcelona",
-  date: "30 Enero 2026",
-  category: "Colaboraciones",
-  link: "/noticias/talent-arena-2026-partnership",
-},
-  ];
+      ];
   const githubProjectsData = [
+    {
+      id: "11",
+      name: "encrypted-private-notes — Notas Privadas Encriptadas",
+      description:
+        "Editor de notas con encriptación extremo a extremo construido con IndexedDB, Web Crypto API (AES-GCM-256 + PBKDF2) y File System Access API. Sin dependencias externas, sin servidor. Todo ocurre en el navegador.",
+      techStack: ["JavaScript", "IndexedDB", "Web Crypto API"],
+      githubUrl: "https://github.com/femcodersclub/encrypted-private-notes",
+      demoUrl: "https://femcodersclub.github.io/encrypted-private-notes/",
+      image: "/assets/javascript/web-apis-nueva-generacion.webp",
+      imageAlt: "Encrypted Private Notes — Notas encriptadas con Web APIs en JavaScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "junio 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion",
+      postTitle: "Web APIs de nueva generación en JavaScript: más allá del localStorage",
+      difficulty: "Avanzado",
+    },
     {
       id: "10",
       name: "productivity-dashboard-js — Dashboard Modular",

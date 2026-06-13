@@ -75,16 +75,61 @@ const AboutPage: React.FC = () => {
         <meta name="language" content="Spanish" />
 
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "FemCoders Club",
+            "alternateName": ["Fem Coders Club", "femcodersclub", "femCoders Club"],
+            "url": "https://www.femcodersclub.com",
+            "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
+            "description": "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y 40 eventos organizados.",
+            "foundingDate": "2023-10-24",
+            "email": "info@femcodersclub.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Barcelona",
+              "addressCountry": "ES"
+            },
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "value": 6,
+              "description": "Co-fundadoras"
+            },
+            "sameAs": [
+              "https://www.instagram.com/femcoders_club/",
+              "https://www.linkedin.com/company/fem-coders-club/",
+              "https://www.youtube.com/@FemcodersClub",
+              "https://github.com/femcodersclub",
+              "https://x.com/FemCodersClub"
+            ],
+            "founder": [
+              { "@type": "Person", "name": "Irina Ichim", "jobTitle": "Fullstack Software Developer & AI Specialist", "sameAs": "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
+              { "@type": "Person", "name": "Ana Lucía Silva Córdoba", "jobTitle": "Fullstack Developer & Data Science", "sameAs": "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
+              { "@type": "Person", "name": "Elvia Benedith", "jobTitle": "Full-stack Web Developer", "sameAs": "https://www.linkedin.com/in/elvia-benedith" },
+              { "@type": "Person", "name": "Silvina Lucero Calderón", "jobTitle": "Full Stack Developer & QA", "sameAs": "https://www.linkedin.com/in/silvina-lucero" },
+              { "@type": "Person", "name": "Liliana Dalmarco", "jobTitle": "Fullstack Developer & Scrum Master", "sameAs": "https://www.linkedin.com/in/lilianadalmarco" },
+              { "@type": "Person", "name": "Isadora Matias", "jobTitle": "Full Stack Developer & Designer", "sameAs": "https://www.linkedin.com/in/isadoramatias/" }
+            ],
+            "knowsAbout": [
+              "mujeres en tecnología", "diversidad en tech", "desarrollo web", "JavaScript", "CSS", "HTML", "React", "inteligencia artificial", "open source"
+            ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "Quiénes somos — FemCoders Club",
+            "url": "https://www.femcodersclub.com/femcoders-quienes-somos",
+            "description": "FemCoders Club es una asociación registrada fundada en Barcelona en octubre de 2023. Misión, visión, valores y equipo fundador de la comunidad de mujeres en tecnología con más de 1.500 miembros.",
+            "inLanguage": "es",
+            "isPartOf": { "@type": "WebSite", "url": "https://www.femcodersclub.com" },
+            "about": {
               "@type": "Organization",
               "name": "FemCoders Club",
-              "url": "https://www.femcodersclub.com",
-              "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
-              "description": "Comunidad que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital."
+              "url": "https://www.femcodersclub.com"
             }
-          `}
+          })}
         </script>
       </Helmet>
 

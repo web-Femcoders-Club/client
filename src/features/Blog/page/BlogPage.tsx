@@ -390,6 +390,14 @@ const BlogPage: React.FC = () => {
   description: "Crónica del taller práctico en el Canòdrom con Elvia Benedith (Pokecode): levantamos Decidim en local, exploramos su arquitectura Rails modular y descubrimos que contribuir al open source está más cerca de lo que parece.",
   createdAt: new Date("2026-06-03"),
 },
+{
+  id: 42,
+  type: "recurso",
+  category: "javascript",
+  title: "Web APIs de nueva generación en JavaScript: más allá del localStorage",
+  description: "IndexedDB, Web Crypto API y File System Access API: persistencia estructurada, encriptación AES-GCM-256 real y acceso a ficheros sin servidor. Proyecto práctico: Encrypted Private Notes, sin dependencias externas.",
+  createdAt: new Date("2026-06-12"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -496,6 +504,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/modulos-arquitectura-escalable`;
  case "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails":
   return `/noticias/taller-decidim-hacks`;
+ case "Web APIs de nueva generación en JavaScript: más allá del localStorage":
+  return `/recursos/js/web-apis-nueva-generacion`;
       default:
         return `/`;
     }

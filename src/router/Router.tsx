@@ -170,6 +170,9 @@ const PatronesDisenioJavaScript = lazy(
 const ModulosArquitecturaEscalable = lazy(
   () => import("../features/Blog/posts/recursos/js/ModulosArquitecturaEscalable")
 );
+const WebApisNuevaGeneracion = lazy(
+  () => import("../features/Blog/posts/recursos/js/WebApisNuevaGeneracion")
+);
 const TallerDecidimElvia = lazy(
   () => import("../features/Blog/posts/noticias/TallerDecidimElvia")
 );
@@ -734,6 +737,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ModulosArquitecturaEscalable />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/web-apis-nueva-generacion"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <WebApisNuevaGeneracion />
                 </Suspense>
               </Layout>
             }
