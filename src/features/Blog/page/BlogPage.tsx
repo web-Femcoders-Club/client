@@ -398,6 +398,14 @@ const BlogPage: React.FC = () => {
   description: "IndexedDB, Web Crypto API y File System Access API: persistencia estructurada, encriptación AES-GCM-256 real y acceso a ficheros sin servidor. Proyecto práctico: Encrypted Private Notes, sin dependencias externas.",
   createdAt: new Date("2026-06-12"),
 },
+{
+  id: 43,
+  type: "recurso",
+  category: "javascript",
+  title: "Optimización en JavaScript: mide antes de tocar una línea",
+  description: "Debounce, throttle, memoization y detección de memory leaks medidos con datos reales, no con intuiciones. Proyecto práctico: perf-lab-js, un toolkit de profiling y benchmarking sin dependencias.",
+  createdAt: new Date("2026-06-27"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -506,6 +514,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/taller-decidim-hacks`;
  case "Web APIs de nueva generación en JavaScript: más allá del localStorage":
   return `/recursos/js/web-apis-nueva-generacion`;
+ case "Optimización en JavaScript: mide antes de tocar una línea":
+  return `/recursos/js/optimizacion-javascript`;
       default:
         return `/`;
     }

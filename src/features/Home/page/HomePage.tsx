@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "14",
+      title: "Optimización en JavaScript: mide antes de tocar una línea",
+      description:
+        "Debounce, throttle, memoization y detección de memory leaks medidos con datos reales, no con intuiciones. Proyecto práctico: perf-lab-js, un toolkit de profiling y benchmarking sin dependencias.",
+      image: "/assets/javascript/optimizacion-javascript.webp",
+      imageAlt: "Optimización en JavaScript: mide antes de tocar una línea — femCoders Club",
+      date: "27 Junio 2026",
+      category: "Recursos",
+      link: "/recursos/js/optimizacion-javascript",
+    },
+    {
       id: "13",
       title: "Web APIs de nueva generación en JavaScript: más allá del localStorage",
       description:
@@ -582,6 +593,25 @@ const HomePage: React.FC = () => {
     },
       ];
   const githubProjectsData = [
+    {
+      id: "12",
+      name: "perf-lab-js — Toolkit de Profiling y Benchmarking",
+      description:
+        "Toolkit de profiling y benchmarking en vanilla JavaScript: benchmark con warm-up y estadística real, profiler para funciones síncronas y asíncronas, y memory sampler con detección de fugas por tendencia. Sin dependencias, sin build.",
+      techStack: ["JavaScript", "Profiling", "Benchmarking"],
+      githubUrl: "https://github.com/femcodersclub/performance-audit-tool-js",
+      demoUrl: "https://femcodersclub.github.io/performance-audit-tool-js/",
+      image: "/assets/javascript/optimizacion-javascript.webp",
+      imageAlt: "perf-lab-js — Toolkit de profiling y benchmarking en JavaScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "junio 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/optimizacion-javascript",
+      postTitle: "Optimización en JavaScript: mide antes de tocar una línea",
+      difficulty: "Intermedio",
+    },
     {
       id: "11",
       name: "encrypted-private-notes — Notas Privadas Encriptadas",

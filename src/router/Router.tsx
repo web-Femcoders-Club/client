@@ -173,6 +173,9 @@ const ModulosArquitecturaEscalable = lazy(
 const WebApisNuevaGeneracion = lazy(
   () => import("../features/Blog/posts/recursos/js/WebApisNuevaGeneracion")
 );
+const OptimizacionJavaScript = lazy(
+  () => import("../features/Blog/posts/recursos/js/OptimizacionJavaScript")
+);
 const TallerDecidimElvia = lazy(
   () => import("../features/Blog/posts/noticias/TallerDecidimElvia")
 );
@@ -747,6 +750,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <WebApisNuevaGeneracion />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/optimizacion-javascript"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <OptimizacionJavaScript />
                 </Suspense>
               </Layout>
             }

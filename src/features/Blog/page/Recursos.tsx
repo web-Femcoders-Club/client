@@ -442,6 +442,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Optimización en JavaScript: mide antes de tocar una línea</h3>
+            <p className="intro-text">
+              Aprende a usar debounce, throttle, memoization y a detectar memory
+              leaks midiendo el rendimiento real de tu código. Proyecto práctico:
+              perf-lab-js, un toolkit de profiling y benchmarking sin dependencias.
+            </p>
+          </div>
+          <Link
+            to="/recursos/js/optimizacion-javascript"
+            className="secondary-button"
+            aria-label="Leer más sobre Optimización en JavaScript"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
