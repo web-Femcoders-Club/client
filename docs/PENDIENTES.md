@@ -86,6 +86,51 @@ el JSON-LD de la home. Corregir la ruta.
 
 ---
 
+## Vulnerabilidades reportadas por Dependabot en la rama principal
+
+**Estado:** abierto
+**Impacto:** por determinar — hay una de severidad alta
+**Detectado:** 9 de julio de 2026, avisado por GitHub al hacer push
+
+GitHub reporta **3 vulnerabilidades** en las dependencias de la rama `main`:
+1 de severidad alta y 2 moderadas. No se han revisado todavía.
+
+Consultar el panel de Dependabot del repositorio para ver qué paquetes son.
+
+### Cómo abordarlo
+
+Antes de actualizar nada, distinguir dos cosas:
+
+- **Si la dependencia vulnerable solo se usa en build o en desarrollo**, el riesgo
+  real para las visitantes del sitio es bajo. Actualizar sin prisa.
+- **Si llega al bundle que se sirve al navegador**, es prioritario.
+
+No aceptar en bloque las actualizaciones que propone Dependabot sin mirar si alguna
+es un cambio de versión mayor: puede romper el build sin que sea evidente.
+
+---
+
+## Verificación visual del post de June
+
+**Estado:** abierto
+**Impacto:** bajo
+**Detectado:** 9 de julio de 2026
+
+El post `ColaboracionJune.tsx` se subió sin haberse visto renderizado en el navegador.
+Comprobado que pasa `tsc` y `eslint`, nada más.
+
+Dos puntos concretos a revisar con `npm run dev`:
+
+- **La foto de Silvina** (`Silvina-Lucero-QA-funcional.png`) es vertical, 1086x1448.
+  El avatar la recorta a un cuadrado centrado con `object-fit: cover`, así que puede
+  cortarle la cara si no está centrada verticalmente. Se arregla con
+  `object-position: top` o recortando la imagen cuadrada, como las demás.
+- **La sección "mapas sin mapas"** introduce el primer `<h3>` dentro de un
+  `.highlight-box`. No se le dio estilo propio a propósito, para no alterar los
+  62 `<h3>` que ya existen en otros posts. Confirmar que hereda un estilo legible.
+
+---
+
 ## Los posts no comparten un componente de datos estructurados
 
 **Estado:** abierto
