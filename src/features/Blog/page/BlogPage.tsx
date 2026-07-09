@@ -406,6 +406,14 @@ const BlogPage: React.FC = () => {
   description: "Debounce, throttle, memoization y detección de memory leaks medidos con datos reales, no con intuiciones. Proyecto práctico: perf-lab-js, un toolkit de profiling y benchmarking sin dependencias.",
   createdAt: new Date("2026-06-27"),
 },
+{
+  id: 44,
+  type: "noticia",
+  category: "femCoders",
+  title: "FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género",
+  description: "FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, una plataforma para documentar la violencia política de género y la censura digital en España.",
+  createdAt: new Date("2026-07-05"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -516,6 +524,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/web-apis-nueva-generacion`;
  case "Optimización en JavaScript: mide antes de tocar una línea":
   return `/recursos/js/optimizacion-javascript`;
+ case "FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género":
+  return `/noticias/colaboracion-june`;
       default:
         return `/`;
     }

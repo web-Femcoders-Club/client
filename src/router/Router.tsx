@@ -179,6 +179,9 @@ const OptimizacionJavaScript = lazy(
 const TallerDecidimElvia = lazy(
   () => import("../features/Blog/posts/noticias/TallerDecidimElvia")
 );
+const ColaboracionJune = lazy(
+  () => import("../features/Blog/posts/noticias/ColaboracionJune")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -770,6 +773,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <TallerDecidimElvia />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/colaboracion-june"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ColaboracionJune />
                 </Suspense>
               </Layout>
             }

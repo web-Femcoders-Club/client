@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "15",
+      title: "FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género",
+      description:
+        "FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, una plataforma para documentar la violencia política de género y la censura digital en España.",
+      image: "/assets/noticias/colaboracion-june.png",
+      imageAlt: "FemCoders Club colabora en el desarrollo de June, plataforma de In CoDe contra la violencia digital de género",
+      date: "5 Julio 2026",
+      category: "Noticias",
+      link: "/noticias/colaboracion-june",
+    },
+    {
       id: "14",
       title: "Optimización en JavaScript: mide antes de tocar una línea",
       description:
