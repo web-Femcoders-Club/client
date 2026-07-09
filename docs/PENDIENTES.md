@@ -27,12 +27,23 @@ no es la imagen del post: es siempre el logo de FemCoders Club.
 4. El script `build` de `package.json` **no ejecuta `react-snap`**. El prerenderizado
    solo ocurre en `build:local-seo`.
 
-### Hipótesis por confirmar
+5. **El despliegue de producción no prerenderiza.** `nixpacks.toml` solo declara la
+   fase de arranque (`npx serve -s dist`). Al no declarar fase de build, Nixpacks
+   ejecuta el script `build` de `package.json`, que es
+   `optimize && tsc && vite build`: sin `react-snap`. El HTML que sirve Railway es
+   el `index.html` genérico para todas las rutas.
 
-- ¿Qué script usa el despliegue en producción? Si usa `build` y no `build:local-seo`,
-  ningún post se está prerenderizando y eso explica el problema por completo.
+Con esto, la causa queda explicada por completo: no hay ningún HTML por ruta que
+pueda contener las metaetiquetas del post.
+
+### Por confirmar
+
 - Revisar si la configuración `reactSnap` de `package.json` incluye las rutas de los
-  posts individuales, o solo las páginas principales.
+  posts individuales, o solo las páginas principales. Es relevante para la vía del
+  prerenderizado.
+- Confirmar en los logs de build de Railway que efectivamente se ejecuta `build` y
+  no otro script definido en el panel del servicio (el panel puede sobrescribir lo
+  que infiere Nixpacks).
 
 ### Vías de solución (por evaluar, no decididas)
 
