@@ -182,6 +182,9 @@ const TallerDecidimElvia = lazy(
 const ColaboracionJune = lazy(
   () => import("../features/Blog/posts/noticias/ColaboracionJune")
 );
+const IaGeminiJavaScript = lazy(
+  () => import("../features/Blog/posts/recursos/js/IaGeminiJavaScript")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -783,6 +786,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ColaboracionJune />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/ia-javascript-gemini"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <IaGeminiJavaScript />
                 </Suspense>
               </Layout>
             }

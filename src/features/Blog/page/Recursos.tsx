@@ -461,6 +461,26 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks</h3>
+            <p className="intro-text">
+              Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin
+              clave expuesta, control de cuota, backoff exponencial, caché LRU y
+              streaming. Proyecto práctico: Smart Refactor Assistant, un
+              asistente de refactor con linter propio y Gemini.
+            </p>
+          </div>
+          <Link
+            to="/recursos/js/ia-javascript-gemini"
+            className="secondary-button"
+            aria-label="Leer más sobre IA en JavaScript: integrar la API gratuita de Gemini"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

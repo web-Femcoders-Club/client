@@ -414,6 +414,14 @@ const BlogPage: React.FC = () => {
   description: "FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, una plataforma para documentar la violencia política de género y la censura digital en España.",
   createdAt: new Date("2026-07-05"),
 },
+{
+  id: 45,
+  type: "recurso",
+  category: "javascript",
+  title: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
+  description: "Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin clave expuesta, control de cuota, backoff exponencial, caché LRU y streaming. Proyecto práctico: Smart Refactor Assistant, un asistente de refactor con linter propio y Gemini.",
+  createdAt: new Date("2026-07-19"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -526,6 +534,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/optimizacion-javascript`;
  case "FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género":
   return `/noticias/colaboracion-june`;
+ case "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks":
+  return `/recursos/js/ia-javascript-gemini`;
       default:
         return `/`;
     }

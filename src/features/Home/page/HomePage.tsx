@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "16",
+      title: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
+      description:
+        "Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin clave expuesta, control de cuota, backoff exponencial, caché LRU y streaming. Proyecto práctico: Smart Refactor Assistant, un asistente de refactor con linter propio y Gemini.",
+      image: "/assets/javascript/ia-javascript-gemini.webp",
+      imageAlt: "IA en JavaScript: integrar la API gratuita de Gemini sin frameworks — femCoders Club",
+      date: "19 Julio 2026",
+      category: "Recursos",
+      link: "/recursos/js/ia-javascript-gemini",
+    },
+    {
       id: "15",
       title: "FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género",
       description:
@@ -604,6 +615,25 @@ const HomePage: React.FC = () => {
     },
       ];
   const githubProjectsData = [
+    {
+      id: "13",
+      name: "smart-refactor-assistant — Asistente de Refactor con IA",
+      description:
+        "Analiza código JavaScript con un linter propio que detecta anti-patterns al instante y usa la API gratuita de Gemini para explicar, refactorizar y generar tests. Proxy en Node.js nativo, caché LRU, control de cuota y streaming. Sin frameworks.",
+      techStack: ["JavaScript", "Gemini API", "Node.js"],
+      githubUrl: "https://github.com/femcodersclub/smart-refactor-assistant",
+      demoUrl: "https://femcodersclub.github.io/smart-refactor-assistant/",
+      image: "/assets/javascript/ia-javascript-gemini.webp",
+      imageAlt: "smart-refactor-assistant — integración de la API de Gemini en JavaScript",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "julio 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/ia-javascript-gemini",
+      postTitle: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
+      difficulty: "Avanzado",
+    },
     {
       id: "12",
       name: "perf-lab-js — Toolkit de Profiling y Benchmarking",
