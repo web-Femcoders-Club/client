@@ -1,33 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBell,
-  FaBook,
-  FaBolt,
-  FaBullseye,
-  FaCheck,
-  FaCode,
-  FaCogs,
-  FaEye,
-  FaGithub,
-  FaGraduationCap,
-  FaLightbulb,
-  FaMousePointer,
-  FaRocket,
-  FaSlack,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBell, FaBook, FaBolt, FaBullseye, FaCheck, FaCode, FaCogs, FaEye, FaGithub, FaGraduationCap, FaLightbulb, FaMousePointer, FaRocket, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const ManipulacionDomIngeniera: React.FC = () => {
   const postId = 35;
   const publicationDate = "8 de febrero de 2026";
-  const currentUrl = "https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera";
 
   return (
     <article className="blog-post">
@@ -41,7 +23,7 @@ const ManipulacionDomIngeniera: React.FC = () => {
           name="keywords"
           content="manipulaci&oacute;n DOM, event delegation, IntersectionObserver, MutationObserver, custom events, performance DOM, reflow repaint, requestAnimationFrame, JavaScript avanzado, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -52,7 +34,7 @@ const ManipulacionDomIngeniera: React.FC = () => {
           property="og:description"
           content="Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulaci&oacute;n del DOM."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/manipulacion-dom-ingeniera.webp"
@@ -109,58 +91,7 @@ const ManipulacionDomIngeniera: React.FC = () => {
         Manipulaci&oacute;n del DOM como una Ingeniera
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/manipulacion-dom-ingeniera" title="Manipulaci&oacute;n del DOM como una Ingeniera" />
 
       {/* Introducci&oacute;n */}
       <section aria-labelledby="intro-section">

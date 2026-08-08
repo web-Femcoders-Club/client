@@ -1,16 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../Blog/components/CommentsSection";
 import "../../page/PostStyles.css";
+
+import ShareButtons from "../../components/ShareButtons";
 
 const HackBarna2025Announcement: React.FC = () => {
   const postId = 28;
   const publicationDate = "29 de septiembre de 2025";
-  const currentUrl = "https://www.femcodersclub.com/blog/femcoders-club-community-partner-hackbarna-2025";
 
   return ( 
     <div className="blog-post">
@@ -26,7 +24,7 @@ const HackBarna2025Announcement: React.FC = () => {
         />
         <link
           rel="canonical"
-          href="https://www.femcodersclub.com/blog/femcoders-club-community-partner-hackbarna-2025"
+          href="https://www.femcodersclub.com/noticias/HackBarna2025"
         />
         <meta property="og:type" content="article" />
         <meta
@@ -39,7 +37,7 @@ const HackBarna2025Announcement: React.FC = () => {
         />
         <meta
           property="og:url"
-          content="https://www.femcodersclub.com/blog/femcoders-club-community-partner-hackbarna-2025"
+          content="https://www.femcodersclub.com/noticias/HackBarna2025"
         />
         <meta
           property="og:image"
@@ -98,58 +96,7 @@ const HackBarna2025Announcement: React.FC = () => {
         Somos Community Partner de HackBarna 2025
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/HackBarna2025" title="¡FemCoders Club es Community Partner de HackBarna 2025!" />
 
       <p className="intro-text">
         Algunas noticias te llegan y simplemente te sacan una sonrisa inmensa. Esta es una de esas. 

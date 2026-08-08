@@ -2,12 +2,10 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
 import CommentsSection from "../../../Blog/components/CommentsSection";
-import { BsInstagram, BsLinkedin, BsFacebook } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+
+import ShareButtons from "../../components/ShareButtons";
 
 const Bienvenido2025: React.FC = () => {
-  const currentUrl = window.location.href;
   const publicationDate = "3 de enero de 2025";
 
   return (
@@ -22,6 +20,54 @@ const Bienvenido2025: React.FC = () => {
           name="keywords"
           content="femCoders,femCoders Club, comunidad de tecnología, mentorías, programación, HTML, CSS, React, eventos 2025"
         />
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/noticias/Bienvenido2025"
+        />
+
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="¡Bienvenidas a 2025 con FemCoders Club! 🎉"
+        />
+        <meta
+          property="og:description"
+          content="Explora los logros de 2024 y nuestras iniciativas para 2025 en FemCoders Club. Aprende, conecta y crece en nuestra comunidad."
+        />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/noticias/Bienvenido2025"
+        />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/assets/noticias/bienvenido2025.jpg"
+        />
+        <meta
+          property="og:image:alt"
+          content="FemCoders Club da la bienvenida a 2025 con nuevos retos para la comunidad"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="¡Bienvenidas a 2025 con FemCoders Club! 🎉"
+        />
+        <meta
+          name="twitter:description"
+          content="Los logros de 2024 y lo que viene en 2025 para la comunidad de FemCoders Club."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.femcodersclub.com/assets/noticias/bienvenido2025.jpg"
+        />
+
+        <meta
+          property="article:published_time"
+          content="2025-01-03T10:00:00Z"
+        />
+        <meta property="article:author" content="FemCoders Club" />
+        <meta property="article:section" content="Noticias" />
       </Helmet>
 
       <div className="post-image-container">
@@ -35,58 +81,7 @@ const Bienvenido2025: React.FC = () => {
 
       <h1 className="blog-post-title">¡Bienvenidas a 2025 con FemCoders Club! </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/Bienvenido2025" title="femCoders Club - ¡Bienvenidas a 2025! 🎉" />
 
       <p className="intro-text">
       Querida comunidad,<br />

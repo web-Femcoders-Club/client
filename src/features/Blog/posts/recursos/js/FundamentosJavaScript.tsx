@@ -1,27 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBrain,
-  FaBug,
-  FaCheckCircle,
-  FaCogs,
-  FaDownload,
-  FaFire,
-  FaLightbulb,
-  FaRocket,
-  FaSlack,
-  FaTiktok
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBrain, FaBug, FaCheckCircle, FaCogs, FaDownload, FaFire, FaLightbulb, FaRocket } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const FundamentosJavaScript: React.FC = () => {
   const postId = 31; 
   const publicationDate = "25 de noviembre de 2025";
-  const currentUrl = "https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos";
 
   const downloadPresentation = () => {
     const link = document.createElement('a');
@@ -44,7 +32,7 @@ const FundamentosJavaScript: React.FC = () => {
           name="keywords"
           content="fundamentos javascript, aprender javascript, closures javascript, event loop, execution context, prototypes javascript, de css a javascript, tutorial javascript español, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos" />
         
         <meta property="og:type" content="article" />
         <meta
@@ -55,7 +43,7 @@ const FundamentosJavaScript: React.FC = () => {
           property="og:description"
           content="El salto de HTML/CSS a JavaScript explicado sin tecnicismos. Entiende cómo funciona JavaScript por dentro con ejemplos reales."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/public-optimized/desktop/assets/javascript/fundamentos-javascript.webp"
@@ -113,58 +101,7 @@ const FundamentosJavaScript: React.FC = () => {
         Cuando Tu Web Cobra Vida
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/fundamentos-javascript-profundos" title="Los Fundamentos de JavaScript que Realmente Importan" />
 
       <p className="intro-text">
         Con HTML construiste la estructura de tu página web. Con CSS la convertiste en algo visualmente atractivo. 

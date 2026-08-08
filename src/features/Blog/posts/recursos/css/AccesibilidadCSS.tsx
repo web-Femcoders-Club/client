@@ -1,10 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
+
+import ShareButtons from "../../../components/ShareButtons";
 
 const AccesibilidadCSS: React.FC = () => {
   const postId = 23; 
@@ -113,59 +112,7 @@ const AccesibilidadCSS: React.FC = () => {
         Diseñando Experiencias Inclusivas
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href="https://www.instagram.com/?url=https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href="https://twitter.com/share?url=https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href="https://www.tiktok.com/share?url=https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/css/accesibilidad-css" title="Accesibilidad en CSS: Diseñando Experiencias Inclusivas" />
 
       <p className="intro-text">
         En el post anterior{" "}

@@ -1,31 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBook,
-  FaBolt,
-  FaCheck,
-  FaDatabase,
-  FaExclamationTriangle,
-  FaFilter,
-  FaGithub,
-  FaLeaf,
-  FaLightbulb,
-  FaRocket,
-  FaSlack,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBook, FaBolt, FaCheck, FaDatabase, FaExclamationTriangle, FaFilter, FaGithub, FaLeaf, FaLightbulb, FaRocket, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const EstructurasDatosJS: React.FC = () => {
   const postId = 38;
   const publicationDate = "25 de abril de 2026";
-  const currentUrl =
-    "https://www.femcodersclub.com/recursos/js/estructuras-datos-js";
 
   return (
     <article className="blog-post">
@@ -42,7 +26,7 @@ const EstructurasDatosJS: React.FC = () => {
           name="keywords"
           content="Map javascript, Set javascript, WeakMap, WeakSet, LRU Cache javascript, estructuras de datos javascript, entrevistas técnicas javascript, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/estructuras-datos-js" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -53,7 +37,7 @@ const EstructurasDatosJS: React.FC = () => {
           property="og:description"
           content="Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/estructuras-datos-js" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/estructuras-datos-js.webp"
@@ -118,58 +102,7 @@ const EstructurasDatosJS: React.FC = () => {
         Map, Set, WeakMap y WeakSet
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/estructuras-datos-js" title="Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet" />
 
       {/* ── Intro ── */}
       <section aria-labelledby="intro-section">

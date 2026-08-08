@@ -1,16 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaChartLine, FaFistRaised, FaGraduationCap, FaHandshake, FaHandsHelping, FaHeart, FaRocket, FaSlack, FaStar, FaTiktok, FaUsers } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaChartLine, FaFistRaised, FaGraduationCap, FaHandshake, FaHandsHelping, FaHeart, FaRocket, FaStar, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../Blog/components/CommentsSection";
 import "../../page/PostStyles.css";
 
+import ShareButtons from "../../components/ShareButtons";
+
 const SegundoAniversarioFemCoders: React.FC = () => {
   const postId = 30;
   const publicationDate = "24 de octubre de 2025";
-  const currentUrl = "https://www.femcodersclub.com/noticias/segundo-aniversario";
 
   return (
     <div className="blog-post">
@@ -100,58 +99,7 @@ const SegundoAniversarioFemCoders: React.FC = () => {
         Nuestra historia, nuestro equipo y el futuro tecnológico que construimos
       </h2>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/segundo-aniversario" title="Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico" />
 
       <p className="intro-text">
         El pasado 24 de octubre no fue un día más para nosotras. <strong>FemCoders Club cumplió dos años</strong>.
