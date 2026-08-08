@@ -185,6 +185,9 @@ const ColaboracionJune = lazy(
 const IaGeminiJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/IaGeminiJavaScript")
 );
+const HackBarnaAiSummit26 = lazy(
+  () => import("../features/Blog/posts/noticias/HackBarnaAiSummit26")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -796,6 +799,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <IaGeminiJavaScript />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/hackbarna-ai-summit-26"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <HackBarnaAiSummit26 />
                 </Suspense>
               </Layout>
             }

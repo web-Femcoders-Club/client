@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "17",
+      title: "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
+      description:
+        "Repetimos como community partner del hackathon de inteligencia artificial de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers y 48 horas para construir.",
+      image: "/assets/noticias/hackbarna-ai-summit-26.png",
+      imageAlt: "FemCoders Club, community partner de HackBarna AI Summit 26, hackathon de inteligencia artificial en Norrsken House Barcelona",
+      date: "7 Agosto 2026",
+      category: "Noticias",
+      link: "/noticias/hackbarna-ai-summit-26",
+    },
+    {
       id: "16",
       title: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
       description:
@@ -476,17 +487,6 @@ const HomePage: React.FC = () => {
       date: "12 Junio 2026",
       category: "Recursos",
       link: "/recursos/js/web-apis-nueva-generacion",
-    },
-    {
-      id: "12",
-      title: "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
-      description:
-        "Crónica del taller práctico en el Canòdrom con Elvia Benedith (Pokecode): levantamos Decidim en local, exploramos su arquitectura Rails modular y descubrimos que contribuir al open source está más cerca de lo que parece.",
-      image: "/assets/noticias/taller-decidim-elvia.jpeg",
-      imageAlt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club mayo 2026",
-      date: "3 Junio 2026",
-      category: "Noticias",
-      link: "/noticias/taller-decidim-hacks",
     },
     {
       id: "11",

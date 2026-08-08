@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26</h2>
+            <p className="intro-text">
+              Repetimos como community partner del hackathon de inteligencia artificial de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers y 48 horas para construir...
+            </p>
+          </div>
+          <Link to="/noticias/hackbarna-ai-summit-26" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>FemCoders Club colabora en el desarrollo de June, una plataforma para documentar la violencia digital y política de género</h2>
             <p className="intro-text">
               FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, para documentar la violencia política de género y la censura digital en España...
