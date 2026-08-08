@@ -422,6 +422,14 @@ const BlogPage: React.FC = () => {
   description: "Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin clave expuesta, control de cuota, backoff exponencial, caché LRU y streaming. Proyecto práctico: Smart Refactor Assistant, un asistente de refactor con linter propio y Gemini.",
   createdAt: new Date("2026-07-19"),
 },
+{
+  id: 46,
+  type: "noticia",
+  category: "femCoders",
+  title: "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
+  description: "Repetimos como community partner del hackathon de inteligencia artificial de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers y 48 horas para construir.",
+  createdAt: new Date("2026-08-07"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -536,6 +544,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/colaboracion-june`;
  case "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks":
   return `/recursos/js/ia-javascript-gemini`;
+ case "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26":
+  return `/noticias/hackbarna-ai-summit-26`;
       default:
         return `/`;
     }
