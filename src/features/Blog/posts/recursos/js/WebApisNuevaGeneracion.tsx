@@ -1,31 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBook,
-  FaCheck,
-  FaCode,
-  FaCubes,
-  FaDatabase,
-  FaFileCode,
-  FaGithub,
-  FaLightbulb,
-  FaLock,
-  FaMicrochip,
-  FaSlack,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBook, FaCheck, FaCode, FaCubes, FaDatabase, FaFileCode, FaGithub, FaLightbulb, FaLock, FaMicrochip, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const WebApisNuevaGeneracion: React.FC = () => {
   const postId = 42;
   const publicationDate = "12 de junio de 2026";
-  const currentUrl =
-    "https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion";
 
   return (
     <article className="blog-post">
@@ -42,7 +26,7 @@ const WebApisNuevaGeneracion: React.FC = () => {
           name="keywords"
           content="IndexedDB javascript, Web Crypto API, File System Access API, AES-GCM, PBKDF2, encriptación navegador, localStorage alternativa, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -53,7 +37,7 @@ const WebApisNuevaGeneracion: React.FC = () => {
           property="og:description"
           content="IndexedDB, Web Crypto API y File System Access API: las APIs del navegador que reemplazan dependencias externas. Proyecto práctico: Encrypted Private Notes con encriptación extremo a extremo."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/web-apis-nueva-generacion.webp"
@@ -117,58 +101,7 @@ const WebApisNuevaGeneracion: React.FC = () => {
         más allá del localStorage
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/web-apis-nueva-generacion" title="Web APIs de nueva generación en JavaScript: más allá del localStorage" />
 
       {/* ── Intro ── */}
       <section aria-labelledby="intro-section">

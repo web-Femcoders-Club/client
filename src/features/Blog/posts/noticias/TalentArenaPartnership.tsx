@@ -1,13 +1,11 @@
 import React from "react";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../components/CommentsSection";
 
+import ShareButtons from "../../components/ShareButtons";
+
 const TalentArenaPartnership: React.FC = () => {
-  const currentUrl = window.location.href;
   const postId = 21;
 
   return (
@@ -92,58 +90,7 @@ const TalentArenaPartnership: React.FC = () => {
         Hoy celebramos juntas: FemCoders Club es Community Partner de Talent Arena
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/talent-arena-2026-partnership" title="FemCoders Club es Community Partner de Talent Arena 2026" />
 
       <div className="intro-text">
         <p>

@@ -1,2 +1,17 @@
+# Sin la flag -s a proposito, y sin serve.json.
+#
+# Medido con serve@14 sobre el dist real:
+#
+#   -s                        -> el post recibe el index.html generico
+#   -s + rewrites positivos   -> igual, la flag gana antes que la regla
+#   sin -s + catch-all "**"   -> igual, el rewrite tambien atrapa el post
+#   sin -s, sin rewrites      -> el post sirve su og:image correcta
+#
+# Cualquier regla que capture la ruta del post impide servir el HTML que el
+# prerender genera con sus metaetiquetas, que es justo el objetivo. Por eso el
+# build materializa un index.html por ruta publica y un 404.html con la SPA:
+# serve devuelve ese 404.html cuando no encuentra fichero, asi que las rutas
+# privadas, las que llevan parametros y cualquier ruta futura siguen cargando
+# la aplicacion y resolviendose en cliente.
 [start]
-cmd = "npx serve -s dist -l $PORT"
+cmd = "npx serve dist -l $PORT"

@@ -1,34 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBook,
-  FaBolt,
-  FaCheck,
-  FaCode,
-  FaComments,
-  FaDatabase,
-  FaGithub,
-  FaKey,
-  FaLightbulb,
-  FaServer,
-  FaShieldAlt,
-  FaSlack,
-  FaStream,
-  FaTachometerAlt,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBook, FaBolt, FaCheck, FaCode, FaComments, FaDatabase, FaGithub, FaKey, FaLightbulb, FaServer, FaShieldAlt, FaStream, FaTachometerAlt, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const IaGeminiJavaScript: React.FC = () => {
   const postId = 45;
   const publicationDate = "19 de julio de 2026";
-  const currentUrl =
-    "https://www.femcodersclub.com/recursos/js/ia-javascript-gemini";
 
   return (
     <article className="blog-post">
@@ -45,7 +26,7 @@ const IaGeminiJavaScript: React.FC = () => {
           name="keywords"
           content="integración de gemini en javascript, api de gemini, ia en javascript, api gratuita de ia, gemini javascript, streaming gemini, caché lru, backoff exponencial, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/ia-javascript-gemini" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -56,7 +37,7 @@ const IaGeminiJavaScript: React.FC = () => {
           property="og:description"
           content="Cómo integrar Gemini en un proyecto JavaScript real sin frameworks: proxy en Node nativo, control de cuota, backoff exponencial, caché LRU y streaming token a token."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/ia-javascript-gemini" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/ia-javascript-gemini.webp"
@@ -120,58 +101,7 @@ const IaGeminiJavaScript: React.FC = () => {
         integra la API gratuita de Gemini sin frameworks
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/ia-javascript-gemini" title="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks" />
 
       {/* ── Intro ── */}
       <section aria-labelledby="intro-section">

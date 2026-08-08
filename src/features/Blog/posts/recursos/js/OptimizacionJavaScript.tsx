@@ -1,31 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBook,
-  FaCheck,
-  FaChartLine,
-  FaClock,
-  FaCode,
-  FaExclamationTriangle,
-  FaGithub,
-  FaLightbulb,
-  FaMemory,
-  FaSlack,
-  FaStopwatch,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBook, FaCheck, FaChartLine, FaClock, FaCode, FaExclamationTriangle, FaGithub, FaLightbulb, FaMemory, FaStopwatch, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const OptimizacionJavaScript: React.FC = () => {
   const postId = 43;
   const publicationDate = "27 de junio de 2026";
-  const currentUrl =
-    "https://www.femcodersclub.com/recursos/js/optimizacion-javascript";
 
   return (
     <article className="blog-post">
@@ -42,7 +26,7 @@ const OptimizacionJavaScript: React.FC = () => {
           name="keywords"
           content="optimización javascript, debounce, throttle, memoization, memory leaks javascript, performance javascript, profiling javascript, benchmark javascript, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/optimizacion-javascript" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -53,7 +37,7 @@ const OptimizacionJavaScript: React.FC = () => {
           property="og:description"
           content="Debounce, throttle, memoization y detección de memory leaks: las técnicas que de verdad mueven la aguja, medidas con datos reales en lugar de intuiciones."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/optimizacion-javascript" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/optimizacion-javascript.webp"
@@ -117,58 +101,7 @@ const OptimizacionJavaScript: React.FC = () => {
         mide antes de tocar una línea
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/optimizacion-javascript" title="Optimización en JavaScript: mide antes de tocar una línea" />
 
       {/* ── Intro ── */}
       <section aria-labelledby="intro-section">

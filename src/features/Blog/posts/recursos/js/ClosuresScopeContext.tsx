@@ -1,32 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import {
-  FaBook,
-  FaBolt,
-  FaCheck,
-  FaCode,
-  FaCogs,
-  FaExclamationTriangle,
-  FaGithub,
-  FaGraduationCap,
-  FaLightbulb,
-  FaLock,
-  FaRocket,
-  FaSlack,
-  FaTiktok,
-  FaTools,
-} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaBook, FaBolt, FaCheck, FaCode, FaCogs, FaExclamationTriangle, FaGithub, FaGraduationCap, FaLightbulb, FaLock, FaRocket, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
+import ShareButtons from "../../../components/ShareButtons";
+
 const ClosuresScopeContext: React.FC = () => {
   const postId = 37;
   const publicationDate = "1 de marzo de 2026";
-  const currentUrl =
-    "https://www.femcodersclub.com/recursos/js/closures-scope-context";
 
   return (
     <article className="blog-post">
@@ -43,7 +26,7 @@ const ClosuresScopeContext: React.FC = () => {
           name="keywords"
           content="closures javascript, scope léxico, this javascript, bind call apply, state machine javascript, entrevistas javascript, lexical scope, closure loop, femcoders club"
         />
-        <link rel="canonical" href={currentUrl} />
+        <link rel="canonical" href="https://www.femcodersclub.com/recursos/js/closures-scope-context" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -54,7 +37,7 @@ const ClosuresScopeContext: React.FC = () => {
           property="og:description"
           content="El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva."
         />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content="https://www.femcodersclub.com/recursos/js/closures-scope-context" />
         <meta
           property="og:image"
           content="https://www.femcodersclub.com/assets/javascript/closures-scope-context.webp"
@@ -118,58 +101,7 @@ const ClosuresScopeContext: React.FC = () => {
         Lo que Realmente Pasa en el Motor de JavaScript
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/recursos/js/closures-scope-context" title="Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript" />
 
       {/* ── Intro ── */}
       <section aria-labelledby="intro-section">

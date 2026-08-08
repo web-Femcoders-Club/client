@@ -9,16 +9,16 @@
   "scripts": {
     "dev": "vite",
     "optimize": "tsx optimize-images.ts",
-    "build": "npm run optimize && tsc && vite build",
+    "validate:posts": "tsx scripts/validatePostsMeta.ts",
+    "generate-sitemap": "tsx src/utils/generate-sitemap.ts",
+    "generate:llms": "tsx scripts/generateLlmsTxt.ts",
+    "prerender": "tsx scripts/prerenderMeta.ts",
+    "prebuild": "npm run validate:posts && npm run generate:llms && npm run generate-sitemap",
+    "build": "npm run optimize && tsc && vite build && npm run prerender",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "start": "npm run optimize && serve -s dist",
-    "generate-sitemap": "tsx src/utils/generate-sitemap.ts",
-    "indexnow": "node indexnow.mjs",
-    "generate:static": "tsx generateStaticPages.ts",
-    "build:bing": "pnpm run build && pnpm run preview & sleep 5 && node generateStaticPages.ts && pkill -f 'vite.*preview'",
-    "build:bing:windows": "pnpm run build && start /B pnpm run preview && timeout /t 5 && tsx generateStaticPages.ts && taskkill /F /IM node.exe /FI \"COMMANDLINE:*vite*preview*\""
+    "start": "npm run optimize && serve dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

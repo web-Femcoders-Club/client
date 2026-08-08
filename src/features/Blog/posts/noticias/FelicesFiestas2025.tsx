@@ -1,16 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../Blog/components/CommentsSection";
 import "../../page/PostStyles.css";
 
+import ShareButtons from "../../components/ShareButtons";
+
 const FelicesFiestas2025: React.FC = () => {
   const postId = 32;
   const publicationDate = "28 de diciembre de 2025";
-  const currentUrl = "https://www.femcodersclub.com/noticias/felices-fiestas-2025";
 
   return (
     <div className="blog-post">
@@ -85,58 +83,7 @@ const FelicesFiestas2025: React.FC = () => {
         Felices fiestas: FemCoders Club cierra 2025 y sigue
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/felices-fiestas-2025" title="Felices fiestas: FemCoders Club cierra 2025 y sigue" />
 
       <p className="intro-text">
         Las fiestas están aquí y es momento de parar un poco, mirar atrás y pensar en lo que viene. Este año que termina fue intenso, lleno de aprendizaje y, sobre todo, de conexiones reales.

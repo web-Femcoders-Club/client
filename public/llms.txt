@@ -76,3 +76,245 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 - General: info@femcodersclub.com
 - Partnerships: partnerships@femcodersclub.com
+
+<!-- BEGIN: posts generados automaticamente -->
+
+## Blog posts
+
+Complete index of the 46 articles published on the FemCoders Club blog.
+
+### News (13)
+
+- FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26
+  URL: https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26
+  Published: 2026-08-07
+  Summary: Repetimos como community partner del hackathon de IA de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers. ¿Te apuntas?
+
+- FemCoders Club colabora en el desarrollo de June, una plataforma contra la violencia digital de género
+  URL: https://www.femcodersclub.com/noticias/colaboracion-june
+  Published: 2026-07-05
+  Summary: Nos sumamos como equipo de desarrollo al proyecto June, de la asociación In CoDe, para documentar la violencia política de género y la censura digital en España.
+
+- Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails
+  URL: https://www.femcodersclub.com/noticias/taller-decidim-hacks
+  Published: 2026-06-03
+  Summary: Crónica del taller práctico sobre Decidim en el Canòdrom: entorno local, arquitectura Rails, personalización y comunidad.
+
+- El mes en que dejamos de pedir permiso para ocupar espacio
+  URL: https://www.femcodersclub.com/noticias/marzo-2026-eventos
+  Published: 2026-03-06
+  Summary: Talent Arena, Claude en Barcelona e InfoJobs: marzo 2026 ha sido un mes que deja huella. Y aún no ha terminado.
+
+- FemCoders Club es Community Partner de Talent Arena 2026
+  URL: https://www.femcodersclub.com/noticias/talent-arena-2026-partnership
+  Published: 2026-02-02
+  Summary: Una alianza que celebra la diversidad y el poder del talento colectivo. Descubre qué significa esta colaboración para nuestra comunidad.
+
+- Felices fiestas: FemCoders Club cierra 2025 y sigue
+  URL: https://www.femcodersclub.com/noticias/felices-fiestas-2025
+  Published: 2025-12-28
+  Summary: Más de 1,300 mujeres en tech, logros reales y un 2026 lleno de proyectos. Así cierra FemCoders Club el año 2025.
+
+- Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico
+  URL: https://www.femcodersclub.com/noticias/segundo-aniversario
+  Published: 2025-10-24
+  Summary: De un espacio seguro a una Asociación con +1.300 mujeres en tech. Celebramos 2 años de crecimiento, comunidad y futuro tecnológico.
+
+- ¡FemCoders Club es Community Partner de HackBarna 2025!
+  URL: https://www.femcodersclub.com/noticias/HackBarna2025
+  Published: 2025-09-30
+  Summary: ¡Una noticia que nos llena de orgullo! Somos Community Partner oficial del hackathon de IA más importante de Barcelona. ¡Te esperamos!
+
+- Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA
+  URL: https://www.femcodersclub.com/noticias/EntrevistaNadiaTesting
+  Published: 2025-06-20
+  Summary: Una conversación inspiradora con una de las voces más influyentes en testing de Latinoamérica. Descubre su historia, consejos y visión del futuro del QA.
+
+- DataConnect: Revive una tarde épica de comunidad tech en Barcelona
+  URL: https://www.femcodersclub.com/noticias/DataConnectEvento
+  Published: 2025-06-02
+  Summary: Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada increíble de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen.
+
+- ¡Bienvenidas a 2025 con FemCoders Club! 🎉
+  URL: https://www.femcodersclub.com/noticias/Bienvenido2025
+  Published: 2025-01-03
+  Summary: Explora los logros de 2024 y nuestras iniciativas para 2025 en FemCoders Club. Aprende, conecta y crece en nuestra comunidad.
+
+- femCoders Club - Felices Fiestas 2024
+  URL: https://www.femcodersclub.com/noticias/FelicitacionNavidad
+  Published: 2024-12-22
+  Summary: Felicitamos la Navidad y el Año Nuevo desde femCoders Club, celebrando los logros de 2024 y mirando hacia un 2025 lleno de innovación.
+
+- femCoders Club - Primer Aniversario
+  URL: https://www.femcodersclub.com/noticias/Aniversario
+  Published: 2023-10-24
+  Summary: Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.
+
+### Technical resources (33)
+
+- IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks
+  URL: https://www.femcodersclub.com/recursos/js/ia-javascript-gemini
+  Published: 2026-07-19
+  Summary: Cómo integrar Gemini en un proyecto JavaScript real sin frameworks: proxy en Node nativo, control de cuota, backoff exponencial, caché LRU y streaming token a token.
+
+- Optimización en JavaScript: mide antes de tocar una línea
+  URL: https://www.femcodersclub.com/recursos/js/optimizacion-javascript
+  Published: 2026-06-27
+  Summary: Debounce, throttle, memoization y detección de memory leaks: las técnicas que de verdad mueven la aguja, medidas con datos reales en lugar de intuiciones.
+
+- Web APIs de nueva generación en JavaScript: más allá del localStorage
+  URL: https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion
+  Published: 2026-06-12
+  Summary: IndexedDB, Web Crypto API y File System Access API: las APIs del navegador que reemplazan dependencias externas. Proyecto práctico: Encrypted Private Notes con encriptación extremo a extremo.
+
+- Módulos y Arquitectura Escalable en JavaScript
+  URL: https://www.femcodersclub.com/recursos/js/modulos-arquitectura-escalable
+  Published: 2026-06-03
+  Summary: ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto JavaScript que va a crecer. Proyecto práctico: Productivity Dashboard.
+
+- Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo
+  URL: https://www.femcodersclub.com/recursos/js/patrones-diseno-javascript
+  Published: 2026-05-10
+  Summary: Patrones de diseño en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js.
+
+- Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet
+  URL: https://www.femcodersclub.com/recursos/js/estructuras-datos-js
+  Published: 2026-04-25
+  Summary: Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.
+
+- Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript
+  URL: https://www.femcodersclub.com/recursos/js/closures-scope-context
+  Published: 2026-03-01
+  Summary: El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva.
+
+- Manipulaci&oacute;n del DOM como una Ingeniera
+  URL: https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera
+  Published: 2026-02-08
+  Summary: Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulaci&oacute;n del DOM.
+
+- Event Loop en JavaScript: Cómo Funciona la Asincronía
+  URL: https://www.femcodersclub.com/recursos/js/event-loop-javascript
+  Published: 2026-01-24
+  Summary: Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks y código asíncrono en JavaScript.
+
+- Los Fundamentos de JavaScript que Realmente Importan
+  URL: https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos
+  Published: 2025-11-25
+  Summary: El salto de HTML/CSS a JavaScript explicado sin tecnicismos. Entiende cómo funciona JavaScript por dentro con ejemplos reales.
+
+- Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales
+  URL: https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas
+  Published: 2025-10-17
+  Summary: Quiz interactivo para preparar entrevistas técnicas de CSS. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.
+
+- Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales
+  URL: https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas
+  Published: 2025-09-15
+  Summary: Quiz interactivo para preparar entrevistas técnicas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.
+
+- El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance
+  URL: https://www.femcodersclub.com/recursos/css/css-performance-optimization
+  Published: 2025-08-02
+  Summary: Tutorial completo de optimización CSS: mejora tu PageSpeed de 81 a 97 con técnicas avanzadas, Critical CSS y herramientas de medición profesionales.
+
+- CSS Variables vs Sass: Cuándo usar cada una para máximo impacto
+  URL: https://www.femcodersclub.com/recursos/css/css-variables-vs-sass
+  Published: 2025-07-29
+  Summary: Guía completa para combinar CSS Variables y Sass: arquitectura híbrida, theming dinámico y casos de uso reales para desarrollo frontend moderno.
+
+- SASS: Lleva tu CSS al siguiente nivel
+  URL: https://www.femcodersclub.com/recursos/css/sass-next-level
+  Published: 2025-07-20
+  Summary: Tutorial completo de SASS: desde variables hasta arquitectura 7-1. Incluye proyecto FemPalette interactivo y comparación con CSS moderno.
+
+- Accesibilidad en CSS: Diseñando Experiencias Inclusivas
+  URL: https://www.femcodersclub.com/recursos/css/accesibilidad-css
+  Published: 2025-07-12
+  Summary: Domina la accesibilidad en CSS: contraste, tipografía, navegación por teclado y preferencias del usuario. Con ejemplos reales de sitios web.
+
+- Domina las Animaciones CSS: De Básico a Avanzado
+  URL: https://www.femcodersclub.com/recursos/css/animaciones-css
+  Published: 2025-07-01
+  Summary: Guía completa de animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Aprende performance, accesibilidad y mejores prácticas con ejemplos reales.
+
+- Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada
+  URL: https://www.femcodersclub.com/recursos/css/transiciones-transformaciones
+  Published: 2025-05-25
+  Summary: Guía completa de transformaciones y transiciones CSS 2D y 3D. Aprende rendering pipeline, hardware acceleration, timing functions avanzadas, debugging y ejemplos reales con Dashboard futurista.
+
+- Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y Flexbox
+  URL: https://www.femcodersclub.com/recursos/css/css-grid-flexbox
+  Published: 2025-04-27
+  Summary: Aprende a combinar CSS Grid y Flexbox estratégicamente para crear layouts modernos, complejos y responsivos. Descubre 5 estrategias eficaces y ejemplos prácticos.
+
+- Réplica de Nike Store con React: Un Proyecto E-commerce Completo
+  URL: https://www.femcodersclub.com/recursos/react/nike-store-replica
+  Published: 2025-03-16
+  Summary: Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas.
+
+- Flexbox: El poder de crear layouts flexibles
+  URL: https://www.femcodersclub.com/recursos/css/flexbox
+  Published: 2025-03-02
+  Summary: Descubre cómo utilizar Flexbox en CSS para crear layouts flexibles y responsivos. Ejemplos prácticos y consejos para mejorar tu diseño web.
+
+- Box Model en CSS | Guía Completa con FemCoders Club
+  URL: https://www.femcodersclub.com/recursos/css/box-model
+  Published: 2025-02-16
+  Summary: Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club.
+
+- Domina los Selectores en CSS
+  URL: https://www.femcodersclub.com/recursos/css/selectores-css
+  Published: 2025-01-17
+  Summary: Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos.
+
+- CSS Grid: Domina el sistema de cuadrículas en tu página web
+  URL: https://www.femcodersclub.com/recursos/css/css-grid
+  Published: 2025-01-15
+  Summary: Aprende a usar CSS Grid para crear layouts web profesionales. Guía completa con ejemplos prácticos, compatibilidad con navegadores y optimización de rendimiento.
+
+- Responsive Design: De Principiante a Experta con Media Queries
+  URL: https://www.femcodersclub.com/recursos/css/responsive-design
+  Published: 2025-01-04
+  Summary: Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first con ejemplos prácticos.
+
+- ¿Qué es CSS y cómo usarlo para diseñar páginas web?
+  URL: https://www.femcodersclub.com/recursos/css/introduccion-css
+  Published: 2024-11-15
+  Summary: Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar.
+
+- Integración de Frameworks y Librerías
+  URL: https://www.femcodersclub.com/recursos/html/integracion-frameworks
+  Published: 2023-11-14
+  Summary: Explora cómo combinar HTML con frameworks modernos como React y Svelte para crear aplicaciones dinámicas y escalables.
+
+- Formularios y Tablas en HTML
+  URL: https://www.femcodersclub.com/recursos/html/formularios-y-tablas
+  Published: 2023-11-09
+  Summary: Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos.
+
+- Guía Completa: APIs en HTML para Proyectos Web - femCoders Club
+  URL: https://www.femcodersclub.com/recursos/html/apis-html
+  Published: 2023-11-09
+  Summary: Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras.
+
+- HTML Avanzado para SEO y Accesibilidad
+  URL: https://www.femcodersclub.com/recursos/html/html-seo-accesibilidad
+  Published: 2023-11-05
+  Summary: Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más.
+
+- HTML Semántico y Diseño de Layout
+  URL: https://www.femcodersclub.com/recursos/html/html-semantico
+  Published: 2023-10-30
+  Summary: Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web.
+
+- Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes
+  URL: https://www.femcodersclub.com/recursos/html/elementos-html-clave
+  Published: 2023-10-21
+  Summary: Explora los elementos esenciales de HTML y aprende a enriquecer tus páginas web con imágenes, enlaces, emojis y videos.
+
+- Introducción a HTML: La base de la web
+  URL: https://www.femcodersclub.com/recursos/html/introduccion-html
+  Published: 2023-10-14
+  Summary: Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.
+
+<!-- END: posts generados automaticamente -->

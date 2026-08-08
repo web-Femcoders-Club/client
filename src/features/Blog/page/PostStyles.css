@@ -738,6 +738,46 @@ body {
   transform: scale(1.2);
 }
 
+/* Area tactil minima de 44x44px (WCAG 2.5.5) sobre el icono de 32px */
+.share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 6px;
+}
+
+/* El boton de copiar debe ser indistinguible de los enlaces vecinos */
+.share-copy-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco visible: nunca eliminar el outline */
+.share-link:focus-visible {
+  outline: 3px solid #4737bb;
+  outline-offset: 2px;
+}
+
+.social-icon--copied {
+  color: #1a7f4b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-icon {
+    transition: color 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: none;
+  }
+}
+
 .code-block {
   color: #2a2170;
   padding: 1.2rem;

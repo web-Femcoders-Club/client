@@ -1,13 +1,11 @@
 import React from "react";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import CommentsSection from "../../components/CommentsSection";
 
+import ShareButtons from "../../components/ShareButtons";
+
 const MarzoEventos2026: React.FC = () => {
-  const currentUrl = window.location.href;
   const postId = 36;
 
   return (
@@ -98,58 +96,7 @@ const MarzoEventos2026: React.FC = () => {
         El mes en que dejamos de pedir permiso para ocupar espacio
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/marzo-2026-eventos" title="El mes en que dejamos de pedir permiso para ocupar espacio" />
 
       <div className="intro-text">
         <p>

@@ -2,12 +2,10 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
 import CommentsSection from "../../../Blog/components/CommentsSection";
-import { BsInstagram, BsLinkedin, BsFacebook } from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+
+import ShareButtons from "../../components/ShareButtons";
 
 const FelicitacionNavidad: React.FC = () => {
-  const currentUrl = window.location.href;
   const publicationDate = "22 de diciembre de 2024";
 
   return (
@@ -22,6 +20,56 @@ const FelicitacionNavidad: React.FC = () => {
           name="keywords"
           content="femCoders Club, Navidad, Año Nuevo, comunidad de programación, mujeres en tecnología, inclusión, innovación, mentoring"
         />
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/noticias/FelicitacionNavidad"
+        />
+
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="femCoders Club - Felices Fiestas 2024"
+        />
+        <meta
+          property="og:description"
+          content="Felicitamos la Navidad y el Año Nuevo desde femCoders Club, celebrando los logros de 2024 y mirando hacia un 2025 lleno de innovación."
+        />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/noticias/FelicitacionNavidad"
+        />
+        {/* El post es un video sin fotograma de portada, asi que la vista previa
+            recae en el logo de la comunidad de forma explicita. */}
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/FemCodersClubLogo.png"
+        />
+        <meta
+          property="og:image:alt"
+          content="Logotipo de FemCoders Club, comunidad de mujeres en tecnología"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="femCoders Club - Felices Fiestas 2024"
+        />
+        <meta
+          name="twitter:description"
+          content="Nuestra felicitación navideña a toda la comunidad de femCoders Club."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.femcodersclub.com/FemCodersClubLogo.png"
+        />
+
+        <meta
+          property="article:published_time"
+          content="2024-12-22T10:00:00Z"
+        />
+        <meta property="article:author" content="FemCoders Club" />
+        <meta property="article:section" content="Noticias" />
       </Helmet>
 <div className="video-container">
         <video
@@ -49,58 +97,7 @@ const FelicitacionNavidad: React.FC = () => {
         🎄👩‍💻 Querida comunidad femCoders Club, ¡Felices Fiestas! 👩‍💻🎄
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/FelicitacionNavidad" title="femCoders Club - Felices Fiestas 2024" />
 
       <p className="intro-text">
         En esta época especial, queremos hacer una pausa en nuestro código para

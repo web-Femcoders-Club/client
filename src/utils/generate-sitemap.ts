@@ -9,20 +9,11 @@ const __dirname = dirname(__filename);
 const hostname = 'https://www.femcodersclub.com';
 const currentDate = new Date().toISOString().slice(0, 10);
 
-// ❌ Rutas privadas/excluidas
-const excludedRoutes = [
-  '/ofertas-de-trabajo',
-  '/personaliza-perfil',
-  '/presentaciones-destacadas',
-  '/recursos-comunidad-femcoders-club',
-  '/mentoria',
-  '/enviar-documentacion',
-  '/welcome',
-  '/forgot-password',
-  '/reset-password',
-  '/admin',
-  '/stats'
-];
+// ❌ Rutas privadas/excluidas — fuente única compartida con el prerender
+import { PRIVATE_ROUTES } from '../../scripts/privateRoutes';
+import { getPostsIndex } from '../../scripts/postsIndex';
+
+const excludedRoutes = PRIVATE_ROUTES;
 
 // ✅ Rutas estáticas
 const staticRoutes: SitemapItemLoose[] = [
@@ -47,6 +38,15 @@ function getAdditionalRoutesFromRouter(): SitemapItemLoose[] {
     const routes: SitemapItemLoose[] = [];
     let match;
 
+    // Fecha real de publicación por post, leída de su <Helmet>. Usar la fecha
+    // de generación marcaría las 46 URLs como modificadas en cada build, lo que
+    // anula el valor de lastmod como señal de rastreo para Google.
+    const publishedByPath = new Map(
+      getPostsIndex()
+        .filter(post => post.publishedTime)
+        .map(post => [post.path, post.publishedTime.slice(0, 10)])
+    );
+
     while ((match = routeRegex.exec(content)) !== null) {
       const path = match[1];
       if (
@@ -59,7 +59,7 @@ function getAdditionalRoutesFromRouter(): SitemapItemLoose[] {
           url: path,
           changefreq: EnumChangefreq.MONTHLY,
           priority: path.includes('/noticias/') ? 0.7 : 0.8,
-          lastmod: currentDate,
+          lastmod: publishedByPath.get(path) ?? currentDate,
         });
       }
     }

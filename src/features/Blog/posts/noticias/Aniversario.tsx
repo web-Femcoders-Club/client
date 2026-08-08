@@ -2,19 +2,12 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import "../../page/PostStyles.css";
 import CommentsSection from "../../../Blog/components/CommentsSection";
-import {
-  BsGithub,
-  BsInstagram,
-  BsLinkedin,
-  BsSpotify,
-  BsYoutube,
-  BsFacebook,
-} from "react-icons/bs";
-import { FaSlack, FaTiktok } from "react-icons/fa"; 
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { BsGithub, BsInstagram, BsLinkedin, BsSpotify, BsYoutube } from "react-icons/bs";
+import { FaSlack } from "react-icons/fa";
+
+import ShareButtons from "../../components/ShareButtons";
 
 const Aniversario: React.FC = () => {
-  const currentUrl = window.location.href;
   const publicationDate = "24 de octubre de 2023";
 
   return (
@@ -29,6 +22,54 @@ const Aniversario: React.FC = () => {
           name="keywords"
           content="femCoders Club, mujeres en tecnología, comunidad de programación, aniversario, inclusión, innovación, mentoring"
         />
+        <link
+          rel="canonical"
+          href="https://www.femcodersclub.com/noticias/Aniversario"
+        />
+
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="femCoders Club - Primer Aniversario"
+        />
+        <meta
+          property="og:description"
+          content="Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas."
+        />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/noticias/Aniversario"
+        />
+        <meta
+          property="og:image"
+          content="https://www.femcodersclub.com/femCodersClubpost.png"
+        />
+        <meta
+          property="og:image:alt"
+          content="femCoders Club celebra su primer aniversario como comunidad de mujeres en tecnología"
+        />
+        <meta property="og:site_name" content="FemCoders Club" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="femCoders Club - Primer Aniversario"
+        />
+        <meta
+          name="twitter:description"
+          content="Un año de comunidad, aprendizaje y mujeres impulsando la tecnología."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.femcodersclub.com/femCodersClubpost.png"
+        />
+
+        <meta
+          property="article:published_time"
+          content="2023-10-24T10:00:00Z"
+        />
+        <meta property="article:author" content="FemCoders Club" />
+        <meta property="article:section" content="Noticias" />
       </Helmet>
       <div className="post-image-container">
         <img
@@ -44,58 +85,7 @@ const Aniversario: React.FC = () => {
         femCoders Club
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir este post en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/Aniversario" title="femCoders Club - Primer Aniversario" />
 
       <p className="intro-text">
         🌟 ¡Bienvenida a la celebración! En <span>femCoders Club</span>, hoy, 24
@@ -165,18 +155,18 @@ const Aniversario: React.FC = () => {
             </a>
 
             <a
-              href={`https://www.instagram.com/?url=${currentUrl}`}
+              href="https://www.instagram.com/femcoders_club/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Compartir este post en Instagram"
+              aria-label="Seguir a FemCoders Club en Instagram"
             >
               <BsInstagram className="social-icon" />
             </a>
             <a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
+              href="https://www.linkedin.com/company/fem-coders-club/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Compartir en LinkedIn"
+              aria-label="Seguir a FemCoders Club en LinkedIn"
             >
               <BsLinkedin className="social-icon" />
             </a>

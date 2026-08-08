@@ -1,13 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { FaGithub, FaSlack, FaTiktok } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 import CommentsSection from "../../components/CommentsSection";
 import "../../page/PostStyles.css";
 
+import ShareButtons from "../../components/ShareButtons";
+
 const TallerDecidimElvia: React.FC = () => {
-  const currentUrl = window.location.href;
   const postId = 41;
 
   return (
@@ -110,58 +109,7 @@ const TallerDecidimElvia: React.FC = () => {
         Ruby on Rails
       </h1>
 
-      <div className="social-share">
-        <div className="share-buttons">
-          <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Facebook"
-          >
-            <BsFacebook className="social-icon" />
-          </a>
-          <a
-            href={`https://www.instagram.com/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Instagram"
-          >
-            <BsInstagram className="social-icon" />
-          </a>
-          <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en LinkedIn"
-          >
-            <BsLinkedin className="social-icon" />
-          </a>
-          <a
-            href={`https://twitter.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en Twitter"
-          >
-            <FaSquareXTwitter className="social-icon" />
-          </a>
-          <a
-            href={`https://www.tiktok.com/share?url=${currentUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Compartir en TikTok"
-          >
-            <FaTiktok className="social-icon" />
-          </a>
-          <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Unirse a Slack"
-          >
-            <FaSlack className="social-icon" />
-          </a>
-        </div>
-      </div>
+      <ShareButtons path="/noticias/taller-decidim-hacks" title="Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails" />
 
       {/* ── Intro ── */}
       <div className="intro-text">
