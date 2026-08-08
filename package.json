@@ -10,7 +10,6 @@
     "dev": "vite",
     "optimize": "tsx optimize-images.ts",
     "build": "npm run optimize && tsc && vite build",
-    "build:local-seo": "npm run optimize && tsc && vite build && (npx react-snap || exit 0)",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
@@ -21,56 +20,6 @@
     "build:bing": "pnpm run build && pnpm run preview & sleep 5 && node generateStaticPages.ts && pkill -f 'vite.*preview'",
     "build:bing:windows": "pnpm run build && start /B pnpm run preview && timeout /t 5 && tsx generateStaticPages.ts && taskkill /F /IM node.exe /FI \"COMMANDLINE:*vite*preview*\""
   },
-  "reactSnap": {
-    "include": [
-      "/",
-      "/femcoders-quienes-somos",
-      "/equipo",
-      "/eventos",
-      "/contacto",
-      "/blog",
-      "/login"
-    ],
-    "crawl": false,
-    "waitFor": 500,
-    "removeBlobs": true,
-    "fixWebpackChunksIssue": false,
-    "skipThirdPartyRequests": true,
-    "concurrency": 1,
-    "timeout": 20000,
-    "source": "dist",
-    "destinationDir": "dist",
-    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--disable-accelerated-2d-canvas",
-      "--no-first-run",
-      "--no-zygote",
-      "--disable-gpu",
-      "--disable-extensions",
-      "--disable-web-security",
-      "--disable-features=VizDisplayCompositor"
-    ],
-    "inlineCss": true,
-    "minifyHtml": {
-      "collapseWhitespace": true,
-      "removeComments": false
-    },
-    "minifyCss": {
-      "level": 1
-    },
-    "ignoreForPrerender": [
-      "/404",
-      "/admin/*",
-      "/register/*"
-    ],
-    "removeStyleTags": false,
-    "asyncScriptTags": false,
-    "cacheAjaxRequests": false,
-    "preloadImages": false
-  },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tanstack/react-query": "^5.101.4",
@@ -80,10 +29,6 @@
     "date-fns": "^3.6.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.4.0",
-    "imagemin": "^9.0.1",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^10.0.0",
-    "imagemin-webp": "^8.0.0",
     "lucide-react": "^0.416.0",
     "postcss": "^8.5.26",
     "qrcode": "^1.5.4",
@@ -92,7 +37,6 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^5.7.0",
     "react-router-dom": "^6.30.4",
-    "react-snap": "^1.23.0",
     "serve": "^14.2.6",
     "sharp": "^0.35.3",
     "sitemap": "^8.0.3"
