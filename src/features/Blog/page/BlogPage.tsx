@@ -430,6 +430,14 @@ const BlogPage: React.FC = () => {
   description: "Repetimos como community partner del hackathon de inteligencia artificial de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers y 48 horas para construir.",
   createdAt: new Date("2026-08-07"),
 },
+{
+  id: 47,
+  type: "noticia",
+  category: "femCoders",
+  title: "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
+  description: "Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 18:30, online y gratuita.",
+  createdAt: new Date("2026-08-17"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -546,6 +554,8 @@ const BlogPage: React.FC = () => {
   return `/recursos/js/ia-javascript-gemini`;
  case "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26":
   return `/noticias/hackbarna-ai-summit-26`;
+ case "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA":
+  return `/noticias/sesion-informativa-hackbarna-ai-summit-26`;
       default:
         return `/`;
     }

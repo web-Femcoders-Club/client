@@ -434,6 +434,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "18",
+      title: "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
+      description:
+        "Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 18:30, online y gratuita.",
+      image: "/assets/noticias/Lilibeth-Bustos-Linares.jpg",
+      imageAlt: "Retrato de Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles y ganadora del AI Summit Hackathon Barcelona 2025",
+      date: "17 Agosto 2026",
+      category: "Noticias",
+      link: "/noticias/sesion-informativa-hackbarna-ai-summit-26",
+    },
+    {
       id: "17",
       title: "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
       description:
