@@ -296,13 +296,21 @@ const RegisterForm: React.FC = () => {
                   }}
                   required
                   aria-required="true"
+                  aria-invalid={!!error && !acceptsPrivacy}
+                  aria-describedby={
+                    error && !acceptsPrivacy ? "register-error" : undefined
+                  }
                 />
                 <label htmlFor="acceptsPrivacy">
                   He leído y acepto la{" "}
                   <button
                     type="button"
                     className="link-button"
-                    onClick={() => openModal("privacyPolicy")}
+                    onClick={(e) => {
+                      // Evita que el clic en el enlace marque/desmarque la casilla.
+                      e.stopPropagation();
+                      openModal("privacyPolicy");
+                    }}
                   >
                     Política de Privacidad
                   </button>
@@ -324,7 +332,7 @@ const RegisterForm: React.FC = () => {
                 </label>
               </div>
 
-              {error && <p className="error-message" role="alert">{error}</p>}
+              {error && <p id="register-error" className="error-message" role="alert">{error}</p>}
               <button type="submit" className="primary-button">
                 Registrarse
               </button>
