@@ -6,6 +6,7 @@ import LegalNoticeModal from "../components/Footer/Modals/LegalNoticeModalProps"
 import PrivacyPolicyModal from "../components/Footer/Modals/Privacidad";
 import Layout from "../components/Layout/Layout";
 import Loader from "../components/Loader";
+import ProtectedRoute from "./ProtectedRoute";
 import { ModalContext } from "../context/ModalContext";
 import AboutPage from "../features/About/page/AboutPage";
 import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
@@ -30,9 +31,6 @@ const IntroduccionCSS = lazy(
 const Stats = lazy(() => import("../components/Stats"));
 const TeamPage = lazy(() => import("../features/Team/page/TeamPage"));
 const LogIn = lazy(() => import("../features/LogIn/page/LoginPage"));
-const ManageComments = lazy(
-  () => import("../features/Admin/components/comment/ManageComments")
-);
 const Admin = lazy(() => import("../features/Admin/page/Admin"));
 const RegisterForm = lazy(() => import("../features/User/page/RegisterForm"));
 const ForgotPasswordForm = lazy(
@@ -307,14 +305,6 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-          <Route
-            path="/admin/comments"
-            element={
-              <Layout>
-                <ManageComments />
-              </Layout>
-            }
-          />
 
           <Route
             path="/login"
@@ -327,9 +317,11 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/admin/*"
             element={
-              <Layout>
-                <Admin />
-              </Layout>
+              <ProtectedRoute requiredRole="admin">
+                <Layout>
+                  <Admin />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -455,9 +447,11 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/admin/achievements"
             element={
-              <Layout>
-                <ManageAchievements />
-              </Layout>
+              <ProtectedRoute requiredRole="admin">
+                <Layout>
+                  <ManageAchievements />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route

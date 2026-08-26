@@ -4,7 +4,7 @@ import {
   getCrmAttendees,
   getCrmAttendeeDetail,
   getCrmAttendeeByDni,
-  getCrmExportUrl,
+  downloadCrmExport,
   getCrmEventAttendees,
   getCrmUsersCrosscheck,
 } from "../../../../api/adminApi";
@@ -668,24 +668,32 @@ const CrmDashboard: React.FC = () => {
                 </button>
               )}
               <div className="flex gap-2 ml-auto">
-                <a
-                  href={getCrmExportUrl("csv")}
-                  download
+                <button
+                  type="button"
+                  onClick={() =>
+                    downloadCrmExport("csv").catch(() =>
+                      alert("No se pudo exportar el CSV. Inténtalo de nuevo.")
+                    )
+                  }
                   className="px-4 py-2 rounded-lg text-white text-sm font-medium flex items-center gap-2"
                   style={{ backgroundColor: "#10B981" }}
                 >
                   <Download className="w-4 h-4" />
                   CSV
-                </a>
-                <a
-                  href={getCrmExportUrl("pdf")}
-                  download
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    downloadCrmExport("pdf").catch(() =>
+                      alert("No se pudo exportar el PDF. Inténtalo de nuevo.")
+                    )
+                  }
                   className="px-4 py-2 rounded-lg text-white text-sm font-medium flex items-center gap-2"
                   style={{ backgroundColor: "#ea4f33" }}
                 >
                   <Download className="w-4 h-4" />
                   PDF
-                </a>
+                </button>
               </div>
             </div>
           </div>

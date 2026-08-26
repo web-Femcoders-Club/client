@@ -35,6 +35,7 @@ const LoginForm: React.FC = () => {
       sessionStorage.setItem("userId", idUser);
       sessionStorage.setItem("authToken", token);
       sessionStorage.setItem("userEmail", email);
+      sessionStorage.setItem("userRole", role || "user");
 
       window.dispatchEvent(new Event("storage"));
 

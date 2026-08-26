@@ -85,10 +85,31 @@ export const getCrmAttendeeDetail = async (email: string): Promise<CrmAttendeeDe
   return response.data;
 };
 
-export const getCrmExportUrl = (format: "csv" | "pdf" = "csv"): string => {
-  const token = sessionStorage.getItem("authToken");
-  const base = `${API_URL}/admin/crm/attendees/export?format=${format}`;
-  return token ? `${base}&token=${token}` : base;
+/**
+ * Descarga el export de asistentes (CSV/PDF) enviando el token en el header
+ * Authorization (no en la query string). Necesario desde que /admin/* exige
+ * Bearer token (guard de seguridad #2): una navegación directa daría 401.
+ */
+export const downloadCrmExport = async (
+  format: "csv" | "pdf" = "csv"
+): Promise<void> => {
+  const response = await fetch(
+    `${API_URL}/admin/crm/attendees/export?format=${format}`,
+    { headers: getAuthHeaders() }
+  );
+  if (!response.ok) {
+    throw new Error(`Error al exportar (${response.status})`);
+  }
+  const blob = await response.blob();
+  const date = new Date().toISOString().substring(0, 10);
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `femcoders-asistentes-${date}.${format}`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 };
 
 export const getCrmEventAttendees = async (eventId: string): Promise<CrmEventAttendeesResponse> => {
