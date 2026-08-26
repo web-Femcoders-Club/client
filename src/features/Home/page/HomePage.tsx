@@ -1,6 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
+import { ModalContext } from "../../../context/ModalContext";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
@@ -41,6 +42,10 @@ const HomePage: React.FC = () => {
     seconds: 0,
   });
   const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState<boolean>(false);
+  const { openModal } = useContext(ModalContext);
   const form = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
@@ -411,6 +416,8 @@ const HomePage: React.FC = () => {
       message: formData.get("message"),
     };
 
+    setIsSubmitting(true);
+    setErrorMessage(null);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/email-formulario/send`,
@@ -424,12 +431,18 @@ const HomePage: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Error enviando el formulario.");
+        throw new Error("No se pudo enviar el mensaje. Inténtalo de nuevo.");
       }
 
       setShowMessage(true);
+      form.current.reset();
+      setAcceptedPrivacy(false);
     } catch (error) {
-      console.error(error);
+      setErrorMessage(
+        error instanceof Error ? error.message : "Error al enviar el mensaje."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
   const newsData: NewsItem[] = [
@@ -1812,8 +1825,43 @@ const HomePage: React.FC = () => {
                   <textarea id="message" name="message" required></textarea>
                   <label htmlFor="message">Mensaje</label>
                 </div>
-                <button type="submit" className="accent-button">
-                  Enviar
+                <div className="form-consent">
+                  <input
+                    type="checkbox"
+                    id="homePrivacy"
+                    name="homePrivacy"
+                    checked={acceptedPrivacy}
+                    onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                    required
+                    aria-required="true"
+                  />
+                  <label htmlFor="homePrivacy">
+                    He leído y acepto la{" "}
+                    <button
+                      type="button"
+                      className="link-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal("privacyPolicy");
+                      }}
+                    >
+                      Política de Privacidad
+                    </button>
+                    . <span aria-hidden="true">*</span>
+                  </label>
+                </div>
+                {errorMessage && (
+                  <p className="form-error" role="alert">
+                    {errorMessage}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="accent-button"
+                  disabled={isSubmitting || !acceptedPrivacy}
+                  aria-busy={isSubmitting}
+                >
+                  {isSubmitting ? "Enviando…" : "Enviar"}
                 </button>
               </form>
             </div>
