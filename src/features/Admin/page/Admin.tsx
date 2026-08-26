@@ -8,6 +8,7 @@ import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import './Admin.css';
 
 const Admin: React.FC = () => {
+  const userName = sessionStorage.getItem('userName') || 'Administradora';
   return (
     <>
       <Helmet>
@@ -16,7 +17,7 @@ const Admin: React.FC = () => {
       </Helmet>
       <div className="admin-container">
         <div className="admin-header">
-          <h1>Bienvenida, Irina</h1>
+          <h1>Bienvenida, {userName}</h1>
           <h2>Panel de Administración</h2>
           <p>Aquí puedes gestionar miembros, patrocinadores, voluntarios y comentarios.</p>
         </div>
