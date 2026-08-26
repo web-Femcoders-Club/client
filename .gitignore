@@ -31,3 +31,6 @@ certs
 # Documentation
 documentation/
 
+
+# Agentes locales de Claude Code (no versionados, repo público)
+.claude/
