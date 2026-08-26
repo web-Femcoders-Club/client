@@ -115,7 +115,7 @@ const RegisterForm: React.FC = () => {
   ];
 
   return (
-    <div className="login-page bg1">
+    <div className="login-page register-page bg1">
       <div className="login-container">
         <div className="login-background-text">
           <h3 className="typing main-title">¡Únete a nuestra comunidad!</h3>
@@ -126,6 +126,7 @@ const RegisterForm: React.FC = () => {
             <h2 className="typing">Oportunidades</h2>
             <h2 className="typing">Recursos</h2>
             <h2 className="typing">Apoyo Mutuo</h2>
+            <h2 className="typing word-finale">Tu lugar en la tecnología</h2>
           </div>
         </div>
         <div className="login-form-container">
@@ -293,7 +294,7 @@ const RegisterForm: React.FC = () => {
                 <option value="sponsor">Sponsor</option> */}
               </select>
 
-              <div className="form-consent">
+              <div className="register-consent">
                 <input
                   type="checkbox"
                   id="acceptsPrivacy"
@@ -327,7 +328,7 @@ const RegisterForm: React.FC = () => {
                 </label>
               </div>
 
-              <div className="form-consent">
+              <div className="register-consent">
                 <input
                   type="checkbox"
                   id="marketingConsent"

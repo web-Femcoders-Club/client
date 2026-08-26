@@ -48,50 +48,204 @@
 }
 
 .typing {
-  overflow: hidden;
-  border-right: 0.15em solid white;
   white-space: nowrap;
   margin: 0 auto;
-  letter-spacing: 0.15em;
-  animation: typing 4s steps(40, end) infinite,
-    blink-caret 0.75s step-end infinite;
+  letter-spacing: 0.12em;
 }
 
 .words {
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* Sombra muy sutil: da profundidad sin ensuciar los colores de marca sobre
+     el fondo claro (antes era una sombra oscura fuerte pensada para fondo morado). */
+  text-shadow: 0 1px 2px rgba(42, 33, 112, 0.12);
 }
 
+/* Animación ambiental: 6 palabras emergen una a una (con respiro entre ellas)
+   y la secuencia CULMINA con una frase potente que se mantiene más tiempo.
+   Luego el ciclo reinicia, infinito. Ciclo total 24s.
+   Palabras: 6 × 3s = 18s | frase final: 6s. */
 .words .typing {
   display: inline-block;
-  animation-fill-mode: both;
-  margin: 10px 0;
+  margin: 12px 0;
+  border-right: none;
+  white-space: nowrap;
+  overflow: visible;
   opacity: 0;
-  animation: typing 18s ease-in-out infinite;
+  will-change: opacity, transform, filter;
+  animation: word-breathe 24s ease-in-out infinite;
 }
 
 .words .typing:nth-child(1) {
   animation-delay: 0s;
+  color: var(--color-primary);
 }
 .words .typing:nth-child(2) {
-  animation-delay: 4s;
+  animation-delay: 3s;
+  color: var(--color-secondary);
 }
 .words .typing:nth-child(3) {
-  animation-delay: 8s;
+  animation-delay: 6s;
+  color: var(--color-accent);
 }
 .words .typing:nth-child(4) {
-  animation-delay: 12s;
+  animation-delay: 9s;
+  color: var(--color-primary);
 }
 .words .typing:nth-child(5) {
-  animation-delay: 16s;
+  animation-delay: 12s;
+  color: var(--color-secondary);
+}
+.words .typing:nth-child(6) {
+  animation-delay: 15s;
+  color: var(--color-accent);
+}
+
+/* Cada palabra ocupa ~3s de los 24s = 12.5% del ciclo. */
+@keyframes word-breathe {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    filter: blur(7px);
+  }
+  3% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  7% {
+    transform: translateY(-3px) scale(1.015);
+  }
+  9% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  12.5% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.98);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Frase final potente: más grande, en gradiente de marca, aparece tras las 6
+   palabras (delay 18s) y se mantiene 6s antes de reiniciar. Ritmo propio. */
+.words .word-finale {
+  animation: finale-reveal 24s ease-in-out infinite;
+  animation-delay: 18s;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.35em;
+  letter-spacing: 0.04em;
+  background: linear-gradient(100deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+/* Segunda línea de la frase final: invitación, más pequeña. En morado de marca
+   para contrastar sobre el fondo claro. No hereda el gradiente. */
+.words .word-finale-sub {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.6em;
+  letter-spacing: 0.02em;
+  color: var(--color-secondary);
+  -webkit-text-fill-color: var(--color-secondary);
+  text-shadow: none;
+}
+
+@keyframes finale-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    filter: blur(8px);
+  }
+  4% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  8% {
+    transform: scale(1.03);
+  }
+  12% {
+    transform: scale(1);
+  }
+  22% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  25% {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.98);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Respeta a quien prefiere menos movimiento (accesibilidad): sin animación,
+   se muestra solo la frase final fija (el mensaje que queremos que quede). */
+@media (prefers-reduced-motion: reduce) {
+  .words .typing {
+    animation: none;
+    opacity: 0;
+  }
+  .words .word-finale {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .main-title {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
 
 .main-title {
-  animation-delay: 20s;
   font-size: 2em;
   margin-bottom: 20px;
   opacity: 0;
-  animation: typing 18s ease-in-out infinite;
+  border-right: none;
+  /* Sombra suave sobre fondo claro (sobreescribe la sombra oscura global de h3) */
+  text-shadow: 0 1px 3px rgba(42, 33, 112, 0.15);
+  animation: title-glow 24s ease-in-out infinite;
+}
+
+/* El título se mantiene visible casi todo el ciclo, con una entrada elegante
+   y un latido de brillo muy sutil — es el ancla, no parpadea como las palabras. */
+@keyframes title-glow {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(5px);
+  }
+  8% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  92% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+    filter: blur(4px);
+  }
 }
 
 .login-form select {

@@ -21,6 +21,10 @@ const LoginPage: React.FC = () => {
               <h2 className="typing">Liderazgo</h2>
               <h2 className="typing">Crecimiento</h2>
               <h2 className="typing">Desarrollo profesional</h2>
+              <h2 className="typing word-finale">
+                Juntas somos más fuertes
+                <span className="word-finale-sub">Tu comunidad te espera</span>
+              </h2>
             </div>
           </div>
           <div className="login-form-container">

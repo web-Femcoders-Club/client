@@ -97,7 +97,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
         }}
       >
         <img
-          src="/FemCodersClubLogo.png"
+          src="/logo-femcoders-animado.webp"
           alt="FemCoders Club Logo"
           className="form-logo"
           style={{ width: "100px", marginBottom: "1rem" }}

@@ -64,7 +64,7 @@ const LoginForm: React.FC = () => {
     <div className="login-container">
       <div className="login-form">
         <img
-          src="/FemCodersClubLogo.png"
+          src="/logo-femcoders-animado.webp"
           alt="Fem Coders Club Logo"
           className="logo"
         />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import "../components/ForgotPasswordForm.css";
 
 const ResetPasswordForm: React.FC = () => {
@@ -8,6 +9,7 @@ const ResetPasswordForm: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -27,6 +29,8 @@ const ResetPasswordForm: React.FC = () => {
       return;
     }
 
+    setIsSubmitting(true);
+    setError("");
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/reset-password`,
@@ -51,6 +55,8 @@ const ResetPasswordForm: React.FC = () => {
         setError("Ocurrió un error desconocido.");
       }
       setMessage("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -101,11 +107,29 @@ const ResetPasswordForm: React.FC = () => {
             />
             <label htmlFor="confirmPassword">Confirmar Contraseña</label>
           </div>
-          <button type="submit" className="primary-button">
-            Restablecer Contraseña
+          <button
+            type="submit"
+            className="primary-button"
+            disabled={isSubmitting}
+            aria-busy={isSubmitting}
+          >
+            {isSubmitting ? "Restableciendo…" : "Restablecer Contraseña"}
           </button>
-          {message && <p className="success-message">{message}</p>}
-          {error && <p className="error-message">{error}</p>}
+          {message && (
+            <p className="success-message" role="status">
+              {message}
+            </p>
+          )}
+          {error && (
+            <p className="error-message" role="alert">
+              {error}
+            </p>
+          )}
+
+          <Link to="/login" className="back-to-login">
+            <ArrowLeft size={16} aria-hidden="true" />
+            Volver a iniciar sesión
+          </Link>
         </form>
       </div>
       <div className="image-container">

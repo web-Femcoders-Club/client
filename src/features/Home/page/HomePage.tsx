@@ -846,7 +846,7 @@ const HomePage: React.FC = () => {
       techStack: ["SASS", "JavaScript", "HTML", "CSS"],
       githubUrl: "https://github.com/femcodersclub/sass-color-generator",
       demoUrl: "https://femcodersclub.github.io/sass-color-generator/",
-      image: "assets/css/fempalette-generator.gif",
+      image: "assets/css/fempalette-generator.webp",
       imageAlt: "Generador de variables SASS - FemPalette",
       author: "Irina Ichim",
       authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
@@ -1800,8 +1800,8 @@ const HomePage: React.FC = () => {
             data-aos-easing="ease-out-sine"
           >
             <div className="form-card">
-              <OptimizedImage
-                src="FemCodersClubLogo.png"
+              <img
+                src="/logo-femcoders-animado.webp"
                 alt="femCoders Club Logo"
                 className="form-logo"
                 title="FemCoders Club"

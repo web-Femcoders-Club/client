@@ -1,27 +1,31 @@
 /* Estilos del formulario de registro (CSS propio, sin Tailwind).
-   Layout de 2 columnas según el diseño aprobado. Reutiliza tokens de index.css. */
+   TODO va prefijado con .register-page para NO contaminar el login ni otras
+   páginas que comparten las clases genéricas .login-form / .login-container
+   (el CSS es global en Vite). Layout de 2 columnas según el diseño aprobado. */
 
 /* Contenedor del formulario: más ancho para las 2 columnas */
-.login-form-container .login-form {
+.register-page .login-form {
   width: 100%;
   max-width: 560px;
 }
 
 /* Fila de dos campos lado a lado */
-.register-row {
+.register-page .register-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 14px;
 }
 
-.register-field {
+.register-page .register-field {
   display: flex;
   flex-direction: column;
 }
 
-/* Inputs y selects: ancho completo, coherentes entre sí */
-.login-form input,
-.login-form select {
+/* Inputs de texto y selects: ancho completo, coherentes entre sí.
+   Se excluye el checkbox (:not([type="checkbox"])) para que el consentimiento
+   no herede width:100% ni el margin. */
+.register-page .login-form input:not([type="checkbox"]),
+.register-page .login-form select {
   width: 100%;
   padding: 0.65rem 0.75rem;
   margin-bottom: 1rem;
@@ -34,18 +38,18 @@
   box-sizing: border-box;
 }
 
-.login-form input::placeholder {
+.register-page .login-form input::placeholder {
   color: #9a94b8;
 }
 
-.login-form input:focus,
-.login-form select:focus {
+.register-page .login-form input:focus,
+.register-page .login-form select:focus {
   outline: none;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(71, 55, 187, 0.18);
 }
 
-.login-form label {
+.register-page .login-form label {
   display: block;
   margin-bottom: 0.35rem;
   font-weight: 700;
@@ -54,18 +58,46 @@
   text-align: left;
 }
 
+/* Consentimiento del registro: checkbox y texto en una fila (no heredan el
+   layout de bloque de los labels de campo). */
+.register-page .register-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.register-page .register-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0.15rem 0 0;
+  flex-shrink: 0;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.register-page .register-consent label {
+  display: inline;
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+  cursor: pointer;
+}
+
 /* Campo de contraseña con el botón de mostrar/ocultar (el "ojo") */
-.password-field {
+.register-page .password-field {
   position: relative;
   width: 100%;
 }
 
-.password-field input {
-  /* Espacio a la derecha para que el texto no quede debajo del ojo */
+.register-page .password-field input {
   padding-right: 2.75rem;
 }
 
-.password-toggle {
+.register-page .password-toggle {
   position: absolute;
   right: 0.5rem;
   top: 0.55rem;
@@ -80,12 +112,12 @@
   transition: color var(--transition-fast);
 }
 
-.password-toggle:hover {
+.register-page .password-toggle:hover {
   color: var(--color-secondary);
 }
 
 /* Bloque de requisitos de la contraseña (rejilla de 2 columnas) */
-.password-requirements {
+.register-page .password-requirements {
   margin: -0.5rem 0 1rem;
   padding: 0.6rem 0.75rem;
   background: #f7f4fa;
@@ -95,13 +127,13 @@
   text-align: left;
 }
 
-.password-requirements-title {
+.register-page .password-requirements-title {
   margin-bottom: 0.4rem;
   color: var(--color-text-dark);
   font-weight: 700;
 }
 
-.password-requirements-list {
+.register-page .password-requirements-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -110,23 +142,23 @@
   gap: 0.25rem 0.75rem;
 }
 
-.password-requirements-list li {
+.register-page .password-requirements-list li {
   display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-.requirement-met {
+.register-page .requirement-met {
   color: var(--color-success);
 }
 
-.requirement-unmet {
+.register-page .requirement-unmet {
   color: #9a94b8;
 }
 
 /* En móvil, las filas de 2 columnas se apilan */
 @media (max-width: 640px) {
-  .register-row {
+  .register-page .register-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
