@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import "../../LogIn/page/LoginPage.css";
 import "../../LogIn/components/LoginForm.css";
+import "./RegisterForm.css";
 
 const RegisterForm: React.FC = () => {
   const { openModal } = useContext(ModalContext);
@@ -114,7 +115,7 @@ const RegisterForm: React.FC = () => {
   ];
 
   return (
-    <div className="login-page bg1">
+    <div className="login-page register-page bg1">
       <div className="login-container">
         <div className="login-background-text">
           <h3 className="typing main-title">¡Únete a nuestra comunidad!</h3>
@@ -125,29 +126,36 @@ const RegisterForm: React.FC = () => {
             <h2 className="typing">Oportunidades</h2>
             <h2 className="typing">Recursos</h2>
             <h2 className="typing">Apoyo Mutuo</h2>
+            <h2 className="typing word-finale">Tu lugar en la tecnología</h2>
           </div>
         </div>
         <div className="login-form-container">
           <div className="login-form">
             <form onSubmit={handleSubmit}>
-              <label htmlFor="userName">Nombre:</label>
-              <input
-                type="text"
-                id="userName"
-                name="userName"
-                value={formData.userName}
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="userLastName">Apellido:</label>
-              <input
-                type="text"
-                id="userLastName"
-                name="userLastName"
-                value={formData.userLastName}
-                onChange={handleChange}
-                required
-              />
+              <div className="register-row">
+                <div className="register-field">
+                  <label htmlFor="userName">Nombre:</label>
+                  <input
+                    type="text"
+                    id="userName"
+                    name="userName"
+                    value={formData.userName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="register-field">
+                  <label htmlFor="userLastName">Apellido:</label>
+                  <input
+                    type="text"
+                    id="userLastName"
+                    name="userLastName"
+                    value={formData.userLastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
               <label htmlFor="userEmail">Correo Electrónico:</label>
               <input
                 type="email"
@@ -157,119 +165,121 @@ const RegisterForm: React.FC = () => {
                 onChange={handleChange}
                 required
               />
-              <label htmlFor="userPassword">Contraseña:</label>
-              <div className="relative w-full">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="userPassword"
-                  name="userPassword"
-                  value={formData.userPassword}
-                  onChange={handleChange}
-                  onFocus={() => setPasswordFocus(true)}
-                  onBlur={() => setPasswordFocus(false)}
-                  required
-                  className="w-full pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
+              <div className="register-row">
+                <div className="register-field">
+                  <label htmlFor="userPassword">Contraseña:</label>
+                  <div className="password-field">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      id="userPassword"
+                      name="userPassword"
+                      value={formData.userPassword}
+                      onChange={handleChange}
+                      onFocus={() => setPasswordFocus(true)}
+                      onBlur={() => setPasswordFocus(false)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() => setShowPassword(!showPassword)}
+                      aria-label={
+                        showPassword
+                          ? "Ocultar contraseña"
+                          : "Mostrar contraseña"
+                      }
+                      aria-pressed={showPassword}
+                    >
+                      {showPassword ? (
+                        <EyeOff size={20} aria-hidden="true" />
+                      ) : (
+                        <Eye size={20} aria-hidden="true" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+                <div className="register-field">
+                  <label htmlFor="confirmPassword">Repetir Contraseña:</label>
+                  <div className="password-field">
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      aria-label={
+                        showConfirmPassword
+                          ? "Ocultar contraseña"
+                          : "Mostrar contraseña"
+                      }
+                      aria-pressed={showConfirmPassword}
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff size={20} aria-hidden="true" />
+                      ) : (
+                        <Eye size={20} aria-hidden="true" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {passwordFocus && (
-                <div
-                  className="mt-1 p-2 bg-gray-50 rounded-md"
-                  style={{ fontSize: "12px", lineHeight: "1.2" }}
-                >
-                  <p
-                    className="text-gray-600 mb-1"
-                    style={{ marginBottom: "4px" }}
-                  >
-                    Requisitos:
-                  </p>
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                <div className="password-requirements">
+                  <p className="password-requirements-title">Requisitos:</p>
+                  <ul className="password-requirements-list">
                     {passwordRequirements.map((req, index) => (
-                      <div
+                      <li
                         key={index}
-                        className="flex items-center gap-1"
-                        style={{ fontSize: "12px" }}
+                        className={
+                          req.met ? "requirement-met" : "requirement-unmet"
+                        }
                       >
-                        <span
-                          className={
-                            req.met ? "text-green-500" : "text-red-500"
-                          }
-                          style={{ fontSize: "12px" }}
-                        >
-                          {req.met ? "✓" : "×"}
-                        </span>
-                        <span
-                          className={
-                            req.met ? "text-green-700" : "text-gray-600"
-                          }
-                          style={{ fontSize: "12px" }}
-                        >
-                          {req.text}
-                        </span>
-                      </div>
+                        <span aria-hidden="true">{req.met ? "✓" : "×"}</span>{" "}
+                        {req.text}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               )}
 
-              <label htmlFor="confirmPassword">Repetir Contraseña:</label>
-              <div className="relative w-full">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className="w-full pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
+              <div className="register-row">
+                <div className="register-field">
+                  <label htmlFor="userTelephone">Teléfono:</label>
+                  <input
+                    type="text"
+                    id="userTelephone"
+                    name="userTelephone"
+                    value={formData.userTelephone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="register-field">
+                  <label htmlFor="userGender">Género:</label>
+                  <select
+                    id="userGender"
+                    name="userGender"
+                    value={formData.userGender}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Selecciona tu género</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="No binario">No binario</option>
+                    <option value="Prefiero no decir">Prefiero no decir</option>
+                  </select>
+                </div>
               </div>
 
-              <label htmlFor="userTelephone">Teléfono:</label>
-              <input
-                type="text"
-                id="userTelephone"
-                name="userTelephone"
-                value={formData.userTelephone}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="userGender">Género:</label>
-              <select
-                id="userGender"
-                name="userGender"
-                value={formData.userGender}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Selecciona tu género</option>
-                <option value="Mujer">Mujer</option>
-                <option value="Hombre">Hombre</option>
-                <option value="No binario">No binario</option>
-                <option value="Prefiero no decir">Prefiero no decir</option>
-              </select>
               <label htmlFor="userRole">Rol:</label>
               <select
                 id="userRole"
@@ -284,7 +294,7 @@ const RegisterForm: React.FC = () => {
                 <option value="sponsor">Sponsor</option> */}
               </select>
 
-              <div className="consent-checkbox">
+              <div className="register-consent">
                 <input
                   type="checkbox"
                   id="acceptsPrivacy"
@@ -318,7 +328,7 @@ const RegisterForm: React.FC = () => {
                 </label>
               </div>
 
-              <div className="consent-checkbox">
+              <div className="register-consent">
                 <input
                   type="checkbox"
                   id="marketingConsent"

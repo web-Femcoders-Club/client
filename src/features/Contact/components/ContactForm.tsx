@@ -1,5 +1,6 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useContext, useRef, useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
+import { ModalContext } from "../../../context/ModalContext";
 
 interface ContactFormProps {
   recipientEmail: string; // Interfaz para las props
@@ -8,6 +9,9 @@ interface ContactFormProps {
 const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState<boolean>(false);
+  const { openModal } = useContext(ModalContext);
   const form = useRef<HTMLFormElement | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -28,6 +32,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
       recipientEmail, // Incluimos recipientEmail en el cuerpo del formulario
     };
 
+    setIsSubmitting(true);
+    setErrorMessage(null);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/email-formulario/send`,
@@ -54,6 +60,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
       setErrorMessage(
         error instanceof Error ? error.message : "Error desconocido."
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -89,7 +97,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
         }}
       >
         <img
-          src="/FemCodersClubLogo.png"
+          src="/logo-femcoders-animado.webp"
           alt="FemCoders Club Logo"
           className="form-logo"
           style={{ width: "100px", marginBottom: "1rem" }}
@@ -247,8 +255,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
             onMouseOut={handleMouseOut}
           />
 
+          <div className="form-consent">
+            <input
+              type="checkbox"
+              id="contactPrivacy"
+              name="contactPrivacy"
+              checked={acceptedPrivacy}
+              onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+              required
+              aria-required="true"
+            />
+            <label htmlFor="contactPrivacy">
+              He leído y acepto la{" "}
+              <button
+                type="button"
+                className="link-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openModal("privacyPolicy");
+                }}
+              >
+                Política de Privacidad
+              </button>
+              . <span aria-hidden="true">*</span>
+            </label>
+          </div>
+
           {errorMessage && (
             <p
+              role="alert"
               style={{
                 color: "red",
                 marginTop: "1rem",
@@ -262,6 +297,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
           <button
             type="submit"
             className="primaryBtn"
+            disabled={isSubmitting || !acceptedPrivacy}
+            aria-busy={isSubmitting}
             style={{
               width: "200px",
               alignSelf: "center",
@@ -271,17 +308,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
               color: "white",
               border: "none",
               borderRadius: "5px",
-              cursor: "pointer",
+              cursor:
+                isSubmitting || !acceptedPrivacy ? "not-allowed" : "pointer",
+              opacity: isSubmitting || !acceptedPrivacy ? 0.7 : 1,
               transition: "background-color 0.3s ease",
             }}
             onMouseOver={(e) =>
+              !isSubmitting &&
+              acceptedPrivacy &&
               (e.currentTarget.style.backgroundColor = "#ea4f33")
             }
             onMouseOut={(e) =>
               (e.currentTarget.style.backgroundColor = "#4737bb")
             }
           >
-            Enviar
+            {isSubmitting ? "Enviando…" : "Enviar"}
           </button>
         </form>
       </div>

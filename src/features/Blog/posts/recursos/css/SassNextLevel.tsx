@@ -226,7 +226,7 @@ $primary-color: #8e44ad; // ¡Listo! 🎉
 
         <div className="post-image-container">
           <img
-            src="/assets/css/fempalette-generator.gif"
+            src="/assets/css/fempalette-generator.webp"
             alt="FemPalette - Generador interactivo de variables SASS con tutorial completo"
             className="blog-post-image"
             loading="lazy"

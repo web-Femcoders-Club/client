@@ -35,6 +35,10 @@
   /* Fuentes */
   --font-primary: "Roboto", sans-serif;
   --font-heading: "Asap Condensed", sans-serif;
+
+  /* Estados */
+  --color-success: #16a34a;
+  --color-error: #ea4f33;
 }
 
 
@@ -658,4 +662,69 @@ span {
     min-width: 36px;
     font-size: 0.875rem;
   }
+}
+
+/* ========================================
+   FORMULARIOS - clases reutilizables
+   ======================================== */
+
+/* Consentimiento RGPD (registro, contacto, home) */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  text-align: left;
+}
+
+.form-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--color-secondary);
+}
+
+.form-consent label {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+  cursor: pointer;
+}
+
+/* Enlace con apariencia de texto pero accesible (abre modales, etc.) */
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: var(--color-primary);
+}
+
+/* Mensaje de error de formulario */
+.form-error {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* Foco visible reforzado (WCAG AAA) en elementos interactivos de formularios.
+   Nunca se elimina el outline. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+.link-button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

@@ -72,7 +72,7 @@ const FelicesFiestas2025: React.FC = () => {
 
       <div className="post-image-container">
         <img
-          src="/assets/noticias/felices-fiestas-2025.gif"
+          src="/assets/noticias/felices-fiestas-2025.webp"
           alt="Felices fiestas de FemCoders Club 2025"
           className="blog-post-image"
           loading="lazy"
