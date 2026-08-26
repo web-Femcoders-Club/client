@@ -39,7 +39,16 @@ const CONFIG = {
   
   // Extensiones de imagen a procesar
   extensions: /\.(jpg|jpeg|png)$/i,
-  
+
+  // Configuración para GIFs animados → WebP animado (mucho más ligero).
+  // El WebP se genera JUNTO al GIF original (mismo nombre, extensión .webp).
+  gif: {
+    // Ancho máximo: los GIFs enormes del blog se reducen; el logo (pequeño) no.
+    maxWidth: 800,
+    quality: 78,
+    effort: 5,
+  },
+
   // Verificar si se ha pasado el argumento --force
   forceReoptimize: process.argv.includes('--force')
 };
@@ -193,6 +202,70 @@ const optimizeImage = async (filePath: string): Promise<boolean> => {
 };
 
 /**
+ * Busca todos los .gif del proyecto (public y subcarpetas, sin public-optimized).
+ */
+const getAllGifs = (dir: string): string[] => {
+  let results: string[] = [];
+  try {
+    for (const file of fs.readdirSync(dir)) {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      if (stat.isDirectory()) {
+        if (path.basename(filePath) === "public-optimized") continue;
+        results = [...results, ...getAllGifs(filePath)];
+      } else if (/\.gif$/i.test(file)) {
+        results.push(filePath);
+      }
+    }
+  } catch (error) {
+    console.error(`❌ Error explorando GIFs en ${dir}:`, error.message);
+  }
+  return results;
+};
+
+/**
+ * Convierte un GIF animado a WebP animado (junto al original, mismo nombre).
+ * Reduce los muy grandes al ancho máximo configurado; los pequeños se mantienen.
+ */
+const optimizeGif = async (filePath: string): Promise<boolean> => {
+  const fileName = path.basename(filePath);
+  const outputPath = filePath.replace(/\.gif$/i, ".webp");
+
+  // Saltar si ya existe un .webp más reciente que el GIF (salvo --force)
+  if (!CONFIG.forceReoptimize && fs.existsSync(outputPath)) {
+    if (fs.statSync(filePath).mtime <= fs.statSync(outputPath).mtime) {
+      console.log(`✅ GIF ya convertido: ${fileName}`);
+      return false;
+    }
+  }
+
+  const sizeKB = fs.statSync(filePath).size / 1024;
+  console.log(`🎞️ Convirtiendo GIF: ${fileName} (${sizeKB.toFixed(0)} KB)`);
+
+  try {
+    // limitInputPixels: false → permite GIFs muy grandes (muchos frames);
+    // el límite por defecto de sharp los rechaza ("exceeds pixel limit").
+    const img = sharp(filePath, { animated: true, limitInputPixels: false });
+    const meta = await img.metadata();
+    // Solo reducir si supera el ancho máximo (el logo pequeño se queda igual)
+    if (meta.width && meta.width > CONFIG.gif.maxWidth) {
+      img.resize({ width: CONFIG.gif.maxWidth, withoutEnlargement: true });
+    }
+    const info = await img
+      .webp({ quality: CONFIG.gif.quality, effort: CONFIG.gif.effort })
+      .toFile(outputPath);
+    const savedPct = ((1 - info.size / fs.statSync(filePath).size) * 100).toFixed(0);
+    console.log(
+      `   ✅ ${fileName} → ${path.basename(outputPath)} (${(info.size / 1024).toFixed(0)} KB, -${savedPct}%)`,
+    );
+    return true;
+  } catch (error) {
+    console.error(`   ❌ Error convirtiendo ${fileName}:`, error.message);
+    return false;
+  }
+};
+
+/**
  * Función principal que inicia el proceso de optimización
  */
 async function optimizeImages() {
@@ -240,11 +313,26 @@ if (CONFIG.forceReoptimize) {
       }
     }
     
+    // Procesar GIFs animados → WebP animado (junto al original)
+    console.log("\n🎞️ Buscando GIFs animados para convertir a WebP...");
+    const gifFiles = getAllGifs(inputFolder);
+    console.log(`   Se encontraron ${gifFiles.length} GIF(s)\n`);
+    let gifOptimizedCount = 0;
+    for (const gif of gifFiles) {
+      try {
+        if (await optimizeGif(gif)) gifOptimizedCount++;
+      } catch (error) {
+        console.error(`❌ Error procesando GIF ${gif}:`, error);
+        errorCount++;
+      }
+    }
+
     // Mostrar resumen
     console.log("\n✨ PROCESO COMPLETADO ✨");
     console.log(`✅ Imágenes optimizadas: ${optimizedCount}`);
     console.log(`⏭️ Imágenes omitidas: ${skippedCount}`);
-    
+    console.log(`🎞️ GIFs convertidos a WebP: ${gifOptimizedCount}`);
+
     if (errorCount > 0) {
       console.log(`❌ Errores encontrados: ${errorCount}`);
     }

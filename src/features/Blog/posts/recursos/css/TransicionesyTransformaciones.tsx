@@ -122,7 +122,7 @@ const TransicionesyTransformaciones: React.FC = () => {
           style={{ textAlign: "center", margin: "20px 0" }}
         >
           <img
-            src="/assets/css/dashboard-futurista-completo.gif"
+            src="/assets/css/dashboard-futurista-completo.webp"
             alt="Dashboard de Control Futurista con transformaciones CSS 2D/3D aplicadas"
             className="rounded-lg shadow-md"
             loading="lazy"

@@ -121,7 +121,7 @@ const AnimacionesCSS: React.FC = () => {
           style={{ textAlign: "center", margin: "20px 0" }}
         >
           <img
-            src="/assets/css/breathe-app-demo.gif"
+            src="/assets/css/breathe-app-demo.webp"
             alt="Aplicación Breathe con animaciones de respiración y efectos visuales CSS"
             className="rounded-lg shadow-md"
             loading="lazy"

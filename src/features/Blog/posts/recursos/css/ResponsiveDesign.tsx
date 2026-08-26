@@ -385,7 +385,7 @@ const ResponsiveDesign: React.FC = () => {
 
         <div className="post-image-container">
           <img
-            src="/assets/css/navigation-evolution.gif"
+            src="/assets/css/navigation-evolution.webp"
             alt="Navegación cambiando de horizontal en desktop a hamburger en móvil"
             className="blog-post-image"
             loading="lazy"
