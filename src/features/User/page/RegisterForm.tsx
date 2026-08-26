@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { ModalContext } from "../../../context/ModalContext";
 import "../../LogIn/page/LoginPage.css";
 import "../../LogIn/components/LoginForm.css";
 
 const RegisterForm: React.FC = () => {
+  const { openModal } = useContext(ModalContext);
   const [formData, setFormData] = useState({
     userName: "",
     userLastName: "",
@@ -16,6 +18,9 @@ const RegisterForm: React.FC = () => {
     userGender: "",
     userRole: "",
   });
+  // Consentimiento RGPD (issue #7): privacidad obligatoria, marketing opcional.
+  const [acceptsPrivacy, setAcceptsPrivacy] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
   const [error, setError] = useState<string>("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -62,6 +67,9 @@ const RegisterForm: React.FC = () => {
     if (!formData.userRole) {
       return "Por favor, selecciona un rol.";
     }
+    if (!acceptsPrivacy) {
+      return "Debes aceptar la política de privacidad para registrarte.";
+    }
     return "";
   };
 
@@ -73,7 +81,8 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
-      const { confirmPassword, ...dataToSend } = formData;
+      const { confirmPassword, ...rest } = formData;
+      const dataToSend = { ...rest, acceptsPrivacy, marketingConsent };
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user`,
         dataToSend
@@ -273,9 +282,57 @@ const RegisterForm: React.FC = () => {
                 <option value="user">Usuario</option>
                 {/* <option value="volunteer">Voluntario</option>
                 <option value="sponsor">Sponsor</option> */}
-              </select> 
+              </select>
 
-              {error && <p className="error-message">{error}</p>}
+              <div className="consent-checkbox">
+                <input
+                  type="checkbox"
+                  id="acceptsPrivacy"
+                  name="acceptsPrivacy"
+                  checked={acceptsPrivacy}
+                  onChange={(e) => {
+                    setAcceptsPrivacy(e.target.checked);
+                    setError("");
+                  }}
+                  required
+                  aria-required="true"
+                  aria-invalid={!!error && !acceptsPrivacy}
+                  aria-describedby={
+                    error && !acceptsPrivacy ? "register-error" : undefined
+                  }
+                />
+                <label htmlFor="acceptsPrivacy">
+                  He leído y acepto la{" "}
+                  <button
+                    type="button"
+                    className="link-button"
+                    onClick={(e) => {
+                      // Evita que el clic en el enlace marque/desmarque la casilla.
+                      e.stopPropagation();
+                      openModal("privacyPolicy");
+                    }}
+                  >
+                    Política de Privacidad
+                  </button>
+                  . <span aria-hidden="true">*</span>
+                </label>
+              </div>
+
+              <div className="consent-checkbox">
+                <input
+                  type="checkbox"
+                  id="marketingConsent"
+                  name="marketingConsent"
+                  checked={marketingConsent}
+                  onChange={(e) => setMarketingConsent(e.target.checked)}
+                />
+                <label htmlFor="marketingConsent">
+                  Quiero recibir la newsletter de FemCoders Club e invitaciones a
+                  futuros eventos por email. Puedo darme de baja cuando quiera.
+                </label>
+              </div>
+
+              {error && <p id="register-error" className="error-message" role="alert">{error}</p>}
               <button type="submit" className="primary-button">
                 Registrarse
               </button>
