@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
 import { getUpcomingEvents } from "../../../api/eventsApi";
-import ConfirmationModal from "../../Contact/components/ConfirmationModal";
+import StatusModal from "../../../components/ui/StatusModal";
 import CarouselWithText from "../components/CarouselWithText";
 import GitHubProjects from "../components/GitHubProjects";
 import NewsSlider, { NewsItem } from "../components/NewsSlider";
@@ -1850,11 +1850,6 @@ const HomePage: React.FC = () => {
                     . <span aria-hidden="true">*</span>
                   </label>
                 </div>
-                {errorMessage && (
-                  <p className="form-error" role="alert">
-                    {errorMessage}
-                  </p>
-                )}
                 <button
                   type="submit"
                   className="accent-button"
@@ -1916,9 +1911,16 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <ConfirmationModal
+      <StatusModal
+        variant="success"
         isVisible={showMessage}
         onClose={() => setShowMessage(false)}
+      />
+      <StatusModal
+        variant="error"
+        isVisible={!!errorMessage}
+        message={errorMessage ?? undefined}
+        onClose={() => setErrorMessage(null)}
       />
     </>
   );

@@ -161,11 +161,6 @@ export type ContactFormProps = {
   recipientEmail: string;
 };
 
-export type ConfirmationModalProps = {
-  isVisible: boolean;
-  onClose: () => void;
-};
-
 export type Event = {
   id: string;
   name: string;
