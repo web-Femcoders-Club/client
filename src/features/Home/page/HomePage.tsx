@@ -480,7 +480,6 @@ const HomePage: React.FC = () => {
         "Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin clave expuesta, control de cuota, backoff exponencial, caché LRU y streaming. Proyecto práctico: Smart Refactor Assistant, un asistente de refactor con linter propio y Gemini.",
       image: "/assets/javascript/ia-javascript-gemini.webp",
       imageAlt: "IA en JavaScript: integrar la API gratuita de Gemini sin frameworks — femCoders Club",
-      aiGenerated: true,
       date: "19 Julio 2026",
       category: "Recursos",
       link: "/recursos/js/ia-javascript-gemini",
