@@ -20,14 +20,13 @@
 }
 
 /* Distintivo de imagen generada por IA (AI Act art. 50).
-   Superpuesto arriba a la derecha: las portadas del blog concentran el
-   contenido (títulos, iconos, pies) en la parte inferior, y ahí el
-   distintivo tapaba texto de la ilustración. Pastilla clara para que se
-   lea sobre cualquier fondo. Morado #372a8f sobre #fdfdfd: 10,9:1 (AAA). */
+   Superpuesto abajo a la izquierda, igual que en el carrusel de la home.
+   Pastilla clara para que se lea sobre cualquier fondo.
+   Morado #372a8f sobre #fdfdfd: 10,9:1 (AAA). */
 .ai-badge {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  left: 12px;
+  bottom: 12px;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -63,8 +62,8 @@
    del borde para acompañar el aire del contenedor. */
 @media (min-width: 1400px) {
   .ai-badge {
-    right: 16px;
-    top: 16px;
+    left: 16px;
+    bottom: 16px;
     font-size: 0.88rem;
   }
 }

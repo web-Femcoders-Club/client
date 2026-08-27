@@ -17,7 +17,7 @@ determinante es si el contenido lo produjo un modelo generativo.
 
 ## Inventario actual (revisión de agosto de 2026)
 
-Las **únicas** imágenes generadas con IA de la web son 7 portadas del blog:
+Las **únicas** imágenes generadas con IA de la web son 6 portadas del blog:
 
 | Post | Imagen |
 |---|---|
@@ -27,12 +27,12 @@ Las **únicas** imágenes generadas con IA de la web son 7 portadas del blog:
 | /recursos/js/optimizacion-javascript | `optimizacion-javascript` |
 | /recursos/js/patrones-diseno-javascript | `patrones-diseno-javascript` |
 | /recursos/js/modulos-arquitectura-escalable | `modulos-arquitectura-escalable` |
-| /recursos/js/ia-javascript-gemini | `ia-javascript-gemini` |
 
 Todo lo demás —imágenes de eventos, home, secciones y el resto de portadas del
 blog— está compuesto a mano en Canva, así que no lleva distintivo. Tampoco lo
 llevan las capturas de pantalla de esos mismos posts (DevTools, profiler,
-benchmarks) ni los retratos de personas.
+benchmarks), la portada de `ia-javascript-gemini` (captura del proyecto real,
+pese al nombre) ni los retratos de personas.
 
 Al publicar una imagen nueva generada con IA, márcala y añádela a esta tabla.
 

@@ -82,7 +82,6 @@ const IaGeminiJavaScript: React.FC = () => {
         mobileSrc="/public-optimized/mobile/assets/javascript/ia-javascript-gemini.webp"
         desktopSrc="/public-optimized/desktop/assets/javascript/ia-javascript-gemini.webp"
         alt="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks"
-        aiGenerated
       />
 
       <h1 className="blog-post-title">
