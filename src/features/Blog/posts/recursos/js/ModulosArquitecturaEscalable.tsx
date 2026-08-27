@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { FaBook, FaCheck, FaCode, FaCubes, FaGithub, FaLightbulb, FaRocket, FaShieldAlt, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import PostImage from "../../../components/PostImage";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
@@ -75,24 +76,13 @@ const ModulosArquitecturaEscalable: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/javascript/modulos-arquitectura-escalable.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/javascript/modulos-arquitectura-escalable.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/javascript/modulos-arquitectura-escalable.webp"
-            alt="Módulos y Arquitectura Escalable en JavaScript"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/javascript/modulos-arquitectura-escalable.webp"
+        mobileSrc="/public-optimized/mobile/assets/javascript/modulos-arquitectura-escalable.webp"
+        desktopSrc="/public-optimized/desktop/assets/javascript/modulos-arquitectura-escalable.webp"
+        alt="Módulos y Arquitectura Escalable en JavaScript"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         Módulos y Arquitectura Escalable

@@ -1,0 +1,91 @@
+/* La imagen mantiene los estilos de .post-image-container / .blog-post-image
+   definidos en PostStyles.css; aquí solo se añade el distintivo de IA. */
+
+.post-figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* El envoltorio se ajusta a la imagen real (no al alto fijo del contenedor),
+   para que el distintivo quede pegado a la imagen y no flotando sobre la
+   banda vacía que deja object-fit: contain. */
+.post-image-frame {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.post-image-frame .blog-post-image {
+  display: block;
+}
+
+/* Distintivo de imagen generada por IA (AI Act art. 50).
+   Superpuesto arriba a la derecha: las portadas del blog concentran el
+   contenido (títulos, iconos, pies) en la parte inferior, y ahí el
+   distintivo tapaba texto de la ilustración. Pastilla clara para que se
+   lea sobre cualquier fondo. Morado #372a8f sobre #fdfdfd: 10,9:1 (AAA). */
+.ai-badge {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(253, 253, 253, 0.96);
+  color: #372a8f;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.ai-badge svg {
+  flex-shrink: 0;
+}
+
+/* Pie de foto opcional, debajo de la imagen. */
+.post-image-caption {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #3f3a63;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Pantallas grandes: la imagen crece, el distintivo se separa un poco más
+   del borde para acompañar el aire del contenedor. */
+@media (min-width: 1400px) {
+  .ai-badge {
+    right: 16px;
+    top: 16px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Móvil, zoom alto y pantallas bajas (móvil en horizontal): la imagen es
+   pequeña y el distintivo taparía contenido de la ilustración se ponga donde
+   se ponga — y arriba puede quedar bajo la cabecera fija. Deja de
+   superponerse y se coloca justo debajo, donde siempre se lee entero. */
+@media (max-width: 768px), (max-height: 500px) {
+  .post-image-frame {
+    line-height: normal;
+  }
+
+  .ai-badge {
+    position: static;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.65rem;
+    box-shadow: none;
+    background: #eceafa;
+    border: 1px solid #c9c2ef;
+  }
+}

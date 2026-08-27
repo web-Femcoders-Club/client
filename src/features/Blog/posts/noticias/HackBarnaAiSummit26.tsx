@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import CommentsSection from "../../components/CommentsSection";
+import PostImage from "../../components/PostImage";
 import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
@@ -150,29 +151,14 @@ const HackBarnaAiSummit26: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/noticias/hackbarna-ai-summit-26.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
-            alt="FemCoders Club, community partner de HackBarna AI Summit 26, hackathon de inteligencia artificial en Norrsken House Barcelona"
-            className="blog-post-image"
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "/assets/noticias/hackbarna-ai-summit-26.png";
-              (e.target as HTMLImageElement).onerror = null;
-            }}
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
+        mobileSrc="/public-optimized/mobile/assets/noticias/hackbarna-ai-summit-26.webp"
+        desktopSrc="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
+        fallbackSrc="/assets/noticias/hackbarna-ai-summit-26.png"
+        alt="FemCoders Club, community partner de HackBarna AI Summit 26, hackathon de inteligencia artificial en Norrsken House Barcelona"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26
