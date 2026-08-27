@@ -1,22 +1,26 @@
-import { Link } from 'react-router-dom';
-
 import './Footer.css';
 import OptimizedImage from '../OptimizedImage';
+import { SLACK_INVITE_URL } from '../../utils/constants';
 
 const SlackButton = () => {
   return (
     <div>
-      <Link to="https://communityinviter.com/apps/femcodersclub/femcoders-club" className="slack-button">
+      {/* Enlace externo: <a>, no <Link> de react-router (lo trataría como ruta interna) */}
+      <a
+        href={SLACK_INVITE_URL}
+        className="slack-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <OptimizedImage
           src="/slack.jpg"
           alt="Slack Logo"
           loading="eager"
         />
         <span> Unirme al Slack </span>
-      </Link>
+      </a>
     </div>
   );
 };
 
 export default SlackButton;
-

@@ -9,6 +9,7 @@ import {
 } from "react-icons/bs";
 import { FaLightbulb, FaRocket, FaSlack, FaUsers } from "react-icons/fa";
 import ContactForm from "../components/ContactForm";
+import { SLACK_INVITE_URL } from "../../../utils/constants";
 import "./ContactPage.css";
 
 const ContactPage: React.FC = () => {
@@ -114,7 +115,7 @@ const ContactPage: React.FC = () => {
               <BsGithub className="social-icon" />
             </a>
             <a
-              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+              href={SLACK_INVITE_URL}
               aria-label="Slack"
               target="_blank"
               rel="noopener noreferrer"
@@ -173,7 +174,7 @@ const ContactPage: React.FC = () => {
             Un espacio seguro para hacer preguntas, celebrar logros y crecer juntas.
           </p>
           <a
-            href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
+            href={SLACK_INVITE_URL}
             className="contact-slack-btn"
             target="_blank"
             rel="noopener noreferrer"

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import "../../LogIn/page/LoginPage.css";
@@ -23,6 +23,8 @@ const RegisterForm: React.FC = () => {
   const [acceptsPrivacy, setAcceptsPrivacy] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [error, setError] = useState<string>("");
+  const [emailTaken, setEmailTaken] = useState(false);
+  const errorRef = useRef<HTMLParagraphElement>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
@@ -33,7 +35,17 @@ const RegisterForm: React.FC = () => {
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError("");
+    setEmailTaken(false);
   };
+
+  // Accesibilidad: al aparecer un error, llevar el foco (y la vista) hasta él
+  // para que la usuaria no tenga que buscarlo por el formulario.
+  useEffect(() => {
+    if (error && errorRef.current) {
+      errorRef.current.focus();
+      errorRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }, [error]);
 
   const validateForm = () => {
     if (
@@ -82,16 +94,34 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
-      const { confirmPassword, ...rest } = formData;
-      const dataToSend = { ...rest, acceptsPrivacy, marketingConsent };
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user`,
-        dataToSend
-      );
-      console.log("Registration successful:", response.data);
+      // confirmPassword es solo de UI: no viaja al backend.
+      const dataToSend: Record<string, unknown> = {
+        ...formData,
+        acceptsPrivacy,
+        marketingConsent,
+      };
+      delete dataToSend.confirmPassword;
+      await axios.post(`${import.meta.env.VITE_API_URL}/user`, dataToSend);
       navigate("/login");
-    } catch (error) {
-      setError("Error al registrarse. Inténtalo de nuevo.");
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        // El backend responde con mensajes claros: 409 = email ya registrado,
+        // 400 = validación (message puede ser un array de errores).
+        const data = err.response.data as { message?: string | string[] };
+        const backendMessage = Array.isArray(data?.message)
+          ? data.message.join(". ")
+          : data?.message;
+        if (err.response.status === 409) {
+          setEmailTaken(true);
+          setError(backendMessage || "Este correo electrónico ya está registrado.");
+        } else {
+          setError(backendMessage || "Error al registrarse. Inténtalo de nuevo.");
+        }
+      } else {
+        setError(
+          "No se pudo conectar con el servidor. Inténtalo de nuevo en unos minutos."
+        );
+      }
     }
   };
 
@@ -342,7 +372,23 @@ const RegisterForm: React.FC = () => {
                 </label>
               </div>
 
-              {error && <p id="register-error" className="error-message" role="alert">{error}</p>}
+              {error && (
+                <p
+                  id="register-error"
+                  className="error-message"
+                  role="alert"
+                  tabIndex={-1}
+                  ref={errorRef}
+                >
+                  {error}
+                  {emailTaken && (
+                    <>
+                      {" "}
+                      ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+                    </>
+                  )}
+                </p>
+              )}
               <button type="submit" className="primary-button">
                 Registrarse
               </button>
