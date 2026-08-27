@@ -1,5 +1,5 @@
 import React, { FormEvent, useContext, useRef, useState } from "react";
-import ConfirmationModal from "./ConfirmationModal";
+import StatusModal from "../../../components/ui/StatusModal";
 import CharCounter from "../../../components/ui/CharCounter";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import { ModalContext } from "../../../context/ModalContext";
@@ -292,19 +292,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
             </label>
           </div>
 
-          {errorMessage && (
-            <p
-              role="alert"
-              style={{
-                color: "red",
-                marginTop: "1rem",
-                textAlign: "center",
-              }}
-            >
-              {errorMessage}
-            </p>
-          )}
-
           <button
             type="submit"
             className="primaryBtn"
@@ -338,9 +325,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
         </form>
       </div>
 
-      <ConfirmationModal
+      <StatusModal
+        variant="success"
         isVisible={showMessage}
         onClose={() => setShowMessage(false)}
+      />
+      <StatusModal
+        variant="error"
+        isVisible={!!errorMessage}
+        message={errorMessage ?? undefined}
+        onClose={() => setErrorMessage(null)}
       />
     </>
   );

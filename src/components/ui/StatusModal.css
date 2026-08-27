@@ -1,0 +1,145 @@
+.status-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(20, 15, 60, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.status-modal {
+  width: min(440px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fdfdfd;
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 40px;
+  box-sizing: border-box;
+}
+
+.status-modal-close-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-modal-close {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.status-modal-close:hover {
+  background: rgba(71, 55, 187, 0.08);
+}
+
+.status-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 40px;
+}
+
+.status-modal-logo {
+  width: 150px;
+  max-width: 100%;
+}
+
+.status-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-modal-icon--success {
+  background: #dcf5e5;
+}
+
+.status-modal-icon--error {
+  background: #fde5df;
+}
+
+.status-modal-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-align: center;
+}
+
+.status-modal-message {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #3f3a63;
+  text-align: center;
+}
+
+.status-modal-message a {
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.status-modal-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* Botón morado: 8.5:1 sobre blanco (AAA). El naranja de marca (#ea4f33)
+   se queda en 3.3:1, por eso aquí no lleva texto encima. */
+.status-modal-primary {
+  min-height: 44px;
+  padding: 10px 32px;
+  background: var(--color-secondary);
+  color: #fdfdfd;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.status-modal-primary:hover {
+  transform: scale(1.05);
+}
+
+.status-modal-secondary {
+  min-height: 44px;
+  padding: 10px 20px;
+  background: none;
+  color: var(--color-secondary);
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.status-modal-close:focus-visible,
+.status-modal-primary:focus-visible,
+.status-modal-secondary:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
