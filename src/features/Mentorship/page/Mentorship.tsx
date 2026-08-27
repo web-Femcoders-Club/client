@@ -6,6 +6,9 @@ import { Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MentorshipLogoAnimation from "../components/MentorshipLogoAnimation";
 import axios from "axios";
+import CharCounter from "../../../components/ui/CharCounter";
+import { useFocusMessage } from "../../../hooks/useFocusMessage";
+import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import "./Mentorship.css";
 
 const MentorshipForm: React.FC = () => {
@@ -14,6 +17,7 @@ const MentorshipForm: React.FC = () => {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [description, setDescription] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
+  const messageRef = useFocusMessage(message);
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
@@ -228,8 +232,15 @@ const MentorshipForm: React.FC = () => {
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Describe brevemente tu necesidad..."
                     required
+                    maxLength={MESSAGE_MAX_LENGTH}
+                    aria-describedby="mentorship-counter"
                     className="form-textarea"
                   ></textarea>
+                  <CharCounter
+                    id="mentorship-counter"
+                    current={description.length}
+                    max={MESSAGE_MAX_LENGTH}
+                  />
                 </div>
 
                 <button
@@ -252,6 +263,9 @@ const MentorshipForm: React.FC = () => {
                     className={`message ${
                       messageType === "error" ? "text-error" : "text-success"
                     }`}
+                    role={messageType === "error" ? "alert" : "status"}
+                    tabIndex={-1}
+                    ref={messageRef}
                   >
                     {message}
                   </p>

@@ -1,5 +1,7 @@
 import React, { FormEvent, useContext, useRef, useState } from "react";
 import StatusModal from "../../../components/ui/StatusModal";
+import CharCounter from "../../../components/ui/CharCounter";
+import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import { ModalContext } from "../../../context/ModalContext";
 
 interface ContactFormProps {
@@ -11,6 +13,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [acceptedPrivacy, setAcceptedPrivacy] = useState<boolean>(false);
+  const [messageLength, setMessageLength] = useState<number>(0);
   const { openModal } = useContext(ModalContext);
   const form = useRef<HTMLFormElement | null>(null);
 
@@ -55,6 +58,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
 
       setShowMessage(true);
       form.current.reset();
+      setMessageLength(0);
       setErrorMessage(null);
     } catch (error) {
       setErrorMessage(
@@ -245,14 +249,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
             name="message"
             title="Message"
             className="textarea"
+            maxLength={MESSAGE_MAX_LENGTH}
+            aria-describedby="contact-message-counter"
+            onChange={(e) => setMessageLength(e.target.value.length)}
             style={{
               border: "1px solid #4737bb",
               padding: "0.5rem",
               borderRadius: "5px",
-              marginBottom: "1rem",
             }}
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
+          />
+          <CharCounter
+            id="contact-message-counter"
+            current={messageLength}
+            max={MESSAGE_MAX_LENGTH}
           />
 
           <div className="form-consent">

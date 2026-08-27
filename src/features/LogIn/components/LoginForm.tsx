@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import PasswordInput from "../../../components/ui/PasswordInput";
+import { useFocusMessage } from "../../../hooks/useFocusMessage";
 import "./LoginForm.css";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const errorRef = useFocusMessage(error);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,14 +81,18 @@ const LoginForm: React.FC = () => {
             required
           />
           <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
+          <PasswordInput
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
             required
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && (
+            <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
+              {error}
+            </p>
+          )}
           <button type="submit" className="primary-button">
             Iniciar Sesión
           </button>

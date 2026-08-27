@@ -1,0 +1,11 @@
+.char-counter {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.85rem;
+  color: #5a5480;
+  text-align: right;
+}
+
+.char-counter--limit {
+  color: #9b2c14;
+  font-weight: 600;
+}

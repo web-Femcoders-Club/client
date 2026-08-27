@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import PasswordInput from "../../../components/ui/PasswordInput";
+import { useFocusMessage } from "../../../hooks/useFocusMessage";
 import "../components/ForgotPasswordForm.css";
 
 const ResetPasswordForm: React.FC = () => {
@@ -10,6 +12,7 @@ const ResetPasswordForm: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const errorRef = useFocusMessage(error);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -88,24 +91,26 @@ const ResetPasswordForm: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <h2>Crear Nueva Contraseña</h2>
           <div className="form-group">
-            <input
-              type="password"
+            <PasswordInput
               id="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
+              autoComplete="new-password"
               required
-            />
-            <label htmlFor="newPassword">Nueva Contraseña</label>
+            >
+              <label htmlFor="newPassword">Nueva Contraseña</label>
+            </PasswordInput>
           </div>
           <div className="form-group">
-            <input
-              type="password"
+            <PasswordInput
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
               required
-            />
-            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            >
+              <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            </PasswordInput>
           </div>
           <button
             type="submit"
@@ -121,7 +126,7 @@ const ResetPasswordForm: React.FC = () => {
             </p>
           )}
           {error && (
-            <p className="error-message" role="alert">
+            <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
               {error}
             </p>
           )}
