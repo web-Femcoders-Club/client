@@ -120,21 +120,10 @@
     rgba(234, 79, 51, 0.1) 100%
   );
   display: flex;
-  justify-content: space-between;
+  /* Sin la etiqueta «Destacado», las estadísticas se mantienen a la derecha. */
+  justify-content: flex-end;
   align-items: flex-start;
   padding: 1.5rem;
-}
-
-.featured-badge {
-  background: linear-gradient(135deg, #ea4f33, #ff6b47);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 1.5rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(234, 79, 51, 0.3);
 }
 
 .project-stats {

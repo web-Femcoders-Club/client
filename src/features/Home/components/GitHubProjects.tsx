@@ -153,9 +153,8 @@ const GitHubProjects: React.FC<GitHubProjectsProps> = ({
               </picture>
             )}
             
-            {/* Overlay superior con badge y stats */}
+            {/* Overlay superior con stats */}
             <div className="featured-overlay">
-              <span className="featured-badge">Destacado</span>
               <div className="project-stats">
                 <span className="stars">⭐ {featuredProject.stars}</span>
                 <span className="language">{featuredProject.language}</span>
