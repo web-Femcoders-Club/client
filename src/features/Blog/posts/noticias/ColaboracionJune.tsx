@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import CommentsSection from "../../components/CommentsSection";
+import PostImage from "../../components/PostImage";
 import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
@@ -159,29 +160,14 @@ const ColaboracionJune: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/noticias/colaboracion-june.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/noticias/colaboracion-june.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/noticias/colaboracion-june.webp"
-            alt="FemCoders Club colabora en el desarrollo de June, plataforma de In CoDe contra la violencia digital de género"
-            className="blog-post-image"
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "/assets/noticias/colaboracion-june.png";
-              (e.target as HTMLImageElement).onerror = null;
-            }}
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/noticias/colaboracion-june.webp"
+        mobileSrc="/public-optimized/mobile/assets/noticias/colaboracion-june.webp"
+        desktopSrc="/public-optimized/desktop/assets/noticias/colaboracion-june.webp"
+        fallbackSrc="/assets/noticias/colaboracion-june.png"
+        alt="FemCoders Club colabora en el desarrollo de June, plataforma de In CoDe contra la violencia digital de género"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         FemCoders Club colabora en el desarrollo de June, una plataforma para

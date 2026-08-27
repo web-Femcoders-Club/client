@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { FaBook, FaCheck, FaChartLine, FaClock, FaCode, FaExclamationTriangle, FaGithub, FaLightbulb, FaMemory, FaStopwatch, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import PostImage from "../../../components/PostImage";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
@@ -76,24 +77,13 @@ const OptimizacionJavaScript: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/javascript/optimizacion-javascript.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/javascript/optimizacion-javascript.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/javascript/optimizacion-javascript.webp"
-            alt="Optimización en JavaScript: mide antes de tocar una línea"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/javascript/optimizacion-javascript.webp"
+        mobileSrc="/public-optimized/mobile/assets/javascript/optimizacion-javascript.webp"
+        desktopSrc="/public-optimized/desktop/assets/javascript/optimizacion-javascript.webp"
+        alt="Optimización en JavaScript: mide antes de tocar una línea"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         Optimización en JavaScript:

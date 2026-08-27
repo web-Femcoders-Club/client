@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { FaBook, FaBolt, FaCheck, FaCode, FaComments, FaDatabase, FaGithub, FaKey, FaLightbulb, FaServer, FaShieldAlt, FaStream, FaTachometerAlt, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import PostImage from "../../../components/PostImage";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
@@ -76,24 +77,13 @@ const IaGeminiJavaScript: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/javascript/ia-javascript-gemini.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/javascript/ia-javascript-gemini.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/javascript/ia-javascript-gemini.webp"
-            alt="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/javascript/ia-javascript-gemini.webp"
+        mobileSrc="/public-optimized/mobile/assets/javascript/ia-javascript-gemini.webp"
+        desktopSrc="/public-optimized/desktop/assets/javascript/ia-javascript-gemini.webp"
+        alt="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         IA en JavaScript:

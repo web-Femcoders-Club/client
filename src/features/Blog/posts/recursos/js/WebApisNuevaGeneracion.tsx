@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { FaBook, FaCheck, FaCode, FaCubes, FaDatabase, FaFileCode, FaGithub, FaLightbulb, FaLock, FaMicrochip, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import PostImage from "../../../components/PostImage";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
@@ -76,24 +77,13 @@ const WebApisNuevaGeneracion: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/javascript/web-apis-nueva-generacion.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/javascript/web-apis-nueva-generacion.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/javascript/web-apis-nueva-generacion.webp"
-            alt="Web APIs de nueva generación en JavaScript"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/javascript/web-apis-nueva-generacion.webp"
+        mobileSrc="/public-optimized/mobile/assets/javascript/web-apis-nueva-generacion.webp"
+        desktopSrc="/public-optimized/desktop/assets/javascript/web-apis-nueva-generacion.webp"
+        alt="Web APIs de nueva generación en JavaScript"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         Web APIs de nueva generación en JavaScript:

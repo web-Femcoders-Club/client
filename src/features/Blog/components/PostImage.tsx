@@ -20,12 +20,14 @@ interface PostImageProps {
   /** Rutas responsive opcionales (variantes móvil/escritorio). */
   mobileSrc?: string;
   desktopSrc?: string;
+  /** Imagen de reserva si falla la optimizada (p. ej. el .png original). */
+  fallbackSrc?: string;
 }
 
 /**
  * Imagen de un post del blog. Unifica el patrón que hasta ahora se repetía a
  * mano en cada post (.post-image-container + .blog-post-image) y añade el
- * distintivo de imagen generada por IA.
+ * distintivo de imagen generada por IA, superpuesto sobre la propia imagen.
  */
 const PostImage: React.FC<PostImageProps> = ({
   src,
@@ -35,6 +37,7 @@ const PostImage: React.FC<PostImageProps> = ({
   loading = "lazy",
   mobileSrc,
   desktopSrc,
+  fallbackSrc,
 }) => {
   const image = (
     <picture>
@@ -49,7 +52,7 @@ const PostImage: React.FC<PostImageProps> = ({
         onError={(e) => {
           // Si falla la variante optimizada, caer a la original.
           const img = e.target as HTMLImageElement;
-          img.src = src;
+          img.src = fallbackSrc ?? src;
           img.onerror = null;
         }}
       />
@@ -63,13 +66,13 @@ const PostImage: React.FC<PostImageProps> = ({
 
   return (
     <figure className="post-image-container post-figure">
-      {image}
-      <figcaption className="post-image-caption">
+      <span className="post-image-frame">
+        {image}
         {aiGenerated && (
           <span className="ai-badge">
             <svg
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               viewBox="0 0 24 24"
               fill="none"
               aria-hidden="true"
@@ -84,8 +87,8 @@ const PostImage: React.FC<PostImageProps> = ({
             Imagen generada con IA
           </span>
         )}
-        {caption}
-      </figcaption>
+      </span>
+      {caption && <figcaption className="post-image-caption">{caption}</figcaption>}
     </figure>
   );
 };

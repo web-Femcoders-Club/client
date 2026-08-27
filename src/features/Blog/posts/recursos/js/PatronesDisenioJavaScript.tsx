@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { FaBook, FaCheck, FaCode, FaCubes, FaEye, FaGithub, FaLightbulb, FaRocket, FaShieldAlt, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CommentsSection from "../../../../Blog/components/CommentsSection";
+import PostImage from "../../../components/PostImage";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
@@ -76,24 +77,13 @@ const PatronesDisenioJavaScript: React.FC = () => {
       </Helmet>
 
       {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/javascript/patrones-diseno-javascript.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/javascript/patrones-diseno-javascript.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/javascript/patrones-diseno-javascript.webp"
-            alt="Patrones de Diseño en JavaScript Puro: más allá del catálogo"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PostImage
+        src="/public-optimized/desktop/assets/javascript/patrones-diseno-javascript.webp"
+        mobileSrc="/public-optimized/mobile/assets/javascript/patrones-diseno-javascript.webp"
+        desktopSrc="/public-optimized/desktop/assets/javascript/patrones-diseno-javascript.webp"
+        alt="Patrones de Diseño en JavaScript Puro: más allá del catálogo"
+        aiGenerated
+      />
 
       <h1 className="blog-post-title">
         Patrones de Diseño en JavaScript Puro
