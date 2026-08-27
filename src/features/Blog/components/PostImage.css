@@ -1,0 +1,44 @@
+/* La imagen mantiene los estilos de .post-image-container / .blog-post-image
+   definidos en PostStyles.css; aquí solo se añade el pie y el distintivo. */
+
+.post-figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.post-image-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #3f3a63;
+}
+
+/* Distintivo de imagen generada por IA (AI Act art. 50).
+   Morado sobre lila claro: 9.37:1 de contraste, cumple AAA (mínimo 7:1). */
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #eceafa;
+  border: 1px solid #c9c2ef;
+  color: #372a8f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ai-badge svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .ai-badge {
+    white-space: normal;
+  }
+}
