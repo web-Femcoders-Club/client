@@ -5,6 +5,7 @@ import ManageComments from '../components/comment/ManageComments';
 import UserStats from '../components/user/UserStats';
 import CrmDashboard from '../components/crm/CrmDashboard';
 import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
+import ConsentOverview from '../components/consent/ConsentOverview';
 import './Admin.css';
 
 const Admin: React.FC = () => {
@@ -69,6 +70,11 @@ const Admin: React.FC = () => {
                   9. Bajas de email
                 </Link>
               </li>
+              <li className="step">
+                <Link to="/admin/consents" className="text-decoration-none">
+                  10. Consentimientos
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="admin-main w-3/4 p-4">
@@ -77,6 +83,7 @@ const Admin: React.FC = () => {
               <Route path="comments" element={<ManageComments />} />
               <Route path="crm/*" element={<CrmDashboard />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
+              <Route path="consents" element={<ConsentOverview />} />
             </Routes>
           </div>
         </div>

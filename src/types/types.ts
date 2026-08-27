@@ -420,3 +420,26 @@ export interface UnsubscribedEmailRecord {
   unsubscribedAt: string;
   source: string | null;
 }
+
+export interface ConsentContact {
+  idUser: number;
+  name: string;
+  email: string;
+  registeredAt: string;
+  acceptedPrivacyAt: string | null;
+  marketingConsent: boolean;
+  unsubscribed: boolean;
+  unsubscribedAt: string | null;
+  unsubscribeSource: string | null;
+}
+
+export interface ConsentOverviewResponse {
+  summary: {
+    totalUsers: number;
+    withPrivacyConsent: number;
+    withMarketingConsent: number;
+    unsubscribed: number;
+  };
+  contacts: ConsentContact[];
+  externalUnsubscribes: UnsubscribedEmailRecord[];
+}

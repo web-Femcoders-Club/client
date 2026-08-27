@@ -8,17 +8,65 @@ const UnsubscribeList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<string | null>(null);
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("authToken");
+  const authHeaders = () => ({
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+    },
+  });
+
+  const loadRecords = React.useCallback(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+        },
       })
       .then((r) => setRecords(r.data))
       .catch(() => setError("No se pudo cargar la lista de bajas."))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    loadRecords();
+  }, [loadRecords]);
+
+  const handleUnsubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const email = newEmail.trim();
+    if (!email) return;
+    if (
+      !window.confirm(
+        `¿Dar de baja ${email}? Dejará de recibir comunicaciones y se retirará su consentimiento de marketing.`
+      )
+    ) {
+      return;
+    }
+    setSubmitting(true);
+    setFeedback(null);
+    setError(null);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/admin/unsubscribe`,
+        { email },
+        authHeaders()
+      );
+      setFeedback(
+        data.status === "already"
+          ? `${email} ya estaba dado de baja.`
+          : `${email} dado de baja correctamente.`
+      );
+      setNewEmail("");
+      loadRecords();
+    } catch {
+      setError("No se pudo procesar la baja. Inténtalo de nuevo.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const filtered = search.trim()
     ? records.filter((r) =>
@@ -44,10 +92,55 @@ const UnsubscribeList: React.FC = () => {
       </p>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-600 text-sm">
+        <div
+          role="alert"
+          className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-600 text-sm"
+        >
           {error}
         </div>
       )}
+      {feedback && (
+        <div
+          role="status"
+          className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 text-green-700 text-sm"
+        >
+          {feedback}
+        </div>
+      )}
+
+      <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+        <h2 className="text-lg font-semibold mb-2" style={{ color: "#4737bb" }}>
+          Dar de baja un email
+        </h2>
+        <p className="text-gray-500 text-sm mb-4">
+          Para peticiones recibidas por otro canal (email, en persona). La baja
+          queda registrada con origen «admin» y retira el consentimiento de
+          marketing de la usuaria.
+        </p>
+        <form onSubmit={handleUnsubscribe} className="flex gap-3">
+          <label htmlFor="admin-unsubscribe-email" className="sr-only">
+            Email a dar de baja
+          </label>
+          <input
+            id="admin-unsubscribe-email"
+            type="email"
+            required
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            placeholder="email@ejemplo.com"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <button
+            type="submit"
+            disabled={submitting}
+            aria-busy={submitting}
+            className="px-5 py-2 rounded-lg text-sm font-semibold text-white disabled:opacity-60"
+            style={{ backgroundColor: "#ea4f33" }}
+          >
+            {submitting ? "Procesando…" : "Dar de baja"}
+          </button>
+        </form>
+      </div>
 
       <div className="bg-white rounded-xl shadow-md p-6">
         <div className="flex items-center justify-between mb-4">
