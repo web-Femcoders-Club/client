@@ -7,6 +7,11 @@ import "../../LogIn/page/LoginPage.css";
 import "../../LogIn/components/LoginForm.css";
 import "./RegisterForm.css";
 
+// Nombres y apellidos reales: acentos, ñ, ç y alfabetos no latinos (\p{L}),
+// más espacios, guiones y apóstrofos de los nombres compuestos
+// (Sánchez-Ortiz, D'Angelo). Antes /^[a-zA-Z\s]+$/ rechazaba «Rodríguez».
+const NAME_PATTERN = /^[\p{L}\s'’-]+$/u;
+
 const RegisterForm: React.FC = () => {
   const { openModal } = useContext(ModalContext);
   const [formData, setFormData] = useState({
@@ -47,16 +52,16 @@ const RegisterForm: React.FC = () => {
 
   const validateForm = () => {
     if (
-      !/^[a-zA-Z\s]+$/.test(formData.userName) ||
-      formData.userName.length < 2
+      !NAME_PATTERN.test(formData.userName) ||
+      formData.userName.trim().length < 1
     ) {
-      return "El nombre debe tener al menos 2 caracteres y solo contener letras.";
+      return "Escribe tu nombre. No puede contener números ni símbolos.";
     }
     if (
-      !/^[a-zA-Z\s]+$/.test(formData.userLastName) ||
-      formData.userLastName.length < 2
+      !NAME_PATTERN.test(formData.userLastName) ||
+      formData.userLastName.trim().length < 1
     ) {
-      return "El apellido debe tener al menos 2 caracteres y solo contener letras.";
+      return "Escribe tu apellido. No puede contener números ni símbolos.";
     }
     if (!/\S+@\S+\.\S+/.test(formData.userEmail)) {
       return "El correo electrónico no es válido.";
