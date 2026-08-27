@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import "../Footer.css";
 import { ModalContext } from "../../../context/ModalContext";
+import BackToTop from "../../ui/BackToTop";
 
 interface PrivacyPolicyModalProps {
   closeModal: () => void;
@@ -32,7 +33,8 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
         className="modal-content"
         role="dialog"
         aria-modal="true"
-        style={{ maxWidth: "900px" }} 
+        style={{ maxWidth: "900px" }}
+        ref={modalRef}
       >
         <div className="modal-close">
           <button onClick={closeModal}>x</button>
@@ -43,7 +45,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
           <h4>Fecha de entrada en vigor: 29.09.2025</h4>
         </div>
 
-        <div className="modal-body" ref={modalRef}>
+        <div className="modal-body">
           <p>
             En <strong>FemCoders Club</strong> nos tomamos muy en serio la privacidad de las personas
             que forman parte de nuestra comunidad. Esta Política de Privacidad explica qué datos
@@ -271,6 +273,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
             </>
           )}
         </div>
+        <BackToTop targetRef={modalRef} />
       </div>
     </div>
   );

@@ -1,0 +1,62 @@
+.back-to-top {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fdfdfd;
+  border: none;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity var(--transition-fast),
+    visibility var(--transition-fast),
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.back-to-top--fixed {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  /* Por debajo del banner de cookies (zIndex 1000): mientras el banner esté
+     visible, lo tapa; al descartarlo, el botón queda accesible. */
+  z-index: 25;
+}
+
+/* Variante para contenedores con scroll propio (modales legales del footer):
+   se renderiza como último hijo del contenedor y se queda pegado abajo. */
+.back-to-top--sticky {
+  position: sticky;
+  bottom: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-text-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
