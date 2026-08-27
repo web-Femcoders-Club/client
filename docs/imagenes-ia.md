@@ -15,6 +15,27 @@ visible junto a la propia imagen.
 Usar una herramienta de diseño no convierte una imagen en generada por IA: lo
 determinante es si el contenido lo produjo un modelo generativo.
 
+## Inventario actual (revisión de agosto de 2026)
+
+Las **únicas** imágenes generadas con IA de la web son 7 portadas del blog:
+
+| Post | Imagen |
+|---|---|
+| /noticias/hackbarna-ai-summit-26 | `hackbarna-ai-summit-26` |
+| /noticias/colaboracion-june | `colaboracion-june` |
+| /recursos/js/web-apis-nueva-generacion | `web-apis-nueva-generacion` |
+| /recursos/js/optimizacion-javascript | `optimizacion-javascript` |
+| /recursos/js/patrones-diseno-javascript | `patrones-diseno-javascript` |
+| /recursos/js/modulos-arquitectura-escalable | `modulos-arquitectura-escalable` |
+| /recursos/js/ia-javascript-gemini | `ia-javascript-gemini` |
+
+Todo lo demás —imágenes de eventos, home, secciones y el resto de portadas del
+blog— está compuesto a mano en Canva, así que no lleva distintivo. Tampoco lo
+llevan las capturas de pantalla de esos mismos posts (DevTools, profiler,
+benchmarks) ni los retratos de personas.
+
+Al publicar una imagen nueva generada con IA, márcala y añádela a esta tabla.
+
 ## Cómo marcar una imagen en un post
 
 Los posts pintan las imágenes con `<PostImage>`
