@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "../Footer.css";
 import { ModalContext } from "../../../context/ModalContext";
+import BackToTop from "../../ui/BackToTop";
 
 interface CookiePolicyModalProps {
   closeModal: () => void;
@@ -8,6 +9,7 @@ interface CookiePolicyModalProps {
 
 const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => {
   const { openModal } = useContext(ModalContext);
+  const contentRef = useRef<HTMLElement | null>(null);
 
   const handlePrivacyPolicyClick = (): void => {
     closeModal();
@@ -22,6 +24,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => 
         aria-modal="true"
         aria-labelledby="cookie-policy-title"
         style={{ maxWidth: "900px" }}
+        ref={contentRef}
       >
         <div className="modal-close">
           <button onClick={closeModal} aria-label="Cerrar política de cookies">
@@ -120,6 +123,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => 
             Aceptar
           </button>
         </footer>
+        <BackToTop targetRef={contentRef} />
       </article>
     </div>
   );

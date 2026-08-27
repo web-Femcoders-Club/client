@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "../Footer.css";
+import BackToTop from "../../ui/BackToTop";
 
 interface FaqModalProps {
   closeModal: () => void;
@@ -7,6 +8,7 @@ interface FaqModalProps {
 
 const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const faqs: { question: string; answer: React.ReactNode[] }[] = [
     {
@@ -119,7 +121,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content" ref={contentRef}>
         <div className="modal-close">
           <button onClick={closeModal}>x</button>
         </div>
@@ -155,6 +157,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
             Cerrar
           </button>
         </div>
+        <BackToTop targetRef={contentRef} />
       </div>
     </div>
   );
