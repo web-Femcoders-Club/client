@@ -87,34 +87,8 @@
   cursor: pointer;
 }
 
-/* Campo de contraseña con el botón de mostrar/ocultar (el "ojo") */
-.register-page .password-field {
-  position: relative;
-  width: 100%;
-}
-
-.register-page .password-field input {
-  padding-right: 2.75rem;
-}
-
-.register-page .password-toggle {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.55rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  padding: 0.25rem;
-  color: #6b6690;
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.register-page .password-toggle:hover {
-  color: var(--color-secondary);
-}
+/* El campo de contraseña con "ojito" vive ahora en
+   src/components/ui/PasswordInput (.password-field / .password-toggle). */
 
 /* Bloque de requisitos de la contraseña (rejilla de 2 columnas) */
 .register-page .password-requirements {

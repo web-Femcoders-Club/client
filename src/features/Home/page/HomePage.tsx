@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import OptimizedImage from "../../../../src/components/OptimizedImage";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import ConfirmationModal from "../../Contact/components/ConfirmationModal";
+import CharCounter from "../../../components/ui/CharCounter";
+import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import CarouselWithText from "../components/CarouselWithText";
 import GitHubProjects from "../components/GitHubProjects";
 import NewsSlider, { NewsItem } from "../components/NewsSlider";
@@ -45,6 +47,7 @@ const HomePage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [acceptedPrivacy, setAcceptedPrivacy] = useState<boolean>(false);
+  const [messageLength, setMessageLength] = useState<number>(0);
   const { openModal } = useContext(ModalContext);
   const form = useRef<HTMLFormElement | null>(null);
 
@@ -436,6 +439,7 @@ const HomePage: React.FC = () => {
 
       setShowMessage(true);
       form.current.reset();
+      setMessageLength(0);
       setAcceptedPrivacy(false);
     } catch (error) {
       setErrorMessage(
@@ -1822,8 +1826,20 @@ const HomePage: React.FC = () => {
                   <label htmlFor="email">Email</label>
                 </div>
                 <div className="form-group">
-                  <textarea id="message" name="message" required></textarea>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    maxLength={MESSAGE_MAX_LENGTH}
+                    aria-describedby="home-message-counter"
+                    onChange={(e) => setMessageLength(e.target.value.length)}
+                  ></textarea>
                   <label htmlFor="message">Mensaje</label>
+                  <CharCounter
+                    id="home-message-counter"
+                    current={messageLength}
+                    max={MESSAGE_MAX_LENGTH}
+                  />
                 </div>
                 <div className="form-consent">
                   <input

@@ -3,6 +3,9 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { getApprovedComments, addComment } from "../../../api/commentApi";
 import { Comment } from "../../../types/types";
+import CharCounter from "../../../components/ui/CharCounter";
+import { useFocusMessage } from "../../../hooks/useFocusMessage";
+import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 
 interface CommentsSectionProps {
   postId: number;
@@ -14,6 +17,8 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   const [alias, setAlias] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const errorRef = useFocusMessage(error);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
@@ -39,6 +44,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     try {
       const newComment: Omit<Comment, "id" | "approved" | "createdAt"> = {
@@ -62,8 +68,11 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
           createdAt: new Date(), 
         },
       ]);
-    } catch (error) {
-      console.error("Error al enviar el comentario:", error);
+    } catch {
+      // Antes el fallo solo iba a console.error y la usuaria no veía nada.
+      setError(
+        "No se pudo enviar tu comentario. Inténtalo de nuevo en unos minutos."
+      );
     } finally {
       setLoading(false);
     }
@@ -94,14 +103,26 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
           onChange={(e) => setCommentText(e.target.value)}
           placeholder="Escribe tu comentario aquí..."
           required
+          maxLength={MESSAGE_MAX_LENGTH}
+          aria-describedby="comment-counter"
           className="comment-item"
+        />
+        <CharCounter
+          id="comment-counter"
+          current={commentText.length}
+          max={MESSAGE_MAX_LENGTH}
         />
         <button type="submit" disabled={loading} className="comment-button">
           {loading ? "Enviando..." : "Enviar comentario"}
         </button>
       </form>
+      {error && (
+        <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
+          {error}
+        </p>
+      )}
       {submitted && (
-        <p className="success-message">
+        <p className="success-message" role="status">
           Tu comentario ha sido enviado y está pendiente de moderación. ¡Gracias
           por participar!
         </p>

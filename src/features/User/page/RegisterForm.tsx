@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
+import PasswordInput from "../../../components/ui/PasswordInput";
 import "../../LogIn/page/LoginPage.css";
 import "../../LogIn/components/LoginForm.css";
 import "./RegisterForm.css";
@@ -25,8 +25,6 @@ const RegisterForm: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [emailTaken, setEmailTaken] = useState(false);
   const errorRef = useRef<HTMLParagraphElement>(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
   const navigate = useNavigate();
 
@@ -198,67 +196,25 @@ const RegisterForm: React.FC = () => {
               <div className="register-row">
                 <div className="register-field">
                   <label htmlFor="userPassword">Contraseña:</label>
-                  <div className="password-field">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      id="userPassword"
-                      name="userPassword"
-                      value={formData.userPassword}
-                      onChange={handleChange}
-                      onFocus={() => setPasswordFocus(true)}
-                      onBlur={() => setPasswordFocus(false)}
-                      required
-                    />
-                    <button
-                      type="button"
-                      className="password-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                      aria-label={
-                        showPassword
-                          ? "Ocultar contraseña"
-                          : "Mostrar contraseña"
-                      }
-                      aria-pressed={showPassword}
-                    >
-                      {showPassword ? (
-                        <EyeOff size={20} aria-hidden="true" />
-                      ) : (
-                        <Eye size={20} aria-hidden="true" />
-                      )}
-                    </button>
-                  </div>
+                  <PasswordInput
+                    id="userPassword"
+                    value={formData.userPassword}
+                    onChange={handleChange}
+                    onFocus={() => setPasswordFocus(true)}
+                    onBlur={() => setPasswordFocus(false)}
+                    autoComplete="new-password"
+                    required
+                  />
                 </div>
                 <div className="register-field">
                   <label htmlFor="confirmPassword">Repetir Contraseña:</label>
-                  <div className="password-field">
-                    <input
-                      type={showConfirmPassword ? "text" : "password"}
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      required
-                    />
-                    <button
-                      type="button"
-                      className="password-toggle"
-                      onClick={() =>
-                        setShowConfirmPassword(!showConfirmPassword)
-                      }
-                      aria-label={
-                        showConfirmPassword
-                          ? "Ocultar contraseña"
-                          : "Mostrar contraseña"
-                      }
-                      aria-pressed={showConfirmPassword}
-                    >
-                      {showConfirmPassword ? (
-                        <EyeOff size={20} aria-hidden="true" />
-                      ) : (
-                        <Eye size={20} aria-hidden="true" />
-                      )}
-                    </button>
-                  </div>
+                  <PasswordInput
+                    id="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                    required
+                  />
                 </div>
               </div>
 

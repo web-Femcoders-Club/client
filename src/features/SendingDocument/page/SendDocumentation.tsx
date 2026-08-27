@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Send, Trash, FilePlus } from "lucide-react";
 import MentorshipLogoAnimation from "../../Mentorship/components/MentorshipLogoAnimation";
+import CharCounter from "../../../components/ui/CharCounter";
+import { useFocusMessage } from "../../../hooks/useFocusMessage";
+import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import "../../Mentorship/page/Mentorship.css";
 
 const SendDocumentation: React.FC = () => {
@@ -12,6 +15,7 @@ const SendDocumentation: React.FC = () => {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const messageRef = useFocusMessage(message);
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
@@ -189,14 +193,21 @@ const SendDocumentation: React.FC = () => {
                   <label htmlFor="description" className="form-label" style={{ marginTop: "-2.5rem" }}>
                     Describe tu recurso:
                   </label>
-                  <textarea 
+                  <textarea
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Breve descripción "
                     required
-                    className="form-textarea" 
+                    maxLength={MESSAGE_MAX_LENGTH}
+                    aria-describedby="documentation-counter"
+                    className="form-textarea"
                   ></textarea>
+                  <CharCounter
+                    id="documentation-counter"
+                    current={description.length}
+                    max={MESSAGE_MAX_LENGTH}
+                  />
                 </div>
 
                 <div className="form-group">
@@ -258,6 +269,9 @@ const SendDocumentation: React.FC = () => {
                     className={`message ${
                       messageType === "error" ? "text-error" : "text-success"
                     }`}
+                    role={messageType === "error" ? "alert" : "status"}
+                    tabIndex={-1}
+                    ref={messageRef}
                   >
                     {message}
                   </p>
