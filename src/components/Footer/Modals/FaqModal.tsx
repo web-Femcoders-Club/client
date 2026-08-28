@@ -113,6 +113,15 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "La baja se procesa de forma inmediata una vez confirmada. Si tienes cualquier duda, escríbenos a info@femcodersclub.com.",
       ],
     },
+    {
+      question: "¿Por qué me pedís el DNI para algunos eventos?",
+      answer: [
+        "Porque la mayoría de nuestros eventos se celebran en oficinas de empresas que nos ceden el espacio, y esas empresas exigen identificación para dejar entrar a nadie a sus instalaciones. No es un requisito nuestro: es la condición de acceso del edificio.",
+        "Lo usamos solo para pasar la lista de acceso a la empresa antes del evento. El registro de quién entra lo hace la propia empresa en su recepción.",
+        "Lo conservamos 3 meses tras el evento y después lo borramos. No lo usamos para nada más: ni para comunicaciones, ni para segmentar, ni se cede a nadie salvo a la empresa anfitriona para el control de acceso.",
+        "En los eventos cuyo espacio no lo exige, no te lo pedimos. Y en el registro de nuestra web nunca se solicita.",
+      ],
+    },
   ];
 
   const handleExpand = (index: number) => {

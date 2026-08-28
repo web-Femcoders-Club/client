@@ -77,6 +77,14 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               necesarios, para gestionar tu participación y enviarte información relacionada.
             </li>
             <li>
+              <strong>DNI (solo en algunos eventos):</strong> cuando el evento se celebra en las
+              instalaciones de una empresa colaboradora que exige identificación para acceder a sus
+              oficinas, la inscripción incluye el DNI. Se utiliza únicamente para elaborar la lista
+              de acceso que se entrega a la empresa anfitriona antes del evento; el registro de
+              entrada lo realiza y conserva la propia empresa. No se usa para ninguna otra
+              finalidad, y en los eventos cuyo espacio no lo exige no se solicita.
+            </li>
+            <li>
               <strong>Newsletter:</strong> dirección de correo electrónico, solo si te suscribes
               voluntariamente, para enviarte noticias de nuestras actividades.
             </li>
@@ -143,6 +151,10 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                   <strong>Eventos:</strong> hasta la finalización del evento y la publicación del
                   material relacionado.
                 </li>
+                <li>
+                  <strong>DNI de asistentes:</strong> 3 meses tras la celebración del evento.
+                  Transcurrido ese plazo se elimina.
+                </li>
               </ul>
 
               <h5>5. Cesiones de Datos y Encargados del Tratamiento</h5>
@@ -155,6 +167,13 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 eventos o boletines) que actúan como encargados del tratamiento bajo contratos
                 adecuados conforme al RGPD. Actualmente usamos <strong>Eventbrite</strong> para la
                 gestión de algunos eventos.
+              </p>
+              <p>
+                <strong>Empresas que ceden sus instalaciones:</strong> cuando un evento se celebra
+                en las oficinas de una empresa colaboradora, le facilitamos la lista de personas
+                inscritas (nombre, apellidos y, si el espacio lo exige, DNI) con la única finalidad
+                del control de acceso a sus instalaciones. La empresa es responsable del registro
+                de entrada que realiza en su propia recepción.
               </p>
 
               <h5>6. Transferencias Internacionales de Datos</h5>
