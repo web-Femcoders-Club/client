@@ -287,6 +287,30 @@ span {
   color: var(--color-text-dark);
 }
 
+/*
+ * Jerarquia tipografica dentro de los modales (documentos legales y FAQ).
+ *
+ * Los h4/h5 globales se reducen en movil (0.9rem y 1rem) mientras
+ * .modal-body p se mantiene en 1.2rem por mayor especificidad: el resultado
+ * era que el TEXTO se veia mas grande que los TITULOS y el documento se leia
+ * como un bloque uniforme, sin poder distinguir donde empieza cada apartado.
+ *
+ * Se corrige aqui, acotado al modal, en vez de tocar los h4/h5 globales:
+ * esos encabezados los usa todo el sitio y cambiarlos afectaria a pantallas
+ * que no tienen este problema.
+ */
+.modal-body h4,
+.modal-body h5 {
+  font-size: 1.35rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-body li {
+  font-size: 1.2rem;
+  color: var(--color-text-dark);
+}
+
 .faq-question {
   display: flex;
   justify-content: space-between;
@@ -609,6 +633,17 @@ span {
     padding: 1rem;
     width: 90%;
     max-width: 90%;
+  }
+
+  /* El titulo siempre por encima del cuerpo, tambien en pantalla pequena. */
+  .modal-body h4,
+  .modal-body h5 {
+    font-size: 1.15rem;
+  }
+
+  .modal-body p,
+  .modal-body li {
+    font-size: 1rem;
   }
 
   .form-card {
