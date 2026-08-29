@@ -6,6 +6,7 @@ import {
   getCrmAttendeeByDni,
   downloadCrmExport,
   getCrmEventAttendees,
+  forceEventbriteSync,
   getCrmUsersCrosscheck,
 } from "../../../../api/adminApi";
 import {
@@ -33,6 +34,9 @@ import {
 type Tab = "stats" | "attendees";
 
 const CrmDashboard: React.FC = () => {
+  const [sincronizando, setSincronizando] = useState(false);
+  const [resultadoSync, setResultadoSync] = useState<string | null>(null);
+
   const [activeTab, setActiveTab] = useState<Tab>("stats");
   const [stats, setStats] = useState<CrmStats | null>(null);
   const [crosscheck, setCrosscheck] = useState<CrmUsersCrosscheck | null>(null);
@@ -188,12 +192,64 @@ const CrmDashboard: React.FC = () => {
     );
   }
 
+  /**
+   * Fuerza el sync manual. Existía el endpoint en el backend desde hacía
+   * tiempo pero no había forma de lanzarlo desde el panel: había que esperar
+   * al cron o entrar a la API a mano.
+   */
+  const sincronizarAhora = async () => {
+    setSincronizando(true);
+    setResultadoSync(null);
+    try {
+      await forceEventbriteSync();
+      setResultadoSync("Sincronización completada. Recargando datos…");
+      // Los datos en pantalla son de antes del sync: recargarlos es la mitad
+      // útil de la acción.
+      const nuevas = await getCrmStats();
+      setStats(nuevas);
+      setResultadoSync("Sincronización completada.");
+    } catch {
+      setResultadoSync(
+        "No se pudo completar la sincronización. Vuelve a intentarlo."
+      );
+    } finally {
+      setSincronizando(false);
+    }
+  };
+
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-2" style={{ color: "#4737bb" }}>
-        CRM — Asistentes a Eventos
-      </h1>
-      <p className="text-gray-500 text-sm mb-6">Datos sincronizados desde Eventbrite</p>
+      <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+        <div>
+          <h1 className="text-2xl font-bold mb-2" style={{ color: "#4737bb" }}>
+            CRM — Asistentes a Eventos
+          </h1>
+          <p className="text-gray-500 text-sm">
+            Datos sincronizados desde Eventbrite
+          </p>
+        </div>
+
+        <div className="text-right">
+          <button
+            type="button"
+            onClick={sincronizarAhora}
+            disabled={sincronizando}
+            className="px-4 py-2 rounded-lg text-sm text-white disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400"
+            style={{ backgroundColor: "#4737bb" }}
+          >
+            {sincronizando ? "Sincronizando…" : "Sincronizar Eventbrite ahora"}
+          </button>
+          {/*
+            aria-live: el sync tarda, y quien usa lector de pantalla no ve el
+            cambio de estado del botón.
+          */}
+          {resultadoSync && (
+            <p className="text-sm mt-2 text-gray-600" aria-live="polite">
+              {resultadoSync}
+            </p>
+          )}
+        </div>
+      </div>
 
       {/* Tabs */}
       <div className="flex gap-2 mb-6 border-b border-gray-200">

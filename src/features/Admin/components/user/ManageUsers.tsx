@@ -1,207 +1,425 @@
-import React, { useEffect, useState } from 'react';
-import { Trash2, Eye, Edit } from 'lucide-react';
+import React, { useCallback, useEffect, useState } from "react";
+import { Edit, Loader2, Trash2, X } from "lucide-react";
+import {
+  AdminUser,
+  deleteAdminUser,
+  getAdminUsers,
+  updateAdminUser,
+} from "../../../../api/adminApi";
 
-interface User {
-  idUser: number;
+/**
+ * Gestión de usuarias registradas.
+ *
+ * Este componente existía pero estaba huérfano —nadie lo importaba— y no
+ * habría funcionado: llamaba a http://localhost:3000 y no enviaba el token,
+ * así que con /admin/* protegido (server#2) toda petición devolvía 401.
+ * Ahora usa el cliente de API común, con VITE_API_URL y cabeceras de auth.
+ */
+
+const POR_PAGINA = 10;
+
+interface EdicionState {
   userName: string;
   userLastName: string;
-  userEmail: string;
-  userRole: string;
-  userGender: string;
   userTelephone: string;
 }
 
 const ManageUsers: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<AdminUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [hoveredUser, setHoveredUser] = useState<number | null>(null);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [aviso, setAviso] = useState<string | null>(null);
+  const [busqueda, setBusqueda] = useState("");
+  const [pagina, setPagina] = useState(1);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const [editando, setEditando] = useState<AdminUser | null>(null);
+  const [formulario, setFormulario] = useState<EdicionState>({
+    userName: "",
+    userLastName: "",
+    userTelephone: "",
+  });
+  const [guardando, setGuardando] = useState(false);
 
-  const fetchUsers = async () => {
+  const cargar = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
-      const response = await fetch('http://localhost:3000/admin/users');
-      if (!response.ok) {
-        throw new Error(`Error fetching users: ${response.status} ${response.statusText}`);
-      }
-      const data = await response.json();
-      setUsers(data);
-    } catch (err) {
-      setError((err as Error).message);
+      setUsers(await getAdminUsers());
+    } catch {
+      setError("No se pudo cargar la lista de usuarias.");
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    cargar();
+  }, [cargar]);
+
+  const termino = busqueda.trim().toLowerCase();
+  const filtradas = termino
+    ? users.filter(
+        (u) =>
+          u.userEmail.toLowerCase().includes(termino) ||
+          `${u.userName} ${u.userLastName}`.toLowerCase().includes(termino)
+      )
+    : users;
+
+  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / POR_PAGINA));
+  // Si el filtro deja menos páginas, la actual podría quedar fuera de rango y
+  // mostrar una tabla vacía sin explicación.
+  const paginaActual = Math.min(pagina, totalPaginas);
+  const visibles = filtradas.slice(
+    (paginaActual - 1) * POR_PAGINA,
+    paginaActual * POR_PAGINA
+  );
+
+  const abrirEdicion = (user: AdminUser) => {
+    setEditando(user);
+    setFormulario({
+      userName: user.userName ?? "",
+      userLastName: user.userLastName ?? "",
+      userTelephone: user.userTelephone ?? "",
+    });
   };
 
-  const handleDelete = async (id: number) => {
-    if (!window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      return;
-    }
+  const guardar = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editando) return;
 
+    setGuardando(true);
+    setError(null);
     try {
-      const response = await fetch(`http://localhost:3000/admin/users/${id}`, {
-        method: 'DELETE',
+      await updateAdminUser(editando.idUser, {
+        userName: formulario.userName.trim(),
+        userLastName: formulario.userLastName.trim(),
+        userTelephone: formulario.userTelephone.trim() || null,
       });
 
-      if (!response.ok) {
-        throw new Error(`Error deleting user: ${response.status} ${response.statusText}`);
-      }
-
-      setUsers(users.filter((user) => user.idUser !== id));
-    } catch (err) {
-      setError((err as Error).message);
+      // Se actualiza en memoria en vez de recargar toda la lista: el cambio es
+      // conocido y recargar perdería la página y el filtro actuales.
+      setUsers((previos) =>
+        previos.map((u) =>
+          u.idUser === editando.idUser
+            ? {
+                ...u,
+                userName: formulario.userName.trim(),
+                userLastName: formulario.userLastName.trim(),
+                userTelephone: formulario.userTelephone.trim() || null,
+              }
+            : u
+        )
+      );
+      setAviso("Datos actualizados.");
+      setEditando(null);
+    } catch {
+      setError("No se pudieron guardar los cambios.");
+    } finally {
+      setGuardando(false);
     }
   };
 
-  const handleViewUser = (user: User) => {
-    setSelectedUser(user);
-  };
+  const borrar = async (user: AdminUser) => {
+    const confirmado = window.confirm(
+      `¿Eliminar la cuenta de ${user.userName} ${user.userLastName} (${user.userEmail})?\n\n` +
+        "Esta acción no se puede deshacer."
+    );
+    if (!confirmado) return;
 
-  const handleEditUser = (user: User) => {
-    // Placeholder for edit functionality
-    console.log('Editing user:', user);
-    // You would typically open a modal or navigate to an edit page
+    setError(null);
+    try {
+      await deleteAdminUser(user.idUser);
+      setUsers((previos) => previos.filter((u) => u.idUser !== user.idUser));
+      setAviso("Cuenta eliminada.");
+    } catch {
+      setError("No se pudo eliminar la cuenta.");
+    }
   };
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50">
-        <div className="spinner-border animate-spin inline-block w-12 h-12 border-4 border-primary rounded-full" role="status">
-          <span className="visually-hidden">Cargando...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-red-50">
-        <div className="bg-white shadow-lg rounded-lg p-8 border-l-4 border-red-500">
-          <p className="text-xl font-semibold text-red-600">Error: {error}</p>
-        </div>
+      <div className="flex justify-center items-center py-16">
+        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
+        <span className="sr-only">Cargando usuarias…</span>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-gray-50 min-h-screen">
-      <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-10 uppercase tracking-wide">
-        Gestión de Usuarios
+    <section aria-labelledby="usuarias-titulo">
+      <h2
+        id="usuarias-titulo"
+        className="text-2xl font-bold mb-1"
+        style={{ color: "#4737bb" }}
+      >
+        Usuarias registradas
       </h2>
-      
-      <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-              <tr>
-                {['ID', 'Nombre', 'Apellido', 'Email', 'Rol', 'Género', 'Teléfono', 'Acciones'].map((header) => (
-                  <th key={header} className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr
-                  key={user.idUser}
-                  className={`
-                    transition-all duration-300 ease-in-out 
-                    ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
-                    hover:bg-blue-50
-                    border-b border-gray-200
-                  `}
-                  onMouseEnter={() => setHoveredUser(user.idUser)}
-                  onMouseLeave={() => setHoveredUser(null)}
-                >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.idUser}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-medium">{user.userName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.userLastName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600">{user.userEmail}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.userRole}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.userGender}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{user.userTelephone}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <div className="flex space-x-2">
-                      <button
-                        className={`
-                          transition-all duration-300 ease-in-out
-                          p-2 rounded-full 
-                          ${hoveredUser === user.idUser 
-                            ? 'bg-blue-500 text-white shadow-lg' 
-                            : 'bg-blue-100 text-blue-600 hover:bg-blue-200'}
-                        `}
-                        onClick={() => handleViewUser(user)}
-                        title="Ver Detalles"
-                      >
-                        <Eye size={18} />
-                      </button>
-                      <button
-                        className={`
-                          transition-all duration-300 ease-in-out
-                          p-2 rounded-full 
-                          ${hoveredUser === user.idUser 
-                            ? 'bg-green-500 text-white shadow-lg' 
-                            : 'bg-green-100 text-green-600 hover:bg-green-200'}
-                        `}
-                        onClick={() => handleEditUser(user)}
-                        title="Editar Usuario"
-                      >
-                        <Edit size={18} />
-                      </button>
-                      <button
-                        className={`
-                          transition-all duration-300 ease-in-out
-                          p-2 rounded-full 
-                          ${hoveredUser === user.idUser 
-                            ? 'bg-red-500 text-white shadow-lg' 
-                            : 'bg-red-100 text-red-600 hover:bg-red-200'}
-                        `}
-                        onClick={() => handleDelete(user.idUser)}
-                        title="Eliminar Usuario"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <p className="text-sm text-gray-500 mb-4">
+        Personas con cuenta en la web. No incluye a quienes solo se inscribieron
+        a un evento por Eventbrite.
+      </p>
 
-      {selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
-            <h3 className="text-2xl font-bold mb-4 text-gray-800">Detalles del Usuario</h3>
-            <div className="space-y-2">
-              <p><strong>ID:</strong> {selectedUser.idUser}</p>
-              <p><strong>Nombre:</strong> {selectedUser.userName} {selectedUser.userLastName}</p>
-              <p><strong>Email:</strong> {selectedUser.userEmail}</p>
-              <p><strong>Rol:</strong> {selectedUser.userRole}</p>
-              <p><strong>Género:</strong> {selectedUser.userGender}</p>
-              <p><strong>Teléfono:</strong> {selectedUser.userTelephone}</p>
-            </div>
-            <button 
-              onClick={() => setSelectedUser(null)}
-              className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+      {error && (
+        <p
+          role="alert"
+          className="mb-4 px-4 py-3 rounded-lg bg-red-50 text-red-800 text-sm"
+        >
+          {error}
+        </p>
+      )}
+      {aviso && (
+        <p
+          role="status"
+          className="mb-4 px-4 py-3 rounded-lg bg-green-50 text-green-800 text-sm"
+        >
+          {aviso}
+        </p>
+      )}
+
+      <label htmlFor="buscar-usuaria" className="sr-only">
+        Buscar por nombre o email
+      </label>
+      <input
+        id="buscar-usuaria"
+        type="search"
+        value={busqueda}
+        onChange={(e) => {
+          setBusqueda(e.target.value);
+          setPagina(1); // un filtro nuevo empieza por el principio
+        }}
+        placeholder="Buscar por nombre o email…"
+        className="w-full mb-4 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+      />
+
+      {filtradas.length === 0 ? (
+        <p className="text-center text-gray-400 py-8 text-sm">
+          {busqueda
+            ? `No hay resultados para "${busqueda}"`
+            : "No hay usuarias registradas."}
+        </p>
+      ) : (
+        <>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-gray-200 rounded-lg">
+              <thead>
+                <tr style={{ backgroundColor: "#4737bb10" }}>
+                  {["Nombre", "Email", "Rol", "Teléfono", "Acciones"].map(
+                    (h) => (
+                      <th
+                        key={h}
+                        scope="col"
+                        className="p-4 text-left text-sm font-semibold"
+                        style={{ color: "#4737bb" }}
+                      >
+                        {h}
+                      </th>
+                    )
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {visibles.map((user) => (
+                  <tr
+                    key={user.idUser}
+                    className="border-b border-gray-100 hover:bg-gray-50"
+                  >
+                    <td className="p-4 text-sm font-medium">
+                      {user.userName} {user.userLastName}
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">
+                      {user.userEmail}
+                    </td>
+                    <td className="p-4 text-sm">
+                      {user.userRole === "admin" ? (
+                        <span className="px-2 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-900">
+                          admin
+                        </span>
+                      ) : (
+                        <span className="text-gray-500">{user.userRole}</span>
+                      )}
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">
+                      {user.userTelephone || "—"}
+                    </td>
+                    <td className="p-4 text-sm">
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => abrirEdicion(user)}
+                          className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                          aria-label={`Editar a ${user.userName} ${user.userLastName}`}
+                        >
+                          <Edit size={16} style={{ color: "#4737bb" }} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => borrar(user)}
+                          className="p-2 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400"
+                          aria-label={`Eliminar la cuenta de ${user.userName} ${user.userLastName}`}
+                        >
+                          <Trash2 size={16} className="text-red-600" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {totalPaginas > 1 && (
+            <nav
+              className="flex items-center justify-between gap-4 py-4"
+              aria-label="Paginación de usuarias"
             >
-              Cerrar
-            </button>
+              <button
+                type="button"
+                onClick={() => setPagina(paginaActual - 1)}
+                disabled={paginaActual === 1}
+                className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                Anterior
+              </button>
+              <p className="text-sm text-gray-600" aria-live="polite">
+                Página {paginaActual} de {totalPaginas}
+                <span className="text-gray-400">
+                  {" "}
+                  · {filtradas.length} usuaria
+                  {filtradas.length === 1 ? "" : "s"}
+                </span>
+              </p>
+              <button
+                type="button"
+                onClick={() => setPagina(paginaActual + 1)}
+                disabled={paginaActual === totalPaginas}
+                className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                Siguiente
+              </button>
+            </nav>
+          )}
+        </>
+      )}
+
+      {editando && (
+        <div
+          className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="editar-titulo"
+        >
+          <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
+            <div className="flex items-start justify-between mb-4">
+              <h3
+                id="editar-titulo"
+                className="text-lg font-bold"
+                style={{ color: "#4737bb" }}
+              >
+                Editar usuaria
+              </h3>
+              <button
+                type="button"
+                onClick={() => setEditando(null)}
+                aria-label="Cerrar"
+                className="p-1 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/*
+              El email no se edita aquí: es la identidad con la que la persona
+              entra y con la que se cruzan las bajas y el consentimiento.
+              Cambiarlo desde el panel rompería esos vínculos en silencio.
+            */}
+            <p className="text-sm text-gray-500 mb-4">{editando.userEmail}</p>
+
+            <form onSubmit={guardar}>
+              <div className="mb-3">
+                <label
+                  htmlFor="edit-nombre"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Nombre
+                </label>
+                <input
+                  id="edit-nombre"
+                  type="text"
+                  value={formulario.userName}
+                  onChange={(e) =>
+                    setFormulario({ ...formulario, userName: e.target.value })
+                  }
+                  required
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+              </div>
+
+              <div className="mb-3">
+                <label
+                  htmlFor="edit-apellidos"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Apellidos
+                </label>
+                <input
+                  id="edit-apellidos"
+                  type="text"
+                  value={formulario.userLastName}
+                  onChange={(e) =>
+                    setFormulario({
+                      ...formulario,
+                      userLastName: e.target.value,
+                    })
+                  }
+                  required
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="edit-telefono"
+                  className="block text-sm font-medium mb-1"
+                >
+                  Teléfono <span className="text-gray-400">(opcional)</span>
+                </label>
+                <input
+                  id="edit-telefono"
+                  type="tel"
+                  value={formulario.userTelephone}
+                  onChange={(e) =>
+                    setFormulario({
+                      ...formulario,
+                      userTelephone: e.target.value,
+                    })
+                  }
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setEditando(null)}
+                  className="px-4 py-2 rounded-lg text-sm border border-gray-200 hover:bg-gray-50"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={guardando}
+                  className="px-4 py-2 rounded-lg text-sm text-white disabled:opacity-50"
+                  style={{ backgroundColor: "#4737bb" }}
+                >
+                  {guardando ? "Guardando…" : "Guardar"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
 export default ManageUsers;
-
-
-
