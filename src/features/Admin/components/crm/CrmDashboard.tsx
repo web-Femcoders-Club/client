@@ -232,12 +232,86 @@ const CrmDashboard: React.FC = () => {
       {/* STATS TAB */}
       {activeTab === "stats" && stats && (
         <div>
+          {/*
+            Comunidad: cuántas PERSONAS distintas conoce la asociación.
+            Va antes que las tarjetas de actividad porque es la cifra que se
+            usa fuera —memorias, subvenciones, patrocinadores— y la que antes
+            no existía: había registradas por un lado y asistentes por otro,
+            sin una unión deduplicada.
+          */}
+          {stats.community && (
+            <section
+              className="bg-white rounded-xl shadow-md p-6 mb-8 border-l-4"
+              style={{ borderLeftColor: "#4737bb" }}
+              aria-labelledby="comunidad-titulo"
+            >
+              <h3
+                id="comunidad-titulo"
+                className="text-lg font-bold mb-1"
+                style={{ color: "#4737bb" }}
+              >
+                Comunidad
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Personas distintas, sin contar dos veces a quien está
+                registrada y además ha asistido.
+              </p>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <p className="text-3xl font-bold" style={{ color: "#4737bb" }}>
+                    {stats.community.knownPeople}
+                  </p>
+                  <p className="text-sm font-medium text-gray-700">
+                    Personas conocidas
+                  </p>
+                </div>
+                <div>
+                  <p className="text-2xl font-semibold text-gray-700">
+                    {stats.community.registeredUsers}
+                  </p>
+                  <p className="text-sm text-gray-500">Registradas en la web</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-semibold text-gray-700">
+                    {stats.community.identifiedAttendees}
+                  </p>
+                  <p className="text-sm text-gray-500">Han asistido</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-semibold text-gray-700">
+                    {stats.community.bothRegisteredAndAttended}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Registradas y asistentes
+                  </p>
+                </div>
+              </div>
+
+              {/*
+                Las inscripciones sin identificar se muestran, no se esconden:
+                son personas reales cuyo email Eventbrite no facilitó. Quedan
+                fuera del total porque podrían ser alguien ya contado.
+              */}
+              {!!stats.identityGaps?.unidentifiedRegistrations && (
+                <p className="text-sm text-gray-500 mt-4 pt-4 border-t border-gray-100">
+                  <strong className="text-gray-700">
+                    {stats.identityGaps.unidentifiedRegistrations}
+                  </strong>{" "}
+                  inscripciones sin email identificable (Eventbrite solo
+                  facilitó los datos de quien compró). No se cuentan arriba
+                  porque podrían corresponder a personas ya incluidas.
+                </p>
+              )}
+            </section>
+          )}
+
           {/* Summary cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#4737bb" }}>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm font-medium">Asistentes únicas</p>
+                  <p className="text-gray-500 text-sm font-medium">Personas que han asistido</p>
                   <p className="text-3xl font-bold mt-1" style={{ color: "#4737bb" }}>
                     {stats.uniqueAttendees}
                   </p>
