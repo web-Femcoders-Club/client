@@ -328,6 +328,22 @@ export interface CrmStats {
   repeatAttendees: number;
   totalRegistrations: number;
   totalEvents: number;
+  unsubscribedCount?: number;
+  /**
+   * Cuántas personas distintas conoce la asociación. `knownPeople` es la cifra
+   * defendible en una memoria o ante un patrocinador: registradas más
+   * asistentes, sin contar dos veces a quien está en ambas.
+   */
+  community?: {
+    registeredUsers: number;
+    identifiedAttendees: number;
+    bothRegisteredAndAttended: number;
+    knownPeople: number;
+  };
+  /** Inscripciones reales cuyo email Eventbrite no facilitó. */
+  identityGaps?: {
+    unidentifiedRegistrations: number;
+  };
   topAttendees: CrmTopAttendee[];
   eventStats: CrmEventStat[];
 }
