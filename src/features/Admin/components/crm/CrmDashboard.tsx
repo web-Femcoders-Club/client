@@ -35,6 +35,7 @@ type Tab = "stats" | "attendees";
 
 const CrmDashboard: React.FC = () => {
   const [sincronizando, setSincronizando] = useState(false);
+  const [crosscheckPagina, setCrosscheckPagina] = useState(1);
   const [resultadoSync, setResultadoSync] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<Tab>("stats");
@@ -191,6 +192,37 @@ const CrmDashboard: React.FC = () => {
       </div>
     );
   }
+
+  /**
+   * Usuarias del crosscheck ya filtradas y troceadas.
+   *
+   * Antes se pintaban las 106 de golpe. Se pagina en el cliente porque el
+   * endpoint devuelve la lista completa (ver #27, pendiente en el servidor);
+   * cuando ese endpoint pagine, esto se sustituye por la paginación real.
+   */
+  const CROSSCHECK_POR_PAGINA = 15;
+  const crosscheckFiltradas = (crosscheck?.users ?? []).filter((u) => {
+    const q = crosscheckSearch.toLowerCase();
+    return (
+      !q ||
+      `${u.userName} ${u.userLastName}`.toLowerCase().includes(q) ||
+      u.userEmail.toLowerCase().includes(q)
+    );
+  });
+  const crosscheckTotalPaginas = Math.max(
+    1,
+    Math.ceil(crosscheckFiltradas.length / CROSSCHECK_POR_PAGINA),
+  );
+  // Si el filtro deja menos páginas, la actual podría quedar fuera de rango y
+  // mostrar una tabla vacía sin explicación.
+  const crosscheckPaginaActual = Math.min(
+    crosscheckPagina,
+    crosscheckTotalPaginas,
+  );
+  const crosscheckVisibles = crosscheckFiltradas.slice(
+    (crosscheckPaginaActual - 1) * CROSSCHECK_POR_PAGINA,
+    crosscheckPaginaActual * CROSSCHECK_POR_PAGINA,
+  );
 
   /**
    * Fuerza el sync manual. Existía el endpoint en el backend desde hacía
@@ -528,7 +560,10 @@ const CrmDashboard: React.FC = () => {
                 <input
                   type="text"
                   value={crosscheckSearch}
-                  onChange={(e) => setCrossCheckSearch(e.target.value)}
+                  onChange={(e) => {
+                    setCrossCheckSearch(e.target.value);
+                    setCrosscheckPagina(1); // un filtro nuevo empieza por el principio
+                  }}
                   placeholder="Buscar por nombre o email..."
                   className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
                 />
@@ -543,14 +578,7 @@ const CrmDashboard: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {crosscheck.users
-                      .filter((u) => {
-                        const q = crosscheckSearch.toLowerCase();
-                        return !q ||
-                          `${u.userName} ${u.userLastName}`.toLowerCase().includes(q) ||
-                          u.userEmail.toLowerCase().includes(q);
-                      })
-                      .map((u) => (
+                    {crosscheckVisibles.map((u) => (
                         <tr key={u.idUser} className="border-b border-gray-100 hover:bg-gray-50">
                           <td className="p-3 text-sm font-medium">{u.userName} {u.userLastName}</td>
                           <td className="p-3 text-sm text-gray-600">{u.userEmail}</td>
@@ -573,6 +601,40 @@ const CrmDashboard: React.FC = () => {
                   </tbody>
                 </table>
               </div>
+
+              {crosscheckTotalPaginas > 1 && (
+                <nav
+                  className="flex items-center justify-between gap-4 pt-4"
+                  aria-label="Paginación de usuarias registradas"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setCrosscheckPagina(crosscheckPaginaActual - 1)}
+                    disabled={crosscheckPaginaActual === 1}
+                    className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+                  >
+                    Anterior
+                  </button>
+                  {/* aria-live: quien usa lector de pantalla no ve que la
+                      tabla ha cambiado de página. */}
+                  <p className="text-sm text-gray-600" aria-live="polite">
+                    Página {crosscheckPaginaActual} de {crosscheckTotalPaginas}
+                    <span className="text-gray-400">
+                      {" "}
+                      · {crosscheckFiltradas.length} usuaria
+                      {crosscheckFiltradas.length === 1 ? "" : "s"}
+                    </span>
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setCrosscheckPagina(crosscheckPaginaActual + 1)}
+                    disabled={crosscheckPaginaActual === crosscheckTotalPaginas}
+                    className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+                  >
+                    Siguiente
+                  </button>
+                </nav>
+              )}
             </div>
           )}
 
