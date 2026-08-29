@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Lint, tipos y build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+
+      # Sin --max-warnings 0 de momento: queda un aviso de react-refresh sobre
+      # exportar un contexto junto a un componente. Es una recomendación de
+      # estilo, no un fallo, y arreglarla toca ficheros ajenos a este cambio.
+      # Los ERRORES sí tumban el CI.
+      - name: Lint
+        run: pnpm exec eslint . --ext ts,tsx --report-unused-disable-directives
+
+      - name: Comprobar tipos
+        run: pnpm exec tsc --noEmit
+
+      # El build es la prueba real de este repo: no hay tests, así que lo que
+      # verifica que nada se rompió es que Vite compile la aplicación entera.
+      # Se salta el prebuild (validación de posts, sitemap, llms.txt), que
+      # necesita credenciales y no aporta aquí.
+      - name: Build
+        run: pnpm exec vite build
