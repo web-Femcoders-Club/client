@@ -188,7 +188,7 @@ const ManageUsers: React.FC = () => {
           setPagina(1); // un filtro nuevo empieza por el principio
         }}
         placeholder="Buscar por nombre o email…"
-        className="w-full mb-4 px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+        className="w-full mb-4 px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
       />
 
       {filtradas.length === 0 ? (
@@ -250,7 +250,7 @@ const ManageUsers: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => abrirEdicion(user)}
-                          className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                          className="p-2 rounded-lg hover:bg-gray-100 admin-focus"
                           aria-label={`Editar a ${user.userName} ${user.userLastName}`}
                         >
                           <Edit size={16} style={{ color: "#4737bb" }} />
@@ -258,7 +258,7 @@ const ManageUsers: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => borrar(user)}
-                          className="p-2 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400"
+                          className="p-2 rounded-lg hover:bg-red-50 admin-focus"
                           aria-label={`Eliminar la cuenta de ${user.userName} ${user.userLastName}`}
                         >
                           <Trash2 size={16} className="text-red-600" />
@@ -307,7 +307,7 @@ const ManageUsers: React.FC = () => {
 
       {editando && (
         <div
-          className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 admin-overlay flex items-center justify-center p-4 z-50"
           role="dialog"
           aria-modal="true"
           aria-labelledby="editar-titulo"
@@ -325,7 +325,7 @@ const ManageUsers: React.FC = () => {
                 type="button"
                 onClick={() => setEditando(null)}
                 aria-label="Cerrar"
-                className="p-1 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="p-1 rounded hover:bg-gray-100 admin-focus"
               >
                 <X size={18} />
               </button>
@@ -354,7 +354,7 @@ const ManageUsers: React.FC = () => {
                     setFormulario({ ...formulario, userName: e.target.value })
                   }
                   required
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
 
@@ -376,7 +376,7 @@ const ManageUsers: React.FC = () => {
                     })
                   }
                   required
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
 
@@ -397,7 +397,7 @@ const ManageUsers: React.FC = () => {
                       userTelephone: e.target.value,
                     })
                   }
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
 

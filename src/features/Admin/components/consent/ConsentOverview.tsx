@@ -36,7 +36,7 @@ const ConsentOverview: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[200px]">
+      <div className="flex justify-center items-center admin-min-alto-sm">
         <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
       </div>
     );
@@ -122,7 +122,7 @@ const ConsentOverview: React.FC = () => {
               setPagina(1); // un filtro nuevo empieza por el principio
             }}
             placeholder="Buscar por nombre o email..."
-            className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
           />
         </div>
 

@@ -64,7 +64,7 @@ const UserStats: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-6 flex justify-center items-center min-h-[400px]">
+      <div className="container mx-auto p-6 flex justify-center items-center admin-min-alto">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#8B5CF6" }} />
           <p className="text-gray-500">Cargando estadísticas...</p>
