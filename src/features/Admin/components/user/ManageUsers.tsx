@@ -6,6 +6,8 @@ import {
   getAdminUsers,
   updateAdminUser,
 } from "../../../../api/adminApi";
+import AdminTable from "../ui/AdminTable";
+import AdminPagination from "../ui/AdminPagination";
 
 /**
  * Gestión de usuarias registradas.
@@ -199,25 +201,10 @@ const ManageUsers: React.FC = () => {
         </p>
       ) : (
         <>
-          <div className="overflow-x-auto">
-            <table className="w-full border border-gray-200 rounded-lg">
-              <thead>
-                <tr style={{ backgroundColor: "#4737bb10" }}>
-                  {["Nombre", "Email", "Rol", "Teléfono", "Acciones"].map(
-                    (h) => (
-                      <th
-                        key={h}
-                        scope="col"
-                        className="p-4 text-left text-sm font-semibold"
-                        style={{ color: "#4737bb" }}
-                      >
-                        {h}
-                      </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody>
+          <AdminTable
+            columns={["Nombre", "Email", "Rol", "Teléfono", "Acciones"]}
+            caption="Usuarias registradas en la web"
+          >
                 {visibles.map((user) => (
                   <tr
                     key={user.idUser}
@@ -267,41 +254,16 @@ const ManageUsers: React.FC = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
-            </table>
-          </div>
+          </AdminTable>
 
-          {totalPaginas > 1 && (
-            <nav
-              className="flex items-center justify-between gap-4 py-4"
-              aria-label="Paginación de usuarias"
-            >
-              <button
-                type="button"
-                onClick={() => setPagina(paginaActual - 1)}
-                disabled={paginaActual === 1}
-                className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-              >
-                Anterior
-              </button>
-              <p className="text-sm text-gray-600" aria-live="polite">
-                Página {paginaActual} de {totalPaginas}
-                <span className="text-gray-400">
-                  {" "}
-                  · {filtradas.length} usuaria
-                  {filtradas.length === 1 ? "" : "s"}
-                </span>
-              </p>
-              <button
-                type="button"
-                onClick={() => setPagina(paginaActual + 1)}
-                disabled={paginaActual === totalPaginas}
-                className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-              >
-                Siguiente
-              </button>
-            </nav>
-          )}
+          <AdminPagination
+            paginaActual={paginaActual}
+            totalPaginas={totalPaginas}
+            onCambiar={setPagina}
+            totalElementos={filtradas.length}
+            nombreElemento="usuaria"
+            etiqueta="Paginación de usuarias"
+          />
         </>
       )}
 

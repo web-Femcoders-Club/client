@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { ConsentOverviewResponse } from "../../../../types/types";
+import AdminTable from "../ui/AdminTable";
+import AdminPagination from "../ui/AdminPagination";
 
 const formatDate = (value: string | null) =>
   value ? new Date(value).toLocaleDateString("es-ES") : "—";
@@ -131,28 +133,17 @@ const ConsentOverview: React.FC = () => {
             {search ? `No hay resultados para "${search}"` : "No hay contactos."}
           </p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="table w-full border border-gray-200">
-              <thead>
-                <tr style={{ backgroundColor: "#4737bb10" }}>
-                  {[
-                    "Contacto",
-                    "Alta",
-                    "Privacidad aceptada",
-                    "Marketing",
-                    "Baja",
-                  ].map((h) => (
-                    <th
-                      key={h}
-                      className="p-4 text-left font-semibold"
-                      style={{ color: "#4737bb" }}
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+          <>
+          <AdminTable
+            columns={[
+              "Contacto",
+              "Alta",
+              "Privacidad aceptada",
+              "Marketing",
+              "Baja",
+            ]}
+            caption="Estado de consentimiento por contacto"
+          >
                 {visibles.map((c) => (
                   <tr
                     key={c.idUser}
@@ -197,49 +188,17 @@ const ConsentOverview: React.FC = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
-            </table>
+          </AdminTable>
 
-            {totalPaginas > 1 && (
-              <nav
-                className="flex items-center justify-between gap-4 py-4"
-                aria-label="Paginación de contactos"
-              >
-                <button
-                  type="button"
-                  onClick={() => setPagina(paginaActual - 1)}
-                  disabled={paginaActual === 1}
-                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-                >
-                  <ChevronLeft size={16} aria-hidden="true" />
-                  Anterior
-                </button>
-
-                {/*
-                  aria-live: quien usa lector de pantalla no ve el cambio de
-                  tabla, así que se le anuncia en qué página está.
-                */}
-                <p className="text-sm text-gray-600" aria-live="polite">
-                  Página {paginaActual} de {totalPaginas}
-                  <span className="text-gray-400">
-                    {" "}
-                    · {filtered.length} contacto
-                    {filtered.length === 1 ? "" : "s"}
-                  </span>
-                </p>
-
-                <button
-                  type="button"
-                  onClick={() => setPagina(paginaActual + 1)}
-                  disabled={paginaActual === totalPaginas}
-                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-                >
-                  Siguiente
-                  <ChevronRight size={16} aria-hidden="true" />
-                </button>
-              </nav>
-            )}
-          </div>
+          <AdminPagination
+            paginaActual={paginaActual}
+            totalPaginas={totalPaginas}
+            onCambiar={setPagina}
+            totalElementos={filtered.length}
+            nombreElemento="contacto"
+            etiqueta="Paginación de contactos"
+          />
+          </>
         )}
       </div>
 
@@ -252,22 +211,10 @@ const ConsentOverview: React.FC = () => {
             Emails dados de baja que no corresponden a ninguna usuaria
             registrada (p. ej. asistentes de eventos).
           </p>
-          <div className="overflow-x-auto">
-            <table className="table w-full border border-gray-200">
-              <thead>
-                <tr style={{ backgroundColor: "#4737bb10" }}>
-                  {["Email", "Fecha de baja", "Origen"].map((h) => (
-                    <th
-                      key={h}
-                      className="p-4 text-left font-semibold"
-                      style={{ color: "#4737bb" }}
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+          <AdminTable
+            columns={["Email", "Fecha de baja", "Origen"]}
+            caption="Bajas de emails sin cuenta en la web"
+          >
                 {data.externalUnsubscribes.map((r) => (
                   <tr
                     key={r.id}
@@ -282,9 +229,7 @@ const ConsentOverview: React.FC = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
-            </table>
-          </div>
+          </AdminTable>
         </div>
       )}
     </div>
