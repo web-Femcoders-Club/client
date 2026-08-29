@@ -132,3 +132,56 @@ export const getCrmUsersCrosscheck = async (): Promise<CrmUsersCrosscheck> => {
   });
   return response.data;
 };
+
+// -------------------------------
+// Gestión de usuarias
+// -------------------------------
+
+export interface AdminUser {
+  idUser: number;
+  userName: string;
+  userLastName: string;
+  userEmail: string;
+  userRole: string;
+  userGender: string;
+  userTelephone: string | null;
+}
+
+export const getAdminUsers = async (): Promise<AdminUser[]> => {
+  const response = await axios.get(`${API_URL}/admin/users`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const updateAdminUser = async (
+  idUser: number,
+  data: Partial<Pick<AdminUser, "userName" | "userLastName" | "userTelephone">>
+): Promise<AdminUser> => {
+  const response = await axios.put(`${API_URL}/admin/users/${idUser}`, data, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const deleteAdminUser = async (idUser: number): Promise<void> => {
+  await axios.delete(`${API_URL}/admin/users/${idUser}`, {
+    headers: getAuthHeaders(),
+  });
+};
+
+// -------------------------------
+// Sincronización con Eventbrite
+// -------------------------------
+
+export const forceEventbriteSync = async (): Promise<{
+  ok: boolean;
+  message: string;
+}> => {
+  const response = await axios.post(
+    `${API_URL}/admin/crm/sync`,
+    {},
+    { headers: getAuthHeaders() }
+  );
+  return response.data;
+};

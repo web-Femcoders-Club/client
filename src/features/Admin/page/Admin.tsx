@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link, Route, Routes } from 'react-router-dom';
 import ManageComments from '../components/comment/ManageComments';
 import UserStats from '../components/user/UserStats';
+import ManageUsers from '../components/user/ManageUsers';
 import CrmDashboard from '../components/crm/CrmDashboard';
 import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import ConsentOverview from '../components/consent/ConsentOverview';
@@ -32,38 +33,18 @@ const Admin: React.FC = () => {
                 </Link>
               </li>
               <li className="step">
-                <Link to="/admin/members" className="text-decoration-none">
-                  2. Gestionar Miembros
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/sponsors" className="text-decoration-none">
-                  3. Gestionar Patrocinadores
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/volunteers" className="text-decoration-none">
-                  4. Gestionar Voluntarios
+                <Link to="/admin/users" className="text-decoration-none">
+                  2. Gestionar Usuarias
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/comments" className="text-decoration-none">
-                  5. Gestionar Comentarios
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/settings" className="text-decoration-none">
-                  6. Otros Ajustes
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/achievements" className="text-decoration-none">
-                  7. Logros Usuarios
+                  3. Gestionar Comentarios
                 </Link>
               </li>
               <li className="step">
                 <Link to="/admin/crm" className="text-decoration-none">
-                  8. CRM Asistentes
+                  4. CRM Asistentes
                 </Link>
               </li>
             </ul>
@@ -93,6 +74,7 @@ const Admin: React.FC = () => {
           <div className="admin-main w-3/4 p-4">
             <Routes>
               <Route path="stats" element={<UserStats />} />
+              <Route path="users" element={<ManageUsers />} />
               <Route path="comments" element={<ManageComments />} />
               <Route path="crm/*" element={<CrmDashboard />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
