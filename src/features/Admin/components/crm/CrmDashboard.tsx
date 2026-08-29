@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import AdminTable from "../ui/AdminTable";
+import AdminPagination from "../ui/AdminPagination";
 import {
   getCrmStats,
   getCrmAttendees,
@@ -65,6 +66,9 @@ const CrmDashboard: React.FC = () => {
   const [eventPanel, setEventPanel] = useState<CrmEventAttendeesResponse | null>(null);
   const [eventPanelLoading, setEventPanelLoading] = useState(false);
   const [eventPanelSearch, setEventPanelSearch] = useState("");
+  // Se guarda el id del evento abierto: al cambiar de página hay que volver a
+  // pedir los datos, y sin esto no se sabría de qué evento.
+  const [eventPanelId, setEventPanelId] = useState<string | null>(null);
   const eventPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,14 +116,21 @@ const CrmDashboard: React.FC = () => {
     fetchAttendees();
   }, [activeTab, currentPage, filterEventId, dateFrom, dateTo]);
 
-  const loadEventAttendees = (eventId: string) => {
+  const loadEventAttendees = (eventId: string, page = 1) => {
     setEventPanel(null);
+    // El buscador solo filtra la página cargada, así que al cambiar de página
+    // se limpia: mantenerlo daría resultados incompletos sin avisar.
     setEventPanelSearch("");
+    setEventPanelId(eventId);
     setEventPanelLoading(true);
-    getCrmEventAttendees(eventId)
+    getCrmEventAttendees(eventId, page)
       .then((data) => {
         setEventPanel(data);
-        setTimeout(() => eventPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        // Solo se desplaza al abrir el panel; al pasar de página, la vista se
+        // queda donde está.
+        if (page === 1) {
+          setTimeout(() => eventPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
       })
       .catch(() => setError("No se pudieron cargar las asistentes de este evento."))
       .finally(() => setEventPanelLoading(false));
@@ -659,7 +670,7 @@ const CrmDashboard: React.FC = () => {
                         type="text"
                         value={eventPanelSearch}
                         onChange={(e) => setEventPanelSearch(e.target.value)}
-                        placeholder="Buscar por nombre, email o DNI..."
+                        placeholder="Buscar en esta página..."
                         className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                       />
                       {eventPanelSearch && (
@@ -686,6 +697,22 @@ const CrmDashboard: React.FC = () => {
                             </tr>
                           ))}
                         </AdminTable>
+
+                    {/*
+                      El backend pagina esta lista (20 por página): sin estos
+                      controles solo se veían los 20 primeros de eventos que
+                      llegan a tener más de 200 asistentes.
+                    */}
+                    {eventPanel.pagination && eventPanelId && (
+                      <AdminPagination
+                        paginaActual={eventPanel.pagination.currentPage}
+                        totalPaginas={eventPanel.pagination.totalPages}
+                        onCambiar={(p) => loadEventAttendees(eventPanelId, p)}
+                        totalElementos={eventPanel.pagination.totalItems}
+                        nombreElemento="asistente"
+                        etiqueta="Paginación de asistentes del evento"
+                      />
+                    )}
                   </div>
                 );
               })()}

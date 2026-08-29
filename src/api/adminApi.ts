@@ -112,10 +112,15 @@ export const downloadCrmExport = async (
   URL.revokeObjectURL(url);
 };
 
-export const getCrmEventAttendees = async (eventId: string): Promise<CrmEventAttendeesResponse> => {
-  const response = await axios.get(`${API_URL}/admin/crm/events/${eventId}/attendees`, {
-    headers: getAuthHeaders(),
-  });
+export const getCrmEventAttendees = async (
+  eventId: string,
+  page = 1,
+  limit = 20
+): Promise<CrmEventAttendeesResponse> => {
+  const response = await axios.get(
+    `${API_URL}/admin/crm/events/${eventId}/attendees`,
+    { headers: getAuthHeaders(), params: { page, limit } }
+  );
   return response.data;
 };
 
