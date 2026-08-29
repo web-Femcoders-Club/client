@@ -8,6 +8,7 @@ import CrmDashboard from '../components/crm/CrmDashboard';
 import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import ConsentOverview from '../components/consent/ConsentOverview';
 import LegalDocs from '../components/legal/LegalDocs';
+import '../admin-ui.css';
 import './Admin.css';
 
 const Admin: React.FC = () => {

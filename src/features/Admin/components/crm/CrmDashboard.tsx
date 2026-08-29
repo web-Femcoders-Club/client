@@ -184,7 +184,7 @@ const CrmDashboard: React.FC = () => {
 
   if (loading && activeTab === "stats" && !stats) {
     return (
-      <div className="flex justify-center items-center min-h-[400px]">
+      <div className="flex justify-center items-center admin-min-alto">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#4737bb" }} />
           <p className="text-gray-500">Cargando datos CRM...</p>
@@ -266,7 +266,7 @@ const CrmDashboard: React.FC = () => {
             type="button"
             onClick={sincronizarAhora}
             disabled={sincronizando}
-            className="px-4 py-2 rounded-lg text-sm text-white disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-400"
+            className="px-4 py-2 rounded-lg text-sm text-white disabled:opacity-50 admin-focus"
             style={{ backgroundColor: "#4737bb" }}
           >
             {sincronizando ? "Sincronizando…" : "Sincronizar Eventbrite ahora"}
@@ -565,7 +565,7 @@ const CrmDashboard: React.FC = () => {
                     setCrosscheckPagina(1); // un filtro nuevo empieza por el principio
                   }}
                   placeholder="Buscar por nombre o email..."
-                  className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
               <div className="overflow-x-auto">
@@ -683,7 +683,7 @@ const CrmDashboard: React.FC = () => {
                         value={eventPanelSearch}
                         onChange={(e) => setEventPanelSearch(e.target.value)}
                         placeholder="Buscar por nombre, email o DNI..."
-                        className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                       />
                       {eventPanelSearch && (
                         <p className="text-xs text-gray-400 mt-1">
@@ -811,34 +811,34 @@ const CrmDashboard: React.FC = () => {
           <div className="bg-white rounded-xl shadow-md p-4 mb-6">
             <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-3">Filtrar por periodo o evento</p>
             <div className="flex flex-wrap gap-3 items-end">
-              <div className="flex flex-col gap-1 flex-1 min-w-[140px]">
+              <div className="flex flex-col gap-1 flex-1 admin-min-ancho-sm">
                 <label className="text-xs text-gray-500">Desde</label>
                 <input
                   type="date"
                   value={dateFrom}
                   title="Fecha desde"
                   onChange={(e) => { setDateFrom(e.target.value); setCurrentPage(1); }}
-                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
-              <div className="flex flex-col gap-1 flex-1 min-w-[140px]">
+              <div className="flex flex-col gap-1 flex-1 admin-min-ancho-sm">
                 <label className="text-xs text-gray-500">Hasta</label>
                 <input
                   type="date"
                   value={dateTo}
                   title="Fecha hasta"
                   onChange={(e) => { setDateTo(e.target.value); setCurrentPage(1); }}
-                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
               {stats && stats.eventStats.length > 0 && (
-                <div className="flex flex-col gap-1 flex-1 min-w-[200px]">
+                <div className="flex flex-col gap-1 flex-1 admin-min-ancho">
                   <label className="text-xs text-gray-500">Evento concreto</label>
                   <select
                     value={filterEventId}
                     title="Filtrar por evento"
                     onChange={(e) => { setFilterEventId(e.target.value); setCurrentPage(1); }}
-                    className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white"
+                    className="px-3 py-2 border border-gray-200 rounded-lg text-sm admin-focus bg-white"
                   >
                     <option value="">Todos los eventos</option>
                     {stats.eventStats
@@ -892,7 +892,7 @@ const CrmDashboard: React.FC = () => {
 
           {/* Attendees list */}
           {loading ? (
-            <div className="flex justify-center items-center min-h-[200px]">
+            <div className="flex justify-center items-center admin-min-alto-sm">
               <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
             </div>
           ) : (
@@ -916,7 +916,7 @@ const CrmDashboard: React.FC = () => {
                     value={filterText}
                     onChange={(e) => setFilterText(e.target.value)}
                     placeholder={isFilteredByEvent ? "Buscar en este evento..." : "Filtrar por nombre, apellido, email o DNI... (haz clic en una fila para ver el detalle)"}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                   />
                   {filterText && (
                     <p className="text-xs text-gray-400 mt-1">
