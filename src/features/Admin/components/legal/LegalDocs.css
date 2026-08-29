@@ -1,0 +1,145 @@
+/*
+ * Ficha interna de tratamientos.
+ *
+ * Colores tomados del panel (#4737bb violeta, #ea4f33 coral). El texto va en
+ * #1f1f1f sobre blanco (contraste ~16:1) y los encabezados de tabla en
+ * #2d2d2d sobre #f4f2fa (~12:1): ambos superan el 7:1 que exige AAA.
+ */
+
+.legal-docs {
+  padding: 1rem 0;
+  color: #1f1f1f;
+}
+
+.legal-docs h2 {
+  color: #4737bb;
+  margin-bottom: 0.75rem;
+}
+
+.legal-docs h3 {
+  color: #4737bb;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-docs__intro {
+  max-width: 70ch; /* la línea larga cansa: ~70 caracteres es cómodo de leer */
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.legal-docs__link {
+  color: #b03a22; /* coral oscurecido: el #ea4f33 original no llega a AAA sobre blanco */
+  font-weight: 600;
+}
+
+.legal-docs__link:focus-visible,
+.legal-docs__scroll:focus-visible {
+  outline: 3px solid #4737bb;
+  outline-offset: 2px;
+}
+
+/*
+ * La tabla scrollea dentro de su caja, nunca la página. Con tabindex y role
+ * region, quien navega por teclado puede desplazarla sin ratón — una tabla que
+ * solo scrollea con gesto deja fuera a quien no lo usa.
+ */
+.legal-docs__scroll {
+  overflow-x: auto;
+  border: 1px solid #d8d4e8;
+  border-radius: 8px;
+}
+
+.legal-docs__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 46rem; /* por debajo de esto las celdas se vuelven ilegibles */
+  font-size: 0.95rem;
+}
+
+.legal-docs__caption {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: #3d3d3d;
+  font-style: italic;
+  border-bottom: 1px solid #d8d4e8;
+}
+
+.legal-docs__table th,
+.legal-docs__table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e8e6f0;
+  line-height: 1.5;
+}
+
+.legal-docs__table thead th {
+  background-color: #f4f2fa;
+  color: #2d2d2d;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.legal-docs__table tbody th {
+  color: #4737bb;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.legal-docs__table tbody tr:last-child th,
+.legal-docs__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.legal-docs__nota {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #3d3d3d;
+  font-style: italic;
+}
+
+.legal-docs__lista {
+  max-width: 70ch;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+}
+
+.legal-docs__lista li {
+  margin-bottom: 0.75rem;
+}
+
+.legal-docs__responsable {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #f4f2fa;
+  border: 1px solid #d8d4e8;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #2d2d2d;
+  white-space: nowrap;
+}
+
+.legal-docs__pie {
+  max-width: 70ch;
+  margin-top: 2rem;
+  padding: 0.75rem 1rem;
+  background-color: #f4f2fa;
+  border-left: 4px solid #4737bb;
+  border-radius: 4px;
+  line-height: 1.6;
+  color: #2d2d2d;
+}
+
+@media (max-width: 768px) {
+  .legal-docs__table {
+    font-size: 0.9rem;
+  }
+
+  .legal-docs__table th,
+  .legal-docs__table td {
+    padding: 0.6rem 0.75rem;
+  }
+}

@@ -6,6 +6,7 @@ import UserStats from '../components/user/UserStats';
 import CrmDashboard from '../components/crm/CrmDashboard';
 import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import ConsentOverview from '../components/consent/ConsentOverview';
+import LegalDocs from '../components/legal/LegalDocs';
 import './Admin.css';
 
 const Admin: React.FC = () => {
@@ -65,17 +66,29 @@ const Admin: React.FC = () => {
                   8. CRM Asistentes
                 </Link>
               </li>
-              <li className="step">
-                <Link to="/admin/unsubscribed" className="text-decoration-none">
-                  9. Bajas de email
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/consents" className="text-decoration-none">
-                  10. Consentimientos
-                </Link>
-              </li>
             </ul>
+
+            {/*
+              Lo relacionado con datos personales va agrupado y no numerado
+              entre las tareas operativas: son consultas que se hacen ante una
+              petición de derechos o una inspección, no pasos de un flujo.
+            */}
+            <nav className="admin-cumplimiento" aria-labelledby="cumplimiento-titulo">
+              <h3 id="cumplimiento-titulo" className="admin-cumplimiento__titulo">
+                Cumplimiento y datos
+              </h3>
+              <ul className="admin-cumplimiento__lista">
+                <li>
+                  <Link to="/admin/unsubscribed">Bajas de email</Link>
+                </li>
+                <li>
+                  <Link to="/admin/consents">Consentimientos</Link>
+                </li>
+                <li>
+                  <Link to="/admin/legal">Documentación legal</Link>
+                </li>
+              </ul>
+            </nav>
           </div>
           <div className="admin-main w-3/4 p-4">
             <Routes>
@@ -84,6 +97,7 @@ const Admin: React.FC = () => {
               <Route path="crm/*" element={<CrmDashboard />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
               <Route path="consents" element={<ConsentOverview />} />
+              <Route path="legal" element={<LegalDocs />} />
             </Routes>
           </div>
         </div>
