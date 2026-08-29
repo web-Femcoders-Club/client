@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import AdminTable from "../ui/AdminTable";
+import AdminPagination from "../ui/AdminPagination";
 import {
   getCrmStats,
   getCrmAttendees,
@@ -64,6 +66,9 @@ const CrmDashboard: React.FC = () => {
   const [eventPanel, setEventPanel] = useState<CrmEventAttendeesResponse | null>(null);
   const [eventPanelLoading, setEventPanelLoading] = useState(false);
   const [eventPanelSearch, setEventPanelSearch] = useState("");
+  // Se guarda el id del evento abierto: al cambiar de página hay que volver a
+  // pedir los datos, y sin esto no se sabría de qué evento.
+  const [eventPanelId, setEventPanelId] = useState<string | null>(null);
   const eventPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -111,14 +116,21 @@ const CrmDashboard: React.FC = () => {
     fetchAttendees();
   }, [activeTab, currentPage, filterEventId, dateFrom, dateTo]);
 
-  const loadEventAttendees = (eventId: string) => {
+  const loadEventAttendees = (eventId: string, page = 1) => {
     setEventPanel(null);
+    // El buscador solo filtra la página cargada, así que al cambiar de página
+    // se limpia: mantenerlo daría resultados incompletos sin avisar.
     setEventPanelSearch("");
+    setEventPanelId(eventId);
     setEventPanelLoading(true);
-    getCrmEventAttendees(eventId)
+    getCrmEventAttendees(eventId, page)
       .then((data) => {
         setEventPanel(data);
-        setTimeout(() => eventPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        // Solo se desplaza al abrir el panel; al pasar de página, la vista se
+        // queda donde está.
+        if (page === 1) {
+          setTimeout(() => eventPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
       })
       .catch(() => setError("No se pudieron cargar las asistentes de este evento."))
       .finally(() => setEventPanelLoading(false));
@@ -460,17 +472,10 @@ const CrmDashboard: React.FC = () => {
                 Top asistentes
               </h2>
               <p className="text-xs text-gray-400 mb-4">Haz clic para ver el historial completo</p>
-              <div className="overflow-x-auto">
-                <table className="table w-full border border-gray-200">
-                  <thead>
-                    <tr style={{ backgroundColor: "#4737bb10" }}>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>#</th>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>Email</th>
-                      <th className="p-4 text-center font-semibold" style={{ color: "#4737bb" }}>Eventos</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <AdminTable
+                  columns={["#", "Nombre", "Email", { label: "Eventos", align: "center" }]}
+                  caption="Personas que más eventos han asistido"
+                >
                     {stats.topAttendees.map((a, i) => (
                       <tr
                         key={a.email}
@@ -490,9 +495,7 @@ const CrmDashboard: React.FC = () => {
                         </td>
                       </tr>
                     ))}
-                  </tbody>
-                </table>
-              </div>
+                  </AdminTable>
             </div>
           )}
 
@@ -503,15 +506,10 @@ const CrmDashboard: React.FC = () => {
                 Asistencia por evento
               </h2>
               <p className="text-xs text-gray-400 mb-4">Haz clic en un evento para ver sus asistentes</p>
-              <div className="overflow-x-auto">
-                <table className="table w-full border border-gray-200">
-                  <thead>
-                    <tr style={{ backgroundColor: "#4737bb10" }}>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>Evento</th>
-                      <th className="p-4 text-center font-semibold" style={{ color: "#4737bb" }}>Asistentes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <AdminTable
+                  columns={["Evento", { label: "Asistentes", align: "center" }]}
+                  caption="Asistentes por evento"
+                >
                     {stats.eventStats
                       .slice()
                       .sort((a: CrmEventStat, b: CrmEventStat) => b.attendeesCount - a.attendeesCount)
@@ -532,9 +530,7 @@ const CrmDashboard: React.FC = () => {
                           </td>
                         </tr>
                       ))}
-                  </tbody>
-                </table>
-              </div>
+                  </AdminTable>
             </div>
           )}
 
@@ -568,16 +564,10 @@ const CrmDashboard: React.FC = () => {
                   className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
-              <div className="overflow-x-auto">
-                <table className="table w-full border border-gray-200">
-                  <thead>
-                    <tr style={{ backgroundColor: "#4737bb10" }}>
-                      <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
-                      <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Email</th>
-                      <th className="p-3 text-center text-sm font-semibold" style={{ color: "#4737bb" }}>Eventos asistidos</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <AdminTable
+                  columns={["Nombre", "Email", { label: "Eventos asistidos", align: "center" }]}
+                  caption="Usuarias registradas y su asistencia"
+                >
                     {crosscheckVisibles.map((u) => (
                         <tr key={u.idUser} className="border-b border-gray-100 hover:bg-gray-50">
                           <td className="p-3 text-sm font-medium">{u.userName} {u.userLastName}</td>
@@ -598,9 +588,7 @@ const CrmDashboard: React.FC = () => {
                           </td>
                         </tr>
                       ))}
-                  </tbody>
-                </table>
-              </div>
+                  </AdminTable>
 
               {crosscheckTotalPaginas > 1 && (
                 <nav
@@ -682,7 +670,7 @@ const CrmDashboard: React.FC = () => {
                         type="text"
                         value={eventPanelSearch}
                         onChange={(e) => setEventPanelSearch(e.target.value)}
-                        placeholder="Buscar por nombre, email o DNI..."
+                        placeholder="Buscar en esta página..."
                         className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                       />
                       {eventPanelSearch && (
@@ -691,16 +679,10 @@ const CrmDashboard: React.FC = () => {
                         </p>
                       )}
                     </div>
-                    <div className="overflow-x-auto">
-                      <table className="table w-full border border-gray-200 bg-white">
-                        <thead>
-                          <tr style={{ backgroundColor: "#4737bb10" }}>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Email</th>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>DNI</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                      <AdminTable
+                        columns={["Nombre", "Email", "DNI"]}
+                        caption="Asistentes del evento"
+                      >
                           {filteredEventAttendees.length === 0 ? (
                             <tr>
                               <td colSpan={3} className="p-6 text-center text-gray-400 text-sm">
@@ -714,9 +696,23 @@ const CrmDashboard: React.FC = () => {
                               <td className="p-3 text-sm text-gray-500">{a.dni || "—"}</td>
                             </tr>
                           ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        </AdminTable>
+
+                    {/*
+                      El backend pagina esta lista (20 por página): sin estos
+                      controles solo se veían los 20 primeros de eventos que
+                      llegan a tener más de 200 asistentes.
+                    */}
+                    {eventPanel.pagination && eventPanelId && (
+                      <AdminPagination
+                        paginaActual={eventPanel.pagination.currentPage}
+                        totalPaginas={eventPanel.pagination.totalPages}
+                        onCambiar={(p) => loadEventAttendees(eventPanelId, p)}
+                        totalElementos={eventPanel.pagination.totalItems}
+                        nombreElemento="asistente"
+                        etiqueta="Paginación de asistentes del evento"
+                      />
+                    )}
                   </div>
                 );
               })()}
@@ -761,16 +757,10 @@ const CrmDashboard: React.FC = () => {
                     <span className="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4" style={{ backgroundColor: "#4737bb20", color: "#4737bb" }}>
                       {selectedAttendee.eventsAttended} evento{selectedAttendee.eventsAttended !== 1 ? "s" : ""}
                     </span>
-                    <div className="overflow-x-auto">
-                      <table className="table w-full border border-gray-200 bg-white">
-                        <thead>
-                          <tr style={{ backgroundColor: "#4737bb10" }}>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Evento</th>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Fecha</th>
-                            <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Lugar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                      <AdminTable
+                        columns={["Evento", "Fecha", "Lugar"]}
+                        caption="Eventos a los que ha asistido"
+                      >
                           {pagedEvents.map((ev) => (
                             <tr key={ev.eventId} className="border-b border-gray-100 hover:bg-gray-50">
                               <td className="p-3 text-sm">
@@ -782,9 +772,7 @@ const CrmDashboard: React.FC = () => {
                               <td className="p-3 text-sm text-gray-600">{ev.location}</td>
                             </tr>
                           ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        </AdminTable>
                     {totalEventPages > 1 && (
                       <div className="flex justify-center items-center gap-2 mt-4">
                         <button type="button" onClick={() => setDetailEventsPage((p) => Math.max(p - 1, 1))} disabled={detailEventsPage === 1} className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 hover:bg-gray-100 transition-colors" aria-label="Eventos anteriores">
@@ -927,17 +915,10 @@ const CrmDashboard: React.FC = () => {
                   )}
                 </div>
 
-                <div className="overflow-x-auto">
-                  <table className="table w-full border border-gray-200">
-                    <thead>
-                      <tr style={{ backgroundColor: "#4737bb10" }}>
-                        <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>Nombre</th>
-                        <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>Email</th>
-                        <th className="p-4 text-left font-semibold" style={{ color: "#4737bb" }}>DNI</th>
-                        <th className="p-4 text-center font-semibold" style={{ color: "#4737bb" }}>Eventos</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <AdminTable
+                    columns={["Nombre", "Email", "DNI", { label: "Eventos", align: "center" }]}
+                    caption="Asistentes con el mismo DNI"
+                  >
                       {filteredAttendees.length === 0 ? (
                         <tr>
                           <td colSpan={4} className="p-8 text-center text-gray-400 text-sm">
@@ -963,9 +944,7 @@ const CrmDashboard: React.FC = () => {
                           </td>
                         </tr>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
+                    </AdminTable>
 
                 {/* Pagination */}
                 {!isFilteredByEvent && pagination && pagination.totalPages > 1 && (
@@ -1042,16 +1021,10 @@ const CrmDashboard: React.FC = () => {
                         >
                           {selectedAttendee.eventsAttended} evento{selectedAttendee.eventsAttended !== 1 ? "s" : ""}
                         </span>
-                        <div className="overflow-x-auto">
-                          <table className="table w-full border border-gray-200 bg-white">
-                            <thead>
-                              <tr style={{ backgroundColor: "#4737bb10" }}>
-                                <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Evento</th>
-                                <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Fecha</th>
-                                <th className="p-3 text-left text-sm font-semibold" style={{ color: "#4737bb" }}>Lugar</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                          <AdminTable
+                            columns={["Evento", "Fecha", "Lugar"]}
+                            caption="Eventos de esta persona"
+                          >
                               {pagedEvents.map((ev) => (
                                 <tr key={ev.eventId} className="border-b border-gray-100 hover:bg-gray-50">
                                   <td className="p-3 text-sm">
@@ -1069,9 +1042,7 @@ const CrmDashboard: React.FC = () => {
                                   <td className="p-3 text-sm text-gray-600">{ev.location}</td>
                                 </tr>
                               ))}
-                            </tbody>
-                          </table>
-                        </div>
+                            </AdminTable>
                         {totalEventPages > 1 && (
                           <div className="flex justify-center items-center gap-2 mt-4">
                             <button

@@ -417,6 +417,21 @@ export interface CrmEventAttendeesResponse {
   };
   totalAttendees: number;
   attendees: CrmEventAttendee[];
+  /** El resumen se calcula sobre el evento entero, no sobre la página. */
+  summary?: {
+    infoRequested: number;
+    dniMissing: number;
+    dniInvalid: number;
+    multipleEntries: number;
+  };
+  pagination?: {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+  };
 }
 
 export type UnsubscribeStatus = "ok" | "already" | "invalid";
