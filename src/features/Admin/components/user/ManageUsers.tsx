@@ -235,7 +235,11 @@ const ManageUsers: React.FC = () => {
                           admin
                         </span>
                       ) : (
-                        <span className="text-gray-500">{user.userRole}</span>
+                        /* text-xs explícito: sin él heredaba el tamaño del
+                           contenedor y se veía más grande que el resto. */
+                        <span className="text-xs text-gray-600">
+                          {user.userRole || "—"}
+                        </span>
                       )}
                     </td>
                     <td className="p-4 text-sm text-gray-600">
