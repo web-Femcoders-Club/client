@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { ConsentOverviewResponse } from "../../../../types/types";
 
 const formatDate = (value: string | null) =>
   value ? new Date(value).toLocaleDateString("es-ES") : "—";
+
+/**
+ * Contactos por página. La lista completa hacía la vista inmanejable: con más
+ * de cien filas, encontrar a una persona concreta exigía recorrerla entera.
+ */
+const POR_PAGINA = 10;
 
 /**
  * Estado de consentimiento por contacto (RGPD): qué aceptó cada usuaria,
@@ -15,6 +21,7 @@ const ConsentOverview: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const [pagina, setPagina] = useState(1);
 
   useEffect(() => {
     const token = sessionStorage.getItem("authToken");
@@ -54,6 +61,15 @@ const ConsentOverview: React.FC = () => {
           c.name.toLowerCase().includes(term)
       )
     : data.contacts;
+
+  const totalPaginas = Math.max(1, Math.ceil(filtered.length / POR_PAGINA));
+  // Si el filtro deja menos páginas de las que había, la página actual podría
+  // quedar fuera de rango y mostrar una tabla vacía sin explicación.
+  const paginaActual = Math.min(pagina, totalPaginas);
+  const visibles = filtered.slice(
+    (paginaActual - 1) * POR_PAGINA,
+    paginaActual * POR_PAGINA
+  );
 
   const summaryCards = [
     { label: "Usuarias registradas", value: data.summary.totalUsers },
@@ -101,7 +117,10 @@ const ConsentOverview: React.FC = () => {
             id="consent-search"
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPagina(1); // un filtro nuevo empieza por el principio
+            }}
             placeholder="Buscar por nombre o email..."
             className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
@@ -134,7 +153,7 @@ const ConsentOverview: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((c) => (
+                {visibles.map((c) => (
                   <tr
                     key={c.idUser}
                     className="border-b border-gray-100 hover:bg-gray-50"
@@ -180,6 +199,46 @@ const ConsentOverview: React.FC = () => {
                 ))}
               </tbody>
             </table>
+
+            {totalPaginas > 1 && (
+              <nav
+                className="flex items-center justify-between gap-4 py-4"
+                aria-label="Paginación de contactos"
+              >
+                <button
+                  type="button"
+                  onClick={() => setPagina(paginaActual - 1)}
+                  disabled={paginaActual === 1}
+                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+                >
+                  <ChevronLeft size={16} aria-hidden="true" />
+                  Anterior
+                </button>
+
+                {/*
+                  aria-live: quien usa lector de pantalla no ve el cambio de
+                  tabla, así que se le anuncia en qué página está.
+                */}
+                <p className="text-sm text-gray-600" aria-live="polite">
+                  Página {paginaActual} de {totalPaginas}
+                  <span className="text-gray-400">
+                    {" "}
+                    · {filtered.length} contacto
+                    {filtered.length === 1 ? "" : "s"}
+                  </span>
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => setPagina(paginaActual + 1)}
+                  disabled={paginaActual === totalPaginas}
+                  className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+                >
+                  Siguiente
+                  <ChevronRight size={16} aria-hidden="true" />
+                </button>
+              </nav>
+            )}
           </div>
         )}
       </div>
