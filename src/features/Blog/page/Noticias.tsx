@@ -12,7 +12,7 @@ const Noticias: React.FC = () => {
           <div>
             <h2>Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA</h2>
             <p className="intro-text">
-              Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 18:30, online y gratuita...
+              Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 19:30, online y gratuita...
             </p>
           </div>
           <Link to="/noticias/sesion-informativa-hackbarna-ai-summit-26" className="secondary-button">

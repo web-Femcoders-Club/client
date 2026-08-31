@@ -435,7 +435,7 @@ const BlogPage: React.FC = () => {
   type: "noticia",
   category: "femCoders",
   title: "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
-  description: "Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 18:30, online y gratuita.",
+  description: "Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas por dentro. Jueves 3 de septiembre a las 19:30, online y gratuita.",
   createdAt: new Date("2026-08-17"),
 },
   ];

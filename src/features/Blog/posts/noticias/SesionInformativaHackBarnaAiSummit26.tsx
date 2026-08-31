@@ -17,7 +17,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         </title>
         <meta
           name="description"
-          content="Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de 2025. Jueves 3 de septiembre, 18:30 h. Inscripción gratuita."
+          content="Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de 2025. Jueves 3 de septiembre, 19:30 h. Inscripción gratuita."
         />
         <meta
           name="keywords"
@@ -35,7 +35,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         />
         <meta
           property="og:description"
-          content="Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas. Jueves 3 de septiembre, 18:30 h. Online y gratuita."
+          content="Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas. Jueves 3 de septiembre, 19:30 h. Online y gratuita."
         />
         <meta
           property="og:url"
@@ -54,7 +54,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         />
         <meta
           name="twitter:description"
-          content="La ganadora de 2025 cuenta qué pasa de verdad durante las 48 horas. Jueves 3 de septiembre, 18:30 h. Online, abierta y gratuita."
+          content="La ganadora de 2025 cuenta qué pasa de verdad durante las 48 horas. Jueves 3 de septiembre, 19:30 h. Online, abierta y gratuita."
         />
         <meta
           name="twitter:image"
@@ -85,7 +85,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
             headline:
               "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
             description:
-              "Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de la edición de 2025. Jueves 3 de septiembre de 2026 a las 18:30 h. Inscripción gratuita.",
+              "Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de la edición de 2025. Jueves 3 de septiembre de 2026 a las 19:30 h. Inscripción gratuita.",
             image:
               "https://www.femcodersclub.com/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
             datePublished: "2026-08-17T10:00:00Z",
@@ -115,7 +115,8 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               name: "Sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares",
               description:
                 "Sesión online y gratuita con Lilibeth Bustos Linares, ganadora del AI Summit Hackathon Barcelona 2025, para contar cómo se vive un hackathon de IA desde dentro.",
-              startDate: "2026-09-03T18:30:00+02:00",
+              startDate: "2026-09-03T19:30:00+02:00",
+              endDate: "2026-09-03T20:30:00+02:00",
               eventStatus: "https://schema.org/EventScheduled",
               eventAttendanceMode:
                 "https://schema.org/OnlineEventAttendanceMode",
@@ -160,7 +161,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
           />
           <img
             src="/public-optimized/desktop/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.webp"
-            alt="Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles. Online, 3 de septiembre a las 18:30"
+            alt="Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles. Online, 3 de septiembre"
             className="blog-post-image"
             loading="lazy"
             onError={(e) => {
@@ -202,7 +203,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         </p>
         <br />
         <p>
-          La cita es el jueves 3 de septiembre a las 18:30. Online, abierta y
+          La cita es el jueves 3 de septiembre a las 19:30. Online, abierta y
           gratuita.
         </p>
         <br />
@@ -344,7 +345,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
                 <td>
                   <strong>Sesión informativa con Lilibeth Bustos Linares</strong>
                 </td>
-                <td>Jueves 3 de septiembre de 2026, 18:30 h</td>
+                <td>Jueves 3 de septiembre de 2026, 19:30 h</td>
                 <td>Online</td>
               </tr>
               <tr>
@@ -463,7 +464,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         </p>
         <br />
         <p>
-          Nos vemos el 3 de septiembre a las 18:30 con Lilibeth. Y cuando pidas
+          Nos vemos el 3 de septiembre a las 19:30 con Lilibeth. Y cuando pidas
           plaza en el hackathon, dilo en{" "}
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
@@ -499,7 +500,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
             Reserva tu plaza en la sesión
           </h3>
           <p>
-            Jueves 3 de septiembre, 18:30 h. Online, abierta y gratuita, con
+            Jueves 3 de septiembre, 19:30 h. Online, abierta y gratuita, con
             Lilibeth Bustos Linares.
           </p>
           <br />
