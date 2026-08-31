@@ -161,7 +161,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
           />
           <img
             src="/public-optimized/desktop/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.webp"
-            alt="Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles. Online, 3 de septiembre"
+            alt="Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles. Online, 3 de septiembre a las 19:30"
             className="blog-post-image"
             loading="lazy"
             onError={(e) => {
