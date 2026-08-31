@@ -148,8 +148,13 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                   <strong>Newsletter:</strong> hasta que solicites la baja.
                 </li>
                 <li>
-                  <strong>Eventos:</strong> hasta la finalización del evento y la publicación del
-                  material relacionado.
+                  <strong>Eventos:</strong> los datos logísticos de cada evento se conservan hasta
+                  su finalización y la publicación del material relacionado.
+                </li>
+                <li>
+                  <strong>Datos de contacto (nombre y correo electrónico):</strong> se conservan
+                  mientras formes parte de la comunidad, para poder informarte de nuestras
+                  actividades, y hasta que solicites la baja.
                 </li>
                 <li>
                   <strong>DNI de asistentes:</strong> 3 meses tras la celebración del evento.
