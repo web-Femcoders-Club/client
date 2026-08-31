@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { UnsubscribedEmailRecord } from "../../../../types/types";
-import { Loader2 } from "lucide-react";
+import {
+  PendingUnsubscribeRecord,
+  UnsubscribedEmailRecord,
+} from "../../../../types/types";
+import { AlertTriangle, Loader2 } from "lucide-react";
 
 const UnsubscribeList: React.FC = () => {
   const [records, setRecords] = useState<UnsubscribedEmailRecord[]>([]);
+  const [pending, setPending] = useState<PendingUnsubscribeRecord[]>([]);
+  const [resolving, setResolving] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
@@ -19,15 +24,28 @@ const UnsubscribeList: React.FC = () => {
   });
 
   const loadRecords = React.useCallback(() => {
+    const headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+    };
+
     axios
-      .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-        },
-      })
+      .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed`, { headers })
       .then((r) => setRecords(r.data))
       .catch(() => setError("No se pudo cargar la lista de bajas."))
       .finally(() => setLoading(false));
+
+    // Las pendientes se cargan aparte a propósito: si este endpoint falla, la
+    // lista de bajas debe seguir viéndose. Son dos preguntas distintas.
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed/pending`, {
+        headers,
+      })
+      .then((r) => setPending(r.data))
+      .catch(() =>
+        setError(
+          "No se pudieron cargar las solicitudes pendientes. Puede haber personas esperando su baja."
+        )
+      );
   }, []);
 
   useEffect(() => {
@@ -68,6 +86,47 @@ const UnsubscribeList: React.FC = () => {
     }
   };
 
+  /**
+   * Ejecuta la baja de una solicitud pendiente. Usa el mismo endpoint que la
+   * baja manual: el backend borra la fila de la cola al completarla, así que
+   * no hay un segundo paso que se pueda olvidar.
+   */
+  const handleResolvePending = async (email: string) => {
+    if (
+      !window.confirm(
+        `¿Dar de baja ${email}? Lo pidió desde la web y no se le pudo enviar el email de confirmación. Dejará de recibir comunicaciones y se retirará su consentimiento de marketing.`
+      )
+    ) {
+      return;
+    }
+    setResolving(email);
+    setFeedback(null);
+    setError(null);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/admin/unsubscribe`,
+        { email },
+        authHeaders()
+      );
+      setFeedback(
+        data.status === "already"
+          ? `${email} ya estaba dado de baja.`
+          : `${email} dado de baja correctamente.`
+      );
+      loadRecords();
+    } catch {
+      setError(`No se pudo dar de baja a ${email}. Inténtalo de nuevo.`);
+    } finally {
+      setResolving(null);
+    }
+  };
+
+  /** Días que lleva esperando. Es la medida del incumplimiento, no un adorno. */
+  const diasEsperando = (requestedAt: string) =>
+    Math.floor(
+      (Date.now() - new Date(requestedAt).getTime()) / (1000 * 60 * 60 * 24)
+    );
+
   const filtered = search.trim()
     ? records.filter((r) =>
         r.email.toLowerCase().includes(search.toLowerCase())
@@ -106,6 +165,106 @@ const UnsubscribeList: React.FC = () => {
         >
           {feedback}
         </div>
+      )}
+
+      {pending.length > 0 && (
+        <section
+          aria-labelledby="pendientes-titulo"
+          className="rounded-xl p-6 mb-6 border-2"
+          style={{ backgroundColor: "#fef2f2", borderColor: "#991b1b" }}
+        >
+          <div className="flex items-start gap-3 mb-2">
+            <AlertTriangle
+              className="w-6 h-6 shrink-0"
+              style={{ color: "#7f1d1d" }}
+              aria-hidden="true"
+            />
+            <div>
+              <h2
+                id="pendientes-titulo"
+                className="text-lg font-semibold"
+                style={{ color: "#7f1d1d" }}
+              >
+                {pending.length === 1
+                  ? "1 solicitud de baja sin completar"
+                  : `${pending.length} solicitudes de baja sin completar`}
+              </h2>
+              <p className="text-sm mt-1" style={{ color: "#7f1d1d" }}>
+                Pidieron la baja desde la web y no se les pudo enviar el email
+                de confirmación. Siguen recibiendo comunicaciones hasta que la
+                completes aquí.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto mt-4">
+            <table className="table w-full bg-white border border-gray-200">
+              <caption className="sr-only">
+                Solicitudes de baja pendientes de completar, la más antigua
+                primero
+              </caption>
+              <thead>
+                <tr style={{ backgroundColor: "#7f1d1d10" }}>
+                  <th
+                    scope="col"
+                    className="p-4 text-left font-semibold"
+                    style={{ color: "#7f1d1d" }}
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="p-4 text-left font-semibold"
+                    style={{ color: "#7f1d1d" }}
+                  >
+                    Lo pidió
+                  </th>
+                  <th
+                    scope="col"
+                    className="p-4 text-left font-semibold"
+                    style={{ color: "#7f1d1d" }}
+                  >
+                    Acción
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {pending.map((p) => {
+                  const dias = diasEsperando(p.requestedAt);
+                  return (
+                    <tr key={p.id} className="border-b border-gray-100">
+                      <td className="p-4 text-sm">{p.email}</td>
+                      <td className="p-4 text-sm" style={{ color: "#3d3d3d" }}>
+                        {new Date(p.requestedAt).toLocaleString("es-ES")}
+                        <span className="block text-xs" style={{ color: "#7f1d1d" }}>
+                          {dias === 0
+                            ? "hoy"
+                            : dias === 1
+                            ? "hace 1 día"
+                            : `hace ${dias} días`}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <button
+                          type="button"
+                          onClick={() => handleResolvePending(p.email)}
+                          disabled={resolving === p.email}
+                          aria-busy={resolving === p.email}
+                          className="px-4 py-2 rounded-lg text-sm font-semibold text-white disabled:opacity-60"
+                          style={{ backgroundColor: "#991b1b" }}
+                        >
+                          {resolving === p.email
+                            ? "Procesando…"
+                            : "Completar baja"}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
       )}
 
       <div className="bg-white rounded-xl shadow-md p-6 mb-6">

@@ -447,6 +447,16 @@ export interface UnsubscribedEmailRecord {
   source: string | null;
 }
 
+/**
+ * Solicitud de baja que no se pudo completar porque falló el envío del email
+ * de confirmación. Requiere que una admin la ejecute a mano desde el panel.
+ */
+export interface PendingUnsubscribeRecord {
+  id: number;
+  email: string;
+  requestedAt: string;
+}
+
 export interface ConsentContact {
   idUser: number;
   name: string;

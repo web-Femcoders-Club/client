@@ -4,7 +4,19 @@ import { useLocation } from "react-router-dom";
 import "../../ForgotPassword/components/ForgotPasswordForm.css";
 
 type ConfirmStatus = "loading" | "success" | "already" | "error";
-type RequestStatus = "idle" | "loading" | "sent" | "already" | "error";
+/**
+ * `queued`: el backend registró la solicitud pero no pudo enviar el email de
+ * confirmación (proveedor caído). No es un error de la persona y no tiene
+ * nada que reintentar — el mensaje debe decírselo, no mandarla a probar otra
+ * vez.
+ */
+type RequestStatus =
+  | "idle"
+  | "loading"
+  | "sent"
+  | "already"
+  | "queued"
+  | "error";
 
 const UnsubscribePage: React.FC = () => {
   const location = useLocation();
@@ -46,6 +58,7 @@ const UnsubscribePage: React.FC = () => {
       );
       if (res.data.status === "sent") setRequestStatus("sent");
       else if (res.data.status === "already") setRequestStatus("already");
+      else if (res.data.status === "queued") setRequestStatus("queued");
       else setRequestStatus("error");
     } catch {
       setRequestStatus("error");
@@ -119,7 +132,9 @@ const UnsubscribePage: React.FC = () => {
           email y te enviaremos un enlace para confirmar la baja.
         </p>
 
-        {requestStatus === "idle" || requestStatus === "loading" || requestStatus === "error" ? (
+        {requestStatus === "idle" ||
+        requestStatus === "loading" ||
+        requestStatus === "error" ? (
           <form onSubmit={handleRequest} style={{ width: "100%" }}>
             <div className="form-group">
               <input
@@ -158,6 +173,24 @@ const UnsubscribePage: React.FC = () => {
             Te hemos enviado un email con el enlace de confirmación. Revisa tu bandeja de entrada
             (y la carpeta de spam si no lo encuentras).
           </p>
+        ) : requestStatus === "queued" ? (
+          <div role="status" style={{ textAlign: "center" }}>
+            <p className="success-message" style={{ textAlign: "center" }}>
+              Hemos registrado tu solicitud de baja.
+            </p>
+            <p style={{ color: "#3d3d3d", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+              Ahora mismo no podemos enviarte el email de confirmación por un
+              problema técnico nuestro, así que la tramitaremos a mano. No
+              tienes que hacer nada más ni volver a intentarlo.
+            </p>
+            <p style={{ color: "#3d3d3d", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+              Si prefieres que te confirmemos por escrito, escríbenos a{" "}
+              <a href="mailto:femcodersclub@gmail.com" style={{ color: "#4737bb" }}>
+                femcodersclub@gmail.com
+              </a>
+              .
+            </p>
+          </div>
         ) : (
           <p className="success-message" style={{ textAlign: "center" }}>
             Este email ya estaba dado de baja anteriormente. No tienes que hacer nada más.
