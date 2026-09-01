@@ -56,7 +56,7 @@ const TRATAMIENTOS: Tratamiento[] = [
     destinatarios: "Brevo (envío de correo)",
     origen: "Formularios de Eventbrite, importados por la API",
     nota:
-      "La ponderación que justifica esta base está en docs/base-legal-envios.md del repositorio del servidor. Solo ampara actividades propias y gratuitas: si un envío incluyera publicidad de patrocinadores, deja de valer.",
+      "La ponderación que justifica esta base está en docs/cumplimiento/base-legal-envios.md del repositorio del servidor. Solo ampara actividades propias y gratuitas: si un envío incluyera publicidad de patrocinadores, deja de valer.",
   },
   {
     dato: "DNI",
@@ -285,6 +285,19 @@ const LegalDocs: React.FC = () => {
         necesitar el pie. Ante la duda, ponerlo.
       </p>
 
+      {/*
+        * El enlace de baja va en ABSOLUTO, al contrario que el resto del sitio
+        * (FaqModal y Privacidad usan el relativo, y ahí es lo correcto).
+        *
+        * Este bloque existe para copiarse y pegarse en la firma de Gmail. Un
+        * href relativo depende de que el navegador lo resuelva al copiar y del
+        * origen desde el que se copie: desde localhost saldría una URL de
+        * localhost dentro del correo.
+        *
+        * La baja de un clic es una de las salvaguardas sobre las que se apoya
+        * la ponderación de interés legítimo. Si llega rota al buzón, se cae una
+        * pata del argumento legal — no es un detalle de estilo.
+        */}
       <h4>Texto del pie</h4>
       <blockquote className="legal-docs__pie-correo">
         <p>
@@ -295,7 +308,7 @@ const LegalDocs: React.FC = () => {
         <p>
           Si no deseas recibir más comunicaciones, puedes darte de baja en un
           clic:{" "}
-          <a href="/baja-email" className="legal-docs__link">
+          <a href="https://femcodersclub.com/baja-email" className="legal-docs__link">
             femcodersclub.com/baja-email
           </a>
         </p>
