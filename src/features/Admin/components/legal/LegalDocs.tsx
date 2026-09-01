@@ -38,12 +38,25 @@ const TRATAMIENTOS: Tratamiento[] = [
     origen: "Registro web y formularios de Eventbrite",
   },
   {
-    dato: "Consentimiento de marketing",
+    dato: "Consentimiento de comunicaciones",
     finalidad:
-      "Base legal de los envíos comerciales (LSSI art. 21). Sin él no se puede enviar",
-    conservacion: "Mientras dure la actividad de marketing",
+      "Base legal de los envíos a quienes se registraron en la web. Sin él no se les puede escribir",
+    conservacion: "Mientras dure la actividad de comunicación",
     destinatarios: "Nadie: solo uso interno",
     origen: "Casilla del registro, desmarcada por defecto",
+    nota:
+      "No aplica a quienes se inscribieron a un evento: a esas personas se les escribe por interés legítimo, no por consentimiento (ver la fila siguiente).",
+  },
+  {
+    dato: "Email de asistentes a eventos",
+    finalidad:
+      "Informar de las siguientes actividades de la asociación, base legal de interés legítimo (RGPD art. 6.1.f)",
+    conservacion:
+      "Hasta que la persona pide la baja. Es el registro de la comunidad, no un dato logístico del evento",
+    destinatarios: "Brevo (envío de correo)",
+    origen: "Formularios de Eventbrite, importados por la API",
+    nota:
+      "La ponderación que justifica esta base está en docs/cumplimiento/base-legal-envios.md del repositorio del servidor. Solo ampara actividades propias y gratuitas: si un envío incluyera publicidad de patrocinadores, deja de valer.",
   },
   {
     dato: "DNI",
@@ -101,6 +114,41 @@ const SALVAGUARDAS: Salvaguarda[] = [
   },
 ];
 
+interface TipoCorreo {
+  tipo: string;
+  ejemplos: string;
+  llevaPie: boolean;
+  porQue: string;
+}
+
+/**
+ * Qué correos necesitan el pie legal y cuáles no.
+ *
+ * La distinción no es un tecnicismo: un aviso de que un evento cambia de sala
+ * es información que la persona necesita sobre algo a lo que se apuntó, y
+ * ofrecerle darse de baja ahí sería absurdo — dejaría de enterarse de los
+ * cambios del evento al que va. En cambio, anunciar un evento nuevo es difusión
+ * y sin enlace de baja no es legal.
+ */
+const TIPOS_DE_CORREO: TipoCorreo[] = [
+  {
+    tipo: "Difusión",
+    ejemplos:
+      "Anuncio de un evento nuevo, newsletter, novedades del club, resumen de actividades",
+    llevaPie: true,
+    porQue:
+      "Es una comunicación que la persona no ha pedido. La ley exige poder dejar de recibirla de forma sencilla y gratuita, en cada envío.",
+  },
+  {
+    tipo: "Transaccional",
+    ejemplos:
+      "Cambio de hora o sala, cancelación, recordatorio a quien ya está inscrita, respuesta a una consulta",
+    llevaPie: false,
+    porQue:
+      "Es información sobre algo que la persona solicitó. Si se diera de baja, dejaría de enterarse de los cambios del evento al que va a asistir.",
+  },
+];
+
 interface Pendiente {
   texto: string;
   responsable: string;
@@ -115,6 +163,11 @@ const PENDIENTES: Pendiente[] = [
   {
     texto:
       "Explicar en el formulario de Eventbrite por qué se pide el DNI, para que la persona lo sepa al rellenarlo",
+    responsable: "Quien gestiona Eventbrite",
+  },
+  {
+    texto:
+      'Añadir al formulario de Eventbrite de los próximos eventos una casilla desmarcada por defecto: «Deseo recibir información por email sobre futuros eventos y actividades de FemCoders Club». Quien se inscriba a partir de entonces entra con consentimiento expreso, que es la base legal más sólida. Desmarcada por defecto es obligatorio: una casilla premarcada no es consentimiento válido',
     responsable: "Quien gestiona Eventbrite",
   },
   {
@@ -184,6 +237,95 @@ const LegalDocs: React.FC = () => {
           </li>
         ))}
       </ul>
+
+      <h3 id="pie-correos">Cuándo hay que poner el pie legal en un correo</h3>
+      <p className="legal-docs__intro">
+        Mientras los envíos se hagan desde el correo del club, el pie hay que
+        ponerlo a mano. Lo práctico es tenerlo guardado como firma en Gmail
+        (Configuración → General → Firma) y usar la que corresponda: una firma
+        con pie para los correos de difusión y otra sin él para los avisos de
+        eventos.
+      </p>
+      <div
+        className="legal-docs__scroll"
+        tabIndex={0}
+        role="region"
+        aria-labelledby="pie-correos"
+      >
+        <table className="legal-docs__table">
+          <caption className="legal-docs__caption">
+            Qué tipo de correo lleva pie legal y por qué
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipo de correo</th>
+              <th scope="col">Ejemplos</th>
+              <th scope="col">¿Lleva pie?</th>
+              <th scope="col">Por qué</th>
+            </tr>
+          </thead>
+          <tbody>
+            {TIPOS_DE_CORREO.map((c) => (
+              <tr key={c.tipo}>
+                <th scope="row">{c.tipo}</th>
+                <td>{c.ejemplos}</td>
+                <td>
+                  <strong>{c.llevaPie ? "Sí, siempre" : "No hace falta"}</strong>
+                </td>
+                <td>{c.porQue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="legal-docs__intro">
+        <strong>Cuidado al mezclar:</strong> un aviso de cambio de evento que
+        aprovecha para anunciar otra actividad deja de ser transaccional y pasa a
+        necesitar el pie. Ante la duda, ponerlo.
+      </p>
+
+      {/*
+        * El enlace de baja va en ABSOLUTO, al contrario que el resto del sitio
+        * (FaqModal y Privacidad usan el relativo, y ahí es lo correcto).
+        *
+        * Este bloque existe para copiarse y pegarse en la firma de Gmail. Un
+        * href relativo depende de que el navegador lo resuelva al copiar y del
+        * origen desde el que se copie: desde localhost saldría una URL de
+        * localhost dentro del correo.
+        *
+        * La baja de un clic es una de las salvaguardas sobre las que se apoya
+        * la ponderación de interés legítimo. Si llega rota al buzón, se cae una
+        * pata del argumento legal — no es un detalle de estilo.
+        */}
+      <h4>Texto del pie</h4>
+      <blockquote className="legal-docs__pie-correo">
+        <p>
+          Recibes este correo porque formas parte de la comunidad FemCoders Club:
+          te inscribiste en alguno de nuestros eventos o te registraste en
+          nuestra web.
+        </p>
+        <p>
+          Si no deseas recibir más comunicaciones, puedes darte de baja en un
+          clic:{" "}
+          <a href="https://femcodersclub.com/baja-email" className="legal-docs__link">
+            femcodersclub.com/baja-email
+          </a>
+        </p>
+        <p>
+          Responsable del tratamiento: FemCoders Club. Usamos tu email únicamente
+          para informarte de nuestras actividades. Puedes ejercer tus derechos de
+          acceso, rectificación, supresión, oposición, limitación y portabilidad
+          escribiendo a info@femcodersclub.com, y presentar una reclamación ante
+          la Agencia Española de Protección de Datos. Más información en nuestra
+          política de privacidad, disponible en femcodersclub.com
+        </p>
+      </blockquote>
+      <p className="legal-docs__intro">
+        Va en letra pequeña y gris, pero <strong>el enlace de baja tiene que
+        verse</strong>: un texto legal ilegible o de bajo contraste no cumple la
+        obligación de informar, y es justo lo que se mira en una inspección.
+      </p>
 
       <h3>Pendiente</h3>
       <ul className="legal-docs__lista">

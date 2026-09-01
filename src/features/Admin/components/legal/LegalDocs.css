@@ -133,6 +133,30 @@
   color: #2d2d2d;
 }
 
+/*
+ * El pie legal de los correos, presentado como lo que es: un texto para copiar.
+ * Borde discontinuo para que se lea como "esto se copia tal cual" y no se
+ * confunda con las notas del propio panel.
+ */
+.legal-docs__pie-correo {
+  max-width: 70ch;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: #fff;
+  border: 2px dashed #4737bb;
+  border-radius: 6px;
+  line-height: 1.6;
+  color: #2d2d2d;
+}
+
+.legal-docs__pie-correo p {
+  margin: 0 0 0.75rem;
+}
+
+.legal-docs__pie-correo p:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .legal-docs__table {
     font-size: 0.9rem;
