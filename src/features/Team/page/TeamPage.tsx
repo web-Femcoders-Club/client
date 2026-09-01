@@ -110,11 +110,11 @@ const TeamPage = () => {
   </title>
   <meta
     name="description"
-    content="Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Liliana Dalmarco e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino."
+    content="Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino."
   />
   <meta
     name="keywords"
-    content="FemCoders Club, cofundadoras, mujeres en tecnología, desarrolladoras, mentoras tech, Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Liliana Dalmarco, Isadora Matias, InfoJobs, Glovo, sponsors tech, empresas colaboradoras"
+    content="FemCoders Club, cofundadoras, mujeres en tecnología, desarrolladoras, mentoras tech, Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Isadora Matias, InfoJobs, Glovo, sponsors tech, empresas colaboradoras"
   />
   <link rel="canonical" href="https://www.femcodersclub.com/equipo" />
   
@@ -131,7 +131,18 @@ const TeamPage = () => {
   <meta name="twitter:description" content="Conoce a las cofundadoras de FemCoders Club y su misión de empoderar a mujeres en tecnología." />
   <meta name="twitter:image" content="https://www.femcodersclub.com/FemCodersClubLogo.png" />
 
-  {/* JSON-LD Organization con Cofundadoras */}
+  {/*
+    * JSON-LD Organization con las fundadoras.
+    *
+    * Liliana Dalmarco sigue en esta lista a propósito, aunque haya salido del
+    * equipo visible (EQ1, issue #18). En schema.org, `founder` es quien fundó
+    * la organización: un hecho histórico, no un estado actual. Quitarla
+    * declararía a los buscadores que fueron cinco cuando fueron seis — y
+    * AboutPage declara numberOfEmployees: 6.
+    *
+    * Lo que sí se retiró es donde figuraba como equipo ACTUAL: la meta
+    * description, las keywords y la descripción del ItemList.
+    */}
   <script type="application/ld+json">
     {`
       {
@@ -430,21 +441,12 @@ const TeamPage = () => {
               "item": {
                 "@type": "Person",
                 "name": "Equipo Actual - Cofundadoras",
-                "description": "Cofundadoras activas que lideran las iniciativas de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Liliana Dalmarco e Isadora Matias"
+                "description": "Cofundadoras activas que lideran las iniciativas de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias"
               }
             },
             {
               "@type": "ListItem",
               "position": 2,
-              "item": {
-                "@type": "Person",
-                "name": "Cofundadoras Legacy",
-                "description": "Mujeres que formaron parte fundamental de los inicios de FemCoders Club y sentaron las bases de la comunidad"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
               "item": {
                 "@type": "Organization",
                 "name": "Strategic Partners",
@@ -453,7 +455,7 @@ const TeamPage = () => {
             },
             {
               "@type": "ListItem",
-              "position": 4,
+              "position": 3,
               "item": {
                 "@type": "Organization",
                 "name": "Empresas Colaboradoras",
