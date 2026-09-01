@@ -102,6 +102,10 @@ const AboutPage: React.FC = () => {
               "https://github.com/femcodersclub",
               "https://x.com/FemCodersClub"
             ],
+            // Liliana Dalmarco se mantiene aquí a propósito, aunque haya salido
+            // del equipo visible (EQ1, issue #18): `founder` es quien fundó la
+            // organización, un hecho histórico que no cambia. Son seis, y así
+            // lo declara también numberOfEmployees arriba.
             "founder": [
               { "@type": "Person", "name": "Irina Ichim", "jobTitle": "Fullstack Software Developer & AI Specialist", "sameAs": "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
               { "@type": "Person", "name": "Ana Lucía Silva Córdoba", "jobTitle": "Fullstack Developer & Data Science", "sameAs": "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
