@@ -5,6 +5,13 @@ axios.defaults.withCredentials = true;
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Crear, editar y borrar miembros exige admin desde server#72: es el equipo
+// que sale en la web publica y hasta entonces se podia alterar sin sesion.
+// El listado (getMember) lo pinta la web sin cuenta y sigue abierto.
+const cabeceraDeAuth = () => ({
+  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+});
+
 export const getMember = async (): Promise<Member[]> => {
   try {
     const response = await axios.get(`${API_URL}/member`);
@@ -39,7 +46,7 @@ export const addMember = async (
       memberRole,
       memberImage,
       memberLinkedin
-    });
+    }, { headers: cabeceraDeAuth() });
     return result.data;
   } catch (error) {
     throw new Error('Error al agregar el miembro');
@@ -49,7 +56,9 @@ export const addMember = async (
 export const updateMember = async (idMember: number, updateMemberDto: UpdateMemberDto): Promise<void> => {
   const url = `${API_URL}/member/${idMember}`;
   try {
-    const response = await axios.put(url, updateMemberDto);
+    const response = await axios.put(url, updateMemberDto, {
+      headers: cabeceraDeAuth(),
+    });
     return response.data;
   } catch (error) {
     throw new Error('Error al actualizar el miembro');
@@ -58,7 +67,9 @@ export const updateMember = async (idMember: number, updateMemberDto: UpdateMemb
 
 export const deleteMember = async (idMember: number): Promise<Member> => {
   try {
-    const response = await axios.delete(`${API_URL}/member/${idMember}`);
+    const response = await axios.delete(`${API_URL}/member/${idMember}`, {
+      headers: cabeceraDeAuth(),
+    });
     return response.data;
   } catch (error) {
     throw new Error('Error al eliminar el miembro');
