@@ -66,7 +66,7 @@ const UserStats: React.FC = () => {
     return (
       <div className="container mx-auto p-6 flex justify-center items-center admin-min-alto">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#8B5CF6" }} />
+          <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#6D28D9" }} />
           <p className="text-gray-500">Cargando estadísticas...</p>
         </div>
       </div>
@@ -81,7 +81,7 @@ const UserStats: React.FC = () => {
           <button
             onClick={() => window.location.reload()}
             className="mt-3 px-4 py-2 rounded-lg text-white transition-colors"
-            style={{ backgroundColor: "#8B5CF6" }}
+            style={{ backgroundColor: "#6D28D9" }}
           >
             Reintentar
           </button>
@@ -94,23 +94,23 @@ const UserStats: React.FC = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6" style={{ color: "#8B5CF6" }}>
+      <h1 className="text-2xl font-bold mb-6" style={{ color: "#6D28D9" }}>
         Estadísticas de Usuarias
       </h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Total Users Card */}
-        <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#8B5CF6" }}>
+        <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#6D28D9" }}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm font-medium">Total Registradas</p>
-              <p className="text-3xl font-bold mt-1" style={{ color: "#8B5CF6" }}>
+              <p className="text-3xl font-bold mt-1" style={{ color: "#6D28D9" }}>
                 {stats.totalUsers}
               </p>
             </div>
-            <div className="p-3 rounded-full" style={{ backgroundColor: "#8B5CF620" }}>
-              <Users className="w-6 h-6" style={{ color: "#8B5CF6" }} />
+            <div className="p-3 rounded-full" style={{ backgroundColor: "#6D28D920" }}>
+              <Users className="w-6 h-6" style={{ color: "#6D28D9" }} />
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ const UserStats: React.FC = () => {
       {/* Achievement Stats Section */}
       {achievementStats && (
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+          <h2 className="text-xl font-semibold mb-4" style={{ color: "#6D28D9" }}>
             <Trophy className="inline-block w-5 h-5 mr-2" />
             Estadísticas de Logros
           </h2>
@@ -188,17 +188,17 @@ const UserStats: React.FC = () => {
           {/* Popular Achievements Table */}
           {achievementStats.achievementsByType.length > 0 && (
             <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: "#6D28D9" }}>
                 Logros más populares
               </h3>
               <div className="overflow-x-auto">
                 <table className="table w-full border border-gray-200">
                   <thead>
-                    <tr style={{ backgroundColor: "#8B5CF610" }}>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                    <tr style={{ backgroundColor: "#6D28D910" }}>
+                      <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                         Logro
                       </th>
-                      <th className="p-4 text-center font-semibold" style={{ color: "#8B5CF6" }}>
+                      <th className="p-4 text-center font-semibold" style={{ color: "#6D28D9" }}>
                         Usuarias
                       </th>
                     </tr>
@@ -216,7 +216,7 @@ const UserStats: React.FC = () => {
                           <td className="p-4 text-center">
                             <span
                               className="px-3 py-1 rounded-full text-sm font-medium"
-                              style={{ backgroundColor: "#8B5CF620", color: "#8B5CF6" }}
+                              style={{ backgroundColor: "#6D28D920", color: "#6D28D9" }}
                             >
                               {achievement.usersCount}
                             </span>
@@ -234,7 +234,7 @@ const UserStats: React.FC = () => {
       {/* Recent Registrations Table */}
       <div className="bg-white rounded-xl shadow-md p-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold" style={{ color: "#8B5CF6" }}>
+          <h2 className="text-xl font-semibold" style={{ color: "#6D28D9" }}>
             Últimos Registros
           </h2>
           <span className="text-sm text-gray-500">
@@ -247,14 +247,14 @@ const UserStats: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="table w-full border border-gray-200">
                 <thead>
-                  <tr style={{ backgroundColor: "#8B5CF610" }}>
-                    <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                  <tr style={{ backgroundColor: "#6D28D910" }}>
+                    <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                       Nombre Completo
                     </th>
-                    <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                    <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                       Email
                     </th>
-                    <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                    <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                       Fecha de Registro
                     </th>
                   </tr>
@@ -267,7 +267,7 @@ const UserStats: React.FC = () => {
                         {isNewUser(user.createdAt) && (
                           <span
                             className="px-2 py-0.5 text-xs font-medium rounded-full text-white"
-                            style={{ backgroundColor: "#8B5CF6" }}
+                            style={{ backgroundColor: "#6D28D9" }}
                           >
                             Nueva
                           </span>
@@ -304,7 +304,7 @@ const UserStats: React.FC = () => {
                         ? "text-white"
                         : "text-gray-600 border border-gray-200 hover:bg-gray-50"
                     }`}
-                    style={currentPage === page ? { backgroundColor: "#8B5CF6" } : {}}
+                    style={currentPage === page ? { backgroundColor: "#6D28D9" } : {}}
                   >
                     {page}
                   </button>

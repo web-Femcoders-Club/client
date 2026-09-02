@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Trophy, Users, Clock, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, Users, Clock, Loader2 } from "lucide-react";
 import {
   getUsersWithAchievements,
   getRecentAchievements,
@@ -11,6 +11,10 @@ import {
   Pagination,
 } from "../../../types/types";
 import { filasDe } from '../../../utils/respuestaPaginada';
+import AdminPagination from '../../Admin/components/ui/AdminPagination';
+// Esta ruta (/admin/achievements) no pasa por Admin.tsx, que es quien
+// carga admin-ui.css. Sin este import los controles saldrían sin estilo.
+import '../../Admin/admin-ui.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -138,7 +142,7 @@ const ManageAchievements: React.FC = () => {
     return (
       <div className="p-6 flex justify-center items-center min-h-[400px]">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#8B5CF6" }} />
+          <Loader2 className="w-10 h-10 animate-spin" style={{ color: "#6D28D9" }} />
           <p className="text-gray-500">Cargando datos...</p>
         </div>
       </div>
@@ -157,7 +161,7 @@ const ManageAchievements: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2" style={{ color: "#8B5CF6" }}>
+      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2" style={{ color: "#6D28D9" }}>
         <Trophy className="w-7 h-7" />
         Gestionar Logros
       </h1>
@@ -172,7 +176,7 @@ const ManageAchievements: React.FC = () => {
               ? "border-b-2 text-purple-600"
               : "text-gray-500 hover:text-gray-700"
           }`}
-          style={activeTab === "users" ? { borderBottomColor: "#8B5CF6" } : {}}
+          style={activeTab === "users" ? { borderBottomColor: "#6D28D9" } : {}}
         >
           <Users className="inline-block w-4 h-4 mr-2" />
           Usuarias con Logros
@@ -185,7 +189,7 @@ const ManageAchievements: React.FC = () => {
               ? "border-b-2 text-purple-600"
               : "text-gray-500 hover:text-gray-700"
           }`}
-          style={activeTab === "assign" ? { borderBottomColor: "#8B5CF6" } : {}}
+          style={activeTab === "assign" ? { borderBottomColor: "#6D28D9" } : {}}
         >
           <Trophy className="inline-block w-4 h-4 mr-2" />
           Asignar Logros
@@ -198,7 +202,7 @@ const ManageAchievements: React.FC = () => {
               ? "border-b-2 text-purple-600"
               : "text-gray-500 hover:text-gray-700"
           }`}
-          style={activeTab === "activity" ? { borderBottomColor: "#8B5CF6" } : {}}
+          style={activeTab === "activity" ? { borderBottomColor: "#6D28D9" } : {}}
         >
           <Clock className="inline-block w-4 h-4 mr-2" />
           Actividad Reciente
@@ -209,7 +213,7 @@ const ManageAchievements: React.FC = () => {
       {activeTab === "users" && (
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold" style={{ color: "#8B5CF6" }}>
+            <h2 className="text-lg font-semibold" style={{ color: "#6D28D9" }}>
               Usuarias y sus logros
             </h2>
             {pagination && (
@@ -223,14 +227,14 @@ const ManageAchievements: React.FC = () => {
               <div className="overflow-x-auto">
                 <table className="table w-full border border-gray-200">
                   <thead>
-                    <tr style={{ backgroundColor: "#8B5CF610" }}>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                    <tr style={{ backgroundColor: "#6D28D910" }}>
+                      <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                         Usuaria
                       </th>
-                      <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                      <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                         Email
                       </th>
-                      <th className="p-4 text-center font-semibold" style={{ color: "#8B5CF6" }}>
+                      <th className="p-4 text-center font-semibold" style={{ color: "#6D28D9" }}>
                         Logros
                       </th>
                     </tr>
@@ -265,63 +269,17 @@ const ManageAchievements: React.FC = () => {
                 </table>
               </div>
 
-              {/* Pagination */}
-              {pagination && pagination.totalPages > 1 && (
-                <div className="flex justify-center items-center gap-2 mt-6">
-                  <button
-                    type="button"
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={!pagination.hasPreviousPage}
-                    className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                    aria-label="Página anterior"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-600" />
-                  </button>
-
-                  {Array.from({ length: pagination.totalPages }, (_, i) => i + 1)
-                    .filter((page) => {
-                      // Show first, last, current, and pages around current
-                      return (
-                        page === 1 ||
-                        page === pagination.totalPages ||
-                        Math.abs(page - currentPage) <= 1
-                      );
-                    })
-                    .map((page, index, array) => {
-                      // Add ellipsis if there's a gap
-                      const showEllipsisBefore = index > 0 && page - array[index - 1] > 1;
-                      return (
-                        <React.Fragment key={page}>
-                          {showEllipsisBefore && (
-                            <span className="px-2 text-gray-400">...</span>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => handlePageChange(page)}
-                            className={`w-10 h-10 rounded-lg font-medium transition-colors ${
-                              currentPage === page
-                                ? "text-white"
-                                : "text-gray-600 border border-gray-200 hover:bg-gray-50"
-                            }`}
-                            style={currentPage === page ? { backgroundColor: "#8B5CF6" } : {}}
-                          >
-                            {page}
-                          </button>
-                        </React.Fragment>
-                      );
-                    })}
-
-                  <button
-                    type="button"
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={!pagination.hasNextPage}
-                    className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                    aria-label="Página siguiente"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-600" />
-                  </button>
-                </div>
-              )}
+              {/* Los controles vienen de AdminPagination, que ya usaban
+                  CrmDashboard, ManageUsers y ConsentOverview. Este bloque
+                  estaba copiado a mano y era la cuarta variante (#20). */}
+              <AdminPagination
+                paginaActual={currentPage}
+                totalPaginas={pagination?.totalPages ?? 1}
+                onCambiar={handlePageChange}
+                totalElementos={pagination?.totalItems}
+                nombreElemento="usuaria"
+                etiqueta="Paginación de usuarias con logros"
+              />
             </>
           ) : (
             <p className="text-center text-gray-500 py-8">
@@ -355,20 +313,20 @@ const ManageAchievements: React.FC = () => {
             </select>
           </div>
 
-          <h3 className="text-lg font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+          <h3 className="text-lg font-semibold mb-4" style={{ color: "#6D28D9" }}>
             Logros disponibles
           </h3>
           <div className="overflow-x-auto">
             <table className="table w-full border border-gray-200">
               <thead>
-                <tr style={{ backgroundColor: "#8B5CF610" }}>
-                  <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                <tr style={{ backgroundColor: "#6D28D910" }}>
+                  <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                     Logro
                   </th>
-                  <th className="p-4 text-left font-semibold" style={{ color: "#8B5CF6" }}>
+                  <th className="p-4 text-left font-semibold" style={{ color: "#6D28D9" }}>
                     Descripción
                   </th>
-                  <th className="p-4 text-center font-semibold" style={{ color: "#8B5CF6" }}>
+                  <th className="p-4 text-center font-semibold" style={{ color: "#6D28D9" }}>
                     Acción
                   </th>
                 </tr>
@@ -387,7 +345,7 @@ const ManageAchievements: React.FC = () => {
                         onClick={() => handleAssignAchievement(achievement)}
                         disabled={!selectedUser}
                         className="px-4 py-2 rounded-lg text-white font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        style={{ backgroundColor: "#8B5CF6" }}
+                        style={{ backgroundColor: "#6D28D9" }}
                       >
                         Asignar
                       </button>
@@ -403,7 +361,7 @@ const ManageAchievements: React.FC = () => {
       {/* Tab: Recent Activity */}
       {activeTab === "activity" && (
         <div className="bg-white rounded-xl shadow-md p-6">
-          <h2 className="text-lg font-semibold mb-4" style={{ color: "#8B5CF6" }}>
+          <h2 className="text-lg font-semibold mb-4" style={{ color: "#6D28D9" }}>
             Actividad reciente de logros
           </h2>
           {recentActivity.length > 0 ? (
