@@ -97,13 +97,20 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
-      // confirmPassword es solo de UI: no viaja al backend.
+      // confirmPassword y userRole son solo de UI: no viajan al backend.
+      //
+      // userRole nunca sirvió de nada: el servidor asigna siempre el rol
+      // `user`, porque aceptar el del cuerpo permitiría registrarse como
+      // admin. Se ignoraba en silencio, y desde que el ValidationPipe rechaza
+      // los campos no declarados (server#28) rompía el registro entero con un
+      // 400 "property userRole should not exist".
       const dataToSend: Record<string, unknown> = {
         ...formData,
         acceptsPrivacy,
         marketingConsent,
       };
       delete dataToSend.confirmPassword;
+      delete dataToSend.userRole;
       await axios.post(`${import.meta.env.VITE_API_URL}/user`, dataToSend);
       navigate("/login");
     } catch (err) {
