@@ -1,4 +1,5 @@
 import axios from "axios";
+import { filasDe } from "../utils/respuestaPaginada";
 import {
   UserStats,
   AchievementStats,
@@ -156,7 +157,8 @@ export const getAdminUsers = async (): Promise<AdminUser[]> => {
   const response = await axios.get(`${API_URL}/admin/users`, {
     headers: getAuthHeaders(),
   });
-  return response.data;
+  // Desde server#27 la respuesta es { data, pagination }; antes, un array.
+  return filasDe<AdminUser>(response.data);
 };
 
 export const updateAdminUser = async (

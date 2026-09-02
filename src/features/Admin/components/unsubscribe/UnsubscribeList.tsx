@@ -5,6 +5,7 @@ import {
   UnsubscribedEmailRecord,
 } from "../../../../types/types";
 import { AlertTriangle, Loader2 } from "lucide-react";
+import { filasDe } from '../../../../utils/respuestaPaginada';
 
 const UnsubscribeList: React.FC = () => {
   const [records, setRecords] = useState<UnsubscribedEmailRecord[]>([]);
@@ -30,7 +31,8 @@ const UnsubscribeList: React.FC = () => {
 
     axios
       .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed`, { headers })
-      .then((r) => setRecords(r.data))
+      // Desde server#27 llega { data, pagination }; antes, un array suelto.
+      .then((r) => setRecords(filasDe(r.data)))
       .catch(() => setError("No se pudo cargar la lista de bajas."))
       .finally(() => setLoading(false));
 
@@ -40,7 +42,7 @@ const UnsubscribeList: React.FC = () => {
       .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed/pending`, {
         headers,
       })
-      .then((r) => setPending(r.data))
+      .then((r) => setPending(filasDe(r.data)))
       .catch(() =>
         setError(
           "No se pudieron cargar las solicitudes pendientes. Puede haber personas esperando su baja."

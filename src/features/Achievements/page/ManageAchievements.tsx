@@ -10,6 +10,7 @@ import {
   Achievement,
   Pagination,
 } from "../../../types/types";
+import { filasDe } from '../../../utils/respuestaPaginada';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -67,7 +68,10 @@ const ManageAchievements: React.FC = () => {
           throw new Error("Error al cargar datos");
         }
 
-        const usersData = await usersRes.json();
+        // /admin/users devuelve { data, pagination } desde server#27, y antes
+        // un array suelto. Se aceptan las dos formas para no depender de qué
+        // se despliegue primero.
+        const usersData = filasDe<User>(await usersRes.json());
         const achievementsData = await achievementsRes.json();
 
         setUsers(usersData);
