@@ -22,7 +22,6 @@ const RegisterForm: React.FC = () => {
     confirmPassword: "",
     userTelephone: "",
     userGender: "",
-    userRole: "",
   });
   // Consentimiento RGPD (issue #7): privacidad obligatoria, marketing opcional.
   const [acceptsPrivacy, setAcceptsPrivacy] = useState(false);
@@ -80,9 +79,6 @@ const RegisterForm: React.FC = () => {
     if (formData.userTelephone && !/^\d{9,15}$/.test(formData.userTelephone)) {
       return "El número de teléfono no es válido.";
     }
-    if (!formData.userRole) {
-      return "Por favor, selecciona un rol.";
-    }
     if (!acceptsPrivacy) {
       return "Debes aceptar la política de privacidad para registrarte.";
     }
@@ -97,20 +93,13 @@ const RegisterForm: React.FC = () => {
       return;
     }
     try {
-      // confirmPassword y userRole son solo de UI: no viajan al backend.
-      //
-      // userRole nunca sirvió de nada: el servidor asigna siempre el rol
-      // `user`, porque aceptar el del cuerpo permitiría registrarse como
-      // admin. Se ignoraba en silencio, y desde que el ValidationPipe rechaza
-      // los campos no declarados (server#28) rompía el registro entero con un
-      // 400 "property userRole should not exist".
+      // confirmPassword es solo de UI: no viaja al backend.
       const dataToSend: Record<string, unknown> = {
         ...formData,
         acceptsPrivacy,
         marketingConsent,
       };
       delete dataToSend.confirmPassword;
-      delete dataToSend.userRole;
       await axios.post(`${import.meta.env.VITE_API_URL}/user`, dataToSend);
       navigate("/login");
     } catch (err) {
@@ -277,20 +266,6 @@ const RegisterForm: React.FC = () => {
                   </select>
                 </div>
               </div>
-
-              <label htmlFor="userRole">Rol:</label>
-              <select
-                id="userRole"
-                name="userRole"
-                value={formData.userRole}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Selecciona tu rol</option>
-                <option value="user">Usuario</option>
-                {/* <option value="volunteer">Voluntario</option>
-                <option value="sponsor">Sponsor</option> */}
-              </select>
 
               <div className="register-consent">
                 <input
