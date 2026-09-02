@@ -106,9 +106,25 @@ export const updateAchievement = async (
   }
 };
 
+/**
+ * Los logros de una persona.
+ *
+ * Llamaba a `/admin/users/:id/achievements`, que exige rol admin desde que
+ * `server#2` protegió el panel: una usuaria normal recibía 401 y la página de
+ * bienvenida enseñaba "Error al cargar logros". Ahora usa la ruta propia
+ * `/achievements/user/:id`, que pide sesión y que el id sea el tuyo (o admin),
+ * el mismo criterio que el perfil.
+ */
 export const getUserAchievements = async (idUser: number) => {
   try {
-    const response = await axios.get(`${API_URL}/users/${idUser}/achievements`);
+    const response = await axios.get(
+      `${BASE_URL}/achievements/user/${idUser}`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
