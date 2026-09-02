@@ -946,31 +946,18 @@ const CrmDashboard: React.FC = () => {
                       ))}
                     </AdminTable>
 
-                {/* Pagination */}
-                {!isFilteredByEvent && pagination && pagination.totalPages > 1 && (
-                  <div className="flex justify-center items-center gap-2 mt-6">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                      disabled={!pagination.hasPreviousPage}
-                      className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                      aria-label="Página anterior"
-                    >
-                      <ChevronLeft className="w-5 h-5 text-gray-600" />
-                    </button>
-                    <span className="text-sm text-gray-600">
-                      Página {pagination.currentPage} de {pagination.totalPages}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setCurrentPage((p) => Math.min(p + 1, pagination.totalPages))}
-                      disabled={!pagination.hasNextPage}
-                      className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                      aria-label="Página siguiente"
-                    >
-                      <ChevronRight className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
+                {/* Mismo componente que el resto del panel: este bloque
+                    estaba copiado a mano aunque el fichero ya usa
+                    AdminPagination unas líneas más arriba (#20). */}
+                {!isFilteredByEvent && (
+                  <AdminPagination
+                    paginaActual={currentPage}
+                    totalPaginas={pagination?.totalPages ?? 1}
+                    onCambiar={setCurrentPage}
+                    totalElementos={pagination?.totalItems}
+                    nombreElemento="asistente"
+                    etiqueta="Paginación de la lista de asistentes"
+                  />
                 )}
               </div>
 
