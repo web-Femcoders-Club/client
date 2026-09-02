@@ -3,6 +3,13 @@ import { Comment } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Moderar comentarios exige admin desde server#72: hasta entonces aprobar era
+// un GET abierto y rechazar borraba de verdad, sin ninguna sesion. Leer y
+// comentar siguen siendo publicos, asi que solo estas dos llevan cabecera.
+const cabeceraDeAuth = () => ({
+  Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+});
+
 export const getApprovedComments = async (
   postId?: number
 ): Promise<Comment[]> => {
@@ -29,10 +36,14 @@ export const addComment = async (
 };
 
 export const approveComment = async (id: number): Promise<Comment> => {
-  const response = await axios.get(`${API_URL}/comments/approve/${id}`);
+  const response = await axios.get(`${API_URL}/comments/approve/${id}`, {
+    headers: cabeceraDeAuth(),
+  });
   return response.data;
 };
 
 export const rejectComment = async (id: number): Promise<void> => {
-  await axios.delete(`${API_URL}/comments/reject/${id}`);
+  await axios.delete(`${API_URL}/comments/reject/${id}`, {
+    headers: cabeceraDeAuth(),
+  });
 };
