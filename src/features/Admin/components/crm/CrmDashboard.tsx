@@ -36,12 +36,14 @@ type Tab = "stats" | "attendees";
 
 /** Filas por página de cada tabla. El backend topa el limit en 100 (#27). */
 const CROSSCHECK_POR_PAGINA = 15;
+const EVENTOS_POR_PAGINA = 10;
 const ATTENDEES_POR_PAGINA = 20;
 const DETAIL_EVENTS_PER_PAGE = 5;
 
 const CrmDashboard: React.FC = () => {
   const [sincronizando, setSincronizando] = useState(false);
   const [crosscheckPagina, setCrosscheckPagina] = useState(1);
+  const [eventosPagina, setEventosPagina] = useState(1);
   const [resultadoSync, setResultadoSync] = useState<string | null>(null);
 
   const [activeTab, setActiveTab] = useState<Tab>("stats");
@@ -275,6 +277,32 @@ const CrmDashboard: React.FC = () => {
       </div>
     );
   }
+
+  /**
+   * Asistencia por evento, paginada en el navegador.
+   *
+   * Aquí sí se trocea en cliente, al revés que en las demás tablas: los
+   * eventos vienen dentro de `/admin/crm/stats`, que devuelve las estadísticas
+   * enteras en una sola respuesta. Son 33 hoy y crecen unos pocos al año, así
+   * que paginarlos en el servidor obligaría a partir ese endpoint para ahorrar
+   * algo que no pesa. Lo que molestaba era la tabla infinita, y eso se arregla
+   * aquí (#20).
+   */
+  const eventosOrdenados = (stats?.eventStats ?? [])
+    .slice()
+    .sort(
+      (a: CrmEventStat, b: CrmEventStat) => b.attendeesCount - a.attendeesCount,
+    );
+  const eventosTotalPaginas = Math.max(
+    1,
+    Math.ceil(eventosOrdenados.length / EVENTOS_POR_PAGINA),
+  );
+  // Si la lista encoge, la página actual podría quedar fuera de rango.
+  const eventosPaginaActual = Math.min(eventosPagina, eventosTotalPaginas);
+  const eventosVisibles = eventosOrdenados.slice(
+    (eventosPaginaActual - 1) * EVENTOS_POR_PAGINA,
+    eventosPaginaActual * EVENTOS_POR_PAGINA,
+  );
 
   // La página que se pinta es la que ha devuelto el servidor: filtrar o
   // trocear aquí volvería a mirar solo las filas cargadas.
@@ -558,10 +586,7 @@ const CrmDashboard: React.FC = () => {
                   columns={["Evento", { label: "Asistentes", align: "center" }]}
                   caption="Asistentes por evento"
                 >
-                    {stats.eventStats
-                      .slice()
-                      .sort((a: CrmEventStat, b: CrmEventStat) => b.attendeesCount - a.attendeesCount)
-                      .map((ev: CrmEventStat) => (
+                    {eventosVisibles.map((ev: CrmEventStat) => (
                         <tr
                           key={ev.eventId}
                           className="hover:bg-gray-50 border-b border-gray-100 cursor-pointer"
@@ -579,6 +604,15 @@ const CrmDashboard: React.FC = () => {
                         </tr>
                       ))}
                   </AdminTable>
+
+              <AdminPagination
+                paginaActual={eventosPaginaActual}
+                totalPaginas={eventosTotalPaginas}
+                onCambiar={setEventosPagina}
+                totalElementos={eventosOrdenados.length}
+                nombreElemento="evento"
+                etiqueta="Paginación de la asistencia por evento"
+              />
             </div>
           )}
 
@@ -924,12 +958,7 @@ const CrmDashboard: React.FC = () => {
           </div>
 
           {/* Attendees list */}
-          {loading ? (
-            <div className="flex justify-center items-center admin-min-alto-sm">
-              <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
-            </div>
-          ) : (
-            <>
+          <>
               <div className="bg-white rounded-xl shadow-md p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-lg font-semibold" style={{ color: "#4737bb" }}>
@@ -976,6 +1005,12 @@ const CrmDashboard: React.FC = () => {
                   </p>
                 </div>
 
+                  {loading ? (
+                    <div className="flex justify-center items-center admin-min-alto-sm">
+                      <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
+                      <span className="sr-only">Buscando asistentes…</span>
+                    </div>
+                  ) : (
                   <AdminTable
                     columns={["Nombre", "Email", "DNI", { label: "Eventos", align: "center" }]}
                     caption="Asistentes con el mismo DNI"
@@ -1006,10 +1041,8 @@ const CrmDashboard: React.FC = () => {
                         </tr>
                       ))}
                     </AdminTable>
+                  )}
 
-                {/* Mismo componente que el resto del panel: este bloque
-                    estaba copiado a mano aunque el fichero ya usa
-                    AdminPagination unas líneas más arriba (#20). */}
                 {/* También al filtrar por evento: antes ese modo pedía
                     limit=1000 y escondía los controles, así que un evento con
                     más asistentes que el tope perdía el resto (#20). */}
@@ -1106,7 +1139,6 @@ const CrmDashboard: React.FC = () => {
                 </div>
               )}
             </>
-          )}
         </div>
       )}
     </div>

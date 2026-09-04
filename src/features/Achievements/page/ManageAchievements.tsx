@@ -37,6 +37,41 @@ const ITEMS_PER_PAGE = 10;
  */
 const SUGERENCIAS = 8;
 
+/**
+ * Un error en palabras, para enseñarlo en pantalla.
+ *
+ * Esta pantalla se tragaba los fallos en la consola: cuando algo no cargaba,
+ * la tabla salía vacía y era imposible distinguir «no hay datos» de «la
+ * petición falló». Quien lo ve tiene que poder decir qué pasó sin abrir las
+ * herramientas de desarrollo.
+ */
+function descripcionDelError(err: unknown): string {
+  const objeto = typeof err === "object" && err !== null ? err : {};
+  const detalle =
+    "message" in objeto ? String((objeto as { message: unknown }).message) : "";
+
+  // axios guarda el código en response.status; con fetch lo ponemos nosotros
+  // en el mensaje. Los dos caminos llevan al mismo sitio.
+  const estado =
+    "response" in objeto
+      ? (objeto as { response?: { status?: number } }).response?.status
+      : undefined;
+
+  if (estado === 401 || detalle.includes("401")) {
+    // Es el fallo más habitual y el único que la persona puede resolver sola.
+    // Sin decirlo, la pantalla se ve vacía y parece que no hay datos.
+    return "La sesión ha caducado. Vuelve a entrar para seguir gestionando logros.";
+  }
+
+  if (estado === 403 || detalle.includes("403")) {
+    return "Esta cuenta no tiene permisos de administración.";
+  }
+
+  return detalle
+    ? `No se pudieron cargar los datos: ${detalle}`
+    : "No se pudieron cargar los datos.";
+}
+
 const ManageAchievements: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [busquedaUsuaria, setBusquedaUsuaria] = useState("");
@@ -44,6 +79,7 @@ const ManageAchievements: React.FC = () => {
   const [totalCoincidencias, setTotalCoincidencias] = useState(0);
   const [buscandoUsuarias, setBuscandoUsuarias] = useState(false);
   const [usuariaElegida, setUsuariaElegida] = useState<User | null>(null);
+  const [avisoUsuarias, setAvisoUsuarias] = useState<string | null>(null);
   const [usersWithAchievements, setUsersWithAchievements] = useState<UserWithAchievements[]>([]);
   const [recentActivity, setRecentActivity] = useState<RecentAchievement[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -67,8 +103,11 @@ const ManageAchievements: React.FC = () => {
       const response = await getUsersWithAchievements(page, ITEMS_PER_PAGE);
       setUsersWithAchievements(response.data);
       setPagination(response.pagination);
-    } catch {
-      console.log("Endpoint de usuarios con logros no disponible");
+      setAvisoUsuarias(null);
+    } catch (err) {
+      // Antes esto era un `console.log` y la tabla se quedaba vacía sin más:
+      // «no hay logros asignados» y «no he podido preguntarlo» se veían igual.
+      setAvisoUsuarias(descripcionDelError(err));
     }
   };
 
@@ -85,10 +124,18 @@ const ManageAchievements: React.FC = () => {
         });
 
         if (!achievementsRes.ok) {
-          throw new Error("Error al cargar datos");
+          // El código importa: un 401 es sesión caducada y se arregla
+          // volviendo a entrar; un 500 no.
+          throw new Error(
+            `El servidor respondió ${achievementsRes.status} al pedir los logros`,
+          );
         }
 
-        setAchievements(await achievementsRes.json());
+        const logros = await achievementsRes.json();
+        if (!Array.isArray(logros)) {
+          throw new Error("La lista de logros no llegó como una lista");
+        }
+        setAchievements(logros);
 
         // Cargar datos adicionales
         try {
@@ -97,12 +144,12 @@ const ManageAchievements: React.FC = () => {
             getRecentAchievements(),
           ]);
           setRecentActivity(recent);
-        } catch {
-          console.log("Endpoints adicionales no disponibles aún");
+        } catch (err) {
+          setAvisoUsuarias(descripcionDelError(err));
         }
       } catch (err) {
         console.error(err);
-        setError("No se pudieron cargar los datos.");
+        setError(descripcionDelError(err));
       } finally {
         setLoading(false);
       }
@@ -131,8 +178,10 @@ const ManageAchievements: React.FC = () => {
         if (cancelado) return;
         setUsers(data);
         setTotalCoincidencias(pagination.totalItems);
-      } catch {
-        if (!cancelado) setUsers([]);
+      } catch (err) {
+        if (cancelado) return;
+        setUsers([]);
+        setAvisoUsuarias(descripcionDelError(err));
       } finally {
         if (!cancelado) setBuscandoUsuarias(false);
       }
@@ -209,6 +258,15 @@ const ManageAchievements: React.FC = () => {
         <Trophy className="w-7 h-7" />
         Gestionar Logros
       </h1>
+
+      {avisoUsuarias && (
+        <p
+          role="alert"
+          className="mb-4 px-4 py-3 rounded-lg bg-amber-50 text-amber-900 text-sm"
+        >
+          {avisoUsuarias}
+        </p>
+      )}
 
       {/* Tabs */}
       <div className="flex gap-2 mb-6 border-b border-gray-200">
