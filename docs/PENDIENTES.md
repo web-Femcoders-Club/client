@@ -152,3 +152,45 @@ su bloque escrito a mano. Cuando haya un tercer caso real, extraer un componente
 `<ArticleSchema>` que reciba título, fecha, imagen y autoría.
 
 No hacerlo antes: con dos usos, la abstracción todavía no está justificada.
+
+---
+
+## Qué mira cada buscador del panel
+
+**Estado:** resuelto el 4 de septiembre de 2026
+**Detectado:** al conectar la paginación del panel (#20)
+
+Las tablas del panel buscan en el servidor, y desde server#14 todas miran lo
+mismo salvo la de bajas, que solo tiene emails:
+
+| Pantalla | Endpoint | Busca en |
+| --- | --- | --- |
+| Usuarias registradas | `/admin/users?search=` | nombre, apellidos y email |
+| Cruce de registradas | `/admin/crm/users-crosscheck?search=` | nombre, apellidos y email |
+| Lista de asistentes | `/admin/crm/attendees?search=` | nombre, apellidos y email |
+| Bajas | `/admin/unsubscribed?search=` | email |
+
+**El DNI no entra en ninguna.** Se recoge para el control de acceso del espacio
+anfitrión, no para localizar personas en el panel, y tiene su propio buscador en
+la ficha de asistente. Se dice bajo el buscador, porque en una lista de personas
+«no aparece» se lee como «no está».
+
+El endpoint de asistentes sigue aceptando el `name` con el que se llamaba antes
+su parámetro, por si quedara algún enlace guardado; el panel manda `search`.
+
+---
+
+## El crosscheck devuelve `data` y `users`, que son lo mismo
+
+**Estado:** abierto
+**Impacto:** bajo — no rompe nada, pero engaña a quien lea la respuesta
+**Detectado:** 4 de septiembre de 2026
+
+`GET /admin/crm/users-crosscheck` devuelve las filas dos veces: en `data` (el
+nombre estándar de todos los listados paginados) y en `users` (como se llamaba
+antes). El alias es deliberado y está anotado en el backend: evitaba dejar la
+pantalla en blanco entre el despliegue del servidor y el del panel.
+
+El panel ya lee `data`. El alias se puede retirar del backend en cuanto este
+despliegue esté estable, y el tipo `CrmUsersCrosscheck` de `types.ts` tiene ese
+campo marcado como `@deprecated` para que nadie vuelva a leer de ahí.

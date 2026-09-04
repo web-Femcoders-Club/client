@@ -5,15 +5,34 @@ import {
   UnsubscribedEmailRecord,
 } from "../../../../types/types";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { filasDe } from '../../../../utils/respuestaPaginada';
+import {
+  getPendingUnsubscribes,
+  getUnsubscribed,
+} from "../../../../api/adminApi";
+import AdminPagination from "../ui/AdminPagination";
+import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
 
+const POR_PAGINA = 20;
+
+/**
+ * Bajas de email.
+ *
+ * La lista y su buscador van contra el servidor. Con el endpoint paginado
+ * (server#27), pedirlo sin `page` traía las 20 primeras filas y el contador
+ * decía "20 en total": un total que sale de la página, plausible y falso. Y en
+ * una lista de bajas, «no aparece» se lee como «no está dada de baja» (#20).
+ */
 const UnsubscribeList: React.FC = () => {
   const [records, setRecords] = useState<UnsubscribedEmailRecord[]>([]);
+  const [totalBajas, setTotalBajas] = useState(0);
+  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [pagina, setPagina] = useState(1);
   const [pending, setPending] = useState<PendingUnsubscribeRecord[]>([]);
   const [resolving, setResolving] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+  const searchDiferido = useDebouncedValue(search);
   const [newEmail, setNewEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -25,30 +44,32 @@ const UnsubscribeList: React.FC = () => {
   });
 
   const loadRecords = React.useCallback(() => {
-    const headers = {
-      Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-    };
+    setLoading(true);
 
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed`, { headers })
-      // Desde server#27 llega { data, pagination }; antes, un array suelto.
-      .then((r) => setRecords(filasDe(r.data)))
+    getUnsubscribed(pagina, POR_PAGINA, searchDiferido.trim() || undefined)
+      .then(({ data, pagination }) => {
+        const paginas = Math.max(1, pagination.totalPages);
+        setRecords(data);
+        setTotalBajas(pagination.totalItems);
+        setTotalPaginas(paginas);
+        // Si la página pedida ya no existe —se acaba de completar la última
+        // baja de la última página— se retrocede en vez de dejar una tabla
+        // vacía sin explicación.
+        if (pagina > paginas) setPagina(paginas);
+      })
       .catch(() => setError("No se pudo cargar la lista de bajas."))
       .finally(() => setLoading(false));
 
     // Las pendientes se cargan aparte a propósito: si este endpoint falla, la
     // lista de bajas debe seguir viéndose. Son dos preguntas distintas.
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/admin/unsubscribed/pending`, {
-        headers,
-      })
-      .then((r) => setPending(filasDe(r.data)))
+    getPendingUnsubscribes()
+      .then(setPending)
       .catch(() =>
         setError(
           "No se pudieron cargar las solicitudes pendientes. Puede haber personas esperando su baja."
         )
       );
-  }, []);
+  }, [pagina, searchDiferido]);
 
   useEffect(() => {
     loadRecords();
@@ -128,20 +149,6 @@ const UnsubscribeList: React.FC = () => {
     Math.floor(
       (Date.now() - new Date(requestedAt).getTime()) / (1000 * 60 * 60 * 24)
     );
-
-  const filtered = search.trim()
-    ? records.filter((r) =>
-        r.email.toLowerCase().includes(search.toLowerCase())
-      )
-    : records;
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center admin-min-alto-sm">
-        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto p-6">
@@ -308,20 +315,37 @@ const UnsubscribeList: React.FC = () => {
           <h2 className="text-lg font-semibold" style={{ color: "#4737bb" }}>
             Lista de bajas
           </h2>
-          <span className="text-sm text-gray-500">{records.length} en total</span>
+          <span className="text-sm text-gray-500">
+            {totalBajas} en total
+          </span>
         </div>
 
         <div className="mb-4">
+          <label htmlFor="buscar-baja" className="sr-only">
+            Buscar por email
+          </label>
           <input
-            type="text"
+            id="buscar-baja"
+            type="search"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPagina(1); // una búsqueda nueva empieza por el principio
+            }}
             placeholder="Buscar por email..."
             className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
           />
         </div>
 
-        {filtered.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center items-center admin-min-alto-sm">
+            <Loader2
+              className="w-8 h-8 animate-spin"
+              style={{ color: "#4737bb" }}
+            />
+            <span className="sr-only">Cargando bajas…</span>
+          </div>
+        ) : records.length === 0 ? (
           <p className="text-center text-gray-400 py-8 text-sm">
             {search ? `No hay resultados para "${search}"` : "No hay bajas registradas."}
           </p>
@@ -342,7 +366,7 @@ const UnsubscribeList: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((r) => (
+                {records.map((r) => (
                   <tr key={r.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4 text-sm">{r.email}</td>
                     <td className="p-4 text-sm text-gray-600">
@@ -355,6 +379,15 @@ const UnsubscribeList: React.FC = () => {
             </table>
           </div>
         )}
+
+        <AdminPagination
+          paginaActual={pagina}
+          totalPaginas={totalPaginas}
+          onCambiar={setPagina}
+          totalElementos={totalBajas}
+          nombreElemento="baja"
+          etiqueta="Paginación de la lista de bajas"
+        />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import AdminTable from "../ui/AdminTable";
 import AdminPagination from "../ui/AdminPagination";
+import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
 import {
   getCrmStats,
   getCrmAttendees,
@@ -26,14 +27,17 @@ import {
   CalendarDays,
   Calendar,
   Loader2,
-  ChevronLeft,
-  ChevronRight,
   Download,
   X,
   Search,
 } from "lucide-react";
 
 type Tab = "stats" | "attendees";
+
+/** Filas por página de cada tabla. El backend topa el limit en 100 (#27). */
+const CROSSCHECK_POR_PAGINA = 15;
+const ATTENDEES_POR_PAGINA = 20;
+const DETAIL_EVENTS_PER_PAGE = 5;
 
 const CrmDashboard: React.FC = () => {
   const [sincronizando, setSincronizando] = useState(false);
@@ -44,6 +48,8 @@ const CrmDashboard: React.FC = () => {
   const [stats, setStats] = useState<CrmStats | null>(null);
   const [crosscheck, setCrosscheck] = useState<CrmUsersCrosscheck | null>(null);
   const [crosscheckSearch, setCrossCheckSearch] = useState("");
+  const crosscheckSearchDiferida = useDebouncedValue(crosscheckSearch);
+  const [crosscheckCargando, setCrosscheckCargando] = useState(false);
   const [attendees, setAttendees] = useState<CrmAttendee[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,8 +59,9 @@ const CrmDashboard: React.FC = () => {
   const [selectedRow, setSelectedRow] = useState<CrmAttendee | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
+  const filterTextDiferido = useDebouncedValue(filterText);
   const [detailEventsPage, setDetailEventsPage] = useState(1);
-  const DETAIL_EVENTS_PER_PAGE = 5;
+  const [detailEventsLoading, setDetailEventsLoading] = useState(false);
   const detailRef = useRef<HTMLDivElement>(null);
 
   // Filtros servidor para la lista de asistentes
@@ -76,12 +83,7 @@ const CrmDashboard: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        const [statsData, crosscheckData] = await Promise.all([
-          getCrmStats(),
-          getCrmUsersCrosscheck(),
-        ]);
-        setStats(statsData);
-        setCrosscheck(crosscheckData);
+        setStats(await getCrmStats());
       } catch {
         setError("No se pudieron cargar las estadísticas del CRM.");
       } finally {
@@ -91,19 +93,53 @@ const CrmDashboard: React.FC = () => {
     fetchStats();
   }, []);
 
+  /**
+   * El crosscheck se pide aparte de las estadísticas porque cambia solo: al
+   * pasar de página y al buscar. Antes venía entero en la carga inicial y se
+   * paginaba en el navegador; con el endpoint paginado (server#27) eso pasó a
+   * significar que la tabla solo veía las 15 primeras usuarias, y el buscador
+   * también (#20).
+   */
+  useEffect(() => {
+    const fetchCrosscheck = async () => {
+      try {
+        setCrosscheckCargando(true);
+        const datos = await getCrmUsersCrosscheck(
+          crosscheckPagina,
+          CROSSCHECK_POR_PAGINA,
+          crosscheckSearchDiferida.trim() || undefined
+        );
+        setCrosscheck(datos);
+        // Si la página pedida ya no existe, se retrocede en vez de dejar una
+        // tabla vacía sin explicación.
+        const paginas = Math.max(1, datos.pagination.totalPages);
+        if (crosscheckPagina > paginas) setCrosscheckPagina(paginas);
+      } catch {
+        setError("No se pudo cargar el cruce de usuarias registradas.");
+      } finally {
+        setCrosscheckCargando(false);
+      }
+    };
+    fetchCrosscheck();
+  }, [crosscheckPagina, crosscheckSearchDiferida]);
+
   useEffect(() => {
     if (activeTab !== "attendees") return;
-    setFilterText("");
     const fetchAttendees = async () => {
       try {
         setLoading(true);
         setError(null);
+        // Antes, al filtrar por evento se pedía limit=1000 para no paginar.
+        // El backend topa el limit en 100 (server#27), así que un evento con
+        // más asistentes perdía el resto sin avisar de nada. Se pagina igual
+        // en los dos modos.
         const data = await getCrmAttendees(
-          filterEventId ? 1 : currentPage,
-          filterEventId ? 1000 : 20,
+          currentPage,
+          ATTENDEES_POR_PAGINA,
           filterEventId || undefined,
           dateFrom || undefined,
-          dateTo || undefined
+          dateTo || undefined,
+          filterTextDiferido.trim() || undefined
         );
         setAttendees(data.data);
         setPagination(data.pagination);
@@ -114,7 +150,14 @@ const CrmDashboard: React.FC = () => {
       }
     };
     fetchAttendees();
-  }, [activeTab, currentPage, filterEventId, dateFrom, dateTo]);
+  }, [
+    activeTab,
+    currentPage,
+    filterEventId,
+    dateFrom,
+    dateTo,
+    filterTextDiferido,
+  ]);
 
   const loadEventAttendees = (eventId: string, page = 1) => {
     setEventPanel(null);
@@ -149,34 +192,62 @@ const CrmDashboard: React.FC = () => {
     new Map(attendees.map((a) => [a.email, a])).values()
   );
 
-  const filteredAttendees = filterText.trim()
-    ? uniqueAttendees.filter((a) => {
-        const q = filterText.toLowerCase();
-        return (
-          a.firstName.toLowerCase().includes(q) ||
-          a.lastName.toLowerCase().includes(q) ||
-          a.email.toLowerCase().includes(q) ||
-          (a.dni ?? "").toLowerCase().includes(q)
-        );
-      })
-    : uniqueAttendees;
+  // El filtro lo aplica el servidor: aquí solo se quitan los duplicados por
+  // email que pueda traer la propia página.
+  const filteredAttendees = uniqueAttendees;
 
-  const loadAttendeeDetail = (attendee: CrmAttendee | { email: string; firstName: string; lastName: string; dni?: string | null }) => {
+  type PersonaDelDetalle =
+    | CrmAttendee
+    | { email: string; firstName: string; lastName: string; dni?: string | null };
+
+  /**
+   * Pide una página de eventos de una persona.
+   *
+   * El backend ya aceptaba `eventsPage`/`eventsLimit` pero nadie los enviaba:
+   * llegaban sus 20 primeros eventos y se paginaban de cinco en cinco en el
+   * navegador, así que a partir del evento 21 la lista se quedaba corta sin
+   * decirlo (#20).
+   */
+  const pedirDetalle = (persona: PersonaDelDetalle, eventsPage: number) =>
+    persona.dni
+      ? getCrmAttendeeByDni(persona.dni, eventsPage, DETAIL_EVENTS_PER_PAGE)
+      : getCrmAttendeeDetail(persona.email, eventsPage, DETAIL_EVENTS_PER_PAGE);
+
+  const loadAttendeeDetail = (attendee: PersonaDelDetalle) => {
     setSelectedRow(attendee as CrmAttendee);
     setDetailLoading(true);
     setSelectedAttendee(null);
     setDetailEventsPage(1);
     setError(null);
-    const request = attendee.dni
-      ? getCrmAttendeeByDni(attendee.dni)
-      : getCrmAttendeeDetail(attendee.email);
-    request
+    pedirDetalle(attendee, 1)
       .then((detail) => {
         setSelectedAttendee(detail);
         setTimeout(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
       })
       .catch(() => setError(`No se pudo cargar el detalle de "${attendee.email}".`))
       .finally(() => setDetailLoading(false));
+  };
+
+  /**
+   * Cambia de página dentro de los eventos de la persona abierta.
+   *
+   * Va con su propio indicador de carga y no vacía `selectedAttendee`: usar el
+   * del detalle completo escondería la ficha entera —nombre, DNI, emails— cada
+   * vez que se pasa página de una lista de cinco filas.
+   */
+  const cambiarPaginaDeEventos = (eventsPage: number) => {
+    if (!selectedRow) return;
+    setDetailEventsLoading(true);
+    setError(null);
+    pedirDetalle(selectedRow, eventsPage)
+      .then((detail) => {
+        setSelectedAttendee(detail);
+        setDetailEventsPage(eventsPage);
+      })
+      .catch(() =>
+        setError("No se pudieron cargar más eventos de esta persona.")
+      )
+      .finally(() => setDetailEventsLoading(false));
   };
 
   const closeDetail = () => {
@@ -205,35 +276,12 @@ const CrmDashboard: React.FC = () => {
     );
   }
 
-  /**
-   * Usuarias del crosscheck ya filtradas y troceadas.
-   *
-   * Antes se pintaban las 106 de golpe. Se pagina en el cliente porque el
-   * endpoint devuelve la lista completa (ver #27, pendiente en el servidor);
-   * cuando ese endpoint pagine, esto se sustituye por la paginación real.
-   */
-  const CROSSCHECK_POR_PAGINA = 15;
-  const crosscheckFiltradas = (crosscheck?.users ?? []).filter((u) => {
-    const q = crosscheckSearch.toLowerCase();
-    return (
-      !q ||
-      `${u.userName} ${u.userLastName}`.toLowerCase().includes(q) ||
-      u.userEmail.toLowerCase().includes(q)
-    );
-  });
+  // La página que se pinta es la que ha devuelto el servidor: filtrar o
+  // trocear aquí volvería a mirar solo las filas cargadas.
+  const crosscheckVisibles = crosscheck?.data ?? [];
   const crosscheckTotalPaginas = Math.max(
     1,
-    Math.ceil(crosscheckFiltradas.length / CROSSCHECK_POR_PAGINA),
-  );
-  // Si el filtro deja menos páginas, la actual podría quedar fuera de rango y
-  // mostrar una tabla vacía sin explicación.
-  const crosscheckPaginaActual = Math.min(
-    crosscheckPagina,
-    crosscheckTotalPaginas,
-  );
-  const crosscheckVisibles = crosscheckFiltradas.slice(
-    (crosscheckPaginaActual - 1) * CROSSCHECK_POR_PAGINA,
-    crosscheckPaginaActual * CROSSCHECK_POR_PAGINA,
+    crosscheck?.pagination.totalPages ?? 1,
   );
 
   /**
@@ -540,6 +588,10 @@ const CrmDashboard: React.FC = () => {
               <h2 className="text-lg font-semibold mb-1" style={{ color: "#4737bb" }}>
                 Usuarias registradas en la plataforma
               </h2>
+              {/* Estos totales son del conjunto entero también con una
+                  búsqueda activa: son la foto de la asociación, no la del
+                  filtro escrito. El recuento del filtro va en los controles
+                  de paginación, debajo de la tabla (server#14). */}
               <div className="flex flex-wrap gap-6 mb-4">
                 <span className="text-sm text-gray-500">
                   Total registradas: <strong className="text-gray-800">{crosscheck.totalUsers}</strong>
@@ -564,6 +616,21 @@ const CrmDashboard: React.FC = () => {
                   className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                 />
               </div>
+              {crosscheckCargando ? (
+                <div className="flex justify-center items-center py-10">
+                  <Loader2
+                    className="w-6 h-6 animate-spin"
+                    style={{ color: "#4737bb" }}
+                  />
+                  <span className="sr-only">Buscando usuarias…</span>
+                </div>
+              ) : crosscheckVisibles.length === 0 ? (
+                <p className="text-center text-gray-400 py-8 text-sm">
+                  {crosscheckSearch.trim()
+                    ? `No hay usuarias registradas que coincidan con "${crosscheckSearch}"`
+                    : "No hay usuarias registradas."}
+                </p>
+              ) : (
                 <AdminTable
                   columns={["Nombre", "Email", { label: "Eventos asistidos", align: "center" }]}
                   caption="Usuarias registradas y su asistencia"
@@ -589,40 +656,21 @@ const CrmDashboard: React.FC = () => {
                         </tr>
                       ))}
                   </AdminTable>
-
-              {crosscheckTotalPaginas > 1 && (
-                <nav
-                  className="flex items-center justify-between gap-4 pt-4"
-                  aria-label="Paginación de usuarias registradas"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setCrosscheckPagina(crosscheckPaginaActual - 1)}
-                    disabled={crosscheckPaginaActual === 1}
-                    className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-                  >
-                    Anterior
-                  </button>
-                  {/* aria-live: quien usa lector de pantalla no ve que la
-                      tabla ha cambiado de página. */}
-                  <p className="text-sm text-gray-600" aria-live="polite">
-                    Página {crosscheckPaginaActual} de {crosscheckTotalPaginas}
-                    <span className="text-gray-400">
-                      {" "}
-                      · {crosscheckFiltradas.length} usuaria
-                      {crosscheckFiltradas.length === 1 ? "" : "s"}
-                    </span>
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setCrosscheckPagina(crosscheckPaginaActual + 1)}
-                    disabled={crosscheckPaginaActual === crosscheckTotalPaginas}
-                    className="px-3 py-2 rounded-lg text-sm border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-                  >
-                    Siguiente
-                  </button>
-                </nav>
               )}
+
+              {/* Mismo componente que el resto del panel: este bloque
+                  estaba escrito a mano con las dos únicas variantes de
+                  clases que se diferenciaban en la opacidad (#20). */}
+              <AdminPagination
+                paginaActual={crosscheck.pagination.currentPage}
+                totalPaginas={crosscheckTotalPaginas}
+                onCambiar={setCrosscheckPagina}
+                totalElementos={crosscheck.pagination.totalItems}
+                nombreElemento={
+                  crosscheckSearch.trim() ? "coincidencia" : "usuaria"
+                }
+                etiqueta="Paginación de usuarias registradas"
+              />
             </div>
           )}
 
@@ -737,14 +785,13 @@ const CrmDashboard: React.FC = () => {
                 </div>
               )}
               {selectedAttendee && !detailLoading && (() => {
-                const sortedEvents = Array.from(
+                // Los eventos vienen ya paginados y ordenados del servidor: aquí
+                // solo se quitan los repetidos que trae la propia página, que
+                // aparecen cuando alguien se inscribió dos veces al mismo evento.
+                const pagedEvents = Array.from(
                   new Map(selectedAttendee.events.map((ev) => [ev.eventId, ev])).values()
-                ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                const totalEventPages = Math.ceil(sortedEvents.length / DETAIL_EVENTS_PER_PAGE);
-                const pagedEvents = sortedEvents.slice(
-                  (detailEventsPage - 1) * DETAIL_EVENTS_PER_PAGE,
-                  detailEventsPage * DETAIL_EVENTS_PER_PAGE
                 );
+                const totalEventPages = selectedAttendee.eventsPagination?.totalPages ?? 1;
                 return (
                   <div>
                     <h3 className="text-lg font-semibold mb-2" style={{ color: "#4737bb" }}>
@@ -773,17 +820,15 @@ const CrmDashboard: React.FC = () => {
                             </tr>
                           ))}
                         </AdminTable>
-                    {totalEventPages > 1 && (
-                      <div className="flex justify-center items-center gap-2 mt-4">
-                        <button type="button" onClick={() => setDetailEventsPage((p) => Math.max(p - 1, 1))} disabled={detailEventsPage === 1} className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 hover:bg-gray-100 transition-colors" aria-label="Eventos anteriores">
-                          <ChevronLeft className="w-4 h-4 text-gray-600" />
-                        </button>
-                        <span className="text-xs text-gray-500">{detailEventsPage} / {totalEventPages}</span>
-                        <button type="button" onClick={() => setDetailEventsPage((p) => Math.min(p + 1, totalEventPages))} disabled={detailEventsPage === totalEventPages} className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 hover:bg-gray-100 transition-colors" aria-label="Eventos siguientes">
-                          <ChevronRight className="w-4 h-4 text-gray-600" />
-                        </button>
-                      </div>
-                    )}
+                    <AdminPagination
+                      paginaActual={detailEventsPage}
+                      totalPaginas={totalEventPages}
+                      onCambiar={cambiarPaginaDeEventos}
+                      totalElementos={selectedAttendee.totalEvents}
+                      nombreElemento="evento"
+                      etiqueta="Paginación de los eventos de esta persona"
+                      deshabilitado={detailEventsLoading}
+                    />
                   </div>
                 );
               })()}
@@ -899,20 +944,36 @@ const CrmDashboard: React.FC = () => {
 
                 {/* Filtro local */}
                 <div className="mb-4">
+                  <label htmlFor="buscar-asistente" className="sr-only">
+                    Buscar por nombre, apellidos o email
+                  </label>
                   <input
-                    type="text"
+                    id="buscar-asistente"
+                    type="search"
                     value={filterText}
-                    onChange={(e) => setFilterText(e.target.value)}
-                    placeholder={isFilteredByEvent ? "Buscar en este evento..." : "Filtrar por nombre, apellido, email o DNI... (haz clic en una fila para ver el detalle)"}
+                    onChange={(e) => {
+                      setFilterText(e.target.value);
+                      setCurrentPage(1); // una búsqueda nueva empieza por el principio
+                    }}
+                    placeholder={isFilteredByEvent ? "Buscar por nombre o email en este evento..." : "Buscar por nombre o email... (haz clic en una fila para ver el detalle)"}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                   />
-                  {filterText && (
+                  {/* El recuento sale del servidor, no de las filas cargadas:
+                      contar la página diría "20 resultados" para cualquier
+                      búsqueda que devuelva más de una página (#20). */}
+                  {filterText && pagination && (
                     <p className="text-xs text-gray-400 mt-1">
-                      {isFilteredByEvent
-                        ? `${filteredAttendees.length} resultado${filteredAttendees.length !== 1 ? "s" : ""} de ${uniqueAttendees.length} asistentes en este evento`
-                        : `${filteredAttendees.length} resultado${filteredAttendees.length !== 1 ? "s" : ""} en esta página`}
+                      {pagination.totalItems} resultado
+                      {pagination.totalItems !== 1 ? "s" : ""}
+                      {isFilteredByEvent ? " en este evento" : ""}
                     </p>
                   )}
+                  {/* El DNI no entra en la búsqueda: decirlo evita que un
+                      "no aparece" se lea como "no está". */}
+                  <p className="text-xs text-gray-400 mt-1">
+                    La búsqueda mira el nombre, los apellidos y el email. El
+                    DNI tiene su propio buscador en la ficha.
+                  </p>
                 </div>
 
                   <AdminTable
@@ -949,16 +1010,17 @@ const CrmDashboard: React.FC = () => {
                 {/* Mismo componente que el resto del panel: este bloque
                     estaba copiado a mano aunque el fichero ya usa
                     AdminPagination unas líneas más arriba (#20). */}
-                {!isFilteredByEvent && (
-                  <AdminPagination
-                    paginaActual={currentPage}
-                    totalPaginas={pagination?.totalPages ?? 1}
-                    onCambiar={setCurrentPage}
-                    totalElementos={pagination?.totalItems}
-                    nombreElemento="asistente"
-                    etiqueta="Paginación de la lista de asistentes"
-                  />
-                )}
+                {/* También al filtrar por evento: antes ese modo pedía
+                    limit=1000 y escondía los controles, así que un evento con
+                    más asistentes que el tope perdía el resto (#20). */}
+                <AdminPagination
+                  paginaActual={currentPage}
+                  totalPaginas={pagination?.totalPages ?? 1}
+                  onCambiar={setCurrentPage}
+                  totalElementos={pagination?.totalItems}
+                  nombreElemento="asistente"
+                  etiqueta="Paginación de la lista de asistentes"
+                />
               </div>
 
               {/* Detalle de asistente — aparece debajo de la tabla al hacer clic en una fila */}
@@ -985,14 +1047,13 @@ const CrmDashboard: React.FC = () => {
                   )}
 
                   {selectedAttendee && !detailLoading && (() => {
-                    const sortedEvents = Array.from(
+                    // Los eventos vienen ya paginados y ordenados del servidor: aquí
+                    // solo se quitan los repetidos que trae la propia página, que
+                    // aparecen cuando alguien se inscribió dos veces al mismo evento.
+                    const pagedEvents = Array.from(
                       new Map(selectedAttendee.events.map((ev) => [ev.eventId, ev])).values()
-                    ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                    const totalEventPages = Math.ceil(sortedEvents.length / DETAIL_EVENTS_PER_PAGE);
-                    const pagedEvents = sortedEvents.slice(
-                      (detailEventsPage - 1) * DETAIL_EVENTS_PER_PAGE,
-                      detailEventsPage * DETAIL_EVENTS_PER_PAGE
                     );
+                    const totalEventPages = selectedAttendee.eventsPagination?.totalPages ?? 1;
                     return (
                       <div>
                         <h3 className="text-lg font-semibold mb-2" style={{ color: "#4737bb" }}>
@@ -1030,31 +1091,15 @@ const CrmDashboard: React.FC = () => {
                                 </tr>
                               ))}
                             </AdminTable>
-                        {totalEventPages > 1 && (
-                          <div className="flex justify-center items-center gap-2 mt-4">
-                            <button
-                              type="button"
-                              onClick={() => setDetailEventsPage((p) => Math.max(p - 1, 1))}
-                              disabled={detailEventsPage === 1}
-                              className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
-                              aria-label="Eventos anteriores"
-                            >
-                              <ChevronLeft className="w-4 h-4 text-gray-600" />
-                            </button>
-                            <span className="text-xs text-gray-500">
-                              {detailEventsPage} / {totalEventPages}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => setDetailEventsPage((p) => Math.min(p + 1, totalEventPages))}
-                              disabled={detailEventsPage === totalEventPages}
-                              className="p-2 rounded-lg border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
-                              aria-label="Eventos siguientes"
-                            >
-                              <ChevronRight className="w-4 h-4 text-gray-600" />
-                            </button>
-                          </div>
-                        )}
+                        <AdminPagination
+                          paginaActual={detailEventsPage}
+                          totalPaginas={totalEventPages}
+                          onCambiar={cambiarPaginaDeEventos}
+                          totalElementos={selectedAttendee.totalEvents}
+                          nombreElemento="evento"
+                          etiqueta="Paginación de los eventos de esta persona"
+                          deshabilitado={detailEventsLoading}
+                        />
                       </div>
                     );
                   })()}
