@@ -142,6 +142,11 @@ const TeamPage = () => {
     *
     * Lo que sí se retiró es donde figuraba como equipo ACTUAL: la meta
     * description, las keywords y la descripción del ItemList.
+    *
+    * La propiedad es `founder`, en singular y repetida dentro del array.
+    * `founders` existe en schema.org pero está SUPERSEDIDA por `founder`, así
+    * que hasta ahora este bloque no lo procesaba nadie: se declaraba a las
+    * fundadoras y los buscadores lo ignoraban en silencio (#62).
     */}
   <script type="application/ld+json">
     {`
@@ -153,7 +158,7 @@ const TeamPage = () => {
         "logo": "https://www.femcodersclub.com/FemCodersClubLogo.png",
         "foundingDate": "2023",
         "description": "Asociación legalmente constituida dedicada a empoderar a mujeres en el ámbito tecnológico, ofreciendo espacios para aprender, crecer y destacar en la industria tech.",
-        "founders": [
+        "founder": [
           {
             "@type": "Person",
             "name": "Elvia Benedith",
@@ -423,7 +428,20 @@ const TeamPage = () => {
     `}
   </script>
 
-  {/* JSON-LD AboutPage */}
+  {/*
+    * JSON-LD AboutPage.
+    *
+    * Los tres elementos de su lista son grupos, no personas. «Equipo Actual -
+    * Cofundadoras» se declaraba como `Person` y no lo es: es un conjunto de
+    * cinco. Pasa a `Organization`, que es lo que ya usaban los otros dos
+    * elementos hermanos (#62).
+    *
+    * `Organization` no describe un subgrupo con precisión —schema.org no tiene
+    * un tipo para «equipo dentro de una organización»— pero es lo más cercano
+    * y, sobre todo, deja los tres elementos declarados igual. A las personas se
+    * las describe una a una en el bloque de `founder` de arriba, que es donde
+    * corresponde.
+    */}
   <script type="application/ld+json">
     {`
       {
@@ -439,7 +457,7 @@ const TeamPage = () => {
               "@type": "ListItem",
               "position": 1,
               "item": {
-                "@type": "Person",
+                "@type": "Organization",
                 "name": "Equipo Actual - Cofundadoras",
                 "description": "Cofundadoras activas que lideran las iniciativas de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias"
               }
