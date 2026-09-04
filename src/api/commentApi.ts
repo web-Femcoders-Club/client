@@ -35,10 +35,23 @@ export const addComment = async (
   return response.data;
 };
 
+/**
+ * Publica un comentario pendiente.
+ *
+ * Es PATCH porque cambia estado. Con GET, la protección dependía de que este
+ * token viajara en una cabecera y no en una cookie: un GET autenticado es el
+ * tipo de petición que un navegador dispara solo —una etiqueta `<img>` en
+ * cualquier página basta— y eso era una garantía de cómo está montado este
+ * cliente, no del endpoint (#65, server#98).
+ *
+ * El cuerpo va vacío: lo que se aprueba lo dice la ruta.
+ */
 export const approveComment = async (id: number): Promise<Comment> => {
-  const response = await axios.get(`${API_URL}/comments/approve/${id}`, {
-    headers: cabeceraDeAuth(),
-  });
+  const response = await axios.patch(
+    `${API_URL}/comments/approve/${id}`,
+    {},
+    { headers: cabeceraDeAuth() }
+  );
   return response.data;
 };
 
