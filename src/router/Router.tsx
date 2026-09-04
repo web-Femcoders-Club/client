@@ -74,9 +74,6 @@ const SendDocumentation = lazy(
 const FeaturedPresentation = lazy(
   () => import("../features/FeaturedPresentations/page/FeaturedPresentations")
 );
-const ManageAchievements = lazy(
-  () => import("../features/Achievements/page/ManageAchievements")
-);
 const FelicitacionNavidad = lazy(
   () => import("../features/Blog/posts/noticias/FelicitacionNavidad")
 );
@@ -444,16 +441,13 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
-          <Route
-            path="/admin/achievements"
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <Layout>
-                  <ManageAchievements />
-                </Layout>
-              </ProtectedRoute>
-            }
-          />
+          {/*
+            La gestión de logros vive dentro del panel, con `/admin/*`, y no
+            como ruta suelta: definida aquí ganaba a `/admin/*` por ser más
+            específica, así que la pantalla se abría SIN el menú lateral. Y
+            como el menú tampoco la enlazaba, no había forma de llegar a ella
+            salvo escribiendo la URL a mano.
+          */}
           <Route
             path="/recursos/html/integracion-frameworks"
             element={

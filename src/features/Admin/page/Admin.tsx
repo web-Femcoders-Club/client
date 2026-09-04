@@ -8,6 +8,7 @@ import CrmDashboard from '../components/crm/CrmDashboard';
 import UnsubscribeList from '../components/unsubscribe/UnsubscribeList';
 import ConsentOverview from '../components/consent/ConsentOverview';
 import LegalDocs from '../components/legal/LegalDocs';
+import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -48,6 +49,11 @@ const Admin: React.FC = () => {
                   4. CRM Asistentes
                 </Link>
               </li>
+              <li className="step">
+                <Link to="/admin/achievements" className="text-decoration-none">
+                  5. Gestionar Logros
+                </Link>
+              </li>
             </ul>
 
             {/*
@@ -78,6 +84,7 @@ const Admin: React.FC = () => {
               <Route path="users" element={<ManageUsers />} />
               <Route path="comments" element={<ManageComments />} />
               <Route path="crm/*" element={<CrmDashboard />} />
+              <Route path="achievements" element={<ManageAchievements />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
               <Route path="consents" element={<ConsentOverview />} />
               <Route path="legal" element={<LegalDocs />} />
