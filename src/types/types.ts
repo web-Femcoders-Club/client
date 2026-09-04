@@ -388,11 +388,6 @@ export interface CrmUsersCrosscheck {
   data: CrmUserCrosscheck[];
   /** `totalItems` cuenta las coincidencias de la búsqueda, no el conjunto. */
   pagination: Pagination;
-  /**
-   * @deprecated Alias de `data` que el backend mantiene mientras el panel se
-   * actualiza (server#27). Se retira al cerrar esta issue; no leer de aquí.
-   */
-  users?: CrmUserCrosscheck[];
 }
 
 export interface CrmAttendeePaginated {
