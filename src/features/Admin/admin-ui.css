@@ -51,7 +51,12 @@
 
 .admin-table thead th {
   background-color: #f4f2fa;
-  color: #2d2d2d; /* ~12:1 sobre el fondo: cumple AAA */
+  /*
+    El violeta de marca, como en el resto de tablas del panel. Sobre este lila
+    da 7.48:1 — medido, no estimado: cumple AAA por poco margen, así que si
+    alguna vez se aclara el fondo hay que volver a comprobarlo.
+  */
+  color: var(--color-secondary);
   font-weight: 700;
   text-align: left;
   padding: 0.75rem 1rem;
@@ -195,6 +200,74 @@
 .admin-pagination__btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------
+   Botones de acción
+   ---------------------------------------------------------------
+   Las pantallas del panel los escribían con `btn btn-success` de DaisyUI o con
+   el color puesto a mano en un `style`. Ni una cosa ni la otra daba el color
+   de marca de forma fiable.
+
+   Sobre el color: con texto blanco, el coral de marca (#ea4f33) queda en
+   3.71:1 — no llega ni a AA. El violeta sí (8.29:1), y para la acción
+   destructiva se usa el coral ya oscurecido que el panel emplea en sus badges
+   de alerta (#a32617, 7.38:1). Medido, no estimado.
+   --------------------------------------------------------------- */
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.admin-btn:focus-visible {
+  outline: 3px solid var(--color-text-dark);
+  outline-offset: 2px;
+}
+
+.admin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Acción principal: publicar, guardar, confirmar. */
+.admin-btn--primario {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+.admin-btn--primario:hover:not(:disabled) {
+  background-color: #3a2d99;
+}
+
+/* Acción destructiva: rechazar, eliminar. */
+.admin-btn--peligro {
+  background-color: #a32617;
+  color: #fff;
+}
+
+.admin-btn--peligro:hover:not(:disabled) {
+  background-color: #821e12;
+}
+
+/* Acción secundaria, sin peso visual. */
+.admin-btn--suave {
+  background-color: #fff;
+  border-color: #d8d4e8;
+  color: #2d2d2d;
+}
+
+.admin-btn--suave:hover:not(:disabled) {
+  background-color: #f4f2fa;
 }
 
 /* ---------------------------------------------------------------
