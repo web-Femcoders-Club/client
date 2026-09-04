@@ -378,10 +378,21 @@ export interface CrmUserCrosscheck {
 }
 
 export interface CrmUsersCrosscheck {
+  /**
+   * Los totales son del conjunto entero, también con una búsqueda activa: son
+   * la foto de la asociación, no la del filtro escrito (server#14).
+   */
   totalUsers: number;
   attendedAtLeastOne: number;
   neverAttended: number;
-  users: CrmUserCrosscheck[];
+  data: CrmUserCrosscheck[];
+  /** `totalItems` cuenta las coincidencias de la búsqueda, no el conjunto. */
+  pagination: Pagination;
+  /**
+   * @deprecated Alias de `data` que el backend mantiene mientras el panel se
+   * actualiza (server#27). Se retira al cerrar esta issue; no leer de aquí.
+   */
+  users?: CrmUserCrosscheck[];
 }
 
 export interface CrmAttendeePaginated {
@@ -390,7 +401,10 @@ export interface CrmAttendeePaginated {
 }
 
 export interface CrmAttendeeDetail extends CrmAttendee {
+  /** Solo los eventos de la página pedida, no todos los de la persona. */
   events: CrmAttendeeEvent[];
+  totalEvents: number;
+  eventsPagination: Pagination;
 }
 
 export interface CrmAttendeeEvent {

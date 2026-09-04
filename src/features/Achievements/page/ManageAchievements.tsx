@@ -3,6 +3,7 @@ import { Trophy, Users, Clock, Loader2 } from "lucide-react";
 import {
   getUsersWithAchievements,
   getRecentAchievements,
+  getAdminUsers,
 } from "../../../api/adminApi";
 import {
   UserWithAchievements,
@@ -10,8 +11,8 @@ import {
   Achievement,
   Pagination,
 } from "../../../types/types";
-import { filasDe } from '../../../utils/respuestaPaginada';
 import AdminPagination from '../../Admin/components/ui/AdminPagination';
+import { useDebouncedValue } from '../../../hooks/useDebouncedValue';
 // Esta ruta (/admin/achievements) no pasa por Admin.tsx, que es quien
 // carga admin-ui.css. Sin este import los controles saldrían sin estilo.
 import '../../Admin/admin-ui.css';
@@ -27,8 +28,22 @@ interface User {
 
 const ITEMS_PER_PAGE = 10;
 
+/**
+ * Cuántas usuarias se ofrecen a la vez al asignar un logro.
+ *
+ * Antes había un `<select>` con todas. Con el endpoint paginado (server#27)
+ * pasó a tener las 10 primeras y ninguna más: el resto de la asociación
+ * simplemente no se podía elegir, y nada en la pantalla lo decía (#20).
+ */
+const SUGERENCIAS = 8;
+
 const ManageAchievements: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [busquedaUsuaria, setBusquedaUsuaria] = useState("");
+  const busquedaUsuariaDiferida = useDebouncedValue(busquedaUsuaria);
+  const [totalCoincidencias, setTotalCoincidencias] = useState(0);
+  const [buscandoUsuarias, setBuscandoUsuarias] = useState(false);
+  const [usuariaElegida, setUsuariaElegida] = useState<User | null>(null);
   const [usersWithAchievements, setUsersWithAchievements] = useState<UserWithAchievements[]>([]);
   const [recentActivity, setRecentActivity] = useState<RecentAchievement[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -63,23 +78,17 @@ const ManageAchievements: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        const [usersRes, achievementsRes] = await Promise.all([
-          fetch(`${API_URL}/admin/users`, { headers: getAuthHeaders() }),
-          fetch(`${API_URL}/admin/achievements`, { headers: getAuthHeaders() }),
-        ]);
+        // Las usuarias ya no se cargan aquí: se buscan en el servidor desde
+        // la pestaña de asignar, que es donde hacen falta.
+        const achievementsRes = await fetch(`${API_URL}/admin/achievements`, {
+          headers: getAuthHeaders(),
+        });
 
-        if (!usersRes.ok || !achievementsRes.ok) {
+        if (!achievementsRes.ok) {
           throw new Error("Error al cargar datos");
         }
 
-        // /admin/users devuelve { data, pagination } desde server#27, y antes
-        // un array suelto. Se aceptan las dos formas para no depender de qué
-        // se despliegue primero.
-        const usersData = filasDe<User>(await usersRes.json());
-        const achievementsData = await achievementsRes.json();
-
-        setUsers(usersData);
-        setAchievements(achievementsData);
+        setAchievements(await achievementsRes.json());
 
         // Cargar datos adicionales
         try {
@@ -101,6 +110,41 @@ const ManageAchievements: React.FC = () => {
 
     fetchData();
   }, []);
+
+  /**
+   * Las usuarias que se ofrecen para asignar, buscadas en el servidor.
+   *
+   * Solo se piden cuando la pestaña está abierta: es la única que las usa.
+   */
+  useEffect(() => {
+    if (activeTab !== "assign") return;
+
+    let cancelado = false;
+    const buscar = async () => {
+      setBuscandoUsuarias(true);
+      try {
+        const { data, pagination } = await getAdminUsers(
+          1,
+          SUGERENCIAS,
+          busquedaUsuariaDiferida.trim() || undefined
+        );
+        if (cancelado) return;
+        setUsers(data);
+        setTotalCoincidencias(pagination.totalItems);
+      } catch {
+        if (!cancelado) setUsers([]);
+      } finally {
+        if (!cancelado) setBuscandoUsuarias(false);
+      }
+    };
+    buscar();
+
+    // Sin esto, dos búsquedas seguidas pueden contestar en orden distinto al
+    // que se pidieron y dejar en pantalla la lista de la primera.
+    return () => {
+      cancelado = true;
+    };
+  }, [activeTab, busquedaUsuariaDiferida]);
 
   const handleAssignAchievement = async (achievement: Achievement) => {
     if (!selectedUser) {
@@ -292,25 +336,80 @@ const ManageAchievements: React.FC = () => {
       {/* Tab: Assign Achievements */}
       {activeTab === "assign" && (
         <div className="bg-white rounded-xl shadow-md p-6">
-          <div className="mb-6">
-            <label htmlFor="user-select" className="block mb-2 font-medium text-gray-700">
-              Selecciona una usuaria:
-            </label>
-            <select
-              id="user-select"
-              className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              value={selectedUser ?? ""}
-              onChange={(e) => setSelectedUser(Number(e.target.value))}
+          <div className="mb-6 max-w-md">
+            <label
+              htmlFor="buscar-usuaria-logro"
+              className="block mb-2 font-medium text-gray-700"
             >
-              <option value="" disabled>
-                Selecciona una usuaria
-              </option>
-              {users.map((user) => (
-                <option key={user.idUser} value={user.idUser}>
-                  {user.userName} {user.userLastName} ({user.userEmail})
-                </option>
-              ))}
-            </select>
+              Busca a la usuaria por nombre o email
+            </label>
+            <input
+              id="buscar-usuaria-logro"
+              type="search"
+              value={busquedaUsuaria}
+              onChange={(e) => setBusquedaUsuaria(e.target.value)}
+              placeholder="Ej.: ana, garcía, ana@ejemplo.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg admin-focus"
+              aria-describedby="ayuda-busqueda-usuaria"
+            />
+
+            {/* aria-live: al escribir, la lista de abajo se sustituye entera y
+                sin esto un lector de pantalla no anuncia que ha cambiado. */}
+            <p
+              id="ayuda-busqueda-usuaria"
+              className="text-xs text-gray-500 mt-1"
+              aria-live="polite"
+            >
+              {buscandoUsuarias
+                ? "Buscando…"
+                : totalCoincidencias > users.length
+                ? `${totalCoincidencias} coincidencias. Se muestran las ${users.length} primeras: afina la búsqueda para ver el resto.`
+                : `${totalCoincidencias} ${
+                    totalCoincidencias === 1 ? "coincidencia" : "coincidencias"
+                  }.`}
+            </p>
+
+            {usuariaElegida && (
+              <p
+                role="status"
+                className="mt-3 px-4 py-3 rounded-lg bg-purple-50 text-sm"
+                style={{ color: "#5B21B6" }}
+              >
+                Se asignará a{" "}
+                <strong>
+                  {usuariaElegida.userName} {usuariaElegida.userLastName}
+                </strong>{" "}
+                ({usuariaElegida.userEmail})
+              </p>
+            )}
+
+            {users.length > 0 && (
+              <ul className="mt-3 border border-gray-200 rounded-lg divide-y divide-gray-100">
+                {users.map((user) => {
+                  const elegida = selectedUser === user.idUser;
+                  return (
+                    <li key={user.idUser}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedUser(user.idUser);
+                          setUsuariaElegida(user);
+                        }}
+                        aria-pressed={elegida}
+                        className={`w-full text-left px-4 py-3 text-sm admin-focus ${
+                          elegida ? "bg-purple-50 font-semibold" : "hover:bg-gray-50"
+                        }`}
+                      >
+                        {user.userName} {user.userLastName}
+                        <span className="block text-xs text-gray-500">
+                          {user.userEmail}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
 
           <h3 className="text-lg font-semibold mb-4" style={{ color: "#6D28D9" }}>

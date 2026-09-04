@@ -22,6 +22,12 @@ interface AdminPaginationProps {
   nombreElemento?: string;
   /** Etiqueta del <nav> para lectores de pantalla. */
   etiqueta?: string;
+  /**
+   * Bloquea los botones mientras se carga la página pedida. Sin esto, dos
+   * clics seguidos lanzan dos peticiones y se pinta la que conteste antes,
+   * que no tiene por qué ser la última pedida.
+   */
+  deshabilitado?: boolean;
 }
 
 const AdminPagination: React.FC<AdminPaginationProps> = ({
@@ -31,6 +37,7 @@ const AdminPagination: React.FC<AdminPaginationProps> = ({
   totalElementos,
   nombreElemento = "resultado",
   etiqueta = "Paginación",
+  deshabilitado = false,
 }) => {
   // Con una sola página los controles no aportan nada.
   if (totalPaginas <= 1) return null;
@@ -41,7 +48,7 @@ const AdminPagination: React.FC<AdminPaginationProps> = ({
         type="button"
         className="admin-pagination__btn"
         onClick={() => onCambiar(paginaActual - 1)}
-        disabled={paginaActual === 1}
+        disabled={deshabilitado || paginaActual === 1}
       >
         Anterior
       </button>
@@ -63,7 +70,7 @@ const AdminPagination: React.FC<AdminPaginationProps> = ({
         type="button"
         className="admin-pagination__btn"
         onClick={() => onCambiar(paginaActual + 1)}
-        disabled={paginaActual === totalPaginas}
+        disabled={deshabilitado || paginaActual === totalPaginas}
       >
         Siguiente
       </button>

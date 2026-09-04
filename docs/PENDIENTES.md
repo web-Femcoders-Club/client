@@ -152,3 +152,45 @@ su bloque escrito a mano. Cuando haya un tercer caso real, extraer un componente
 `<ArticleSchema>` que reciba título, fecha, imagen y autoría.
 
 No hacerlo antes: con dos usos, la abstracción todavía no está justificada.
+
+---
+
+## El buscador de la lista de asistentes solo mira el nombre
+
+**Estado:** abierto
+**Impacto:** medio — es el buscador más usado del CRM
+**Detectado:** 4 de septiembre de 2026, al conectar la paginación del panel (#20)
+
+Las tablas del panel buscan ya en el servidor, pero no todas buscan lo mismo:
+
+| Pantalla | Endpoint | Busca en |
+| --- | --- | --- |
+| Usuarias registradas | `/admin/users?search=` | nombre, apellidos y email |
+| Cruce de registradas | `/admin/crm/users-crosscheck?search=` | nombre, apellidos y email |
+| Bajas | `/admin/unsubscribed?search=` | email |
+| **Lista de asistentes** | `/admin/crm/attendees?name=` | **solo nombre y apellidos** |
+
+El de asistentes es el único que no busca por email ni por DNI, y además su
+parámetro se llama `name` en vez de `search`. Se ha puesto un texto bajo el
+buscador diciendo qué mira, porque en una lista de personas «no aparece» se lee
+como «no está» — pero la solución de verdad es que el endpoint acepte `search`
+con el mismo alcance que los otros tres.
+
+Cuando se toque esa parte del backend, unificar también el nombre del parámetro.
+
+---
+
+## El crosscheck devuelve `data` y `users`, que son lo mismo
+
+**Estado:** abierto
+**Impacto:** bajo — no rompe nada, pero engaña a quien lea la respuesta
+**Detectado:** 4 de septiembre de 2026
+
+`GET /admin/crm/users-crosscheck` devuelve las filas dos veces: en `data` (el
+nombre estándar de todos los listados paginados) y en `users` (como se llamaba
+antes). El alias es deliberado y está anotado en el backend: evitaba dejar la
+pantalla en blanco entre el despliegue del servidor y el del panel.
+
+El panel ya lee `data`. El alias se puede retirar del backend en cuanto este
+despliegue esté estable, y el tipo `CrmUsersCrosscheck` de `types.ts` tiene ese
+campo marcado como `@deprecated` para que nadie vuelva a leer de ahí.

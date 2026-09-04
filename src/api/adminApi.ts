@@ -1,5 +1,5 @@
 import axios from "axios";
-import { filasDe } from "../utils/respuestaPaginada";
+import { filasDe, paginacionDe } from "../utils/respuestaPaginada";
 import {
   UserStats,
   AchievementStats,
@@ -11,6 +11,8 @@ import {
   CrmAttendeeDetail,
   CrmEventAttendeesResponse,
   CrmUsersCrosscheck,
+  PendingUnsubscribeRecord,
+  UnsubscribedEmailRecord,
 } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -65,23 +67,37 @@ export const getCrmStats = async (): Promise<CrmStats> => {
   return response.data;
 };
 
+/**
+ * Una página de asistentes.
+ *
+ * `name` lo resuelve el backend y busca en nombre, apellidos y nombre
+ * completo. Este endpoint no busca por email (a diferencia de los otros
+ * listados del panel, que usan `search`): es una incoherencia conocida,
+ * anotada en la documentación del server.
+ */
 export const getCrmAttendees = async (
   page: number = 1,
   limit: number = 20,
   eventId?: string,
   dateFrom?: string,
-  dateTo?: string
+  dateTo?: string,
+  name?: string
 ): Promise<CrmAttendeePaginated> => {
   const response = await axios.get(`${API_URL}/admin/crm/attendees`, {
     headers: getAuthHeaders(),
-    params: { page, limit, eventId, dateFrom, dateTo },
+    params: { page, limit, eventId, dateFrom, dateTo, name: name || undefined },
   });
   return response.data;
 };
 
-export const getCrmAttendeeDetail = async (email: string): Promise<CrmAttendeeDetail> => {
+export const getCrmAttendeeDetail = async (
+  email: string,
+  eventsPage: number = 1,
+  eventsLimit: number = 5
+): Promise<CrmAttendeeDetail> => {
   const response = await axios.get(`${API_URL}/admin/crm/attendees/${encodeURIComponent(email)}`, {
     headers: getAuthHeaders(),
+    params: { eventsPage, eventsLimit },
   });
   return response.data;
 };
@@ -125,16 +141,26 @@ export const getCrmEventAttendees = async (
   return response.data;
 };
 
-export const getCrmAttendeeByDni = async (dni: string): Promise<CrmAttendeeDetail> => {
+export const getCrmAttendeeByDni = async (
+  dni: string,
+  eventsPage: number = 1,
+  eventsLimit: number = 5
+): Promise<CrmAttendeeDetail> => {
   const response = await axios.get(`${API_URL}/admin/crm/attendees/by-dni/${encodeURIComponent(dni)}`, {
     headers: getAuthHeaders(),
+    params: { eventsPage, eventsLimit },
   });
   return response.data;
 };
 
-export const getCrmUsersCrosscheck = async (): Promise<CrmUsersCrosscheck> => {
+export const getCrmUsersCrosscheck = async (
+  page: number = 1,
+  limit: number = 15,
+  search?: string
+): Promise<CrmUsersCrosscheck> => {
   const response = await axios.get(`${API_URL}/admin/crm/users-crosscheck`, {
     headers: getAuthHeaders(),
+    params: { page, limit, search: search || undefined },
   });
   return response.data;
 };
@@ -153,12 +179,36 @@ export interface AdminUser {
   userTelephone: string | null;
 }
 
-export const getAdminUsers = async (): Promise<AdminUser[]> => {
+/**
+ * Una página de usuarias registradas.
+ *
+ * `search` lo resuelve el backend (server#14). Filtrar en el navegador miraría
+ * solo la página cargada: buscar a una usuaria concreta entre 106 diría que no
+ * existe.
+ */
+export const getAdminUsers = async (
+  page: number = 1,
+  limit: number = 10,
+  search?: string
+): Promise<PaginatedResponse<AdminUser>> => {
   const response = await axios.get(`${API_URL}/admin/users`, {
     headers: getAuthHeaders(),
+    params: { page, limit, search: search || undefined },
   });
-  // Desde server#27 la respuesta es { data, pagination }; antes, un array.
-  return filasDe<AdminUser>(response.data);
+
+  // Con un backend anterior a server#27 la respuesta es un array suelto: se
+  // envuelve para que quien llama reciba siempre la misma forma.
+  const filas = filasDe<AdminUser>(response.data);
+  const pagination = paginacionDe<AdminUser>(response.data) ?? {
+    currentPage: 1,
+    itemsPerPage: filas.length,
+    totalItems: filas.length,
+    totalPages: 1,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  };
+
+  return { data: filas, pagination };
 };
 
 export const updateAdminUser = async (
@@ -175,6 +225,56 @@ export const deleteAdminUser = async (idUser: number): Promise<void> => {
   await axios.delete(`${API_URL}/admin/users/${idUser}`, {
     headers: getAuthHeaders(),
   });
+};
+
+// -------------------------------
+// Bajas de email
+// -------------------------------
+
+/**
+ * Una página de la lista de bajas.
+ *
+ * La búsqueda va al backend por la misma razón que en el resto del panel, y
+ * aquí además importa más: en una lista de bajas, «no aparece» se lee como «no
+ * está dada de baja», que es justo lo que se viene a comprobar.
+ */
+export const getUnsubscribed = async (
+  page: number = 1,
+  limit: number = 20,
+  search?: string
+): Promise<PaginatedResponse<UnsubscribedEmailRecord>> => {
+  const response = await axios.get(`${API_URL}/admin/unsubscribed`, {
+    headers: getAuthHeaders(),
+    params: { page, limit, search: search || undefined },
+  });
+
+  const filas = filasDe<UnsubscribedEmailRecord>(response.data);
+  const pagination = paginacionDe<UnsubscribedEmailRecord>(response.data) ?? {
+    currentPage: 1,
+    itemsPerPage: filas.length,
+    totalItems: filas.length,
+    totalPages: 1,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  };
+
+  return { data: filas, pagination };
+};
+
+/**
+ * Solicitudes de baja que no se pudieron completar.
+ *
+ * No se pagina a propósito: es una cola de incumplimiento —gente que pidió la
+ * baja y sigue recibiendo correos— y esconder la mitad detrás de una segunda
+ * página es justo lo contrario de lo que hace falta.
+ */
+export const getPendingUnsubscribes = async (): Promise<
+  PendingUnsubscribeRecord[]
+> => {
+  const response = await axios.get(`${API_URL}/admin/unsubscribed/pending`, {
+    headers: getAuthHeaders(),
+  });
+  return filasDe<PendingUnsubscribeRecord>(response.data);
 };
 
 // -------------------------------

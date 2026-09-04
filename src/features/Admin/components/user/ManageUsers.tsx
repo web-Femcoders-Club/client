@@ -8,6 +8,7 @@ import {
 } from "../../../../api/adminApi";
 import AdminTable from "../ui/AdminTable";
 import AdminPagination from "../ui/AdminPagination";
+import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
 
 /**
  * Gestión de usuarias registradas.
@@ -16,6 +17,11 @@ import AdminPagination from "../ui/AdminPagination";
  * habría funcionado: llamaba a http://localhost:3000 y no enviaba el token,
  * así que con /admin/* protegido (server#2) toda petición devolvía 401.
  * Ahora usa el cliente de API común, con VITE_API_URL y cabeceras de auth.
+ *
+ * La lista y el buscador van contra el servidor. Con el endpoint paginado
+ * (server#27), pedirlo sin `page` traía las 10 primeras filas y las paginaba
+ * en el navegador: la tabla decía "10 usuarias" en un panel que gestiona más
+ * de cien, y el buscador solo miraba esas diez (#20).
  */
 
 const POR_PAGINA = 10;
@@ -28,10 +34,13 @@ interface EdicionState {
 
 const ManageUsers: React.FC = () => {
   const [users, setUsers] = useState<AdminUser[]>([]);
+  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [totalUsuarias, setTotalUsuarias] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [aviso, setAviso] = useState<string | null>(null);
   const [busqueda, setBusqueda] = useState("");
+  const busquedaDiferida = useDebouncedValue(busqueda);
   const [pagina, setPagina] = useState(1);
 
   const [editando, setEditando] = useState<AdminUser | null>(null);
@@ -46,35 +55,29 @@ const ManageUsers: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      setUsers(await getAdminUsers());
+      const { data, pagination } = await getAdminUsers(
+        pagina,
+        POR_PAGINA,
+        busquedaDiferida.trim() || undefined
+      );
+      const paginas = Math.max(1, pagination.totalPages);
+      setUsers(data);
+      setTotalPaginas(paginas);
+      setTotalUsuarias(pagination.totalItems);
+      // Si la página pedida ya no existe —se ha borrado la última fila de la
+      // última página, por ejemplo— se retrocede en vez de dejar una tabla
+      // vacía sin explicación.
+      if (pagina > paginas) setPagina(paginas);
     } catch {
       setError("No se pudo cargar la lista de usuarias.");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [pagina, busquedaDiferida]);
 
   useEffect(() => {
     cargar();
   }, [cargar]);
-
-  const termino = busqueda.trim().toLowerCase();
-  const filtradas = termino
-    ? users.filter(
-        (u) =>
-          u.userEmail.toLowerCase().includes(termino) ||
-          `${u.userName} ${u.userLastName}`.toLowerCase().includes(termino)
-      )
-    : users;
-
-  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / POR_PAGINA));
-  // Si el filtro deja menos páginas, la actual podría quedar fuera de rango y
-  // mostrar una tabla vacía sin explicación.
-  const paginaActual = Math.min(pagina, totalPaginas);
-  const visibles = filtradas.slice(
-    (paginaActual - 1) * POR_PAGINA,
-    paginaActual * POR_PAGINA
-  );
 
   const abrirEdicion = (user: AdminUser) => {
     setEditando(user);
@@ -98,8 +101,8 @@ const ManageUsers: React.FC = () => {
         userTelephone: formulario.userTelephone.trim() || null,
       });
 
-      // Se actualiza en memoria en vez de recargar toda la lista: el cambio es
-      // conocido y recargar perdería la página y el filtro actuales.
+      // Se actualiza en memoria en vez de recargar la página: el cambio es
+      // conocido y una recarga parpadearía la tabla entera sin necesidad.
       setUsers((previos) =>
         previos.map((u) =>
           u.idUser === editando.idUser
@@ -131,21 +134,15 @@ const ManageUsers: React.FC = () => {
     setError(null);
     try {
       await deleteAdminUser(user.idUser);
-      setUsers((previos) => previos.filter((u) => u.idUser !== user.idUser));
       setAviso("Cuenta eliminada.");
+      // Aquí sí se recarga: al borrar cambia el total y el reparto en páginas.
+      // Quitarla solo de la lista en memoria dejaría una página de nueve filas
+      // y un total desactualizado hasta la siguiente navegación.
+      await cargar();
     } catch {
       setError("No se pudo eliminar la cuenta.");
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-16">
-        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#4737bb" }} />
-        <span className="sr-only">Cargando usuarias…</span>
-      </div>
-    );
-  }
 
   return (
     <section aria-labelledby="usuarias-titulo">
@@ -193,7 +190,15 @@ const ManageUsers: React.FC = () => {
         className="w-full mb-4 px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
       />
 
-      {filtradas.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center items-center py-16">
+          <Loader2
+            className="w-8 h-8 animate-spin"
+            style={{ color: "#4737bb" }}
+          />
+          <span className="sr-only">Cargando usuarias…</span>
+        </div>
+      ) : users.length === 0 ? (
         <p className="text-center text-gray-400 py-8 text-sm">
           {busqueda
             ? `No hay resultados para "${busqueda}"`
@@ -205,7 +210,7 @@ const ManageUsers: React.FC = () => {
             columns={["Nombre", "Email", "Rol", "Teléfono", "Acciones"]}
             caption="Usuarias registradas en la web"
           >
-                {visibles.map((user) => (
+                {users.map((user) => (
                   <tr
                     key={user.idUser}
                     className="border-b border-gray-100 hover:bg-gray-50"
@@ -257,10 +262,10 @@ const ManageUsers: React.FC = () => {
           </AdminTable>
 
           <AdminPagination
-            paginaActual={paginaActual}
+            paginaActual={pagina}
             totalPaginas={totalPaginas}
             onCambiar={setPagina}
-            totalElementos={filtradas.length}
+            totalElementos={totalUsuarias}
             nombreElemento="usuaria"
             etiqueta="Paginación de usuarias"
           />
