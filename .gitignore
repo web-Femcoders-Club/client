@@ -34,3 +34,7 @@ documentation/
 
 # Agentes locales de Claude Code (no versionados, repo público)
 .claude/
+
+# Volcados que deja Git Bash al caerse en Windows. No son del proyecto y se
+# cuelan en cualquier `git add -A`.
+*.stackdump
