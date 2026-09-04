@@ -155,28 +155,28 @@ No hacerlo antes: con dos usos, la abstracción todavía no está justificada.
 
 ---
 
-## El buscador de la lista de asistentes solo mira el nombre
+## Qué mira cada buscador del panel
 
-**Estado:** abierto
-**Impacto:** medio — es el buscador más usado del CRM
-**Detectado:** 4 de septiembre de 2026, al conectar la paginación del panel (#20)
+**Estado:** resuelto el 4 de septiembre de 2026
+**Detectado:** al conectar la paginación del panel (#20)
 
-Las tablas del panel buscan ya en el servidor, pero no todas buscan lo mismo:
+Las tablas del panel buscan en el servidor, y desde server#14 todas miran lo
+mismo salvo la de bajas, que solo tiene emails:
 
 | Pantalla | Endpoint | Busca en |
 | --- | --- | --- |
 | Usuarias registradas | `/admin/users?search=` | nombre, apellidos y email |
 | Cruce de registradas | `/admin/crm/users-crosscheck?search=` | nombre, apellidos y email |
+| Lista de asistentes | `/admin/crm/attendees?search=` | nombre, apellidos y email |
 | Bajas | `/admin/unsubscribed?search=` | email |
-| **Lista de asistentes** | `/admin/crm/attendees?name=` | **solo nombre y apellidos** |
 
-El de asistentes es el único que no busca por email ni por DNI, y además su
-parámetro se llama `name` en vez de `search`. Se ha puesto un texto bajo el
-buscador diciendo qué mira, porque en una lista de personas «no aparece» se lee
-como «no está» — pero la solución de verdad es que el endpoint acepte `search`
-con el mismo alcance que los otros tres.
+**El DNI no entra en ninguna.** Se recoge para el control de acceso del espacio
+anfitrión, no para localizar personas en el panel, y tiene su propio buscador en
+la ficha de asistente. Se dice bajo el buscador, porque en una lista de personas
+«no aparece» se lee como «no está».
 
-Cuando se toque esa parte del backend, unificar también el nombre del parámetro.
+El endpoint de asistentes sigue aceptando el `name` con el que se llamaba antes
+su parámetro, por si quedara algún enlace guardado; el panel manda `search`.
 
 ---
 

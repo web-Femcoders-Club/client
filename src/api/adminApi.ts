@@ -70,10 +70,11 @@ export const getCrmStats = async (): Promise<CrmStats> => {
 /**
  * Una página de asistentes.
  *
- * `name` lo resuelve el backend y busca en nombre, apellidos y nombre
- * completo. Este endpoint no busca por email (a diferencia de los otros
- * listados del panel, que usan `search`): es una incoherencia conocida,
- * anotada en la documentación del server.
+ * `search` lo resuelve el backend y busca en nombre, apellidos, nombre
+ * completo y email, igual que el resto de listados del panel (server#14).
+ *
+ * El DNI queda fuera a propósito: se recoge para el control de acceso del
+ * espacio anfitrión, no para localizar personas, y tiene su propio buscador.
  */
 export const getCrmAttendees = async (
   page: number = 1,
@@ -81,11 +82,18 @@ export const getCrmAttendees = async (
   eventId?: string,
   dateFrom?: string,
   dateTo?: string,
-  name?: string
+  search?: string
 ): Promise<CrmAttendeePaginated> => {
   const response = await axios.get(`${API_URL}/admin/crm/attendees`, {
     headers: getAuthHeaders(),
-    params: { page, limit, eventId, dateFrom, dateTo, name: name || undefined },
+    params: {
+      page,
+      limit,
+      eventId,
+      dateFrom,
+      dateTo,
+      search: search || undefined,
+    },
   });
   return response.data;
 };

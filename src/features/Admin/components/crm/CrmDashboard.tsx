@@ -945,7 +945,7 @@ const CrmDashboard: React.FC = () => {
                 {/* Filtro local */}
                 <div className="mb-4">
                   <label htmlFor="buscar-asistente" className="sr-only">
-                    Buscar por nombre o apellidos
+                    Buscar por nombre, apellidos o email
                   </label>
                   <input
                     id="buscar-asistente"
@@ -955,7 +955,7 @@ const CrmDashboard: React.FC = () => {
                       setFilterText(e.target.value);
                       setCurrentPage(1); // una búsqueda nueva empieza por el principio
                     }}
-                    placeholder={isFilteredByEvent ? "Buscar por nombre en este evento..." : "Buscar por nombre o apellidos... (haz clic en una fila para ver el detalle)"}
+                    placeholder={isFilteredByEvent ? "Buscar por nombre o email en este evento..." : "Buscar por nombre o email... (haz clic en una fila para ver el detalle)"}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg text-sm admin-focus"
                   />
                   {/* El recuento sale del servidor, no de las filas cargadas:
@@ -968,12 +968,11 @@ const CrmDashboard: React.FC = () => {
                       {isFilteredByEvent ? " en este evento" : ""}
                     </p>
                   )}
-                  {/* Este buscador es el del endpoint de asistentes, que solo
-                      mira el nombre. No busca por email ni por DNI, y decirlo
-                      evita que "no aparece" se lea como "no está". */}
+                  {/* El DNI no entra en la búsqueda: decirlo evita que un
+                      "no aparece" se lea como "no está". */}
                   <p className="text-xs text-gray-400 mt-1">
-                    La búsqueda mira el nombre y los apellidos. Para localizar
-                    por DNI, usa el buscador por DNI de la ficha.
+                    La búsqueda mira el nombre, los apellidos y el email. El
+                    DNI tiene su propio buscador en la ficha.
                   </p>
                 </div>
 
