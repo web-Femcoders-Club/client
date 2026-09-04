@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getUserStats, getAchievementStats } from "../../../../api/adminApi";
 import { UserStats as UserStatsType, AchievementStats } from "../../../../types/types";
 import { Users, UserPlus, CalendarDays, Loader2, ChevronLeft, ChevronRight, Trophy, Award } from "lucide-react";
@@ -188,9 +189,20 @@ const UserStats: React.FC = () => {
           {/* Popular Achievements Table */}
           {achievementStats.achievementsByType.length > 0 && (
             <div className="bg-white rounded-xl shadow-md p-6">
-              <h3 className="text-lg font-semibold mb-4" style={{ color: "#6D28D9" }}>
-                Logros más populares
-              </h3>
+              <div className="flex items-baseline justify-between mb-4 gap-4 flex-wrap">
+                <h3 className="text-lg font-semibold" style={{ color: "#6D28D9" }}>
+                  Logros más populares
+                </h3>
+                {/* Este panel resume; la gestión está en su pantalla, y desde
+                    aquí no había forma de llegar a ella. */}
+                <Link
+                  to="/admin/achievements"
+                  className="text-sm underline admin-focus"
+                  style={{ color: "#6D28D9" }}
+                >
+                  Ver todos los logros y asignarlos
+                </Link>
+              </div>
               <div className="overflow-x-auto">
                 <table className="table w-full border border-gray-200">
                   <thead>

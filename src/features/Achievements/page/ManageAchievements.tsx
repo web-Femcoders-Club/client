@@ -13,9 +13,6 @@ import {
 } from "../../../types/types";
 import AdminPagination from '../../Admin/components/ui/AdminPagination';
 import { useDebouncedValue } from '../../../hooks/useDebouncedValue';
-// Esta ruta (/admin/achievements) no pasa por Admin.tsx, que es quien
-// carga admin-ui.css. Sin este import los controles saldrían sin estilo.
-import '../../Admin/admin-ui.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -254,10 +251,13 @@ const ManageAchievements: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2" style={{ color: "#6D28D9" }}>
+      <h2 className="text-2xl font-bold mb-1 flex items-center gap-2" style={{ color: "#6D28D9" }}>
         <Trophy className="w-7 h-7" />
         Gestionar Logros
-      </h1>
+      </h2>
+      <p className="text-sm text-gray-500 mb-6">
+        Los logros que existen, a quién se le han dado y cuándo.
+      </p>
 
       {avisoUsuarias && (
         <p
