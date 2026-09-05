@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=20.19.0"
   },
+  "packageManager": "pnpm@9.0.6",
   "scripts": {
     "dev": "vite",
     "optimize": "tsx optimize-images.ts",
