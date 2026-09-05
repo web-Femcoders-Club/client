@@ -13,12 +13,18 @@ El backend vive en un repositorio aparte:
 | | |
 | --- | --- |
 | **Node** | **≥ 20.19** (declarado en `engines`) |
-| **pnpm** | gestor de paquetes del proyecto |
+| **pnpm** | **9** — fijada en `packageManager`, la activa Corepack |
 
 La versión de Node no es una recomendación: **Vite 7 llama a `crypto.hash`, que
 no existe antes de 20.19**. Con una versión anterior, `vite build` y `vite dev`
 fallan con `crypto.hash is not a function` — un error que no menciona Node por
 ningún lado y que se confunde con facilidad con un problema del proyecto.
+
+La de pnpm tampoco: **desde la 10 los scripts de instalación vienen desactivados
+por defecto**, y son los que compilan el binario de `sharp` del que depende
+`pnpm optimize`. Por eso la versión va fijada en `packageManager` — Corepack la
+activa al entrar en el repositorio, sin que haya que acordarse — y CI instala
+con esa misma 9.
 
 ---
 
