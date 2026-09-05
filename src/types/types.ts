@@ -488,3 +488,42 @@ export interface ConsentOverviewResponse {
   contacts: ConsentContact[];
   externalUnsubscribes: UnsubscribedEmailRecord[];
 }
+
+/* ---------------------------------------------------------------
+   Listas de correo por género (#13, backend server#16)
+   --------------------------------------------------------------- */
+
+/** Las cuatro listas del panel. */
+export type ListaDeGenero = "mujer" | "hombre" | "otros" | "sin-clasificar";
+
+/**
+ * De dónde salió el género que se está mostrando.
+ *
+ * `declarado` es el único que NO se puede corregir desde el panel: lo eligió
+ * la persona en su perfil.
+ */
+export type FuenteDelGenero =
+  | "declarado"
+  | "corregido"
+  | "inferido"
+  | "ninguna";
+
+export type OrigenDelContacto = "registro" | "eventbrite" | "ambos";
+
+export interface ContactoDeLista {
+  nombre: string;
+  apellidos: string;
+  email: string;
+  lista: ListaDeGenero;
+  fuente: FuenteDelGenero;
+  origen: OrigenDelContacto;
+}
+
+export interface ResumenDeListas {
+  conteo: Record<ListaDeGenero, number>;
+  total: number;
+  /** Porcentaje en mujer u hombre: dice si la clasificación está sirviendo. */
+  porcentajeClasificado: number;
+  /** Direcciones dejadas fuera por estar dadas de baja. */
+  excluidosPorBaja: number;
+}
