@@ -1,0 +1,6 @@
+allowBuilds:
+  # Vite lo necesita: sin su binario nativo el dev server no arranca.
+  esbuild: true
+  # Solo se usa en documentation/generateStaticPages.js, que ningún script
+  # de package.json invoca. Evita descargar Chromium en cada install limpia.
+  puppeteer: false
