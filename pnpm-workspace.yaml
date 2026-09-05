@@ -1,3 +1,10 @@
+# Este repositorio no es un monorepo, pero el fichero hace falta igual: es
+# donde pnpm lee qué paquetes pueden ejecutar scripts de instalación. Sin el
+# campo `packages`, pnpm 9 rechaza el fichero entero con
+# ERR_PNPM_INVALID_WORKSPACE_CONFIGURATION y no instala nada.
+packages:
+  - .
+
 allowBuilds:
   # Vite lo necesita: sin su binario nativo el dev server no arranca.
   esbuild: true
