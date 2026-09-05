@@ -284,8 +284,8 @@ const PersonalizaPerfil: React.FC = () => {
                   <option value="Mujer">Mujer</option>
                   <option value="Hombre">Hombre</option>
                   <option value="No binario">No binario</option>
-                  <option value="Prefiero no decirlo">
-                    Prefiero no decirlo
+                  <option value="Prefiero no decir">
+                    Prefiero no decir
                   </option>
                 </select>
 
