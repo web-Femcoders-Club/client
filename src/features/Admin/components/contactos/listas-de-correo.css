@@ -1,0 +1,372 @@
+/*
+ * Listas de correo por género (#13).
+ *
+ * CSS propio y no clases de Tailwind, por lo mismo que explica admin-ui.css:
+ * el proyecto sirve Tailwind v2 por CDN mientras el código usa clases de la
+ * v3, así que buena parte no llega al navegador. Aquí lo que más importa de
+ * eso es el foco: `focus:ring-*` no se aplica y quien navega por teclado se
+ * queda sin saber dónde está.
+ *
+ * CONTRASTES — medidos, no estimados. La regla del proyecto es WCAG 2.1 AAA
+ * (7:1 en texto normal):
+ *
+ *   #2a2170 sobre #ffffff .............. 13.55:1
+ *   #4737bb sobre #ffffff ..............  8.29:1
+ *   #ffffff sobre #4737bb ..............  8.29:1  (pestaña activa)
+ *   #2a2170 sobre #f4f2fa .............. 12.21:1
+ *   #4a4a4a sobre #ffffff ..............  8.86:1  (textos de ayuda)
+ *   #0f4f2e sobre #e7f6ee ..............  8.64:1  (badge "lo eligió ella")
+ *
+ * Nota: NO se usan aquí `admin-badge--ok` (6.28:1) ni `admin-badge--alerta`
+ * (6.45:1). Los dos se quedan en AA pese a que su comentario dice que se
+ * oscurecieron para llegar a AAA. Están en uso en otras pantallas y
+ * arreglarlos toca el panel entero, así que se reporta aparte en vez de
+ * cambiarlo de paso desde aquí.
+ *
+ * ---------------------------------------------------------------
+ * OJO: `span { color: var(--color-primary) }` es global
+ * ---------------------------------------------------------------
+ * `src/index.css` pinta de coral (#ea4f33) TODOS los `<span>` del sitio que no
+ * traigan color propio. Al montar esta pantalla el efecto fue:
+ *
+ *   - los correos, en coral sobre blanco ............... 3.71:1  (ni AA)
+ *   - el nombre de la pestaña activa, coral sobre violeta  2.24:1 (ilegible)
+ *
+ * Por eso cada `<span>` de este fichero lleva su `color` escrito, aunque
+ * parezca redundante: sin él lo hereda de esa regla. La regla global es un
+ * problema del sitio entero y se reporta aparte; aquí solo se le pone remedio
+ * a lo propio.
+ */
+
+.listas-correo {
+  padding: 1.5rem;
+}
+
+.listas-correo__titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem;
+}
+
+.listas-correo__intro,
+.listas-correo__ayuda,
+.listas-correo__cobertura {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 70ch;
+}
+
+.listas-correo__cobertura {
+  background-color: #f4f2fa;
+  border-left: 4px solid var(--color-secondary);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0 1.5rem;
+  color: var(--color-text-dark);
+}
+
+/* ---------------------------------------------------------------
+   Pestañas
+   --------------------------------------------------------------- */
+
+.listas-correo__pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 2px solid #e6e3f2;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.listas-correo__pestana {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d8d4e8;
+  border-radius: 999px;
+  background-color: #fff;
+  color: var(--color-text-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  /*
+   * El área táctil mínima recomendada es 44x44. Con el padding de arriba y
+   * este mínimo, un dedo acierta la pestaña sin ampliar.
+   */
+  min-height: 44px;
+}
+
+.listas-correo__pestana:hover {
+  background-color: #f4f2fa;
+}
+
+/*
+ * Nunca se quita el outline sin poner algo mejor en su lugar. `:focus-visible`
+ * y no `:focus` para que no salte al hacer clic con el ratón.
+ */
+.listas-correo__pestana:focus-visible {
+  outline: 3px solid var(--color-text-dark);
+  outline-offset: 2px;
+}
+
+.listas-correo__pestana--activa {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+.listas-correo__pestana--activa:hover {
+  background-color: #3a2d99;
+}
+
+/*
+ * La pestaña activa se distingue por color Y por el subrayado grueso. El color
+ * solo no basta: es la única señal que se pierde entera en escala de grises o
+ * con daltonismo (WCAG 1.4.1, "no usar el color como único medio").
+ */
+.listas-correo__pestana--activa {
+  box-shadow: inset 0 -4px 0 0 var(--color-text-dark);
+}
+
+/*
+ * Hereda el color del botón (violeta sobre blanco, o blanco sobre violeta en
+ * la activa). Sin esto, la regla global de `span` lo dejaba coral: 3.71:1 en
+ * las inactivas y 2.24:1 en la activa, que es ilegible.
+ */
+.listas-correo__pestana-nombre {
+  color: inherit;
+}
+
+.listas-correo__contador {
+  display: inline-block;
+  min-width: 1.75rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background-color: #ede9fb;
+  color: #3b2d99; /* 8.73:1 sobre ese fondo */
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.listas-correo__pestana--activa .listas-correo__contador {
+  background-color: #fff;
+  color: #3b2d99; /* 10.4:1 sobre blanco */
+}
+
+/* ---------------------------------------------------------------
+   Panel
+   --------------------------------------------------------------- */
+
+/*
+ * El panel recibe el foco al llegar desde las pestañas, así que necesita
+ * indicarlo. Sin esto, un `tabIndex={0}` sin estilo es foco invisible.
+ */
+.listas-correo__panel:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.listas-correo__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+/*
+ * El aviso ocupa sitio SIEMPRE, aunque esté vacío. Si apareciera y
+ * desapareciera, la tabla daría un salto justo después de pulsar un botón —y
+ * el salto se lleva por delante el sitio donde estaba el puntero.
+ */
+.listas-correo__aviso {
+  min-height: 1.5rem;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.listas-correo__cargando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  color: #4a4a4a;
+}
+
+.listas-correo__vacio {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------------
+   Tabla
+   --------------------------------------------------------------- */
+
+/*
+ * El correo NO se parte.
+ *
+ * Al principio llevaba `word-break: break-all`, y en pantalla estrecha el
+ * resultado era `ana.r / uiz@e / xampl / e.com`: cuatro líneas de cinco
+ * caracteres, ilegible. Un correo es una cadena que se lee entera o no se lee.
+ * La tabla ya tiene scroll horizontal propio (`.admin-table-wrap`), que es la
+ * forma correcta de que no quepa.
+ */
+.listas-correo__email {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  /* Explícito: sin esto lo pinta de coral la regla global de `span`. */
+  color: var(--color-text-dark); /* 13.55:1 */
+}
+
+.listas-correo__mover {
+  display: inline-flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.listas-correo__mover-btn {
+  min-height: 36px;
+}
+
+/*
+ * Cuando el género lo eligió la persona, no hay botón: un guion.
+ *
+ * Antes había aquí una etiqueta «Lo eligió ella», pero la columna «Género» de
+ * la misma fila ya dice exactamente eso — se veía repetido dos veces en la
+ * misma línea. Se notaba al mirar la tabla, no al leer el código. El motivo
+ * queda en `aria-label` y en `title`, que es donde hace falta.
+ */
+.listas-correo__bloqueado {
+  display: inline-block;
+  color: #4a4a4a; /* 8.86:1 sobre blanco */
+  font-size: 1rem;
+  /* `help` avisa de que hay algo que leer al pasar por encima. */
+  cursor: help;
+}
+
+/* ---------------------------------------------------------------
+   La tabla en pantallas estrechas
+   ---------------------------------------------------------------
+   Con cinco columnas, el panel a 3/4 del ancho y una ventana pequeña, la
+   columna de acción quedaba cortada — y es justo la que se usa en la pestaña
+   «Sin clasificar», que es a lo que se entra a esta pantalla.
+
+   Se esconde «Viene de», que es el dato menos necesario para decidir: importa
+   quién es y a qué lista va. Sigue estando en escritorio y en el CSV.
+   --------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .listas-correo .admin-table th:nth-child(3),
+  .listas-correo .admin-table td:nth-child(3) {
+    display: none;
+  }
+
+  /*
+   * Y el correo se recorta con puntos suspensivos. Con el sidebar comiéndose
+   * un cuarto del ancho (issue #59), sin esto la columna «Mover a» se salía de
+   * la tabla: quedaba tras el scroll horizontal, invisible. Es la acción a la
+   * que se viene a esta pantalla, así que gana ella.
+   *
+   * El correo completo sigue en el `title`, en el CSV y en escritorio. Se
+   * asume que en una pantalla táctil no hay hover para leer el `title`: quien
+   * necesite el correo entero lo tiene en «Copiar los N correos», que es para
+   * lo que se usa de verdad.
+   */
+  .listas-correo__email {
+    display: inline-block;
+    max-width: 15ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Pantallas estrechas y pantallas bajas
+   ---------------------------------------------------------------
+   Los dos casos, no solo el primero. Un `max-width` a secas se salta el móvil
+   en horizontal y el zoom al 200%, que son gestos cotidianos: en los dos, lo
+   que escasea es el ALTO.
+   --------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .listas-correo {
+    padding: 1rem 0.75rem;
+  }
+
+  .listas-correo__titulo {
+    font-size: 1.35rem;
+  }
+
+  /*
+   * Las pestañas pasan a una fila con scroll horizontal en vez de apilarse en
+   * cuatro líneas: apiladas empujan la tabla fuera de la pantalla y hay que
+   * hacer scroll para ver un solo dato.
+   */
+  .listas-correo__pestanas {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* Sitio para que el outline del foco no se recorte al hacer scroll. */
+    padding: 4px 4px 0.75rem;
+  }
+
+  .listas-correo__pestana {
+    flex: 0 0 auto;
+  }
+
+  .listas-correo__acciones .admin-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/*
+ * Poco alto: móvil en horizontal, o zoom al 200% en un portátil. Se recorta lo
+ * que solo ocupa —márgenes, texto de ayuda— para que quepan más filas de la
+ * tabla, que es a lo que se ha venido.
+ */
+@media (max-height: 520px) {
+  .listas-correo {
+    padding: 0.75rem;
+  }
+
+  .listas-correo__intro,
+  .listas-correo__ayuda {
+    display: none;
+  }
+
+  .listas-correo__cobertura {
+    margin: 0.5rem 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .listas-correo__pestanas {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/*
+ * Quien pide menos movimiento lo pide por algo: hay quien se marea. No hay
+ * animaciones propias aquí, pero el spinner de `lucide-react` gira con una
+ * animación de Tailwind y esto la detiene.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .listas-correo *,
+  .listas-correo *::before,
+  .listas-correo *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
