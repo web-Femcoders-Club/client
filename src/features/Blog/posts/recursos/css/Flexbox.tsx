@@ -91,7 +91,7 @@ const Flexbox: React.FC = () => {
               name: "femCoders Club",
               logo: {
                 "@type": "ImageObject",
-                url: "https://www.femcodersclub.com/assets/logo.png",
+                url: "https://www.femcodersclub.com/FemCodersClubLogo.png",
               },
             },
             datePublished: "2025-03-02",
