@@ -4,11 +4,16 @@ import CharCounter from "../../../components/ui/CharCounter";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import { ModalContext } from "../../../context/ModalContext";
 
-interface ContactFormProps {
-  recipientEmail: string; // Interfaz para las props
-}
-
-const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
+/**
+ * El destinatario NO viaja en el formulario, y no es un descuido: lo decide el
+ * servidor con `EMAIL_RECEIVER`. Si viniera del navegador, cualquiera podría
+ * cambiarlo y usar la API para enviar correos a donde quisiera.
+ *
+ * Se mandaba, y desde que el ValidationPipe rechaza los campos que el DTO no
+ * declara (#28) el formulario devolvía «property recipientEmail should not
+ * exist» sin llegar a enviar nada.
+ */
+const ContactForm: React.FC = () => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -32,7 +37,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ recipientEmail }) => {
       email: formData.get("userEmail") as string,
       subject: formData.get("asunto") as string,
       message: formData.get("message") as string,
-      recipientEmail, // Incluimos recipientEmail en el cuerpo del formulario
     };
 
     setIsSubmitting(true);

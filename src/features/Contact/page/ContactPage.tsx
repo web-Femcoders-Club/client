@@ -126,7 +126,7 @@ const ContactPage: React.FC = () => {
         </section>
 
         <section className="contact-form-section">
-          <ContactForm recipientEmail="info@femcodersclub.com" />
+          <ContactForm />
         </section>
       </main>
 
