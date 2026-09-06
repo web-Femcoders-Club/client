@@ -32,7 +32,13 @@ const Header: React.FC = () => {
 
           if (response.status === 200 && response.data) {
             setIsAuthenticated(true);
-            setAvatar(response.data.userAvatar || "/default-avatar.png");
+            // Sin avatar se guarda null, no una ruta por defecto: quien decide
+            // la imagen de reserva es el render, y así hay un único sitio donde
+            // mirarlo. Antes aquí se ponía "/default-avatar.png", un archivo
+            // que nunca existió en public/; al ser una cadena truthy anulaba el
+            // `|| "/FemCodersClubLogo.png"` de más abajo, y toda usuaria sin
+            // avatar veía la imagen rota.
+            setAvatar(response.data.userAvatar || null);
           } else {
             setIsAuthenticated(false);
             setAvatar(null);

@@ -5,6 +5,26 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Imágenes
+
+#### Corregido
+- **El avatar por defecto apuntaba a un archivo que nunca existió**: el `Header`
+  guardaba `"/default-avatar.png"` cuando la usuaria no tenía avatar, y ese
+  archivo no está en `public/`. Como la cadena es truthy, además anulaba el
+  `|| "/FemCodersClubLogo.png"` del propio render: el fallback bueno estaba
+  escrito y no se ejecutaba nunca. Toda usuaria sin avatar veía la imagen rota.
+  Ahora se guarda `null` y decide el render, en un único sitio. `LoginForm`
+  escribía la misma ruta fantasma en `sessionStorage` (clave que hoy no lee
+  nadie); pasa a borrar la clave cuando no hay avatar.
+- **`OptimizedImage` repetía indefinidamente cada petición fallida**: su `onError`
+  se recuperaba escribiendo `imgElement.src` directamente en el DOM, y al
+  siguiente render React devolvía el atributo a la ruta optimizada y se llevaba
+  por delante el `onerror = null`. La imagen volvía a fallar en cada render, y
+  el componente se rerenderiza con cada `resize`: por eso la consola mostraba
+  decenas del mismo 404 en vez de uno. El fallo se recuerda ya en estado de
+  React, así que la recuperación sobrevive a los renders; una `src` nueva vuelve
+  a intentar su versión optimizada.
+
 ### Formularios y estilos
 
 #### Corregido
