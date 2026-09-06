@@ -4,6 +4,7 @@ import CommentsSection from "../../../../Blog/components/CommentsSection";
 import "../../../page/PostStyles.css";
 
 import ShareButtons from "../../../components/ShareButtons";
+import { articleSchema } from "../../../components/articleSchema";
 
 const Flexbox: React.FC = () => {
   const publicationDate = "2 de marzo de 2025";
@@ -77,35 +78,24 @@ const Flexbox: React.FC = () => {
 
         {/* Schema.org structured data */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline:
-              "Flexbox: El poder de crear layouts flexibles | femCoders Club",
-            author: {
-              "@type": "Person",
-              name: "Irina Ichim",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "femCoders Club",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://www.femcodersclub.com/FemCodersClubLogo.png",
+          {JSON.stringify(
+            articleSchema({
+              type: "Article",
+              path: "/recursos/css/flexbox",
+              headline:
+                "Flexbox: El poder de crear layouts flexibles | femCoders Club",
+              description:
+                "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
+              image: "/assets/css/flexbox.jpg",
+              datePublished: "2025-03-02",
+              author: {
+                "@type": "Person",
+                name: "Irina Ichim",
               },
-            },
-            datePublished: "2025-03-02",
-            dateModified: "2025-03-02",
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://www.femcodersclub.com/recursos/css/flexbox",
-            },
-            image: "https://www.femcodersclub.com/assets/css/flexbox.jpg",
-            description:
-              "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
-            articleBody:
-              "Flexbox ha revolucionado el diseño web, permitiendo crear layouts flexibles con menos esfuerzo...",
-          })}
+              articleBody:
+                "Flexbox ha revolucionado el diseño web, permitiendo crear layouts flexibles con menos esfuerzo...",
+            })
+          )}
         </script>
       </Helmet>
 

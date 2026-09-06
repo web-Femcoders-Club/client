@@ -5,6 +5,7 @@ import PostImage from "../../components/PostImage";
 import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
+import { articleSchema } from "../../components/articleSchema";
 
 const ColaboracionJune: React.FC = () => {
   const postId = 44;
@@ -79,83 +80,63 @@ const ColaboracionJune: React.FC = () => {
         <meta name="language" content="Spanish" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "NewsArticle",
-            headline:
-              "FemCoders Club colabora en el desarrollo de June, una plataforma contra la violencia digital de género",
-            description:
-              "FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, una plataforma para documentar la violencia política de género y la censura digital en España.",
-            image:
-              "https://www.femcodersclub.com/assets/noticias/colaboracion-june.png",
-            datePublished: "2026-07-05T10:00:00Z",
-            dateModified: "2026-07-05T10:00:00Z",
-            inLanguage: "es-ES",
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id":
-                "https://www.femcodersclub.com/noticias/colaboracion-june",
-            },
-            author: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://www.femcodersclub.com/FemCodersClubLogo.png",
-              },
-            },
-            about: {
-              "@type": "Organization",
-              name: "In CoDe",
-              url: "https://www.incodeong.org/",
-              foundingDate: "2024",
-              areaServed: "ES",
+          {JSON.stringify(
+            articleSchema({
+              type: "NewsArticle",
+              path: "/noticias/colaboracion-june",
+              headline:
+                "FemCoders Club colabora en el desarrollo de June, una plataforma contra la violencia digital de género",
               description:
-                "Organización feminista y tecnopolítica dedicada a repensar los procesos democráticos para garantizar la participación activa y transformadora de las mujeres en la toma de decisiones políticas.",
-            },
-            contributor: [
-              {
-                "@type": "Person",
-                name: "Irina Ichim",
-                jobTitle: "Arquitecta de software y desarrolladora fullstack",
-                sameAs:
-                  "https://www.linkedin.com/in/irina-ichim-desarrolladora/",
+                "FemCoders Club se suma como equipo de desarrollo al proyecto June, impulsado por la asociación In CoDe, una plataforma para documentar la violencia política de género y la censura digital en España.",
+              image: "/assets/noticias/colaboracion-june.png",
+              datePublished: "2026-07-05T10:00:00Z",
+              about: {
+                "@type": "Organization",
+                name: "In CoDe",
+                url: "https://www.incodeong.org/",
+                foundingDate: "2024",
+                areaServed: "ES",
+                description:
+                  "Organización feminista y tecnopolítica dedicada a repensar los procesos democráticos para garantizar la participación activa y transformadora de las mujeres en la toma de decisiones políticas.",
               },
-              {
-                "@type": "Person",
-                name: "Gabriela Bustamante",
-                jobTitle: "Desarrolladora backend",
-                sameAs: "https://www.linkedin.com/in/gabriela-bustamante-/",
-              },
-              {
-                "@type": "Person",
-                name: "Elvia Benedith",
-                jobTitle: "Ingeniera civil y desarrolladora web",
-                sameAs: "https://www.linkedin.com/in/elvia-benedith/",
-              },
-              {
-                "@type": "Person",
-                name: "Silvina Lucero Calderón",
-                jobTitle: "QA funcional",
-                sameAs: "https://www.linkedin.com/in/silvina-lucero/",
-              },
-            ],
-            keywords: [
-              "June",
-              "In CoDe",
-              "violencia digital de género",
-              "violencia política de género",
-              "censura digital",
-              "FemCoders Club",
-              "tecnología feminista",
-            ],
-          })}
+              contributor: [
+                {
+                  "@type": "Person",
+                  name: "Irina Ichim",
+                  jobTitle: "Arquitecta de software y desarrolladora fullstack",
+                  sameAs:
+                    "https://www.linkedin.com/in/irina-ichim-desarrolladora/",
+                },
+                {
+                  "@type": "Person",
+                  name: "Gabriela Bustamante",
+                  jobTitle: "Desarrolladora backend",
+                  sameAs: "https://www.linkedin.com/in/gabriela-bustamante-/",
+                },
+                {
+                  "@type": "Person",
+                  name: "Elvia Benedith",
+                  jobTitle: "Ingeniera civil y desarrolladora web",
+                  sameAs: "https://www.linkedin.com/in/elvia-benedith/",
+                },
+                {
+                  "@type": "Person",
+                  name: "Silvina Lucero Calderón",
+                  jobTitle: "QA funcional",
+                  sameAs: "https://www.linkedin.com/in/silvina-lucero/",
+                },
+              ],
+              keywords: [
+                "June",
+                "In CoDe",
+                "violencia digital de género",
+                "violencia política de género",
+                "censura digital",
+                "FemCoders Club",
+                "tecnología feminista",
+              ],
+            })
+          )}
         </script>
       </Helmet>
 
