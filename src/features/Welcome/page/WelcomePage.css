@@ -1,28 +1,115 @@
-.sidebar-nav {
-  scrollbar-width: thin;
-  scrollbar-color: #4737bb white;
+/*
+ * Menú lateral de bienvenida. El posicionamiento, el colapso y la barra de
+ * scroll de marca viven en CollapsibleSidebar; aquí solo queda el contenido.
+ *
+ * Las clases que había —`hover:bg-white/10`, `border-white/20`, `text-[#4737bb]`,
+ * `bg-black/50`— son sintaxis de Tailwind v3, y al navegador solo llega el CDN
+ * de la v2: no pintaban nada. Lo que se veía blanco lo heredaba de un
+ * `text-white` en el contenedor, no de la clase que parecía ponerlo.
+ */
+.welcome-menu {
+  min-height: 100%;
 }
 
-.sidebar-nav::-webkit-scrollbar {
-  width: 12px;
+.welcome-menu__interior {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
 }
 
-.sidebar-nav::-webkit-scrollbar-track {
-  background: white;
+.welcome-menu__saludo {
+  font-size: 1.5rem;
+  text-align: center;
+  /* Sobre el fondo blanco del panel: 8.16:1, medido. AAA pide 7:1. */
+  color: var(--color-secondary);
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #4737bb, #6d2c95);
-  border-radius: 10px;
+.welcome-menu__cita {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  /*
+    Color sólido y no la imagen `bg2`: sobre una foto el contraste no se puede
+    garantizar, y aquí va texto. Blanco sobre este violeta da 13.5:1, medido.
+  */
+  background-color: var(--color-text-dark);
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #6d2c95, #4737bb);
+.welcome-menu__cita p {
+  margin: 0;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-white);
 }
 
-.nav-chevron {
-  color: #4737bb !important;
+.welcome-menu__nav {
+  margin-top: 2rem;
+  flex: 1;
 }
+
+.welcome-menu__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.welcome-menu__enlace {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-secondary);
+  transition: background-color var(--transition-fast);
+}
+
+.welcome-menu__enlace:hover {
+  /* El realce que `hover:bg-white/10` prometía y nunca llegó a pintar. */
+  background-color: #efecfa;
+}
+
+.welcome-menu__chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-secondary);
+  opacity: 0;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.welcome-menu__enlace:hover .welcome-menu__chevron,
+.welcome-menu__enlace:focus-visible .welcome-menu__chevron {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/*
+ * La cabecera del contenido se separaba del header con `mt-36`, un número a ojo.
+ * Ahora usa la altura real que mide Header.tsx, que cambia con el breakpoint y
+ * con el zoom del navegador.
+ */
+.welcome-cabecera {
+  margin-top: calc(var(--fem-header-height, 132px) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-menu__enlace,
+  .welcome-menu__chevron {
+    transition: none;
+  }
+
+  .welcome-menu__enlace:hover .welcome-menu__chevron,
+  .welcome-menu__enlace:focus-visible .welcome-menu__chevron {
+    transform: none;
+  }
+}
+
 .text-custom-blue {
   color: #2a2170;
 }

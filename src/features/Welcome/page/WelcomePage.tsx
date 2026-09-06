@@ -13,11 +13,9 @@ import {
     Lightbulb,
     MapPin,
     Megaphone,
-    Menu,
     MicVocal,
     Rocket,
     Users,
-    X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -25,6 +23,7 @@ import { Link, useLocation } from "react-router-dom";
 import { getUserAchievements } from "../../../api/achievementsApi";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
+import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import "./WelcomePage.css";
 
 const WelcomePage = () => {
@@ -42,9 +41,6 @@ const WelcomePage = () => {
   );
   const [emojiMenuOpen, setEmojiMenuOpen] = useState(false);
   const [emojiStats, setEmojiStats] = useState<{ [key: string]: number }>({});
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const displayName = userName || localStorage.getItem("userName") || "Usuario";
 
@@ -80,22 +76,6 @@ const WelcomePage = () => {
     if (storedStats) {
       setEmojiStats(JSON.parse(storedStats));
     }
-
-    const isTouchCapable =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(isTouchCapable);
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setSidebarOpen(false);
-        setIsHovering(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const getGreeting = () => {
@@ -184,45 +164,40 @@ const WelcomePage = () => {
 
 
 
-  const Sidebar = () => (
-    <div
-      className={`
-        lg:fixed lg:w-80 w-full h-full bg1
-        text-white shadow-xl transition-transform duration-300 transform
-        ${
-          isSidebarOpen || isHovering
-            ? "translate-x-0"
-            : "-translate-x-full lg:translate-x-0"
-        }
-        fixed top-0 left-0 z-40
-      `}
-      onMouseEnter={() => !isTouchDevice && setIsHovering(true)}
-      onMouseLeave={() => !isTouchDevice && setIsHovering(false)}
-    >
-      <div className="flex flex-col h-full p-6 overflow-y-auto sidebar-nav">
-        <button
-          title="Cerrar Sidebar"
-          className="primary-button mt-12 self-end flex items-center"
-          onClick={() => {
-            setSidebarOpen(false);
-            setIsHovering(false);
-          }}
-        >
-          <X className="w-6 h-6 mr-2" />
-          Cerrar
-        </button>
-
-        <div className="flex flex-col items-center space-y-4 mt-12">
+  /*
+   * Contenido del menú, no un componente. Definido como `const Sidebar = () =>`
+   * dentro del cuerpo de WelcomePage, React lo veía como un tipo de componente
+   * nuevo en cada render y desmontaba y volvía a montar el menú entero: se
+   * perdía el foco y las transiciones se cortaban a medias. Como elemento JSX el
+   * árbol es estable.
+   *
+   * El posicionamiento, el botón de contraer y la capa oscura los pone ahora
+   * CollapsibleSidebar. El botón "Cerrar" que había aquí no cerraba nada en
+   * escritorio: quitaba el estado, pero `lg:translate-x-0` mantenía el menú a la
+   * vista igualmente.
+   */
+  const contenidoMenu = (
+    <div className="welcome-menu">
+      <div className="welcome-menu__interior">
+        <div className="flex flex-col items-center space-y-4">
           {selectedEmoji && (
             <div className="text-6xl animate-bounce">{selectedEmoji}</div>
           )}
-          <h2 className="text-2xl font-bold text-center text-[#4737bb]">
+          <h2 className="welcome-menu__saludo">
             {getGreeting()}, {displayName}!
           </h2>
         </div>
 
-        <div className="mt-4 p-4 bg2 backdrop-blur-sm rounded-xl border border-white/20">
-          <p className="text-sm text-white/90 italic">{motivationalMessage}</p>
+        {/*
+          La caja iba con `bg2 backdrop-blur-sm border border-white/20` y el texto
+          con `text-white/90`: de esas cuatro, tres son sintaxis de Tailwind v3
+          que el CDN v2 no conoce, así que ni el borde ni el color del texto
+          existían —el blanco venía heredado de un `text-white` en el contenedor—.
+          Ahora el fondo es un color sólido, para poder medir el contraste en vez
+          de estimarlo sobre una imagen: blanco sobre #2a2170 da 13.5:1.
+        */}
+        <div className="welcome-menu__cita">
+          <p>{motivationalMessage}</p>
         </div>
 
         {/* Emoji Selector */}
@@ -279,8 +254,14 @@ const WelcomePage = () => {
           </div>
         )}
 
-        <nav className="mt-8 flex-1 overflow-y-auto">
-          <ul className="space-y-2">
+        {/*
+          Cada enlace se etiquetaba con un `<h2>`: seis encabezados falsos que
+          ensuciaban el esquema de la página para quien navega saltando de
+          encabezado en encabezado. Es un enlace, y se marca como tal; el tamaño
+          lo da el CSS.
+        */}
+        <nav className="welcome-menu__nav" aria-label="Tu espacio">
+          <ul>
             {[
               { to: "/ofertas-de-trabajo", text: "Ofertas de Trabajo" },
               { to: "/personaliza-perfil", text: "Personaliza tu perfil" },
@@ -293,18 +274,12 @@ const WelcomePage = () => {
               { to: "/enviar-documentacion", text: "Enviar documentación" },
             ].map((item) => (
               <li key={item.to}>
-                <Link
-                  to={item.to}
-                  className="flex items-center justify-between p-2 rounded-lg hover:bg-white/10 group transition-all duration-200"
-                  onClick={() => {
-                    setSidebarOpen(false);
-                    setIsHovering(false);
-                  }}
-                >
-                  <h2 className="text-lg text-[#4737bb] font-semibold">
-                    {item.text}
-                  </h2>
-                  <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-200 nav-chevron" />
+                <Link to={item.to} className="welcome-menu__enlace group">
+                  <span>{item.text}</span>
+                  <ChevronRight
+                    className="welcome-menu__chevron"
+                    aria-hidden="true"
+                  />
                 </Link>
               </li>
             ))}
@@ -314,46 +289,35 @@ const WelcomePage = () => {
     </div>
   );
 
-  const Overlay = () =>
-    (isSidebarOpen || isHovering) && (
-      <div
-        className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-        onClick={() => {
-          setSidebarOpen(false);
-          setIsHovering(false);
-        }}
-        onMouseEnter={() => !isTouchDevice && setIsHovering(true)}
-        onMouseLeave={() => !isTouchDevice && setIsHovering(false)}
-      />
-    );
-
-  const MenuTrigger = () => (
-    <div
-      className="lg:hidden fixed top-40 left-4 z-20 p-2 rounded-lg shadow-lg cursor-pointer"
-      style={{ backgroundColor: "#4737bb" }}
-      onClick={() => isTouchDevice && setSidebarOpen(true)}
-      onMouseEnter={() => !isTouchDevice && setIsHovering(true)}
-      onMouseLeave={() => !isTouchDevice && setIsHovering(false)}
-    >
-      <Menu className="w-6 h-6 text-600" style={{ color: "#ea4f33" }} />
-    </div>
-  );
-
   return (
     <>
     <Helmet>
       <title>Bienvenida - FemCoders Club</title>
       <meta name="description" content="Tu espacio para crecer, aprender y conectar con otras mujeres en tecnología. Explora recursos, eventos y oportunidades de mentoría en FemCoders Club." />
     </Helmet>
+    {/*
+      La capa oscura y el botón de abrir los pone CollapsibleSidebar. El de aquí
+      solo respondía al ratón por encima, o al clic únicamente en pantallas
+      táctiles: con teclado no había forma de abrir el menú, y en un portátil no
+      táctil con la ventana estrecha el clic tampoco hacía nada.
+    */}
     <div className="flex min-h-screen bg1">
-      <Overlay />
-      <Sidebar />
+      <CollapsibleSidebar
+        variant="overlay"
+        storageKey="femcoders:menu-bienvenida"
+        label="menú de bienvenida"
+      >
+        {contenidoMenu}
+      </CollapsibleSidebar>
 
-      <div className="lg:ml-80 flex-1 p-4 lg:p-8 w-full">
-        <MenuTrigger />
-
+      {/*
+        `min-w-0` en lugar de `w-full`: ahora el menú ocupa sitio en el flujo en
+        vez de superponerse con un margen fijo, y un hijo flexible con el ancho
+        mínimo por defecto no deja encoger las rejillas anchas de abajo.
+      */}
+      <div className="flex-1 min-w-0 p-4 lg:p-8">
         <div className="max-w-6xl mx-auto">
-          <header className="mt-36 mb-8 lg:mb-12">
+          <header className="welcome-cabecera mb-8 lg:mb-12">
             <h2>
               ¡Bienvenida a FemCoders Club!{" "}
               {selectedEmoji && ` ${selectedEmoji}`}

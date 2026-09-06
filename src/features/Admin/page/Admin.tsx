@@ -1,6 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Route, Routes } from 'react-router-dom';
+import {
+  Award,
+  BarChart3,
+  FileText,
+  Mail,
+  MailX,
+  MessageSquare,
+  ShieldCheck,
+  UserCheck,
+  Users,
+} from 'lucide-react';
+import CollapsibleSidebar from '../../../components/ui/CollapsibleSidebar';
 import ManageComments from '../components/comment/ManageComments';
 import UserStats from '../components/user/UserStats';
 import ManageUsers from '../components/user/ManageUsers';
@@ -12,6 +24,32 @@ import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
 import '../admin-ui.css';
 import './Admin.css';
+
+/*
+ * Cada sección lleva icono porque el menú contraído deja solo la franja de
+ * iconos (client#59): el texto se oculta a la vista pero sigue en el árbol de
+ * accesibilidad, así que un lector de pantalla lo anuncia entero. El `title` es
+ * para quien navega con ratón y solo ve el dibujo.
+ */
+const SECCIONES = [
+  { to: '/admin/stats', texto: '1. Estadísticas Usuarias', Icono: BarChart3 },
+  { to: '/admin/users', texto: '2. Gestionar Usuarias', Icono: Users },
+  { to: '/admin/comments', texto: '3. Gestionar Comentarios', Icono: MessageSquare },
+  { to: '/admin/crm', texto: '4. CRM Asistentes', Icono: UserCheck },
+  { to: '/admin/achievements', texto: '5. Gestionar Logros', Icono: Award },
+  { to: '/admin/listas', texto: '6. Listas de Correo', Icono: Mail },
+];
+
+/*
+ * Lo relacionado con datos personales va agrupado y no numerado entre las
+ * tareas operativas: son consultas que se hacen ante una petición de derechos o
+ * una inspección, no pasos de un flujo.
+ */
+const CUMPLIMIENTO = [
+  { to: '/admin/unsubscribed', texto: 'Bajas de email', Icono: MailX },
+  { to: '/admin/consents', texto: 'Consentimientos', Icono: ShieldCheck },
+  { to: '/admin/legal', texto: 'Documentación legal', Icono: FileText },
+];
 
 const Admin: React.FC = () => {
   const userName = sessionStorage.getItem('userName') || 'Administradora';
@@ -27,64 +65,60 @@ const Admin: React.FC = () => {
           <h2>Panel de Administración</h2>
           <p>Aquí puedes gestionar miembros, patrocinadores, voluntarios y comentarios.</p>
         </div>
-        <div className="admin-content flex">
-          <div className="admin-sidebar w-1/4 p-4">
-            <ul className="steps steps-vertical">
-              <li className="step">
-                <Link to="/admin/stats" className="text-decoration-none">
-                  1. Estadísticas Usuarias
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/users" className="text-decoration-none">
-                  2. Gestionar Usuarias
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/comments" className="text-decoration-none">
-                  3. Gestionar Comentarios
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/crm" className="text-decoration-none">
-                  4. CRM Asistentes
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/achievements" className="text-decoration-none">
-                  5. Gestionar Logros
-                </Link>
-              </li>
-              <li className="step">
-                <Link to="/admin/listas" className="text-decoration-none">
-                  6. Listas de Correo
-                </Link>
-              </li>
-            </ul>
+        <div className="admin-content">
+          <CollapsibleSidebar
+            variant="rail"
+            storageKey="femcoders:menu-panel"
+            label="menú del panel"
+          >
+            <div className="admin-sidebar">
+              {/*
+                La lista de secciones necesita su propio `nav` con nombre: era un
+                `<ul>` suelto, mientras que el bloque de Cumplimiento de más abajo
+                ya lo hacía bien y sirve de modelo (client#59).
+              */}
+              <nav aria-label="Secciones del panel">
+                <ul className="steps steps-vertical">
+                  {SECCIONES.map(({ to, texto, Icono }) => (
+                    <li key={to} className="step">
+                      <Link
+                        to={to}
+                        className="admin-sidebar__enlace admin-focus"
+                        title={texto}
+                      >
+                        <Icono className="admin-sidebar__icono" aria-hidden="true" />
+                        <span className="fem-sidebar__label">{texto}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
 
-            {/*
-              Lo relacionado con datos personales va agrupado y no numerado
-              entre las tareas operativas: son consultas que se hacen ante una
-              petición de derechos o una inspección, no pasos de un flujo.
-            */}
-            <nav className="admin-cumplimiento" aria-labelledby="cumplimiento-titulo">
-              <h3 id="cumplimiento-titulo" className="admin-cumplimiento__titulo">
-                Cumplimiento y datos
-              </h3>
-              <ul className="admin-cumplimiento__lista">
-                <li>
-                  <Link to="/admin/unsubscribed">Bajas de email</Link>
-                </li>
-                <li>
-                  <Link to="/admin/consents">Consentimientos</Link>
-                </li>
-                <li>
-                  <Link to="/admin/legal">Documentación legal</Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="admin-main w-3/4 p-4">
+              <nav className="admin-cumplimiento" aria-labelledby="cumplimiento-titulo">
+                <h3
+                  id="cumplimiento-titulo"
+                  className="admin-cumplimiento__titulo fem-sidebar__label"
+                >
+                  Cumplimiento y datos
+                </h3>
+                <ul className="admin-cumplimiento__lista">
+                  {CUMPLIMIENTO.map(({ to, texto, Icono }) => (
+                    <li key={to}>
+                      <Link
+                        to={to}
+                        className="admin-sidebar__enlace admin-focus"
+                        title={texto}
+                      >
+                        <Icono className="admin-sidebar__icono" aria-hidden="true" />
+                        <span className="fem-sidebar__label">{texto}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </CollapsibleSidebar>
+          <div className="admin-main p-4">
             <Routes>
               <Route path="stats" element={<UserStats />} />
               <Route path="users" element={<ManageUsers />} />

@@ -1,0 +1,232 @@
+/*
+ * Menú lateral contraíble compartido (client#59).
+ *
+ * CSS propio y no utilidades de Tailwind, por el mismo motivo documentado en
+ * src/features/Admin/admin-ui.css: al navegador solo llega el CDN de Tailwind v2
+ * y la sintaxis de la v3 no se aplica. Los colores salen de las variables de
+ * index.css, no de hex sueltos.
+ *
+ * La altura del header se lee de --fem-header-height, que Header.tsx mide con un
+ * ResizeObserver. El valor de reserva solo cubre el primer pintado: el header no
+ * mide siempre lo mismo (el logo encoge en móvil y todo crece con el zoom), así
+ * que un número fijo aquí volvería a dejar el menú por debajo de la cabecera.
+ */
+
+.fem-sidebar {
+  --fem-sidebar-width: 20rem;
+  --fem-sidebar-rail-width: 4.5rem;
+  --fem-sidebar-top: var(--fem-header-height, 132px);
+}
+
+/* ---------------------------------------------------------------
+   Botón de contraer / expandir
+   --------------------------------------------------------------- */
+
+.fem-sidebar__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-light);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.fem-sidebar__toggle:hover {
+  background: var(--color-text-dark);
+  transform: scale(1.05);
+}
+
+/*
+ * El :focus-visible global de index.css es morado, y este botón se apoya sobre
+ * morado: ahí el foco no se vería. Mismo criterio que en BackToTop.css.
+ */
+.fem-sidebar__toggle:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.fem-sidebar__toggle-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------------------------------------------------------------
+   Panel
+   --------------------------------------------------------------- */
+
+.fem-sidebar__panel {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Barra de scroll de marca, heredada de WelcomePage.css. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) var(--color-white);
+}
+
+.fem-sidebar__panel::-webkit-scrollbar {
+  width: 12px;
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-track {
+  background: var(--color-white);
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-secondary), #6d2c95);
+  border-radius: 10px;
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #6d2c95, var(--color-secondary));
+}
+
+/*
+ * Texto de los enlaces en la franja de iconos. Se oculta a la vista pero sigue
+ * en el árbol de accesibilidad: quien usa lector de pantalla no percibe
+ * "contraído", así que debe seguir oyendo el nombre completo del enlace.
+ */
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------
+   Variante rail: vive en el flujo, contraída deja una franja de iconos
+   --------------------------------------------------------------- */
+
+.fem-sidebar--rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  width: var(--fem-sidebar-width);
+  transition: width var(--transition-fast);
+}
+
+.fem-sidebar--rail.fem-sidebar--collapsed {
+  width: var(--fem-sidebar-rail-width);
+}
+
+.fem-sidebar--rail .fem-sidebar__toggle {
+  align-self: flex-end;
+}
+
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__toggle {
+  align-self: center;
+}
+
+.fem-sidebar--rail .fem-sidebar__panel {
+  width: 100%;
+}
+
+/* ---------------------------------------------------------------
+   Variante overlay
+   --------------------------------------------------------------- */
+
+.fem-sidebar__scrim {
+  position: fixed;
+  inset: 0;
+  /*
+    La capa oscura de verdad. El menú de bienvenida la declaraba como
+    `bg-black/50`, sintaxis de Tailwind v3 que el CDN v2 no conoce: la clase no
+    pintaba nada y el fondo nunca se oscureció.
+  */
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+.fem-sidebar--overlay .fem-sidebar__toggle {
+  position: fixed;
+  top: calc(var(--fem-sidebar-top) + 1rem);
+  left: 1rem;
+  /* Por encima del panel, para poder cerrarlo; por debajo del header (1000). */
+  z-index: 50;
+}
+
+.fem-sidebar--overlay .fem-sidebar__panel {
+  position: fixed;
+  top: var(--fem-sidebar-top);
+  left: 0;
+  width: min(var(--fem-sidebar-width), 100vw);
+  height: calc(100vh - var(--fem-sidebar-top));
+  z-index: 45;
+  background: var(--color-white);
+  box-shadow: var(--shadow-medium);
+  transition: transform var(--transition-fast),
+    visibility var(--transition-fast);
+}
+
+.fem-sidebar--overlay.fem-sidebar--open .fem-sidebar__panel {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/*
+ * Contraído sale de pantalla Y de la vista. `visibility: hidden` lo saca además
+ * del orden de tabulación en cualquier navegador; `inert` (que pone el
+ * componente) es el refuerzo. Solo con `transform` seguiría siendo tabulable.
+ */
+.fem-sidebar--overlay.fem-sidebar--collapsed .fem-sidebar__panel {
+  transform: translateX(-100%);
+  visibility: hidden;
+}
+
+/*
+ * A partir de 1024px el menú deja de tapar el contenido y pasa a convivir con
+ * él: entra en el flujo, y al contraerse el contenido recupera el ancho sin
+ * márgenes calculados a mano.
+ */
+@media (min-width: 1024px) {
+  .fem-sidebar--overlay {
+    display: flex;
+    flex-shrink: 0;
+    width: var(--fem-sidebar-width);
+    transition: width var(--transition-fast);
+  }
+
+  .fem-sidebar--overlay.fem-sidebar--collapsed {
+    width: 0;
+  }
+
+  .fem-sidebar--overlay .fem-sidebar__panel {
+    position: sticky;
+    width: var(--fem-sidebar-width);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Movimiento reducido
+   --------------------------------------------------------------- */
+
+/*
+ * WCAG 2.3.3 (nivel AAA, el objetivo del proyecto): el movimiento disparado por
+ * una interacción se puede desactivar. El menú aparece y desaparece igual, sin
+ * deslizarse.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .fem-sidebar--rail,
+  .fem-sidebar--overlay,
+  .fem-sidebar__toggle,
+  .fem-sidebar--overlay .fem-sidebar__panel {
+    transition: none;
+  }
+
+  .fem-sidebar__toggle:hover {
+    transform: none;
+  }
+}

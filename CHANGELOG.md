@@ -5,6 +5,67 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Navegación y menús laterales
+
+#### Corregido
+- **Salir del panel de administración obligaba a volver a iniciar sesión**: `/admin`
+  no estaba enlazado en ningún sitio de la web. El desplegable del avatar ofrecía
+  exactamente dos entradas —"Mi Perfil" y "Cerrar sesión"— fuera cual fuera el rol,
+  y la barra de navegación tampoco llevaba al panel. Al salir a cualquier página
+  pública la única vuelta era escribir la URL a mano, o cerrar sesión y volver a
+  entrar, porque el login sí redirige a admin a `/admin`. Ahora el desplegable
+  tiene tres entradas separadas para admin —Mi perfil, Panel de administración,
+  Cerrar sesión—, con la de cerrar siempre la última (client#21).
+- **El menú lateral quedaba tapado por la cabecera**: el menú se posicionaba en
+  `top: 0` con `z-index: 40` y el header es `fixed` con `z-index: 1000`, así que
+  la cabecera cubría su parte alta —incluido el botón de cerrar—. El header
+  publica ahora su altura real en `--fem-header-height`, medida con un
+  `ResizeObserver` en lugar de escrita a mano: el logo encoge por debajo de 768px
+  y con el zoom del navegador crece todo, así que cualquier número fijo volvería
+  a esconderlo.
+- **El botón "Cerrar" del menú de bienvenida no cerraba nada en escritorio**:
+  quitaba el estado, pero `lg:translate-x-0` mantenía el menú visible igualmente.
+- **El menú contraído seguía siendo tabulable**: `-translate-x-full` lo sacaba de
+  pantalla sin sacarlo del orden de tabulación, así que con Tab se entraba en un
+  menú invisible. Ahora se combina `visibility` con `inert`.
+- **El menú de bienvenida solo se abría pasando el ratón por encima**: su
+  disparador era un `<div onClick>` que además solo respondía al clic
+  `if (isTouchDevice)`. En un portátil no táctil con la ventana estrecha, hacer
+  clic no hacía nada; con teclado no había forma de abrirlo. Sustituido por un
+  `<button>` con `aria-expanded`.
+- **La capa oscura del menú de bienvenida nunca oscureció nada**: era
+  `bg-black/50`, sintaxis de Tailwind v3, y al navegador solo llega el CDN de la
+  v2 (ver client#92). Lo mismo con `hover:bg-white/10`, `border-white/20` y
+  `text-[#4737bb]`: escritas, visibles en el código, sin efecto. Lo que se veía
+  blanco lo heredaba de un `text-white` del contenedor, no de la clase que
+  aparentaba ponerlo. Reescrito con CSS propio y variables de `index.css`,
+  siguiendo el precedente de `admin-ui.css`.
+- **`Sidebar`, `Overlay` y `MenuTrigger` se definían dentro del cuerpo de
+  `WelcomePage`**: React los trataba como tipos de componente nuevos en cada
+  render y desmontaba y remontaba el menú entero, perdiendo el foco.
+- **Seis encabezados falsos en el menú de bienvenida**: cada enlace se etiquetaba
+  con un `<h2>`, ensuciando el esquema de la página para quien navega saltando de
+  encabezado en encabezado. Ahora son enlaces, y el tamaño lo da el CSS.
+
+#### Añadido
+- **`CollapsibleSidebar`, menú lateral contraíble compartido** por el panel y la
+  página de bienvenida (client#59). Variante `rail` para el panel —contraído deja
+  una franja de iconos, para seguir viendo dónde se está— y `overlay` para
+  bienvenida. Comunes a las dos: `aria-expanded` y `aria-controls`, `aria-label`
+  por estado, preferencia recordada en `localStorage`, `prefers-reduced-motion`
+  (WCAG 2.3.3, AAA) y foco visible en naranja porque el morado global no se
+  distingue sobre el morado del menú. Cuando el menú tapa el contenido en pantalla
+  estrecha añade semántica de diálogo —`aria-modal`, foco retenido y `Escape`—,
+  reutilizando el contrato ya escrito en `StatusModal`.
+- **El menú del panel deja de ocupar un cuarto de la pantalla**: `w-1/4` y `w-3/4`
+  fijaban el ancho sin una sola media query, así que las tablas del CRM y de
+  usuarias cedían ese espacio aunque no se estuviera navegando. Al contraer el
+  menú, el área de trabajo lo recupera.
+- **Contraste medido en lo nuevo**: saludo del menú 8.16:1 y cita motivacional
+  13.5:1, ambos por encima del 7:1 de AAA. La cita pasa a fondo sólido en vez de
+  imagen, porque sobre una foto el contraste no se puede garantizar.
+- `Escape` cierra el desplegable del avatar y devuelve el foco al botón.
+
 ### Imágenes
 
 #### Corregido

@@ -392,8 +392,13 @@
     padding: 0 16px;
   }
 
+  /*
+    Con la entrada del panel de administración el desplegable pasa de dos
+    opciones a tres, y con `overflow: hidden` los 200px de antes recortaban
+    justo la última: "Cerrar sesión" dejaba de verse en móvil.
+  */
   .auth-buttons.open {
-    max-height: 200px;
+    max-height: 340px;
   }
 
   .logout-button {
