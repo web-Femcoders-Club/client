@@ -37,7 +37,7 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^5.7.0",
-    "react-router-dom": "^6.30.4",
+    "react-router-dom": "^6.30.6",
     "serve": "^14.2.6",
     "sharp": "^0.35.3",
     "sitemap": "^8.0.3"
@@ -58,7 +58,6 @@
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.26",
-    "puppeteer": "24.15.0",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.23.11",
     "typescript": "^5.9.3",

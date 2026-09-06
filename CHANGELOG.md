@@ -30,6 +30,30 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   admin → welcome. La autorización real la impone el backend (guards de server#2);
   esta es la capa de UX. El login guarda ahora `userRole` en sessionStorage.
 
+### Seguridad
+- **`react-router-dom` 6.30.4 → 6.30.6**: cierra el open redirect con XSS
+  (CVE-2026-53668). `resolveTo` tenía un atajo para URLs absolutas que dejaba
+  pasar `//dominio.com` o `https:/dominio.com` como destino de `useNavigate` y
+  `<Link>`; desde 6.30.6 todo destino se normaliza a ruta interna
+  (`//evil.com` → `/evil.com`) y las rutas legítimas no cambian. Dependabot daba
+  la alerta por «sin parche» porque el aviso se publicó antes que la versión.
+- **`fast-uri` 3.1.5 → 3.1.7** (transitiva de `serve` → `ajv`): cierra cuatro
+  avisos *high* de SSRF y confusión de host. Aquí `ajv` solo compila el esquema
+  de configuración de `serve` al arrancar, así que la URL de una petición nunca
+  llegaba al parser: es higiene de lockfile, no exposición cerrada.
+- **`puppeteer` fuera de `devDependencies`**: arrastraba `extract-zip` 2.0.1
+  (path traversal por symlink, **sin parche upstream**) y unos noventa paquetes
+  más. No lo invocaba ningún script de `package.json` — su único uso vivía en
+  `documentation/`, que no está versionado. Con él se va la entrada ya muerta
+  `puppeteer: false` de `pnpm-workspace.yaml`.
+
+  Las dos alertas *moderate* restantes de `react-router` no tienen parche en la
+  rama v6 y no alcanzan a este código: la de hidratación SSR requiere Framework
+  o Data Mode y aquí el router es declarativo (`BrowserRouter` + `Routes`), y la
+  de open redirect por backslash requiere un destino de navegación que venga de
+  fuera — no hay ninguno, todos los `navigate()` son literales y los `to={}`
+  salen de listas internas. Detalle y criterio de reapertura en la issue #7.
+
 ### Cambiado
 - **Export CSV/PDF del CRM** vía `fetch` con header `Authorization` (descarga por
   Blob) en vez de token en la query string — necesario desde que `/admin/*` exige
