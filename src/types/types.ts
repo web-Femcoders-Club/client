@@ -157,10 +157,6 @@ export type TokenVerificationDto = {
   token: string;
 };
 
-export type ContactFormProps = {
-  recipientEmail: string;
-};
-
 export type Event = {
   id: string;
   name: string;
