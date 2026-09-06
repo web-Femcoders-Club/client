@@ -91,10 +91,15 @@ const SendDocumentation: React.FC = () => {
       return;
     }
 
+    // `userName` no se manda: el servidor no lo usa —el correo que llega solo
+    // lleva correo, título y descripción— y el DTO no lo declara, así que el
+    // ValidationPipe rechazaba la petición entera (#28). Si algún día hace
+    // falta el nombre en ese correo, sale del token, que es la fuente fiable:
+    // este endpoint ya exige estar autenticada, y sessionStorage lo puede
+    // editar cualquiera.
     const formData = new FormData();
     formData.append("mentorshipTitle", title);
     formData.append("description", description);
-    formData.append("userName", userName as string);
     formData.append("userEmail", userEmail as string);
 
     

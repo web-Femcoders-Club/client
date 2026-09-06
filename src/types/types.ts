@@ -176,13 +176,6 @@ export type UpdateMemberDto = {
   memberLinkedin?: string;
 };
 
-export interface EmailDto {
-  userEmail: string;
-  mentorshipType?: string;
-  githubLink?: string;
-  description?: string;
-}
-
 export type EmailResponse = {
   message: string;
 };
@@ -206,6 +199,17 @@ export type EmailResponse = {
 //   isLoading: boolean;
 // };
 
+/**
+ * Cuerpo de las peticiones a `/emails/mentorship` y `/emails/documentation`.
+ *
+ * Estaba declarado dos veces en este archivo con campos distintos: uno sin
+ * `mentorshipTitle` ni `files`. Al ser `interface`, TypeScript las fusionaba en
+ * silencio en vez de avisar, así que el tipo real era la suma de las dos y
+ * quien editara una creería haber cambiado el tipo.
+ *
+ * Los campos deben coincidir con `EmailDto` del server: el ValidationPipe
+ * rechaza los que no estén declarados allí.
+ */
 export interface EmailDto {
   userEmail: string;
   mentorshipType?: string;
