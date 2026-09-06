@@ -10,6 +10,8 @@ export interface NewsItem {
   date: string;
   category: string;
   link?: string;
+  /** Texto del enlace. Por defecto "Leer más"; concretarlo cuando el destino no sea un artículo del blog. */
+  linkLabel?: string;
   /** Imagen generada con IA: muestra el distintivo (AI Act art. 50). */
   aiGenerated?: boolean;
 }
@@ -223,7 +225,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Leer más
+                      {news.linkLabel ?? 'Leer más'}
                       <span className="news-link-arrow">→</span>
                     </a>
                   )}
