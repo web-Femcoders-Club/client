@@ -25,9 +25,15 @@ import "./listas-de-correo.css";
  *
  * ## Lo que NO se puede tocar desde aquí
  *
- * Si el género lo declaró la persona en su perfil, no hay botón de mover: la
- * fila muestra por qué. El backend además lo rechaza con un 409, así que no
- * depende de que la interfaz se acuerde.
+ * A quien se declaró **mujer u hombre** en su perfil no la mueve nadie: eso ya
+ * responde a la única pregunta que hace la lista. No hay botón, y el backend
+ * lo rechaza con un 409, así que no depende de que la interfaz se acuerde.
+ *
+ * A quien está en **«otros»** sí se la puede colocar. «No binario» y «Prefiero
+ * no decir» dicen algo de su identidad, no a qué envío mandarla, y esa lista
+ * no entra en ningún envío por su cuenta: alguien tiene que decidir. Su perfil
+ * no se toca —la decisión se guarda aparte, con quién la tomó— y se puede
+ * deshacer desde la propia fila.
  */
 
 const POR_PAGINA = 20;
@@ -52,7 +58,7 @@ const LISTAS: ReadonlyArray<{
     id: "otros",
     etiqueta: "Otros",
     ayuda:
-      "Personas que eligieron «No binario» o «Prefiero no decir» al registrarse. No entran automáticamente en ningún envío segmentado: decidid vosotras en cada caso.",
+      "Personas que eligieron «No binario» o «Prefiero no decir» al registrarse. No entran automáticamente en ningún envío segmentado: decidid vosotras en cada caso. Si movéis a alguien a otra lista, su perfil no cambia y podéis deshacerlo cuando queráis.",
   },
   {
     id: "sin-clasificar",
@@ -252,6 +258,33 @@ const ListasDeCorreo: React.FC = () => {
     }
   };
 
+  /**
+   * Deshace una colocación hecha a mano: la persona vuelve a la lista que le
+   * toque por su perfil o por su nombre.
+   *
+   * Está aquí porque sin esto mover era un viaje de ida. El backend ya tenía
+   * el endpoint desde el principio; lo que faltaba era la forma de llegar a él
+   * sin abrir la base de datos.
+   */
+  const deshacer = async (contacto: ContactoDeLista) => {
+    setMoviendo(contacto.email);
+    setAviso(null);
+    try {
+      await axios.delete(
+        `${api}/admin/contacts/${encodeURIComponent(contacto.email)}/gender`,
+        { headers: cabeceras() },
+      );
+      setAviso(
+        `Deshecho: ${contacto.nombre} ${contacto.apellidos} vuelve a la lista que le corresponde por su perfil.`,
+      );
+      await cargar(listaActiva, pagina);
+    } catch {
+      setAviso("No se ha podido deshacer el cambio.");
+    } finally {
+      setMoviendo(null);
+    }
+  };
+
   const listaActual = LISTAS.find((l) => l.id === listaActiva)!;
 
   return (
@@ -393,7 +426,14 @@ const ListasDeCorreo: React.FC = () => {
               ]}
             >
               {contactos.map((contacto) => {
-                const declarado = contacto.fuente === "declarado";
+                /*
+                  Solo se bloquea a quien se declaró mujer u hombre. Estar en
+                  «otros» también es "declarado", pero ahí lo declarado no dice
+                  a qué lista de envío va, así que la fila sí deja colocarla.
+                */
+                const bloqueado =
+                  contacto.fuente === "declarado" && contacto.lista !== "otros";
+                const colocadaAMano = contacto.fuente === "corregido";
                 const enCurso = moviendo === contacto.email;
                 return (
                   <tr key={contacto.email}>
@@ -415,14 +455,16 @@ const ListasDeCorreo: React.FC = () => {
                     <td>
                       <span
                         className={`admin-badge ${
-                          declarado ? "admin-badge--ok" : "admin-badge--neutral"
+                          contacto.fuente === "declarado"
+                            ? "admin-badge--ok"
+                            : "admin-badge--neutral"
                         }`}
                       >
                         {ETIQUETA_FUENTE[contacto.fuente]}
                       </span>
                     </td>
                     <td style={{ textAlign: "center" }}>
-                      {declarado ? (
+                      {bloqueado ? (
                         /*
                           Sin botón. La columna «Género» de esta misma fila ya
                           dice «Lo eligió ella», así que repetirlo aquí era
@@ -433,8 +475,8 @@ const ListasDeCorreo: React.FC = () => {
                         */
                         <span
                           className="listas-correo__bloqueado"
-                          aria-label="No se puede mover: esta persona eligió su género al registrarse"
-                          title="Esta persona eligió su género al registrarse"
+                          aria-label="No se puede mover: esta persona se declaró mujer u hombre al registrarse"
+                          title="Esta persona se declaró mujer u hombre al registrarse"
                         >
                           —
                         </span>
@@ -454,6 +496,22 @@ const ListasDeCorreo: React.FC = () => {
                                 {destino === "mujer" ? "Mujeres" : "Hombres"}
                               </button>
                             ))}
+                          {/*
+                            Solo cuando la lista actual la decidió una persona
+                            del equipo. Sin esto, colocar a alguien era un
+                            viaje de ida desde la pantalla.
+                          */}
+                          {colocadaAMano && (
+                            <button
+                              type="button"
+                              className="admin-btn admin-btn--suave listas-correo__mover-btn"
+                              disabled={enCurso}
+                              onClick={() => void deshacer(contacto)}
+                              aria-label={`Deshacer: devolver a ${contacto.nombre} ${contacto.apellidos} a la lista que le corresponde por su perfil`}
+                            >
+                              Deshacer
+                            </button>
+                          )}
                         </span>
                       )}
                     </td>
