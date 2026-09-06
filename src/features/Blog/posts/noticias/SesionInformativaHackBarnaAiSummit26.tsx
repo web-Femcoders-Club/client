@@ -4,6 +4,7 @@ import CommentsSection from "../../components/CommentsSection";
 import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
+import { articleSchema } from "../../components/articleSchema";
 
 const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
   const postId = 47;
@@ -79,72 +80,53 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         <meta name="language" content="Spanish" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "NewsArticle",
-            headline:
-              "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
-            description:
-              "Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de la edición de 2025. Jueves 3 de septiembre de 2026 a las 19:30 h. Inscripción gratuita.",
-            image:
-              "https://www.femcodersclub.com/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
-            datePublished: "2026-08-17T10:00:00Z",
-            dateModified: "2026-08-17T10:00:00Z",
-            inLanguage: "es-ES",
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id":
-                "https://www.femcodersclub.com/noticias/sesion-informativa-hackbarna-ai-summit-26",
-            },
-            author: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://www.femcodersclub.com/FemCodersClubLogo.png",
-              },
-            },
-            about: {
-              "@type": "Event",
-              name: "Sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares",
+          {JSON.stringify(
+            articleSchema({
+              type: "NewsArticle",
+              path: "/noticias/sesion-informativa-hackbarna-ai-summit-26",
+              headline:
+                "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
               description:
-                "Sesión online y gratuita con Lilibeth Bustos Linares, ganadora del AI Summit Hackathon Barcelona 2025, para contar cómo se vive un hackathon de IA desde dentro.",
-              startDate: "2026-09-03T19:30:00+02:00",
-              endDate: "2026-09-03T20:30:00+02:00",
-              eventStatus: "https://schema.org/EventScheduled",
-              eventAttendanceMode:
-                "https://schema.org/OnlineEventAttendanceMode",
-              url: "https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516",
-              location: {
-                "@type": "VirtualLocation",
+                "Sesión informativa online sobre HackBarna AI Summit 26 con Lilibeth Bustos Linares, ganadora de la edición de 2025. Jueves 3 de septiembre de 2026 a las 19:30 h. Inscripción gratuita.",
+              image:
+                "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
+              datePublished: "2026-08-17T10:00:00Z",
+              about: {
+                "@type": "Event",
+                name: "Sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares",
+                description:
+                  "Sesión online y gratuita con Lilibeth Bustos Linares, ganadora del AI Summit Hackathon Barcelona 2025, para contar cómo se vive un hackathon de IA desde dentro.",
+                startDate: "2026-09-03T19:30:00+02:00",
+                endDate: "2026-09-03T20:30:00+02:00",
+                eventStatus: "https://schema.org/EventScheduled",
+                eventAttendanceMode:
+                  "https://schema.org/OnlineEventAttendanceMode",
                 url: "https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516",
+                location: {
+                  "@type": "VirtualLocation",
+                  url: "https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516",
+                },
+                organizer: {
+                  "@type": "Organization",
+                  name: "FemCoders Club",
+                  url: "https://www.femcodersclub.com",
+                },
+                performer: {
+                  "@type": "Person",
+                  name: "Lilibeth Bustos Linares",
+                },
               },
-              organizer: {
-                "@type": "Organization",
-                name: "FemCoders Club",
-                url: "https://www.femcodersclub.com",
-              },
-              performer: {
-                "@type": "Person",
-                name: "Lilibeth Bustos Linares",
-              },
-            },
-            keywords: [
-              "HackBarna AI Summit 26",
-              "hackathon IA Barcelona",
-              "sesión informativa hackbarna",
-              "Lilibeth Bustos Linares",
-              "FemCoders Club",
-              "Norrsken House Barcelona",
-              "mujeres en tecnología",
-            ],
-          })}
+              keywords: [
+                "HackBarna AI Summit 26",
+                "hackathon IA Barcelona",
+                "sesión informativa hackbarna",
+                "Lilibeth Bustos Linares",
+                "FemCoders Club",
+                "Norrsken House Barcelona",
+                "mujeres en tecnología",
+              ],
+            })
+          )}
         </script>
       </Helmet>
 

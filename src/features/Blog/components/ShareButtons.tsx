@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { BsFacebook, BsLinkedin, BsWhatsapp } from "react-icons/bs";
 import { FaLink, FaCheck } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-
-const SITE_URL = "https://www.femcodersclub.com";
+import { SITE_URL } from "./siteUrl";
 
 interface ShareButtonsProps {
   /** Ruta canónica del post, por ejemplo "/noticias/hackbarna-ai-summit-26" */

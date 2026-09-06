@@ -5,6 +5,7 @@ import PostImage from "../../components/PostImage";
 import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
+import { articleSchema } from "../../components/articleSchema";
 
 const HackBarnaAiSummit26: React.FC = () => {
   const postId = 46;
@@ -80,73 +81,53 @@ const HackBarnaAiSummit26: React.FC = () => {
         <meta name="language" content="Spanish" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "NewsArticle",
-            headline:
-              "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
-            description:
-              "FemCoders Club repite como community partner de HackBarna AI Summit 26, el hackathon de inteligencia artificial de Barcelona que se celebra el 19 y 20 de septiembre de 2026 en Norrsken House Barcelona.",
-            image:
-              "https://www.femcodersclub.com/assets/noticias/hackbarna-ai-summit-26.png",
-            datePublished: "2026-08-07T10:00:00Z",
-            dateModified: "2026-08-07T10:00:00Z",
-            inLanguage: "es-ES",
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id":
-                "https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26",
-            },
-            author: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://www.femcodersclub.com/FemCodersClubLogo.png",
-              },
-            },
-            about: {
-              "@type": "Event",
-              name: "HackBarna AI Summit 26",
+          {JSON.stringify(
+            articleSchema({
+              type: "NewsArticle",
+              path: "/noticias/hackbarna-ai-summit-26",
+              headline:
+                "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
               description:
-                "Tercera edición del hackathon de inteligencia artificial de Barcelona, con más de 200 hackers y 48 horas para construir un proyecto funcional.",
-              startDate: "2026-09-19T09:00:00+02:00",
-              endDate: "2026-09-20T17:30:00+02:00",
-              eventStatus: "https://schema.org/EventScheduled",
-              eventAttendanceMode:
-                "https://schema.org/OfflineEventAttendanceMode",
-              url: "https://www.hackbcn.com/en/events/aisummit26",
-              location: {
-                "@type": "Place",
-                name: "Norrsken House Barcelona",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Barcelona",
-                  addressCountry: "ES",
+                "FemCoders Club repite como community partner de HackBarna AI Summit 26, el hackathon de inteligencia artificial de Barcelona que se celebra el 19 y 20 de septiembre de 2026 en Norrsken House Barcelona.",
+              image: "/assets/noticias/hackbarna-ai-summit-26.png",
+              datePublished: "2026-08-07T10:00:00Z",
+              about: {
+                "@type": "Event",
+                name: "HackBarna AI Summit 26",
+                description:
+                  "Tercera edición del hackathon de inteligencia artificial de Barcelona, con más de 200 hackers y 48 horas para construir un proyecto funcional.",
+                startDate: "2026-09-19T09:00:00+02:00",
+                endDate: "2026-09-20T17:30:00+02:00",
+                eventStatus: "https://schema.org/EventScheduled",
+                eventAttendanceMode:
+                  "https://schema.org/OfflineEventAttendanceMode",
+                url: "https://www.hackbcn.com/en/events/aisummit26",
+                location: {
+                  "@type": "Place",
+                  name: "Norrsken House Barcelona",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Barcelona",
+                    addressCountry: "ES",
+                  },
+                },
+                organizer: {
+                  "@type": "Organization",
+                  name: "HackBarna",
+                  url: "https://www.hackbcn.com/en",
                 },
               },
-              organizer: {
-                "@type": "Organization",
-                name: "HackBarna",
-                url: "https://www.hackbcn.com/en",
-              },
-            },
-            keywords: [
-              "HackBarna AI Summit 26",
-              "hackathon Barcelona",
-              "inteligencia artificial",
-              "FemCoders Club",
-              "community partner",
-              "Norrsken House Barcelona",
-              "mujeres en tecnología",
-            ],
-          })}
+              keywords: [
+                "HackBarna AI Summit 26",
+                "hackathon Barcelona",
+                "inteligencia artificial",
+                "FemCoders Club",
+                "community partner",
+                "Norrsken House Barcelona",
+                "mujeres en tecnología",
+              ],
+            })
+          )}
         </script>
       </Helmet>
 
