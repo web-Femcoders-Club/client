@@ -32,7 +32,17 @@ const LoginForm: React.FC = () => {
       }
 
       sessionStorage.setItem("isAuthenticated", "true");
-      sessionStorage.setItem("userAvatar", avatar || "/default-avatar.png");
+      // Sin avatar se borra la clave en vez de guardar una ruta por defecto:
+      // aquí también se escribía "/default-avatar.png", que no existe. Hoy no
+      // hace daño porque nadie lee esta clave —el Header pide el avatar al
+      // backend—, pero guardar una ruta rota es dejar la trampa puesta para
+      // quien la lea mañana. Borrarla evita además arrastrar el avatar de una
+      // sesión anterior si la siguiente usuaria no tiene.
+      if (avatar) {
+        sessionStorage.setItem("userAvatar", avatar);
+      } else {
+        sessionStorage.removeItem("userAvatar");
+      }
       sessionStorage.setItem("userName", name || "Usuario");
       sessionStorage.setItem("userLastName", lastName || "");
       sessionStorage.setItem("userId", idUser);
