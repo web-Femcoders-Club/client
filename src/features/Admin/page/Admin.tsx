@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import {
   Award,
   BarChart3,
@@ -81,14 +81,14 @@ const Admin: React.FC = () => {
               <ul className="steps steps-vertical">
                 {SECCIONES.map(({ to, texto, Icono }) => (
                   <li key={to} className="step">
-                    <Link
+                    <NavLink
                       to={to}
                       className="admin-sidebar__enlace admin-focus"
                       title={texto}
                     >
                       <Icono className="admin-sidebar__icono" aria-hidden="true" />
                       <span className="fem-sidebar__label">{texto}</span>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
@@ -104,14 +104,14 @@ const Admin: React.FC = () => {
               <ul className="admin-cumplimiento__lista">
                 {CUMPLIMIENTO.map(({ to, texto, Icono }) => (
                   <li key={to}>
-                    <Link
+                    <NavLink
                       to={to}
                       className="admin-sidebar__enlace admin-focus"
                       title={texto}
                     >
                       <Icono className="admin-sidebar__icono" aria-hidden="true" />
                       <span className="fem-sidebar__label">{texto}</span>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>

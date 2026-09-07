@@ -249,8 +249,15 @@ const UserStats: React.FC = () => {
           <h2 className="text-xl font-semibold" style={{ color: "#6D28D9" }}>
             Últimos Registros
           </h2>
+          {/*
+            Decía «N usuarias en total», pero cuenta el array de registros
+            recientes, no las usuarias. El total vive arriba, en su tarjeta.
+          */}
           <span className="text-sm text-gray-500">
-            {stats.recentRegistrations.length} usuarias en total
+            {stats.recentRegistrations.length}{" "}
+            {stats.recentRegistrations.length === 1
+              ? "registro reciente"
+              : "registros recientes"}
           </span>
         </div>
 

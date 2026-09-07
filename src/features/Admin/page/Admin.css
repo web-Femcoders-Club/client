@@ -72,6 +72,25 @@
     background-color: #f4f2fa;
   }
 
+  /*
+   * Sección activa. Los enlaces eran `Link`, así que no había ni resaltado ni
+   * `aria-current`: con lector de pantalla no había forma de saber en qué
+   * sección se estaba. Con `NavLink` el `aria-current="page"` lo pone react-
+   * router solo; esto es solo la parte que se ve.
+   *
+   * El realce NO toca el color del texto, y es a propósito: `.steps .step a`
+   * lo fija a `inherit` con más especificidad, y el último paso va en coral
+   * (#ea4f33), que sobre cualquier fondo claro se queda lejos de AAA. Fondo,
+   * barra y negrita se distinguen igual en la franja de iconos, cuando el
+   * texto está oculto y el color no diría nada de todos modos.
+   */
+  .admin-sidebar__enlace.active {
+    background-color: #ebe8fa;
+    font-weight: 700;
+    /* Inset y no `border-left`: un borde de verdad desplazaría el icono. */
+    box-shadow: inset 4px 0 0 var(--color-secondary);
+  }
+
   .admin-sidebar__icono {
     width: 20px;
     height: 20px;
