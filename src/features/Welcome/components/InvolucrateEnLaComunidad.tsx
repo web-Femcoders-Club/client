@@ -21,7 +21,7 @@ const FAMILIAS = [
     items: [
       {
         titulo: 'Crea un proyecto',
-        texto: 'Empieza algo en GitHub con otras programadoras.',
+        texto: 'Puedes dar forma a una idea en GitHub junto a otras programadoras.',
       },
       {
         titulo: 'Grupo de estudio',
@@ -29,7 +29,7 @@ const FAMILIAS = [
       },
       {
         titulo: 'Participa como mentora',
-        texto: 'Guía a otras mujeres en programación y tecnología.',
+        texto: 'Comparte tu experiencia y acompaña a otras mujeres en su aprendizaje.',
       },
     ],
   },
@@ -54,7 +54,7 @@ const FAMILIAS = [
       },
       {
         titulo: 'Conviértete en ponente',
-        texto: 'Habla en nuestros eventos sobre lo que dominas.',
+        texto: 'Si te apetece compartir un tema o una experiencia, nos encantará conocer tu propuesta.',
       },
     ],
   },
@@ -65,16 +65,16 @@ const FAMILIAS = [
     linea: '#f6d8d3',
     items: [
       {
-        titulo: 'Sé promotora',
-        texto: 'Difunde la misión y atrae a más mujeres.',
+        titulo: 'Da a conocer FemCoders Club',
+        texto: 'Puedes compartir la comunidad con quienes quieran aprender y conectar con otras mujeres en tecnología.',
       },
       {
         titulo: 'Propón ideas',
         texto: 'Cuéntanos qué mejorarías. Cada sugerencia cuenta.',
       },
       {
-        titulo: '¿Escribes desde una empresa?',
-        texto: 'Colabora como anfitriona y cede espacio para eventos.',
+        titulo: '¿Os gustaría acoger un encuentro?',
+        texto: 'Si vuestra empresa tiene un espacio y os apetece compartirlo con la comunidad, nos encantará explorar la idea con vosotros.',
       },
     ],
   },
@@ -96,17 +96,18 @@ const InvolucrateEnLaComunidad: React.FC = () => (
       <div>
         <p className="involucrate__antetitulo">Nueve formas de aportar</p>
         <h2 id="involucrate-titulo" className="involucrate__titulo">
-          Esta comunidad la construyen las que se apuntan
+          Hay muchas formas de ser parte de FemCoders Club
         </h2>
         <p className="involucrate__entrada">
-          No hace falta experiencia previa ni un currículum largo. Elige lo que
-          te apetezca y escríbenos.
+          Tu experiencia y tus ideas tienen un lugar aquí. Si te apetece
+          participar, puedes elegir una propuesta que encaje con tus intereses
+          y tu disponibilidad.
         </p>
         <a className="involucrate__cta" href={`mailto:${CORREO}`}>
           {CORREO}
         </a>
         <p className="involucrate__coletilla">
-          Cuéntanos cuál te llama y te decimos el siguiente paso.
+          Si alguna propuesta te interesa, escríbenos y vemos cómo darle forma juntas.
         </p>
       </div>
 

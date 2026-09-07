@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { ArrowLeft } from "lucide-react";
 import { BsLinkedin, BsWhatsapp } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { esAdmin, haySesion } from "../../../utils/sesion";
 import OptimizedImage from "../../../components/OptimizedImage";
 import "./ofertas-de-trabajo.css";
 
@@ -52,7 +53,7 @@ const TarjetaDeOferta = ({ oferta }: { oferta: JobOffer }) => {
       <p className="oferta__empresa">{oferta.company}</p>
 
       {cerrada ? (
-        <p className="oferta__nota">Ya no admite candidaturas</p>
+        <p className="oferta__nota">Esta oferta ya no está disponible.</p>
       ) : (
         <a
           className="oferta__enlace"
@@ -104,11 +105,11 @@ const JobOffers = () => {
    * El destino y el `state` se copian del desplegable del avatar en Header —
    * sin ese `state`, el saludo de bienvenida cae a «Usuario».
    */
-  const haySesion = sessionStorage.getItem("isAuthenticated") === "true";
-  const esAdmin = sessionStorage.getItem("userRole") === "admin";
+  const conSesion = haySesion();
+  const admin = esAdmin();
 
   const volver = () => {
-    if (esAdmin) {
+    if (admin) {
       navigate("/admin");
       return;
     }
@@ -146,7 +147,7 @@ const JobOffers = () => {
         <title>Ofertas de Trabajo - FemCoders Club</title>
         <meta
           name="description"
-          content="Dónde mirar si buscas tu primer trabajo en tecnología: recomendamos el canal JuniorJobs de Daniel García Baena, con ofertas junior de España y LATAM seleccionadas cada domingo."
+          content="Explora oportunidades laborales y recursos para tu búsqueda de empleo en tecnología con FemCoders Club. Conoce también el canal JuniorJobs de Daniel García Baena."
         />
         <meta
           property="og:title"
@@ -154,7 +155,7 @@ const JobOffers = () => {
         />
         <meta
           property="og:description"
-          content="Dónde mirar si buscas tu primer trabajo en tecnología. Una recomendación, no un listado."
+          content="Oportunidades laborales y recursos para acompañarte en tu búsqueda de empleo en tecnología."
         />
         <meta
           property="og:image"
@@ -167,21 +168,21 @@ const JobOffers = () => {
       </Helmet>
 
       <div className="ofertas__contenedor">
-        {haySesion && (
+        {conSesion && (
           <button type="button" className="ofertas__volver" onClick={volver}>
             <ArrowLeft className="ofertas__icono-volver" aria-hidden="true" />
-            {esAdmin ? "Volver al panel" : "Volver a mi perfil"}
+            {admin ? "Volver al panel" : "Volver a mi perfil"}
           </button>
         )}
 
-        <p className="ofertas__antetitulo">Una recomendación, no un listado</p>
+        <p className="ofertas__antetitulo">Oportunidades en tecnología</p>
         <h1 className="ofertas__titulo">
-          Si estás buscando tu primer trabajo, hay un sitio al que ir
+          Te acompañamos en tu búsqueda de empleo
         </h1>
         <p className="ofertas__entrada">
-          No publicamos ofertas propias, y preferimos no llenar esta página de
-          enlaces que nadie mantiene. En su lugar te contamos dónde miramos
-          nosotras.
+          Aquí encontrarás ofertas compartidas con FemCoders Club y recursos
+          para explorar nuevas oportunidades. Si estás dando tus primeros pasos
+          en tecnología, te invitamos a conocer JuniorJobs.
         </p>
 
         <section className="ofertas__banda" aria-labelledby="juniorjobs-titulo">
@@ -202,8 +203,8 @@ const JobOffers = () => {
               JuniorJobs, de Daniel García Baena
             </h2>
             <p className="ofertas__banda-detalle">
-              Canal de WhatsApp gratuito. Cada domingo publica ofertas para
-              perfiles junior de España y LATAM.
+              Un canal de WhatsApp con ofertas de empleo para perfiles junior
+              de España y LATAM.
             </p>
           </div>
 
@@ -220,15 +221,14 @@ const JobOffers = () => {
 
         <div className="ofertas__apoyo">
           <p>
-            Las elige una a una: revisa cientos de portales y deja solo
-            posiciones verificadas, en empresas que desarrollan software. No es
-            un agregador automático, y esa es toda la diferencia.
+            Daniel comparte oportunidades para quienes empiezan su trayectoria
+            en tecnología. Puedes explorar el canal y consultar los requisitos
+            de las vacantes que te interesen.
           </p>
           <div>
             <p>
-              No hace falta registrarse en ningún sitio para leerlo. Lo
-              recomiendan también <strong>Brais Moure (MoureDev)</strong>,{" "}
-              <strong>Linkfy</strong> y <strong>Genbeta</strong>.
+              Si quieres conocer a la persona detrás de JuniorJobs, puedes
+              visitar el perfil profesional de Daniel.
             </p>
             <a
               className="ofertas__enlace"
@@ -244,7 +244,7 @@ const JobOffers = () => {
 
         <section className="ofertas__seccion" aria-labelledby="ofertas-titulo">
           <h2 id="ofertas-titulo" className="ofertas__seccion-titulo">
-            Ofertas publicadas aquí
+            Ofertas compartidas con la comunidad
           </h2>
 
           {cargando ? (
@@ -258,11 +258,11 @@ const JobOffers = () => {
           ) : ofertas.length === 0 ? (
             <div className="ofertas__vacio">
               <p className="ofertas__vacio-titulo">
-                Ahora mismo no hay ninguna
+                Todavía no hay ofertas publicadas
               </p>
               <p className="ofertas__vacio-texto">
-                Cuando una empresa publique con nosotras, la verás aquí.
-                Mientras tanto, el canal de arriba es el mejor sitio para mirar.
+                Aquí podrás consultar las nuevas ofertas que compartamos.
+                También puedes explorar las oportunidades del canal JuniorJobs.
               </p>
             </div>
           ) : (
@@ -280,12 +280,12 @@ const JobOffers = () => {
               ¿Buscáis talento tech en vuestra empresa?
             </h2>
             <p className="ofertas__empresas-detalle">
-              Si valoráis la diversidad y queréis llegar a esta comunidad,
-              escribidnos y publicamos vuestra vacante aquí.
+              Nos encantará conocer vuestra propuesta. Si os interesa compartir
+              una vacante con la comunidad, podemos hablar sobre cómo darle difusión.
             </p>
           </div>
           <a className="ofertas__boton" href={CORREO_EMPRESAS}>
-            Escribirnos
+            Contactar con FemCoders Club
           </a>
         </section>
       </div>

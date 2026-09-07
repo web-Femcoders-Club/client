@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { sendMentorshipEmail } from "../../../api/emailApi";
 import { EmailDto } from "../../../types/types";
 import { Helmet } from "react-helmet";
-import { Send } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import MentorshipLogoAnimation from "../components/MentorshipLogoAnimation";
+import MentorshipRequestView from "../components/MentorshipRequestView";
+import { esAdmin } from "../../../utils/sesion";
 import axios from "axios";
-import CharCounter from "../../../components/ui/CharCounter";
 import { useFocusMessage } from "../../../hooks/useFocusMessage";
-import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
-import "./Mentorship.css";
 
 const MentorshipForm: React.FC = () => {
   const [mentorshipType, setMentorshipType] = useState<string>("");
@@ -100,7 +97,7 @@ const MentorshipForm: React.FC = () => {
         <title>Solicita una Mentoría - FemCoders Club</title>
         <meta
           name="description"
-          content="¿Buscas una mentoría personalizada en programación o inglés técnico? En FemCoders Club estamos aquí para ayudarte a superar cualquier desafío y avanzar en tu carrera tecnológica."
+          content="Solicita orientación en programación o inglés técnico. Cuéntanos qué te gustaría aprender y cómo podemos acompañarte desde FemCoders Club."
         />
         <meta name="author" content="FemCoders Club" />
         <meta
@@ -135,149 +132,33 @@ const MentorshipForm: React.FC = () => {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Helmet>
 
-      <section className="mentorship-page-container bg1">
-        <section className="mentorship-form-container">
-          <div className="mentorship-content ">
-            <div className="form-column">
-              <header>
-                <h3>¡Solicita una Mentoría!</h3>
-                <p className="styled-paragraph ">
-
-                  ¿Estás dando tus primeros pasos en el mundo de la programación
-                  y necesitas orientación? ¿Te has atascado con algún concepto o
-                  buscas a alguien que te ayude a entender mejor los lenguajes
-                  de programación? ¿O quizás quieres mejorar tu inglés técnico
-                  para entrevistas laborales? <br /> <br />
-                  En <span> FemCoders Club</span> no estás sola. Completa este
-                  formulario, solicita una mentoría personalizada y juntas
-                  superaremos cualquier desafío que se interponga en tu camino.
-                  ¡Estamos aquí para ayudarte a crecer y alcanzar tus metas! 🚀
-                </p>
-              </header>
-
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSubmit();
-                }}
-                className="form-control"
-              >
-                {userEmail && (
-                  <div className="form-group" style={{ marginTop: "2.5rem" }}>
-                    <label
-                      className="form-label "
-                      style={{ marginTop: "-2.5rem" }}
-                    >
-                      Correo Electrónico:
-                    </label>
-                    <input
-                      type="email"
-                      value={userEmail}
-                      readOnly
-                      className="form-input"
-                      title="Correo Electrónico"
-                      placeholder="Correo Electrónico"
-                    />
-                  </div>
-                )}
-
-                <div className="form-group">
-                  <label
-                    htmlFor="mentorshipType"
-                    className="form-label"
-                    style={{ marginTop: "-2.5rem" }}
-                  >
-                    Tipo de mentoría que necesitas:
-                  </label>
-                  <input
-                    type="text"
-                    id="mentorshipType"
-                    value={mentorshipType}
-                    onChange={(e) => setMentorshipType(e.target.value)}
-                    placeholder="Ej. Necesito ayuda con JavaScript avanzado"
-                    required
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="githubLink"
-                    className="form-label"
-                    style={{ marginTop: "-2.5rem" }}
-                  >
-                    Enlace a GitHub (opcional):
-                  </label>
-                  <input
-                    type="url"
-                    id="githubLink"
-                    value={githubLink}
-                    onChange={(e) => setGithubLink(e.target.value)}
-                    placeholder="https://github.com/usuario/proyecto"
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="description"
-                    className="form-label"
-                    style={{ marginTop: "-2.5rem" }}
-                  >
-                    Describe tu necesidad o problema:
-                  </label>
-                  <textarea
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Describe brevemente tu necesidad..."
-                    required
-                    maxLength={MESSAGE_MAX_LENGTH}
-                    aria-describedby="mentorship-counter"
-                    className="form-textarea"
-                  ></textarea>
-                  <CharCounter
-                    id="mentorship-counter"
-                    current={description.length}
-                    max={MESSAGE_MAX_LENGTH}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="submit-btn"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    "Enviando..."
-                  ) : (
-                    <>
-                      <Send className="send-icon" />
-                      Enviar solicitud de mentoría
-                    </>
-                  )}
-                </button>
-
-                {message && (
-                  <p
-                    className={`message ${
-                      messageType === "error" ? "text-error" : "text-success"
-                    }`}
-                    role={messageType === "error" ? "alert" : "status"}
-                    tabIndex={-1}
-                    ref={messageRef}
-                  >
-                    {message}
-                  </p>
-                )}
-              </form>
-            </div>
-            <div className="logo-column">
-              <MentorshipLogoAnimation logoSrc="/FemCodersClubLogo.png" />
-            </div>
-          </div>
-        </section>
-      </section>
+      <MentorshipRequestView
+        userEmail={userEmail}
+        mentorshipType={mentorshipType}
+        githubLink={githubLink}
+        description={description}
+        message={message}
+        messageType={messageType}
+        messageRef={messageRef}
+        isLoading={isLoading}
+        admin={esAdmin()}
+        onBack={() => {
+          if (esAdmin()) {
+            navigate("/admin");
+          } else {
+            navigate("/welcome", {
+              state: {
+                userName: sessionStorage.getItem("userName") || "Usuario",
+                userId: Number(sessionStorage.getItem("userId")) || undefined,
+              },
+            });
+          }
+        }}
+        onTypeChange={setMentorshipType}
+        onGithubChange={setGithubLink}
+        onDescriptionChange={setDescription}
+        onSubmit={handleSubmit}
+      />
     </>
   );
 };
