@@ -252,10 +252,7 @@ const Header: React.FC = () => {
                     isScrolled ? "scrolled-dropdown" : ""
                   }`}
                 >
-                  <button
-                    onClick={goToWelcomePage}
-                    className="dropdown-item nav-link"
-                  >
+                  <button onClick={goToWelcomePage} className="dropdown-item">
                     Mi perfil
                   </button>
                   {/*
@@ -266,16 +263,13 @@ const Header: React.FC = () => {
                     (client#21).
                   */}
                   {userRole === "admin" && (
-                    <button
-                      onClick={goToAdminPanel}
-                      className="dropdown-item nav-link"
-                    >
+                    <button onClick={goToAdminPanel} className="dropdown-item">
                       Panel de administración
                     </button>
                   )}
                   <button
                     onClick={handleLogOut}
-                    className="dropdown-item logout-button"
+                    className="dropdown-item dropdown-item--salir"
                   >
                     Cerrar sesión
                   </button>

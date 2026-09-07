@@ -3,18 +3,22 @@ import {
     Award,
     Book,
     BookOpen,
+    Briefcase,
     Building,
     Calendar,
     ChevronRight,
     Clock,
     ExternalLink,
+    FileUp,
     FolderOpen,
     Heart,
     Lightbulb,
     MapPin,
     Megaphone,
     MicVocal,
+    Presentation,
     Rocket,
+    UserCog,
     Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -25,6 +29,25 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
 import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import "./WelcomePage.css";
+
+/*
+ * Cada enlace lleva icono porque el menú contraído deja solo la franja de
+ * iconos: el texto se oculta a la vista pero sigue en el árbol de
+ * accesibilidad, así que un lector de pantalla lo anuncia entero. El `title` es
+ * para quien navega con ratón y solo ve el dibujo.
+ */
+const ENLACES_MENU = [
+  { to: "/ofertas-de-trabajo", texto: "Ofertas de Trabajo", Icono: Briefcase },
+  { to: "/personaliza-perfil", texto: "Personaliza tu perfil", Icono: UserCog },
+  { to: "/presentaciones-destacadas", texto: "Presentaciones", Icono: Presentation },
+  {
+    to: "/recursos-comunidad-femcoders-club",
+    texto: "Recursos Exclusivos",
+    Icono: FolderOpen,
+  },
+  { to: "/mentoria", texto: "¿Necesitas mentoría?", Icono: Heart },
+  { to: "/enviar-documentacion", texto: "Enviar documentación", Icono: FileUp },
+];
 
 const WelcomePage = () => {
   const location = useLocation();
@@ -165,52 +188,43 @@ const WelcomePage = () => {
 
 
   /*
-   * Contenido del menú, no un componente. Definido como `const Sidebar = () =>`
-   * dentro del cuerpo de WelcomePage, React lo veía como un tipo de componente
-   * nuevo en cada render y desmontaba y volvía a montar el menú entero: se
-   * perdía el foco y las transiciones se cortaban a medias. Como elemento JSX el
-   * árbol es estable.
-   *
-   * El posicionamiento, el botón de contraer y la capa oscura los pone ahora
-   * CollapsibleSidebar. El botón "Cerrar" que había aquí no cerraba nada en
-   * escritorio: quitaba el estado, pero `lg:translate-x-0` mantenía el menú a la
-   * vista igualmente.
+   * El saludo, el emoji y la frase motivacional vivían dentro del menú lateral.
+   * No son navegación, y eran justamente lo que obligaba al menú a medir 20rem y
+   * a estar siempre abierto. Fuera de él, el menú puede estrecharse a una franja
+   * de iconos y el contenido recupera el ancho.
    */
-  const contenidoMenu = (
-    <div className="welcome-menu">
-      <div className="welcome-menu__interior">
-        <div className="flex flex-col items-center space-y-4">
-          {selectedEmoji && (
-            <div className="text-6xl animate-bounce">{selectedEmoji}</div>
-          )}
-          <h2 className="welcome-menu__saludo">
+  const bandaPersonal = (
+    <div className="welcome-banda">
+      <div className="welcome-banda__fila">
+        {selectedEmoji && (
+          <span className="welcome-banda__emoji">{selectedEmoji}</span>
+        )}
+        <div className="welcome-banda__texto">
+          <h2 className="welcome-banda__saludo">
             {getGreeting()}, {displayName}!
           </h2>
+          {/*
+            La frase iba en una caja con `bg2 backdrop-blur-sm border
+            border-white/20` y el texto con `text-white/90`: de esas cuatro, tres
+            son sintaxis de Tailwind v3 que el CDN v2 no conoce, así que ni el
+            borde ni el color existían —el blanco lo heredaba de un `text-white`
+            del contenedor—. Ahora va sobre el fondo claro de la tarjeta, donde
+            el contraste se puede medir: #2a2170 sobre blanco da 12.9:1.
+          */}
+          <p className="welcome-banda__cita">{motivationalMessage}</p>
         </div>
-
-        {/*
-          La caja iba con `bg2 backdrop-blur-sm border border-white/20` y el texto
-          con `text-white/90`: de esas cuatro, tres son sintaxis de Tailwind v3
-          que el CDN v2 no conoce, así que ni el borde ni el color del texto
-          existían —el blanco venía heredado de un `text-white` en el contenedor—.
-          Ahora el fondo es un color sólido, para poder medir el contraste en vez
-          de estimarlo sobre una imagen: blanco sobre #2a2170 da 13.5:1.
-        */}
-        <div className="welcome-menu__cita">
-          <p>{motivationalMessage}</p>
-        </div>
-
-        {/* Emoji Selector */}
         <button
           onClick={() => setEmojiMenuOpen(!emojiMenuOpen)}
-          className="primary-button mt-8"
+          className="primary-button welcome-banda__boton"
+          aria-expanded={emojiMenuOpen}
         >
           {emojiMenuOpen ? "Cerrar Emojis" : "Cambiar mi estado de ánimo"}
         </button>
+      </div>
 
-        {emojiMenuOpen && (
-          <div className="grid grid-cols-4 gap-4 mt-4">
-            {[
+      {emojiMenuOpen && (
+        <div className="welcome-banda__emojis">
+          {[
               { emoji: "😊", label: "Feliz" },
               { emoji: "😍", label: "Enamorado/a" },
               { emoji: "🤓", label: "Estudiando" },
@@ -230,63 +244,58 @@ const WelcomePage = () => {
             ].map(({ emoji, label }) => (
               <div
                 key={emoji}
-                className="relative flex flex-col items-center"
+                className="welcome-banda__emoji-envoltorio"
                 onMouseEnter={() => setHoveredEmoji(emoji)}
                 onMouseLeave={() => setHoveredEmoji(null)}
               >
                 <button
                   onClick={() => handleEmojiSelect(emoji)}
-                  className={`p-3 rounded-full transition-all duration-200 ${
+                  className={`welcome-banda__emoji-op${
                     selectedEmoji === emoji
-                      ? "bg-indigo-100 text-indigo-700 shadow-lg scale-110"
-                      : "hover:bg-indigo-50 hover:shadow-md"
+                      ? " welcome-banda__emoji-op--activo"
+                      : ""
                   }`}
+                  aria-pressed={selectedEmoji === emoji}
+                  aria-label={label}
                 >
-                  <span className="text-2xl">{emoji}</span>
+                  {emoji}
                 </button>
                 {hoveredEmoji === emoji && (
-                  <span className="absolute -bottom-5 px-2 py-1 text-xs font-semibold text-[#4737bb] bg-white border border-[#4737bb] rounded-lg shadow-md z-10">
+                  <span className="welcome-banda__globo" aria-hidden="true">
                     {label}
                   </span>
                 )}
               </div>
             ))}
-          </div>
-        )}
-
-        {/*
-          Cada enlace se etiquetaba con un `<h2>`: seis encabezados falsos que
-          ensuciaban el esquema de la página para quien navega saltando de
-          encabezado en encabezado. Es un enlace, y se marca como tal; el tamaño
-          lo da el CSS.
-        */}
-        <nav className="welcome-menu__nav" aria-label="Tu espacio">
-          <ul>
-            {[
-              { to: "/ofertas-de-trabajo", text: "Ofertas de Trabajo" },
-              { to: "/personaliza-perfil", text: "Personaliza tu perfil" },
-              { to: "/presentaciones-destacadas", text: "Presentaciones" },
-              {
-                to: "/recursos-comunidad-femcoders-club",
-                text: "Recursos Exclusivos",
-              },
-              { to: "/mentoria", text: "¿Necesitas mentoría?" },
-              { to: "/enviar-documentacion", text: "Enviar documentación" },
-            ].map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} className="welcome-menu__enlace group">
-                  <span>{item.text}</span>
-                  <ChevronRight
-                    className="welcome-menu__chevron"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+        </div>
+      )}
     </div>
+  );
+
+  /*
+   * Contenido del menú, no un componente. Definido como `const Sidebar = () =>`
+   * dentro del cuerpo de WelcomePage, React lo veía como un tipo de componente
+   * nuevo en cada render y desmontaba y volvía a montar el menú entero: se
+   * perdía el foco y las transiciones se cortaban a medias. Como elemento JSX el
+   * árbol es estable.
+   *
+   * Cada enlace se etiquetaba además con un `<h2>`: seis encabezados falsos que
+   * ensuciaban el esquema de la página para quien navega saltando de encabezado
+   * en encabezado. Es un enlace, y se marca como tal.
+   */
+  const contenidoMenu = (
+    <nav aria-label="Tu espacio">
+      <ul className="welcome-menu__lista">
+        {ENLACES_MENU.map(({ to, texto, Icono }) => (
+          <li key={to}>
+            <Link to={to} className="welcome-menu__enlace" title={texto}>
+              <Icono className="welcome-menu__icono" aria-hidden="true" />
+              <span className="fem-sidebar__label">{texto}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 
   return (
@@ -301,11 +310,11 @@ const WelcomePage = () => {
       táctiles: con teclado no había forma de abrir el menú, y en un portátil no
       táctil con la ventana estrecha el clic tampoco hacía nada.
     */}
-    <div className="flex min-h-screen bg1">
+    <div className="welcome-layout flex min-h-screen bg1">
       <CollapsibleSidebar
-        variant="overlay"
         storageKey="femcoders:menu-bienvenida"
         label="menú de bienvenida"
+        title="Tu espacio"
       >
         {contenidoMenu}
       </CollapsibleSidebar>
@@ -316,8 +325,10 @@ const WelcomePage = () => {
         mínimo por defecto no deja encoger las rejillas anchas de abajo.
       */}
       <div className="flex-1 min-w-0 p-4 lg:p-8">
-        <div className="max-w-6xl mx-auto">
-          <header className="welcome-cabecera mb-8 lg:mb-12">
+        <div className="max-w-6xl mx-auto welcome-columna">
+          {bandaPersonal}
+
+          <header className="mb-8 lg:mb-12">
             <h2>
               ¡Bienvenida a FemCoders Club!{" "}
               {selectedEmoji && ` ${selectedEmoji}`}

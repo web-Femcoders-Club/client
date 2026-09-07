@@ -1,112 +1,184 @@
 /*
- * Menú lateral de bienvenida. El posicionamiento, el colapso y la barra de
- * scroll de marca viven en CollapsibleSidebar; aquí solo queda el contenido.
+ * Página de bienvenida. El posicionamiento del menú, el colapso y la barra de
+ * scroll de marca viven en CollapsibleSidebar; aquí van el contenido del menú y
+ * la banda personal que antes estaba dentro de él.
  *
  * Las clases que había —`hover:bg-white/10`, `border-white/20`, `text-[#4737bb]`,
  * `bg-black/50`— son sintaxis de Tailwind v3, y al navegador solo llega el CDN
  * de la v2: no pintaban nada. Lo que se veía blanco lo heredaba de un
- * `text-white` en el contenedor, no de la clase que parecía ponerlo.
+ * `text-white` del contenedor, no de la clase que parecía ponerlo (client#92).
  */
-.welcome-menu {
-  min-height: 100%;
-}
 
-.welcome-menu__interior {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1.5rem;
-}
+/* ---------------------------------------------------------------
+   Enlaces del menú
+   --------------------------------------------------------------- */
 
-.welcome-menu__saludo {
-  font-size: 1.5rem;
-  text-align: center;
-  /* Sobre el fondo blanco del panel: 8.16:1, medido. AAA pide 7:1. */
-  color: var(--color-secondary);
-}
-
-.welcome-menu__cita {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  /*
-    Color sólido y no la imagen `bg2`: sobre una foto el contraste no se puede
-    garantizar, y aquí va texto. Blanco sobre este violeta da 13.5:1, medido.
-  */
-  background-color: var(--color-text-dark);
-}
-
-.welcome-menu__cita p {
-  margin: 0;
-  font-size: 0.875rem;
-  font-style: italic;
-  color: var(--color-white);
-}
-
-.welcome-menu__nav {
-  margin-top: 2rem;
-  flex: 1;
-}
-
-.welcome-menu__nav ul {
+.welcome-menu__lista {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .welcome-menu__enlace {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.75rem;
+  padding: 0.625rem;
   border-radius: var(--radius-sm);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.3;
   text-decoration: none;
+  /* Sobre el blanco del panel: 8.16:1, medido. AAA pide 7:1. */
   color: var(--color-secondary);
   transition: background-color var(--transition-fast);
 }
 
-.welcome-menu__enlace:hover {
-  /* El realce que `hover:bg-white/10` prometía y nunca llegó a pintar. */
-  background-color: #efecfa;
+.fem-sidebar--collapsed .welcome-menu__enlace {
+  justify-content: center;
+  padding: 0.625rem 0;
 }
 
-.welcome-menu__chevron {
+.welcome-menu__enlace:hover {
+  /* El realce que `hover:bg-white/10` prometía y nunca llegó a pintar. */
+  background-color: #f4f2fa;
+}
+
+.welcome-menu__icono {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--color-secondary);
-  opacity: 0;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
-.welcome-menu__enlace:hover .welcome-menu__chevron,
-.welcome-menu__enlace:focus-visible .welcome-menu__chevron {
-  opacity: 1;
-  transform: translateX(4px);
-}
+/* ---------------------------------------------------------------
+   Banda personal: saludo, ánimo y frase
+   --------------------------------------------------------------- */
 
 /*
- * La cabecera del contenido se separaba del header con `mt-36`, un número a ojo.
- * Ahora usa la altura real que mide Header.tsx, que cambia con el breakpoint y
- * con el zoom del navegador.
+ * Este bloque vivía dentro del menú lateral. No es navegación, y era lo que
+ * obligaba al menú a medir 20rem y a estar siempre abierto. Fuera de él, el menú
+ * puede estrecharse a una franja de iconos.
  */
-.welcome-cabecera {
-  margin-top: calc(var(--fem-header-height, 132px) + 1rem);
+/*
+ * El header es `fixed`, así que no ocupa sitio en el flujo y esta página
+ * arrancaba en y=0, por detrás de él. El desplazamiento va aquí, en el
+ * contenedor, y no en cada hijo: así el menú y el contenido empiezan a la misma
+ * altura. Ponérselo solo al contenido es lo que dejaba el menú medio tapado.
+ */
+.welcome-layout {
+  padding-top: var(--fem-header-height, 132px);
+}
+
+.welcome-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.welcome-banda {
+  padding: 1.25rem 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-banda__fila {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.welcome-banda__emoji {
+  font-size: 2.75rem;
+  line-height: 1;
+}
+
+.welcome-banda__texto {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.welcome-banda__saludo {
+  margin: 0 0 0.25rem;
+  font-size: 1.625rem;
+  /* Sobre blanco: 8.16:1, medido. */
+  color: var(--color-secondary);
+}
+
+.welcome-banda__cita {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-style: italic;
+  /* Sobre blanco: 12.9:1, medido. */
+  color: var(--color-text-dark);
+}
+
+.welcome-banda__boton {
+  flex-shrink: 0;
+}
+
+.welcome-banda__emojis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.welcome-banda__emoji-envoltorio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-banda__emoji-op {
+  /* Destino táctil de 44px: por debajo de eso no se acierta con el dedo. */
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid #e0dcf0;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: background-color var(--transition-fast);
+}
+
+.welcome-banda__emoji-op:hover {
+  background-color: #f4f2fa;
+}
+
+.welcome-banda__emoji-op--activo {
+  background-color: #ebe8fa;
+  border-color: var(--color-secondary);
+}
+
+.welcome-banda__globo {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 10;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-secondary);
+  background-color: #fff;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .welcome-menu__enlace,
-  .welcome-menu__chevron {
+  .welcome-banda__emoji-op {
     transition: none;
-  }
-
-  .welcome-menu__enlace:hover .welcome-menu__chevron,
-  .welcome-menu__enlace:focus-visible .welcome-menu__chevron {
-    transform: none;
   }
 }
 

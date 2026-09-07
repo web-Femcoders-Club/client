@@ -1,28 +1,24 @@
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
-import { Menu, PanelLeftClose, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import "./CollapsibleSidebar.css";
 
-/** Ancho a partir del cual el menú convive con el contenido en vez de taparlo. */
+/**
+ * Ancho a partir del cual el menú convive con el contenido en vez de taparlo.
+ * Es lo único que decide cómo se comporta: no hay una variante por pantalla.
+ */
 const WIDE_VIEWPORT = "(min-width: 1024px)";
 
 export interface CollapsibleSidebarProps {
-  /**
-   * `rail`: el menú vive en el flujo y al contraerse deja una franja de iconos,
-   * para que se siga viendo dónde se está (client#59). El contenido de al lado
-   * recupera el ancho.
-   *
-   * `overlay`: el menú se superpone. Al contraerse se oculta tras el botón,
-   * porque una franja permanente encima del contenido quita sitio sin orientar.
-   */
-  variant: "rail" | "overlay";
   /** Clave de `localStorage` donde se recuerda si estaba abierto o contraído. */
   storageKey: string;
   /**
-   * Nombre de la región, en minúscula y sin artículo inicial: "menú del panel".
-   * Da nombre accesible al `<aside>` y compone el del botón ("Contraer menú del
+   * Nombre de la región, en minúscula y sin artículo: "menú del panel". Da
+   * nombre accesible al `<aside>` y compone el del botón ("Contraer menú del
    * panel" / "Expandir menú del panel").
    */
   label: string;
+  /** Rótulo visible sobre la lista. Se oculta al contraer. */
+  title: string;
   children: React.ReactNode;
 }
 
@@ -40,25 +36,28 @@ const matchesWideViewport = () =>
   typeof window !== "undefined" && window.matchMedia(WIDE_VIEWPORT).matches;
 
 /**
- * Menú lateral que se puede contraer, compartido por el panel de administración
- * y la página de bienvenida (client#59).
+ * Menú lateral contraíble, compartido por el panel de administración y la
+ * página de bienvenida (client#59).
+ *
+ * UNA SOLA FORMA DE COMPORTARSE, DECIDIDA POR EL ANCHO
+ * Ancho suficiente: el menú va en el flujo y al contraerse deja una franja de
+ * iconos, para que se siga viendo dónde se está; el contenido de al lado
+ * recupera el espacio. Ancho insuficiente: se superpone con capa oscura, y
+ * entonces —y solo entonces— se comporta como un diálogo (`aria-modal`, foco
+ * retenido y `Escape`), siguiendo el contrato ya escrito en `StatusModal`.
+ *
+ * Antes esto era una prop `variant` que elegía cada pantalla, y por eso los dos
+ * menús de la web se comportaban distinto en el mismo ancho.
  *
  * POR QUÉ CSS PROPIO Y NO TAILWIND
  * El mismo motivo que documenta `src/features/Admin/admin-ui.css`: al navegador
- * solo llega el CDN de Tailwind v2 (`index.html`), así que la sintaxis de la v3
- * no se aplica. El menú de bienvenida arrastraba justo ese fallo — su capa
- * oscura era `bg-black/50`, que en v2 no existe, y por eso nunca oscureció nada.
- *
- * SEMÁNTICA SEGÚN LO QUE TAPA, NO SEGÚN LA VARIANTE
- * Cuando el menú se superpone al contenido en pantalla estrecha se comporta como
- * un diálogo: `aria-modal`, foco retenido y `Escape`, siguiendo el contrato ya
- * escrito en `StatusModal`. Cuando convive con el contenido es solo un
- * desplegable (`aria-expanded`), donde retener el foco sería incorrecto.
+ * solo llega el CDN de Tailwind v2, así que la sintaxis de la v3 no se aplica
+ * (client#92).
  */
 const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({
-  variant,
   storageKey,
   label,
+  title,
   children,
 }) => {
   const panelId = useId();
@@ -67,12 +66,12 @@ const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({
 
   const [isWide, setIsWide] = useState(matchesWideViewport);
   const [isOpen, setIsOpen] = useState(
-    // Sin preferencia guardada, en móvil arranca contraído (client#59).
+    // Sin preferencia guardada, en pantalla estrecha arranca contraído (client#59).
     () => readStoredState(storageKey) ?? matchesWideViewport()
   );
 
-  /** El menú tapa el contenido: se comporta como diálogo mientras esté abierto. */
-  const isModal = variant === "overlay" && !isWide && isOpen;
+  /** Solo cuando tapa el contenido se comporta como diálogo. */
+  const isModal = !isWide && isOpen;
 
   useEffect(() => {
     const query = window.matchMedia(WIDE_VIEWPORT);
@@ -92,21 +91,20 @@ const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({
   const close = useCallback(() => setIsOpen(false), []);
 
   /*
-   * Contraído y superpuesto, el menú sigue en el DOM para poder animarlo. `inert`
-   * lo saca del orden de tabulación: sin esto se tabula dentro de un menú que no
-   * se ve (client#59). En la variante `rail` los enlaces siguen visibles como
-   * iconos, así que deben seguir siendo alcanzables.
+   * Superpuesto y contraído, el menú sigue en el DOM para poder animarlo, así
+   * que `inert` lo saca del orden de tabulación: sin esto se tabula dentro de un
+   * menú que no se ve (client#59). En la franja de iconos los enlaces sí se ven
+   * y deben seguir siendo alcanzables.
    */
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
-    const unreachable = variant === "overlay" && !isOpen;
-    if (unreachable) {
+    if (!isWide && !isOpen) {
       panel.setAttribute("inert", "");
     } else {
       panel.removeAttribute("inert");
     }
-  }, [isOpen, variant]);
+  }, [isOpen, isWide]);
 
   /* Contrato de diálogo, calcado de StatusModal: Escape, foco retenido y retorno. */
   useEffect(() => {
@@ -147,30 +145,40 @@ const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({
     };
   }, [isModal, close]);
 
-  const action = isOpen ? "Contraer" : "Expandir";
-  const ToggleIcon = isOpen ? (variant === "rail" ? PanelLeftClose : X) : Menu;
+  /*
+   * El icono dice lo que va a pasar: en la franja, flechas que estrechan o
+   * ensanchan; superpuesto, la hamburguesa y la equis de toda la vida.
+   */
+  const ToggleIcon = isWide
+    ? isOpen
+      ? ChevronLeft
+      : ChevronRight
+    : isOpen
+    ? X
+    : Menu;
 
   return (
     <div
-      className={`fem-sidebar fem-sidebar--${variant} ${
+      className={`fem-sidebar ${isWide ? "fem-sidebar--rail" : "fem-sidebar--overlay"} ${
         isOpen ? "fem-sidebar--open" : "fem-sidebar--collapsed"
       }`}
     >
       {isModal && (
-        <div
-          className="fem-sidebar__scrim"
-          onClick={close}
-          aria-hidden="true"
-        />
+        <div className="fem-sidebar__scrim" onClick={close} aria-hidden="true" />
       )}
 
+      {/*
+        El botón va fuera del panel, no dentro: superpuesto y contraído el panel
+        se oculta entero, y un botón alojado ahí se iría con él dejando el menú
+        sin forma de abrirse. Lo coloca el CSS en la esquina del panel.
+      */}
       <button
         type="button"
         ref={toggleRef}
         className="fem-sidebar__toggle"
         aria-expanded={isOpen}
         aria-controls={panelId}
-        aria-label={`${action} ${label}`}
+        aria-label={`${isOpen ? "Contraer" : "Expandir"} ${label}`}
         onClick={() => setIsOpen((open) => !open)}
       >
         <ToggleIcon className="fem-sidebar__toggle-icon" aria-hidden="true" />
@@ -185,7 +193,8 @@ const CollapsibleSidebar: React.FC<CollapsibleSidebarProps> = ({
         aria-modal={isModal || undefined}
         tabIndex={isModal ? -1 : undefined}
       >
-        {children}
+        <span className="fem-sidebar__titulo fem-sidebar__label">{title}</span>
+        <div className="fem-sidebar__contenido">{children}</div>
       </aside>
     </div>
   );

@@ -67,56 +67,54 @@ const Admin: React.FC = () => {
         </div>
         <div className="admin-content">
           <CollapsibleSidebar
-            variant="rail"
             storageKey="femcoders:menu-panel"
             label="menú del panel"
+            title="Secciones"
           >
-            <div className="admin-sidebar">
-              {/*
-                La lista de secciones necesita su propio `nav` con nombre: era un
-                `<ul>` suelto, mientras que el bloque de Cumplimiento de más abajo
-                ya lo hacía bien y sirve de modelo (client#59).
-              */}
-              <nav aria-label="Secciones del panel">
-                <ul className="steps steps-vertical">
-                  {SECCIONES.map(({ to, texto, Icono }) => (
-                    <li key={to} className="step">
-                      <Link
-                        to={to}
-                        className="admin-sidebar__enlace admin-focus"
-                        title={texto}
-                      >
-                        <Icono className="admin-sidebar__icono" aria-hidden="true" />
-                        <span className="fem-sidebar__label">{texto}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+            {/*
+              La lista de secciones necesita su propio `nav` con nombre: era un
+              `<ul>` suelto, mientras que el bloque de Cumplimiento de más abajo
+              ya lo hacía bien y sirve de modelo (client#59).
+            */}
+            <nav aria-label="Secciones del panel">
+              <ul className="steps steps-vertical">
+                {SECCIONES.map(({ to, texto, Icono }) => (
+                  <li key={to} className="step">
+                    <Link
+                      to={to}
+                      className="admin-sidebar__enlace admin-focus"
+                      title={texto}
+                    >
+                      <Icono className="admin-sidebar__icono" aria-hidden="true" />
+                      <span className="fem-sidebar__label">{texto}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-              <nav className="admin-cumplimiento" aria-labelledby="cumplimiento-titulo">
-                <h3
-                  id="cumplimiento-titulo"
-                  className="admin-cumplimiento__titulo fem-sidebar__label"
-                >
-                  Cumplimiento y datos
-                </h3>
-                <ul className="admin-cumplimiento__lista">
-                  {CUMPLIMIENTO.map(({ to, texto, Icono }) => (
-                    <li key={to}>
-                      <Link
-                        to={to}
-                        className="admin-sidebar__enlace admin-focus"
-                        title={texto}
-                      >
-                        <Icono className="admin-sidebar__icono" aria-hidden="true" />
-                        <span className="fem-sidebar__label">{texto}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
+            <nav className="admin-cumplimiento" aria-labelledby="cumplimiento-titulo">
+              <h3
+                id="cumplimiento-titulo"
+                className="admin-cumplimiento__titulo fem-sidebar__label"
+              >
+                Cumplimiento y datos
+              </h3>
+              <ul className="admin-cumplimiento__lista">
+                {CUMPLIMIENTO.map(({ to, texto, Icono }) => (
+                  <li key={to}>
+                    <Link
+                      to={to}
+                      className="admin-sidebar__enlace admin-focus"
+                      title={texto}
+                    >
+                      <Icono className="admin-sidebar__icono" aria-hidden="true" />
+                      <span className="fem-sidebar__label">{texto}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </CollapsibleSidebar>
           <div className="admin-main p-4">
             <Routes>
