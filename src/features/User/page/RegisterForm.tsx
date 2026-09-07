@@ -161,9 +161,21 @@ const RegisterForm: React.FC = () => {
         <div className="login-form-container">
           <div className="login-form">
             <form onSubmit={handleSubmit}>
+              {/*
+                La convención hay que enunciarla: el asterisco existía ya, pero
+                solo en la casilla de privacidad y sin nada que dijera qué
+                significaba.
+
+                La leyenda va oculta al lector de pantalla a propósito: quien
+                navega así ya recibe el `required` de cada campo, y con el
+                asterisco oculto la frase se oiría partida.
+              */}
+              <p className="register-leyenda" aria-hidden="true">
+                Los campos con <span className="register-obligatorio" aria-hidden="true">*</span> son obligatorios.
+              </p>
               <div className="register-row">
                 <div className="register-field">
-                  <label htmlFor="userName">Nombre:</label>
+                  <label htmlFor="userName">Nombre: <span className="register-obligatorio" aria-hidden="true">*</span></label>
                   <input
                     type="text"
                     id="userName"
@@ -174,7 +186,7 @@ const RegisterForm: React.FC = () => {
                   />
                 </div>
                 <div className="register-field">
-                  <label htmlFor="userLastName">Apellido:</label>
+                  <label htmlFor="userLastName">Apellido: <span className="register-obligatorio" aria-hidden="true">*</span></label>
                   <input
                     type="text"
                     id="userLastName"
@@ -185,7 +197,7 @@ const RegisterForm: React.FC = () => {
                   />
                 </div>
               </div>
-              <label htmlFor="userEmail">Correo Electrónico:</label>
+              <label htmlFor="userEmail">Correo Electrónico: <span className="register-obligatorio" aria-hidden="true">*</span></label>
               <input
                 type="email"
                 id="userEmail"
@@ -196,7 +208,7 @@ const RegisterForm: React.FC = () => {
               />
               <div className="register-row">
                 <div className="register-field">
-                  <label htmlFor="userPassword">Contraseña:</label>
+                  <label htmlFor="userPassword">Contraseña: <span className="register-obligatorio" aria-hidden="true">*</span></label>
                   <PasswordInput
                     id="userPassword"
                     value={formData.userPassword}
@@ -208,7 +220,7 @@ const RegisterForm: React.FC = () => {
                   />
                 </div>
                 <div className="register-field">
-                  <label htmlFor="confirmPassword">Repetir Contraseña:</label>
+                  <label htmlFor="confirmPassword">Repetir Contraseña: <span className="register-obligatorio" aria-hidden="true">*</span></label>
                   <PasswordInput
                     id="confirmPassword"
                     value={formData.confirmPassword}
@@ -240,7 +252,7 @@ const RegisterForm: React.FC = () => {
 
               <div className="register-row">
                 <div className="register-field">
-                  <label htmlFor="userTelephone">Teléfono:</label>
+                  <label htmlFor="userTelephone">Teléfono: <span className="register-opcional">(opcional)</span></label>
                   <input
                     type="text"
                     id="userTelephone"
@@ -250,7 +262,7 @@ const RegisterForm: React.FC = () => {
                   />
                 </div>
                 <div className="register-field">
-                  <label htmlFor="userGender">Género:</label>
+                  <label htmlFor="userGender">Género: <span className="register-obligatorio" aria-hidden="true">*</span></label>
                   <select
                     id="userGender"
                     name="userGender"
@@ -297,7 +309,7 @@ const RegisterForm: React.FC = () => {
                   >
                     Política de Privacidad
                   </button>
-                  . <span aria-hidden="true">*</span>
+                  . <span className="register-obligatorio" aria-hidden="true">*</span>
                 </label>
               </div>
 
