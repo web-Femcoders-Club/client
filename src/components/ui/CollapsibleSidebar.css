@@ -171,8 +171,23 @@
   left: 1rem;
 }
 
+/*
+ * El hueco del botón lo reserva el panel, no el rótulo.
+ *
+ * Antes lo reservaba `.fem-sidebar__titulo` con su `min-height: 40px`. Pero ese
+ * elemento lleva también `fem-sidebar__label`, y contraído esa clase lo saca
+ * del flujo (`position: absolute; height: 1px`) para ocultarlo a la vista sin
+ * quitarlo del árbol de accesibilidad. Con el rótulo fuera del flujo, su altura
+ * dejaba de reservar nada: el primer enlace subía hasta arriba y el botón
+ * —absoluto y con z-index 2— le caía encima. Tapaba «Ofertas de Trabajo» en
+ * bienvenida y «1. Estadísticas Usuarias» en el panel, en las dos sin dejar
+ * rastro de que hubiera algo debajo.
+ *
+ * El botón ocupa de 16px a 56px contando desde el borde del menú, así que 4rem
+ * lo despeja con holgura.
+ */
 .fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__panel {
-  padding: 0.75rem 0.5rem;
+  padding: 4rem 0.5rem 0.75rem;
 }
 
 /*
