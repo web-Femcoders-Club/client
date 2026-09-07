@@ -22,6 +22,7 @@ import ConsentOverview from '../components/consent/ConsentOverview';
 import LegalDocs from '../components/legal/LegalDocs';
 import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
+import ResumenPanel from '../components/resumen/ResumenPanel';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -118,6 +119,12 @@ const Admin: React.FC = () => {
           </CollapsibleSidebar>
           <div className="admin-main p-4">
             <Routes>
+              {/*
+                Sin esta ruta, entrar en /admin no casaba con ninguna y el área
+                de trabajo se quedaba en blanco: no era un fallo de estilos,
+                era que no había nada que renderizar.
+              */}
+              <Route index element={<ResumenPanel />} />
               <Route path="stats" element={<UserStats />} />
               <Route path="users" element={<ManageUsers />} />
               <Route path="comments" element={<ManageComments />} />
