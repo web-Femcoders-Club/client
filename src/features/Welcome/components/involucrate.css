@@ -1,0 +1,213 @@
+/*
+ * Sección «Involúcrate en la comunidad» de la página de bienvenida.
+ *
+ * POR QUÉ CSS PROPIO Y NO TAILWIND
+ * Lo mismo que ya explican admin-ui.css y listas-de-correo.css: al navegador
+ * solo llega el CDN de Tailwind v2, y lo que se escribió con sintaxis de la v3
+ * no genera ninguna regla. Aquí eso no era un detalle estético: la versión
+ * anterior de esta sección tenía `min-h-[400px]`, `bg-[#4737bb]` y
+ * `border-white/10` repetidos en nueve tarjetas. Ninguno llegaba a pintar, así
+ * que mandaba un `height: 300px` fijo y el texto de cada tarjeta salía cortado.
+ *
+ * Todo lo de aquí lleva prefijo `involucrate-` y solo lo importa su componente.
+ */
+
+.involucrate {
+  background-color: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-medium);
+  padding: 3.25rem 3rem;
+  margin-top: 2rem;
+}
+
+.involucrate__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: 3.25rem;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------
+   Columna izquierda: una promesa y un destino
+   --------------------------------------------------------------- */
+
+.involucrate__antetitulo {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  /*
+    El coral de marca (#ea4f33) da 3.71:1 sobre blanco y no llega ni a AA. Se
+    usa el mismo coral oscurecido que el panel emplea en sus alertas: 7.38:1.
+  */
+  color: #a32617;
+  margin: 0 0 0.75rem;
+}
+
+.involucrate__titulo {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  line-height: 1.08;
+  font-weight: 700;
+  /* Sobre blanco: 8.29:1, medido. AAA pide 7:1. */
+  color: var(--color-secondary);
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+.involucrate__entrada {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  margin: 0 0 1.625rem;
+}
+
+.involucrate__cta {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25;
+  /* Destino táctil de 44px: por debajo de eso no se acierta con el dedo. */
+  min-height: 44px;
+  padding: 0.875rem 1.625rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color var(--transition-fast);
+}
+
+.involucrate__cta:hover {
+  background-color: #3a2d99;
+  color: #fff;
+}
+
+.involucrate__cta:focus-visible {
+  outline: 3px solid var(--color-text-dark);
+  outline-offset: 3px;
+}
+
+.involucrate__coletilla {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #5b5b5b; /* 5.74:1 sobre blanco, medido. */
+  margin: 0.875rem 0 0;
+}
+
+/* ---------------------------------------------------------------
+   Columna derecha: tres familias, tres en fila cada una
+   ---------------------------------------------------------------
+   Antes eran nueve tarjetas en vertical, así que la columna medía el triple
+   que la de al lado y sobraba un hueco enorme a la izquierda. En fila, las
+   dos columnas acaban a la misma altura y además las tres opciones de cada
+   familia se comparan de un vistazo.
+   --------------------------------------------------------------- */
+
+.involucrate__familia + .involucrate__familia {
+  margin-top: 1.875rem;
+}
+
+.involucrate__familia-cabecera {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.involucrate__familia-nombre {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin: 0;
+  /*
+    index.css da `text-shadow` a h3 pensando en titulares grandes. A 0.8125rem
+    y en versalitas la sombra solo emborrona. Se anula aquí, como ya hace
+    .admin-cumplimiento__titulo; la regla global se queda como está.
+  */
+  text-shadow: none;
+}
+
+/*
+ * index.css:220 pinta de coral, en negrita y a 1.5rem todos los `span` sin
+ * clase. Esta regla es puramente decorativa y no lleva texto, así que se
+ * neutraliza el tamaño para que no altere la línea base de la cabecera.
+ */
+.involucrate__familia-linea {
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.involucrate__items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.involucrate__numero {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  text-shadow: none;
+}
+
+.involucrate__item-titulo {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text-dark); /* 12.9:1 sobre blanco, medido. */
+  margin: 0.5rem 0 0.25rem;
+  text-shadow: none;
+  text-wrap: pretty;
+}
+
+.involucrate__item-texto {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4a4a4a; /* 9.03:1 sobre blanco, medido. */
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Adaptación
+   ---------------------------------------------------------------
+   Los cortes van por ancho, pero el que de verdad se olvida es el móvil en
+   horizontal y el zoom al 200%: los dos reducen el ancho de CSS y entran por
+   aquí, que es justo lo que se busca.
+   --------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .involucrate {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .involucrate__cuerpo {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .involucrate__titulo {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .involucrate__items {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .involucrate__cta {
+    transition: none;
+  }
+}
