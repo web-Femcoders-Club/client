@@ -171,7 +171,12 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 Podemos utilizar plataformas externas (como servicios de formularios, gestión de
                 eventos o boletines) que actúan como encargados del tratamiento bajo contratos
                 adecuados conforme al RGPD. Actualmente usamos <strong>Eventbrite</strong> para la
-                gestión de algunos eventos.
+                gestión de algunos eventos y <strong>Brevo</strong> para el envío de correo
+                electrónico: tanto los mensajes que genera la plataforma —restablecer tu
+                contraseña, confirmar una baja, responder a tus formularios— como las
+                comunicaciones informativas. Brevo recibe tu dirección de correo y el contenido
+                del mensaje. Es una empresa francesa, así que estos datos no salen del Espacio
+                Económico Europeo.
               </p>
               <p>
                 <strong>Empresas que ceden sus instalaciones:</strong> cuando un evento se celebra
