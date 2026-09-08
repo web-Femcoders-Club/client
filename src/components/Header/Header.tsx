@@ -8,11 +8,14 @@ import OptimizedImage from "../OptimizedImage";
 const Header: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [avatar, setAvatar] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const avatarButtonRef = useRef<HTMLButtonElement | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const updateAuthState = async () => {
@@ -39,18 +42,22 @@ const Header: React.FC = () => {
             // `|| "/FemCodersClubLogo.png"` de más abajo, y toda usuaria sin
             // avatar veía la imagen rota.
             setAvatar(response.data.userAvatar || null);
+            setUserRole(sessionStorage.getItem("userRole"));
           } else {
             setIsAuthenticated(false);
             setAvatar(null);
+            setUserRole(null);
           }
         } catch (error) {
           console.error("Error al obtener los datos del usuario:", error);
           setIsAuthenticated(false);
           setAvatar(null);
+          setUserRole(null);
         }
       } else {
         setIsAuthenticated(false);
         setAvatar(null);
+        setUserRole(null);
       }
     };
 
@@ -79,7 +86,37 @@ const Header: React.FC = () => {
     };
   }, []);
 
+  /*
+   * Publica la altura del header como variable CSS, para que los menús laterales
+   * empiecen justo debajo en vez de quedar tapados por él (el header es `fixed`
+   * con z-index 1000 y gana a cualquier menú).
+   *
+   * Se mide, no se escribe a mano: el logo pasa de 70px a 50px por debajo de
+   * 768px y con el zoom del navegador crece todo. Cualquier número fijo aquí
+   * volvería a esconder la parte alta del menú en cuanto cambie una de las dos
+   * cosas, que es justo el fallo que se está corrigiendo.
+   */
   useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const publishHeight = () => {
+      document.documentElement.style.setProperty(
+        "--fem-header-height",
+        `${header.offsetHeight}px`
+      );
+    };
+
+    publishHeight();
+    const observer = new ResizeObserver(publishHeight);
+    observer.observe(header);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!dropdownOpen) return;
+
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
@@ -89,14 +126,20 @@ const Header: React.FC = () => {
       }
     };
 
-    if (dropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
+    // Escape cierra y devuelve el foco al avatar, no al principio de la página.
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setDropdownOpen(false);
+        avatarButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [dropdownOpen]);
 
@@ -109,13 +152,20 @@ const Header: React.FC = () => {
   };
 
   const goToWelcomePage = () => {
-    const userName = sessionStorage.getItem("userName") || "Usuario";
+    // WelcomePage lee `userName` y `userId` del state; `avatar` no lo mira nadie.
+    // Y su reserva miraba en localStorage, donde el login no escribe nunca, así
+    // que sin estos datos el saludo caía a "Usuario".
     navigate("/welcome", {
       state: {
-        userName: userName,
-        avatar: avatar,
+        userName: sessionStorage.getItem("userName") || "Usuario",
+        userId: Number(sessionStorage.getItem("userId")) || undefined,
       },
     });
+    setDropdownOpen(false);
+  };
+
+  const goToAdminPanel = () => {
+    navigate("/admin");
     setDropdownOpen(false);
   };
 
@@ -123,12 +173,13 @@ const Header: React.FC = () => {
     sessionStorage.clear();
     setIsAuthenticated(false);
     setAvatar(null);
+    setUserRole(null);
     setDropdownOpen(false);
     navigate("/login");
   };
 
   return (
-    <header className={`header ${isScrolled ? "scrolled" : ""}`}>
+    <header ref={headerRef} className={`header ${isScrolled ? "scrolled" : ""}`}>
       <nav className="navbar">
         <Link to="/" className="logo-link">
          <OptimizedImage
@@ -172,35 +223,53 @@ const Header: React.FC = () => {
         <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
           {isAuthenticated ? (
             <div className="user-avatar-dropdown" ref={dropdownRef}>
+              {/*
+                Se declara como desplegable (`aria-expanded` + `aria-controls`) y
+                no como menú ARIA: un `role="menu"` promete navegación con las
+                flechas, y esto es una lista de enlaces. Mejor no prometer lo que
+                no se cumple.
+              */}
               <button
+                ref={avatarButtonRef}
                 className="dropdown-toggle avatar-button"
                 onClick={handleAvatarClick}
-                title="User Avatar"
+                aria-expanded={dropdownOpen}
+                aria-controls="header-user-menu"
+                aria-label="Menú de usuaria"
               >
                 <OptimizedImage
                   src={avatar || "/FemCodersClubLogo.png"}
-                  alt="User Avatar"
+                  alt=""
                   className="avatar-icon"
-                  title="Avatar de usuario"
                   loading="eager"
                 />
               </button>
 
               {dropdownOpen && (
                 <div
+                  id="header-user-menu"
                   className={`dropdown-menu ${
                     isScrolled ? "scrolled-dropdown" : ""
                   }`}
                 >
-                  <button
-                    onClick={goToWelcomePage}
-                    className="dropdown-item nav-link"
-                  >
-                    Mi Perfil
+                  <button onClick={goToWelcomePage} className="dropdown-item">
+                    Mi perfil
                   </button>
+                  {/*
+                    El panel tiene entrada propia y separada del perfil: sin ella
+                    no había forma de volver a /admin desde ninguna pantalla —ni
+                    aquí ni en ningún otro sitio de la web—, así que salir del
+                    panel obligaba a escribir la URL o a reiniciar sesión
+                    (client#21).
+                  */}
+                  {userRole === "admin" && (
+                    <button onClick={goToAdminPanel} className="dropdown-item">
+                      Panel de administración
+                    </button>
+                  )}
                   <button
                     onClick={handleLogOut}
-                    className="dropdown-item logout-button"
+                    className="dropdown-item dropdown-item--salir"
                   >
                     Cerrar sesión
                   </button>

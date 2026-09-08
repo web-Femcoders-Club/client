@@ -1,0 +1,213 @@
+/*
+ * Resumen del panel de administración.
+ *
+ * POR QUÉ UN CSS PROPIO Y AISLADO
+ * Por lo mismo que explica listas-de-correo.css: el CDN sirve Tailwind v2
+ * mientras el código escribe clases de la v3, así que lo que no existe en la v2
+ * no se aplica y falla en silencio. Y porque index.css es de todo el sitio y
+ * admin-ui.css es de todo el panel: una sección nueva no tiene por qué
+ * arriesgar ninguno de los dos para pintarse a sí misma.
+ *
+ * De admin-ui.css se reutiliza `admin-card` (la caja) y `admin-focus` (el
+ * contorno de foco) tal cual, sin tocarlas. Todo lo demás vive aquí, con
+ * prefijo `resumen-` para que no colisione con nada.
+ */
+
+.resumen {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ---------------------------------------------------------------
+   Bandas
+   --------------------------------------------------------------- */
+
+.resumen__titulo {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #3d3d3d;
+  margin: 0 0 0.75rem;
+  /*
+    Mismo motivo que en .admin-cumplimiento__titulo: index.css da `text-shadow`
+    a los encabezados pensando en titulares grandes, y a 0.8rem en versalitas la
+    sombra solo emborrona. Se anula aquí; la regla global se queda como está.
+  */
+  text-shadow: none;
+}
+
+/*
+ * `auto-fit` en lugar de puntos de ruptura por ancho: las dos bandas tienen
+ * distinto número de tarjetas (tres y cuatro) y así ninguna necesita su propia
+ * media query. Además aguanta el zoom al 200%, que es donde un `min-width`
+ * fijo deja de acertar.
+ */
+.resumen__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Tarjeta
+   --------------------------------------------------------------- */
+
+.resumen-tarjeta {
+  display: block;
+  border-left: 4px solid var(--color-secondary);
+  text-decoration: none;
+  color: inherit;
+}
+
+.resumen-tarjeta__cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.resumen-tarjeta__rotulo {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280; /* 5.74:1 sobre blanco */
+  margin: 0;
+}
+
+.resumen-tarjeta__cifra {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: var(--color-secondary); /* 8.29:1 sobre blanco: AAA */
+  margin: 0.25rem 0 0;
+}
+
+.resumen-tarjeta__nota {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #4a4a4a;
+  margin: 0.35rem 0 0;
+}
+
+.resumen-tarjeta__fallo {
+  font-size: 0.85rem;
+  color: #8f2318;
+  margin: 0.25rem 0 0;
+}
+
+/*
+ * index.css:220 pinta TODOS los `span` sin clase de coral, en negrita y a
+ * 1.5rem. Este disco es un `span`, así que hay que devolverle valores neutros o
+ * heredaría ese tamaño y descolocaría la cabecera de la tarjeta.
+ */
+.resumen-tarjeta__disco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background-color: #ede9fb;
+  color: var(--color-secondary);
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.resumen-tarjeta__icono {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Tonos
+   ---------------------------------------------------------------
+   El coral de marca (#ea4f33) queda en 3.71:1 sobre blanco — no llega ni a AA,
+   así que no se usa para cifras ni para texto. Para la alerta se usa el coral
+   ya oscurecido del resto del panel (#a32617, 7.38:1). Medido, no estimado.
+   --------------------------------------------------------------- */
+
+.resumen-tarjeta--alerta {
+  border-left-color: #a32617;
+}
+
+.resumen-tarjeta--alerta .resumen-tarjeta__cifra {
+  color: #a32617;
+}
+
+.resumen-tarjeta--alerta .resumen-tarjeta__disco {
+  background-color: #fdecea;
+  color: #a32617;
+}
+
+.resumen-tarjeta--alerta .resumen-tarjeta__nota {
+  color: #8f2318;
+  font-weight: 600;
+}
+
+.resumen-tarjeta--ok {
+  border-left-color: #14663d;
+}
+
+.resumen-tarjeta--ok .resumen-tarjeta__cifra {
+  color: #14663d;
+}
+
+.resumen-tarjeta--ok .resumen-tarjeta__disco {
+  background-color: #e7f6ee;
+  color: #14663d;
+}
+
+/* ---------------------------------------------------------------
+   Tarjeta que además es enlace
+   ---------------------------------------------------------------
+   Solo las colas de trabajo llevan a algún sitio. Las del pulso de la comunidad
+   son informativas y no se pintan como pulsables: una tarjeta que parece
+   clicable y no lo es engaña igual que una que lo es y no lo parece.
+   --------------------------------------------------------------- */
+
+.resumen-tarjeta--enlace {
+  transition: box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.resumen-tarjeta--enlace:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resumen-tarjeta--enlace {
+    transition: none;
+  }
+
+  .resumen-tarjeta--enlace:hover {
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Estado sin trabajo pendiente
+   ---------------------------------------------------------------
+   Tres tarjetas con un cero cada una no informan de nada: ocupan el sitio de
+   algo que sí importaría. Cuando no hay cola, una sola línea lo dice mejor.
+   --------------------------------------------------------------- */
+
+.resumen__todo-al-dia {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: #e7f6ee;
+  color: #14663d;
+  border-left: 4px solid #14663d;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.resumen__todo-al-dia svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}

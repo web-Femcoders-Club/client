@@ -300,15 +300,62 @@
   background-color: #e53935;
 }
 
+/*
+ * El desplegable se dimensiona por su contenido, no por la tipografía de la
+ * barra de navegación. Sus opciones llevaban la clase `nav-link`, que a partir
+ * de 1200px va a 1.5rem con `padding: 10px 20px`: "Panel de administración" a
+ * ese tamaño estiraba el menú hasta salirse de la pantalla. Aquí es una lista de
+ * opciones, no un rótulo de cabecera.
+ */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
+  min-width: max-content;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   background-color: #4737bb;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-medium);
   z-index: 1100;
+}
 
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Cerrar sesión se distingue del resto: es la que saca de la sesión. */
+.dropdown-item--salir {
+  background-color: var(--color-primary);
+}
+
+.dropdown-item--salir:hover {
+  background-color: #bb3f28;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-item {
+    transition: none;
+  }
 }
 
 .dropdown.open .dropdown-menu {
@@ -327,13 +374,6 @@
   border: none;
   cursor: pointer;
   padding: 0;
-}
-
-.dropdown-menu .nav-link,
-.dropdown-item.logout-button {
-  text-align: left;
-  margin: 5px 0;
-  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -392,8 +432,13 @@
     padding: 0 16px;
   }
 
+  /*
+    Con la entrada del panel de administración el desplegable pasa de dos
+    opciones a tres, y con `overflow: hidden` los 200px de antes recortaban
+    justo la última: "Cerrar sesión" dejaba de verse en móvil.
+  */
   .auth-buttons.open {
-    max-height: 200px;
+    max-height: 340px;
   }
 
   .logout-button {

@@ -13,6 +13,7 @@ import {
   CrmUsersCrosscheck,
   PendingUnsubscribeRecord,
   UnsubscribedEmailRecord,
+  ResumenDeListas,
 } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -283,6 +284,25 @@ export const getPendingUnsubscribes = async (): Promise<
     headers: getAuthHeaders(),
   });
   return filasDe<PendingUnsubscribeRecord>(response.data);
+};
+
+// -------------------------------
+// Listas de correo
+// -------------------------------
+
+/**
+ * Conteo por lista de género, sin traerse los contactos.
+ *
+ * ListasDeCorreo hace esta misma llamada con axios en línea. Duplicarla aquí en
+ * lugar de migrar aquella pantalla es deliberado: el resumen no debe obligar a
+ * tocar una pantalla que ya funciona. La unificación es una línea el día que se
+ * quiera hacer, y hasta entonces el endpoint vive en dos sitios.
+ */
+export const getResumenContactos = async (): Promise<ResumenDeListas> => {
+  const response = await axios.get(`${API_URL}/admin/contacts/summary`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
 };
 
 // -------------------------------

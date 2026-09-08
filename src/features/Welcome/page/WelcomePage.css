@@ -1,57 +1,197 @@
-.sidebar-nav {
-  scrollbar-width: thin;
-  scrollbar-color: #4737bb white;
+/*
+ * Página de bienvenida. El posicionamiento del menú, el colapso y la barra de
+ * scroll de marca viven en CollapsibleSidebar; aquí van el contenido del menú y
+ * la banda personal que antes estaba dentro de él.
+ *
+ * Las clases que había —`hover:bg-white/10`, `border-white/20`, `text-[#4737bb]`,
+ * `bg-black/50`— son sintaxis de Tailwind v3, y al navegador solo llega el CDN
+ * de la v2: no pintaban nada. Lo que se veía blanco lo heredaba de un
+ * `text-white` del contenedor, no de la clase que parecía ponerlo (client#92).
+ */
+
+/* ---------------------------------------------------------------
+   Enlaces del menú
+   --------------------------------------------------------------- */
+
+.welcome-menu__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.sidebar-nav::-webkit-scrollbar {
-  width: 12px;
+.welcome-menu__enlace {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  /* Sobre el blanco del panel: 8.16:1, medido. AAA pide 7:1. */
+  color: var(--color-secondary);
+  transition: background-color var(--transition-fast);
 }
 
-.sidebar-nav::-webkit-scrollbar-track {
-  background: white;
+.fem-sidebar--collapsed .welcome-menu__enlace {
+  justify-content: center;
+  padding: 0.625rem 0;
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #4737bb, #6d2c95);
-  border-radius: 10px;
+.welcome-menu__enlace:hover {
+  /* El realce que `hover:bg-white/10` prometía y nunca llegó a pintar. */
+  background-color: #f4f2fa;
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #6d2c95, #4737bb);
+.welcome-menu__icono {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-.nav-chevron {
-  color: #4737bb !important;
+/* ---------------------------------------------------------------
+   Banda personal: saludo, ánimo y frase
+   --------------------------------------------------------------- */
+
+/*
+ * Este bloque vivía dentro del menú lateral. No es navegación, y era lo que
+ * obligaba al menú a medir 20rem y a estar siempre abierto. Fuera de él, el menú
+ * puede estrecharse a una franja de iconos.
+ */
+/*
+ * El header es `fixed`, así que no ocupa sitio en el flujo y esta página
+ * arrancaba en y=0, por detrás de él. El desplazamiento va aquí, en el
+ * contenedor, y no en cada hijo: así el menú y el contenido empiezan a la misma
+ * altura. Ponérselo solo al contenido es lo que dejaba el menú medio tapado.
+ */
+.welcome-layout {
+  padding-top: var(--fem-header-height, 132px);
 }
+
+.welcome-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.welcome-banda {
+  padding: 1.25rem 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-banda__fila {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.welcome-banda__emoji {
+  font-size: 2.75rem;
+  line-height: 1;
+}
+
+.welcome-banda__texto {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.welcome-banda__saludo {
+  margin: 0 0 0.25rem;
+  font-size: 1.625rem;
+  /* Sobre blanco: 8.16:1, medido. */
+  color: var(--color-secondary);
+}
+
+.welcome-banda__cita {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-style: italic;
+  /* Sobre blanco: 12.9:1, medido. */
+  color: var(--color-text-dark);
+}
+
+.welcome-banda__boton {
+  flex-shrink: 0;
+}
+
+.welcome-banda__emojis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.welcome-banda__emoji-envoltorio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-banda__emoji-op {
+  /* Destino táctil de 44px: por debajo de eso no se acierta con el dedo. */
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid #e0dcf0;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: background-color var(--transition-fast);
+}
+
+.welcome-banda__emoji-op:hover {
+  background-color: #f4f2fa;
+}
+
+.welcome-banda__emoji-op--activo {
+  background-color: #ebe8fa;
+  border-color: var(--color-secondary);
+}
+
+.welcome-banda__globo {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 10;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-secondary);
+  background-color: #fff;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-menu__enlace,
+  .welcome-banda__emoji-op {
+    transition: none;
+  }
+}
+
 .text-custom-blue {
   color: #2a2170;
 }
 
-.flip-card-welcome {
-  perspective: 1000px;
-}
-
-.flip-card-inner-welcome {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
-}
-
-.group:hover .flip-card-inner-welcome {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front-welcome,
-.flip-card-back-welcome {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 15px;
-}
-
-.flip-card-back-welcome {
-  transform: rotateY(180deg);
-}
+/*
+ * Aquí vivían las tarjetas que giraban de «Involúcrate en la comunidad». Se
+ * han retirado con la sección: el giro se disparaba con `:hover` y el único
+ * enlace de contacto estaba en el reverso, así que sin ratón —en el móvil, o
+ * navegando con teclado— no había manera de alcanzarlo.
+ *
+ * Su sustituto vive en components/involucrate.css. Las clases `flip-card-*`
+ * sin sufijo que quedan en AboutPage.css son otras y no se tocan.
+ */

@@ -1,0 +1,274 @@
+/*
+ * Menú lateral contraíble compartido (client#59).
+ *
+ * CSS propio y no utilidades de Tailwind, por el mismo motivo documentado en
+ * src/features/Admin/admin-ui.css: al navegador solo llega el CDN de Tailwind v2
+ * y la sintaxis de la v3 no se aplica (client#92). Los colores salen de las
+ * variables de index.css, no de hex sueltos.
+ *
+ * La altura del header se lee de --fem-header-height, que Header.tsx mide con un
+ * ResizeObserver. El valor de reserva solo cubre el primer pintado: el header no
+ * mide siempre lo mismo (el logo encoge en móvil y todo crece con el zoom), así
+ * que un número fijo aquí volvería a dejar el menú por debajo de la cabecera.
+ */
+
+.fem-sidebar {
+  --fem-sidebar-width: 260px;
+  --fem-sidebar-rail-width: 72px;
+  --fem-sidebar-top: var(--fem-header-height, 132px);
+  position: relative;
+}
+
+/* ---------------------------------------------------------------
+   Panel
+   --------------------------------------------------------------- */
+
+.fem-sidebar__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Barra de scroll de marca, heredada de WelcomePage.css. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) var(--color-white);
+}
+
+.fem-sidebar__panel::-webkit-scrollbar {
+  width: 12px;
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-track {
+  background: var(--color-white);
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-secondary), #6d2c95);
+  border-radius: 10px;
+}
+
+.fem-sidebar__panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #6d2c95, var(--color-secondary));
+}
+
+/* Deja sitio al botón, que va superpuesto en la esquina. */
+.fem-sidebar__titulo {
+  min-height: 40px;
+  padding: 0 3.25rem 0 0.625rem;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  /* 5.74:1 sobre blanco. Es un rótulo de sección, no texto de lectura. */
+  color: #5b5b5b;
+}
+
+.fem-sidebar__contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/*
+ * El texto de los enlaces hereda del enlace, no de la regla global de `span`.
+ *
+ * index.css:220 da a `span` el naranja de marca, negrita y 1.5rem. Es el
+ * destacado que usa toda la web para resaltar palabras, y ahí se queda: no se
+ * toca. Pero dentro de un menú deja el texto de cada enlace más grande que el
+ * titular de la página y del color de un énfasis.
+ *
+ * Esta clase (0,1,0) gana a `span` (0,0,1) sin `!important` y sin salir de los
+ * límites del menú. Fuera de aquí no cambia absolutamente nada.
+ */
+.fem-sidebar__label {
+  font: inherit;
+  color: inherit;
+  text-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   Botón de contraer / expandir
+   --------------------------------------------------------------- */
+
+.fem-sidebar__toggle {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-light);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.fem-sidebar__toggle:hover {
+  background: var(--color-text-dark);
+}
+
+/*
+ * El :focus-visible global de index.css es morado, y este botón se apoya sobre
+ * morado: ahí el foco no se vería. Mismo criterio que en BackToTop.css.
+ */
+.fem-sidebar__toggle:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.fem-sidebar__toggle-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------------------------------------------------------------
+   Franja: el menú convive con el contenido
+   --------------------------------------------------------------- */
+
+/*
+ * Pegado bajo la cabecera y no arrastrado por el scroll: estas páginas son
+ * largas y un menú en el flujo desaparecería al bajar. `align-self: flex-start`
+ * es imprescindible — un hijo flex estirado a lo alto no puede quedarse pegado.
+ */
+.fem-sidebar--rail {
+  position: sticky;
+  top: calc(var(--fem-sidebar-top) + 1rem);
+  align-self: flex-start;
+  max-height: calc(100vh - var(--fem-sidebar-top) - 2rem);
+  flex-shrink: 0;
+  width: var(--fem-sidebar-width);
+  transition: width var(--transition-fast);
+}
+
+.fem-sidebar--rail .fem-sidebar__panel {
+  max-height: inherit;
+}
+
+.fem-sidebar--rail.fem-sidebar--collapsed {
+  width: var(--fem-sidebar-rail-width);
+}
+
+.fem-sidebar--rail .fem-sidebar__toggle {
+  top: 1rem;
+  right: 1rem;
+}
+
+/* 72 − 40 = 32, así que 16px por lado lo centran en la franja. */
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__toggle {
+  right: auto;
+  left: 1rem;
+}
+
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__panel {
+  padding: 0.75rem 0.5rem;
+}
+
+/*
+ * En la franja el texto se oculta a la vista pero sigue en el árbol de
+ * accesibilidad: quien usa lector de pantalla no percibe "contraído", así que
+ * debe seguir oyendo el nombre completo del enlace.
+ */
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* El rótulo contraído deja solo el hueco del botón. */
+.fem-sidebar--rail.fem-sidebar--collapsed .fem-sidebar__titulo {
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------
+   Superpuesto: no cabe al lado
+   --------------------------------------------------------------- */
+
+.fem-sidebar__scrim {
+  position: fixed;
+  inset: 0;
+  /*
+    La capa oscura de verdad. El menú de bienvenida la declaraba como
+    `bg-black/50`, sintaxis de Tailwind v3 que el CDN v2 no conoce: la clase no
+    pintaba nada y el fondo nunca se oscureció.
+  */
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+.fem-sidebar--overlay .fem-sidebar__toggle {
+  position: fixed;
+  top: calc(var(--fem-sidebar-top) + 1rem);
+  left: 1rem;
+  width: 48px;
+  height: 48px;
+  /* Por encima del panel, para poder cerrarlo; por debajo del header (1000). */
+  z-index: 50;
+}
+
+/* Abierto, el botón se va al borde del panel en vez de taparle el contenido. */
+.fem-sidebar--overlay.fem-sidebar--open .fem-sidebar__toggle {
+  left: calc(min(var(--fem-sidebar-width), 100vw) - 48px - 1rem);
+}
+
+.fem-sidebar--overlay .fem-sidebar__panel {
+  position: fixed;
+  top: var(--fem-sidebar-top);
+  left: 0;
+  width: min(var(--fem-sidebar-width), 100vw);
+  height: calc(100vh - var(--fem-sidebar-top));
+  padding-top: 3.5rem;
+  border-radius: 0;
+  z-index: 45;
+  box-shadow: var(--shadow-medium);
+  transition: transform var(--transition-fast), visibility var(--transition-fast);
+}
+
+.fem-sidebar--overlay.fem-sidebar--open .fem-sidebar__panel {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/*
+ * Contraído sale de pantalla Y de la vista. `visibility: hidden` lo saca además
+ * del orden de tabulación en cualquier navegador; `inert` (que pone el
+ * componente) es el refuerzo. Solo con `transform` seguiría siendo tabulable.
+ */
+.fem-sidebar--overlay.fem-sidebar--collapsed .fem-sidebar__panel {
+  transform: translateX(-100%);
+  visibility: hidden;
+}
+
+/* ---------------------------------------------------------------
+   Movimiento reducido
+   --------------------------------------------------------------- */
+
+/*
+ * WCAG 2.3.3 (nivel AAA, el objetivo del proyecto): el movimiento disparado por
+ * una interacción se puede desactivar. El menú aparece y desaparece igual, sin
+ * deslizarse ni estrecharse con animación.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .fem-sidebar--rail,
+  .fem-sidebar__toggle,
+  .fem-sidebar--overlay .fem-sidebar__panel {
+    transition: none;
+  }
+}

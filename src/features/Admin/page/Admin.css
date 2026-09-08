@@ -27,22 +27,82 @@
     color: #333;
   }
   
+  /*
+   * El menú y el área de trabajo iban con `w-1/4` y `w-3/4`: un cuarto de la
+   * pantalla reservado al menú aunque no se estuviera navegando, y sin una sola
+   * media query (client#59). Ahora el ancho lo decide CollapsibleSidebar y el
+   * área de trabajo se queda con lo que sobra, así que al contraer el menú lo
+   * recupera de verdad.
+   */
   .admin-content {
     display: flex;
+    gap: 1rem;
+    align-items: flex-start;
   }
-  
-  .admin-sidebar {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+
   .admin-main {
+    flex: 1;
+    min-width: 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
+  /* La tarjeta blanca del menú la pone ya CollapsibleSidebar. */
+  .admin-sidebar__enlace {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem;
+    border-radius: var(--radius-sm);
+    color: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+  }
+
+  .fem-sidebar--collapsed .admin-sidebar__enlace {
+    justify-content: center;
+    padding: 0.625rem 0;
+  }
+
+  .admin-sidebar__enlace:hover {
+    background-color: #f4f2fa;
+  }
+
+  /*
+   * Sección activa. Los enlaces eran `Link`, así que no había ni resaltado ni
+   * `aria-current`: con lector de pantalla no había forma de saber en qué
+   * sección se estaba. Con `NavLink` el `aria-current="page"` lo pone react-
+   * router solo; esto es solo la parte que se ve.
+   *
+   * El realce NO toca el color del texto, y es a propósito: `.steps .step a`
+   * lo fija a `inherit` con más especificidad, y el último paso va en coral
+   * (#ea4f33), que sobre cualquier fondo claro se queda lejos de AAA. Fondo,
+   * barra y negrita se distinguen igual en la franja de iconos, cuando el
+   * texto está oculto y el color no diría nada de todos modos.
+   */
+  .admin-sidebar__enlace.active {
+    background-color: #ebe8fa;
+    font-weight: 700;
+    /* Inset y no `border-left`: un borde de verdad desplazaría el icono. */
+    box-shadow: inset 4px 0 0 var(--color-secondary);
+  }
+
+  .admin-sidebar__icono {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .admin-sidebar__enlace {
+      transition: none;
+    }
+  }
+
   .steps .step {
     color: #4737bb;
   }
@@ -79,6 +139,12 @@
     letter-spacing: 0.06em;
     color: #3d3d3d;
     margin-bottom: 0.5rem;
+    /*
+      `h3` lleva `text-shadow` en index.css, pensado para titulares grandes. A
+      0.8rem y en versalitas la sombra solo emborrona el texto. Se anula aquí,
+      dentro del menú; la regla global se queda como está.
+    */
+    text-shadow: none;
   }
 
   .admin-cumplimiento__lista {
