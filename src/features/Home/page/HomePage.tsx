@@ -451,6 +451,18 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "20",
+      title: "FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro",
+      description:
+        "Volvemos como Community Partner y este año vamos un poco más allá: varias femcoders hemos formado equipo y también participaremos en el hackathon. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona.",
+      image: "/assets/noticias/hackbarna-ai-summit-26-desde-dentro.jpg",
+      imageAlt: "Cuatro tarjetas «¡vengo a hackear!» de HackBarna AI Summit 26 con las fotos de Irina Ichim, Elvia Benedith, Ana Lucía Silva Córdoba y Silvina Lucero Calderón, sobre la playa de Barcelona. Sep 19-20, Norrsken House Barcelona",
+      aiGenerated: true,
+      date: "9 Septiembre 2026",
+      category: "Noticias",
+      link: "/noticias/hackbarna-ai-summit-26-desde-dentro",
+    },
+    {
       id: "19",
       title: "Ya está disponible la grabación de la sesión informativa de HackBarna AI Summit 26",
       description:

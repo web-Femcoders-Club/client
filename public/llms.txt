@@ -81,9 +81,14 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 ## Blog posts
 
-Complete index of the 47 articles published on the FemCoders Club blog.
+Complete index of the 48 articles published on the FemCoders Club blog.
 
-### News (14)
+### News (15)
+
+- FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro
+  URL: https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26-desde-dentro
+  Published: 2026-09-09
+  Summary: Volvemos como Community Partner y este año vamos un poco más allá: varias femcoders hemos formado equipo y también participaremos en el hackathon. 19 y 20 de septiembre en Norrsken House Barcelona.
 
 - Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA
   URL: https://www.femcodersclub.com/noticias/sesion-informativa-hackbarna-ai-summit-26

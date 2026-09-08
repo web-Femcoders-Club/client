@@ -939,6 +939,33 @@ body {
   border-bottom: none;
 }
 
+/*
+ * Variante dato/valor: tablas cuya primera columna es la etiqueta de la fila
+ * («Cuándo», «Dónde») y no hay fila de cabecera.
+ *
+ * Se marcan con `<th scope="row">` para que el lector de pantalla anuncie
+ * «Cuándo: 19 y 20 de septiembre» en lugar de leer una celda suelta sin
+ * contexto (WCAG 1.3.1). Aquí solo se neutraliza el aspecto de cabecera de
+ * columna —mayúsculas, tipografía condensada, tamaño— para que la fila se lea
+ * igual que con `<td><strong>`, que es como se ven las demás tablas del blog.
+ */
+.framework-comparison-table.key-value-table th[scope="row"] {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #4737bb;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.framework-comparison-table.key-value-table tbody tr:last-child th[scope="row"] {
+  border-bottom: none;
+}
+
 .grid-carousel {
   position: relative;
   max-width: 900px;
