@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Send, Trash, FilePlus } from "lucide-react";
-import MentorshipLogoAnimation from "../../Mentorship/components/MentorshipLogoAnimation";
-import CharCounter from "../../../components/ui/CharCounter";
+import DocumentationView from "./DocumentationView";
+import { esAdmin } from "../../../utils/sesion";
 import { useFocusMessage } from "../../../hooks/useFocusMessage";
-import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
-import "../../Mentorship/page/Mentorship.css";
 
 const SendDocumentation: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -74,13 +71,13 @@ const SendDocumentation: React.FC = () => {
     }
 
     if (!title.trim()) {
-      setMessage("Por favor, especifica un título para tu recurso.");
+      setMessage("Añade un título para identificar la documentación.");
       setMessageType("error");
       return;
     }
 
     if (!description.trim()) {
-      setMessage("Por favor, describe brevemente tu necesidad o problema.");
+      setMessage("Añade una breve descripción de los archivos que quieres enviar.");
       setMessageType("error");
       return;
     }
@@ -150,145 +147,38 @@ const SendDocumentation: React.FC = () => {
         <title>Enviar Documentación - FemCoders Club</title>
         <meta
           name="description"
-          content="¿Tienes recursos o ideas para compartir? En FemCoders Club puedes enviar tu documentación y contribuir a nuestra comunidad."
+          content="Comparte recursos, materiales de aprendizaje o documentación de tus proyectos con el equipo de FemCoders Club. Cuéntanos tu propuesta y adjunta tus archivos."
         />
       </Helmet>
 
-      <section className="mentorship-page-container bg1">
-        <div className="mentorship-form-container">
-          <div className="mentorship-content">
-            <div className="form-column">
-              <header>
-                <h3>¡Envía Documentación!</h3>
-                <p className="styled-paragraph mb-8">
-                ¿Tienes ideas innovadoras o recursos valiosos sobre tecnología? Comparte tu conocimiento con nuestra comunidad de programadoras apasionadas. Completa el formulario, adjunta tus archivos y contribuye a inspirar y empoderar a otras mujeres en tecnología. ¡Juntas somos más fuertes! 🚀
-                </p>
-              </header>
-
-              <form onSubmit={handleSubmit} className="form-control">
-                {userEmail && (
-                  <div className="form-group">
-                    <label className="form-label" style={{ marginTop: "-2.5rem" }}>Correo Electrónico:</label>
-                    <input
-                      type="email"
-                      value={userEmail}
-                      readOnly
-                      className="form-input"
-                      title="Correo Electrónico"
-                    />
-                  </div>
-                )}
-
-                <div className="form-group">
-                  <label htmlFor="title" className="form-label" style={{ marginTop: "-2.5rem" }}>
-                    Título del recurso:
-                  </label>
-                  <input
-                    type="text"
-                    id="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Ej. Introducción a IA"
-                    required
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="description" className="form-label" style={{ marginTop: "-2.5rem" }}>
-                    Describe tu recurso:
-                  </label>
-                  <textarea
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Breve descripción "
-                    required
-                    maxLength={MESSAGE_MAX_LENGTH}
-                    aria-describedby="documentation-counter"
-                    className="form-textarea"
-                  ></textarea>
-                  <CharCounter
-                    id="documentation-counter"
-                    current={description.length}
-                    max={MESSAGE_MAX_LENGTH}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="files" className="form-label">
-                    Adjuntar archivos:
-                  </label>
-                  <input
-                  style={{ marginTop: "2.5rem" }}
-                    type="file"
-                    id="files"
-                    multiple
-                    onChange={handleFileChange}
-                    className="form-input"
-                    
-                  />
-                  <button
-                    type="button"
-                    className="secondary-button mt-4"
-                    onClick={() => document.getElementById("files")?.click()}
-                  >
-                    <FilePlus size={16} />
-                    Agregar más archivos
-                  </button>
-
-                  <div className="file-list">
-                    {files.map((file, index) => (
-                      <div key={index} className="file-item">
-                        <span>{file.name}</span>
-                        <button
-                          type="button"
-                          className="remove-file-btn" style={{ color: "#ea4f33", marginLeft: "1rem" }}  
-                          onClick={() => handleRemoveFile(index)}
-                          title="Eliminar archivo"
-                        >
-                          <Trash size={26} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="submit-btn"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    "Enviando..."
-                  ) : (
-                    <>
-                      <Send className="send-icon" />
-                      Enviar Documentación
-                    </>
-                  )}
-                </button>
-
-                {message && (
-                  <p
-                    className={`message ${
-                      messageType === "error" ? "text-error" : "text-success"
-                    }`}
-                    role={messageType === "error" ? "alert" : "status"}
-                    tabIndex={-1}
-                    ref={messageRef}
-                  >
-                    {message}
-                  </p>
-                )}
-              </form>
-            </div>
-            <div className="logo-column">
-              <MentorshipLogoAnimation logoSrc="/FemCodersClubLogo.png" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <DocumentationView
+        userEmail={userEmail}
+        title={title}
+        description={description}
+        files={files}
+        message={message}
+        messageType={messageType}
+        messageRef={messageRef}
+        isLoading={isLoading}
+        admin={esAdmin()}
+        onBack={() => {
+          if (esAdmin()) {
+            navigate("/admin");
+          } else {
+            navigate("/welcome", {
+              state: {
+                userName: sessionStorage.getItem("userName") || "Usuario",
+                userId: Number(sessionStorage.getItem("userId")) || undefined,
+              },
+            });
+          }
+        }}
+        onTitleChange={setTitle}
+        onDescriptionChange={setDescription}
+        onFilesChange={handleFileChange}
+        onRemoveFile={handleRemoveFile}
+        onSubmit={handleSubmit}
+      />
     </>
   );
 };

@@ -1,0 +1,486 @@
+/*
+ * Página de ofertas de trabajo.
+ *
+ * POR QUÉ CSS PROPIO Y NO TAILWIND
+ * Lo mismo que ya explican admin-ui.css y listas-de-correo.css: al navegador
+ * solo llega el CDN de Tailwind v2 y la sintaxis de la v3 no genera regla.
+ *
+ * La página tenía además dos problemas que no eran de estilo:
+ *
+ * 1. Un scroll horizontal. Las tarjetas de empresa llevaban `data-aos`
+ *    `fade-right` y `fade-left`, que desplazan el elemento fuera del viewport
+ *    mientras entra; sin `overflow-x: hidden` eso saca barra horizontal. Esas
+ *    tarjetas ya no están, y aquí no se usa ninguna animación lateral.
+ *
+ * 2. El verde de WhatsApp (#25D366) se usaba como color de TEXTO en el titular
+ *    y en «Actualizado cada domingo». Sobre blanco da 1.9:1, de lo más bajo que
+ *    se puede medir. Ahora solo aparece como marca dentro de un botón blanco.
+ */
+
+.ofertas {
+  /*
+   * El header es `fixed` y no ocupa sitio en el flujo, así que sin esto la
+   * página arrancaría por detrás de él. Mismo patrón que `.welcome-layout`.
+   */
+  padding: calc(var(--fem-header-height, 132px) + 2rem) 1.5rem 4rem;
+}
+
+.ofertas__contenedor {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------
+   Volver
+   ---------------------------------------------------------------
+   Solo aparece con sesión abierta: la página es pública y quien entra desde
+   fuera no tiene ningún panel al que regresar.
+   --------------------------------------------------------------- */
+
+.ofertas__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #3b2d99;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.ofertas__volver:hover {
+  background-color: #f4f2fa;
+  color: var(--color-text-dark);
+}
+
+.ofertas__volver:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.ofertas__icono-volver {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Cabecera
+   --------------------------------------------------------------- */
+
+.ofertas__antetitulo {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  /* El coral de marca da 3.71:1 sobre blanco y no llega ni a AA; este 7.38:1. */
+  color: #a32617;
+  margin: 0 0 0.875rem;
+}
+
+.ofertas__titulo {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 700;
+  /* Sobre blanco: 8.29:1, medido. */
+  color: var(--color-secondary);
+  margin: 0 0 1.25rem;
+  max-width: 22ch;
+  text-shadow: none;
+  text-wrap: pretty;
+}
+
+.ofertas__entrada {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  margin: 0 0 2.25rem;
+  max-width: 64ch;
+}
+
+/* ---------------------------------------------------------------
+   La recomendación
+   --------------------------------------------------------------- */
+
+.ofertas__banda {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  padding: 1.75rem 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 16px;
+}
+
+/*
+ * La foto se sirve desde el proyecto, no desde LinkedIn. La anterior era un
+ * enlace directo a su CDN con una firma caducada dentro de la propia URL (el
+ * parámetro `e=` marcaba el 6 de noviembre de 2025), así que llevaba meses sin
+ * verse. Esas URLs caducan siempre: alojar el archivo es lo único estable.
+ */
+.ofertas__foto {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  object-fit: cover;
+  /* Sobre el violeta de la banda, un aro claro despega el retrato del fondo. */
+  border: 2px solid #ede9fb;
+  background-color: #ede9fb;
+  flex-shrink: 0;
+}
+
+.ofertas__banda-texto {
+  flex: 1;
+  min-width: 260px;
+}
+
+.ofertas__banda-titulo {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.375rem;
+  text-shadow: none;
+}
+
+.ofertas__banda-detalle {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #ded9f7; /* 8.9:1 sobre el violeta, medido. */
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Botones y enlaces
+   --------------------------------------------------------------- */
+
+.ofertas__boton,
+.ofertas__boton-claro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Destino táctil de 44px: por debajo de eso no se acierta con el dedo. */
+  min-height: 44px;
+  padding: 0.875rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.ofertas__boton-claro {
+  background-color: #fff;
+  color: var(--color-text-dark);
+}
+
+.ofertas__boton-claro:hover {
+  background-color: #ede9fb;
+  color: var(--color-text-dark);
+}
+
+.ofertas__boton {
+  background-color: var(--color-secondary);
+  color: #fff;
+}
+
+.ofertas__boton:hover {
+  background-color: #3a2d99;
+  color: #fff;
+}
+
+.ofertas__boton:focus-visible,
+.ofertas__enlace:focus-visible {
+  outline: 3px solid var(--color-text-dark);
+  outline-offset: 3px;
+}
+
+.ofertas__boton-claro:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.ofertas__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #3b2d99;
+  text-decoration: none;
+}
+
+.ofertas__enlace:hover {
+  color: var(--color-text-dark);
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------
+   Texto de apoyo
+   --------------------------------------------------------------- */
+
+.ofertas__apoyo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.ofertas__apoyo p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #45414f; /* 9.4:1 sobre blanco, medido. */
+  margin: 0 0 0.875rem;
+}
+
+/* ---------------------------------------------------------------
+   Listado de ofertas
+   --------------------------------------------------------------- */
+
+.ofertas__seccion {
+  margin-top: 3.5rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid #e8e5f3;
+}
+
+.ofertas__seccion-titulo {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 1.25rem;
+  text-shadow: none;
+}
+
+.ofertas__vacio {
+  padding: 2rem;
+  background-color: #faf9fd;
+  border: 1px dashed #d8d2f2;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.ofertas__vacio-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 0.375rem;
+}
+
+.ofertas__vacio-texto {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #5b5b5b;
+  margin: 0 auto;
+  max-width: 52ch;
+}
+
+.ofertas__rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+/* ---------------------------------------------------------------
+   Una oferta
+   ---------------------------------------------------------------
+   La tarjeta anterior estaba congelada en «cerrada»: llevaba escrito a fuego
+   el `opacity-60`, la etiqueta «YA NO DISPONIBLE», el nombre de la empresa
+   tachado y el botón deshabilitado. Cualquier oferta nueva habría salido así.
+   --------------------------------------------------------------- */
+
+.oferta {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #e0dcf0;
+  border-radius: 12px;
+}
+
+.oferta--cerrada {
+  background-color: #faf9fd;
+}
+
+.oferta__etiqueta {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.oferta__etiqueta--abierta {
+  background-color: #e7f6ee;
+  color: #14663d;
+}
+
+.oferta__etiqueta--cerrada {
+  background-color: #f1f1f4;
+  color: #3d3d3d;
+}
+
+.oferta__puesto {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0.75rem 0 0.25rem;
+  text-shadow: none;
+  text-wrap: pretty;
+}
+
+.oferta--cerrada .oferta__puesto {
+  color: #5b5b5b;
+}
+
+.oferta__empresa {
+  font-size: 0.9375rem;
+  color: #45414f;
+  margin: 0 0 1rem;
+}
+
+.oferta--cerrada .oferta__empresa {
+  color: #6b7280;
+}
+
+.oferta__nota {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: auto 0 0;
+}
+
+.oferta__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: auto;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #3b2d99;
+  text-decoration: none;
+}
+
+.oferta__enlace:hover {
+  color: var(--color-text-dark);
+  text-decoration: underline;
+}
+
+.oferta__enlace:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Empresas
+   ---------------------------------------------------------------
+   Era una tarjeta blanca centrada con sombra, que competía con la banda de la
+   recomendación. Con borde y sin sombra queda al mismo nivel que el resto.
+   --------------------------------------------------------------- */
+
+.ofertas__empresas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  padding: 1.75rem 2rem;
+  border: 2px solid #e0dcf0;
+  border-radius: 16px;
+}
+
+.ofertas__empresas-texto {
+  flex: 1;
+  min-width: 280px;
+}
+
+.ofertas__empresas-titulo {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 0.375rem;
+  text-shadow: none;
+}
+
+.ofertas__empresas-detalle {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #45414f;
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ---------------------------------------------------------------
+   Estados de carga
+   --------------------------------------------------------------- */
+
+.ofertas__cargando {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+  color: #5b5b5b;
+  font-size: 0.9375rem;
+}
+
+.ofertas__error {
+  padding: 1rem;
+  background-color: #fdecea;
+  border-left: 4px solid #a32617;
+  border-radius: 8px;
+  color: #8f2318;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------
+   Adaptación
+   --------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .ofertas__rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .ofertas {
+    padding: calc(var(--fem-header-height, 132px) + 1.5rem) 1rem 3rem;
+  }
+
+  .ofertas__titulo {
+    font-size: 1.9rem;
+  }
+
+  .ofertas__apoyo,
+  .ofertas__rejilla {
+    grid-template-columns: 1fr;
+  }
+
+  .ofertas__banda,
+  .ofertas__empresas {
+    padding: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ofertas__boton,
+  .ofertas__boton-claro,
+  .ofertas__volver {
+    transition: none;
+  }
+}

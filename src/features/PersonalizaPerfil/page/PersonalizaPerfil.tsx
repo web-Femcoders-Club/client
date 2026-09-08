@@ -34,7 +34,7 @@ const explicarFallo = (error: unknown): string => {
   }
 
   if (!error.response) {
-    return "No se pudo contactar con el servidor. Comprueba tu conexión.";
+    return "No hemos podido conectar. Comprueba tu conexión e inténtalo de nuevo.";
   }
 
   const { status, data } = error.response;
@@ -46,18 +46,18 @@ const explicarFallo = (error: unknown): string => {
     return "No tienes permiso para editar este perfil.";
   }
   if (status === 413) {
-    return "La imagen es demasiado grande para el servidor.";
+    return "No hemos podido subir la imagen por su tamaño. Prueba con una imagen más pequeña.";
   }
   if (status === 400) {
     // class-validator devuelve `message` como lista de motivos.
     const motivos = (data as { message?: string | string[] })?.message;
     const detalle = Array.isArray(motivos) ? motivos.join(". ") : motivos;
     return detalle
-      ? `El servidor rechazó los datos: ${detalle}`
-      : "El servidor rechazó los datos del formulario.";
+      ? `Revisa los datos del formulario: ${detalle}`
+      : "Hay datos que necesitan revisión. Comprueba los campos del formulario e inténtalo de nuevo.";
   }
 
-  return `Hubo un problema al guardar (error ${status}). Inténtalo de nuevo.`;
+  return "No hemos podido completar la solicitud. Por favor, inténtalo de nuevo más tarde.";
 };
 
 /*
@@ -124,7 +124,7 @@ const PersonalizaPerfil: React.FC = () => {
       setAviso({
         tono: "error",
         texto:
-          "Parece que no estás logeada correctamente. Vuelve a iniciar sesión.",
+          "No hemos podido reconocer tu sesión. Vuelve a iniciar sesión y entra otra vez aquí.",
       });
     }
   }, []);
@@ -189,7 +189,7 @@ const PersonalizaPerfil: React.FC = () => {
 
   const handleSaveProfile = async () => {
     if (!userData.userId) {
-      setAviso({ tono: "error", texto: "No se encontró el ID del usuario." });
+      setAviso({ tono: "error", texto: "No hemos podido reconocer tu sesión. Vuelve a iniciar sesión." });
       return;
     }
 
@@ -236,7 +236,7 @@ const PersonalizaPerfil: React.FC = () => {
       }
 
       setHayCambios(false);
-      setAviso({ tono: "ok", texto: "Perfil actualizado correctamente." });
+      setAviso({ tono: "ok", texto: "Listo, tu perfil ya está actualizado." });
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       setAviso({ tono: "error", texto: explicarFallo(error) });
@@ -293,12 +293,12 @@ const PersonalizaPerfil: React.FC = () => {
             formulario aparentemente normal y el problema aparecía al pulsar
             Guardar, que es el peor momento para enterarse.
           */}
-          {!puedeGuardar && (
+          {(!userData.userId || cargaFallida) && (
             <p className="perfil__sin-sesion" role="alert">
               <ShieldCheck size={20} aria-hidden="true" />
               {!userData.userId
-                ? "No hemos podido identificar tu sesión, así que los cambios no se pueden guardar. Vuelve a iniciar sesión y entra otra vez aquí."
-                : "No hemos podido cargar tus datos, así que el formulario está vacío y guardarlo borraría lo que tienes. Recarga la página antes de editar nada."}
+                ? "Para editar tu perfil, vuelve a iniciar sesión."
+                : "No hemos podido cargar tu perfil. Recarga la página para volver a intentarlo."}
             </p>
           )}
 
@@ -310,7 +310,7 @@ const PersonalizaPerfil: React.FC = () => {
                 <div>
                   <h2 className="perfil__seccion-titulo">Tu foto</h2>
                   <p className="perfil__seccion-ayuda">
-                    Aparece en tu carnet y junto a tus comentarios.
+                    Es la que se ve en tu carnet y junto a tus comentarios.
                   </p>
                 </div>
               </div>
@@ -361,7 +361,7 @@ const PersonalizaPerfil: React.FC = () => {
                 <div>
                   <h2 className="perfil__seccion-titulo">Tu nombre</h2>
                   <p className="perfil__seccion-ayuda">
-                    Así apareces en la comunidad.
+                    Aquí puedes actualizar tu nombre y apellidos.
                   </p>
                 </div>
               </div>
@@ -410,8 +410,8 @@ const PersonalizaPerfil: React.FC = () => {
                 <div>
                   <h2 className="perfil__seccion-titulo">Género</h2>
                   <p className="perfil__seccion-ayuda">
-                    Decide en qué lista de correo entras. Puedes cambiarlo
-                    cuando quieras.
+                    Puedes elegir la opción con la que te identifiques o
+                    seleccionar «Prefiero no decir».
                   </p>
                 </div>
               </div>
@@ -434,7 +434,7 @@ const PersonalizaPerfil: React.FC = () => {
                     handleInputChange("userGender", e.target.value)
                   }
                   aria-describedby={
-                    generoHeredado ? "generoUsuario-aviso" : undefined
+                    !generoValido ? "generoUsuario-aviso" : undefined
                   }
                 >
                   <option value="" disabled>
@@ -447,14 +447,16 @@ const PersonalizaPerfil: React.FC = () => {
                   ))}
                 </select>
 
-                {generoHeredado && (
+                {!generoValido && (
                   <p
                     id="generoUsuario-aviso"
                     className="perfil__ayuda-campo perfil__ayuda-campo--aviso"
                   >
-                    Lo que hay guardado («{generoGuardado}») ya no es un valor
-                    válido, así que hay que elegir uno de la lista antes de poder
-                    guardar.
+                    {generoHeredado && (
+                      <>Tu selección anterior («{generoGuardado}») ya no aparece en la lista. </>
+                    )}
+                    Para guardar los cambios, selecciona una de las opciones
+                    disponibles. También puedes elegir «Prefiero no decir».
                   </p>
                 )}
               </div>
@@ -467,7 +469,8 @@ const PersonalizaPerfil: React.FC = () => {
                 <div>
                   <h2 className="perfil__seccion-titulo">Teléfono</h2>
                   <p className="perfil__seccion-ayuda">
-                    Solo lo usamos si hace falta contactarte por un evento.
+                    Aquí puedes actualizar tu número de teléfono. Consulta cómo
+                    usamos tus datos al final del formulario.
                   </p>
                 </div>
               </div>
@@ -526,7 +529,7 @@ const PersonalizaPerfil: React.FC = () => {
                   >
                     {hayCambios
                       ? "Tienes cambios sin guardar"
-                      : "Sin cambios sin guardar"}
+                      : "Todo guardado"}
                   </p>
                 )}
 

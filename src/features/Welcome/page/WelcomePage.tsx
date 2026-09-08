@@ -451,8 +451,8 @@ const WelcomePage = () => {
                         aria-label="Sin eventos programados por ahora"
                       />
                     </div>
-                    <p className="text-gray-500 font-medium">No hay eventos programados</p>
-                    <p className="text-sm text-gray-400 mt-1">Te avisaremos cuando tengamos novedades</p>
+                    <p className="text-gray-500 font-medium">Estamos trabajando en los próximos encuentros</p>
+                    <p className="text-sm text-gray-400 mt-1">Estamos preparando nuevas oportunidades para aprender y compartir en comunidad. Aquí encontrarás las novedades.</p>
                   </div>
                 )}
               </div>
