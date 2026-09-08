@@ -4,8 +4,11 @@ import { Comment } from "../types/types";
 const API_URL = import.meta.env.VITE_API_URL;
 
 // Moderar comentarios exige admin desde server#72: hasta entonces aprobar era
-// un GET abierto y rechazar borraba de verdad, sin ninguna sesion. Leer y
-// comentar siguen siendo publicos, asi que solo estas dos llevan cabecera.
+// un GET abierto y rechazar borraba de verdad, sin ninguna sesion.
+//
+// La cabecera va en las tres operaciones de moderacion: listar la cola,
+// aprobar y rechazar. Leer los aprobados y comentar siguen siendo publicos, y
+// deben serlo: son los que se pintan bajo cada entrada del blog.
 const cabeceraDeAuth = () => ({
   Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
 });
@@ -19,11 +22,25 @@ export const getApprovedComments = async (
   return response.data;
 };
 
+/**
+ * La cola de moderacion. Solo para el equipo.
+ *
+ * Son los comentarios que aun no ha aprobado nadie: ahi es donde cae el spam,
+ * un insulto o un dato personal escrito por error. Que esten sin moderar es
+ * justo el motivo por el que no deben servirse a cualquiera.
+ *
+ * El backend tiene el guard preparado pero desactivado a la espera de que este
+ * cliente mande la cabecera (server, comment.controller.ts). Mandarla ahora no
+ * cambia nada mientras el guard siga fuera, y es lo que permite reactivarlo sin
+ * dejar al equipo sin moderar: el orden es cliente desplegado primero,
+ * backend despues. Al reves ya paso una vez y la moderacion estuvo caida horas.
+ */
 export const getPendingComments = async (
   postId?: number
 ): Promise<Comment[]> => {
   const response = await axios.get(`${API_URL}/comments/pending`, {
     params: { postId },
+    headers: cabeceraDeAuth(),
   });
   return response.data;
 };
