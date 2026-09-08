@@ -1,8 +1,11 @@
 name: CI
 
+# `pull_request` sin filtro de rama, a propósito: con `branches: [main]`, una PR
+# apoyada sobre otra rama —el trabajo grande partido en trozos revisables— se
+# queda sin CI y sin que se note, porque GitHub muestra "no checks reported",
+# que se parece bastante a "todavía no ha terminado". Pasó con #95 y #96.
 on:
   pull_request:
-    branches: [main]
   push:
     branches: [main]
 
