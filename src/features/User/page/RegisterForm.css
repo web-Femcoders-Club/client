@@ -137,3 +137,39 @@
     gap: 0;
   }
 }
+
+/* ---------------------------------------------------------------
+   Campos obligatorios
+   ---------------------------------------------------------------
+   El asterisco existía solo en la casilla de privacidad, sin clase y sin
+   leyenda: index.css pinta de coral, en negrita y a 1.5rem todo `span` suelto,
+   así que aquel asterisco salía enorme y nadie sabía qué marcaba.
+
+   El color es el coral oscurecido que ya usa el panel en sus avisos. El de
+   marca (#ea4f33) se queda en 3.71:1 sobre blanco y no llega ni a AA; este da
+   7.38:1. Aquí el fondo del formulario es translúcido, así que el valor real
+   depende de lo que haya detrás — razón de más para no usar el claro.
+   --------------------------------------------------------------- */
+
+.register-page .register-leyenda {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #3d3d3d;
+  text-align: left;
+}
+
+.register-page .register-obligatorio {
+  /* Neutraliza el destacado que index.css da a `span`. */
+  font-size: inherit;
+  font-weight: 700;
+  color: #a32617;
+}
+
+/* El teléfono es el único campo opcional: se dice, en vez de dejar que se
+   deduzca por ausencia de asterisco. Este sí lo lee el lector de pantalla. */
+.register-page .register-opcional {
+  font-size: inherit;
+  font-weight: 400;
+  color: #3d3d3d;
+}
