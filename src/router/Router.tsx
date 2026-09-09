@@ -189,6 +189,10 @@ const SesionInformativaHackBarnaAiSummit26 = lazy(
       "../features/Blog/posts/noticias/SesionInformativaHackBarnaAiSummit26"
     )
 );
+const HackBarnaAiSummit26DesdeDentro = lazy(
+  () =>
+    import("../features/Blog/posts/noticias/HackBarnaAiSummit26DesdeDentro")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -813,6 +817,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <SesionInformativaHackBarnaAiSummit26 />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/hackbarna-ai-summit-26-desde-dentro"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <HackBarnaAiSummit26DesdeDentro />
                 </Suspense>
               </Layout>
             }

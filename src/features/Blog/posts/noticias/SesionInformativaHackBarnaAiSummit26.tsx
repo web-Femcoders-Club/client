@@ -91,6 +91,7 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               image:
                 "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
               datePublished: "2026-08-17T10:00:00Z",
+              dateModified: "2026-09-09T10:00:00Z",
               about: {
                 "@type": "Event",
                 name: "Sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares",
@@ -164,6 +165,58 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         path="/noticias/sesion-informativa-hackbarna-ai-summit-26"
         title="Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA"
       />
+
+      {/* ── Actualización: la sesión ya se celebró y hay grabación ── */}
+      <div
+        style={{
+          backgroundColor: "rgba(71, 55, 187, 0.1)",
+          padding: "25px",
+          borderRadius: "15px",
+          margin: "30px 0",
+          borderLeft: "5px solid #4737bb",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        }}
+      >
+        <h2
+          style={{
+            color: "#6d2c95",
+            marginTop: 0,
+            fontSize: "1.5rem",
+            marginBottom: "15px",
+          }}
+        >
+          Actualización: ya puedes ver la sesión completa
+        </h2>
+        <p>
+          La sesión se celebró el 3 de septiembre y la conversación completa con
+          Lilibeth Bustos Linares ya está disponible en nuestro canal de
+          YouTube. Si no pudiste conectarte en directo, aquí la tienes entera.
+        </p>
+        <br />
+        <p>
+          <a
+            href="https://www.youtube.com/watch?v=pvStyYvl5io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+          >
+            <strong>Ver la grabación de la sesión con Lilibeth Bustos Linares en YouTube</strong>
+          </a>
+        </p>
+        <br />
+        <p>
+          Y desde entonces han pasado más cosas: varias femcoders hemos formado
+          equipo y también participaremos en el hackathon. Lo contamos en{" "}
+          <a
+            href="/noticias/hackbarna-ai-summit-26-desde-dentro"
+            className="highlight-link"
+          >
+            FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también
+            desde dentro
+          </a>
+          .
+        </p>
+      </div>
 
       {/* ── Intro ── */}
       <div className="intro-text">
