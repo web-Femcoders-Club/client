@@ -49,7 +49,7 @@ const FrameworksIntegration: React.FC = () => {
         />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/assets/html/Frameworks-Integracion.png"
+          content="https://www.femcodersclub.com/assets/html/htmlFrameworks.jpg"
         />
         <meta property="og:site_name" content="femCoders Club" />
 
@@ -65,7 +65,7 @@ const FrameworksIntegration: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.femcodersclub.com/assets/html/Frameworks-Integracion.png"
+          content="https://www.femcodersclub.com/assets/html/htmlFrameworks.jpg"
         />
 
         {/* Metadatos de artículo */}

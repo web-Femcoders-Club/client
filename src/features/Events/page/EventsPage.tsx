@@ -96,12 +96,26 @@ const EventsPage = () => {
           content="Descubre los mejores eventos tecnológicos para mujeres en Barcelona. Aprende, conecta y crece profesionalmente con la comunidad líder de mujeres en tech. ¡Únete a nosotras!"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://femcodersclub.com/eventos" />
+        <meta
+          property="og:url"
+          content="https://www.femcodersclub.com/eventos"
+        />
         <meta property="og:site_name" content="FemCoders Club" />
         <meta property="og:locale" content="es_ES" />
+        {/*
+          Apuntaba a `cofundadoras-femCoders-club.webp`, un archivo que no
+          existe: el real es `cofundadoras-femCodersClub.webp` y vive en
+          `public-optimized/`, no en la raíz.
+
+          A quien lo comparte no le cambia nada: `prerenderMeta` solo cubre los
+          posts del blog, así que WhatsApp y LinkedIn reciben el index.html
+          genérico y usan el logo. Esta meta la lee Googlebot, que sí ejecuta
+          JS. Se deja el .jpg y no el .webp por si algún día el prerender cubre
+          esta ruta: WhatsApp aún no previsualiza WebP en `og:image`.
+        */}
         <meta
           property="og:image"
-          content="https://femcodersclub.com/cofundadoras-femCoders-club.webp"
+          content="https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg"
         />
         <meta
           property="og:image:alt"
@@ -121,7 +135,7 @@ const EventsPage = () => {
         <meta name="twitter:site" content="@FemCodersClub" />
         <meta
           name="twitter:image"
-          content="https://femcodersclub.com/cofundadoras-femCoders-club.webp"
+          content="https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg"
         />
         <meta name="twitter:creator" content="@FemCodersClub" />
 
