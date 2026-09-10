@@ -5,6 +5,7 @@ import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
 import { articleSchema } from "../../components/articleSchema";
+import { urlAbsoluta } from "../../components/siteUrl";
 
 const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
   const postId = 47;
@@ -95,6 +96,11 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               about: {
                 "@type": "Event",
                 name: "Sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares",
+                // El `image` del artículo no lo hereda el evento: Google valida
+                // el `Event` como entidad independiente de quien lo contiene.
+                image: urlAbsoluta(
+                  "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg"
+                ),
                 description:
                   "Sesión online y gratuita con Lilibeth Bustos Linares, ganadora del AI Summit Hackathon Barcelona 2025, para contar cómo se vive un hackathon de IA desde dentro.",
                 startDate: "2026-09-03T19:30:00+02:00",
@@ -115,6 +121,17 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
                 performer: {
                   "@type": "Person",
                   name: "Lilibeth Bustos Linares",
+                },
+                // Era gratuita, y eso se dice con `price: "0"`, no callándolo.
+                // `SoldOut` en vez de `InStock` porque la sesión ya se celebró:
+                // marcarla disponible sería anunciar una inscripción cerrada.
+                offers: {
+                  "@type": "Offer",
+                  url: "https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516",
+                  price: "0",
+                  priceCurrency: "EUR",
+                  availability: "https://schema.org/SoldOut",
+                  validThrough: "2026-09-03T19:30:00+02:00",
                 },
               },
               keywords: [

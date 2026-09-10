@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>FemCoders Club se une al Vonage Community Partnership Program</h2>
+            <p className="intro-text">
+              Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar, y un ecosistema internacional al que acercarnos...
+            </p>
+          </div>
+          <Link to="/noticias/vonage-community-partnership-program" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro</h2>
             <p className="intro-text">
               Volvemos como Community Partner y este año vamos un poco más allá: varias femcoders hemos formado equipo y también participaremos en el hackathon. 19 y 20 de septiembre en Norrsken House Barcelona...

@@ -142,6 +142,10 @@ const EventsPage = () => {
             description:
               "Serie de eventos tecnológicos para mujeres organizados por FemCoders Club, la comunidad líder de mujeres en tecnología en Barcelona",
             url: "https://www.femcodersclub.com/eventos",
+            // Sin `image`, Search Console avisa de que falta un campo
+            // recomendado: `EventSeries` hereda de `Event` y se valida igual.
+            image:
+              "https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg",
             location: {
               "@type": "Place",
               name: "Barcelona, España",

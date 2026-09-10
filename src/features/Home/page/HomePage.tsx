@@ -451,6 +451,18 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "21",
+      title: "FemCoders Club se une al Vonage Community Partnership Program",
+      description:
+        "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers. Sus APIs de voz, vídeo, mensajería y verificación son tecnología con la que podemos experimentar, y esta colaboración nos acerca a un ecosistema internacional. Ya estamos trabajando en las primeras iniciativas.",
+      image: "/assets/noticias/vonage-femcodersclub.jpg",
+      imageAlt: "Vonage x fem Coders Club, colaboración para impulsar a las mujeres en tecnología. Los logotipos de Vonage —part of Ericsson— y de FemCoders Club sobre un fondo con una red de nodos y la silueta de un rostro de mujer formada por circuitos",
+      aiGenerated: true,
+      date: "10 Septiembre 2026",
+      category: "Noticias",
+      link: "/noticias/vonage-community-partnership-program",
+    },
+    {
       id: "20",
       title: "FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro",
       description:
@@ -473,18 +485,6 @@ const HomePage: React.FC = () => {
       category: "Noticias",
       link: "https://www.youtube.com/watch?v=pvStyYvl5io",
       linkLabel: "Ver la grabación en YouTube",
-    },
-    {
-      id: "17",
-      title: "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
-      description:
-        "Repetimos como community partner del hackathon de inteligencia artificial de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers y 48 horas para construir.",
-      image: "/assets/noticias/hackbarna-ai-summit-26.png",
-      imageAlt: "FemCoders Club, community partner de HackBarna AI Summit 26, hackathon de inteligencia artificial en Norrsken House Barcelona",
-      aiGenerated: true,
-      date: "7 Agosto 2026",
-      category: "Noticias",
-      link: "/noticias/hackbarna-ai-summit-26",
     },
     {
       id: "16",

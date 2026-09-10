@@ -446,6 +446,14 @@ const BlogPage: React.FC = () => {
   description: "Volvemos como Community Partner y este año vamos un poco más allá: varias femcoders hemos formado equipo y también participaremos en el hackathon. 19 y 20 de septiembre en Norrsken House Barcelona.",
   createdAt: new Date("2026-09-09"),
 },
+{
+  id: 49,
+  type: "noticia",
+  category: "femCoders",
+  title: "FemCoders Club se une al Vonage Community Partnership Program",
+  description: "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar, y un ecosistema internacional al que acercarnos.",
+  createdAt: new Date("2026-09-10"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -566,6 +574,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/sesion-informativa-hackbarna-ai-summit-26`;
  case "FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro":
   return `/noticias/hackbarna-ai-summit-26-desde-dentro`;
+ case "FemCoders Club se une al Vonage Community Partnership Program":
+  return `/noticias/vonage-community-partnership-program`;
       default:
         return `/`;
     }

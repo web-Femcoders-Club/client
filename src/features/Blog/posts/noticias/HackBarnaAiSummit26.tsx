@@ -6,6 +6,7 @@ import "../../page/PostStyles.css";
 
 import ShareButtons from "../../components/ShareButtons";
 import { articleSchema } from "../../components/articleSchema";
+import { urlAbsoluta } from "../../components/siteUrl";
 
 const HackBarnaAiSummit26: React.FC = () => {
   const postId = 46;
@@ -94,6 +95,9 @@ const HackBarnaAiSummit26: React.FC = () => {
               about: {
                 "@type": "Event",
                 name: "HackBarna AI Summit 26",
+                // El `image` del artículo no lo hereda el evento: Google valida
+                // el `Event` como entidad independiente de quien lo contiene.
+                image: urlAbsoluta("/assets/noticias/hackbarna-ai-summit-26.png"),
                 description:
                   "Tercera edición del hackathon de inteligencia artificial de Barcelona, con más de 200 hackers y 48 horas para construir un proyecto funcional.",
                 startDate: "2026-09-19T09:00:00+02:00",
@@ -116,6 +120,20 @@ const HackBarnaAiSummit26: React.FC = () => {
                   name: "HackBarna",
                   url: "https://www.hackbcn.com/en",
                 },
+                // Un evento gratuito no se declara omitiendo `offers`, sino con
+                // `price: "0"`: sin esto, un buscador no lee «gratis», lee «no
+                // se sabe el precio».
+                offers: {
+                  "@type": "Offer",
+                  url: "https://www.hackbcn.com/en/events/aisummit26",
+                  price: "0",
+                  priceCurrency: "EUR",
+                  availability: "https://schema.org/InStock",
+                },
+                // Sin `performer` a propósito: los jueces y mentoras los anuncia
+                // HackBarna en su web, y no son un dato nuestro que podamos
+                // sostener aquí. Search Console lo seguirá pidiendo — es un
+                // aviso no crítico, y preferimos el hueco al dato inventado.
               },
               keywords: [
                 "HackBarna AI Summit 26",
