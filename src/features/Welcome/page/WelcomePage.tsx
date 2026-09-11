@@ -58,7 +58,15 @@ const WelcomePage = () => {
   const [emojiMenuOpen, setEmojiMenuOpen] = useState(false);
   const [emojiStats, setEmojiStats] = useState<{ [key: string]: number }>({});
 
-  const displayName = userName || localStorage.getItem("userName") || "Usuario";
+  // El respaldo miraba solo en localStorage, pero LoginForm escribe el nombre en
+  // sessionStorage: al recargar /welcome se perdía el `location.state` y el
+  // saludo decía «Usuario». Con la pantalla de preferencias (#101) esto pasa
+  // siempre, porque se llega a /welcome por redirección y sin estado.
+  const displayName =
+    userName ||
+    sessionStorage.getItem("userName") ||
+    localStorage.getItem("userName") ||
+    "Usuario";
 
   const defaultAchievement = {
     id: 0,

@@ -48,6 +48,24 @@
   box-sizing: border-box;
   font-family: var(--font-primary);
 }
+
+/*
+ * Indicador de foco para las pantallas de fuera del panel (#101).
+ *
+ * El navegador recibe Tailwind v2 por CDN mientras el código escribe sintaxis
+ * v3: `focus:outline-none` existe en v2 y `focus:ring-2` NO, así que el patrón
+ * habitual deja controles sin ningún indicador de foco. Es el origen de #92.
+ *
+ * El panel ya tenía la suya (`.admin-focus`, en admin-ui.css); esta es la
+ * equivalente para el resto del sitio. Cuando se arregle la versión de Tailwind,
+ * las dos pueden desaparecer juntas.
+ */
+.foco-visible:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .parallax {
   min-height: 100vh;
   display: flex;

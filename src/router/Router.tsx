@@ -7,6 +7,7 @@ import PrivacyPolicyModal from "../components/Footer/Modals/Privacidad";
 import Layout from "../components/Layout/Layout";
 import Loader from "../components/Loader";
 import ProtectedRoute from "./ProtectedRoute";
+import ExigeRespuesta from "../features/Preferencias/components/ExigeRespuesta";
 import { ModalContext } from "../context/ModalContext";
 import AboutPage from "../features/About/page/AboutPage";
 import CssGrid from "../features/Blog/posts/recursos/css/CssGrid";
@@ -52,6 +53,9 @@ const HtmlAvanzado = lazy(
   () => import("../features/Blog/posts/recursos/html/HtmlAvanzado")
 );
 const WelcomePage = lazy(() => import("../features/Welcome/page/WelcomePage"));
+const PreferenciasPage = lazy(
+  () => import("../features/Preferencias/page/PreferenciasPage")
+);
 const Bienvenido2025 = lazy(
   () => import("../features/Blog/posts/noticias/Bienvenido2025")
 );
@@ -408,11 +412,26 @@ const RouterComponent: React.FC = () => {
               </Layout>
             }
           />
+          {/*
+            `ExigeRespuesta` manda a la pantalla de preferencias a quien todavía
+            no ha contestado (#101). Envuelve la ruta y no el login, para atrapar
+            también a quien llega por una URL guardada o recarga la página.
+          */}
           <Route
             path="/welcome"
             element={
+              <ExigeRespuesta>
+                <Layout>
+                  <WelcomePage />
+                </Layout>
+              </ExigeRespuesta>
+            }
+          />
+          <Route
+            path="/bienvenida/preferencias"
+            element={
               <Layout>
-                <WelcomePage />
+                <PreferenciasPage />
               </Layout>
             }
           />

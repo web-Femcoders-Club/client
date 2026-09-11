@@ -473,6 +473,14 @@ export interface ConsentContact {
   registeredAt: string;
   acceptedPrivacyAt: string | null;
   marketingConsent: boolean;
+  /** Consentimiento por finalidad (server#130). */
+  consentEventos: boolean;
+  consentNewsletter: boolean;
+  /**
+   * Cuándo respondió, sea lo que sea que respondiera. `null` significa que
+   * nunca se le preguntó, que NO es lo mismo que haber dicho que no.
+   */
+  consentRespondidoEn: string | null;
   unsubscribed: boolean;
   unsubscribedAt: string | null;
   unsubscribeSource: string | null;
@@ -484,9 +492,47 @@ export interface ConsentOverviewResponse {
     withPrivacyConsent: number;
     withMarketingConsent: number;
     unsubscribed: number;
+    /** Claves nuevas de server#130. */
+    respondieron: number;
+    rechazaron: number;
+    sinResponder: number;
+    conConsentEventos: number;
+    conConsentNewsletter: number;
   };
   contacts: ConsentContact[];
   externalUnsubscribes: UnsubscribedEmailRecord[];
+}
+
+/* ---------------------------------------------------------------
+   Pantalla de preferencias de comunicación (#101, server#130)
+   --------------------------------------------------------------- */
+
+/**
+ * Los textos los sirve el backend y no viven en el JSX: guardar la versión que
+ * aceptó cada persona solo sirve si esa versión apunta a un texto que alguien
+ * pueda leer después.
+ */
+export interface TextosDeConsentimiento {
+  titulo: string;
+  introduccion: string;
+  eventos: string;
+  newsletter: string;
+  nota: string;
+}
+
+export interface EstadoDeConsentimiento {
+  /** `false` es lo que hace que se muestre la pantalla. */
+  yaRespondio: boolean;
+  respondidoEn: string | null;
+  eventos: boolean;
+  newsletter: boolean;
+  version: string;
+  textos: TextosDeConsentimiento;
+}
+
+export interface DecisionDeConsentimiento {
+  eventos: boolean;
+  newsletter: boolean;
 }
 
 /* ---------------------------------------------------------------

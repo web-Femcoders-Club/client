@@ -1,0 +1,181 @@
+/*
+ * Pantalla de preferencias de comunicación (#101).
+ *
+ * CSS a mano y no clases de Tailwind: el navegador recibe Tailwind v2 por CDN
+ * (index.html) mientras el código escribe sintaxis v3, así que buena parte de
+ * las clases v3 no generan ninguna regla — es el origen de #92. Aquí se escribe
+ * con las variables del design system de index.css, que sí existen siempre.
+ *
+ * Contraste (calculado sobre blanco, pendiente de medir con herramienta):
+ *   --color-text-dark #2a2170 → ~13.5:1
+ *   --color-secondary #4737bb → ~8.3:1
+ * Los dos pasan AAA (7:1). El naranja de marca (#ea4f33) NO se usa para texto
+ * ni como fondo de botón: sobre blanco ronda 3:1 y no llega ni a AA.
+ */
+
+.preferencias {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) var(--spacing-sm);
+  font-family: var(--font-primary);
+}
+
+.preferencias__tarjeta {
+  width: 100%;
+  max-width: 40rem;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+}
+
+/*
+ * index.css lleva una regla global `span { color: var(--color-primary) }` que es
+ * de marca y no se toca. Sin acotarla aquí, cada etiqueta de casilla saldría
+ * naranja sobre blanco: ~3:1, por debajo incluso de AA. Se limita al ámbito de
+ * esta pantalla en vez de tocar la global (#82).
+ */
+.preferencias span {
+  color: inherit;
+}
+
+.preferencias__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--color-text-dark);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.preferencias__intro {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md);
+}
+
+.preferencias__grupo {
+  border: none;
+  margin: 0 0 var(--spacing-md);
+  padding: 0;
+}
+
+.preferencias__leyenda {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-xs);
+  padding: 0;
+}
+
+.preferencias__opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  /* Área de pulsación holgada: la casilla sola no llega a 44x44 (WCAG 2.5.5). */
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.preferencias__opcion:hover {
+  background: rgba(71, 55, 187, 0.06);
+}
+
+.preferencias__casilla {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.preferencias__etiqueta {
+  color: var(--color-text-dark);
+  line-height: 1.5;
+}
+
+.preferencias__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+/*
+ * Los dos botones comparten TODO menos el relleno: mismo tamaño, misma
+ * tipografía, mismo peso, misma altura mínima. Destacar uno empujaría hacia una
+ * respuesta concreta y el consentimiento dejaría de ser libre (art. 7.4).
+ */
+.preferencias__boton {
+  flex: 1 1 14rem;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.preferencias__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.preferencias__boton--guardar {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: 2px solid var(--color-secondary);
+}
+
+.preferencias__boton--guardar:hover:not(:disabled) {
+  background-color: #372a94;
+  border-color: #372a94;
+}
+
+.preferencias__boton--ninguna {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  /* El borde lleva el color de marca: 8.3:1 sobre blanco, muy por encima del
+     3:1 que pide 1.4.11 para elementos no textuales. */
+  border: 2px solid var(--color-secondary);
+}
+
+.preferencias__boton--ninguna:hover:not(:disabled) {
+  background-color: rgba(71, 55, 187, 0.08);
+}
+
+.preferencias__nota {
+  margin: var(--spacing-md) 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  line-height: 1.5;
+}
+
+.preferencias__error {
+  background: #fdecea;
+  border: 1px solid #c0392b;
+  /* #a03123 sobre #fdecea ronda 7:1. El --color-error del design system es el
+     naranja de marca y aquí no llegaría. */
+  color: #a03123;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0 0 var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .preferencias__tarjeta {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .preferencias__titulo {
+    font-size: 1.5rem;
+  }
+
+  /* En una sola columna los dos botones ocupan lo mismo, que es justo lo que no
+     puede perderse al estrechar la pantalla. */
+  .preferencias__boton {
+    flex: 1 1 100%;
+  }
+}
