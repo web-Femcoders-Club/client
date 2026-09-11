@@ -1,0 +1,166 @@
+/*
+ * Bloques de Vonage en /welcome (#102).
+ *
+ * CSS a mano por el mismo motivo que la pantalla de preferencias: el navegador
+ * recibe Tailwind v2 por CDN mientras el código escribe sintaxis v3, así que
+ * buena parte de las clases v3 no generan regla (#92).
+ *
+ * Contraste sobre blanco (calculado, pendiente de medir con herramienta):
+ *   --color-text-dark #2a2170 → ~13.5:1
+ *   --color-secondary #4737bb → ~8.3:1
+ * Los dos pasan AAA. El naranja de marca (#ea4f33) no se usa para texto: sobre
+ * blanco ronda 3:1 y no llega ni a AA.
+ */
+
+.vonage {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+/*
+ * index.css lleva `span { color: var(--color-primary) }`, que es de marca y no
+ * se toca. Sin acotarlo aquí, todas las etiquetas saldrían naranjas sobre
+ * blanco y se quedarían por debajo de AA (#82).
+ */
+.vonage span {
+  color: inherit;
+}
+
+.vonage__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-text-dark);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.vonage__texto {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vonage__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.vonage__codigo {
+  font-family: "Courier New", monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dark);
+  background: rgba(71, 55, 187, 0.08);
+  border: 2px dashed var(--color-secondary);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  /* Para que se pueda seleccionar a mano si el portapapeles no está disponible. */
+  user-select: all;
+  word-break: break-all;
+}
+
+.vonage__boton {
+  min-height: 44px; /* WCAG 2.5.5 */
+  padding: 0.7rem 1.25rem;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.vonage__boton:hover:not(:disabled) {
+  background-color: #372a94;
+  border-color: #372a94;
+}
+
+.vonage__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/*
+ * El aviso de copiado ocupa su sitio siempre, aunque esté vacío: si apareciera
+ * y desapareciera, el contenido de debajo daría un salto cada vez que se copia.
+ */
+.vonage__copiado {
+  min-height: 1.5rem;
+  margin: var(--spacing-xs) 0 0;
+  font-size: 0.9rem;
+  color: #15803d; /* ~4.8:1 sobre blanco; es texto de apoyo, no la única señal */
+}
+
+.vonage__form {
+  margin-top: var(--spacing-sm);
+}
+
+.vonage__grupo {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md);
+}
+
+.vonage__leyenda {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-xs);
+  padding: 0;
+  line-height: 1.4;
+}
+
+.vonage__opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  /* Área de pulsación holgada: el control solo no llega a 44x44. */
+  padding: 0.6rem 0.4rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.vonage__opcion:hover {
+  background: rgba(71, 55, 187, 0.06);
+}
+
+.vonage__control {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.vonage__etiqueta {
+  color: var(--color-text-dark);
+  line-height: 1.5;
+}
+
+.vonage__mensaje,
+.vonage__error {
+  background: #fdecea;
+  border: 1px solid #c0392b;
+  color: #a03123;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0 0 var(--spacing-sm);
+}
+
+@media (max-width: 480px) {
+  .vonage__boton {
+    width: 100%;
+  }
+
+  .vonage__codigo {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -21,6 +21,8 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
 import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
+import CodigoVonage from "../components/CodigoVonage";
+import InteresEnApis from "../components/InteresEnApis";
 import "./WelcomePage.css";
 
 /*
@@ -328,6 +330,15 @@ const WelcomePage = () => {
       <div className="flex-1 min-w-0 p-4 lg:p-8">
         <div className="max-w-6xl mx-auto welcome-columna">
           {bandaPersonal}
+
+          {/*
+            Ninguno de los dos recibe nada del consentimiento, y es a propósito:
+            si el código dependiera de haber aceptado las comunicaciones, ese
+            consentimiento dejaría de ser libre y no valdría (RGPD art. 7.4).
+            Se llega aquí habiendo respondido lo que sea.
+          */}
+          <CodigoVonage />
+          <InteresEnApis />
 
           <header className="mb-8 lg:mb-12">
             <h2>

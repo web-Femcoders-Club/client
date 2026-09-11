@@ -536,6 +536,34 @@ export interface DecisionDeConsentimiento {
 }
 
 /* ---------------------------------------------------------------
+   Proyecto con las APIs de Vonage (#102, server#131)
+   --------------------------------------------------------------- */
+
+/** Vocabulario cerrado: el backend valida contra estas mismas listas. */
+export type RespuestaProyecto = "si" | "no" | "me-lo-pienso";
+export type RespuestaHoras = "1-2" | "3-5" | "mas" | "ahora-no";
+export type ApiDeVonage =
+  | "sms"
+  | "voz"
+  | "video"
+  | "verificacion"
+  | "whatsapp"
+  | "aun-no-lo-se";
+
+export interface RespuestaDeInteres {
+  quiereProyecto: RespuestaProyecto;
+  horasSemana: RespuestaHoras;
+  apis: ApiDeVonage[];
+}
+
+export interface InteresEnApis extends RespuestaDeInteres {
+  id: number;
+  idUser: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/* ---------------------------------------------------------------
    Listas de correo por género (#13, backend server#16)
    --------------------------------------------------------------- */
 

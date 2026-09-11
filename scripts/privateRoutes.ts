@@ -14,6 +14,9 @@ export const PRIVATE_ROUTES = [
   "/mentoria",
   "/enviar-documentacion",
   "/welcome",
+  // La pantalla de consentimiento solo tiene sentido dentro de una sesión, y en
+  // el sitemap invitaría a Google a indexar un formulario privado (#102).
+  "/bienvenida",
   "/forgot-password",
   "/reset-password",
   "/admin",
