@@ -9,6 +9,24 @@ const formatDate = (value: string | null) =>
   value ? new Date(value).toLocaleDateString("es-ES") : "—";
 
 /**
+ * Sí/No de una finalidad concreta.
+ *
+ * El color no es la única señal: el texto ya distingue los dos estados, para
+ * quien no percibe la diferencia entre el verde y el gris (WCAG 1.4.1).
+ */
+const Preferencia: React.FC<{ acepta: boolean }> = ({ acepta }) => (
+  <span
+    className={
+      acepta
+        ? "px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800"
+        : "px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600"
+    }
+  >
+    {acepta ? "Sí" : "No"}
+  </span>
+);
+
+/**
  * Contactos por página. La lista completa hacía la vista inmanejable: con más
  * de cien filas, encontrar a una persona concreta exigía recorrerla entera.
  */
@@ -73,11 +91,19 @@ const ConsentOverview: React.FC = () => {
     paginaActual * POR_PAGINA
   );
 
+  /*
+   * «Sin responder» y «Han dicho que no» se cuentan por separado a propósito:
+   * hasta server#130 eran el mismo dato, y son situaciones opuestas. A quien
+   * dijo que no no se le escribe porque lo pidió; a quien no ha respondido, es
+   * que todavía no se le ha preguntado, y sigue en la lista de pendientes.
+   */
   const summaryCards = [
     { label: "Usuarias registradas", value: data.summary.totalUsers },
-    { label: "Con privacidad aceptada", value: data.summary.withPrivacyConsent },
-    { label: "Con opt-in de marketing", value: data.summary.withMarketingConsent },
+    { label: "Sin responder", value: data.summary.sinResponder },
+    { label: "Han dicho que no", value: data.summary.rechazaron },
     { label: "Bajas totales", value: data.summary.unsubscribed },
+    { label: "Quieren eventos", value: data.summary.conConsentEventos },
+    { label: "Quieren newsletter", value: data.summary.conConsentNewsletter },
   ];
 
   return (
@@ -138,8 +164,9 @@ const ConsentOverview: React.FC = () => {
             columns={[
               "Contacto",
               "Alta",
-              "Privacidad aceptada",
-              "Marketing",
+              "Respondió",
+              "Eventos",
+              "Newsletter",
               "Baja",
             ]}
             caption="Estado de consentimiento por contacto"
@@ -156,23 +183,23 @@ const ConsentOverview: React.FC = () => {
                     <td className="p-4 text-sm text-gray-600">
                       {formatDate(c.registeredAt)}
                     </td>
+                    {/*
+                      «Sin responder» en ámbar y no en gris: es lo único que
+                      queda por hacer en esta tabla, y tiene que verse de un
+                      vistazo cuál falta.
+                    */}
                     <td className="p-4 text-sm text-gray-600">
-                      {c.acceptedPrivacyAt ? (
-                        formatDate(c.acceptedPrivacyAt)
+                      {c.consentRespondidoEn ? (
+                        formatDate(c.consentRespondidoEn)
                       ) : (
-                        <span className="text-amber-700">Sin registro</span>
+                        <span className="text-amber-700">Sin responder</span>
                       )}
                     </td>
                     <td className="p-4 text-sm">
-                      {c.marketingConsent ? (
-                        <span className="px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
-                          Sí
-                        </span>
-                      ) : (
-                        <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-                          No
-                        </span>
-                      )}
+                      <Preferencia acepta={c.consentEventos} />
+                    </td>
+                    <td className="p-4 text-sm">
+                      <Preferencia acepta={c.consentNewsletter} />
                     </td>
                     <td className="p-4 text-sm">
                       {c.unsubscribed ? (

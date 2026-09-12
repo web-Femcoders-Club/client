@@ -1,0 +1,231 @@
+/*
+ * Pantalla de preferencias de comunicación (#101).
+ *
+ * CSS a mano y no clases de Tailwind: el navegador recibe Tailwind v2 por CDN
+ * (index.html) mientras el código escribe sintaxis v3, así que buena parte de
+ * las clases v3 no generan ninguna regla — es el origen de #92. Aquí se escribe
+ * con las variables del design system de index.css, que sí existen siempre.
+ *
+ * Contraste (calculado sobre blanco, pendiente de medir con herramienta):
+ *   --color-text-dark #2a2170 → ~13.5:1
+ *   --color-secondary #4737bb → ~8.3:1
+ * Los dos pasan AAA (7:1). El naranja de marca (#ea4f33) NO se usa para texto
+ * ni como fondo de botón: sobre blanco ronda 3:1 y no llega ni a AA. Solo
+ * aparece como filete bajo el título, donde 1.4.11 admite 3:1 por no ser texto.
+ */
+
+/*
+ * La cabecera del sitio es fija, así que el contenido tiene que arrancar por
+ * debajo de ella. `--fem-header-height` la publica Header.tsx midiéndola con un
+ * ResizeObserver; los 132px son el respaldo por si aún no se ha medido.
+ *
+ * Antes esto centraba la tarjeta con `align-items: center` sobre un `min-height`
+ * y el título quedaba literalmente debajo de la cabecera. Es el mismo patrón que
+ * ya usan ComunityHub, materiales y ofertas-de-trabajo.
+ */
+.preferencias {
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--fem-header-height, 132px) + 2rem) var(--spacing-sm) 4rem;
+  font-family: var(--font-primary);
+}
+
+.preferencias__tarjeta {
+  width: 100%;
+  max-width: 35rem;
+  height: fit-content;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  /* La misma sombra que `.form-card`, para que se lea como el resto de
+     formularios del sitio: login, contacto y registro. */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: var(--spacing-lg);
+}
+
+/*
+ * index.css lleva una regla global `span { color: var(--color-primary);
+ * font-weight: bold; font-size: 1.5rem }` que es de marca y no se toca.
+ *
+ * Hay que neutralizar las TRES propiedades, no solo el color: con el tamaño y
+ * el peso puestos, las etiquetas de las casillas salían a 24px en negrita y
+ * parecían titulares, por encima del propio título de la pantalla. Se acota
+ * aquí dentro en vez de tocar la global (#82).
+ */
+.preferencias span {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.preferencias__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.875rem;
+  line-height: 1.2;
+  color: var(--color-secondary);
+  margin: 0 0 0.625rem;
+  /* El h1 global lleva una doble sombra pensada para los titulares grandes de
+     las portadas. A este tamaño y sobre blanco solo emborrona el trazo. */
+  text-shadow: none;
+}
+
+/* Acento de marca, puramente decorativo: por eso es un elemento vacío y va
+   marcado como aria-hidden en el componente. */
+.preferencias__filete {
+  width: 3.5rem;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  margin-bottom: 1.125rem;
+}
+
+.preferencias__intro {
+  color: var(--color-text-dark);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 1.625rem;
+}
+
+.preferencias__grupo {
+  border: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+}
+
+.preferencias__leyenda {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 0.625rem;
+  padding: 0;
+}
+
+.preferencias__opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.preferencias__opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  /* Área de pulsación holgada: la casilla sola no llega a 44x44 (WCAG 2.5.5). */
+  padding: 0.875rem 1rem;
+  /* El mismo lila de fondo que `.form-group input`, y un borde derivado del
+     violeta de marca en lugar de un gris nuevo que no está en el sistema. */
+  background: #f7f4fa;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.preferencias__opcion:hover {
+  background: #f2edf9;
+  border-color: rgba(71, 55, 187, 0.4);
+}
+
+.preferencias__casilla {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.preferencias__etiqueta {
+  color: var(--color-text-dark);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.preferencias__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/*
+ * Los dos botones comparten TODO menos el relleno: mismo tamaño, misma
+ * tipografía, mismo peso, misma altura mínima y el mismo borde de 2px.
+ *
+ * No es una preferencia estética. Destacar uno empujaría hacia una respuesta
+ * concreta, y un consentimiento empujado no es libre (RGPD art. 7.4): dejaría
+ * de valer, y con él todos los que recoja esta pantalla.
+ */
+.preferencias__boton {
+  flex: 1 1 13rem;
+  min-height: 46px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.preferencias__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.preferencias__boton--guardar {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.preferencias__boton--guardar:hover:not(:disabled) {
+  background-color: #372a94;
+  border-color: #372a94;
+}
+
+.preferencias__boton--ninguna {
+  background-color: #ffffff;
+  color: var(--color-secondary);
+}
+
+.preferencias__boton--ninguna:hover:not(:disabled) {
+  background-color: #f2edf9;
+}
+
+.preferencias__nota {
+  margin: 1.25rem 0 0;
+  font-size: 0.84375rem;
+  color: var(--color-text-dark);
+  line-height: 1.55;
+}
+
+.preferencias__error {
+  background: #fdecea;
+  border: 1px solid #c0392b;
+  /* #a03123 sobre #fdecea ronda 7:1. El --color-error del design system es el
+     naranja de marca y aquí no llegaría. */
+  color: #a03123;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0 0 var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .preferencias {
+    padding: calc(var(--fem-header-height, 132px) + 1.25rem) var(--spacing-sm) 3rem;
+  }
+
+  .preferencias__tarjeta {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .preferencias__titulo {
+    font-size: 1.625rem;
+  }
+
+  /* En una sola columna los dos botones siguen ocupando lo mismo, que es justo
+     lo que no puede perderse al estrechar la pantalla. */
+  .preferencias__boton {
+    flex: 1 1 100%;
+  }
+}
