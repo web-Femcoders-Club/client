@@ -128,12 +128,26 @@
   }
 }
 
+/*
+  Ahora es un <button>, así que hay que apagarle el aspecto de botón del
+  navegador. El tamaño mínimo no es decorativo: las tres rayas miden 2px de alto
+  cada una y el área pulsable venía siendo esa, un blanco de 24x2 px. 44x44 es el
+  mínimo de WCAG 2.5.5 y lo que hace falta para acertarle con el pulgar.
+*/
 .menu-toggle {
   display: none;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
 }
 
+/* Pasó de <div> a <span>, que es inline y se saltaría el ancho y el alto. */
 .menu-icon {
+  display: block;
   width: 24px;
   height: 2px;
   background-color: white;
@@ -377,8 +391,10 @@
 }
 
 @media (max-width: 768px) {
+  /* `grid` y no `block` para que el `place-items: center` centre las rayas
+     dentro del área pulsable de 44x44. */
   .menu-toggle {
-    display: block;
+    display: grid;
   }
 
   .nav-links {
@@ -392,7 +408,20 @@
     background: linear-gradient(to right, #6d2c95, #4737bb);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    /*
+      `max-height: 0` esconde los enlaces a la vista pero no al teclado: seguían
+      recibiendo el Tab estando invisibles, así que el foco desaparecía de la
+      pantalla durante cinco pulsaciones. Ahora que el botón declara
+      `aria-expanded="false"` la contradicción sería doble: dice que el menú está
+      cerrado y su contenido sigue ahí.
+
+      `visibility: hidden` sí saca los enlaces del orden de tabulación. El retardo
+      en la transición es lo que deja terminar la animación de cierre antes de
+      ocultarlos; al abrir se aplica al instante.
+    */
+    visibility: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease,
+      visibility 0s linear 0.3s;
     padding: 0 16px;
   }
 
@@ -402,8 +431,27 @@
     animation: logo-breathe 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
   
+  /*
+    Mismo fallo que ya se corrigió en `.auth-buttons.open`, pero escondido: los
+    cinco enlaces caben en 200px solo mientras la letra tenga su tamaño normal.
+    `.nav-link` es inline, así que su altura la marca la línea de texto; al subir
+    el zoom al 200% —o al agrandar la letra desde el sistema— la lista pasa de
+    200px y `overflow: hidden` recorta los últimos enlaces sin dejar ninguna
+    señal de que están ahí.
+
+    El tope pasa a ser relativo a la altura de la pantalla, que es lo que de
+    verdad limita, y el desbordamiento a `auto`: si algún día no cabe, se hace
+    scroll dentro del menú en vez de desaparecer.
+
+    Pendiente de mirar con la web abierta: `.auth-buttons` se coloca en
+    `top: calc(100% + 160px)`, un número escrito a mano que da por hecha la
+    altura de esta lista. Con el zoom alto se solapan.
+  */
   .nav-links.open {
-    max-height: 200px;
+    max-height: min(70vh, 500px);
+    overflow-y: auto;
+    visibility: visible;
+    transition: max-height 0.3s ease, padding 0.3s ease, visibility 0s;
   }
 
   .nav-link {
@@ -427,7 +475,11 @@
     max-height: 0;
     overflow: hidden;
     background: linear-gradient(to right, #6d2c95, #4737bb);
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    /* Mismo motivo que en `.nav-links`: sin esto, el botón de iniciar sesión
+       (o el avatar) recibe el foco con el menú cerrado. */
+    visibility: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease,
+      visibility 0s linear 0.3s;
     margin-top: 1.9rem;
     padding: 0 16px;
   }
@@ -439,6 +491,8 @@
   */
   .auth-buttons.open {
     max-height: 340px;
+    visibility: visible;
+    transition: max-height 0.3s ease, padding 0.3s ease, visibility 0s;
   }
 
   .logout-button {

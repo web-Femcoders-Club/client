@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../Footer.css";
 import BackToTop from "../../ui/BackToTop";
+import { useDialogoModal } from "../../../hooks/useDialogoModal";
 
 interface FaqModalProps {
   closeModal: () => void;
@@ -9,6 +10,7 @@ interface FaqModalProps {
 const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+  useDialogoModal(contentRef, closeModal);
 
   const faqs: { question: string; answer: React.ReactNode[] }[] = [
     {
@@ -130,28 +132,60 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content" ref={contentRef}>
+      {/*
+        Los otros tres modales ya se declaraban como diálogo; este no, así que
+        para el lector de pantalla era un montón de texto suelto sin principio
+        ni nombre.
+      */}
+      <div
+        className="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="faq-title"
+        ref={contentRef}
+        tabIndex={-1}
+      >
         <div className="modal-close">
-          <button onClick={closeModal}>x</button>
+          <button onClick={closeModal} aria-label="Cerrar las preguntas frecuentes">
+            x
+          </button>
         </div>
         <div className="modal-header">
-          <h3>Preguntas Frecuentes</h3>
+          <h3 id="faq-title">Preguntas Frecuentes</h3>
         </div>
         <div className="modal-body">
           <div className="faq-collapse">
             {faqs.map((faq, index) => (
               <div key={index} className="faq-item">
+                {/*
+                  El "+" y el "-" son la única señal de si la pregunta está
+                  abierta o cerrada, y son dibujo: quien no ve la pantalla oía
+                  "más" o "menos" sin saber qué significaban. `aria-expanded` lo
+                  dice con palabras y `aria-controls` ata la pregunta con su
+                  respuesta; el símbolo se calla.
+                */}
                 <button
+                  type="button"
                   className={`faq-question ${
                     expandedIndex === index ? "active" : ""
                   }`}
                   onClick={() => handleExpand(index)}
+                  aria-expanded={expandedIndex === index}
+                  aria-controls={`faq-respuesta-${index}`}
+                  id={`faq-pregunta-${index}`}
                 >
                   <span>{faq.question}</span>
-                  <span>{expandedIndex === index ? "-" : "+"}</span>
+                  <span aria-hidden="true">
+                    {expandedIndex === index ? "-" : "+"}
+                  </span>
                 </button>
                 {expandedIndex === index && (
-                  <div className="faq-answer">
+                  <div
+                    className="faq-answer"
+                    id={`faq-respuesta-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-pregunta-${index}`}
+                  >
                     {faq.answer.map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}

@@ -15,6 +15,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const avatarButtonRef = useRef<HTMLButtonElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -143,6 +144,26 @@ const Header: React.FC = () => {
     };
   }, [dropdownOpen]);
 
+  /*
+   * El menú móvil tapa la página entera, así que necesita la misma salida que
+   * cualquier capa superpuesta: Escape lo cierra y devuelve el foco al botón que
+   * lo abrió, no al principio del documento.
+   */
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -180,7 +201,13 @@ const Header: React.FC = () => {
 
   return (
     <header ref={headerRef} className={`header ${isScrolled ? "scrolled" : ""}`}>
-      <nav className="navbar">
+      {/*
+        En el blog conviven dos <nav>: este y el de secciones del propio blog.
+        Sin nombre, el lector de pantalla los lista como "navegación" y
+        "navegación", y desde el índice de regiones no hay forma de saber cuál
+        es cuál.
+      */}
+      <nav className="navbar" aria-label="Navegación principal">
         <Link to="/" className="logo-link">
          <OptimizedImage
   src={FemCodersClubLogo}
@@ -191,14 +218,29 @@ const Header: React.FC = () => {
 
         </Link>
 
-        <div
+        {/*
+          Era un <div onClick>: se podía pulsar con el ratón y con nada más. Ni
+          Tab llegaba hasta él ni Enter lo activaba, así que en móvil el menú
+          entero quedaba fuera del alcance de quien navega con teclado o con
+          lector de pantalla. Un <button> trae las tres cosas de serie —foco,
+          teclado y el papel de control— y solo queda declarar qué controla.
+        */}
+        <button
+          ref={menuButtonRef}
+          type="button"
           className={`menu-toggle ${menuOpen ? "open" : ""}`}
           onClick={toggleMenu}
+          aria-expanded={menuOpen}
+          aria-controls="menu-principal"
+          aria-label={menuOpen ? "Cerrar el menú" : "Abrir el menú"}
         >
-          <div className="menu-icon"></div>
-        </div>
+          <span className="menu-icon" aria-hidden="true"></span>
+        </button>
 
-        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <ul
+          id="menu-principal"
+          className={`nav-links ${menuOpen ? "open" : ""}`}
+        >
           {[
             { path: "/femcoders-quienes-somos", label: "Sobre Nosotras" },
             { path: "/equipo", label: "Equipo" },
