@@ -26,7 +26,7 @@
  * ---------------------------------------------------------------
  * OJO: `span { color: var(--color-primary) }` es global
  * ---------------------------------------------------------------
- * `src/index.css` pinta de coral (#ea4f33) TODOS los `<span>` del sitio que no
+ * `src/index.css` pinta de coral (#a32f15) TODOS los `<span>` del sitio que no
  * traigan color propio. Al montar esta pantalla el efecto fue:
  *
  *   - los correos, en coral sobre blanco ............... 3.71:1  (ni AA)

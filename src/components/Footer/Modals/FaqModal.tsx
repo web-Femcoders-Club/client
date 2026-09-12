@@ -108,7 +108,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "Si en algún momento deseas dejar de recibir nuestros emails, puedes hacerlo de dos formas:",
         "● Desde el email: cada comunicación que enviamos incluye un enlace de baja al pie del mensaje. Solo tienes que hacer clic en él.",
         <>● Desde nuestra web: accede a la{" "}
-          <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>
+          <a href="/baja-email" style={{ color: "#a32f15", fontWeight: "bold", textDecoration: "underline" }}>
             página de gestión de comunicaciones
           </a>
           , introduce tu dirección de email y te enviaremos un enlace de confirmación.</>,

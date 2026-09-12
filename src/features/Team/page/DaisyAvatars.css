@@ -16,7 +16,7 @@
 
 .contributors-title {
   font-size: 2.5rem;
-  color: #ea4f33;
+  color: #a32f15;
   margin-bottom: 0.5rem;
   position: relative;
   display: inline-block;
@@ -31,7 +31,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background: linear-gradient(to right, #ea4f33, #4737bb);
+  background: linear-gradient(to right, #a32f15, #4737bb);
   border-radius: 3px;
 }
 
@@ -104,7 +104,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  background: linear-gradient(145deg, #a32f15, #821ad4);
   color: white;
   width: 28px;
   height: 28px;
@@ -129,7 +129,7 @@
 
 .avatar-card:hover .avatar-image {
   transform: scale(1.05);
-  border-color: #ea4f33;
+  border-color: #a32f15;
 }
 
 .avatar-name {
@@ -232,7 +232,7 @@
 }
 
 .github-button:hover {
-  background: linear-gradient(145deg, #821ad4, #ea4f33);
+  background: linear-gradient(145deg, #821ad4, #a32f15);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(71, 55, 187, 0.4);
 }

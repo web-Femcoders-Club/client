@@ -2,8 +2,45 @@
    VARIABLES CSS - Design System
    ======================================== */
 :root {
-  /* Colores principales */
-  --color-primary: #ea4f33;
+  /*
+   * El primario era #ea4f33, el coral del logo. No servía para lo que se le
+   * pedía: daba 3,7:1 sobre blanco y 3,6:1 con texto blanco encima, y en la web
+   * hace de color de titulares, de texto pequeño y de fondo de botón a la vez.
+   * De esos tres papeles solo cumplía AA el primero, porque a un título grande
+   * le basta con 3:1.
+   *
+   * #a32f15 es el mismo tono rojo-naranja bajado de luminosidad hasta 7:1, que
+   * es AAA en los tres papeles. Se eligió un único token en vez de partirlo en
+   * "color de marca" y "color de texto" para que no haya que decidir cuál toca
+   * en cada sitio: la regla es que no hay excepción.
+   *
+   * Lo que esto cuesta, dicho para que nadie lo revierta por sorpresa: la web ya
+   * no va exactamente a juego con el coral del logo ni con los carteles. Si
+   * algún día se rehace la identidad, este es el número que hay que respetar,
+   * no el que hay que ajustar.
+   *
+   *   #a32f15 sobre blanco ....... 7,06:1   AAA
+   *   blanco sobre #a32f15 ....... 6,94:1   AAA (redondea a 7)
+   *   #8c2812 (hover) sobre blanco 8,51:1   AAA
+   *
+   * La contrapartida de oscurecer: donde el naranja hacía de TEXTO sobre los
+   * morados de marca —el pie, la cabecera, las dos franjas de contacto— bajar la
+   * luminosidad lo empeora en vez de arreglarlo. Ahí el naranja oscuro daba
+   * 1,2:1, prácticamente invisible. Para esas superficies está
+   * --color-primary-claro, que es el mismo tono subido hasta pasar AAA sobre los
+   * cuatro morados del sitio:
+   *
+   *   #ffc7b8 sobre #4a148c (pie) ............... 7,97:1   AAA
+   *   #ffc7b8 sobre #6d2c95 (cabecera) .......... 5,77:1   AAA en texto grande
+   *   #ffc7b8 sobre #4737bb (cabecera, franjas) . 5,57:1   AAA en texto grande
+   *
+   * Regla para no equivocarse: fondo claro -> --color-primary; fondo morado ->
+   * --color-primary-claro. Y si el texto de un fondo morado no es grande, el
+   * claro solo llega a AA: entonces hay que subirlo más o cambiar el fondo.
+   */
+  --color-primary: #a32f15;
+  --color-primary-hover: #8c2812;
+  --color-primary-claro: #ffc7b8;
   --color-secondary: #4737bb;
   --color-accent: #6c63ff;
   --color-text-dark: #2a2170;
@@ -38,7 +75,7 @@
 
   /* Estados */
   --color-success: #16a34a;
-  --color-error: #ea4f33;
+  --color-error: #a32f15;
 }
 
 
@@ -125,7 +162,7 @@ img {
 }
 
 .tertiary-button:hover {
-  background-color: #bb3f28;
+  background-color: var(--color-primary-hover);
 }
 
 .accent-button {
@@ -135,9 +172,11 @@ img {
   border: none;
 }
 
+/* El hover pinta el fondo de morado, así que el texto también tiene que pasar a
+   la variante clara: el naranja oscuro sobre #4737bb da 1,2:1. */
 .accent-button:hover {
   background-color: var(--color-secondary);
-  color: var(--color-primary);
+  color: var(--color-primary-claro);
   scale: 1.1;
 }
 .accent-button:active {
@@ -268,7 +307,7 @@ span {
 }
 
 .modal-close button:hover {
-  color: #bb3f28;
+  color: var(--color-primary-hover);
 }
 
 .modal-header {
@@ -483,13 +522,13 @@ span {
 
 .timeline-dot {
   background-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(234, 79, 51, 0.2);
+  box-shadow: 0 0 0 4px rgba(163, 47, 21, 0.2);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .timeline-event:hover .timeline-dot {
   transform: translate(-50%, -50%) scale(1.3);
-  box-shadow: 0 0 0 8px rgba(234, 79, 51, 0.25), 0 0 16px rgba(234, 79, 51, 0.15);
+  box-shadow: 0 0 0 8px rgba(163, 47, 21, 0.25), 0 0 16px rgba(163, 47, 21, 0.15);
 }
 
 .timeline-connector {

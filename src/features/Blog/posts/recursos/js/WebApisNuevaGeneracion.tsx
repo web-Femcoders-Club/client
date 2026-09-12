@@ -138,7 +138,7 @@ const WebApisNuevaGeneracion: React.FC = () => {
           {[
             { icon: <FaDatabase />, label: "IndexedDB", color: "#4737bb" },
             { icon: <FaLock />, label: "Web Crypto API", color: "#6d2c95" },
-            { icon: <FaFileCode />, label: "File System Access", color: "#ea4f33" },
+            { icon: <FaFileCode />, label: "File System Access", color: "#a32f15" },
             { icon: <FaCode />, label: "Sin dependencias", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -363,10 +363,10 @@ const WebApisNuevaGeneracion: React.FC = () => {
 
           <div
             style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "20px",
               borderRadius: "8px",
-              borderLeft: "4px solid #ea4f33",
+              borderLeft: "4px solid #a32f15",
               marginBottom: "1.5rem",
             }}
           >
@@ -524,7 +524,7 @@ const WebApisNuevaGeneracion: React.FC = () => {
               {
                 modulo: "fileSystem.js",
                 desc: "Serializa y deserializa el objeto encriptado",
-                color: "#ea4f33",
+                color: "#a32f15",
               },
               {
                 modulo: "app.js",
@@ -572,10 +572,10 @@ const WebApisNuevaGeneracion: React.FC = () => {
 
           <div
             style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "20px",
               borderRadius: "8px",
-              borderLeft: "4px solid #ea4f33",
+              borderLeft: "4px solid #a32f15",
               marginBottom: "1.5rem",
             }}
           >

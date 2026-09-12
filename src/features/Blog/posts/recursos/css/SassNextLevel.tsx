@@ -469,11 +469,11 @@ npm run watch:sass`}
         <div
           className="performance-tip"
           style={{
-            backgroundColor: "rgba(234, 79, 51, 0.1)",
+            backgroundColor: "rgba(163, 47, 21, 0.1)",
             padding: "15px",
             borderRadius: "10px",
             marginTop: "20px",
-            borderLeft: "4px solid #ea4f33",
+            borderLeft: "4px solid #a32f15",
           }}
         >
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
@@ -625,11 +625,11 @@ export default {
         <div
           className="performance-tip"
           style={{
-            backgroundColor: "rgba(234, 79, 51, 0.1)",
+            backgroundColor: "rgba(163, 47, 21, 0.1)",
             padding: "15px",
             borderRadius: "10px",
             marginTop: "20px",
-            borderLeft: "4px solid #ea4f33",
+            borderLeft: "4px solid #a32f15",
           }}
         >
           <p style={{ margin: "0", fontSize: "1.1rem" }}>

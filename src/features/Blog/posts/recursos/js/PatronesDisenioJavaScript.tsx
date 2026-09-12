@@ -136,7 +136,7 @@ const PatronesDisenioJavaScript: React.FC = () => {
           {[
             { icon: <FaCode />, label: "Encapsulación", color: "#4737bb" },
             { icon: <FaEye />, label: "Comunicación", color: "#6d2c95" },
-            { icon: <FaShieldAlt />, label: "Interceptación", color: "#ea4f33" },
+            { icon: <FaShieldAlt />, label: "Interceptación", color: "#a32f15" },
             { icon: <FaCubes />, label: "Composición", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -886,7 +886,7 @@ pez.swim(); // "Nemo nada" — sin fly, sin quack, sin métodos vacíos`}
             {[
               { patron: "Observer", uso: "Suscripciones", color: "#4737bb" },
               { patron: "Proxy", uso: "Reactividad", color: "#6d2c95" },
-              { patron: "Memento", uso: "Undo / Redo", color: "#ea4f33" },
+              { patron: "Memento", uso: "Undo / Redo", color: "#a32f15" },
               { patron: "Façade", uso: "API pública", color: "#4737bb" },
               { patron: "Composición", uso: "Sin herencia", color: "#6d2c95" },
             ].map(({ patron, uso, color }) => (

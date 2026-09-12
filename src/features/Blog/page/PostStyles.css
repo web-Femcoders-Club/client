@@ -105,7 +105,7 @@
 }
 
 .compartir-icon:hover {
-  color: #ea4f33;
+  color: #a32f15;
 }
 body {
   background: url("/bg1.webp");
@@ -162,7 +162,7 @@ body {
 }
 
 .blog-menu-link:hover {
-  background: #ea4f33;
+  background: #a32f15;
   color: white;
 }
 
@@ -382,7 +382,7 @@ body {
   position: absolute;
   inset: 0;
   padding: 2px;
-  background: linear-gradient(90deg, #4737bb, #ea4f33, #2a2170, #8937bb, #4737bb, #ea4f33);
+  background: linear-gradient(90deg, #4737bb, #a32f15, #2a2170, #8937bb, #4737bb, #a32f15);
   background-size: 400% 100%;
   border-radius: 27px;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -729,7 +729,7 @@ body {
 
 .social-icon {
   font-size: 2rem;
-  color: #ea4f33;
+  color: #a32f15;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 

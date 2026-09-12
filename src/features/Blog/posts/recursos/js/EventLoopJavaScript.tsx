@@ -230,7 +230,7 @@ console.log('C');
           </ul>
 
           <div style={{
-            backgroundColor: "rgba(234, 79, 51, 0.1)",
+            backgroundColor: "rgba(163, 47, 21, 0.1)",
             padding: "15px",
             borderRadius: "var(--radius-sm)",
             marginTop: "20px",
@@ -648,7 +648,7 @@ function buscar(query) {
             marginTop: '15px'
           }}>
             <div style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               borderLeft: "3px solid var(--color-primary)"
@@ -676,7 +676,7 @@ function buscar(query) {
             </div>
 
             <div style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               borderLeft: "3px solid var(--color-primary)"
@@ -704,7 +704,7 @@ function buscar(query) {
             </div>
 
             <div style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               borderLeft: "3px solid var(--color-primary)"
@@ -767,7 +767,7 @@ npm run serve`}
             </div>
 
             <div style={{
-              backgroundColor: "rgba(234, 79, 51, 0.1)",
+              backgroundColor: "rgba(163, 47, 21, 0.1)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               textAlign: 'center'

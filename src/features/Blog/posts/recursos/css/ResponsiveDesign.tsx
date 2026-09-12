@@ -263,11 +263,11 @@ const ResponsiveDesign: React.FC = () => {
         </div>
 
         <div className="performance-tip" style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "10px",
           marginTop: "20px",
-          borderLeft: "4px solid #ea4f33"
+          borderLeft: "4px solid #a32f15"
         }}>
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
             <strong>💡 Ejemplo real:</strong> femCodersClub utiliza un enfoque desktop-first tradicional, mientras que sitios como Stripe o Linear implementan mobile-first. En nuestro proyecto ResponsiveShowcase puedes comparar ambos enfoques lado a lado.
@@ -399,11 +399,11 @@ const ResponsiveDesign: React.FC = () => {
         </p>
 
         <div className="performance-tip" style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "10px",
           marginTop: "20px",
-          borderLeft: "4px solid #ea4f33"
+          borderLeft: "4px solid #a32f15"
         }}>
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
             <strong>🚀 Profundiza en Flexbox:</strong> Lee nuestro artículo detallado <a href="/recursos/css/flexbox" className="highlight underline">Flexbox: El poder de crear layouts flexibles</a> para dominar los layouts unidimensionales.
@@ -786,11 +786,11 @@ const ResponsiveDesign: React.FC = () => {
         </p>
 
         <div className="performance-tip" style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "20px",
           borderRadius: "10px",
           marginTop: "20px",
-          borderLeft: "4px solid #ea4f33"
+          borderLeft: "4px solid #a32f15"
         }}>
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
             <strong>💡 Recuerda:</strong> El responsive design no es solo sobre hacer que las cosas "se vean bien" en móvil. Es sobre crear experiencias optimizadas y accesibles para cada contexto de uso. Cada decisión de diseño debe considerar no solo el tamaño de pantalla, sino también la velocidad de conexión, el método de input, y las necesidades del usuario.

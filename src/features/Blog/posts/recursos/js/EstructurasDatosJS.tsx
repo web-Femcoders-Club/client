@@ -137,7 +137,7 @@ const EstructurasDatosJS: React.FC = () => {
           {[
             { icon: <FaDatabase />, label: "Map", color: "#4737bb" },
             { icon: <FaFilter />, label: "Set", color: "#6d2c95" },
-            { icon: <FaLeaf />, label: "WeakMap", color: "#ea4f33" },
+            { icon: <FaLeaf />, label: "WeakMap", color: "#a32f15" },
             { icon: <FaLeaf />, label: "WeakSet", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -697,7 +697,7 @@ procesarEvento(e); // "Ya procesado, ignorando"
                             cell === "✓"
                               ? "#4737bb"
                               : cell === "✗"
-                              ? "#ea4f33"
+                              ? "#a32f15"
                               : "#2a2170",
                           fontWeight: j === 0 ? 600 : 400,
                         }}
@@ -824,7 +824,7 @@ procesarEvento(e); // "Ya procesado, ignorando"
                 style={{
                   display: "inline-block",
                   marginRight: "10px",
-                  color: "#ea4f33",
+                  color: "#a32f15",
                   verticalAlign: "middle",
                 }}
               />
@@ -1046,7 +1046,7 @@ procesarEvento(e); // "Ya procesado, ignorando"
                   style={{
                     display: "inline-block",
                     marginRight: "8px",
-                    color: "#ea4f33",
+                    color: "#a32f15",
                     verticalAlign: "middle",
                   }}
                 />

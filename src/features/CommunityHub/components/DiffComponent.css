@@ -73,7 +73,7 @@
 }
 
 .diff-link:hover {
-  background-color: #ea4f33;
+  background-color: #a32f15;
 }
 
 .diff-divider {
@@ -91,7 +91,7 @@
 
 .diff-arrow {
   font-size: 2rem;
-  color: #ea4f33;
+  color: #a32f15;
   pointer-events: none; 
 }
 

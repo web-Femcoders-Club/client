@@ -56,7 +56,7 @@
 .social-icon {
   margin-top: 3rem;
   font-size: 2rem;
-  color: #ea4f33;
+  color: #a32f15;
   transition: color 0.3s;
 }
 
@@ -117,7 +117,7 @@
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
   font-size: 2.5rem;
-  color: #ea4f33;
+  color: #a32f15;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 3rem;
 }
@@ -144,7 +144,7 @@
 
 .contact-reason-icon {
   font-size: 3rem;
-  color: #ea4f33;
+  color: #a32f15;
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
 }
@@ -169,7 +169,11 @@
   font-family: "Roboto", sans-serif;
 }
 
-/* Sección de Slack */
+/*
+  Sección de Slack. Todo lo de dentro va sobre el degradado morado oscuro del
+  wrapper, así que el naranja de marca aquí tiene que ser la variante clara: el
+  oscuro se queda en 1,2:1 y desaparece.
+*/
 .contact-slack-wrapper {
   background: linear-gradient(135deg, #4737bb, #2a2170);
   padding: 4rem 2rem;
@@ -184,7 +188,7 @@
 
 .contact-slack-icon {
   font-size: 4rem;
-  color: #ea4f33;
+  color: var(--color-primary-claro);
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
 }
@@ -197,7 +201,7 @@
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
   font-size: 2rem;
-  color: #ea4f33;
+  color: var(--color-primary-claro);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
 }
@@ -210,7 +214,7 @@
 }
 
 .contact-slack-btn {
-  background-color: #ea4f33;
+  background-color: #a32f15;
   color: white;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -259,7 +263,7 @@
 }
 
 .contact-email-direct {
-  color: #ea4f33;
+  color: #a32f15;
   text-decoration: none;
   font-size: 1.3rem;
   font-weight: bold;
@@ -286,7 +290,7 @@
 .contact-form-container h3 {
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
-  color: #ea4f33;
+  color: #a32f15;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -317,7 +321,7 @@
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
   font-size: 2.5rem;
-  color: #ea4f33;
+  color: var(--color-primary-claro);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
 }
@@ -349,7 +353,7 @@
 }
 
 .contact-cta-primary {
-  background-color: #ea4f33;
+  background-color: #a32f15;
   color: white;
   border: none;
 }
@@ -368,7 +372,7 @@
 
 .contact-cta-secondary:hover {
   background-color: #4737bb;
-  color: #ea4f33;
+  color: var(--color-primary-claro);
   transform: scale(1.1);
 }
 

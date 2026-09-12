@@ -92,9 +92,11 @@
   transition: color 0.3s;
 }
 
+/* El pie es morado (#4a148c): aquí el naranja oscuro daría 1,7:1. La variante
+   clara da 7,97:1, AAA incluso a tamaño normal, que es el de estos avisos. */
 .footer-policies .cookie-link:hover,
 .footer-policies a:hover {
-  color: #ea4f33;
+  color: var(--color-primary-claro);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -163,13 +165,13 @@
 }
 
 .faq-question.active {
-  color: #ea4f33;
+  color: #a32f15;
 }
 
 .link-button {
   background: none;
   border: none;
-  color: #ea4f33;
+  color: #a32f15;
   text-decoration: underline;
   cursor: pointer;
   padding: 0;

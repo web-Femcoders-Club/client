@@ -66,7 +66,7 @@
   border-radius: 50%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  background: linear-gradient(145deg, #a32f15, #821ad4);
   padding: 5px;
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -109,7 +109,7 @@
 }
 
 .role-icon {
-  color: #ea4f33;
+  color: #a32f15;
 }
 
 .promoter-specialty {
@@ -161,7 +161,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  color: #ea4f33;
+  color: #a32f15;
   opacity: 0.5;
   font-size: 1rem;
   margin-top: 1.9rem;
@@ -197,7 +197,7 @@
   position: absolute;
   top: 0.7rem;
   left: 1rem;
-  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  background: linear-gradient(145deg, #a32f15, #821ad4);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 50px;
@@ -220,7 +220,7 @@
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
   border-radius: 50px;
-  background: linear-gradient(145deg, #ea4f33, #821ad4);
+  background: linear-gradient(145deg, #a32f15, #821ad4);
   color: white;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -231,7 +231,7 @@
 
 .linkedin-link:hover,
 .linkedin-link:focus {
-  background: linear-gradient(145deg, #4737bb, #ea4f33);
+  background: linear-gradient(145deg, #4737bb, #a32f15);
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(71, 55, 187, 0.4);
   color: white;

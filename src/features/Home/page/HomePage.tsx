@@ -1185,7 +1185,7 @@ const HomePage: React.FC = () => {
               >
                 <path
                   d="M0 10 Q 50 0 100 10"
-                  stroke="#EA4F33"
+                  stroke="#a32f15"
                   strokeWidth="2"
                   fill="none"
                 />

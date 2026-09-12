@@ -413,11 +413,11 @@ getTTFB(console.log);`}
         </pre>
 
         <div style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "8px",
           marginTop: "20px",
-          borderLeft: "4px solid #ea4f33"
+          borderLeft: "4px solid #a32f15"
         }}>
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
             <strong>🧠 MINDSET:</strong> <em>No optimices para las métricas, optimiza para tus usuarios. 

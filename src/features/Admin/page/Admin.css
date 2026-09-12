@@ -19,7 +19,7 @@
   
   .admin-header h2 {
     font-size: 1.5rem;
-    color: #ea4f33;
+    color: #a32f15;
   }
   
   .admin-header p {
@@ -80,7 +80,7 @@
    *
    * El realce NO toca el color del texto, y es a propósito: `.steps .step a`
    * lo fija a `inherit` con más especificidad, y el último paso va en coral
-   * (#ea4f33), que sobre cualquier fondo claro se queda lejos de AAA. Fondo,
+   * (#a32f15), que sobre cualquier fondo claro se queda lejos de AAA. Fondo,
    * barra y negrita se distinguen igual en la franja de iconos, cuando el
    * texto está oculto y el color no diría nada de todos modos.
    */
@@ -108,7 +108,7 @@
   }
   
   .steps .step:last-child {
-    color: #ea4f33;
+    color: #a32f15;
   }
   
   .steps .step a {

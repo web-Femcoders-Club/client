@@ -26,7 +26,7 @@
   margin: 0 5%;
   position: absolute;
   font-weight: 500;
-  border-left: 3px solid #EA4F33;
+  border-left: 3px solid #a32f15;
 }
 
 .carousel-text.active {
@@ -56,12 +56,12 @@
 .indicator.active {
   width: 20px;
   border-radius: 4px;
-  background-color: #EA4F33;
+  background-color: #a32f15;
 }
 
 /* Enfoque por teclado */
 .carousel-text:focus {
-  outline: 2px solid #EA4F33;
+  outline: 2px solid #a32f15;
   outline-offset: 3px;
 }
 

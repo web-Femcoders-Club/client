@@ -1,7 +1,7 @@
 /*
  * Ficha interna de tratamientos.
  *
- * Colores tomados del panel (#4737bb violeta, #ea4f33 coral). El texto va en
+ * Colores tomados del panel (#4737bb violeta, #a32f15 coral). El texto va en
  * #1f1f1f sobre blanco (contraste ~16:1) y los encabezados de tabla en
  * #2d2d2d sobre #f4f2fa (~12:1): ambos superan el 7:1 que exige AAA.
  */
@@ -29,7 +29,7 @@
 }
 
 .legal-docs__link {
-  color: #b03a22; /* coral oscurecido: el #ea4f33 original no llega a AAA sobre blanco */
+  color: #b03a22; /* coral oscurecido: el #a32f15 original no llega a AAA sobre blanco */
   font-weight: 600;
 }
 

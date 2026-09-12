@@ -121,7 +121,7 @@ const FrameworksIntegration: React.FC = () => {
             href="https://jquery.com/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ margin: "0 5px", color: "#ea4f33" }}
+            style={{ margin: "0 5px", color: "#a32f15" }}
           >
             jQuery
           </a>
@@ -130,7 +130,7 @@ const FrameworksIntegration: React.FC = () => {
             href="https://lodash.com/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ margin: "0 5px", color: "#ea4f33" }}
+            style={{ margin: "0 5px", color: "#a32f15" }}
           >
             Lodash
           </a>

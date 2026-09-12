@@ -13,7 +13,7 @@
 .text-eventos {
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
-  color: #ea4f33;
+  color: #a32f15;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 3.5rem;
   text-align: center;
@@ -65,7 +65,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: rgba(234, 79, 51, 0.8);
+  background-color: rgba(163, 47, 21, 0.8);
   color: white;
   border: none;
   border-radius: 50%;
@@ -187,7 +187,7 @@
 }
 
 .pagination-custom .btn-active {
-  background-color: #ea4f33;
+  background-color: #a32f15;
 }
 
 @media (max-width: 768px) {

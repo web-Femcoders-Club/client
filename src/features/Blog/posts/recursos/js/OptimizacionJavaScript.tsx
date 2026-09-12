@@ -139,7 +139,7 @@ const OptimizacionJavaScript: React.FC = () => {
           {[
             { icon: <FaStopwatch />, label: "Profiler", color: "#4737bb" },
             { icon: <FaChartLine />, label: "Benchmark", color: "#6d2c95" },
-            { icon: <FaMemory />, label: "Memory Sampler", color: "#ea4f33" },
+            { icon: <FaMemory />, label: "Memory Sampler", color: "#a32f15" },
             { icon: <FaCode />, label: "Sin dependencias", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -472,10 +472,10 @@ const OptimizacionJavaScript: React.FC = () => {
 
           <div
             style={{
-              backgroundColor: "rgba(234, 79, 51, 0.08)",
+              backgroundColor: "rgba(163, 47, 21, 0.08)",
               padding: "20px",
               borderRadius: "8px",
-              borderLeft: "4px solid #ea4f33",
+              borderLeft: "4px solid #a32f15",
               marginBottom: "1.5rem",
             }}
           >

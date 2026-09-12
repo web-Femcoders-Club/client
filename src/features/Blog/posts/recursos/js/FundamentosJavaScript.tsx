@@ -257,7 +257,7 @@ const FundamentosJavaScript: React.FC = () => {
         </p>
 
         <div style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "var(--radius-sm)",
           marginTop: "15px",
@@ -465,7 +465,7 @@ const FundamentosJavaScript: React.FC = () => {
         </p>
 
         <div style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "var(--radius-sm)",
           marginTop: "15px",
@@ -657,7 +657,7 @@ const FundamentosJavaScript: React.FC = () => {
         </ul>
 
         <div style={{
-          backgroundColor: "rgba(234, 79, 51, 0.1)",
+          backgroundColor: "rgba(163, 47, 21, 0.1)",
           padding: "15px",
           borderRadius: "var(--radius-sm)",
           marginTop: "15px",

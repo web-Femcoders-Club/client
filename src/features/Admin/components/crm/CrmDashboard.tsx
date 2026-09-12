@@ -498,16 +498,16 @@ const CrmDashboard: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#ea4f33" }}>
+            <div className="bg-white rounded-xl shadow-md p-6 border-l-4" style={{ borderLeftColor: "#a32f15" }}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm font-medium">Asistentes recurrentes</p>
-                  <p className="text-3xl font-bold mt-1" style={{ color: "#ea4f33" }}>
+                  <p className="text-3xl font-bold mt-1" style={{ color: "#a32f15" }}>
                     {stats.repeatAttendees}
                   </p>
                 </div>
-                <div className="p-3 rounded-full" style={{ backgroundColor: "#ea4f3320" }}>
-                  <Repeat className="w-6 h-6" style={{ color: "#ea4f33" }} />
+                <div className="p-3 rounded-full" style={{ backgroundColor: "#a32f1520" }}>
+                  <Repeat className="w-6 h-6" style={{ color: "#a32f15" }} />
                 </div>
               </div>
             </div>
@@ -596,7 +596,9 @@ const CrmDashboard: React.FC = () => {
                           <td className="p-4 text-center">
                             <span
                               className="px-3 py-1 rounded-full text-sm font-medium"
-                              style={{ backgroundColor: "#ea4f3320", color: "#ea4f33" }}
+                              /* Sobre su propio tinte al 12,5% el naranja da 5,8:1: AA, no AAA.
+                                 El tono de hover sí llega a 7,1:1 y es el mismo color de familia. */
+                              style={{ backgroundColor: "#a32f1520", color: "#8c2812" }}
                             >
                               {ev.attendeesCount}
                             </span>
@@ -633,7 +635,7 @@ const CrmDashboard: React.FC = () => {
                 <span className="text-sm" style={{ color: "#10B981" }}>
                   Han asistido a algún evento: <strong>{crosscheck.attendedAtLeastOne}</strong>
                 </span>
-                <span className="text-sm" style={{ color: "#ea4f33" }}>
+                <span className="text-sm" style={{ color: "#a32f15" }}>
                   Nunca han asistido: <strong>{crosscheck.neverAttended}</strong>
                 </span>
               </div>
@@ -744,7 +746,7 @@ const CrmDashboard: React.FC = () => {
                     <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-500 mb-4">
                       <span>{formatDate(eventPanel.event.date)}</span>
                       <span>{eventPanel.event.location}</span>
-                      <span className="font-medium" style={{ color: "#ea4f33" }}>{eventPanel.totalAttendees} asistentes</span>
+                      <span className="font-medium" style={{ color: "#a32f15" }}>{eventPanel.totalAttendees} asistentes</span>
                     </div>
                     <div className="relative mb-4">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -948,7 +950,7 @@ const CrmDashboard: React.FC = () => {
                     )
                   }
                   className="px-4 py-2 rounded-lg text-white text-sm font-medium flex items-center gap-2"
-                  style={{ backgroundColor: "#ea4f33" }}
+                  style={{ backgroundColor: "#a32f15" }}
                 >
                   <Download className="w-4 h-4" />
                   PDF
