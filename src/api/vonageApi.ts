@@ -1,5 +1,9 @@
 import axios from "axios";
-import { InteresEnApis, RespuestaDeInteres } from "../types/types";
+import {
+  InteresEnApis,
+  RespuestaDeInteres,
+  ResumenDeInteres,
+} from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -39,5 +43,18 @@ export const guardarInteresEnApis = async (
     respuesta,
     { headers: getAuthHeaders() }
   );
+  return data;
+};
+
+/**
+ * Todas las respuestas con sus recuentos, para el panel (#105). Solo admin.
+ *
+ * Trae el conjunto entero: hay como mucho una respuesta por usuaria registrada,
+ * así que cabe de sobra y la pantalla busca y pagina en memoria.
+ */
+export const getResumenDeInteres = async (): Promise<ResumenDeInteres> => {
+  const { data } = await axios.get(`${API_URL}/admin/interes-apis`, {
+    headers: getAuthHeaders(),
+  });
   return data;
 };

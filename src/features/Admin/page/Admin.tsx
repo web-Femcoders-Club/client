@@ -5,6 +5,7 @@ import {
   Award,
   BarChart3,
   FileText,
+  Lightbulb,
   Mail,
   MailX,
   MessageSquare,
@@ -22,6 +23,7 @@ import ConsentOverview from '../components/consent/ConsentOverview';
 import LegalDocs from '../components/legal/LegalDocs';
 import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
+import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
 import '../admin-ui.css';
 import './Admin.css';
@@ -39,6 +41,7 @@ const SECCIONES = [
   { to: '/admin/crm', texto: '4. CRM Asistentes', Icono: UserCheck },
   { to: '/admin/achievements', texto: '5. Gestionar Logros', Icono: Award },
   { to: '/admin/listas', texto: '6. Listas de Correo', Icono: Mail },
+  { to: '/admin/proyecto-vonage', texto: '7. Proyecto Vonage', Icono: Lightbulb },
 ];
 
 /*
@@ -131,6 +134,7 @@ const Admin: React.FC = () => {
               <Route path="crm/*" element={<CrmDashboard />} />
               <Route path="achievements" element={<ManageAchievements />} />
               <Route path="listas" element={<ListasDeCorreo />} />
+              <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
               <Route path="consents" element={<ConsentOverview />} />
               <Route path="legal" element={<LegalDocs />} />

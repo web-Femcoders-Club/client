@@ -563,6 +563,29 @@ export interface InteresEnApis extends RespuestaDeInteres {
   updatedAt: string;
 }
 
+/**
+ * Una respuesta con quién la dio, tal y como la sirve el panel (server#132).
+ *
+ * `nombre` y `email` son `null` cuando la cuenta ya no existe: esa respuesta
+ * sigue contando en los totales —contestó alguien— y el hueco se ve en la tabla
+ * en vez de descuadrar las cifras en silencio.
+ */
+export interface RespuestaConPersona extends InteresEnApis {
+  nombre: string | null;
+  email: string | null;
+}
+
+export interface ResumenDeInteres {
+  resumen: {
+    total: number;
+    /** Recuentos por valor. Vienen calculados del servidor. */
+    porProyecto: Record<string, number>;
+    porHoras: Record<string, number>;
+    porApi: Record<string, number>;
+  };
+  respuestas: RespuestaConPersona[];
+}
+
 /* ---------------------------------------------------------------
    Listas de correo por género (#13, backend server#16)
    --------------------------------------------------------------- */
