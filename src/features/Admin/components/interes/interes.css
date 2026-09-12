@@ -1,0 +1,41 @@
+/*
+ * Desglose de recuentos del panel del proyecto de APIs (#105).
+ *
+ * Va en su propio fichero y no en admin-ui.css porque eso son utilidades
+ * compartidas por todo el panel y esto es de una sola pantalla.
+ *
+ * CSS a mano: el navegador recibe Tailwind v2 por CDN mientras el código escribe
+ * sintaxis v3, así que buena parte de las clases v3 no generan regla (#92).
+ */
+
+.interes-desglose {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.interes-desglose__fila {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #ece9f5;
+  color: var(--color-text-dark);
+  font-size: 0.9rem;
+}
+
+.interes-desglose__fila:last-child {
+  border-bottom: none;
+}
+
+.interes-desglose__fila strong {
+  font-size: 1.05rem;
+  color: var(--color-secondary);
+  /* `font-variant-numeric` alinea las cifras entre filas: sin esto, un 1 y un 8
+     ocupan distinto y la columna de números baila. */
+  font-variant-numeric: tabular-nums;
+}
