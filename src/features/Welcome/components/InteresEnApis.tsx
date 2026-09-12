@@ -56,7 +56,18 @@ const InteresEnApis: React.FC = () => {
   const [yaRespondio, setYaRespondio] = useState(false);
   const [guardando, setGuardando] = useState(false);
   const [mensaje, setMensaje] = useState("");
+  /*
+   * El tono va aparte del texto porque `mensaje` carga tres significados —error
+   * de validación, éxito y error de red— y los tres se pintaban igual: con los
+   * colores del error. El «¡Gracias!» salía en rojo.
+   */
+  const [tono, setTono] = useState<"ok" | "error">("error");
   const mensajeRef = useFocusMessage(mensaje);
+
+  const avisar = (texto: string, cual: "ok" | "error") => {
+    setTono(cual);
+    setMensaje(texto);
+  };
 
   useEffect(() => {
     if (!idUser) return;
@@ -96,7 +107,7 @@ const InteresEnApis: React.FC = () => {
     e.preventDefault();
     const fallo = validar();
     if (fallo) {
-      setMensaje(fallo);
+      avisar(fallo, "error");
       return;
     }
 
@@ -109,9 +120,12 @@ const InteresEnApis: React.FC = () => {
         apis,
       });
       setYaRespondio(true);
-      setMensaje("¡Gracias! Hemos guardado tu respuesta.");
+      avisar("¡Gracias! Hemos guardado tu respuesta.", "ok");
     } catch {
-      setMensaje("No hemos podido guardar tu respuesta. Inténtalo otra vez.");
+      avisar(
+        "No hemos podido guardar tu respuesta. Inténtalo otra vez.",
+        "error",
+      );
     } finally {
       setGuardando(false);
     }
@@ -185,10 +199,17 @@ const InteresEnApis: React.FC = () => {
           ))}
         </fieldset>
 
+        {/*
+          `role` según el tono: una confirmación de que todo ha ido bien no es
+          una alerta, y anunciarla como tal interrumpe a quien navega con lector
+          de pantalla sin que haya pasado nada malo.
+        */}
         {mensaje && (
           <p
-            className="vonage__mensaje"
-            role="alert"
+            className={
+              tono === "ok" ? "vonage__mensaje--ok" : "vonage__mensaje--error"
+            }
+            role={tono === "ok" ? "status" : "alert"}
             tabIndex={-1}
             ref={mensajeRef}
           >

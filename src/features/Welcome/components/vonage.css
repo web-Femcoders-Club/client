@@ -300,14 +300,37 @@
   line-height: 1.5;
 }
 
-.vonage__mensaje,
+/*
+ * Avisos del bloque. La caja es común; el color no.
+ *
+ * Antes `.vonage__mensaje` y `.vonage__error` compartían el bloque entero, así
+ * que el «¡Gracias! Hemos guardado tu respuesta» se pintaba con los colores de
+ * un error: fondo rosa, borde rojo y texto rojo oscuro. Un acierto anunciado
+ * como fallo desconcierta a quien acaba de hacer justo lo que le pedías.
+ */
+.vonage__mensaje--ok,
+.vonage__mensaje--error,
 .vonage__error {
-  background: #fdecea;
-  border: 1px solid #c0392b;
-  color: #a03123;
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm);
   margin: 0 0 var(--spacing-sm);
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Los mismos valores que `.admin-alerta--ok` del panel, ya medidos: #14663d
+   sobre #e7f6ee ronda 7,4:1, que pasa AAA. */
+.vonage__mensaje--ok {
+  background: #e7f6ee;
+  border-color: #14663d;
+  color: #14663d;
+}
+
+.vonage__mensaje--error,
+.vonage__error {
+  background: #fdecea;
+  border-color: #c0392b;
+  color: #a03123;
 }
 
 @media (max-width: 640px) {
