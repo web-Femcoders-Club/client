@@ -71,7 +71,7 @@
 .card-about {
   width: 550px;
   height: 350px;
-  background: url("/public-optimized/desktop/assets/bg1.webp");
+  background: url("/public-optimized/desktop/bg1.webp");
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
@@ -340,7 +340,7 @@
     width: 30px;
   }
   .card-about {
-    background-image: url("/public-optimized/mobile/assets/bg1.webp");
+    background-image: url("/public-optimized/mobile/bg1.webp");
   }
   .hide-on-mobile {
     display: none;

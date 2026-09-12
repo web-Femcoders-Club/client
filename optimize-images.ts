@@ -15,8 +15,16 @@ const mobileFolder = path.join(publicOptimizedFolder, "mobile");
 
 // 📌 Configuración
 const CONFIG = {
-  // Imágenes de fondo con tratamiento especial (alta resolución)
-  backgroundImages: new Set(["bg1.webp", "bg2.webp", "bg3.webp", "bg4.webp", "bg5.webp"]),
+  /*
+   * Imágenes de fondo con tratamiento especial (alta resolución).
+   *
+   * Van SIN extensión y se comparan contra el nombre del archivo de origen sin
+   * la suya. Antes la lista decía "bg1.webp" y se comparaba con el nombre de
+   * entrada, que es "bg1.png": no coincidía nunca, así que esta rama llevaba sin
+   * ejecutarse desde marzo y todos los fondos salían con los ajustes de imagen
+   * normal (1200px y calidad 80) en vez de los 1920px y calidad 85 de aquí.
+   */
+  backgroundImages: new Set(["bg1", "bg2", "bg3", "bg4", "bg5"]),
   
   minSizeKB: 0,
   
@@ -170,7 +178,7 @@ const optimizeImage = async (filePath: string): Promise<boolean> => {
   
   try {
     // Optimización según el tipo de imagen
-    if (CONFIG.backgroundImages.has(fileName)) {
+    if (CONFIG.backgroundImages.has(path.parse(fileName).name)) {
       // Optimización para imágenes de fondo (solo versión desktop)
       await sharp(filePath)
         .resize({ width: CONFIG.background.width, withoutEnlargement: true })
