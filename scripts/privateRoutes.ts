@@ -5,6 +5,12 @@
  * Fuente única para el sitemap y para el prerender. Duplicar la lista haría que
  * las dos copias divergieran en cuanto se añadiera una ruta privada nueva, y el
  * síntoma sería que esa ruta acaba publicada sin que nadie se dé cuenta.
+ *
+ * ⚠️ NO es la lista de «exige sesión». Eso lo decide `ProtectedRoute` en el
+ * router (#104), y las dos listas NO coinciden: `/forgot-password` y
+ * `/reset-password` están aquí porque no deben indexarse, pero tienen que
+ * seguir abriéndose sin sesión. Se llega a ellas desde el login, y protegerlas
+ * dejaría sin recuperar la contraseña justo a quien no puede entrar.
  */
 export const PRIVATE_ROUTES = [
   "/ofertas-de-trabajo",
