@@ -41,7 +41,7 @@
 @keyframes logo-pulse {
   0%, 100% {
     transform: scale(1) rotate(0deg);
-    box-shadow: 0 0 0px rgba(163, 47, 21, 0.5); /* Sombra inicial */
+    box-shadow: 0 0 0px rgba(234, 79, 51, 0.5); /* Sombra inicial */
   }
   25% {
     transform: scale(1.05) rotate(-2deg);
@@ -65,7 +65,7 @@
   }
   25% {
     transform: translate(15%, -10%) rotate(5deg);
-    box-shadow: 5px 5px 15px rgba(163, 47, 21, 0.5); /* Sombra dinámica */
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra dinámica */
   }
   50% {
     transform: translate(0, -20%) rotate(-5deg);
@@ -85,7 +85,7 @@
   }
   25% {
     transform: rotate(10deg) scale(1.05);
-    box-shadow: 5px 5px 15px rgba(163, 47, 21, 0.5); /* Sombra con color */
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra con color */
   }
   50% {
     transform: rotate(-10deg) scale(1.1);
@@ -105,7 +105,7 @@
   }
   25% {
     transform: translate3d(50%, -50%, 50px) rotateY(90deg) rotateX(10deg) scale(1.1);
-    box-shadow: 5px 5px 15px rgba(163, 47, 21, 0.5); /* Sombra dinámica */
+    box-shadow: 5px 5px 15px rgba(234, 79, 51, 0.5); /* Sombra dinámica */
   }
   50% {
     transform: translate3d(0, -100%, 0) rotateY(180deg) rotateX(0deg) scale(1.05);
@@ -145,7 +145,7 @@
 }
 
 .text-error {
-  color: #a32f15;
+  color: #ea4f33;
 }
 
 .text-success {

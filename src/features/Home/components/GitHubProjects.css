@@ -19,7 +19,7 @@
   font-weight: bold;
   color: #4737bb;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #4737bb, #a32f15);
+  background: linear-gradient(135deg, #4737bb, #ea4f33);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -117,7 +117,7 @@
   background: linear-gradient(
     135deg,
     rgba(71, 55, 187, 0.1) 0%,
-    rgba(163, 47, 21, 0.1) 100%
+    rgba(234, 79, 51, 0.1) 100%
   );
   display: flex;
   /* Sin la etiqueta «Destacado», las estadísticas se mantienen a la derecha. */
@@ -335,14 +335,14 @@
 }
 
 .btn-post {
-  background: linear-gradient(135deg, #a32f15, #ff6b47);
+  background: linear-gradient(135deg, #ea4f33, #ff6b47);
   color: white;
-  box-shadow: 0 4px 15px rgba(163, 47, 21, 0.3);
+  box-shadow: 0 4px 15px rgba(234, 79, 51, 0.3);
 }
 
 .btn-post:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(163, 47, 21, 0.4);
+  box-shadow: 0 6px 20px rgba(234, 79, 51, 0.4);
   text-decoration: none;
   color: white;
 }
@@ -424,14 +424,14 @@
     position: static;
     opacity: 1;
     transform: none;
-    background: linear-gradient(135deg, rgba(71, 55, 187, 0.1), rgba(163, 47, 21, 0.1));
+    background: linear-gradient(135deg, rgba(71, 55, 187, 0.1), rgba(234, 79, 51, 0.1));
     color: #2a2170;
     margin-top: 1rem;
     border-radius: 1rem;
   }
   
   .btn-collaborate-overlay {
-    background: linear-gradient(135deg, #a32f15, #ff6b47);
+    background: linear-gradient(135deg, #ea4f33, #ff6b47);
     color: white;
     border: none;
   }

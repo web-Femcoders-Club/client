@@ -46,10 +46,10 @@
 }
 
 .heart-icon {
-  color: #a32f15;
+  color: #ea4f33;
   font-size: 2rem;
   animation: pulse 2s infinite;
-  filter: drop-shadow(0 0 5px rgba(163, 47, 21, 0.5));
+  filter: drop-shadow(0 0 5px rgba(234, 79, 51, 0.5));
 }
 
 @keyframes pulse {
@@ -127,7 +127,7 @@
 
 .collaborate-button:hover,
 .collaborate-button:focus {
-  background: linear-gradient(145deg, #821ad4, #a32f15);
+  background: linear-gradient(145deg, #821ad4, #ea4f33);
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(130, 26, 212, 0.4);
 }

@@ -503,11 +503,11 @@ const CssGrid: React.FC = () => {
   </ol>
   
   <div className="performance-tip" style={{
-    backgroundColor: "rgba(163, 47, 21, 0.1)",
+    backgroundColor: "rgba(234, 79, 51, 0.1)",
     padding: "15px",
     borderRadius: "10px",
     marginTop: "20px",
-    borderLeft: "4px solid #a32f15"
+    borderLeft: "4px solid #ea4f33"
   }}>
     <p style={{ margin: "0", fontSize: "1.1rem" }}>
       <strong>💡 Consejo pro:</strong> Utiliza las herramientas de desarrollo del navegador para monitorear el rendimiento. 

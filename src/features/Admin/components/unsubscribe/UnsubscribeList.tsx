@@ -303,7 +303,7 @@ const UnsubscribeList: React.FC = () => {
             disabled={submitting}
             aria-busy={submitting}
             className="px-5 py-2 rounded-lg text-sm font-semibold text-white disabled:opacity-60"
-            style={{ backgroundColor: "#a32f15" }}
+            style={{ backgroundColor: "#ea4f33" }}
           >
             {submitting ? "Procesando…" : "Dar de baja"}
           </button>

@@ -54,7 +54,7 @@
     ellipse at center,
     rgba(109, 44, 149, 0) 30%,
     rgba(71, 55, 187, 0.3) 60%,
-    rgba(163, 47, 21, 0.5) 100%
+    rgba(234, 79, 51, 0.5) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -109,7 +109,7 @@
 }
 
 .custom-carousel-control:focus-visible {
-  box-shadow: 0 0 0 3px rgba(163, 47, 21, 0.6);
+  box-shadow: 0 0 0 3px rgba(234, 79, 51, 0.6);
 }
 
 .custom-carousel-control.prev {
@@ -124,7 +124,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: rgba(163, 47, 21, 0.7);
+  background: rgba(234, 79, 51, 0.7);
   color: white;
   border: none;
   width: 36px;
@@ -141,7 +141,7 @@
 
 .pause-play-button:hover,
 .pause-play-button:focus {
-  background: rgba(163, 47, 21, 0.9);
+  background: rgba(234, 79, 51, 0.9);
   outline: none;
 }
 

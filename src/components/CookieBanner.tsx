@@ -49,8 +49,8 @@ const CookieBanner: React.FC = () => {
                     onClick={handleDismiss} 
                     style={dismissButtonStyle}
                     aria-label="Cerrar aviso de cookies"
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#8c2812'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#a32f15'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#bb3f28'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ea4f33'}
                 >
                     Entendido
                 </button>
@@ -93,13 +93,9 @@ const textStyle: React.CSSProperties = {
 };
 
 /*
-  Iba en el naranja de marca sobre el degradado morado del aviso: 2,3:1, por
-  debajo incluso del 4,5:1 de AA. En blanco da 8,3:1 en el extremo más claro del
-  degradado, así que cumple AAA (7:1) en todo el ancho.
-
-  No usa --color-primary-claro, que es la variante para naranja sobre morado,
-  porque esto es texto de tamaño normal: el claro ahí se queda en AA y el blanco
-  llega a AAA. La regla del token está escrita en index.css.
+  Era #ea4f33 sobre el degradado morado del aviso: 2,3:1 de contraste, por debajo
+  incluso del 4,5:1 de AA. En blanco sube a 8,3:1 en el extremo más claro del
+  degradado, que cumple AAA (7:1) en todo el ancho.
 
   Sigue en negrita y subrayado, así que no depende del color para distinguirse
   del texto de alrededor. El resto son los apagados de rigor del <button>, que
@@ -122,7 +118,7 @@ const linkStyle: React.CSSProperties = {
 
 const dismissButtonStyle: React.CSSProperties = {
     padding: '10px 24px',
-    backgroundColor: '#a32f15',
+    backgroundColor: '#ea4f33',
     color: 'white',
     border: 'none',
     borderRadius: 'var(--radius-md)',
@@ -131,7 +127,7 @@ const dismissButtonStyle: React.CSSProperties = {
     fontSize: '0.95rem',
     transition: 'all 0.3s ease',
     whiteSpace: 'nowrap',
-    boxShadow: '0 2px 8px rgba(163, 47, 21, 0.3)',
+    boxShadow: '0 2px 8px rgba(234, 79, 51, 0.3)',
 };
 
 export default CookieBanner;

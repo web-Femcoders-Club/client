@@ -34,18 +34,18 @@
     filter: brightness(1) opacity(1) saturate(1) hue-rotate(0deg);
   }
   15% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(163, 47, 21, 0.08);
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
     transform: scale(1.015) rotate(-0.5deg);
     filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(-2deg);
   }
   30% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(163, 47, 21, 0.08);
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
     transform: scale(1.015) rotate(0.5deg);
     filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(2deg);
   }
   
   45% { 
-    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(163, 47, 21, 0.12);
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
     transform: scale(1.025) rotate(1deg);
     filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(4deg);
   }
@@ -53,22 +53,22 @@
   50% { 
     box-shadow: 
       0 6px 15px rgba(255, 255, 255, 0.52), 
-      0 12px 25px rgba(163, 47, 21, 0.15),
-      0 0 15px rgba(163, 47, 21, 0.2);
+      0 12px 25px rgba(234, 79, 51, 0.15),
+      0 0 15px rgba(234, 79, 51, 0.2);
     transform: scale(1.03) rotate(1.2deg);
     filter: brightness(1.06) opacity(0.88) saturate(1.1) hue-rotate(5deg);
   }
   
 
   55% { 
-    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(163, 47, 21, 0.12);
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
     transform: scale(1.025) rotate(0.8deg);
     filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(3deg);
   }
   
   /* Exhalación más rápida */
   75% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(163, 47, 21, 0.08);
+    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
     transform: scale(1.015) rotate(0.3deg);
     filter: brightness(1.02) opacity(0.95) saturate(1.03) hue-rotate(1deg);
   }
@@ -90,11 +90,11 @@
 /* Animación de pulso mejorada para hover */
 @keyframes border-pulse {
   0%, 100% { 
-    filter: brightness(1) drop-shadow(0 0 8px rgba(163, 47, 21, 0.4)) saturate(1.2);
+    filter: brightness(1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4)) saturate(1.2);
     transform: scale(1.1) rotate(-1deg);
   }
   50% { 
-    filter: brightness(1.15) drop-shadow(0 0 15px rgba(163, 47, 21, 0.7)) saturate(1.4);
+    filter: brightness(1.15) drop-shadow(0 0 15px rgba(234, 79, 51, 0.7)) saturate(1.4);
     transform: scale(1.12) rotate(1deg);
   }
 }
@@ -124,7 +124,7 @@
   .logo:hover {
     animation: none;
     transform: scale(1.05);
-    filter: brightness(1.1) drop-shadow(0 0 8px rgba(163, 47, 21, 0.4));
+    filter: brightness(1.1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4));
   }
 }
 
@@ -208,12 +208,12 @@
   padding: 5px 10px;
 }
 
-/* Sobre el degradado morado de la cabecera el naranja oscuro da 1,2:1: no se
-   ve. La variante clara sube a 5,6:1, que es AAA para este tamaño (19px en
-   negrita cuenta como texto grande). El subrayado va aparte para que el cambio
-   de estado no dependa solo del color. */
+/* El subrayado no es decoración y no depende del color que acabe teniendo el
+   menú: sin él, pasar por encima de un enlace solo se nota por el tono, y quien
+   no distingue ese cambio no percibe el estado. El contraste del naranja sobre
+   el morado de la cabecera sigue siendo 2,3:1 y queda para el rediseño. */
 .nav-link:hover {
-  color: var(--color-primary-claro);
+  color: #ea4f33;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -240,7 +240,7 @@
 }
 
 .logout-button {
-  background-color: #a32f15;
+  background-color: #ea4f33;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -254,7 +254,7 @@
 }
 
 .logout-button:hover {
-  background-color: var(--color-primary-hover);
+  background-color: #bb3f28;
   transform: scale(1.05);
 }
 
@@ -311,7 +311,7 @@
 }
 
 .cancel-button {
-  background-color: #a32f15;
+  background-color: #ea4f33;
   color: white;
   margin-left: 10px;
 }
@@ -369,7 +369,7 @@
 }
 
 .dropdown-item--salir:hover {
-  background-color: var(--color-primary-hover);
+  background-color: #bb3f28;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -508,7 +508,7 @@
   }
 
   .logout-button:hover {
-    background-color: var(--color-primary-hover);
+    background-color: #bb3f28;
     transform: scale(1.05);
   }
   .dropdown-menu {

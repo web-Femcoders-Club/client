@@ -402,13 +402,13 @@ const HackBarna2025Announcement: React.FC = () => {
         </p>
 
         <div style={{
-          backgroundColor: "rgba(163, 47, 21, 0.1)",
+          backgroundColor: "rgba(234, 79, 51, 0.1)",
           padding: "20px",
           borderRadius: "10px",
           marginTop: "20px",
-          borderLeft: "4px solid #a32f15"
+          borderLeft: "4px solid #ea4f33"
         }}>
-          <h4 style={{ color: "#a32f15", marginTop: "0" }}>💪 Nuestro mensaje para ti:</h4>
+          <h4 style={{ color: "#ea4f33", marginTop: "0" }}>💪 Nuestro mensaje para ti:</h4>
           <p style={{ margin: "0", fontSize: "1.1rem" }}>
             Si eres parte de nuestra comunidad, sabes que creemos en tu potencial. Este hackathon es tu momento de brillar 
             en un escenario internacional. No dejes que la inseguridad te frene, aplica y demuestra de qué estás hecha.
@@ -505,7 +505,7 @@ const HackBarna2025Announcement: React.FC = () => {
               rel="noopener noreferrer"
               style={{
                 display: "inline-block",
-                backgroundColor: "#a32f15",
+                backgroundColor: "#ea4f33",
                 color: "white",
                 padding: "15px 30px",
                 borderRadius: "8px",
@@ -513,7 +513,7 @@ const HackBarna2025Announcement: React.FC = () => {
                 fontWeight: "bold",
                 fontSize: "16px",
                 transition: "all 0.3s ease",
-                boxShadow: "0 4px 15px rgba(163, 47, 21, 0.3)",
+                boxShadow: "0 4px 15px rgba(234, 79, 51, 0.3)",
                 marginBottom: "10px"
               }}
             >

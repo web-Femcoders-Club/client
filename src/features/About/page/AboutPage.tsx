@@ -11,7 +11,7 @@ import Collapse from "../components/Collapse";
 import { Helmet } from "react-helmet";
 
 const linkStyle = {
-  color: "#a32f15",
+  color: "#ea4f33",
   textDecoration: "none",
   fontWeight: "bold",
   transition: "color 0.2s ease",
@@ -388,7 +388,7 @@ const AboutPage: React.FC = () => {
               to="/register"
               style={{
                 display: "inline-block",
-                background: "#a32f15",
+                background: "#ea4f33",
                 color: "white",
                 padding: "10px 20px",
                 borderRadius: "5px",

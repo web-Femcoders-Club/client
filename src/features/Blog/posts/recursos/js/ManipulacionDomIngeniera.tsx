@@ -505,7 +505,7 @@ observer.observe(miElemento);`}
             </div>
 
             <div style={{
-              backgroundColor: "rgba(163, 47, 21, 0.1)",
+              backgroundColor: "rgba(234, 79, 51, 0.1)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               textAlign: 'center'
@@ -529,7 +529,7 @@ observer.observe(miElemento);`}
             </div>
 
             <div style={{
-              backgroundColor: "rgba(163, 47, 21, 0.1)",
+              backgroundColor: "rgba(234, 79, 51, 0.1)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               textAlign: 'center'
@@ -861,7 +861,7 @@ npm start`}
             </div>
 
             <div style={{
-              backgroundColor: "rgba(163, 47, 21, 0.1)",
+              backgroundColor: "rgba(234, 79, 51, 0.1)",
               padding: "15px",
               borderRadius: "var(--radius-sm)",
               textAlign: 'center'

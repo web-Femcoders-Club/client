@@ -134,7 +134,7 @@ const ClosuresScopeContext: React.FC = () => {
               style={{
                 display: "inline-block",
                 marginRight: "10px",
-                color: "#a32f15",
+                color: "#ea4f33",
                 verticalAlign: "middle",
               }}
             />
@@ -157,7 +157,7 @@ const ClosuresScopeContext: React.FC = () => {
           {[
             { icon: <FaLock />, label: "Scope léxico", color: "#4737bb" },
             { icon: <FaCode />, label: "Closures", color: "#6d2c95" },
-            { icon: <FaCogs />, label: "this & context", color: "#a32f15" },
+            { icon: <FaCogs />, label: "this & context", color: "#ea4f33" },
             { icon: <FaBolt />, label: "bind / call / apply", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -327,7 +327,7 @@ console.log(machine._state); // undefined`}
                   style={{
                     display: "inline-block",
                     marginRight: "8px",
-                    color: "#a32f15",
+                    color: "#ea4f33",
                     verticalAlign: "middle",
                   }}
                 />
@@ -550,10 +550,10 @@ console.log(machine.getData());
 
           <div
             style={{
-              backgroundColor: "rgba(163, 47, 21, 0.1)",
+              backgroundColor: "rgba(234, 79, 51, 0.1)",
               padding: "16px",
               borderRadius: "8px",
-              borderLeft: "4px solid #a32f15",
+              borderLeft: "4px solid #ea4f33",
               marginTop: "1.5rem",
             }}
           >
@@ -563,7 +563,7 @@ console.log(machine.getData());
                   style={{
                     display: "inline-block",
                     marginRight: "8px",
-                    color: "#a32f15",
+                    color: "#ea4f33",
                     verticalAlign: "middle",
                   }}
                 />
@@ -950,7 +950,7 @@ btnReset(); // "Máquina reiniciada, this: true"`}
                   style={{
                     display: "inline-block",
                     marginRight: "8px",
-                    color: "#a32f15",
+                    color: "#ea4f33",
                     verticalAlign: "middle",
                   }}
                 />

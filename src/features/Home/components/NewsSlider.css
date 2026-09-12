@@ -18,7 +18,7 @@
   font-family: "Asap Condensed", sans-serif;
   font-weight: bold;
   font-size: 2.5rem;
-  color: #a32f15;
+  color: #ea4f33;
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -42,7 +42,7 @@
 }
 
 .news-slider:focus {
-  outline: 3px solid #a32f15;
+  outline: 3px solid #ea4f33;
   outline-offset: 6px;
 }
 
@@ -100,7 +100,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(71, 55, 187, 0.05) 0%, rgba(163, 47, 21, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(71, 55, 187, 0.05) 0%, rgba(234, 79, 51, 0.05) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,7 +146,7 @@
   background: linear-gradient(
     135deg,
     rgba(71, 55, 187, 0.1) 0%,
-    rgba(163, 47, 21, 0.2) 100%
+    rgba(234, 79, 51, 0.2) 100%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -180,7 +180,7 @@
 }
 
 .news-category {
-  background: linear-gradient(135deg, #a32f15, #ff6b47);
+  background: linear-gradient(135deg, #ea4f33, #ff6b47);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
@@ -188,7 +188,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 8px rgba(163, 47, 21, 0.3);
+  box-shadow: 0 4px 8px rgba(234, 79, 51, 0.3);
 }
 
 .news-date {
@@ -299,7 +299,7 @@
 }
 
 .news-control:focus {
-  outline: 2px solid #a32f15;
+  outline: 2px solid #ea4f33;
   outline-offset: 2px;
 }
 
@@ -330,7 +330,7 @@
 }
 
 .news-play-pause:focus {
-  outline: 2px solid #a32f15;
+  outline: 2px solid #ea4f33;
   outline-offset: 2px;
 }
 
@@ -353,9 +353,9 @@
 }
 
 .news-indicator.active {
-  background: #a32f15;
+  background: #ea4f33;
   transform: scale(1.3);
-  box-shadow: 0 0 0 4px rgba(163, 47, 21, 0.2);
+  box-shadow: 0 0 0 4px rgba(234, 79, 51, 0.2);
 }
 
 .news-indicator:hover {
@@ -364,14 +364,14 @@
 }
 
 .news-indicator:focus {
-  outline: 2px solid #a32f15;
+  outline: 2px solid #ea4f33;
   outline-offset: 2px;
 }
 
 .news-slider-empty {
   text-align: center;
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, rgba(71, 55, 187, 0.05), rgba(163, 47, 21, 0.05));
+  background: linear-gradient(135deg, rgba(71, 55, 187, 0.05), rgba(234, 79, 51, 0.05));
   border-radius: 1.5rem;
   border: 2px dashed rgba(71, 55, 187, 0.2);
 }

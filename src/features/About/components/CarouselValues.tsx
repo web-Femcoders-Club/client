@@ -102,7 +102,7 @@ const Card: React.FC<CardProps> = ({ img, title, desc, isActive }) => (
         height: "100%",
         borderRadius: "inherit",
         background:
-          "radial-gradient(ellipse at center, rgba(109, 44, 149, 0) 30%, rgba(71, 55, 187, 0.2) 60%, rgba(163, 47, 21, 0.3) 100%)",
+          "radial-gradient(ellipse at center, rgba(109, 44, 149, 0) 30%, rgba(71, 55, 187, 0.2) 60%, rgba(234, 79, 51, 0.3) 100%)",
         zIndex: -1,
       }}
     ></div>
@@ -210,7 +210,7 @@ const CarouselValues: React.FC = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={prevSlide}
-          className="bg-[#a32f15] text-white w-10 h-10 rounded-full flex items-center justify-center mr-2 hover:bg-[#821ad4] transition-colors"
+          className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center mr-2 hover:bg-[#821ad4] transition-colors"
           aria-label="Anterior valor"
         >
           &#8249;
@@ -223,7 +223,7 @@ const CarouselValues: React.FC = () => {
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
                 currentSlide === index
-                  ? "bg-[#a32f15] w-6"
+                  ? "bg-[#ea4f33] w-6"
                   : "bg-[#4737bb] opacity-50 hover:opacity-75"
               }`}
               aria-label={`Ir al valor ${index + 1}`}
@@ -234,7 +234,7 @@ const CarouselValues: React.FC = () => {
 
         <button
           onClick={nextSlide}
-          className="bg-[#a32f15] text-white w-10 h-10 rounded-full flex items-center justify-center ml-2 hover:bg-[#821ad4] transition-colors"
+          className="bg-[#ea4f33] text-white w-10 h-10 rounded-full flex items-center justify-center ml-2 hover:bg-[#821ad4] transition-colors"
           aria-label="Siguiente valor"
         >
           &#8250;

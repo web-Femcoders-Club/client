@@ -2,45 +2,36 @@
    VARIABLES CSS - Design System
    ======================================== */
 :root {
+  /* Colores principales */
+
   /*
-   * El primario era #ea4f33, el coral del logo. No servía para lo que se le
-   * pedía: daba 3,7:1 sobre blanco y 3,6:1 con texto blanco encima, y en la web
-   * hace de color de titulares, de texto pequeño y de fondo de botón a la vez.
-   * De esos tres papeles solo cumplía AA el primero, porque a un título grande
-   * le basta con 3:1.
+   * MEDIDO, PENDIENTE DE RESOLVER EN DISEÑO
    *
-   * #a32f15 es el mismo tono rojo-naranja bajado de luminosidad hasta 7:1, que
-   * es AAA en los tres papeles. Se eligió un único token en vez de partirlo en
-   * "color de marca" y "color de texto" para que no haya que decidir cuál toca
-   * en cada sitio: la regla es que no hay excepción.
+   * #ea4f33 hace de color de titulares, de texto pequeño y de fondo de botón a
+   * la vez, y solo cumple AA en el primero de los tres:
    *
-   * Lo que esto cuesta, dicho para que nadie lo revierta por sorpresa: la web ya
-   * no va exactamente a juego con el coral del logo ni con los carteles. Si
-   * algún día se rehace la identidad, este es el número que hay que respetar,
-   * no el que hay que ajustar.
+   *   #ea4f33 sobre blanco ........... 3,71:1   AA en texto grande (pide 3)
+   *                                             FALLA en texto normal (pide 4,5)
+   *   blanco sobre #ea4f33 ........... 3,64:1   FALLA en texto normal
+   *   #ea4f33 sobre el pie #4a148c ... 3,20:1   FALLA
+   *   #ea4f33 sobre la cabecera ...... 2,32:1   FALLA
    *
-   *   #a32f15 sobre blanco ....... 7,06:1   AAA
-   *   blanco sobre #a32f15 ....... 6,94:1   AAA (redondea a 7)
-   *   #8c2812 (hover) sobre blanco 8,51:1   AAA
+   * En septiembre de 2026 se probó a oscurecerlo a #a32f15 (7:1) y se revirtió
+   * a propósito:
+   * estas pantallas van a rediseñarse, y forzar el color ahora fija una
+   * restricción sobre algo que se va a mover igualmente. La decisión es
+   * resolverlo cambiando los estilos —tamaños, fondos, jerarquía— y no el tono
+   * de marca.
    *
-   * La contrapartida de oscurecer: donde el naranja hacía de TEXTO sobre los
-   * morados de marca —el pie, la cabecera, las dos franjas de contacto— bajar la
-   * luminosidad lo empeora en vez de arreglarlo. Ahí el naranja oscuro daba
-   * 1,2:1, prácticamente invisible. Para esas superficies está
-   * --color-primary-claro, que es el mismo tono subido hasta pasar AAA sobre los
-   * cuatro morados del sitio:
+   * Lo que hay que arreglar cuando se toque el diseño, en orden de gravedad:
+   *   - naranja como TEXTO sobre los morados (pie, cabecera, franjas de
+   *     contacto, spans del carrusel de la home): entre 3,2:1 y 2,3:1;
+   *   - texto blanco sobre botones naranjas a tamaño normal: 3,64:1;
+   *   - naranja como texto pequeño sobre fondo claro: 3,71:1.
    *
-   *   #ffc7b8 sobre #4a148c (pie) ............... 7,97:1   AAA
-   *   #ffc7b8 sobre #6d2c95 (cabecera) .......... 5,77:1   AAA en texto grande
-   *   #ffc7b8 sobre #4737bb (cabecera, franjas) . 5,57:1   AAA en texto grande
-   *
-   * Regla para no equivocarse: fondo claro -> --color-primary; fondo morado ->
-   * --color-primary-claro. Y si el texto de un fondo morado no es grande, el
-   * claro solo llega a AA: entonces hay que subirlo más o cambiar el fondo.
+   * Los titulares grandes no hace falta tocarlos: a 24px o más, 3,71 cumple AA.
    */
-  --color-primary: #a32f15;
-  --color-primary-hover: #8c2812;
-  --color-primary-claro: #ffc7b8;
+  --color-primary: #ea4f33;
   --color-secondary: #4737bb;
   --color-accent: #6c63ff;
   --color-text-dark: #2a2170;
@@ -75,7 +66,7 @@
 
   /* Estados */
   --color-success: #16a34a;
-  --color-error: #a32f15;
+  --color-error: #ea4f33;
 }
 
 
@@ -162,7 +153,7 @@ img {
 }
 
 .tertiary-button:hover {
-  background-color: var(--color-primary-hover);
+  background-color: #bb3f28;
 }
 
 .accent-button {
@@ -172,11 +163,9 @@ img {
   border: none;
 }
 
-/* El hover pinta el fondo de morado, así que el texto también tiene que pasar a
-   la variante clara: el naranja oscuro sobre #4737bb da 1,2:1. */
 .accent-button:hover {
   background-color: var(--color-secondary);
-  color: var(--color-primary-claro);
+  color: var(--color-primary);
   scale: 1.1;
 }
 .accent-button:active {
@@ -307,7 +296,7 @@ span {
 }
 
 .modal-close button:hover {
-  color: var(--color-primary-hover);
+  color: #bb3f28;
 }
 
 .modal-header {
@@ -522,13 +511,13 @@ span {
 
 .timeline-dot {
   background-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(163, 47, 21, 0.2);
+  box-shadow: 0 0 0 4px rgba(234, 79, 51, 0.2);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .timeline-event:hover .timeline-dot {
   transform: translate(-50%, -50%) scale(1.3);
-  box-shadow: 0 0 0 8px rgba(163, 47, 21, 0.25), 0 0 16px rgba(163, 47, 21, 0.15);
+  box-shadow: 0 0 0 8px rgba(234, 79, 51, 0.25), 0 0 16px rgba(234, 79, 51, 0.15);
 }
 
 .timeline-connector {

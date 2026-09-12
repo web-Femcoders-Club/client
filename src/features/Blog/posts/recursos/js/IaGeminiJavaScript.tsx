@@ -140,7 +140,7 @@ const IaGeminiJavaScript: React.FC = () => {
           {[
             { icon: <FaShieldAlt />, label: "Proxy sin clave expuesta", color: "#4737bb" },
             { icon: <FaTachometerAlt />, label: "Control de cuota", color: "#6d2c95" },
-            { icon: <FaDatabase />, label: "Caché LRU", color: "#a32f15" },
+            { icon: <FaDatabase />, label: "Caché LRU", color: "#ea4f33" },
             { icon: <FaStream />, label: "Streaming", color: "#4737bb" },
           ].map(({ icon, label, color }) => (
             <div
@@ -534,10 +534,10 @@ recordRequest(now = Date.now()) {
           </p>
           <div
             style={{
-              backgroundColor: "rgba(163, 47, 21, 0.08)",
+              backgroundColor: "rgba(234, 79, 51, 0.08)",
               padding: "20px",
               borderRadius: "8px",
-              borderLeft: "4px solid #a32f15",
+              borderLeft: "4px solid #ea4f33",
               marginBottom: "1.5rem",
             }}
           >

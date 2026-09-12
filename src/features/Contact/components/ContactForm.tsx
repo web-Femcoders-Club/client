@@ -318,7 +318,7 @@ const ContactForm: React.FC = () => {
             onMouseOver={(e) =>
               !isSubmitting &&
               acceptedPrivacy &&
-              (e.currentTarget.style.backgroundColor = "#a32f15")
+              (e.currentTarget.style.backgroundColor = "#ea4f33")
             }
             onMouseOut={(e) =>
               (e.currentTarget.style.backgroundColor = "#4737bb")
