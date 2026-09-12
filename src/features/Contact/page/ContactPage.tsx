@@ -54,7 +54,14 @@ const ContactPage: React.FC = () => {
         />
       </Helmet>
 
-      <main className="contact-main">
+      {/*
+        Era un <main> dentro del <main> del Layout: dos landmarks "principal" en
+        la misma página, uno metido en el otro. El HTML no lo permite, el lector
+        de pantalla ofrece dos contenidos principales a elegir y quien extrae la
+        página —buscadores y motores generativos— no sabe cuál de los dos es el
+        contenido. La caja sigue igual; solo deja de mentir sobre lo que es.
+      */}
+      <div className="contact-main">
         <section className="contact-info">
           <h1>Información de contacto</h1>
           <h2>¿Tienes una propuesta?</h2>
@@ -128,7 +135,7 @@ const ContactPage: React.FC = () => {
         <section className="contact-form-section">
           <ContactForm />
         </section>
-      </main>
+      </div>
 
       <section className="contact-reasons-wrapper">
         <div className="contact-reasons-container">

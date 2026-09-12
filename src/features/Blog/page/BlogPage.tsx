@@ -643,7 +643,7 @@ const BlogPage: React.FC = () => {
 
       <header className="blog-header">
         <h1 className="blog-title">Bienvenidas al Blog de FemCoders Club</h1>
-        <nav className="blog-nav">
+        <nav className="blog-nav" aria-label="Secciones del blog">
           <ul className="blog-menu">
             <li className="blog-menu-item">
               <Link

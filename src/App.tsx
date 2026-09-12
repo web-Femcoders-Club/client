@@ -9,12 +9,27 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    // Inicializar AOS
+    /*
+     * `once: false` + `mirror: true` significa que cada elemento se reanima al
+     * entrar Y al salir de la pantalla, en cada scroll y sin final. Para quien
+     * tiene trastorno vestibular o migraña con aura eso no es un adorno: es lo
+     * que le obliga a cerrar la página.
+     *
+     * Quien lo necesita ya lo ha dicho en su sistema operativo, así que no hace
+     * falta un interruptor propio en la web: se le pregunta al navegador. AOS
+     * acepta `disable`, y con él los elementos se quedan en su estado final
+     * visible en lugar de esperar a una animación que no va a llegar.
+     */
+    const prefiereMenosMovimiento = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
     AOS.init({
       duration: 800,
       easing: 'ease-out',
       once: false, // Hace que las animaciones se repitan cada vez que haces scroll
-      mirror: true // Anima elementos al salir del viewport también
+      mirror: true, // Anima elementos al salir del viewport también
+      disable: prefiereMenosMovimiento
     });
 
     // Tu código existente para el menú contextual

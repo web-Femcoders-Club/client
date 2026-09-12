@@ -68,8 +68,39 @@
   text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.3), 4px 4px 5px rgba(0, 0, 0, 0.3);
 }
 
+/*
+  Los avisos legales pasaron de enlace a botón y necesitan su propio aspecto: sin
+  esto se pintarían con el estilo de botón del navegador, gris y con marco.
+
+  El subrayado no es decoración. Hasta ahora eran enlaces blancos sin subrayar
+  sobre fondo morado, con el mismo color y la misma forma que el texto de al
+  lado: nada indicaba que se pudieran pulsar. El contraste del blanco sobre
+  #4a148c es de 12:1, de sobra para AAA, pero el contraste no sirve de nada si no
+  se distingue de lo que no es pulsable.
+*/
+.footer-policies .cookie-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-policies .cookie-link:hover,
 .footer-policies a:hover {
   color: #ea4f33;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-policies .cookie-link {
+    transition: none;
+  }
 }
 .footer-bottom {
   text-align: center;

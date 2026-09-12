@@ -13,32 +13,37 @@ const CookieBanner: React.FC = () => {
         localStorage.setItem('cookieBannerDismissed', 'true');
     };
 
-    const handlePolicyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
+    const handlePolicyClick = () => {
         openModal('cookiePolicy');
     };
 
     if (!isVisible) return null;
 
+    /*
+      `role="banner"` es la cabecera del sitio, y ya la tiene el <header>.
+      Declarado aquí la página acaba con dos, y el lector de pantalla ofrece dos
+      "banner" idénticos en el índice de regiones sin decir cuál es la cabecera y
+      cuál el aviso. Una región con nombre propio dice lo que es.
+    */
     return (
-        <div 
+        <div
             style={bannerStyle}
-            role="banner"
-            aria-label="Información sobre cookies"
+            role="region"
+            aria-label="Aviso sobre cookies"
         >
             <div style={contentWrapperStyle}>
                 <p style={textStyle}>
                     🍪 Este sitio utiliza únicamente <strong>cookies técnicas necesarias</strong> para 
                     su correcto funcionamiento. <br /><strong>No realizamos seguimiento</strong> ni usamos 
                     cookies de análisis o publicidad.{" "}
-                    <a 
-                        href="#" 
-                        onClick={handlePolicyClick} 
+                    {/* No lleva a otra página: abre una ventana sobre esta. */}
+                    <button
+                        type="button"
+                        onClick={handlePolicyClick}
                         style={linkStyle}
-                        aria-label="Ver política de cookies completa"
                     >
-                        Más información
-                    </a>
+                        Consulta la política de cookies completa
+                    </button>
                 </p>
                 <button 
                     onClick={handleDismiss} 
@@ -87,9 +92,26 @@ const textStyle: React.CSSProperties = {
     minWidth: '280px',
 };
 
+/*
+  Era #ea4f33 sobre el degradado morado del aviso: 2,3:1 de contraste, por debajo
+  incluso del 4,5:1 de AA. En blanco sube a 8,3:1 en el extremo más claro del
+  degradado, que cumple AAA (7:1) en todo el ancho.
+
+  Sigue en negrita y subrayado, así que no depende del color para distinguirse
+  del texto de alrededor. El resto son los apagados de rigor del <button>, que
+  antes era un <a>.
+*/
 const linkStyle: React.CSSProperties = {
-    color: '#ea4f33',
+    background: 'none',
+    border: 'none',
+    padding: '0',
+    // Por separado y no con el atajo `font`, que al ir después borraría el
+    // `fontWeight` de abajo: en un objeto de estilos gana la última clave.
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    color: '#ffffff',
     textDecoration: 'underline',
+    textUnderlineOffset: '3px',
     fontWeight: 'bold',
     cursor: 'pointer',
 };

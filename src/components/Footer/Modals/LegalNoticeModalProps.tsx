@@ -3,6 +3,7 @@ import React, { useContext, useRef } from "react";
 import "../Footer.css";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
+import { useDialogoModal } from "../../../hooks/useDialogoModal";
 
 interface LegalNoticeModalProps {
   closeModal: () => void;
@@ -11,6 +12,7 @@ interface LegalNoticeModalProps {
 const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ closeModal }) => {
   const { openModal } = useContext(ModalContext);
   const contentRef = useRef<HTMLElement | null>(null);
+  useDialogoModal(contentRef, closeModal);
 
   const handlePrivacyPolicyClick = (): void => {
     closeModal();
@@ -31,6 +33,7 @@ const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ closeModal }) => {
         aria-labelledby="legal-notice-title"
         style={{ maxWidth: "900px" }}
         ref={contentRef}
+        tabIndex={-1}
       >
         <div className="modal-close">
           <button

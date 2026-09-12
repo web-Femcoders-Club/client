@@ -3,6 +3,34 @@
    ======================================== */
 :root {
   /* Colores principales */
+
+  /*
+   * MEDIDO, PENDIENTE DE RESOLVER EN DISEÑO
+   *
+   * #ea4f33 hace de color de titulares, de texto pequeño y de fondo de botón a
+   * la vez, y solo cumple AA en el primero de los tres:
+   *
+   *   #ea4f33 sobre blanco ........... 3,71:1   AA en texto grande (pide 3)
+   *                                             FALLA en texto normal (pide 4,5)
+   *   blanco sobre #ea4f33 ........... 3,64:1   FALLA en texto normal
+   *   #ea4f33 sobre el pie #4a148c ... 3,20:1   FALLA
+   *   #ea4f33 sobre la cabecera ...... 2,32:1   FALLA
+   *
+   * En septiembre de 2026 se probó a oscurecerlo a #a32f15 (7:1) y se revirtió
+   * a propósito:
+   * estas pantallas van a rediseñarse, y forzar el color ahora fija una
+   * restricción sobre algo que se va a mover igualmente. La decisión es
+   * resolverlo cambiando los estilos —tamaños, fondos, jerarquía— y no el tono
+   * de marca.
+   *
+   * Lo que hay que arreglar cuando se toque el diseño, en orden de gravedad:
+   *   - naranja como TEXTO sobre los morados (pie, cabecera, franjas de
+   *     contacto, spans del carrusel de la home): entre 3,2:1 y 2,3:1;
+   *   - texto blanco sobre botones naranjas a tamaño normal: 3,64:1;
+   *   - naranja como texto pequeño sobre fondo claro: 3,71:1.
+   *
+   * Los titulares grandes no hace falta tocarlos: a 24px o más, 3,71 cumple AA.
+   */
   --color-primary: #ea4f33;
   --color-secondary: #4737bb;
   --color-accent: #6c63ff;
@@ -352,31 +380,31 @@ span {
 }
 
 .bg1 {
-  background-image: url("/public-optimized/desktop/assets/bg1.webp");
+  background-image: url("/public-optimized/desktop/bg1.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg2 {
-  background-image: url("/public-optimized/desktop/assets/bg2.webp");
+  background-image: url("/public-optimized/desktop/bg2.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg3 {
-  background-image: url("/public-optimized/desktop/assets/bg3.webp");
+  background-image: url("/public-optimized/desktop/bg3.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg4 {
-  background-image: url("/public-optimized/desktop/assets/bg4.webp");
+  background-image: url("/public-optimized/desktop/bg4.webp");
   background-size: cover;
   background-position: center;
 }
 
 .bg5 {
-  background-image: url("/public-optimized/desktop/assets/bg5.webp");
+  background-image: url("/public-optimized/desktop/bg5.webp");
   background-size: cover;
   background-position: center;
 }
@@ -674,23 +702,23 @@ span {
     font-size: 1rem;
   }
   .bg1 {
-    background-image: url("/public-optimized/mobile/assets/bg1.webp");
+    background-image: url("/public-optimized/mobile/bg1.webp");
   }
 
   .bg2 {
-    background-image: url("/public-optimized/mobile/assets/bg2.webp");
+    background-image: url("/public-optimized/mobile/bg2.webp");
   }
 
   .bg3 {
-    background-image: url("/public-optimized/mobile/assets/bg3.webp");
+    background-image: url("/public-optimized/mobile/bg3.webp");
   }
 
   .bg4 {
-    background-image: url("/public-optimized/mobile/assets/bg4.webp");
+    background-image: url("/public-optimized/mobile/bg4.webp");
   }
 
   .bg5 {
-    background-image: url("/public-optimized/mobile/assets/bg5.webp");
+    background-image: url("/public-optimized/mobile/bg5.webp");
   }
 
   .timeline-card {

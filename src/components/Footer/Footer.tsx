@@ -1,4 +1,5 @@
 import { BsInstagram, BsLinkedin, BsSpotify, BsYoutube, BsGithub, BsTwitterX } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import ApoyanosButton from "./ApoyanosButton";
 import SlackButton from "./SlackButton";
 
@@ -16,14 +17,22 @@ const FccFooter = () => {
         <div className="footer-top">
           <div className="footer-logo">
           <div className="footer-logo">
-  <a href="/" title="FemCoders Club Home">
+  {/*
+    El nombre accesible de un enlace tiene que decir a dónde lleva, no qué se ve
+    en él: "FemCoders Club Logo" describía la imagen. Va en el `alt` y no en un
+    `title` aparte porque los dos juntos se anuncian dos veces seguidas.
+
+    Y era un `<a href="/">`, que recarga la aplicación entera desde cero en vez
+    de navegar: el resto del sitio usa `Link`.
+  */}
+  <Link to="/">
     <OptimizedImage
       src="/assets/negativeLogo.webp"
-      alt="FemCoders Club Logo"
+      alt="FemCoders Club, ir a la página de inicio"
       loading="eager"
       className="footer-logo-image"
     />
-  </a>
+  </Link>
 </div>
           </div>
           <div className="footer-social">
@@ -74,35 +83,42 @@ const FccFooter = () => {
             <SlackButton />
           </div>
           <div className="footer-support">
+            {/*
+              Eran `<a href="#">`: se anunciaban como enlaces, prometían llevar a
+              otro sitio y, al no cancelar el salto del ancla, además subían la
+              página al principio y dejaban un `#` colgando en la URL. No llevan
+              a ninguna parte —abren una ventana sobre esta misma página—, que es
+              exactamente lo que hace un botón.
+            */}
             <div className="footer-policies">
-              <a
-                href="#"
+              <button
+                type="button"
                 onClick={() => openModal("cookiePolicy")}
                 className="cookie-link"
               >
                 Política de Cookies
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                type="button"
                 onClick={() => openModal("privacyPolicy")}
                 className="cookie-link"
               >
                 Política de Privacidad
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                type="button"
                 onClick={() => openModal("legalNotice")}
                 className="cookie-link"
               >
                 Aviso Legal
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                type="button"
                 onClick={() => openModal("faq")}
                 className="cookie-link"
               >
                 Preguntas Frecuentes
-              </a>
+              </button>
             </div>
             <ApoyanosButton />
           </div>

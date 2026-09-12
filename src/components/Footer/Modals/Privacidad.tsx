@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import "../Footer.css";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
+import { useDialogoModal } from "../../../hooks/useDialogoModal";
 
 interface PrivacyPolicyModalProps {
   closeModal: () => void;
@@ -11,6 +12,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
   const { openModal } = useContext(ModalContext);
   const [showMore, setShowMore] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  useDialogoModal(modalRef, closeModal);
 
   const toggleShowMore = (): void => {
     setShowMore((prev) => !prev);
@@ -33,15 +35,20 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
         className="modal-content"
         role="dialog"
         aria-modal="true"
+        aria-labelledby="privacy-policy-title"
         style={{ maxWidth: "900px" }}
         ref={modalRef}
+        tabIndex={-1}
       >
         <div className="modal-close">
-          <button onClick={closeModal}>x</button>
+          {/* Una "x" suelta se anuncia como "equis": el nombre lo pone aquí. */}
+          <button onClick={closeModal} aria-label="Cerrar la política de privacidad">
+            x
+          </button>
         </div>
 
         <div>
-          <h3>Política de Privacidad de FemCoders Club</h3>
+          <h3 id="privacy-policy-title">Política de Privacidad de FemCoders Club</h3>
           <h4>Fecha de entrada en vigor: 29.09.2025</h4>
         </div>
 
