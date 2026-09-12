@@ -118,6 +118,8 @@ const PreferenciasPage: React.FC = () => {
 
       <div className="preferencias__tarjeta">
         <h1 className="preferencias__titulo">{textos.titulo}</h1>
+        {/* Acento de marca, decorativo: no aporta nada a un lector de pantalla. */}
+        <div className="preferencias__filete" aria-hidden="true" />
         <p className="preferencias__intro">{textos.introduccion}</p>
 
         {error && (
@@ -131,27 +133,32 @@ const PreferenciasPage: React.FC = () => {
             Marca lo que quieras recibir
           </legend>
 
-          <label className="preferencias__opcion" htmlFor="consent-eventos">
-            <input
-              id="consent-eventos"
-              type="checkbox"
-              className="preferencias__casilla foco-visible"
-              checked={eventos}
-              onChange={(e) => setEventos(e.target.checked)}
-            />
-            <span className="preferencias__etiqueta">{textos.eventos}</span>
-          </label>
+          {/* Contenedor propio para separar las dos filas con `gap`: el espaciado
+              por gap sobrevive a que se añada o quite una opción, los márgenes
+              por elemento no. */}
+          <div className="preferencias__opciones">
+            <label className="preferencias__opcion" htmlFor="consent-eventos">
+              <input
+                id="consent-eventos"
+                type="checkbox"
+                className="preferencias__casilla foco-visible"
+                checked={eventos}
+                onChange={(e) => setEventos(e.target.checked)}
+              />
+              <span className="preferencias__etiqueta">{textos.eventos}</span>
+            </label>
 
-          <label className="preferencias__opcion" htmlFor="consent-newsletter">
-            <input
-              id="consent-newsletter"
-              type="checkbox"
-              className="preferencias__casilla foco-visible"
-              checked={newsletter}
-              onChange={(e) => setNewsletter(e.target.checked)}
-            />
-            <span className="preferencias__etiqueta">{textos.newsletter}</span>
-          </label>
+            <label className="preferencias__opcion" htmlFor="consent-newsletter">
+              <input
+                id="consent-newsletter"
+                type="checkbox"
+                className="preferencias__casilla foco-visible"
+                checked={newsletter}
+                onChange={(e) => setNewsletter(e.target.checked)}
+              />
+              <span className="preferencias__etiqueta">{textos.newsletter}</span>
+            </label>
+          </div>
         </fieldset>
 
         {/*

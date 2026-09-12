@@ -10,61 +10,100 @@
  *   --color-text-dark #2a2170 → ~13.5:1
  *   --color-secondary #4737bb → ~8.3:1
  * Los dos pasan AAA (7:1). El naranja de marca (#ea4f33) NO se usa para texto
- * ni como fondo de botón: sobre blanco ronda 3:1 y no llega ni a AA.
+ * ni como fondo de botón: sobre blanco ronda 3:1 y no llega ni a AA. Solo
+ * aparece como filete bajo el título, donde 1.4.11 admite 3:1 por no ser texto.
  */
 
+/*
+ * La cabecera del sitio es fija, así que el contenido tiene que arrancar por
+ * debajo de ella. `--fem-header-height` la publica Header.tsx midiéndola con un
+ * ResizeObserver; los 132px son el respaldo por si aún no se ha medido.
+ *
+ * Antes esto centraba la tarjeta con `align-items: center` sobre un `min-height`
+ * y el título quedaba literalmente debajo de la cabecera. Es el mismo patrón que
+ * ya usan ComunityHub, materiales y ofertas-de-trabajo.
+ */
 .preferencias {
-  min-height: 60vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg) var(--spacing-sm);
+  padding: calc(var(--fem-header-height, 132px) + 2rem) var(--spacing-sm) 4rem;
   font-family: var(--font-primary);
 }
 
 .preferencias__tarjeta {
   width: 100%;
-  max-width: 40rem;
-  background: var(--color-white);
+  max-width: 35rem;
+  height: fit-content;
+  background: #ffffff;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  /* La misma sombra que `.form-card`, para que se lea como el resto de
+     formularios del sitio: login, contacto y registro. */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   padding: var(--spacing-lg);
 }
 
 /*
- * index.css lleva una regla global `span { color: var(--color-primary) }` que es
- * de marca y no se toca. Sin acotarla aquí, cada etiqueta de casilla saldría
- * naranja sobre blanco: ~3:1, por debajo incluso de AA. Se limita al ámbito de
- * esta pantalla en vez de tocar la global (#82).
+ * index.css lleva una regla global `span { color: var(--color-primary);
+ * font-weight: bold; font-size: 1.5rem }` que es de marca y no se toca.
+ *
+ * Hay que neutralizar las TRES propiedades, no solo el color: con el tamaño y
+ * el peso puestos, las etiquetas de las casillas salían a 24px en negrita y
+ * parecían titulares, por encima del propio título de la pantalla. Se acota
+ * aquí dentro en vez de tocar la global (#82).
  */
 .preferencias span {
   color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 .preferencias__titulo {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
-  color: var(--color-text-dark);
-  margin: 0 0 var(--spacing-sm);
+  font-size: 1.875rem;
+  line-height: 1.2;
+  color: var(--color-secondary);
+  margin: 0 0 0.625rem;
+  /* El h1 global lleva una doble sombra pensada para los titulares grandes de
+     las portadas. A este tamaño y sobre blanco solo emborrona el trazo. */
+  text-shadow: none;
+}
+
+/* Acento de marca, puramente decorativo: por eso es un elemento vacío y va
+   marcado como aria-hidden en el componente. */
+.preferencias__filete {
+  width: 3.5rem;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  margin-bottom: 1.125rem;
 }
 
 .preferencias__intro {
   color: var(--color-text-dark);
-  line-height: 1.6;
-  margin: 0 0 var(--spacing-md);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 1.625rem;
 }
 
 .preferencias__grupo {
   border: none;
-  margin: 0 0 var(--spacing-md);
+  margin: 0 0 1.75rem;
   padding: 0;
 }
 
 .preferencias__leyenda {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
   font-weight: 700;
   color: var(--color-text-dark);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 0.625rem;
   padding: 0;
+}
+
+.preferencias__opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
 }
 
 .preferencias__opcion {
@@ -72,19 +111,25 @@
   align-items: flex-start;
   gap: 0.75rem;
   /* Área de pulsación holgada: la casilla sola no llega a 44x44 (WCAG 2.5.5). */
-  padding: 0.75rem 0.5rem;
-  cursor: pointer;
+  padding: 0.875rem 1rem;
+  /* El mismo lila de fondo que `.form-group input`, y un borde derivado del
+     violeta de marca en lugar de un gris nuevo que no está en el sistema. */
+  background: #f7f4fa;
+  border: 1px solid rgba(71, 55, 187, 0.18);
   border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .preferencias__opcion:hover {
-  background: rgba(71, 55, 187, 0.06);
+  background: #f2edf9;
+  border-color: rgba(71, 55, 187, 0.4);
 }
 
 .preferencias__casilla {
-  width: 1.35rem;
-  height: 1.35rem;
-  margin-top: 0.15rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
   flex-shrink: 0;
   accent-color: var(--color-secondary);
   cursor: pointer;
@@ -92,30 +137,35 @@
 
 .preferencias__etiqueta {
   color: var(--color-text-dark);
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 
 .preferencias__acciones {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: 0.75rem;
 }
 
 /*
  * Los dos botones comparten TODO menos el relleno: mismo tamaño, misma
- * tipografía, mismo peso, misma altura mínima. Destacar uno empujaría hacia una
- * respuesta concreta y el consentimiento dejaría de ser libre (art. 7.4).
+ * tipografía, mismo peso, misma altura mínima y el mismo borde de 2px.
+ *
+ * No es una preferencia estética. Destacar uno empujaría hacia una respuesta
+ * concreta, y un consentimiento empujado no es libre (RGPD art. 7.4): dejaría
+ * de valer, y con él todos los que recoja esta pantalla.
  */
 .preferencias__boton {
-  flex: 1 1 14rem;
-  min-height: 44px;
+  flex: 1 1 13rem;
+  min-height: 46px;
   padding: 0.75rem 1.25rem;
   font-family: var(--font-primary);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: 2px solid var(--color-secondary);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .preferencias__boton:disabled {
@@ -126,7 +176,6 @@
 .preferencias__boton--guardar {
   background-color: var(--color-secondary);
   color: var(--color-white);
-  border: 2px solid var(--color-secondary);
 }
 
 .preferencias__boton--guardar:hover:not(:disabled) {
@@ -135,22 +184,19 @@
 }
 
 .preferencias__boton--ninguna {
-  background-color: var(--color-white);
-  color: var(--color-text-dark);
-  /* El borde lleva el color de marca: 8.3:1 sobre blanco, muy por encima del
-     3:1 que pide 1.4.11 para elementos no textuales. */
-  border: 2px solid var(--color-secondary);
+  background-color: #ffffff;
+  color: var(--color-secondary);
 }
 
 .preferencias__boton--ninguna:hover:not(:disabled) {
-  background-color: rgba(71, 55, 187, 0.08);
+  background-color: #f2edf9;
 }
 
 .preferencias__nota {
-  margin: var(--spacing-md) 0 0;
-  font-size: 0.9rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.84375rem;
   color: var(--color-text-dark);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .preferencias__error {
@@ -165,16 +211,20 @@
 }
 
 @media (max-width: 480px) {
+  .preferencias {
+    padding: calc(var(--fem-header-height, 132px) + 1.25rem) var(--spacing-sm) 3rem;
+  }
+
   .preferencias__tarjeta {
     padding: var(--spacing-md) var(--spacing-sm);
   }
 
   .preferencias__titulo {
-    font-size: 1.5rem;
+    font-size: 1.625rem;
   }
 
-  /* En una sola columna los dos botones ocupan lo mismo, que es justo lo que no
-     puede perderse al estrechar la pantalla. */
+  /* En una sola columna los dos botones siguen ocupando lo mismo, que es justo
+     lo que no puede perderse al estrechar la pantalla. */
   .preferencias__boton {
     flex: 1 1 100%;
   }
