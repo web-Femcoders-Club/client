@@ -602,9 +602,15 @@ const BlogPage: React.FC = () => {
           content="FemCoders, blog de programación, recursos de desarrollo, noticias de tecnología, mujeres en tecnología, HTML, CSS, React, Python"
         />
 
+        {/*
+          Con `www`: sin él, el canonical apuntaba a una URL que responde 301
+          hacia la versión con www. Un canonical que redirige es una señal débil
+          —se le está diciendo al buscador "la buena es esta otra", y esa otra
+          contesta "en realidad es aquella"—. El resto del sitio ya usa www.
+        */}
         <link
           rel="canonical"
-          href={`https://femcodersclub.com${location.pathname}`}
+          href={`https://www.femcodersclub.com${location.pathname}`}
         />
 
         <meta property="og:title" content="Blog de FemCoders Club" />

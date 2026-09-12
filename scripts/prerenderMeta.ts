@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 import { getPostsIndex, type PostMeta } from "./postsIndex";
 import { generateSocialImages, type SocialImageMap } from "./socialImages";
 import { isPrivateRoute } from "./privateRoutes";
+import { RUTAS_SPA, type RutaMeta } from "./spaRoutesMeta";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DIST_DIR = path.join(ROOT, "dist");
@@ -182,6 +183,83 @@ function renderHead(template: string, post: PostMeta, image: string): string {
   return html.replace("</head>", `${tags}\n  </head>`);
 }
 
+/**
+ * Metas de una ruta de la SPA: lo mínimo para que deje de ser un duplicado de la
+ * portada. Sin JSON-LD de artículo y con `og:type: website`, porque un listado
+ * no es un artículo.
+ */
+function renderHeadRuta(template: string, route: string, meta: RutaMeta): string {
+  const url = `${SITE_URL}${route}`;
+
+  let html = template;
+  html = stripTag(html, "title");
+  for (const value of ["og:type", "og:url", "og:title", "og:description"]) {
+    html = stripMeta(html, "property", value);
+  }
+  for (const value of ["twitter:title", "twitter:description", "description"]) {
+    html = stripMeta(html, "name", value);
+  }
+
+  const tags = [
+    `    <title>${attr(meta.title)}</title>`,
+    `    <meta name="description" content="${attr(meta.description)}" />`,
+    // La que faltaba. Sin ella, tres URLs con el mismo HTML dejan que Google
+    // elija por su cuenta cuál es la buena, y eligió la portada.
+    `    <link rel="canonical" href="${url}" />`,
+    "",
+    `    <meta property="og:type" content="website" />`,
+    `    <meta property="og:url" content="${url}" />`,
+    `    <meta property="og:title" content="${attr(meta.title)}" />`,
+    `    <meta property="og:description" content="${attr(meta.description)}" />`,
+    "",
+    `    <meta name="twitter:title" content="${attr(meta.title)}" />`,
+    `    <meta name="twitter:description" content="${attr(meta.description)}" />`,
+  ].join("\n");
+
+  return html.replace("</head>", `${tags}\n  </head>`);
+}
+
+/**
+ * Incrusta los enlaces a los artículos en las páginas que los listan.
+ *
+ * El listado del blog lo pinta React, así que el HTML servido de /blog no
+ * contenía ni un solo enlace a un post: los siete que había eran los del
+ * `<noscript>` de index.html, todos a secciones. Un artículo nuevo solo era
+ * descubrible por el sitemap, y una URL sin ningún enlace que la apunte recibe
+ * poca prioridad de rastreo.
+ *
+ * Va dentro de un `<noscript>` porque con JavaScript activo el listado real ya
+ * está ahí y duplicarlo sería ruido. No es contenido distinto del que ve una
+ * persona: son los mismos artículos, los mismos títulos y las mismas rutas.
+ */
+function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): string {
+  if (!meta.listaPosts) return html;
+
+  const seleccion =
+    meta.listaPosts === "todas"
+      ? posts
+      : posts.filter((p) => p.section === meta.listaPosts);
+  if (!seleccion.length) return html;
+
+  const enlaces = seleccion
+    .map(
+      (p) =>
+        `        <li><a href="${p.path}">${attr(p.title)}</a></li>`
+    )
+    .join("\n");
+
+  const bloque = [
+    "    <noscript>",
+    `      <h2>${attr(meta.encabezadoLista || meta.title)}</h2>`,
+    "      <ul>",
+    enlaces,
+    "      </ul>",
+    "    </noscript>",
+  ].join("\n");
+
+  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+}
+
 export async function prerenderMeta(): Promise<void> {
   const templatePath = path.join(DIST_DIR, "index.html");
   if (!(await fs.pathExists(templatePath))) {
@@ -305,11 +383,32 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     );
 
   let written = 0;
+  const sinMetas: string[] = [];
   for (const route of new Set(routes)) {
+    const meta = RUTAS_SPA[route];
+
+    // Sin entrada en la tabla se escribe la plantilla tal cual, que es lo que se
+    // hacía antes para todas. Se avisa para que una ruta nueva no se quede
+    // duplicando la portada durante meses sin que nadie lo note.
+    let html = template;
+    if (meta) {
+      html = renderHeadRuta(template, route, meta);
+      html = renderEnlacesPosts(html, posts, meta);
+    } else {
+      sinMetas.push(route);
+    }
+
     const outDir = path.join(DIST_DIR, route);
     await fs.ensureDir(outDir);
-    await fs.writeFile(path.join(outDir, "index.html"), template, "utf-8");
+    await fs.writeFile(path.join(outDir, "index.html"), html, "utf-8");
     written++;
+  }
+
+  if (sinMetas.length) {
+    console.warn(
+      "⚠️  rutas sin metas propias (sirven una copia de la portada; añádelas a scripts/spaRoutesMeta.ts):"
+    );
+    sinMetas.forEach((r) => console.warn(`   ${r}`));
   }
 
   // Red de seguridad. `serve` devuelve 404.html cuando no encuentra fichero, y
