@@ -257,9 +257,11 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/ofertas-de-trabajo"
             element={
-              <Layout>
-                <JobOffers />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <JobOffers />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -274,9 +276,11 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/stats"
             element={
-              <Layout>
-                <Stats />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <Stats />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -420,51 +424,63 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/welcome"
             element={
-              <ExigeRespuesta>
-                <Layout>
-                  <WelcomePage />
-                </Layout>
-              </ExigeRespuesta>
+              <ProtectedRoute>
+                <ExigeRespuesta>
+                  <Layout>
+                    <WelcomePage />
+                  </Layout>
+                </ExigeRespuesta>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/bienvenida/preferencias"
             element={
-              <Layout>
-                <PreferenciasPage />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <PreferenciasPage />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/personaliza-perfil"
             element={
-              <Layout>
-                <PersonalizaPerfil />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <PersonalizaPerfil />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/mentoria"
             element={
-              <Layout>
-                <MentorshipPage />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <MentorshipPage />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/enviar-documentacion"
             element={
-              <Layout>
-                <SendDocumentation />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <SendDocumentation />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/recursos-comunidad-femcoders-club"
             element={
-              <Layout>
-                <ComunityHub />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <ComunityHub />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           {/*
@@ -485,9 +501,11 @@ const RouterComponent: React.FC = () => {
           <Route
             path="/presentaciones-destacadas"
             element={
-              <Layout>
-                <FeaturedPresentation />
-              </Layout>
+              <ProtectedRoute>
+                <Layout>
+                  <FeaturedPresentation />
+                </Layout>
+              </ProtectedRoute>
             }
           />
           <Route
