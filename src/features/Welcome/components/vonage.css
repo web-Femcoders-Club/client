@@ -1,0 +1,339 @@
+/*
+ * Bloques de Vonage en /welcome (#102).
+ *
+ * CSS a mano por el mismo motivo que la pantalla de preferencias: el navegador
+ * recibe Tailwind v2 por CDN mientras el código escribe sintaxis v3, así que
+ * buena parte de las clases v3 no generan regla (#92).
+ *
+ * Contraste sobre blanco (calculado, pendiente de medir con herramienta):
+ *   --color-text-dark #2a2170 → ~13.5:1
+ *   --color-secondary #4737bb → ~8.3:1
+ * Los dos pasan AAA. El naranja de marca (#ea4f33) no se usa para texto: sobre
+ * blanco ronda 3:1 y no llega ni a AA.
+ */
+
+.vonage {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+/*
+ * La tarjeta del partnership. Modificador y no cambio sobre `.vonage` porque el
+ * formulario de las tres preguntas comparte esa base y no lleva ni barra ni
+ * logo: tocando la base cambiarían las dos.
+ *
+ * `overflow: hidden` es lo que recorta la barra de color contra el radio de la
+ * esquina; sin él asoma por fuera.
+ */
+.vonage--partner {
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/*
+ * La barra de cuatro colores es la del Quiz (Quiz.css). Aquí el naranja de marca
+ * sí cabe: es decoración y 1.4.11 solo le pide 3:1, mientras que como texto se
+ * quedaría en 3,7:1 y no llegaría a AAA.
+ */
+.vonage__barra {
+  height: 4px;
+  background: linear-gradient(90deg, #4737bb, #ea4f33, #6d2c95, #8937bb);
+}
+
+.vonage__cuerpo {
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+}
+
+/* Wordmark de 1000x400: se fija el alto y el ancho va solo. */
+.vonage__logo {
+  display: block;
+  height: 34px;
+  width: auto;
+  margin-bottom: var(--spacing-xs);
+}
+
+/*
+ * Gradiente de título del Quiz (#4737bb → #6d2c95). De los tres que hay en el
+ * proyecto es el único que aguanta AAA en todo su recorrido: 8,3:1 a 8,6:1. El
+ * de GitHubProjects termina en el naranja, a 3,7:1, que es el mismo número del
+ * problema de #82.
+ *
+ * El `color` va antes del gradiente para que siga habiendo texto legible si el
+ * navegador no aplica `background-clip: text`.
+ */
+.vonage__titulo--gradiente {
+  color: var(--color-secondary);
+  background: linear-gradient(135deg, #4737bb, #6d2c95);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+/*
+ * index.css lleva `span { color: var(--color-primary); font-weight: bold;
+ * font-size: 1.5rem }`, que es de marca y no se toca.
+ *
+ * Hay que neutralizar las TRES propiedades, no solo el color: con el tamaño y
+ * el peso puestos, cada etiqueta saldría a 24px en negrita y competiría con los
+ * títulos de la propia página. Se acota aquí dentro (#82).
+ */
+.vonage span {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.vonage__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.vonage__texto {
+  color: var(--color-text-dark);
+  line-height: 1.65;
+  margin: 0 0 var(--spacing-md);
+}
+
+/* Cajas de dentro de la tarjeta: el código y la comunidad. */
+.vonage__caja {
+  background: #f7f4fa;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+/*
+ * La de la comunidad va sobre blanco para que no compita con la del código: son
+ * dos acciones, pero la principal es la de arriba.
+ */
+.vonage__caja--comunidad {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  background: #ffffff;
+  border-width: 2px;
+  margin-bottom: 0;
+}
+
+.vonage__caja-titulo {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--spacing-xs);
+}
+
+/* La caja de la comunidad lleva un título de verdad, no una etiqueta. */
+.vonage__caja-titulo--llano {
+  font-size: 0.9375rem;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: 0.125rem;
+}
+
+.vonage__caja-texto {
+  color: var(--color-text-dark);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Qué desbloquea el código, debajo de la fila del propio código. */
+.vonage__caja-pie {
+  margin-top: var(--spacing-xs);
+}
+
+/*
+ * Texto solo para lectores de pantalla. Se define aquí y no se reutiliza el
+ * `.sr-only` del sitio porque ese vive en Home.css y CardTeamMember.css, que con
+ * la carga diferida pueden no estar presentes en /welcome. Una clase que a veces
+ * existe es peor que una propia.
+ */
+.vonage__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vonage__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.vonage__codigo {
+  font-family: "Courier New", monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dark);
+  background: rgba(71, 55, 187, 0.08);
+  border: 2px dashed var(--color-secondary);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  /* Para que se pueda seleccionar a mano si el portapapeles no está disponible.
+     El prefijo no es decorativo: sin él Safari e iOS no lo aplican, y son justo
+     donde el acceso al portapapeles falla más a menudo. */
+  -webkit-user-select: all;
+  user-select: all;
+  word-break: break-all;
+}
+
+.vonage__boton {
+  /* `inline-flex` para que el icono y el texto queden centrados y a la misma
+     altura, y para que el <a> del registro se comporte igual que el <button>. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px; /* WCAG 2.5.5 */
+  padding: 0.7rem 1.25rem;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.vonage__boton:hover:not(:disabled) {
+  background-color: #372a94;
+  border-color: #372a94;
+  color: var(--color-white);
+}
+
+/* El de la comunidad, en secundario: la acción principal es copiar el código. */
+.vonage__boton--secundario {
+  color: var(--color-secondary);
+  background-color: #ffffff;
+}
+
+.vonage__boton--secundario:hover:not(:disabled) {
+  background-color: #f2edf9;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.vonage__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/*
+ * El aviso de copiado ocupa su sitio siempre, aunque esté vacío: si apareciera
+ * y desapareciera, el contenido de debajo daría un salto cada vez que se copia.
+ */
+.vonage__copiado {
+  min-height: 1.5rem;
+  margin: var(--spacing-xs) 0 0;
+  font-size: 0.9rem;
+  color: #15803d; /* ~4.8:1 sobre blanco; es texto de apoyo, no la única señal */
+}
+
+.vonage__form {
+  margin-top: var(--spacing-sm);
+}
+
+.vonage__grupo {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md);
+}
+
+.vonage__leyenda {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-xs);
+  padding: 0;
+  line-height: 1.4;
+}
+
+.vonage__opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  /* Área de pulsación holgada: el control solo no llega a 44x44. */
+  padding: 0.6rem 0.4rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.vonage__opcion:hover {
+  background: rgba(71, 55, 187, 0.06);
+}
+
+.vonage__control {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.vonage__etiqueta {
+  color: var(--color-text-dark);
+  line-height: 1.5;
+}
+
+.vonage__mensaje,
+.vonage__error {
+  background: #fdecea;
+  border: 1px solid #c0392b;
+  color: #a03123;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0 0 var(--spacing-sm);
+}
+
+@media (max-width: 640px) {
+  .vonage__cuerpo {
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+  }
+
+  .vonage__titulo {
+    font-size: 1.5rem;
+  }
+
+  /* Apilada, la caja de la comunidad deja el botón a lo ancho debajo del texto
+     en vez de apretarlo contra el borde derecho. */
+  .vonage__caja--comunidad {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .vonage__boton {
+    width: 100%;
+  }
+
+  .vonage__codigo {
+    width: 100%;
+    text-align: center;
+  }
+}
