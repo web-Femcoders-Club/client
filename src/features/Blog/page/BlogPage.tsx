@@ -451,7 +451,7 @@ const BlogPage: React.FC = () => {
   type: "noticia",
   category: "femCoders",
   title: "FemCoders Club se une al Vonage Community Partnership Program",
-  description: "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar, y un ecosistema internacional al que acercarnos.",
+  description: "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar. Las primeras cosas ya están disponibles para la comunidad, y queremos montar un proyecto en grupo.",
   createdAt: new Date("2026-09-10"),
 },
   ];

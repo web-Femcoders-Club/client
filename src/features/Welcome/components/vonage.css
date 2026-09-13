@@ -255,6 +255,103 @@
   color: #15803d; /* ~4.8:1 sobre blanco; es texto de apoyo, no la única señal */
 }
 
+/*
+ * El bloque de «Qué puedes hacer con esto» lleva la misma barra de color que la
+ * tarjeta del código, así que necesita lo mismo que ella: sin relleno propio
+ * —lo pone `.vonage__cuerpo`— y con `overflow: hidden` para que la barra se
+ * recorte contra el radio de la esquina en vez de asomar por fuera.
+ */
+.vonage--aprovechar {
+  padding: 0;
+  overflow: hidden;
+}
+
+/*
+ * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
+ *
+ * Las dos columnas son iguales de ancho a propósito: una es lo que se puede
+ * hacer hoy y la otra lo que quizá se haga en octubre, y jerarquizar una sobre
+ * otra daría a entender que el programa está más cerrado de lo que está.
+ */
+.vonage__caminos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+  /* Las dos columnas igual de altas aunque una tenga más texto: si no, la
+     violeta queda cortada a media altura y parece un recuadro suelto. */
+  align-items: stretch;
+}
+
+.vonage__camino {
+  background: #f7f4fa;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+}
+
+.vonage__lista {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+.vonage__lista li + li {
+  margin-top: var(--spacing-xs);
+}
+
+.vonage__camino-texto {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vonage__camino-texto:last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * La columna del programa va en violeta para que las dos no se lean como la
+ * misma cosa: una es lo que se puede hacer hoy y la otra lo que quizá se haga
+ * en octubre.
+ *
+ * Contraste: el blanco sobre el extremo claro del degradado (#4737bb) da 8,2:1
+ * y sobre el oscuro (#2a2170) 13:1. Los dos pasan AAA.
+ *
+ * Todo el texto va en blanco puro, sin un lila más suave para los párrafos
+ * secundarios: el lila que se probó (#ede9fb) se quedaba en 6,9:1 sobre el
+ * extremo claro, justo por debajo del umbral. La jerarquía la dan el peso y el
+ * tamaño, que no dependen del fondo.
+ */
+.vonage__camino--programa {
+  background: linear-gradient(135deg, #4737bb, #2a2170);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+.vonage__camino--programa .vonage__caja-titulo,
+.vonage__camino--programa .vonage__camino-texto {
+  color: var(--color-white);
+}
+
+/*
+ * La frase que lleva al formulario, sobre el violeta. Aquí el filete sí puede
+ * ser naranja de marca: es decoración, y 1.4.11 le pide 3:1 — sobre #2a2170
+ * está en 3,6:1. El texto sigue siendo blanco.
+ */
+.vonage__camino--programa .vonage__camino-texto--llamada {
+  font-weight: 700;
+  color: var(--color-white);
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--spacing-sm);
+}
+
+@media (max-width: 780px) {
+  .vonage__caminos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .vonage__form {
   margin-top: var(--spacing-sm);
 }

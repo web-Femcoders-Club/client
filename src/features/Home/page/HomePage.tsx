@@ -454,7 +454,7 @@ const HomePage: React.FC = () => {
       id: "21",
       title: "FemCoders Club se une al Vonage Community Partnership Program",
       description:
-        "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers. Sus APIs de voz, vídeo, mensajería y verificación son tecnología con la que podemos experimentar, y esta colaboración nos acerca a un ecosistema internacional. Ya estamos trabajando en las primeras iniciativas.",
+        "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers. Sus APIs de voz, vídeo, mensajería y verificación son tecnología con la que podemos experimentar, y esta colaboración nos acerca a un ecosistema internacional. Las primeras cosas ya están disponibles dentro de la web, y estamos viendo si sale adelante un proyecto en grupo.",
       image: "/assets/noticias/vonage-femcodersclub.jpg",
       imageAlt: "Vonage x fem Coders Club, colaboración para impulsar a las mujeres en tecnología. Los logotipos de Vonage —part of Ericsson— y de FemCoders Club sobre un fondo con una red de nodos y la silueta de un rostro de mujer formada por circuitos",
       aiGenerated: true,
