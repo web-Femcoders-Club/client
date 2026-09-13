@@ -20,7 +20,7 @@ const VonageCommunityPartnership: React.FC = () => {
         </title>
         <meta
           name="description"
-          content="Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar."
+          content="Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación."
         />
         <meta
           name="keywords"
@@ -38,7 +38,7 @@ const VonageCommunityPartnership: React.FC = () => {
         />
         <meta
           property="og:description"
-          content="Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar."
+          content="Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación."
         />
         <meta
           property="og:url"
@@ -61,7 +61,7 @@ const VonageCommunityPartnership: React.FC = () => {
         />
         <meta
           name="twitter:description"
-          content="Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar."
+          content="Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación."
         />
         <meta
           name="twitter:image"
@@ -101,7 +101,7 @@ const VonageCommunityPartnership: React.FC = () => {
               headline:
                 "FemCoders Club se une al Vonage Community Partnership Program",
               description:
-                "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar.",
+                "Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación.",
               image: "/assets/noticias/vonage-femcodersclub.jpg",
               datePublished: "2026-09-10T10:00:00Z",
               about: {
