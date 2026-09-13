@@ -72,6 +72,15 @@ const VonageCommunityPartnership: React.FC = () => {
           property="article:published_time"
           content="2026-09-10T10:00:00Z"
         />
+        {/*
+          El artículo se actualizó con las novedades que ya están disponibles.
+          Sin `modified_time`, buscadores y agregadores siguen creyendo que lo
+          último que se dijo aquí es «muy pronto habrá novedades».
+        */}
+        <meta
+          property="article:modified_time"
+          content="2026-09-13T12:00:00Z"
+        />
         <meta property="article:author" content="FemCoders Club" />
         <meta property="article:section" content="Noticias" />
         <meta property="article:tag" content="Vonage" />
@@ -336,26 +345,41 @@ const VonageCommunityPartnership: React.FC = () => {
         <h2>Lo que viene</h2>
         <br />
         <p>
-          No queremos adelantar demasiado todavía, pero sí podemos contaros una
-          cosa:{" "}
+          Cuando publicamos esta noticia dijimos que muy pronto habría
+          novedades. Ya las hay:{" "}
           <strong>
-            ya estamos trabajando junto al equipo de Vonage en las primeras
-            iniciativas para FemCoders Club
+            las primeras cosas de esta colaboración están disponibles para
+            quien forma parte de la comunidad
           </strong>
-          .
-        </p>
-        <br />
-        <p>Y muy pronto habrá novedades.</p>
-        <br />
-        <p>
-          Esta colaboración acaba de empezar y tenemos muchas ganas de ver hasta
-          dónde podemos llevarla.
+          , dentro de la web.
         </p>
         <br />
         <p>
-          Si quieres enterarte de lo próximo que estamos preparando junto a
-          Vonage, regístrate en FemCoders Club. Las próximas novedades para la
-          comunidad llegarán muy pronto.
+          No lo contamos aquí en abierto porque son para las integrantes del
+          club. Si tienes cuenta, las encuentras nada más entrar, en tu página
+          de bienvenida.
+        </p>
+        <br />
+        <p>
+          Y hay una segunda parte que sí podemos contar, porque depende de
+          vosotras:{" "}
+          <strong>
+            queremos preparar para octubre un programa para construir uno o
+            varios proyectos en grupo
+          </strong>{" "}
+          con las APIs de Vonage —voz, vídeo, mensajería y verificación—.
+        </p>
+        <br />
+        <p>
+          No está decidido todavía, y preferimos decirlo a prometerlo. Antes de
+          fijar fechas o formato necesitamos saber cuántas personas tendrían
+          ganas de participar y con cuánto tiempo cuentan. Si sale adelante,
+          será porque hay gente suficiente para que tenga sentido.
+        </p>
+        <br />
+        <p>
+          Esa pregunta está dentro de la web, en tu página de bienvenida: son
+          tres preguntas y se contestan en un minuto.
         </p>
         <br />
 
@@ -378,11 +402,11 @@ const VonageCommunityPartnership: React.FC = () => {
               marginBottom: "15px",
             }}
           >
-            Quiero enterarme de lo próximo
+            Ya está disponible
           </h3>
           <p>
-            Regístrate en FemCoders Club y te contamos las novedades de esta
-            colaboración en cuanto haya algo que compartir.
+            Regístrate en FemCoders Club y lo encontrarás dentro, en tu página
+            de bienvenida. Si ya tienes cuenta, solo tienes que entrar.
           </p>
           <br />
           <Link
@@ -402,6 +426,20 @@ const VonageCommunityPartnership: React.FC = () => {
           >
             Registrarme en FemCoders Club
           </Link>
+          <br />
+          <br />
+          {/*
+            Quien ya tiene cuenta no necesita registrarse, necesita entrar. Sin
+            esta segunda puerta, el único botón la manda a un formulario de alta
+            que va a rechazar su email y la deja sin saber qué hacer.
+          */}
+          <p style={{ margin: 0, fontSize: "0.95rem" }}>
+            ¿Ya tienes cuenta?{" "}
+            <Link to="/login" className="highlight-link">
+              Entra aquí
+            </Link>
+            .
+          </p>
         </div>
       </div>
 
@@ -411,6 +449,9 @@ const VonageCommunityPartnership: React.FC = () => {
         </p>
         <p>
           Fecha de publicación: <strong>10 de septiembre, 2026</strong>
+        </p>
+        <p>
+          Actualizado: <strong>13 de septiembre, 2026</strong>
         </p>
       </div>
 
