@@ -21,60 +21,68 @@ import "./vonage.css";
  */
 const AprovecharVonage: React.FC = () => (
   <section className="vonage vonage--aprovechar" aria-labelledby="aprovechar-titulo">
-    <h2 id="aprovechar-titulo" className="vonage__titulo">
-      Qué puedes hacer con esto
-    </h2>
+    {/* La misma barra de cuatro colores que la tarjeta del código, para que los
+        dos bloques de Vonage se lean como uno solo. Decorativa. */}
+    <div className="vonage__barra" aria-hidden="true" />
 
-    <p className="vonage__texto">
-      La colaboración con Vonage te abre dos caminos, y no tienes que elegir: el
-      primero está disponible desde hoy y el segundo depende de cuántas seáis.
-    </p>
+    <div className="vonage__cuerpo">
+      <h2 id="aprovechar-titulo" className="vonage__titulo">
+        Qué puedes hacer con esto
+      </h2>
 
-    <div className="vonage__caminos">
-      <div className="vonage__camino">
-        <p className="vonage__caja-titulo">Por tu cuenta, desde hoy</p>
+      <p className="vonage__texto">
+        La colaboración con Vonage te abre dos caminos, y no tienes que elegir:
+        el primero está disponible desde hoy y el segundo depende de cuántas
+        seáis.
+      </p>
 
-        <ul className="vonage__lista">
-          <li>
-            Canjea el código y prueba sus APIs con el crédito: mandar un SMS,
-            montar una verificación en un login, abrir una sala de vídeo.
-          </li>
-          <li>
-            Regístrate en su espacio para FemCoders Club. Dentro de su
-            plataforma hay cursos y recursos para developers, y te llegan sus
-            eventos.
-          </li>
-          <li>
-            Lo que construyas es tuyo y lo puedes enseñar. Haber integrado una
-            API de comunicaciones se explica muy bien en una entrevista.
-          </li>
-        </ul>
-      </div>
+      <div className="vonage__caminos">
+        <div className="vonage__camino">
+          <p className="vonage__caja-titulo">Por tu cuenta, desde hoy</p>
 
-      <div className="vonage__camino">
-        <p className="vonage__caja-titulo">Y si prefieres no hacerlo sola</p>
+          <ul className="vonage__lista">
+            <li>
+              Canjea el código y prueba sus APIs con el crédito: mandar un SMS,
+              montar una verificación en un login, abrir una sala de vídeo.
+            </li>
+            <li>
+              Regístrate en su espacio para FemCoders Club. Dentro de su
+              plataforma hay cursos y recursos para developers, y te llegan sus
+              eventos.
+            </li>
+            <li>
+              Lo que construyas es tuyo y lo puedes enseñar. Haber integrado una
+              API de comunicaciones se explica muy bien en una entrevista.
+            </li>
+          </ul>
+        </div>
 
-        <p className="vonage__camino-texto">
-          Queremos preparar para <strong>octubre</strong> un programa para
-          construir uno o varios proyectos en grupo con estas APIs: algo más
-          ambicioso de lo que suele salir en solitario, con gente con quien
-          repartirse el trabajo y a quien preguntar.
-        </p>
+        <div className="vonage__camino vonage__camino--programa">
+          <p className="vonage__caja-titulo">Y si prefieres no hacerlo sola</p>
 
-        <p className="vonage__camino-texto">
-          No está decidido todavía, y preferimos decirlo a prometerlo. Antes de
-          fijar nada necesitamos saber cuántas personas tendrían ganas y con
-          cuánto tiempo cuentan. Si sale adelante, será porque hay gente
-          suficiente.
-        </p>
+          <p className="vonage__camino-texto">
+            Queremos preparar para <strong>octubre</strong> un programa para
+            construir uno o varios proyectos en grupo con estas APIs: algo más
+            ambicioso de lo que suele salir en solitario, con gente con quien
+            repartirse el trabajo y a quien preguntar.
+          </p>
 
-        <p className="vonage__camino-texto vonage__camino-texto--llamada">
-          Eso es justo lo que preguntamos aquí abajo. Son tres preguntas y se
-          contestan en un minuto.
-        </p>
+          <p className="vonage__camino-texto">
+            No está decidido todavía, y preferimos decirlo a prometerlo. Antes
+            de fijar nada necesitamos saber cuántas personas tendrían ganas y
+            con cuánto tiempo cuentan. Si sale adelante, será porque hay gente
+            suficiente.
+          </p>
+
+          <p className="vonage__camino-texto vonage__camino-texto--llamada">
+            Eso es justo lo que preguntamos aquí abajo. Son tres preguntas y se
+            contestan en un minuto.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 );
+
 
 export default AprovecharVonage;

@@ -256,6 +256,17 @@
 }
 
 /*
+ * El bloque de «Qué puedes hacer con esto» lleva la misma barra de color que la
+ * tarjeta del código, así que necesita lo mismo que ella: sin relleno propio
+ * —lo pone `.vonage__cuerpo`— y con `overflow: hidden` para que la barra se
+ * recorte contra el radio de la esquina en vez de asomar por fuera.
+ */
+.vonage--aprovechar {
+  padding: 0;
+  overflow: hidden;
+}
+
+/*
  * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
  *
  * Las dos columnas son iguales de ancho a propósito: una es lo que se puede
@@ -266,6 +277,9 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-md);
+  /* Las dos columnas igual de altas aunque una tenga más texto: si no, la
+     violeta queda cortada a media altura y parece un recuadro suelto. */
+  align-items: stretch;
 }
 
 .vonage__camino {
@@ -297,14 +311,38 @@
 }
 
 /*
- * La frase que lleva al formulario. Se marca con el violeta de marca y un filete
- * a la izquierda, no con el naranja: sobre este fondo el naranja se queda en
- * torno a 3,5:1 y esto es texto, no decoración.
+ * La columna del programa va en violeta para que las dos no se lean como la
+ * misma cosa: una es lo que se puede hacer hoy y la otra lo que quizá se haga
+ * en octubre.
+ *
+ * Contraste: el blanco sobre el extremo claro del degradado (#4737bb) da 8,2:1
+ * y sobre el oscuro (#2a2170) 13:1. Los dos pasan AAA.
+ *
+ * Todo el texto va en blanco puro, sin un lila más suave para los párrafos
+ * secundarios: el lila que se probó (#ede9fb) se quedaba en 6,9:1 sobre el
+ * extremo claro, justo por debajo del umbral. La jerarquía la dan el peso y el
+ * tamaño, que no dependen del fondo.
  */
-.vonage__camino-texto--llamada {
+.vonage__camino--programa {
+  background: linear-gradient(135deg, #4737bb, #2a2170);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+.vonage__camino--programa .vonage__caja-titulo,
+.vonage__camino--programa .vonage__camino-texto {
+  color: var(--color-white);
+}
+
+/*
+ * La frase que lleva al formulario, sobre el violeta. Aquí el filete sí puede
+ * ser naranja de marca: es decoración, y 1.4.11 le pide 3:1 — sobre #2a2170
+ * está en 3,6:1. El texto sigue siendo blanco.
+ */
+.vonage__camino--programa .vonage__camino-texto--llamada {
   font-weight: 700;
-  color: var(--color-secondary);
-  border-left: 3px solid var(--color-secondary);
+  color: var(--color-white);
+  border-left: 3px solid var(--color-primary);
   padding-left: var(--spacing-sm);
 }
 
