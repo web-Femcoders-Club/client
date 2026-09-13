@@ -22,6 +22,7 @@ import OptimizedImage from "../../../components/OptimizedImage";
 import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
 import CodigoVonage from "../components/CodigoVonage";
+import AprovecharVonage from "../components/AprovecharVonage";
 import InteresEnApis from "../components/InteresEnApis";
 import "./WelcomePage.css";
 
@@ -338,6 +339,7 @@ const WelcomePage = () => {
             Se llega aquí habiendo respondido lo que sea.
           */}
           <CodigoVonage />
+          <AprovecharVonage />
           <InteresEnApis />
 
           <header className="mb-8 lg:mb-12">

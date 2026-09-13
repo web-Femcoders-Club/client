@@ -255,6 +255,65 @@
   color: #15803d; /* ~4.8:1 sobre blanco; es texto de apoyo, no la única señal */
 }
 
+/*
+ * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
+ *
+ * Las dos columnas son iguales de ancho a propósito: una es lo que se puede
+ * hacer hoy y la otra lo que quizá se haga en octubre, y jerarquizar una sobre
+ * otra daría a entender que el programa está más cerrado de lo que está.
+ */
+.vonage__caminos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+}
+
+.vonage__camino {
+  background: #f7f4fa;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+}
+
+.vonage__lista {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+.vonage__lista li + li {
+  margin-top: var(--spacing-xs);
+}
+
+.vonage__camino-texto {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vonage__camino-texto:last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * La frase que lleva al formulario. Se marca con el violeta de marca y un filete
+ * a la izquierda, no con el naranja: sobre este fondo el naranja se queda en
+ * torno a 3,5:1 y esto es texto, no decoración.
+ */
+.vonage__camino-texto--llamada {
+  font-weight: 700;
+  color: var(--color-secondary);
+  border-left: 3px solid var(--color-secondary);
+  padding-left: var(--spacing-sm);
+}
+
+@media (max-width: 780px) {
+  .vonage__caminos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .vonage__form {
   margin-top: var(--spacing-sm);
 }
