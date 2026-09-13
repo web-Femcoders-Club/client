@@ -8,6 +8,7 @@ import {
   Lightbulb,
   Mail,
   MailX,
+  History,
   MessageSquare,
   ShieldCheck,
   UserCheck,
@@ -25,6 +26,7 @@ import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
 import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
+import RegistroDeActividad from '../components/registro/RegistroDeActividad';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -50,6 +52,7 @@ const SECCIONES = [
  * una inspección, no pasos de un flujo.
  */
 const CUMPLIMIENTO = [
+  { to: '/admin/registro', texto: 'Registro de actividad', Icono: History },
   { to: '/admin/unsubscribed', texto: 'Bajas de email', Icono: MailX },
   { to: '/admin/consents', texto: 'Consentimientos', Icono: ShieldCheck },
   { to: '/admin/legal', texto: 'Documentación legal', Icono: FileText },
@@ -135,6 +138,7 @@ const Admin: React.FC = () => {
               <Route path="achievements" element={<ManageAchievements />} />
               <Route path="listas" element={<ListasDeCorreo />} />
               <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
+              <Route path="registro" element={<RegistroDeActividad />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
               <Route path="consents" element={<ConsentOverview />} />
               <Route path="legal" element={<LegalDocs />} />
