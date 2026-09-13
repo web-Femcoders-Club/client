@@ -10,6 +10,7 @@ import {
   getUnsubscribed,
 } from "../../../../api/adminApi";
 import AdminPagination from "../ui/AdminPagination";
+import ConfirmacionIrreversible from "../ui/ConfirmacionIrreversible";
 import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
 
 const POR_PAGINA = 20;
@@ -29,6 +30,9 @@ const UnsubscribeList: React.FC = () => {
   const [pagina, setPagina] = useState(1);
   const [pending, setPending] = useState<PendingUnsubscribeRecord[]>([]);
   const [resolving, setResolving] = useState<string | null>(null);
+  /* Qué email espera confirmación. `null` = el diálogo está cerrado. */
+  const [porConfirmar, setPorConfirmar] = useState<string | null>(null);
+  const [pendientePorConfirmar, setPendientePorConfirmar] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
@@ -79,13 +83,14 @@ const UnsubscribeList: React.FC = () => {
     e.preventDefault();
     const email = newEmail.trim();
     if (!email) return;
-    if (
-      !window.confirm(
-        `¿Dar de baja ${email}? Dejará de recibir comunicaciones y se retirará su consentimiento de marketing.`
-      )
-    ) {
-      return;
-    }
+    // La confirmación la pide el diálogo; aquí solo se abre.
+    setPorConfirmar(email);
+  };
+
+  /** Lo que se ejecuta cuando alguien confirma en el diálogo. */
+  const confirmarBaja = async () => {
+    const email = porConfirmar;
+    if (!email) return;
     setSubmitting(true);
     setFeedback(null);
     setError(null);
@@ -106,6 +111,7 @@ const UnsubscribeList: React.FC = () => {
       setError("No se pudo procesar la baja. Inténtalo de nuevo.");
     } finally {
       setSubmitting(false);
+      setPorConfirmar(null);
     }
   };
 
@@ -114,14 +120,14 @@ const UnsubscribeList: React.FC = () => {
    * baja manual: el backend borra la fila de la cola al completarla, así que
    * no hay un segundo paso que se pueda olvidar.
    */
-  const handleResolvePending = async (email: string) => {
-    if (
-      !window.confirm(
-        `¿Dar de baja ${email}? Lo pidió desde la web y no se le pudo enviar el email de confirmación. Dejará de recibir comunicaciones y se retirará su consentimiento de marketing.`
-      )
-    ) {
-      return;
-    }
+  const handleResolvePending = (email: string) => {
+    setPendientePorConfirmar(email);
+  };
+
+  /** Lo que se ejecuta cuando alguien confirma una solicitud pendiente. */
+  const confirmarPendiente = async () => {
+    const email = pendientePorConfirmar;
+    if (!email) return;
     setResolving(email);
     setFeedback(null);
     setError(null);
@@ -141,6 +147,7 @@ const UnsubscribeList: React.FC = () => {
       setError(`No se pudo dar de baja a ${email}. Inténtalo de nuevo.`);
     } finally {
       setResolving(null);
+      setPendientePorConfirmar(null);
     }
   };
 
@@ -389,6 +396,52 @@ const UnsubscribeList: React.FC = () => {
           etiqueta="Paginación de la lista de bajas"
         />
       </div>
+
+      <ConfirmacionIrreversible
+        abierto={porConfirmar !== null}
+        titulo="Vas a dar de baja este email"
+        sujeto={porConfirmar ?? undefined}
+        mensaje={
+          <>
+            <p>
+              Dejará de recibir cualquier comunicación de FemCoders Club y se
+              retirará su consentimiento de marketing.
+            </p>
+            <p>
+              A diferencia de una cuenta borrada, una baja no tiene papelera ni
+              plazo de gracia: si esta persona quiere volver a recibir correos,
+              tendrá que pedirlo ella misma.
+            </p>
+          </>
+        }
+        textoConfirmar="Sí, dar de baja"
+        ocupado={submitting}
+        onConfirmar={confirmarBaja}
+        onCancelar={() => setPorConfirmar(null)}
+      />
+
+      <ConfirmacionIrreversible
+        abierto={pendientePorConfirmar !== null}
+        titulo="Vas a resolver esta solicitud de baja"
+        sujeto={pendientePorConfirmar ?? undefined}
+        mensaje={
+          <>
+            <p>
+              Esta persona pidió la baja desde la web y no se le pudo enviar el
+              email de confirmación. Al continuar, la baja queda hecha.
+            </p>
+            <p>
+              Dejará de recibir comunicaciones y se retirará su consentimiento
+              de marketing. Una baja no tiene papelera: para volver a recibir
+              correos tendría que pedirlo ella misma.
+            </p>
+          </>
+        }
+        textoConfirmar="Sí, dar de baja"
+        ocupado={resolving !== null}
+        onConfirmar={confirmarPendiente}
+        onCancelar={() => setPendientePorConfirmar(null)}
+      />
     </div>
   );
 };

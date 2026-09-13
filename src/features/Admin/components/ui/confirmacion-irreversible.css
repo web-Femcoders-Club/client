@@ -1,0 +1,174 @@
+/*
+ * El aviso de las acciones que no se pueden deshacer.
+ *
+ * Contraste de todo lo que es texto, sobre blanco:
+ *   #2a2170 (título y cuerpo)   ~13,5:1
+ *   #a03123 (la línea de aviso)  ~7,4:1
+ *   #ffffff sobre #a03123 (botón) ~7,4:1
+ * Los tres pasan AAA. El naranja de marca no aparece: sobre blanco ronda 3,7:1.
+ */
+
+.confirmar__fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  /* Oscurece lo de detrás para que quede claro que hay que responder aquí. */
+  background: rgba(42, 33, 112, 0.55);
+}
+
+.confirmar {
+  width: 100%;
+  max-width: 33rem;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  /* Sombra más marcada que la de una tarjeta normal: esto no es una tarjeta
+     más de la página, es algo que hay que atender. */
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  /* Si el aviso es largo y la pantalla baja —un móvil en horizontal—, el
+     diálogo scrollea por dentro en vez de dejar los botones fuera de la vista. */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.confirmar__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.confirmar__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #fdecea;
+  color: #a03123;
+}
+
+.confirmar__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+/* Sobre qué recae la acción, destacado para que no haya duda de a quién. */
+.confirmar__sujeto {
+  font-family: "Courier New", monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  background: rgba(71, 55, 187, 0.08);
+  border: 1px solid rgba(71, 55, 187, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.9rem;
+  margin: 0;
+  word-break: break-all;
+}
+
+.confirmar__mensaje {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirmar__mensaje p {
+  margin: 0 0 var(--spacing-xs);
+}
+
+.confirmar__mensaje p:last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * La línea que importa. Va en rojo oscuro Y en negrita Y con su propia caja:
+ * tres señales, porque quien no distingue el rojo tiene que recibir el aviso
+ * igual (WCAG 1.4.1).
+ */
+.confirmar__irreversible {
+  font-weight: 700;
+  color: #a03123;
+  background: #fdecea;
+  border: 1px solid #c0392b;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+  margin: 0;
+}
+
+.confirmar__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: flex-end;
+  margin-top: var(--spacing-xs);
+}
+
+.confirmar__boton {
+  min-height: 44px; /* WCAG 2.5.5 */
+  padding: 0.65rem 1.4rem;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 2px solid;
+  transition: background-color var(--transition-fast);
+}
+
+/*
+ * Cancelar va primero en el DOM y recibe el foco al abrir: es la salida segura.
+ * Se pinta como acción secundaria, pero con el mismo tamaño que la otra — un
+ * botón de cancelar más pequeño empuja a confirmar sin leer.
+ */
+.confirmar__boton--cancelar {
+  color: var(--color-secondary);
+  background: var(--color-white);
+  border-color: var(--color-secondary);
+}
+
+.confirmar__boton--cancelar:hover:not(:disabled) {
+  background: #f2edf9;
+}
+
+.confirmar__boton--confirmar {
+  color: #ffffff;
+  background: #a03123;
+  border-color: #a03123;
+}
+
+.confirmar__boton--confirmar:hover:not(:disabled) {
+  background: #86281c;
+  border-color: #86281c;
+}
+
+.confirmar__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.confirmar__boton:focus-visible {
+  outline: 3px solid var(--color-text-dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .confirmar__botones {
+    flex-direction: column-reverse;
+  }
+
+  .confirmar__boton {
+    width: 100%;
+  }
+}

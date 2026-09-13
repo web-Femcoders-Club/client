@@ -1,0 +1,226 @@
+/*
+ * Registro de actividad del panel.
+ *
+ * CSS a mano por lo mismo que el resto de pantallas nuevas del panel: el
+ * navegador recibe Tailwind v2 por CDN mientras el código escribe sintaxis v3,
+ * así que buena parte de las clases v3 no generan regla (#92).
+ *
+ * Contraste sobre blanco, con los tokens del sitio:
+ *   --color-text-dark #2a2170 → ~13,5:1
+ *   --color-secondary #4737bb → ~8,3:1
+ * El naranja de marca no se usa para texto en ninguna parte de esta pantalla:
+ * sobre blanco ronda 3,7:1 y no llega ni a AA (#82).
+ */
+
+.registro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.registro__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.registro__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.registro__subtitulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.registro__intro {
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 70ch;
+}
+
+.registro__bloque {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+}
+
+.registro__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.registro__filtro {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+}
+
+.registro__filtro select {
+  min-height: 44px; /* WCAG 2.5.5 */
+  padding: 0.4rem 0.7rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  background: var(--color-white);
+  border: 1px solid rgba(71, 55, 187, 0.35);
+  border-radius: var(--radius-sm);
+}
+
+/*
+ * index.css lleva `span { color: var(--color-primary); font-weight: bold;
+ * font-size: 1.5rem }`, que es de marca y no se toca. Hay que neutralizar las
+ * tres propiedades, no solo el color: con el tamaño puesto, cada `span` de esta
+ * pantalla saldría a 24px en negrita (#82).
+ */
+.registro span {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* El email debajo del nombre, y el detalle debajo de la acción. */
+.registro__secundario {
+  display: block;
+  font-size: 0.8125rem;
+  color: #4a4490; /* 8,2:1 sobre blanco */
+  margin-top: 0.15rem;
+}
+
+.registro__fecha {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Las acciones que conviene que salten a la vista. El filete va a la izquierda
+ * y en violeta, no en naranja: sobre blanco el naranja se queda en 3,7:1, y
+ * aunque aquí sea decoración, un indicador que solo distingue por color necesita
+ * apoyarse en algo más — por eso la fila lleva además fondo tintado.
+ */
+.registro__fila--sensible {
+  background: rgba(71, 55, 187, 0.05);
+  box-shadow: inset 3px 0 0 var(--color-secondary);
+}
+
+.registro__horas {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/*
+ * Cuando quedan pocas horas. El rojo oscuro da 7,4:1 sobre blanco, y no es la
+ * única señal: el número de horas ya lo dice con palabras.
+ */
+.registro__horas--poco {
+  color: #a03123;
+  font-weight: 700;
+}
+
+.registro__boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  background: var(--color-white);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast);
+}
+
+.registro__boton:hover:not(:disabled) {
+  background: #f2edf9;
+}
+
+.registro__boton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.registro__cargando {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.registro__spinner {
+  animation: registro-girar 1s linear infinite;
+}
+
+@keyframes registro-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registro__spinner {
+    animation: none;
+  }
+}
+
+.registro__vacio {
+  color: #4a4490;
+  margin: 0;
+}
+
+.registro__aviso,
+.registro__error {
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  margin: 0;
+  border: 1px solid;
+}
+
+/* Los mismos valores ya medidos del panel: #14663d sobre #e7f6ee, 7,4:1. */
+.registro__aviso {
+  background: #e7f6ee;
+  border-color: #14663d;
+  color: #14663d;
+}
+
+.registro__error {
+  background: #fdecea;
+  border-color: #c0392b;
+  color: #a03123;
+}
+
+@media (max-width: 640px) {
+  .registro__barra {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .registro__boton {
+    width: 100%;
+  }
+}
