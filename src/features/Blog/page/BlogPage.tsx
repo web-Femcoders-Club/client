@@ -462,6 +462,14 @@ const BlogPage: React.FC = () => {
   description: "Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.",
   createdAt: new Date("2026-09-16"),
 },
+{
+  id: 50,
+  type: "noticia",
+  category: "femCoders",
+  title: "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
+  description: "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54% de descuento en el pase completo para nuestra comunidad.",
+  createdAt: new Date("2026-09-17"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -586,6 +594,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/vonage-community-partnership-program`;
  case "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad":
   return `/noticias/claude-community-house-barcelona`;
+ case "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026":
+  return `/noticias/barcelona-cybersecurity-congress-2026`;
       default:
         return `/`;
     }

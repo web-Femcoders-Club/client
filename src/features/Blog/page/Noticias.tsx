@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026</h2>
+            <p className="intro-text">
+              Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54% de descuento en el pase completo para nuestra comunidad...
+            </p>
+          </div>
+          <Link to="/noticias/barcelona-cybersecurity-congress-2026" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad</h2>
             <p className="intro-text">
               Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop...

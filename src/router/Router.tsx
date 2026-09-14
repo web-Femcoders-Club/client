@@ -203,6 +203,10 @@ const VonageCommunityPartnership = lazy(
 const ClaudeCommunityHouseBarcelona = lazy(
   () => import("../features/Blog/posts/noticias/ClaudeCommunityHouseBarcelona")
 );
+const BarcelonaCybersecurityCongress26 = lazy(
+  () =>
+    import("../features/Blog/posts/noticias/BarcelonaCybersecurityCongress26")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -890,6 +894,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ClaudeCommunityHouseBarcelona />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/barcelona-cybersecurity-congress-2026"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <BarcelonaCybersecurityCongress26 />
                 </Suspense>
               </Layout>
             }
