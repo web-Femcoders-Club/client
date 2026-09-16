@@ -454,6 +454,14 @@ const BlogPage: React.FC = () => {
   description: "Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar. Las primeras cosas ya están disponibles para la comunidad, y queremos montar un proyecto en grupo.",
   createdAt: new Date("2026-09-10"),
 },
+{
+  id: 51,
+  type: "noticia",
+  category: "femCoders",
+  title: "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad",
+  description: "Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.",
+  createdAt: new Date("2026-09-16"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -576,6 +584,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/hackbarna-ai-summit-26-desde-dentro`;
  case "FemCoders Club se une al Vonage Community Partnership Program":
   return `/noticias/vonage-community-partnership-program`;
+ case "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad":
+  return `/noticias/claude-community-house-barcelona`;
       default:
         return `/`;
     }

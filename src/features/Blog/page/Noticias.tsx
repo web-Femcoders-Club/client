@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad</h2>
+            <p className="intro-text">
+              Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop...
+            </p>
+          </div>
+          <Link to="/noticias/claude-community-house-barcelona" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>FemCoders Club se une al Vonage Community Partnership Program</h2>
             <p className="intro-text">
               Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar. Las primeras cosas ya están disponibles para la comunidad, y queremos montar un proyecto en grupo...

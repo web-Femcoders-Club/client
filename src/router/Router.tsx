@@ -200,6 +200,9 @@ const HackBarnaAiSummit26DesdeDentro = lazy(
 const VonageCommunityPartnership = lazy(
   () => import("../features/Blog/posts/noticias/VonageCommunityPartnership")
 );
+const ClaudeCommunityHouseBarcelona = lazy(
+  () => import("../features/Blog/posts/noticias/ClaudeCommunityHouseBarcelona")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -877,6 +880,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <VonageCommunityPartnership />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/claude-community-house-barcelona"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ClaudeCommunityHouseBarcelona />
                 </Suspense>
               </Layout>
             }

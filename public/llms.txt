@@ -81,14 +81,19 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 ## Blog posts
 
-Complete index of the 49 articles published on the FemCoders Club blog.
+Complete index of the 50 articles published on the FemCoders Club blog.
 
-### News (16)
+### News (17)
+
+- Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad
+  URL: https://www.femcodersclub.com/noticias/claude-community-house-barcelona
+  Published: 2026-09-16
+  Summary: Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.
 
 - FemCoders Club se une al Vonage Community Partnership Program
   URL: https://www.femcodersclub.com/noticias/vonage-community-partnership-program
   Published: 2026-09-10
-  Summary: Nos unimos al programa de Vonage (part of Ericsson) para comunidades de developers: APIs de voz, vídeo, mensajería y verificación con las que experimentar.
+  Summary: Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación.
 
 - FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro
   URL: https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26-desde-dentro

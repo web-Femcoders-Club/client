@@ -451,6 +451,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "22",
+      title: "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad",
+      description:
+        "Del 21 al 24 de septiembre, la comunidad europea de Claude se instala en B@B Bilbao 128: talleres en paralelo, clínicas para desatascar proyectos, charlas de equipos que la usan en producción y un hackathon de impacto. Las sesiones del día son gratuitas y con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.",
+      image: "/assets/noticias/claude-community-house-barcelona.jpg",
+      imageAlt: "Cartel del Claude Community House Barcelona, del 21 al 24 de septiembre en B@B Bilbao 128. Una multitud dibujada en pixel art levanta pancartas con mensajes como «she codes with Claude» o «leave the desk», y una pancarta rosa grande lleva el nombre de FemCoders Club",
+      date: "16 Septiembre 2026",
+      category: "Noticias",
+      link: "/noticias/claude-community-house-barcelona",
+    },
+    {
       id: "21",
       title: "FemCoders Club se une al Vonage Community Partnership Program",
       description:
