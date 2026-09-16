@@ -17,6 +17,11 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
           Claude Community House Barcelona: cuatro días de IA en Poblenou y un
           −20 % para nuestra comunidad | FemCoders Club
         </title>
+        {/*
+          Las descripciones se quedan cortas a propósito: los primeros ~158
+          caracteres son lo que Google enseña, y aquí caen justo al final de
+          una frase completa. Alargarlas parte la enumeración a la mitad.
+        */}
         <meta
           name="description"
           content="Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop."
@@ -169,18 +174,20 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
       {/* ── Intro ── */}
       <div className="intro-text">
         <p>
-          Del <strong>21 al 24 de septiembre</strong>, la comunidad europea de
-          Claude se muda entera a un edificio de Poblenou. Se llama{" "}
-          <strong>Claude Community House</strong>, dura cuatro días y ocupa{" "}
-          <strong>B@B — Bilbao 128</strong>, aquí en Barcelona.
+          Del <strong>21 al 24 de septiembre</strong>, Claude se muda a
+          Poblenou. Y no viene solo. Durante cuatro días,{" "}
+          <strong>B@B — Bilbao 128</strong> reunirá a la comunidad europea de
+          Claude para aprender, construir y compartir bajo un mismo techo.
         </p>
         <br />
         <p>
-          No es una conferencia al uso, y esa es justo la parte interesante:
-          durante esos cuatro días hay talleres en paralelo, clínicas para
-          desatascar proyectos, charlas de equipos que usan Claude en
-          producción, un hackathon de impacto y una azotea. Y traemos un código
-          de descuento para quien quiera subir a ella.
+          <strong>Claude Community House</strong> no se plantea como una
+          conferencia al uso. Habrá talleres en paralelo, clínicas para dar un
+          nuevo impulso a proyectos, conversaciones con equipos que ya usan
+          Claude en producción, un hackathon de impacto y tiempo para conocer a
+          las personas que están construyendo alrededor de esta tecnología. Y
+          traemos un código de descuento para quien quiera subir a la azotea al
+          terminar el día.
         </p>
       </div>
 
@@ -198,26 +205,37 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
           >
             <strong>Claude Community House</strong>
           </a>{" "}
-          es una <strong>iniciativa comunitaria independiente</strong>. Lo
-          organizan The Tech Nation, Happy Operators, clauders.com y la red
-          europea de embajadores de Claude: alrededor de quince personas de
-          distintos países que durante esa semana montan sus propias sesiones
-          bajo el mismo techo.
+          es una <strong>iniciativa comunitaria independiente</strong>,
+          coproducida por The Tech Nation, Happy Operators y clauders.com junto
+          a la red europea de embajadores de Claude. Quince embajadores de
+          distintas ciudades se reunirán en Barcelona para compartir cómo
+          trabajan, abrir conversaciones y acompañar a quienes quieran probar
+          nuevas formas de crear con Claude.
         </p>
         <br />
         <p>
-          Merece la pena entender la diferencia, porque cambia lo que te vas a
-          encontrar. No hay un escenario único con ponencias magistrales: hay
-          varias salas funcionando a la vez —auditorio, salas de reuniones, la
-          zona de talleres de la cafetería— y cada sesión la lleva quien la ha
-          propuesto. Te sientas al lado de quien la imparte.
+          Entre quienes están dando forma a estos cuatro días se encuentra{" "}
+          <a
+            href="https://www.linkedin.com/in/jbenhamou/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="highlight-link"
+            aria-label="Ver el perfil de Jérémie Benhamou en LinkedIn"
+          >
+            <strong>Jérémie Benhamou</strong>
+          </a>
+          , anfitrión y embajador de Claude en Barcelona, que además ha querido
+          acercar esta experiencia a la comunidad de FemCoders Club. El formato
+          invita a participar de verdad: varias salas estarán activas al mismo
+          tiempo y cada sesión estará guiada por las personas que la han
+          propuesto, con espacio para preguntar, probar y trabajar a su lado.
         </p>
         <br />
         <p>
-          El programa está <strong>en inglés</strong>, con gente que viene de
-          toda Europa. Y el jueves cierra coincidiendo con{" "}
-          <strong>La Mercè</strong>, que no es mala forma de acabar una semana
-          en Barcelona.
+          El programa será <strong>en inglés</strong> y reunirá a participantes
+          de distintos puntos de Europa. La última jornada coincidirá además con{" "}
+          <strong>La Mercè</strong>: un cierre muy barcelonés para cuatro días
+          pensados en comunidad.
         </p>
       </div>
 
@@ -226,9 +244,10 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
         <h2>Nuestro código: FEMCODERS20</h2>
         <br />
         <p>
-          Tenemos un <strong>20 % de descuento</strong> para la comunidad de
-          FemCoders Club en las entradas de{" "}
-          <strong>The AI Afterwork</strong>, la azotea del evento:
+          Al terminar las sesiones del día, la conversación continuará en la
+          azotea con <strong>The AI Afterwork</strong>. La comunidad de
+          FemCoders Club tiene un <strong>20 % de descuento</strong> en sus
+          entradas:
         </p>
         <br />
 
@@ -243,22 +262,36 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
           }}
         >
-          <p style={{ marginTop: 0 }}>Código de descuento del rooftop</p>
-          <br />
-          <p
+          {/*
+            El QR va en WebP sin pérdida y a doble resolución a propósito: es
+            la única imagen del post que alguien tiene que apuntar con la
+            cámara. Pasada por el pipeline de `optimize` saldría a 800 px y
+            calidad 70, que le come el borde a los módulos.
+          */}
+          <img
+            src="/assets/noticias/claude-community-house-qr-femcoders20.webp"
+            alt="Código QR que lleva a claudebcn.com. Debajo, el código de descuento FEMCODERS20 para un 20 % menos en las entradas del rooftop"
+            width={248}
+            height={330}
+            loading="lazy"
             style={{
-              fontSize: "2rem",
-              fontWeight: "bold",
-              letterSpacing: "0.15em",
-              color: "#4737bb",
-              margin: 0,
+              display: "block",
+              margin: "0 auto",
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "12px",
             }}
-          >
-            FEMCODERS20
-          </p>
+          />
           <br />
+          {/*
+            El QR no le sirve a quien lee esto desde el móvil, que no puede
+            escanear su propia pantalla, ni a quien usa lector de pantalla. El
+            código en texto y el enlace son la misma puerta por otro sitio.
+          */}
           <p style={{ margin: 0 }}>
-            Un <strong>20 % menos</strong> en la entrada de The AI Afterwork.
+            Escanea el QR, o usa el código{" "}
+            <strong style={{ letterSpacing: "0.08em" }}>FEMCODERS20</strong> al
+            comprar la entrada de The AI Afterwork.
           </p>
           <br />
           <a
@@ -285,27 +318,32 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
 
         {/*
           Sin esta aclaración, el código se lee como «la entrada al evento» y
-          quien no vaya al rooftop piensa que no puede entrar a nada. Las
-          sesiones del día van por su cuenta, gratis y con registro propio.
+          quien no vaya al rooftop piensa que no puede entrar a nada. Y sin la
+          última frase del segundo punto, alguien se apunta a un taller, cree
+          que tiene pase de semana y se planta el miércoles sin estar en lista.
         */}
         <p>
-          Conviene decir qué cubre y qué no, para que nadie se quede fuera por
-          un malentendido:
+          Para organizar tu visita, solo tienes que tener en cuenta que las
+          actividades del día y el encuentro de la azotea funcionan de manera
+          independiente:
         </p>
         <br />
         <ul>
           <li>
-            <strong>El código es para la azotea.</strong> The AI Afterwork es la
-            parte con entrada de pago: lo gestiona The Tech Nation, con puerta y
-            lista propias, y se vende a través de Luma. Funciona de{" "}
-            <strong>18:00 a 22:00 cada noche</strong>, con DJ y bar.
+            <strong>The AI Afterwork</strong> se celebrará de{" "}
+            <strong>18:00 a 22:00 cada noche</strong>, con DJ, bar y vistas a la
+            ciudad. Lo gestiona The Tech Nation, con puerta y lista propias, y
+            las entradas se venden a través de Luma: es aquí donde puedes
+            utilizar el código <strong>FEMCODERS20</strong>.
           </li>
           <li>
-            <strong>Las sesiones del día no necesitan ese código.</strong> Los
-            talleres, las charlas y las clínicas son{" "}
-            <strong>gratuitos</strong> y cada uno se reserva por separado en su
-            propia página de Luma. Apuntarte a uno no te da acceso al resto de
-            la semana: hay que registrarse en cada sesión a la que quieras ir.
+            <strong>
+              Las sesiones del día son gratuitas y no necesitan ese código.
+            </strong>{" "}
+            Como el programa permite crear una agenda a medida, cada taller,
+            charla o clínica se reserva por separado desde su propia página de
+            Luma. Apuntarte a una no te da acceso al resto de la semana: hay que
+            registrarse en cada sesión a la que quieras ir.
           </li>
         </ul>
       </div>
@@ -325,9 +363,9 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
           >
             programa completo
           </a>{" "}
-          tiene más de cuarenta sesiones en cuatro días, así que hemos
-          rescatado unas cuantas que encajan especialmente con lo que solemos
-          hacer en el club.
+          reúne más de cuarenta sesiones en cuatro días. Hemos seleccionado
+          algunas que conectan especialmente bien con los intereses y proyectos
+          que solemos compartir en FemCoders Club.
         </p>
         <br />
 
@@ -337,8 +375,9 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
           <li>
             <strong>How to become a power Claude Code user</strong> — lunes 21 a
             las 15:00, en el auditorio, con Julia Hernandez, del equipo de
-            Applied AI de Anthropic. Va de los patrones que separan el trabajo
-            con IA de un autocompletado algo más rápido.
+            Applied AI de Anthropic. Una sesión sobre los patrones de trabajo
+            que permiten aprovechar Claude Code mucho más allá del
+            autocompletado.
           </li>
           <li>
             <strong>Harness &amp; Loop Engineering with Claude Code</strong> —
@@ -369,13 +408,14 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
         <ul>
           <li>
             <strong>Claude Clinic</strong> — lunes 21 y martes 22, de 10:00 a
-            12:00, con Jeremie y Manar. La idea es literal: traes el proyecto
-            que no avanza y sales con él desbloqueado.
+            12:00, con Jérémie y Manar. Puedes llevar un proyecto o flujo de
+            trabajo que se te resista y revisarlo junto a personas con
+            experiencia práctica en Claude.
           </li>
           <li>
-            <strong>Claude Impact Lab</strong> — jueves 24, de 09:00 a 18:00.
-            Un día entero de hackathon de impacto: se forman equipos por la
-            mañana y se termina con algo funcionando.
+            <strong>Claude Impact Lab</strong> — jueves 24, de 09:00 a 18:00. Un
+            día entero de hackathon de impacto: se forman equipos por la mañana
+            y se termina con algo funcionando.
           </li>
           <li>
             <strong>Claude Build Day</strong> — miércoles 23, de 09:00 a 17:00,
@@ -387,8 +427,9 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
         <h3>Y el lado que no va de programar</h3>
         <br />
         <p>
-          Hay una parte del programa marcada como <em>offtech</em> que nos ha
-          hecho mucha gracia, y que dice bastante del ambiente que buscan:
+          El programa también reserva espacio para propuestas <em>offtech</em>.
+          Son actividades sencillas y creativas que invitan a descansar de la
+          pantalla y conocer a la comunidad desde otro lugar:
         </p>
         <br />
         <ul>
@@ -403,7 +444,8 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
           </li>
           <li>
             <strong>Disconnect · The Human Reset</strong> — lunes 21 a las
-            17:00, con Filip K. Una hora sin pantallas, respiración y poco más.
+            17:00, con Filip K. Una pausa de una hora sin pantallas para
+            respirar, bajar el ritmo y volver con otra energía.
           </li>
           <li>
             <strong>Claude House x RunHack</strong> — jueves 24: se sale a
@@ -446,8 +488,9 @@ const ClaudeCommunityHouseBarcelona: React.FC = () => {
         </ul>
         <br />
         <p>
-          Si te animas con alguna sesión, cuéntanoslo en los comentarios: quizá
-          haya más gente de la comunidad mirando la misma y os encontráis allí.
+          Si alguna sesión te llama la atención, cuéntanoslo en los comentarios.
+          Quizá otras personas de la comunidad estén pensando en asistir a la
+          misma y podáis encontraros allí.
         </p>
       </div>
 
