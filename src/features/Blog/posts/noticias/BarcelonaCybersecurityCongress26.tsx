@@ -14,10 +14,10 @@ import { urlAbsoluta } from "../../components/siteUrl";
   personas que los usen, siguen funcionando. Por eso pueden estar a la vista.
 
   Los cinco pases completos gratuitos que el congreso nos dio como Ambassadors
-  son de un solo uso y valen 495 € cada uno. No están en este archivo a
-  propósito: publicados se los llevaría quien pasara por aquí primero, que no
-  tiene por qué ser alguien de la comunidad. Se reparten por correo desde la
-  newsletter, y la vía de reparto está pendiente de decidir.
+  son de un solo uso y valen 495 € cada uno. Está decidido que no salgan en la
+  web: publicados se los llevaría quien pasara por aquí primero, que no tiene
+  por qué ser alguien de la comunidad. Se reparten por correo desde la
+  newsletter, fuera de este archivo.
 */
 const CODIGO_EXPO_GRATIS = "THBJGMZT";
 const CODIGO_CONGRESO_DESCUENTO = "SABSUJNR";
@@ -409,23 +409,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         </a>
       </div>
 
-      {/*
-        ── 5. Los cinco pases gratuitos ──
-
-        PENDIENTE: esta sección está a la espera de que se decida cómo se
-        reparten los cinco Full Congress Pass gratuitos (sorteo entre
-        suscriptoras o asignación directa). Según lo que se elija, aquí va:
-
-        - Si es sorteo: en qué consiste, quién puede participar, fecha de cierre
-          y cuándo se anuncian las ganadoras. Hace falta también una línea sobre
-          el tratamiento de datos y un enlace a las bases.
-        - Si es asignación directa: a quién van dirigidos y cómo pedirlos.
-
-        En ninguno de los dos casos van aquí los códigos. Se envían por correo
-        a cada persona, porque cada uno se gasta con un solo uso.
-      */}
-
-      {/* ── 6. Cierre ── */}
+      {/* ── 5. Cierre ── */}
       <div className="highlight-box">
         <h2>Barcelona nos espera</h2>
         <br />
