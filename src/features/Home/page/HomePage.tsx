@@ -451,6 +451,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "23",
+      title: "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
+      description:
+        "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Habrá un centenar de expositores, un hacking village y un programa sobre IA aplicada a la ciberdefensa, seguridad en 5G y 6G y normativa europea. Tenemos dos códigos para la comunidad: entrada gratuita a la zona de expositores y el pase completo por 225 € en lugar de 495 €.",
+      image: "/assets/noticias/bcc26-femcodersclub.jpg",
+      imageAlt: "Cartel del Barcelona Cybersecurity Congress 2026 con el lema «We are ambassadors of the #BCC26» y el logotipo de FemCoders Club en el centro. Del 3 al 5 de noviembre de 2026 en Barcelona, Gran Via Venue, hall 2.1",
+      date: "17 Septiembre 2026",
+      category: "Noticias",
+      link: "/noticias/barcelona-cybersecurity-congress-2026",
+    },
+    {
       id: "22",
       title: "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad",
       description:
@@ -496,17 +507,6 @@ const HomePage: React.FC = () => {
       category: "Noticias",
       link: "https://www.youtube.com/watch?v=pvStyYvl5io",
       linkLabel: "Ver la grabación en YouTube",
-    },
-    {
-      id: "16",
-      title: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
-      description:
-        "Integra la API gratuita de Gemini en JavaScript vanilla: proxy sin clave expuesta, control de cuota, backoff exponencial, caché LRU y streaming. Proyecto práctico: Smart Refactor Assistant, un asistente de refactor con linter propio y Gemini.",
-      image: "/assets/javascript/ia-javascript-gemini.webp",
-      imageAlt: "IA en JavaScript: integrar la API gratuita de Gemini sin frameworks — femCoders Club",
-      date: "19 Julio 2026",
-      category: "Recursos",
-      link: "/recursos/js/ia-javascript-gemini",
     },
     {
       id: "15",
