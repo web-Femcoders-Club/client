@@ -88,7 +88,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
 
         <meta
           property="article:published_time"
-          content="2026-09-15T10:00:00Z"
+          content="2026-09-17T10:00:00Z"
         />
         <meta property="article:author" content="FemCoders Club" />
         <meta property="article:section" content="Noticias" />
@@ -112,7 +112,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
               description:
                 "Somos Ambassadors oficiales del Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Te contamos qué vas a encontrar allí y cómo conseguir tu entrada gratis o con un 54% de descuento.",
               image: "/assets/noticias/bcc26-femcodersclub.jpg",
-              datePublished: "2026-09-15T10:00:00Z",
+              datePublished: "2026-09-17T10:00:00Z",
               about: {
                 "@type": "Event",
                 name: "Barcelona Cybersecurity Congress 2026",
@@ -446,7 +446,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           Escrito por: <strong>FemCoders Club</strong>
         </p>
         <p>
-          Fecha de publicación: <strong>15 de septiembre, 2026</strong>
+          Fecha de publicación: <strong>17 de septiembre, 2026</strong>
         </p>
       </div>
 
