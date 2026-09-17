@@ -81,9 +81,14 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 ## Blog posts
 
-Complete index of the 50 articles published on the FemCoders Club blog.
+Complete index of the 51 articles published on the FemCoders Club blog.
 
-### News (17)
+### News (18)
+
+- FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026
+  URL: https://www.femcodersclub.com/noticias/barcelona-cybersecurity-congress-2026
+  Published: 2026-09-17
+  Summary: Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Somos Ambassadors: entrada gratis y el pase completo con un 54 % menos.
 
 - Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad
   URL: https://www.femcodersclub.com/noticias/claude-community-house-barcelona

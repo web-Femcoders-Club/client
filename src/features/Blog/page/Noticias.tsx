@@ -12,7 +12,7 @@ const Noticias: React.FC = () => {
           <div>
             <h2>FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026</h2>
             <p className="intro-text">
-              Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54% de descuento en el pase completo para nuestra comunidad...
+              Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54 % de descuento en el pase completo para nuestra comunidad...
             </p>
           </div>
           <Link to="/noticias/barcelona-cybersecurity-congress-2026" className="secondary-button">

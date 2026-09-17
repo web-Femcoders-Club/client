@@ -36,9 +36,14 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress
           2026 | FemCoders Club
         </title>
+        {/*
+          158 caracteres es lo que enseña Google. Esta cabe entera: si se
+          corta, lo primero que se pierde es la oferta, que es justo el
+          motivo por el que alguien entra.
+        */}
         <meta
           name="description"
-          content="Somos Ambassadors oficiales del Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Te contamos qué vas a encontrar allí y cómo conseguir tu entrada gratis o con un 54% de descuento."
+          content="Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Somos Ambassadors: entrada gratis y el pase completo con un 54 % menos."
         />
         <meta
           name="keywords"
@@ -52,11 +57,11 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026 | FemCoders Club"
+          content="FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026"
         />
         <meta
           property="og:description"
-          content="Somos Ambassadors oficiales del Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Te contamos qué vas a encontrar allí y cómo conseguir tu entrada gratis o con un 54% de descuento."
+          content="Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Somos Ambassadors: entrada gratis y el pase completo con un 54 % menos."
         />
         <meta
           property="og:url"
@@ -79,7 +84,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         />
         <meta
           name="twitter:description"
-          content="Del 3 al 5 de noviembre en Fira de Barcelona. Entrada gratuita a la zona de expositores y un 54% de descuento en el pase completo para nuestra comunidad."
+          content="Del 3 al 5 de noviembre en Fira de Barcelona. Entrada gratuita a la zona de expositores y un 54 % de descuento en el pase completo para nuestra comunidad."
         />
         <meta
           name="twitter:image"
@@ -110,7 +115,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
               headline:
                 "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
               description:
-                "Somos Ambassadors oficiales del Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Te contamos qué vas a encontrar allí y cómo conseguir tu entrada gratis o con un 54% de descuento.",
+                "Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Somos Ambassadors: entrada gratis y el pase completo con un 54 % menos.",
               image: "/assets/noticias/bcc26-femcodersclub.jpg",
               datePublished: "2026-09-17T10:00:00Z",
               about: {
@@ -121,20 +126,24 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
                 image: urlAbsoluta("/assets/noticias/bcc26-femcodersclub.jpg"),
                 description:
                   "Congreso europeo de ciberseguridad con un centenar de expositores, un hacking village y un programa centrado en IA aplicada a la ciberdefensa, seguridad en 5G y 6G, gobernanza de datos y normativa europea.",
-                startDate: "2026-11-03T09:00:00+01:00",
-                endDate: "2026-11-05T18:00:00+01:00",
+                // Fecha sin hora a propósito: el horario de apertura no está
+                // confirmado contra el programa oficial y la página tampoco lo
+                // dice. Declarar 09:00–18:00 sería inventarse una precisión.
+                startDate: "2026-11-03",
+                endDate: "2026-11-05",
                 eventStatus: "https://schema.org/EventScheduled",
                 eventAttendanceMode:
                   "https://schema.org/OfflineEventAttendanceMode",
                 url: "https://www.barcelonacybersecuritycongress.com/",
                 location: {
                   "@type": "Place",
-                  name: "Fira de Barcelona, recinto Gran Via",
+                  name: "Fira de Barcelona, recinto Gran Via, hall 2.1",
                   address: {
                     "@type": "PostalAddress",
                     streetAddress: "Carrer de la Botànica, 62",
                     addressLocality: "L'Hospitalet de Llobregat",
                     addressRegion: "Barcelona",
+                    postalCode: "08908",
                     addressCountry: "ES",
                   },
                 },
@@ -154,6 +163,9 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
                     price: "0",
                     priceCurrency: "EUR",
                     availability: "https://schema.org/InStock",
+                    // Desde que los códigos son públicos, que es cuando se
+                    // publica este post.
+                    validFrom: "2026-09-17T10:00:00Z",
                   },
                   {
                     "@type": "Offer",
@@ -162,6 +174,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
                     price: "225",
                     priceCurrency: "EUR",
                     availability: "https://schema.org/InStock",
+                    validFrom: "2026-09-17T10:00:00Z",
                   },
                 ],
               },
@@ -199,7 +212,12 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         title="FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026"
       />
 
-      {/* ── Intro ── */}
+      {/*
+        El `speakable` del prerender apunta a `.blog-post-title` y a
+        `.intro-text`: esto es lo que un asistente lee cuando le preguntan por
+        el congreso. Por eso la intro lleva las fechas, la sede y las dos
+        entradas, y no solo el gancho.
+      */}
       <div className="intro-text">
         <p>
           La ciberseguridad no es solo un tema técnico: es un reto social. En un
@@ -215,6 +233,16 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
             Ambassadors oficiales del Barcelona Cybersecurity Congress 2026
           </strong>{" "}
           (#BCC26).
+        </p>
+        <br />
+        <p>
+          El congreso se celebra del{" "}
+          <strong>3 al 5 de noviembre de 2026</strong> en{" "}
+          <strong>Fira de Barcelona, recinto Gran Via, hall 2.1</strong>. Como
+          Ambassadors tenemos dos códigos para la comunidad: uno que te da la{" "}
+          <strong>entrada Expo+ gratis</strong> y otro que deja el{" "}
+          <strong>pase completo en 225 € en lugar de 495 €</strong>. Los dos
+          están más abajo y ninguno tiene límite de plazas.
         </p>
       </div>
 
@@ -270,22 +298,22 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         <br />
         <p>Como Ambassadors del #BCC26, lo que queremos es:</p>
         <br />
-        <p>
-          <strong>Llevar el congreso a nuestra comunidad.</strong> Porque
-          queremos que tú también formes parte de esta conversación.
-        </p>
-        <br />
-        <p>
-          <strong>Romper barreras.</strong> Mostrar que la ciberseguridad no es
-          un mundo cerrado, sino un sector lleno de oportunidades para mujeres y
-          personas infrarrepresentadas.
-        </p>
-        <br />
-        <p>
-          <strong>Crear conexiones reales.</strong> Entre profesionales, entre
-          curiosas, entre quienes ya trabajan en el sector y quienes quieren
-          empezar.
-        </p>
+        <ul>
+          <li>
+            <strong>Llevar el congreso a nuestra comunidad.</strong> Porque
+            queremos que tú también formes parte de esta conversación.
+          </li>
+          <li>
+            <strong>Romper barreras.</strong> Mostrar que la ciberseguridad no
+            es un mundo cerrado, sino un sector lleno de oportunidades para
+            mujeres y personas infrarrepresentadas.
+          </li>
+          <li>
+            <strong>Crear conexiones reales.</strong> Entre profesionales, entre
+            curiosas, entre quienes ya trabajan en el sector y quienes quieren
+            empezar.
+          </li>
+        </ul>
       </div>
 
       {/* ── 3. Qué vas a encontrar ── */}
@@ -297,36 +325,34 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           saber más sobre este mundo, el congreso es tu oportunidad para:
         </p>
         <br />
-        <p>
-          <strong>Descubrir las últimas tendencias.</strong> Desde la
-          inteligencia artificial hasta la protección de datos, pasando por los
-          riesgos emergentes.
-        </p>
-        <br />
-        <p>
-          <strong>Conocer proyectos que están cambiando cosas.</strong>{" "}
-          Startups, herramientas y soluciones que marcan la diferencia.
-        </p>
-        <br />
-        <p>
-          <strong>Hacer networking de verdad.</strong> Con profesionales,
-          empresas y posibles mentoras que pueden abrirte puertas.
-        </p>
-        <br />
-        <p>
-          <strong>Encontrar tu lugar en el sector.</strong> Ya sea para dar el
-          salto profesional o para inspirarte en tu próximo proyecto.
-        </p>
-        <br />
-        <p>
-          <strong>Aprender de las mejores.</strong> Talleres, charlas y debates
-          con expertas internacionales.
-        </p>
+        <ul>
+          <li>
+            <strong>Descubrir las últimas tendencias.</strong> Desde la
+            inteligencia artificial hasta la protección de datos, pasando por
+            los riesgos emergentes.
+          </li>
+          <li>
+            <strong>Conocer proyectos que están cambiando cosas.</strong>{" "}
+            Startups, herramientas y soluciones que marcan la diferencia.
+          </li>
+          <li>
+            <strong>Hacer networking de verdad.</strong> Con profesionales,
+            empresas y posibles mentoras que pueden abrirte puertas.
+          </li>
+          <li>
+            <strong>Encontrar tu lugar en el sector.</strong> Ya sea para dar el
+            salto profesional o para inspirarte en tu próximo proyecto.
+          </li>
+          <li>
+            <strong>Aprender de las mejores.</strong> Talleres, charlas y
+            debates con expertas internacionales.
+          </li>
+        </ul>
       </div>
 
       {/* ── 4. Las entradas ── */}
       <div className="highlight-box">
-        <h2>Tu entrada, con nuestro código</h2>
+        <h2>Entradas del BCC26: gratis o con un 54 % de descuento</h2>
         <br />
         <p>
           Aquí viene la parte buena de ser Ambassadors: tenemos códigos para ti.
@@ -379,7 +405,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           Este es el pase que te abre <strong>todo</strong>: las charlas, el
           programa de conferencias y el hacking village, además de la zona de
           expositores. Con nuestro código sale por{" "}
-          <strong>225 € en lugar de 495 €</strong>, un 54% menos, y tampoco
+          <strong>225 € en lugar de 495 €</strong>, un 54 % menos, y tampoco
           tiene límite de plazas.
         </p>
         <br />
@@ -403,7 +429,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
             transition: "all 0.3s ease",
             boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
           }}
-          aria-label="Conseguir el pase completo al congreso con el 54% de descuento de FemCoders Club"
+          aria-label="Conseguir el pase completo al congreso con el 54 % de descuento de FemCoders Club"
         >
           Conseguir mi pase completo
         </a>
@@ -433,9 +459,9 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         </p>
         <br />
         <p>
-          Si vas a venir, cuéntanoslo por{" "}
+          Si vas a venir, cuéntanoslo en el{" "}
           <Link to="/contacto" className="highlight-link">
-            aquí
+            formulario de contacto
           </Link>{" "}
           o en nuestras redes. Nos encantaría coincidir contigo esos días.
         </p>

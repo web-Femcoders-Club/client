@@ -467,7 +467,7 @@ const BlogPage: React.FC = () => {
   type: "noticia",
   category: "femCoders",
   title: "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
-  description: "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54% de descuento en el pase completo para nuestra comunidad.",
+  description: "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54 % de descuento en el pase completo para nuestra comunidad.",
   createdAt: new Date("2026-09-17"),
 },
   ];
