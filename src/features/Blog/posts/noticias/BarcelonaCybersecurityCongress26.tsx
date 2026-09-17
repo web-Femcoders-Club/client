@@ -68,7 +68,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         />
         <meta
           property="og:image:alt"
-          content="Barcelona Cybersecurity Congress 2026 x FemCoders Club. Los logotipos del congreso y de FemCoders Club, uno junto al otro, con las fechas del 3 al 5 de noviembre de 2026"
+          content="Cartel del Barcelona Cybersecurity Congress 2026 con el lema «We are ambassadors of the #BCC26» y el logotipo de FemCoders Club"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
@@ -186,7 +186,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         mobileSrc="/public-optimized/mobile/assets/noticias/bcc26-femcodersclub.webp"
         desktopSrc="/public-optimized/desktop/assets/noticias/bcc26-femcodersclub.webp"
         fallbackSrc="/assets/noticias/bcc26-femcodersclub.jpg"
-        alt="Barcelona Cybersecurity Congress 2026 x FemCoders Club. Los logotipos del congreso y de FemCoders Club, uno junto al otro, con las fechas del 3 al 5 de noviembre de 2026 y la sede en Fira de Barcelona"
+        alt="Cartel del Barcelona Cybersecurity Congress 2026 con el lema «We are ambassadors of the #BCC26» y el logotipo de FemCoders Club en el centro. Del 3 al 5 de noviembre de 2026 en Barcelona, Gran Via Venue, hall 2.1"
       />
 
       <h1 className="blog-post-title">
@@ -424,7 +424,7 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           <strong>Cuándo:</strong> del 3 al 5 de noviembre de 2026
         </p>
         <p>
-          <strong>Dónde:</strong> Fira de Barcelona, recinto Gran Via
+          <strong>Dónde:</strong> Fira de Barcelona, recinto Gran Via, hall 2.1
         </p>
         <br />
         <p>
