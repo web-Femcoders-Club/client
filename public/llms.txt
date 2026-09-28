@@ -81,9 +81,14 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 ## Blog posts
 
-Complete index of the 51 articles published on the FemCoders Club blog.
+Complete index of the 52 articles published on the FemCoders Club blog.
 
-### News (18)
+### News (19)
+
+- CTRL4ELLA recibe el premio Best use of the Vonage Video API
+  URL: https://www.femcodersclub.com/noticias/offload-challenge-vonage-hackbarna-ai-summit-26
+  Published: 2026-09-29
+  Summary: CTRL4ELLA, de FemCoders Club, recibe el premio Best use of the Vonage Video API con OFFLOAD, una agente de IA que sabe cuándo hablar en una videollamada.
 
 - FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026
   URL: https://www.femcodersclub.com/noticias/barcelona-cybersecurity-congress-2026

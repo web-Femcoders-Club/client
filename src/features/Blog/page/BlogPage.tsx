@@ -470,6 +470,14 @@ const BlogPage: React.FC = () => {
   description: "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54 % de descuento en el pase completo para nuestra comunidad.",
   createdAt: new Date("2026-09-17"),
 },
+{
+  id: 52,
+  type: "noticia",
+  category: "femCoders",
+  title: "Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26",
+  description: "CTRL4ELLA, el equipo de FemCoders Club, presentó OFFLOAD en HackBarna AI Summit 26: una agente de IA que escucha una videollamada de Vonage y solo pide la palabra cuando hace falta. Contamos cómo está construido y qué papel tiene cada tecnología.",
+  createdAt: new Date("2026-09-29"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -596,6 +604,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/claude-community-house-barcelona`;
  case "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026":
   return `/noticias/barcelona-cybersecurity-congress-2026`;
+ case "Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26":
+  return `/noticias/offload-challenge-vonage-hackbarna-ai-summit-26`;
       default:
         return `/`;
     }

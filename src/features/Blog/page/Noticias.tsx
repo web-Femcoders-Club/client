@@ -10,6 +10,20 @@ const Noticias: React.FC = () => {
       <div className="noticia-item bg1">
         <div className="noticia-content">
           <div>
+            <h2>Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26</h2>
+            <p className="intro-text">
+              CTRL4ELLA, el equipo de FemCoders Club, presentó OFFLOAD: una agente de IA que escucha una videollamada de Vonage y solo pide la palabra cuando hace falta. Os contamos cómo está construido y qué papel tiene cada tecnología...
+            </p>
+          </div>
+          <Link to="/noticias/offload-challenge-vonage-hackbarna-ai-summit-26" className="secondary-button">
+            Leer más
+          </Link>
+        </div>
+      </div>
+
+      <div className="noticia-item bg1">
+        <div className="noticia-content">
+          <div>
             <h2>FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026</h2>
             <p className="intro-text">
               Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Tenemos entrada gratuita a la zona de expositores y un 54 % de descuento en el pase completo para nuestra comunidad...

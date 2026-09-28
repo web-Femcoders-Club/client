@@ -207,6 +207,10 @@ const BarcelonaCybersecurityCongress26 = lazy(
   () =>
     import("../features/Blog/posts/noticias/BarcelonaCybersecurityCongress26")
 );
+const OffloadChallengeVonageHackBarna26 = lazy(
+  () =>
+    import("../features/Blog/posts/noticias/OffloadChallengeVonageHackBarna26")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -904,6 +908,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <BarcelonaCybersecurityCongress26 />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/offload-challenge-vonage-hackbarna-ai-summit-26"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <OffloadChallengeVonageHackBarna26 />
                 </Suspense>
               </Layout>
             }

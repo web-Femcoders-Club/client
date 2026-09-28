@@ -451,6 +451,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "24",
+      title: "Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26",
+      description:
+        "CTRL4ELLA, el equipo de FemCoders Club, presentó OFFLOAD en HackBarna AI Summit 26: una aplicación familiar que reparte la carga mental de una casa, con una agente de IA que escucha una videollamada de Vonage y solo pide la palabra cuando hace falta. El código es público, y contamos cómo está construido.",
+      image: "/assets/noticias/offload-challenge-vonage-hackbarna-ai-summit-26.jpg",
+      imageAlt: "Collage de OFFLOAD en HackBarna AI Summit 26: el equipo CTRL4ELLA en el escenario con el premio de Vonage, el equipo trabajando, el público del evento y pantallas de la aplicación con Mia",
+      date: "29 Septiembre 2026",
+      category: "Noticias",
+      link: "/noticias/offload-challenge-vonage-hackbarna-ai-summit-26",
+    },
+    {
       id: "23",
       title: "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
       description:
@@ -460,17 +471,6 @@ const HomePage: React.FC = () => {
       date: "17 Septiembre 2026",
       category: "Noticias",
       link: "/noticias/barcelona-cybersecurity-congress-2026",
-    },
-    {
-      id: "22",
-      title: "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad",
-      description:
-        "Del 21 al 24 de septiembre, la comunidad europea de Claude se instala en B@B Bilbao 128: talleres en paralelo, clínicas para desatascar proyectos, charlas de equipos que la usan en producción y un hackathon de impacto. Las sesiones del día son gratuitas y con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.",
-      image: "/assets/noticias/claude-community-house-barcelona.jpg",
-      imageAlt: "Cartel del Claude Community House Barcelona, del 21 al 24 de septiembre en B@B Bilbao 128. Una multitud dibujada en pixel art levanta pancartas con mensajes como «she codes with Claude» o «leave the desk», y una pancarta rosa grande lleva el nombre de FemCoders Club",
-      date: "16 Septiembre 2026",
-      category: "Noticias",
-      link: "/noticias/claude-community-house-barcelona",
     },
     {
       id: "21",
