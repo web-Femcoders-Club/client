@@ -12,8 +12,23 @@ import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import CarouselWithText from "../components/CarouselWithText";
 import GitHubProjects from "../components/GitHubProjects";
 import NewsSlider, { NewsItem } from "../components/NewsSlider";
+import HeroCollage from "../components/HeroCollage";
+import CifraAnimada from "../components/CifraAnimada";
+import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import "./Home.css";
+import "./portada.css";
 import "../../../features/Blog/page/PostStyles.css";
+
+/*
+ * Cifras de la portada. Por ahora se escriben a mano; la página «Comunidad
+ * real» del panel calcula las reales y más adelante saldrán de ahí.
+ * `frase` es lo que oye un lector de pantalla: el número animado va oculto.
+ */
+const CIFRAS_COMUNIDAD = [
+  { valor: 1500, rotulo: "Mujeres en STEM", frase: "Más de 1500 mujeres en STEM", Icono: Users },
+  { valor: 40, rotulo: "Eventos realizados", frase: "Más de 40 eventos realizados", Icono: CalendarDays },
+  { valor: 30, rotulo: "Empresas colaboradoras", frase: "Más de 30 empresas colaboradoras", Icono: Building2 },
+];
 
 interface Event {
   start: {
@@ -1187,121 +1202,74 @@ const HomePage: React.FC = () => {
           })}
         </script>
       </Helmet>
-      <section className="parallax bg1">
-        <div className="content-container">
+      <section className="parallax bg1 portada" aria-labelledby="portada-titulo">
+        <div className="portada__contenedor">
           <div
+            className="portada__texto"
             data-aos="fade-right"
             data-aos-duration="1500"
             data-aos-easing="ease-out-cubic"
-            className="text-content"
-            tabIndex={0}
-            aria-label="Sección principal de FemCoders Club"
           >
-            <h1 data-aos="fade-up" data-aos-delay="200" tabIndex={0}>
+            <h1
+              id="portada-titulo"
+              className="portada__titulo"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               femCoders Club
             </h1>
 
-            <h2 data-aos="fade-up" data-aos-delay="400" tabIndex={0}>
-              Tu comunidad de mujeres en tecnología
-              <svg
-                className="curved-line"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-                data-aos="zoom-in"
-                data-aos-delay="800"
-                {...{ "aria-hidden": "true" }}
-              >
-                <path
-                  d="M0 10 Q 50 0 100 10"
-                  stroke="#EA4F33"
-                  strokeWidth="2"
-                  fill="none"
-                />
-              </svg>
+            <h2 className="portada__lema" data-aos="fade-up" data-aos-delay="400">
+              Tu comunidad de mujeres en{" "}
+              <span className="portada__subrayada">
+                tecnología
+                <svg
+                  className="portada__curva"
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M0 9 Q 50 0 100 9" />
+                </svg>
+              </span>
             </h2>
-            <p
-              className="styled-paragraph"
-              data-aos="fade-up"
-              data-aos-delay="600"
-              tabIndex={0}
-            >
-              <span> Juntas,</span> potenciamos el crecimiento y liderazgo de
+
+            <p className="portada__parrafo" data-aos="fade-up" data-aos-delay="600">
+              <strong>Juntas,</strong> potenciamos el crecimiento y liderazgo de
               las mujeres tech. Descubre nuevas oportunidades, comparte
               conocimientos y crece profesionalmente en un entorno inclusivo y
               motivador.
               <br />
               Si compartes nuestra pasión por la tecnología, ¡únete a nosotras!
             </p>
-            <div
-              className="button-container"
-              data-aos="fade-up"
-              data-aos-delay="800"
-            >
-              <Link to="/register">
-                <button
-                  className="primary-button"
-                  aria-label="Unirse al club de mujeres programadoras"
-                >
-                  Unirse al club
-                </button>
-              </Link>
 
-              <Link to="/eventos">
-                <button
-                  className="secondary-button"
-                  aria-label="Ver eventos programados"
-                >
-                  Ver eventos
-                </button>
+            <div className="portada__botones" data-aos="fade-up" data-aos-delay="800">
+              <Link to="/register" className="portada-boton portada-boton--principal">
+                Unirse al club
+                <ArrowRight aria-hidden="true" />
+              </Link>
+              <Link to="/eventos" className="portada-boton portada-boton--secundario">
+                Ver eventos
               </Link>
             </div>
-          </div>
-          <div
-            data-aos="fade-left"
-            data-aos-duration="2000"
-            data-aos-easing="ease-out-cubic"
-            data-aos-delay="400"
-            className="image-content"
-            role="presentation"
-            aria-label="Cofundadoras de FemCoders Club demostrando liderazgo e influencia"
-          >
-            <div className="esferas-container">
-              {/* Esfera principal - Liderazgo primario */}
-              <div className="leadership-sphere primary">
-                <div 
-                  className="leadership-indicator" 
-                  data-tooltip="Pausar/Reanudar animación"
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Pausar o reanudar animación de imágenes"
-                ></div>
-                <OptimizedImage
-                  src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
-                  alt="Cofundadoras de FemCoders Club: líderes inspiradoras en tecnología"
-                  title="Liderazgo e influencia: Cofundadoras de FemCoders Club"
-                  loading="eager"
-                />
-              </div>
 
-              {/* Esfera secundaria - Liderazgo complementario */}
-              <div className="leadership-sphere secondary">
-                <div 
-                  className="leadership-indicator" 
-                  data-tooltip="Pausar/Reanudar animación"
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Pausar o reanudar animación de imágenes"
-                ></div>
-                <OptimizedImage
-                  src="/fundadorasFemCodersClub.png"
-                  alt="Elvia, Lili y Silvina: fundadoras de FemCoders Club impulsando la comunidad tech"
-                  title="Elvia, Lili y Silvina - Fundadoras legacy de FemCoders Club"
-                  loading="eager"
-                />
-              </div>
-            </div>
+            <ul className="portada__cifras">
+              {CIFRAS_COMUNIDAD.map(({ valor, rotulo, frase, Icono }, i) => (
+                <li key={rotulo} className="portada__cifra">
+                  <Icono className="portada__cifra-icono" aria-hidden="true" />
+                  <div>
+                    <CifraAnimada valor={valor} sufijo="+" retraso={i * 350} />
+                    <span className="portada__cifra-rotulo" aria-hidden="true">
+                      {rotulo}
+                    </span>
+                    <span className="portada__solo-lector">{frase}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          <HeroCollage />
         </div>
       </section>
       <section className="parallax bg2 full-height">
@@ -1471,102 +1439,6 @@ const HomePage: React.FC = () => {
             </p>
 
             <br />
-
-            {/* NUEVO CONTENIDO AGREGADO */}
-            <div
-              className="community-stats"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <h3 data-aos="fade-up" data-aos-delay="700">
-                🌟 Nuestra comunidad
-              </h3>
-              <div
-                className="stats-grid"
-                data-aos="fade-up"
-                data-aos-delay="800"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-                  gap: "20px",
-                  margin: "20px 0",
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  className="stat-item"
-                  data-aos="zoom-in"
-                  data-aos-delay="900"
-                >
-                  <div
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: "bold",
-                      color: "#6C63FF",
-                    }}
-                  >
-                    1500+
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.9rem",
-                      opacity: 0.8,
-                      color: "#2a2170",
-                    }}
-                  >
-                    Mujeres STEM
-                  </div>
-                </div>
-                <div
-                  className="stat-item"
-                  data-aos="zoom-in"
-                  data-aos-delay="1000"
-                >
-                  <div
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: "bold",
-                      color: "#6C63FF",
-                    }}
-                  >
-                    40+
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.9rem",
-                      opacity: 0.8,
-                      color: "#2a2170",
-                    }}
-                  >
-                    Eventos realizados
-                  </div>
-                </div>
-                <div
-                  className="stat-item"
-                  data-aos="zoom-in"
-                  data-aos-delay="1100"
-                >
-                  <div
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: "bold",
-                      color: "#6C63FF",
-                    }}
-                  >
-                    30+
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.9rem",
-                      opacity: 0.8,
-                      color: "#2a2170",
-                    }}
-                  >
-                    Empresas colaboradoras
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div
               className="join-cta"

@@ -1,0 +1,283 @@
+/*
+ * Portada de la home (hero): texto, botones y cifras. El collage de la
+ * derecha tiene su propio CSS en components/HeroCollage.css.
+ *
+ * Prefijo `portada` y archivo aparte para no tocar Home.css ni index.css:
+ * - `.primary-button` y `.secondary-button` siguen como estaban; los usan
+ *   otras páginas. Los botones de aquí son clases nuevas.
+ * - index.css pinta TODOS los `span` en naranja, negrita y 1.5rem, y da tamaño
+ *   y sombra a h1/h2. Cada clase de aquí fija sus propios valores; por
+ *   especificidad (clase > elemento) ganan siempre.
+ *
+ * El fondo es el de siempre: la sección conserva `parallax bg1`, que además
+ * cambia a la versión móvil de la imagen por debajo de 768px.
+ */
+
+.portada {
+  /* La cabecera es fija: el padding superior deja sitio al menú. */
+  padding: clamp(6.5rem, 9vw, 8rem) 16px clamp(2rem, 4vw, 3rem);
+  min-height: 100svh;
+}
+
+.portada__contenedor {
+  width: 100%;
+  /* `.parallax` es flex: sin esto el grid no encoge por debajo de su contenido y en móvil se sale por la derecha. */
+  min-width: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.portada__texto {
+  min-width: 0;
+}
+
+/* Textos y colores de siempre: H1 naranja, H2 violeta y párrafo violeta. */
+.portada__titulo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(3rem, 6.2vw, 4.75rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.portada__lema {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 4.3vw, 3.5rem);
+  line-height: 1.08;
+  color: var(--color-secondary);
+  margin: 0.6rem 0 0;
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.portada__subrayada {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Solo bajo las últimas letras («logía»), como un trazo a mano. */
+.portada__curva {
+  position: absolute;
+  left: 50%;
+  bottom: -0.3em;
+  width: 50%;
+  height: 0.3em;
+  overflow: visible;
+}
+
+.portada__curva path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.portada__parrafo {
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  margin: 1.4rem 0 0;
+  max-width: 34rem;
+}
+
+/*
+ * «Juntas,» en naranja, como antes. Ojo: 3,71:1 sobre fondo claro. En
+ * escritorio (1.25rem en negrita) cuenta como texto grande y cumple AA; en
+ * móvil (1.05rem) no llega. Es la deuda conocida del naranja como texto que
+ * recoge index.css; no se resuelve aquí.
+ */
+.portada__parrafo strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* ---------- Botones ---------- */
+
+.portada__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/*
+ * El estilo va en el propio enlace: antes había un <button> dentro de un
+ * <Link>, un control dentro de otro, que el HTML no permite y que los
+ * lectores de pantalla anunciaban dos veces.
+ */
+.portada-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.7rem;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.portada-boton svg {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/*
+ * Naranja de marca con texto blanco: 3,64:1. No llega a AAA ni a AA en texto
+ * normal; cumple AA de texto grande (3:1) porque va en negrita a 1.2rem
+ * (19,2px). Es la excepción por marca que documenta index.css: el naranja no
+ * se oscurece, el contraste se resuelve con tamaño.
+ */
+.portada-boton--principal {
+  background: var(--color-primary);
+  color: #fff;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 10px 22px rgba(234, 79, 51, 0.3);
+}
+
+.portada-boton--principal:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(234, 79, 51, 0.38);
+}
+
+/* Lila sobre blanco: 6,89:1, AAA para texto grande. */
+.portada-boton--secundario {
+  background: rgba(255, 255, 255, 0.55);
+  color: #821ad4;
+  border: 2px solid #821ad4;
+}
+
+.portada-boton--secundario:hover {
+  background: #fff;
+  color: #821ad4;
+  transform: translateY(-2px);
+}
+
+.portada-boton:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* ---------- Cifras ---------- */
+
+.portada__cifras {
+  list-style: none;
+  padding: 0;
+  margin: 3.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, auto));
+  justify-content: start;
+}
+
+.portada__cifra {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.35rem;
+  min-width: 0;
+  border-left: 1px solid rgba(71, 55, 187, 0.25);
+}
+
+.portada__cifra:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.portada__cifra-icono {
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.portada__cifra-numero {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.portada__cifra-rotulo {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-text-dark);
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.portada__solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .portada__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portada .hero-collage {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .portada__cifra {
+    padding: 0 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .portada__cifra-numero {
+    font-size: 1.25rem;
+  }
+
+  .portada__cifra-icono {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .portada__cifra-rotulo {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portada-boton {
+    transition: none;
+  }
+
+  .portada-boton--principal:hover,
+  .portada-boton--secundario:hover {
+    transform: none;
+  }
+}
