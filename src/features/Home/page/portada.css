@@ -39,7 +39,7 @@
 .portada__titulo {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(3rem, 6.2vw, 4.75rem);
+  font-size: clamp(2.6rem, 5vw, 3.9rem);
   line-height: 0.95;
   letter-spacing: 0.01em;
   color: var(--color-primary);
@@ -49,10 +49,10 @@
 .portada__lema {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(2.3rem, 4.3vw, 3.5rem);
-  line-height: 1.08;
+  font-size: clamp(1.9rem, 3.3vw, 2.75rem);
+  line-height: 1.12;
   color: var(--color-secondary);
-  margin: 0.6rem 0 0;
+  margin: 0.5rem 0 0;
   text-shadow: none;
   text-wrap: balance;
 }
@@ -87,10 +87,11 @@
 .portada__parrafo {
   font-family: var(--font-primary);
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-  line-height: 1.5;
+  line-height: 1.6;
   /* 8,29:1 sobre blanco: AAA */
   color: var(--color-secondary);
-  margin: 1.4rem 0 0;
+  /* Hueco para la curva de «logía», que sobresale por debajo del subtítulo. */
+  margin: 1.9rem 0 0;
   max-width: 34rem;
 }
 
