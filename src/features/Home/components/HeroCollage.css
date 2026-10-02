@@ -45,6 +45,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Son fotos de interior y salían apagadas junto al fondo claro: algo más de luz y color. */
+  filter: brightness(1.1) saturate(1.12) contrast(1.03);
 }
 
 .hero-collage__foto--fundadoras {
@@ -83,6 +85,16 @@
 }
 
 /* ---------- Manchas de color ---------- */
+
+/* Halo de luz detrás del collage: aclara el conjunto sin tocar el fondo de la sección. */
+.hero-collage::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -10% -4%;
+  background: radial-gradient(ellipse at 55% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.45) 40%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
 
 .hero-collage__mancha {
   position: absolute;
