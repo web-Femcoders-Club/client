@@ -1240,7 +1240,7 @@ const HomePage: React.FC = () => {
               conocimientos y crece profesionalmente en un entorno inclusivo y
               motivador.
               <br />
-              Si compartes nuestra pasión por la tecnología, ¡únete a nosotras!
+              Si compartes nuestra pasión por la tecnología, ¡únete a{"\u00a0"}nosotras!
             </p>
 
             <div className="portada__botones" data-aos="fade-up" data-aos-delay="800">
