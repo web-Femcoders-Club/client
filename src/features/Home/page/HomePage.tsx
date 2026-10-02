@@ -9,10 +9,10 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import StatusModal from "../../../components/ui/StatusModal";
 import CharCounter from "../../../components/ui/CharCounter";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
-import CarouselWithText from "../components/CarouselWithText";
 import GitHubProjects from "../components/GitHubProjects";
 import NewsSlider, { NewsItem } from "../components/NewsSlider";
 import HeroCollage from "../components/HeroCollage";
+import SeccionEsencia from "../components/SeccionEsencia";
 import CifraAnimada from "../components/CifraAnimada";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import "./Home.css";
@@ -50,8 +50,6 @@ const HomePage: React.FC = () => {
   const [activeEventIndex, setActiveEventIndex] = useState(0);
   const [isEventTransitioning, setIsEventTransitioning] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -78,7 +76,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     AOS.refresh();
-  }, [carouselIndex, currentPhotoIndex]);
+  }, [currentPhotoIndex]);
 
   const images = [
     {
@@ -245,23 +243,6 @@ const HomePage: React.FC = () => {
     },
   ];
 
-  const texts = [
-    "Empoderamos a las Mujeres en Tecnología",
-    "Participa en Nuestro Próximo Evento",
-    "Conéctate y Crezcamos Juntas",
-    "Sé una Líder en tu Vida y Profesión",
-    "Construyendo la Comunidad Tech más Diversa",
-    "Rompiendo Barreras en el Mundo Digital",
-    "Desarrolla tu Potencial sin Límites",
-    "Aprendizaje Colaborativo entre Mujeres",
-    "Networking que Transforma Carreras",
-    "Inspirando la Próxima Generación Tech",
-    "Tu Talento es Nuestra Mayor Fortaleza",
-    "Juntas Programamos un Futuro Mejor",
-    "Innovación con Perspectiva Femenina",
-    "Compartiendo Conocimiento, Creciendo Juntas",
-    "De Principiante a Experta: Tu Comunidad de Apoyo",
-  ];
 
   const calculateTimeLeft = (eventDate: Date | null) => {
     const now = new Date();
@@ -345,79 +326,6 @@ const HomePage: React.FC = () => {
       clearInterval(photoInterval);
     };
   }, []);
-
-  useEffect(() => {
-    let carouselInterval: NodeJS.Timeout | null = null;
-
-    if (isPlaying) {
-      carouselInterval = setInterval(() => {
-        setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }, 4000);
-    }
-
-    return () => {
-      if (carouselInterval) {
-        clearInterval(carouselInterval);
-      }
-    };
-  }, [isPlaying, images.length]);
-
-  const nextSlide = () => {
-    setCarouselIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevSlide = () => {
-    setCarouselIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
-
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  const goToSlide = (index: number) => {
-    setCarouselIndex(index);
-    if (isPlaying) {
-      setIsPlaying(false);
-      setTimeout(() => setIsPlaying(true), 5000);
-    }
-  };
-
-  const handleCarouselKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-      if (isPlaying) {
-        setIsPlaying(false);
-        setTimeout(() => setIsPlaying(true), 5000);
-      }
-    }
-
-    switch (e.key) {
-      case "ArrowLeft":
-        prevSlide();
-        e.preventDefault();
-        break;
-      case "ArrowRight":
-        nextSlide();
-        e.preventDefault();
-        break;
-      case "Home":
-        goToSlide(0);
-        e.preventDefault();
-        break;
-      case "End":
-        goToSlide(images.length - 1);
-        e.preventDefault();
-        break;
-      case " ":
-      case "Enter":
-        togglePlay();
-        e.preventDefault();
-        break;
-      default:
-        break;
-    }
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -1272,137 +1180,7 @@ const HomePage: React.FC = () => {
           <HeroCollage />
         </div>
       </section>
-      <section className="parallax bg2 full-height">
-        <div className="carousel-container">
-          <p
-            className="carousel-subheading"
-            tabIndex={0}
-            {...{ "aria-label": "Descripción de FemCoders Club y sus eventos" }}
-          >
-            En<span> FemCoders Club, </span>organizamos regularmente eventos que
-            no solo son educativos, sino también una oportunidad increíble para
-            conectar con otras mujeres en el <span>sector tech.</span> Nuestros
-            eventos incluyen talleres, charlas inspiradoras, y sesiones de
-            networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-            <span>red de contactos.</span>
-            <br />
-            Consulta la galería para ver eventos pasados y cómo nuestras
-            miembros han crecido en{" "}
-            <span>liderazgo femenino en tecnología.</span>
-          </p>
-          <p
-            className="carousel-subheading-mobile"
-            tabIndex={0}
-            {...{
-              "aria-label":
-                "Descripción resumida de FemCoders Club y sus eventos",
-            }}
-          >
-            Nuestros eventos incluyen talleres, charlas inspiradoras, y sesiones
-            de networking que te ayudarán a ampliar tus conocimientos y tu{" "}
-            <span>red de contactos.</span>
-          </p>
-
-          <div
-            className="carousel"
-            role="region"
-            {...{ "aria-label": "Galería de eventos pasados" }}
-            {...{ "aria-live": isPlaying ? "off" : "polite" }}
-            tabIndex={0}
-            onKeyDown={handleCarouselKeyDown}
-          >
-            <div className="sr-only" {...{ "aria-live": "polite" }}>
-              {isPlaying
-                ? "El carrusel está rotando automáticamente. Presiona la barra espaciadora para pausar."
-                : "El carrusel está pausado. Presiona la barra espaciadora para reanudar la rotación. Usa las flechas izquierda y derecha para navegar."}
-            </div>
-
-            {images.map(({ src, alt, title }, index) => {
-              const isActive = index === carouselIndex;
-
-              if (isActive) {
-                return (
-                  <div
-                    key={index}
-                    className={`carousel-item active ${
-                      !isPlaying ? "paused" : ""
-                    }`}
-                    role="group"
-                    aria-label={`Evento ${index + 1}`}
-                    aria-hidden="false"
-                  >
-                    <OptimizedImage
-                      src={src}
-                      alt={alt || "default alt text"}
-                      title={title}
-                      className="carousel-image"
-                    />
-                  </div>
-                );
-              } else {
-                return (
-                  <div
-                    key={index}
-                    className="carousel-item"
-                    role="group"
-                    aria-label={`Evento ${index + 1}`}
-                    aria-hidden="true"
-                  >
-                    <OptimizedImage
-                      src={src}
-                      alt={alt || "default alt text"}
-                      title={title}
-                      className="carousel-image"
-                    />
-                  </div>
-                );
-              }
-            })}
-
-            <div
-              role="complementary"
-              {...{ "aria-label": "Textos descriptivos sobre FemCoders" }}
-            >
-              <CarouselWithText
-                texts={texts}
-                currentImageIndex={carouselIndex}
-              />
-            </div>
-          </div>
-
-          <div className="carousel-controls">
-            <div className="carousel-nav-controls">
-              <button
-                className="carousel-control prev"
-                onClick={prevSlide}
-                {...{ "aria-label": "Imagen anterior" }}
-              >
-                ❮
-              </button>
-
-              <button
-                className="play-pause"
-                onClick={togglePlay}
-                {...{
-                  "aria-label": isPlaying
-                    ? "Pausar rotación automática"
-                    : "Reanudar rotación automática",
-                }}
-              >
-                {isPlaying ? "⏸️" : "▶️"}
-              </button>
-
-              <button
-                className="carousel-control next"
-                onClick={nextSlide}
-                {...{ "aria-label": "Imagen siguiente" }}
-              >
-                ❯
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SeccionEsencia fotos={images} />
 
       <section className="parallax bg3">
         <div className="section-content">
