@@ -818,7 +818,7 @@ async function run() {
             ¿Te animas a construir tu propio test runner o te has topado con
             alguno de estos problemas en Jest o Vitest sin saber qué pasaba
             por debajo? Únete a la conversación en FemCoders Club, una
-            comunidad de más de 1.500 mujeres en tecnología en España.
+            comunidad de más de 1.600 mujeres en tecnología en España.
           </p>
         </div>
       </section>
@@ -899,9 +899,12 @@ async function run() {
           <h3>Únete a la comunidad</h3>
           <p>
             ¿Tienes dudas sobre cómo construir o mantener tus propias
-            herramientas de testing? Únete a FemCoders Club, una comunidad de
-            más de 1.500 mujeres en tecnología donde aprendemos y crecemos
-            juntas.
+            herramientas de testing? Únete a{" "}
+            <Link to="/register" className="highlight-link">
+              FemCoders Club
+            </Link>
+            , una comunidad de más de 1.600 mujeres en tecnología donde
+            aprendemos y crecemos juntas.
           </p>
         </div>
       </section>

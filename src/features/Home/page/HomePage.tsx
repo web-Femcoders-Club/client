@@ -673,6 +673,25 @@ const HomePage: React.FC = () => {
       ];
   const githubProjectsData = [
     {
+      id: "14",
+      name: "testlet — Framework de Testing sin Dependencias",
+      description:
+        "Framework de testing completo construido desde cero: assertions con diff, runner con describe/it anidados, hooks, spies y stubs, fake timers y cobertura real leyendo el perfilador de V8. Cero dependencias, y se testea a sí mismo.",
+      techStack: ["JavaScript", "Testing", "Node.js"],
+      githubUrl: "https://github.com/femcodersclub/testlet",
+      demoUrl: "https://github.com/femcodersclub/testlet",
+      image: "/assets/javascript/testlet-arquitectura.webp",
+      imageAlt: "testlet — Diagrama de arquitectura del framework de testing",
+      author: "Irina Ichim",
+      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
+      lastUpdated: "octubre 2026",
+      stars: 1,
+      language: "JavaScript",
+      postUrl: "https://www.femcodersclub.com/recursos/js/testing-javascript-sin-frameworks",
+      postTitle: "Testing en JavaScript sin frameworks: construye tu propio test runner",
+      difficulty: "Avanzado",
+    },
+    {
       id: "13",
       name: "smart-refactor-assistant — Asistente de Refactor con IA",
       description:
