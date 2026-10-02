@@ -49,6 +49,11 @@ const HeroCollage: React.FC = () => (
     <div className="hero-collage__decoracion" aria-hidden="true">
       <span className="hero-collage__etiqueta hero-collage__etiqueta--comunidad">
         <Users /> Comunidad
+        <svg className="chispas-etiqueta" viewBox="0 0 20 20">
+          <path pathLength={1} d="M3 10 L1 1" />
+          <path pathLength={1} d="M8 11 L15 2" />
+          <path pathLength={1} d="M10 17 L19 12" />
+        </svg>
       </span>
       <span className="hero-collage__etiqueta hero-collage__etiqueta--eventos">
         <CalendarDays /> Eventos
@@ -84,11 +89,6 @@ const HeroCollage: React.FC = () => (
         </svg>
       </p>
 
-      <svg className="hero-collage__chispas hero-collage__chispas--arriba" viewBox="0 0 60 60">
-        <path pathLength={1} d="M8 30 L4 4" />
-        <path pathLength={1} d="M24 34 L44 8" />
-        <path pathLength={1} d="M30 50 L56 36" />
-      </svg>
       <svg className="hero-collage__chispas hero-collage__chispas--izquierda" viewBox="0 0 60 60">
         <path pathLength={1} d="M42 4 L50 30" />
         <path pathLength={1} d="M10 18 L32 34" />

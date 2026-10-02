@@ -72,9 +72,10 @@
 }
 
 .hero-collage__foto--ponente {
-  left: 46%;
+  /* Más a la derecha que la grande, como en el diseño: el collage gana diagonal. */
+  left: 52%;
   top: 58%;
-  width: 43%;
+  width: 42%;
   height: 41%;
   transform: rotate(3deg);
   z-index: 3;
@@ -171,8 +172,8 @@
 }
 
 .hero-collage__etiqueta--oportunidades {
-  left: 77%;
-  top: 81%;
+  left: 80%;
+  top: 80%;
   transform: rotate(-6deg);
 }
 
@@ -206,6 +207,19 @@
 
 .hero-collage__etiqueta--oportunidades .chispas-etiqueta path {
   stroke: var(--color-primary);
+}
+
+/* Las de Comunidad son las grandes de la esquina: van en la etiqueta para no quedar sueltas. */
+.hero-collage__etiqueta--comunidad .chispas-etiqueta {
+  right: -1.55em;
+  top: -1.75em;
+  width: 2em;
+  height: 2em;
+}
+
+.hero-collage__etiqueta--comunidad .chispas-etiqueta path {
+  stroke: var(--color-primary);
+  stroke-width: 2.4;
 }
 
 .hero-collage__lema {
@@ -247,16 +261,6 @@
   stroke-linecap: round;
 }
 
-.hero-collage__chispas--arriba {
-  left: 89%;
-  top: -10%;
-  width: 10%;
-}
-
-.hero-collage__chispas--arriba path {
-  stroke: var(--color-primary);
-}
-
 .hero-collage__chispas--izquierda {
   left: 15%;
   top: 16%;
@@ -272,7 +276,7 @@
   position: absolute;
   left: 22%;
   top: 83%;
-  width: 25%;
+  width: 31%;
   height: 14%;
   overflow: visible;
 }
@@ -398,8 +402,8 @@
   animation-delay: 1.87s;
 }
 
-.hero-collage__chispas--arriba path {
-  animation-delay: 2.12s;
+.hero-collage__etiqueta--comunidad .chispas-etiqueta path {
+  animation-delay: 2.8s;
 }
 
 .hero-collage__etiqueta {
