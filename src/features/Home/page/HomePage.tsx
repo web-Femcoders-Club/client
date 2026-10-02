@@ -451,6 +451,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "25",
+      title: "Testing en JavaScript sin frameworks: construye tu propio test runner",
+      description:
+        "Assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto práctico: testlet, un framework de testing completo y sin dependencias que se testea a sí mismo.",
+      image: "/assets/javascript/testlet-arquitectura.webp",
+      imageAlt: "Diagrama de arquitectura de testlet: Runner, Suite, Test, Reporter, Assert, Spy, FakeTimers y Coverage",
+      date: "2 Octubre 2026",
+      category: "Recursos",
+      link: "/recursos/js/testing-javascript-sin-frameworks",
+    },
+    {
       id: "24",
       title: "Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26",
       description:
@@ -495,18 +506,6 @@ const HomePage: React.FC = () => {
       date: "9 Septiembre 2026",
       category: "Noticias",
       link: "/noticias/hackbarna-ai-summit-26-desde-dentro",
-    },
-    {
-      id: "19",
-      title: "Ya está disponible la grabación de la sesión informativa de HackBarna AI Summit 26",
-      description:
-        "El pasado jueves 3 de septiembre hablamos con Lilibeth Bustos Linares, ganadora de la edición de 2025, sobre cómo se viven por dentro las 48 horas de un hackathon de IA. Si no pudiste conectarte, tienes la grabación completa en nuestro canal de YouTube. El hackathon se celebra el 19 y 20 de septiembre en Norrsken House Barcelona.",
-      image: "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
-      imageAlt: "Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles",
-      date: "6 Septiembre 2026",
-      category: "Noticias",
-      link: "https://www.youtube.com/watch?v=pvStyYvl5io",
-      linkLabel: "Ver la grabación en YouTube",
     },
     {
       id: "15",

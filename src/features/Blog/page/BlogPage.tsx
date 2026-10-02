@@ -478,6 +478,14 @@ const BlogPage: React.FC = () => {
   description: "CTRL4ELLA, el equipo de FemCoders Club, presentó OFFLOAD en HackBarna AI Summit 26: una agente de IA que escucha una videollamada de Vonage y solo pide la palabra cuando hace falta. Contamos cómo está construido y qué papel tiene cada tecnología.",
   createdAt: new Date("2026-09-29"),
 },
+{
+  id: 53,
+  type: "recurso",
+  category: "javascript",
+  title: "Testing en JavaScript sin frameworks: construye tu propio test runner",
+  description: "Assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto práctico: testlet, un framework de testing completo y sin dependencias que se testea a sí mismo.",
+  createdAt: new Date("2026-10-02"),
+},
   ];
 
   const filteredPosts = posts.filter((post) => {
@@ -606,6 +614,8 @@ const BlogPage: React.FC = () => {
   return `/noticias/barcelona-cybersecurity-congress-2026`;
  case "Nuestro equipo recibe el premio Best use of the Vonage Video API en HackBarna AI Summit 26":
   return `/noticias/offload-challenge-vonage-hackbarna-ai-summit-26`;
+ case "Testing en JavaScript sin frameworks: construye tu propio test runner":
+  return `/recursos/js/testing-javascript-sin-frameworks`;
       default:
         return `/`;
     }

@@ -481,6 +481,25 @@ const Recursos: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="recurso-item bg1">
+        <div className="noticia-content">
+          <div>
+            <h3>Testing en JavaScript sin frameworks: construye tu propio test runner</h3>
+            <p className="intro-text">
+              Assertions con diff, spies, fake timers y cobertura real leyendo
+              el perfilador de V8. Proyecto práctico: testlet, un framework de
+              testing completo y sin dependencias que se testea a sí mismo.
+            </p>
+          </div>
+          <Link
+            to="/recursos/js/testing-javascript-sin-frameworks"
+            className="secondary-button"
+            aria-label="Leer más sobre Testing en JavaScript sin frameworks"
+          >
+            Leer más
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

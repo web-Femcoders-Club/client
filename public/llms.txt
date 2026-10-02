@@ -81,7 +81,7 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 ## Blog posts
 
-Complete index of the 52 articles published on the FemCoders Club blog.
+Complete index of the 53 articles published on the FemCoders Club blog.
 
 ### News (19)
 
@@ -180,7 +180,12 @@ Complete index of the 52 articles published on the FemCoders Club blog.
   Published: 2023-10-24
   Summary: Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.
 
-### Technical resources (33)
+### Technical resources (34)
+
+- Testing en JavaScript sin frameworks: construye tu propio test runner
+  URL: https://www.femcodersclub.com/recursos/js/testing-javascript-sin-frameworks
+  Published: 2026-10-02
+  Summary: Construye tu propio test runner en JavaScript sin dependencias: assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto completo: testlet.
 
 - IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks
   URL: https://www.femcodersclub.com/recursos/js/ia-javascript-gemini

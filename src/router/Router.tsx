@@ -211,6 +211,10 @@ const OffloadChallengeVonageHackBarna26 = lazy(
   () =>
     import("../features/Blog/posts/noticias/OffloadChallengeVonageHackBarna26")
 );
+const TestingJavaScriptSinFrameworks = lazy(
+  () =>
+    import("../features/Blog/posts/recursos/js/TestingJavaScriptSinFrameworks")
+);
 const RouterComponent: React.FC = () => {
   const location = useLocation();
   const { modalType, closeModal } = useContext(ModalContext);
@@ -918,6 +922,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <OffloadChallengeVonageHackBarna26 />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/recursos/js/testing-javascript-sin-frameworks"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <TestingJavaScriptSinFrameworks />
                 </Suspense>
               </Layout>
             }
