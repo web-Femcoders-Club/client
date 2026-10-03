@@ -1,9 +1,9 @@
 /*
  * Sección de noticias de la home.
  *
- * Piezas compartidas (src/styles/rediseno.css): `fc-fondo-claro`,
+ * Fondo `bg3` (src/index.css). Piezas compartidas (src/styles/rediseno.css):
  * `fc-puntos`, `fc-antetitulo`, `fc-boton`, `fc-boton-redondo` y `fc-chip`.
- * Fondo, manchas y retícula: `fc-fondo-claro`, `fc-manchas`, `fc-puntos`.
+ * Fondo, manchas y retícula: `bg3`, `fc-manchas`, `fc-puntos`.
  * Aquí va lo propio: la disposición y las tarjetas apiladas.
  *
  * La destacada crece con el alto de la ventana, así la sección llena una

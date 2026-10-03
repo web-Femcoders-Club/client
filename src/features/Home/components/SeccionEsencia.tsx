@@ -18,7 +18,7 @@ const CLAVES = [
  * comunidad», no en las letras, que van en violeta sólido (8,29:1, AAA).
  */
 const SeccionEsencia: React.FC<{ fotos: FotoEvento[] }> = ({ fotos }) => (
-  <section className="esencia fc-fondo-claro fc-manchas" aria-labelledby="esencia-titulo">
+  <section className="esencia bg3 fc-manchas" aria-labelledby="esencia-titulo">
     <div className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
     <div className="esencia__contenedor">
       <div className="esencia__texto">

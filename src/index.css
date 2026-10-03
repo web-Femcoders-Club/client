@@ -11,6 +11,10 @@
     radial-gradient(ellipse 40% 45% at 96% 72%, rgba(71, 55, 187, 0.09), transparent 70%),
     radial-gradient(ellipse 35% 35% at 78% 12%, rgba(234, 79, 51, 0.06), transparent 70%),
     linear-gradient(180deg, var(--color-lavanda) 0%, #f6f4ff 35%, #fbfaff 75%, #fff 100%);
+  /* Fondo claro: blanco arriba, lavanda abajo (Nuestra esencia, Noticias). */
+  --fondo-bg3: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
+  /* El mismo, al revés: lavanda arriba, blanco abajo (Conócenos, Proyectos). */
+  --fondo-bg4: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
 
   /* Colores principales */
 
@@ -118,39 +122,25 @@
   border-radius: 2px;
 }
 
+/*
+ * Sección a pantalla completa. Ya no lleva `background-attachment: fixed`:
+ * el fondo fijo rompía los empalmes de los degradados bg1/bg3/bg4 (se
+ * pintaban respecto a la ventana, no a la sección), Safari de iPhone y iPad
+ * lo ignoraba y obligaba a repintar el fondo en cada scroll. La profundidad
+ * la dan ahora las capas (`fc-manchas`, `fc-puntos` y el collage), en
+ * rediseno.css.
+ */
 .parallax {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
-}
-.parallax [data-aos] {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.parallax [data-aos="fade-up"] {
-  transform: translateY(100px);
-}
-
-.parallax [data-aos="fade-down"] {
-  transform: translateY(-100px);
-}
-
-.parallax [data-aos="fade-right"] {
-  transform: translateX(-100px);
-}
-
-.parallax [data-aos="fade-left"] {
-  transform: translateX(100px);
 }
 
 img {
@@ -385,7 +375,13 @@ span {
   text-align: center;
 }
 
-/* `background-image` y no `background`: no pisa el color que ponga otra clase. */
+/*
+ * Fondos de sección del rediseño: bg1 portada (degradado), bg2 azul oscuro
+ * (imagen), bg3 claro y bg4 claro invertido (degradados). Una sección nueva
+ * elige uno de estos; no se crean fondos nuevos.
+ *
+ * `background-image` y no `background`: no pisa el color que ponga otra clase.
+ */
 .bg1 {
   background-image: var(--fondo-bg1);
   background-size: cover;
@@ -399,19 +395,13 @@ span {
 }
 
 .bg3 {
-  background-image: url("/public-optimized/desktop/bg3.webp");
+  background-image: var(--fondo-bg3);
   background-size: cover;
   background-position: center;
 }
 
 .bg4 {
-  background-image: url("/public-optimized/desktop/bg4.webp");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg5 {
-  background-image: url("/public-optimized/desktop/bg5.webp");
+  background-image: var(--fondo-bg4);
   background-size: cover;
   background-position: center;
 }
@@ -709,18 +699,6 @@ span {
   }
   .bg2 {
     background-image: url("/public-optimized/mobile/bg2.webp");
-  }
-
-  .bg3 {
-    background-image: url("/public-optimized/mobile/bg3.webp");
-  }
-
-  .bg4 {
-    background-image: url("/public-optimized/mobile/bg4.webp");
-  }
-
-  .bg5 {
-    background-image: url("/public-optimized/mobile/bg5.webp");
   }
 
   .timeline-card {

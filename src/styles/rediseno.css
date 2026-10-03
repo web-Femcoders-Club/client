@@ -36,17 +36,9 @@
 /* ---------- Fondos de sección ---------- */
 
 /*
- * Los dos únicos fondos del rediseño fuera de la portada (que usa `bg1`, en index.css).
- * Una sección nueva elige uno de estos; no se crean fondos nuevos.
+ * Los fondos de sección son las clases bg1-bg4 de index.css (bg3 claro, bg4
+ * claro invertido). Aquí solo la decoración que se les pone encima.
  */
-.fc-fondo-claro {
-  background: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
-}
-
-/* El mismo, al revés: para empalmar con una sección que acaba en lavanda. */
-.fc-fondo-claro--invertido {
-  background: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
-}
 
 /*
  * Manchas suaves de marca en dos esquinas: violeta abajo a la izquierda y
@@ -106,6 +98,85 @@
   left: 0;
   -webkit-mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
   mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
+}
+
+/* ---------- Movimiento ligado al scroll ---------- */
+
+/*
+ * Todo solo con CSS (animation-timeline), sin JavaScript. Donde el navegador
+ * no lo soporta, o con «reducir movimiento» (WCAG 2.3.3), no se mueve nada y
+ * el contenido se ve completo y quieto.
+ *
+ * Capas: las manchas (`fc-manchas`) y la retícula (`fc-puntos`) se desplazan
+ * a distinta velocidad que el contenido mientras la sección cruza la
+ * pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
+ *
+ * Aparición: los elementos con `data-aos` suben y aparecen al entrar en
+ * pantalla. Sustituye a la librería AOS sin tocar el marcado. Nunca empiezan
+ * del todo invisibles, y lo que ya está en pantalla al cargar aparece en su
+ * estado final (no retrasa la imagen principal).
+ */
+@keyframes fc-capa-lenta {
+  from { translate: 0 -40px; }
+  to { translate: 0 40px; }
+}
+
+@keyframes fc-capa-media {
+  from { translate: 0 30px; }
+  to { translate: 0 -30px; }
+}
+
+@keyframes fc-capa-rapida {
+  from { translate: 0 60px; }
+  to { translate: 0 -60px; }
+}
+
+@keyframes fc-aparece-arriba {
+  from { opacity: 0.2; translate: 0 50px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes fc-aparece-lado {
+  from { opacity: 0.2; translate: -50px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes fc-aparece-zoom {
+  from { opacity: 0.2; scale: 0.9; }
+  to { opacity: 1; scale: 1; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fc-manchas::before {
+      animation: fc-capa-lenta linear both;
+      animation-timeline: view();
+    }
+
+    .fc-manchas::after {
+      animation: fc-capa-media linear both;
+      animation-timeline: view();
+    }
+
+    .fc-puntos {
+      animation: fc-capa-rapida linear both;
+      animation-timeline: view();
+    }
+
+    [data-aos] {
+      animation: fc-aparece-arriba linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    [data-aos="fade-right"] {
+      animation-name: fc-aparece-lado;
+    }
+
+    [data-aos="zoom-in"] {
+      animation-name: fc-aparece-zoom;
+    }
+  }
 }
 
 /* ---------- Antetítulo con rayita ---------- */

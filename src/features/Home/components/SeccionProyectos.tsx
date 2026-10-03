@@ -207,11 +207,11 @@ const SeccionProyectos: React.FC = () => {
     });
   };
 
-  const rotacion = useRotacion(() => irA(pagina + 1), INTERVALO_ROTACION, paginas > 1);
+  const rotacion = useRotacion(() => irA(pagina + 1), INTERVALO_ROTACION, paginas > 1, pagina);
 
   return (
     <section
-      className="proyectos fc-fondo-claro--invertido fc-manchas"
+      className="proyectos bg4 fc-manchas"
       aria-labelledby="proyectos-titulo"
     >
       <span className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />

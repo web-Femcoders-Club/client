@@ -458,3 +458,82 @@
     animation: none;
   }
 }
+
+/* ================= Capas al hacer scroll =================
+   Al bajar desde la portada, fotos, etiquetas y manchas se separan a
+   distinta velocidad (parallax por capas). Va ligado a la salida de la
+   portada de la pantalla, así que en reposo el collage está exactamente
+   como siempre.
+
+   Cada pieza ya tiene su animación de entrada, que también usa `translate`:
+   la del scroll se añade como segunda animación con
+   `animation-composition: add`, que la suma en vez de pisarla. Sin soporte
+   o con «reducir movimiento», solo queda la entrada de siempre.
+   ============================================== */
+
+@keyframes hero-capa {
+  from { translate: 0 0; }
+  to { translate: 0 var(--hero-capa, 60px); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-collage__foto {
+      animation:
+        hero-marco-entra 1.19s var(--sale-suave) backwards,
+        hero-capa linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit 0% exit 100%;
+      animation-composition: replace, add;
+    }
+
+    .hero-collage__mancha {
+      animation:
+        hero-mancha-entra 2.38s var(--sale-suave) backwards,
+        hero-capa linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit 0% exit 100%;
+      animation-composition: replace, add;
+    }
+
+    .hero-collage__etiqueta {
+      animation:
+        hero-sube-aparece 1.53s var(--sale-suave) backwards,
+        hero-capa linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit 0% exit 100%;
+      animation-composition: replace, add;
+    }
+
+    .hero-collage__lema {
+      animation:
+        hero-sube-aparece 1.36s var(--sale-suave) 2.21s backwards,
+        hero-capa linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit 0% exit 100%;
+      animation-composition: replace, add;
+    }
+
+    /*
+     * El atajo `animation` de arriba reinicia los retrasos escalonados de la
+     * entrada: se reponen como lista (entrada, scroll).
+     */
+    .hero-collage__foto--fundadoras { animation-delay: 0.17s, 0s; }
+    .hero-collage__foto--cofundadoras { animation-delay: 0.59s, 0s; }
+    .hero-collage__foto--ponente { animation-delay: 1.02s, 0s; }
+    .hero-collage__etiqueta--comunidad { animation-delay: 1.95s, 0s; }
+    .hero-collage__etiqueta--eventos { animation-delay: 2.21s, 0s; }
+    .hero-collage__etiqueta--oportunidades { animation-delay: 2.46s, 0s; }
+
+    /* Cuánto se desplaza cada pieza: distintas distancias = distintas velocidades. */
+    .hero-collage__foto--fundadoras { --hero-capa: 50px; }
+    .hero-collage__foto--cofundadoras { --hero-capa: 110px; }
+    .hero-collage__foto--ponente { --hero-capa: 25px; }
+    .hero-collage__mancha--lila { --hero-capa: -50px; }
+    .hero-collage__mancha--rosa { --hero-capa: 80px; }
+    .hero-collage__etiqueta--comunidad { --hero-capa: 140px; }
+    .hero-collage__etiqueta--eventos { --hero-capa: 160px; }
+    .hero-collage__etiqueta--oportunidades { --hero-capa: 90px; }
+    .hero-collage__lema { --hero-capa: 120px; }
+  }
+}

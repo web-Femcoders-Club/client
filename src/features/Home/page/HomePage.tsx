@@ -1,5 +1,3 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "../../../context/ModalContext";
 import { Helmet } from "react-helmet";
@@ -50,7 +48,6 @@ const HomePage: React.FC = () => {
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [activeEventIndex, setActiveEventIndex] = useState(0);
   const [isEventTransitioning, setIsEventTransitioning] = useState(false);
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -64,20 +61,6 @@ const HomePage: React.FC = () => {
   const [messageLength, setMessageLength] = useState<number>(0);
   const { openModal } = useContext(ModalContext);
   const form = useRef<HTMLFormElement | null>(null);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1200,
-      easing: "ease-in-out-back",
-      once: false,
-      mirror: true,
-      offset: 50,
-    });
-  }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [currentPhotoIndex]);
 
   const images = [
     {
@@ -318,15 +301,6 @@ const HomePage: React.FC = () => {
     return () => clearInterval(carouselTimer);
   }, [upcomingEvents]);
 
-  useEffect(() => {
-    const photoInterval = setInterval(() => {
-      setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % 2);
-    }, 3000);
-
-    return () => {
-      clearInterval(photoInterval);
-    };
-  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

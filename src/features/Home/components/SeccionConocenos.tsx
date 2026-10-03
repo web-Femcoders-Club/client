@@ -48,7 +48,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
   const fechaValida = fecha && !Number.isNaN(fecha.getTime()) ? fecha : null;
 
   return (
-    <section className="conocenos fc-fondo-claro--invertido fc-manchas" aria-labelledby="conocenos-titulo">
+    <section className="conocenos bg4 fc-manchas" aria-labelledby="conocenos-titulo">
       <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
       <div className="conocenos__rejilla">
         <article className="fc-tarjeta conocenos__tarjeta">

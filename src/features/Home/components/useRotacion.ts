@@ -1,21 +1,32 @@
-import { useEffect, useRef, useState, type FocusEvent } from "react";
+import { useEffect, useRef, useState, type FocusEvent, type PointerEvent } from "react";
 
 const prefiereReducir = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /*
  * Avance automático de un carrusel, en bucle (WCAG 2.2.2):
- * - se detiene mientras el ratón está encima o el foco está dentro, así nada
- *   se mueve mientras alguien lee o navega con teclado;
+ * - se detiene mientras hay un RATÓN encima o el foco del TECLADO está dentro,
+ *   así nada se mueve mientras alguien lee o navega con teclado. El toque en
+ *   el móvil y el clic no pausan: el móvil simula «el ratón entra» al tocar y
+ *   nunca «sale», y el carrusel se quedaba en pausa para siempre;
  * - `alternar` lo detiene o lo reanuda a voluntad (el botón de rotación);
- * - con «reducir movimiento» arranca detenido; el botón lo pone en marcha.
+ * - con «reducir movimiento» arranca detenido; el botón lo pone en marcha;
+ * - `diapositiva` es la posición actual: al cambiar (a mano o sola) el
+ *   temporizador se reinicia, así tras pulsar un punto hay un intervalo entero.
  *
  * `avanzar` se lee siempre en su última versión: puede cerrar sobre el
  * estado del render actual sin reiniciar el temporizador.
  */
-export function useRotacion(avanzar: () => void, intervalo: number, habilitada: boolean) {
+export function useRotacion(
+  avanzar: () => void,
+  intervalo: number,
+  habilitada: boolean,
+  diapositiva: number,
+) {
   const [detenida, setDetenida] = useState(prefiereReducir);
-  const [enPausa, setEnPausa] = useState(false);
+  const [ratonEncima, setRatonEncima] = useState(false);
+  const [focoTeclado, setFocoTeclado] = useState(false);
+  const enPausa = ratonEncima || focoTeclado;
   const ultimoAvanzar = useRef(avanzar);
   ultimoAvanzar.current = avanzar;
 
@@ -23,15 +34,22 @@ export function useRotacion(avanzar: () => void, intervalo: number, habilitada: 
     if (!habilitada || detenida || enPausa) return;
     const temporizador = window.setInterval(() => ultimoAvanzar.current(), intervalo);
     return () => window.clearInterval(temporizador);
-  }, [habilitada, detenida, enPausa, intervalo]);
+  }, [habilitada, detenida, enPausa, intervalo, diapositiva]);
 
-  /** Para el contenedor del carrusel: pausa mientras hay ratón encima o foco dentro. */
+  /** Para el contenedor del carrusel: pausa con ratón encima o foco de teclado dentro. */
   const pausaAlInteractuar = {
-    onMouseEnter: () => setEnPausa(true),
-    onMouseLeave: () => setEnPausa(false),
-    onFocus: () => setEnPausa(true),
+    onPointerEnter: (e: PointerEvent<HTMLElement>) => {
+      if (e.pointerType === "mouse") setRatonEncima(true);
+    },
+    onPointerLeave: (e: PointerEvent<HTMLElement>) => {
+      if (e.pointerType === "mouse") setRatonEncima(false);
+    },
+    // Solo el foco que llega con teclado (el que se ve con contorno).
+    onFocus: (e: FocusEvent<HTMLElement>) => {
+      if ((e.target as HTMLElement).matches?.(":focus-visible")) setFocoTeclado(true);
+    },
     onBlur: (e: FocusEvent<HTMLElement>) => {
-      if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setEnPausa(false);
+      if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocoTeclado(false);
     },
   };
 

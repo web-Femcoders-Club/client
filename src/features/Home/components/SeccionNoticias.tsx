@@ -87,7 +87,7 @@ const EnlaceNoticia: React.FC<{
  * tarjetas «apiladas» que indican que hay más.
  *
  * Fondo, manchas y retícula son los compartidos del rediseño
- * (`fc-fondo-claro`, `fc-manchas`, `fc-puntos`): no hay fondo propio.
+ * (`bg3`, `fc-manchas`, `fc-puntos`): no hay fondo propio.
  */
 const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
   const destacadas = noticias.slice(0, DESTACADAS);
@@ -96,6 +96,7 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
     () => setActual((a) => (a + 1) % destacadas.length),
     INTERVALO_ROTACION,
     destacadas.length > 1,
+    actual,
   );
 
   if (noticias.length === 0) return null;
@@ -113,7 +114,7 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
   };
 
   return (
-    <section className="noticias-home fc-fondo-claro fc-manchas" aria-labelledby="noticias-titulo">
+    <section className="noticias-home bg3 fc-manchas" aria-labelledby="noticias-titulo">
       <span className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
 
       <div className="noticias__contenedor">

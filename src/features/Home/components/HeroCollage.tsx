@@ -27,6 +27,7 @@ const HeroCollage: React.FC = () => (
         src="/fundadorasFemCodersClub.png"
         alt="Elvia, Lili y Silvina, fundadoras de FemCoders Club, sonríen juntas en un evento"
         loading="eager"
+        fetchPriority="high"
       />
     </figure>
 
