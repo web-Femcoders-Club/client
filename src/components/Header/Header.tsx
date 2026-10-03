@@ -1,9 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import axios from "axios";
 import FemCodersClubLogo from "/logo-femcoders-club.jpg";
 import "./Header.css";
 import OptimizedImage from "../OptimizedImage";
+
+const ENLACES = [
+  { path: "/femcoders-quienes-somos", label: "Sobre nosotras" },
+  { path: "/equipo", label: "Equipo" },
+  { path: "/eventos", label: "Eventos" },
+  { path: "/contacto", label: "Contacto" },
+  { path: "/blog", label: "Blog" },
+];
 
 const Header: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -31,7 +40,7 @@ const Header: React.FC = () => {
               headers: {
                 Authorization: `Bearer ${authToken}`,
               },
-            }
+            },
           );
 
           if (response.status === 200 && response.data) {
@@ -104,7 +113,7 @@ const Header: React.FC = () => {
     const publishHeight = () => {
       document.documentElement.style.setProperty(
         "--fem-header-height",
-        `${header.offsetHeight}px`
+        `${header.offsetHeight}px`,
       );
     };
 
@@ -200,7 +209,10 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header ref={headerRef} className={`header ${isScrolled ? "scrolled" : ""}`}>
+    <header
+      ref={headerRef}
+      className={`header ${isScrolled ? "scrolled" : ""}`}
+    >
       {/*
         En el blog conviven dos <nav>: este y el de secciones del propio blog.
         Sin nombre, el lector de pantalla los lista como "navegación" y
@@ -209,13 +221,12 @@ const Header: React.FC = () => {
       */}
       <nav className="navbar" aria-label="Navegación principal">
         <Link to="/" className="logo-link">
-         <OptimizedImage
-  src={FemCodersClubLogo}
-  alt="Logo de FemCoders Club"
-  className="logo"
-  loading="eager"
-/>
-
+          <OptimizedImage
+            src={FemCodersClubLogo}
+            alt="FemCoders Club, ir al inicio"
+            className="logo"
+            loading="eager"
+          />
         </Link>
 
         {/*
@@ -234,95 +245,101 @@ const Header: React.FC = () => {
           aria-controls="menu-principal"
           aria-label={menuOpen ? "Cerrar el menú" : "Abrir el menú"}
         >
-          <span className="menu-icon" aria-hidden="true"></span>
+          {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
 
-        <ul
+        {/*
+          Enlaces y botón de sesión en un mismo panel: en móvil se despliegan
+          juntos, uno debajo del otro, sin posiciones escritas a mano (antes el
+          botón iba a `top: calc(100% + 160px)` y con zoom alto se solapaba).
+          NavLink pone aria-current="page" en el enlace de la página actual;
+          /blog sigue activo en sus subpáginas.
+        */}
+        <div
           id="menu-principal"
-          className={`nav-links ${menuOpen ? "open" : ""}`}
+          className={`nav-panel ${menuOpen ? "open" : ""}`}
         >
-          {[
-            { path: "/femcoders-quienes-somos", label: "Sobre Nosotras" },
-            { path: "/equipo", label: "Equipo" },
-            { path: "/eventos", label: "Eventos" },
-            { path: "/contacto", label: "Contacto" },
-            { path: "/blog", label: "Blog" },
-          ].map((link, index) => (
-            <li key={index}>
-              <Link
-                to={link.path}
-                className={`nav-link ${
-                  link.path === "/blog" ? "highlighted" : ""
-                }`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className="nav-links">
+            {ENLACES.map((link) => (
+              <li key={link.path}>
+                <NavLink
+                  to={link.path}
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
 
-        <div className={`auth-buttons ${menuOpen ? "open" : ""}`}>
-          {isAuthenticated ? (
-            <div className="user-avatar-dropdown" ref={dropdownRef}>
-              {/*
+          <div className="auth-buttons">
+            {isAuthenticated ? (
+              <div className="user-avatar-dropdown" ref={dropdownRef}>
+                {/*
                 Se declara como desplegable (`aria-expanded` + `aria-controls`) y
                 no como menú ARIA: un `role="menu"` promete navegación con las
                 flechas, y esto es una lista de enlaces. Mejor no prometer lo que
                 no se cumple.
               */}
-              <button
-                ref={avatarButtonRef}
-                className="dropdown-toggle avatar-button"
-                onClick={handleAvatarClick}
-                aria-expanded={dropdownOpen}
-                aria-controls="header-user-menu"
-                aria-label="Menú de usuaria"
-              >
-                <OptimizedImage
-                  src={avatar || "/FemCodersClubLogo.png"}
-                  alt=""
-                  className="avatar-icon"
-                  loading="eager"
-                />
-              </button>
-
-              {dropdownOpen && (
-                <div
-                  id="header-user-menu"
-                  className={`dropdown-menu ${
-                    isScrolled ? "scrolled-dropdown" : ""
-                  }`}
+                <button
+                  ref={avatarButtonRef}
+                  className="dropdown-toggle avatar-button"
+                  onClick={handleAvatarClick}
+                  aria-expanded={dropdownOpen}
+                  aria-controls="header-user-menu"
+                  aria-label="Menú de usuaria"
                 >
-                  <button onClick={goToWelcomePage} className="dropdown-item">
-                    Mi perfil
-                  </button>
-                  {/*
+                  <OptimizedImage
+                    src={avatar || "/FemCodersClubLogo.png"}
+                    alt=""
+                    className="avatar-icon"
+                    loading="eager"
+                  />
+                </button>
+
+                {dropdownOpen && (
+                  <div
+                    id="header-user-menu"
+                    className="dropdown-menu"
+                  >
+                    <button onClick={goToWelcomePage} className="dropdown-item">
+                      Mi perfil
+                    </button>
+                    {/*
                     El panel tiene entrada propia y separada del perfil: sin ella
                     no había forma de volver a /admin desde ninguna pantalla —ni
                     aquí ni en ningún otro sitio de la web—, así que salir del
                     panel obligaba a escribir la URL o a reiniciar sesión
                     (client#21).
                   */}
-                  {userRole === "admin" && (
-                    <button onClick={goToAdminPanel} className="dropdown-item">
-                      Panel de administración
+                    {userRole === "admin" && (
+                      <button
+                        onClick={goToAdminPanel}
+                        className="dropdown-item"
+                      >
+                        Panel de administración
+                      </button>
+                    )}
+                    <button
+                      onClick={handleLogOut}
+                      className="dropdown-item dropdown-item--salir"
+                    >
+                      Cerrar sesión
                     </button>
-                  )}
-                  <button
-                    onClick={handleLogOut}
-                    className="dropdown-item dropdown-item--salir"
-                  >
-                    Cerrar sesión
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link to="/login" className="logout-button">
-              Iniciar sesión
-            </Link>
-          )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="fc-boton fc-boton--noche fc-boton--compacto nav-entrar"
+                onClick={() => setMenuOpen(false)}
+              >
+                Iniciar sesión
+              </Link>
+            )}
+          </div>
         </div>
       </nav>
     </header>

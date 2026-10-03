@@ -24,7 +24,7 @@ const CONFIG = {
    * ejecutarse desde marzo y todos los fondos salían con los ajustes de imagen
    * normal (1200px y calidad 80) en vez de los 1920px y calidad 85 de aquí.
    */
-  backgroundImages: new Set(["bg1", "bg2", "bg3", "bg4", "bg5"]),
+  backgroundImages: new Set(["bg2", "bg3", "bg4", "bg5"]),
   
   minSizeKB: 0,
   

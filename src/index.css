@@ -2,6 +2,16 @@
    VARIABLES CSS - Design System
    ======================================== */
 :root {
+  /*
+   * Fondo claro de marca (antes la imagen bg1): arriba el lavanda de la barra
+   * de navegación, halo azul violeta abajo a la izquierda, toque naranja arriba
+   * a la derecha y blanco abajo. En CSS: sin descarga y en un solo sitio.
+   */
+  --fondo-bg1: radial-gradient(ellipse 55% 60% at 6% 58%, rgba(108, 99, 255, 0.2), transparent 70%),
+    radial-gradient(ellipse 40% 45% at 96% 72%, rgba(71, 55, 187, 0.09), transparent 70%),
+    radial-gradient(ellipse 35% 35% at 78% 12%, rgba(234, 79, 51, 0.06), transparent 70%),
+    linear-gradient(180deg, var(--color-lavanda) 0%, #f6f4ff 35%, #fbfaff 75%, #fff 100%);
+
   /* Colores principales */
 
   /*
@@ -375,8 +385,9 @@ span {
   text-align: center;
 }
 
+/* `background-image` y no `background`: no pisa el color que ponga otra clase. */
 .bg1 {
-  background-image: url("/public-optimized/desktop/bg1.webp");
+  background-image: var(--fondo-bg1);
   background-size: cover;
   background-position: center;
 }
@@ -696,10 +707,6 @@ span {
     padding: 1.3rem;
     font-size: 1rem;
   }
-  .bg1 {
-    background-image: url("/public-optimized/mobile/bg1.webp");
-  }
-
   .bg2 {
     background-image: url("/public-optimized/mobile/bg2.webp");
   }

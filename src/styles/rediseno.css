@@ -36,7 +36,7 @@
 /* ---------- Fondos de sección ---------- */
 
 /*
- * Los dos únicos fondos del rediseño fuera de la portada (que usa bg1).
+ * Los dos únicos fondos del rediseño fuera de la portada (que usa `bg1`, en index.css).
  * Una sección nueva elige uno de estos; no se crean fondos nuevos.
  */
 .fc-fondo-claro {
