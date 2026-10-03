@@ -198,6 +198,56 @@
   background: linear-gradient(90deg, rgba(234, 79, 51, 0.85), rgba(130, 26, 212, 0.8));
 }
 
+/* ---------- Enlace con línea en degradado ---------- */
+
+/*
+ * Línea fina violeta-naranja bajo el enlace. En reposo, corta (o ninguna);
+ * al pasar el ratón crece hasta el largo de la palabra. Nunca fondo.
+ * - `aria-current="page"`: línea corta fija (la página actual, en la barra).
+ * - `fc-enlace--siempre`: línea corta siempre visible, para enlaces sueltos
+ *   que sin ella se confundirían con texto (los avisos del pie).
+ * `--fc-enlace-margen` es el relleno lateral del enlace: la línea va bajo el
+ * texto, no bajo el relleno. Sobre `fc-sobre-oscuro`, tonos más claros.
+ */
+.fc-enlace {
+  position: relative;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fc-enlace::after {
+  content: "";
+  position: absolute;
+  left: var(--fc-enlace-margen, 0px);
+  bottom: var(--fc-enlace-bajo, 0.35rem);
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--fc-enlace-a, var(--color-secondary)), var(--fc-enlace-b, var(--color-primary)));
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-enlace[aria-current="page"]::after,
+.fc-enlace--siempre::after {
+  width: 1.6rem;
+}
+
+.fc-enlace:hover::after,
+.fc-enlace:active::after {
+  width: calc(100% - 2 * var(--fc-enlace-margen, 0px));
+}
+
+.fc-sobre-oscuro .fc-enlace {
+  --fc-enlace-a: #b3a8ff;
+  --fc-enlace-b: #ff8a6e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-enlace::after {
+    transition: none;
+  }
+}
+
 /* ---------- Tarjeta blanca ---------- */
 
 .fc-tarjeta {

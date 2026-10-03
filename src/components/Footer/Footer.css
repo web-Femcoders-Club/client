@@ -1,136 +1,258 @@
-.footer {
+/*
+ * Pie de página. Fondo azul noche, como las llamadas principales y la sección
+ * de contacto. Textos en blanco y lila claro: más de 10:1 sobre el azul (AAA).
+ * Iconos de redes en círculos de cristal; «Contacto» es un `fc-boton--borde`.
+ *
+ * Al final van estilos que NO son del pie pero viven aquí y se usan en otras
+ * partes (ventana de preguntas frecuentes y `.link-button`): no se tocan.
+ */
+
+.pie {
+  position: relative;
   width: 100%;
-  background: #4a148c;
   color: #fff;
-  padding: 20px 0;
+  background: linear-gradient(100deg, #261d8f 0%, #1c1478 50%, #170f66 100%);
+  padding: clamp(2rem, 4vw, 2.75rem) 16px 1.25rem;
 }
 
-.footer-container {
+/* Filo de luz arriba, en los colores de marca: separa el pie de la sección oscura de contacto. */
+.pie::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent) 55%, var(--color-secondary));
+}
+
+.pie__contenedor {
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 30px;
 }
 
-.footer-top {
+.pie__fila {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem 2rem;
 }
 
-.footer-logo img {
-  width: 90px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2), 
-  0 8px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 15%;
+/* ---------- Logo ---------- */
+
+.pie__logo {
+  display: inline-flex;
+  flex-shrink: 0;
+  border-radius: 0.8rem;
 }
 
-.footer-social {
-  text-align: center;
-  margin-bottom: 20px;
+.pie__logo img {
+  display: block;
+  width: 92px;
+  height: auto;
 }
 
-.footer-social p {
-  margin-bottom: 10px;
-}
+/* ---------- Bloques ---------- */
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.social-icons .icon {
-  color: #fff;
-  box-shadow: 2px 2px 3px rgba(255, 0, 0, 0.3), 4px 4px 5px rgba(0, 0, 0, 0.1);
-  font-size: 24px;
-  transition: color 0.3s;
-}
-
-.social-icons .icon:hover {
-  color: #ef4444;
-}
-
-.footer-support {
-  text-align: right;
-}
-
-.footer-support p {
-  margin-bottom: 10px;
-}
-
-.footer-policies {
+.pie__bloque {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.3), 4px 4px 5px rgba(0, 0, 0, 0.3);
+  gap: 0.75rem;
+}
+
+/* Línea vertical fina entre bloques, como en el mockup. */
+.pie__bloque--separado {
+  padding-left: 2rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.pie__rotulo {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--color-lila-claro);
+}
+
+/* ---------- Redes ---------- */
+
+.pie__redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Círculos de cristal de 44px (objetivo táctil AAA). */
+.pie__red {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  transition: translate 0.2s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.pie__red svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.pie__red:hover {
+  translate: 0 -2px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 18px rgba(108, 99, 255, 0.55);
+}
+
+/* ---------- Slack ---------- */
+
+/*
+ * Naranja claro sobre el azul: 6,4:1 en la zona más clara del degradado. A
+ * 1.2rem en negrita es texto grande, y ahí AAA pide 4,5:1: cumple.
+ */
+.pie__slack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff9f86;
+  text-decoration: none;
+}
+
+.pie__slack svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.pie__slack:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* ---------- Avisos legales ---------- */
+
+.pie__avisos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  /* El izquierdo lo pone `.pie__bloque--separado`; aquí se quita el sangrado por defecto de la lista. */
+  padding-block: 0;
+  padding-right: 0;
+  list-style: none;
 }
 
 /*
-  Los avisos legales pasaron de enlace a botón y necesitan su propio aspecto: sin
-  esto se pintarían con el estilo de botón del navegador, gris y con marco.
-
-  El subrayado no es decoración. Hasta ahora eran enlaces blancos sin subrayar
-  sobre fondo morado, con el mismo color y la misma forma que el texto de al
-  lado: nada indicaba que se pudieran pulsar. El contraste del blanco sobre
-  #4a148c es de 12:1, de sobra para AAA, pero el contraste no sirve de nada si no
-  se distingue de lo que no es pulsable.
-*/
-.footer-policies .cookie-link {
+ * Con `fc-enlace fc-enlace--siempre` (rediseno.css): línea corta siempre
+ * visible, para que no se confundan con texto, que crece al pasar el ratón.
+ * Es la misma línea que la barra de navegación.
+ */
+.pie__aviso {
+  min-height: 1.9rem;
+  padding: 0 0 0.35rem;
+  border: 0;
   background: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 6px;
-  font-size: 1rem;
-  color: inherit;
-  text-align: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  text-align: left;
   cursor: pointer;
-  transition: color 0.3s;
+  --fc-enlace-bajo: 0.1rem;
 }
 
-.footer-policies .cookie-link:hover,
-.footer-policies a:hover {
-  color: #ea4f33;
+/* ---------- Contacto ---------- */
+
+/*
+ * Sobre el azul, el relieve claro no lleva la luz blanca del neumorfismo
+ * (brillaba como un halo): solo una sombra oscura para despegarse. `.pie`
+ * delante sube la especificidad: rediseno.css se carga después y si no ganaba.
+ */
+.pie .pie__contacto {
+  box-shadow: 0 10px 22px rgba(4, 2, 30, 0.5);
+}
+
+.pie .pie__contacto:hover {
+  box-shadow: 0 14px 28px rgba(4, 2, 30, 0.55);
+}
+
+.pie .pie__contacto:active {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.3);
+}
+
+/* ---------- Foco y copyright ---------- */
+
+.pie__logo:focus-visible,
+.pie__red:focus-visible,
+.pie__slack:focus-visible,
+.pie__aviso:focus-visible,
+.pie__contacto:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.pie__copyright {
+  margin: 1.75rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--color-lila-claro);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tableta: dos filas; los separadores verticales sobran. */
+@media (max-width: 1100px) {
+  .pie__fila {
+    justify-content: center;
+  }
+
+  .pie__bloque--separado {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* Móvil: una columna centrada. */
+@media (max-width: 640px) {
+  .pie__fila {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pie__bloque,
+  .pie__avisos {
+    align-items: center;
+  }
+
+  .pie__redes {
+    justify-content: center;
+  }
+
+  .pie__aviso {
+    text-align: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .footer-policies .cookie-link {
+  .pie__red {
     transition: none;
   }
-}
-.footer-bottom {
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
-  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.2), 4px 4px 5px rgba(0, 0, 0, 0.2);
+
+  .pie__red:hover {
+    translate: none;
+  }
 }
 
-.slack-button {
-  display: flex;
-  align-items: center;
-  color: white;
-  text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.5), 4px 4px 5px rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  border-radius: 8px;
-  font-size: 14px;
-  padding: 10px 20px;
-  margin: 10px 0;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.slack-button img {
-  width: 24px;
-  margin-right: 10px;
-}
-
-.slack-button:hover {
-  background-color: rgba(123, 104, 238, 0.8);
-}
+/* ================= Estilos compartidos (no son del pie) ================= */
 
 .faq-collapse {
   margin-top: 1rem;
@@ -174,26 +296,4 @@
   cursor: pointer;
   padding: 0;
   font-size: inherit;
-}
-
-@media (width <= 768px) {
-  .footer-top {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-logo img {
-    width: 70px;
-  }
-  .footer-support {
-    text-align: center;
-  }
-
-  .footer-policies {
-    align-items: center;
-  }
-  .footer-bottom {
-    margin-top: 10px;
-  }
-
 }

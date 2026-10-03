@@ -3,11 +3,10 @@
  * relieve (luz arriba, sombra violeta abajo), como los botones del rediseño
  * (src/styles/rediseno.css). «Iniciar sesión» es un `fc-boton--noche`.
  *
- * Los enlaces no llevan fondo en ningún estado. Debajo, un arco en
- * degradado del azul al naranja de femCoders, solo bajo el final de la
- * palabra: el mismo gesto que la curva de «tecnología» en la portada. Se
- * dibuja al pasar el ratón y se queda en la página actual (aria-current,
- * que pone NavLink).
+ * Los enlaces no llevan fondo en ningún estado: llevan `fc-enlace`
+ * (rediseno.css), la línea en degradado violeta-naranja que comparten con el
+ * pie. Corta en la página actual (aria-current, que pone NavLink) y del largo
+ * de la palabra al pasar el ratón.
  *
  * index.css pinta todos los `span` de naranja: aquí no hay ninguno.
  */
@@ -100,30 +99,9 @@
   font-weight: 700;
   line-height: 1;
   color: var(--color-secondary);
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* El arco: degradado violeta → naranja recortado por una máscara SVG, así el color sigue la curva. */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 45%;
-  right: 0.55rem;
-  bottom: 0.25rem;
-  height: 0.45rem;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 50 0 98 8' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")
-    center / 100% 100% no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 50 0 98 8' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")
-    center / 100% 100% no-repeat;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-link:hover::after,
-.nav-link[aria-current="page"]::after {
-  clip-path: inset(0 0 0 0);
+  /* La línea de `fc-enlace` va bajo el texto, no bajo el relleno. */
+  --fc-enlace-margen: 0.85rem;
+  --fc-enlace-bajo: 0.45rem;
 }
 
 /* Sin fondo al pulsar; con teclado, el contorno de foco (WCAG 2.4.7). */
@@ -271,6 +249,7 @@
   .nav-link {
     padding: 0 0.6rem;
     font-size: 1.1rem;
+    --fc-enlace-margen: 0.6rem;
   }
 }
 
@@ -326,14 +305,17 @@
     width: 100%;
     padding: 0 0.4rem;
     font-size: 1.3rem;
+    --fc-enlace-margen: 0.4rem;
   }
 
-  /* En el panel, el arco va bajo el final de una palabra corta: ancho fijo, no el de toda la fila. */
-  .nav-link::after {
-    left: 0.4rem;
-    right: auto;
-    width: 4.5rem;
-    translate: 2.5rem 0;
+  /*
+   * En el panel el enlace ocupa toda la fila: al pasar, la línea mide lo que
+   * la palabra, no la fila. `.nav-panel` delante para ganar a rediseno.css,
+   * que se carga después.
+   */
+  .nav-panel .nav-link:hover::after,
+  .nav-panel .nav-link:active::after {
+    width: 5.5rem;
   }
 
   .auth-buttons {
@@ -361,7 +343,6 @@
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo-link,
-  .nav-link::after,
   .avatar-button,
   .dropdown-item,
   .nav-panel,

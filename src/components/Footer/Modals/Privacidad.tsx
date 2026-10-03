@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import "../Footer.css";
+import "./Documento.css";
+import { X } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
 import { useDialogoModal } from "../../../hooks/useDialogoModal";
@@ -30,27 +32,26 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay documento-fondo">
       <div
-        className="modal-content"
+        className="modal-content documento"
         role="dialog"
         aria-modal="true"
         aria-labelledby="privacy-policy-title"
-        style={{ maxWidth: "900px" }}
         ref={modalRef}
         tabIndex={-1}
       >
         <div className="modal-close">
           {/* Una "x" suelta se anuncia como "equis": el nombre lo pone aquí. */}
           <button onClick={closeModal} aria-label="Cerrar la política de privacidad">
-            x
+            <X aria-hidden="true" />
           </button>
         </div>
 
-        <div>
+        <header>
           <h3 id="privacy-policy-title">Política de Privacidad de FemCoders Club</h3>
-          <h4>Fecha de entrada en vigor: 29.09.2025</h4>
-        </div>
+          <p>Fecha de entrada en vigor: 29.09.2025</p>
+        </header>
 
         <div className="modal-body">
           <p>
@@ -118,7 +119,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
           </ul>
 
           {!showMore && (
-            <button onClick={toggleShowMore} className="tertiary-button">
+            <button onClick={toggleShowMore} className="fc-boton fc-boton--borde documento__mas">
               Saber más
             </button>
           )}
@@ -217,7 +218,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               <p>
                 <strong>Baja de comunicaciones:</strong> Si deseas dejar de recibir comunicaciones
                 de FemCoders Club, puedes{" "}
-                <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>solicitar tu baja aquí</a>. Recibirás un email de
+                <a href="/baja-email">solicitar tu baja aquí</a>. Recibirás un email de
                 confirmación con un enlace para completar el proceso.
               </p>
 
@@ -298,8 +299,8 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 .
               </p>
 
-              <div className="flex justify-start mt-4">
-                <button onClick={closeModal} className="tertiary-button">
+              <div className="modal-footer">
+                <button onClick={closeModal} className="fc-boton fc-boton--noche">
                   Aceptar
                 </button>
               </div>

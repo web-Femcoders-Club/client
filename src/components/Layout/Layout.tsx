@@ -27,9 +27,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         aria-label="Contenido principal"
       >
         {children}
+        {/*
+          Al final del contenido y no después del pie: va en un ancla `sticky`,
+          así flota abajo mientras se hace scroll y se para justo encima del
+          pie en vez de taparlo.
+        */}
+        <BackToTop />
       </main>
       <Footer />
-      <BackToTop />
       <CookieBanner />
     </>
   );

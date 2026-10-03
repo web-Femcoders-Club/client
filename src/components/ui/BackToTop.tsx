@@ -7,7 +7,8 @@ const CONTAINER_THRESHOLD = 200;
 interface BackToTopProps {
   /**
    * Contenedor con scroll propio (p. ej. el .modal-content de los modales
-   * legales). Sin él, el botón escucha el scroll de la ventana. Con él,
+   * legales). Sin él, el botón escucha el scroll de la ventana y debe ir al
+   * final del <main> (Layout lo pone ahí). Con él,
    * el botón debe renderizarse como ÚLTIMO HIJO dentro de ese contenedor
    * (usa position: sticky para quedarse visible abajo a la derecha).
    */
@@ -47,10 +48,10 @@ const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
     }
   };
 
-  return (
+  const boton = (
     <button
       type="button"
-      className={`back-to-top ${targetRef ? "back-to-top--sticky" : "back-to-top--fixed"}${
+      className={`back-to-top ${targetRef ? "back-to-top--sticky" : "back-to-top--pagina"}${
         visible ? " back-to-top--visible" : ""
       }`}
       onClick={handleClick}
@@ -69,6 +70,10 @@ const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
       </svg>
     </button>
   );
+
+  // En la página, un ancla `sticky` de altura cero al final del <main>: el
+  // botón flota abajo durante el scroll y se detiene encima del pie.
+  return targetRef ? boton : <div className="back-to-top-ancla">{boton}</div>;
 };
 
 export default BackToTop;

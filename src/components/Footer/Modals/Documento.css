@@ -1,0 +1,340 @@
+/*
+ * Documentos del pie: cookies, privacidad, aviso legal y preguntas frecuentes.
+ *
+ * Todo cuelga de `.documento` y `.documento-fondo`, que solo llevan estos
+ * cuatro modales. Las clases genéricas (`modal-overlay`, `modal-body`…) las
+ * usan también el quiz, StatusModal y las tarjetas de Equipo, y Equipo las
+ * redefine en su propia hoja: así estos documentos se ven igual vengas de
+ * donde vengas.
+ *
+ * Estilo del rediseño: hoja lavanda en relieve, títulos en violeta sin
+ * sombra (los h3/h5 globales son naranja con sombra doble, 3,4:1), texto en
+ * tinta y botones `fc-boton`. index.css pinta todos los `span` de naranja:
+ * aquí se neutralizan.
+ */
+
+/* ---------- Fondo y hoja ---------- */
+
+.modal-overlay.documento-fondo {
+  /* Por encima de la cabecera fija (z-index 1000). */
+  z-index: 1200;
+  padding: 16px;
+  background: rgba(23, 15, 102, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-content.documento {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  max-height: min(88vh, 960px);
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 1.5rem;
+  background: var(--color-lavanda);
+  color: var(--color-text-dark);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 30px 60px rgba(23, 15, 102, 0.35);
+}
+
+.documento span {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* ---------- Cerrar: botón redondo en relieve, fijo arriba al hacer scroll ---------- */
+
+.documento .modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  height: 0;
+  padding: 0 1rem;
+}
+
+.documento .modal-close button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 1rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-lavanda);
+  color: var(--color-secondary);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.22);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.documento .modal-close button:hover {
+  color: var(--color-secondary);
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 1), 6px 6px 16px rgba(71, 55, 187, 0.26);
+}
+
+.documento .modal-close button:active {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.22), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.documento .modal-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ---------- Cabecera del documento ---------- */
+
+.documento > header,
+.documento .modal-header {
+  margin: 0;
+  padding: 2rem 4.5rem 1.2rem 2.2rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.14);
+}
+
+/* Tinta sobre lavanda: más de 12:1, AAA. */
+.documento h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* Fecha de entrada en vigor. Violeta sobre lavanda: 7,16:1, AAA. */
+.documento > header p,
+.documento .modal-header p {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+}
+
+/* ---------- Cuerpo ---------- */
+
+.documento .modal-body {
+  padding: 1.2rem 2.2rem 1.6rem;
+}
+
+/* Apartados: violeta, sin sombra, con la línea de marca corta delante. */
+.documento .modal-body h4,
+.documento .modal-body h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-secondary);
+  text-shadow: none;
+}
+
+.documento .modal-body h4::before,
+.documento .modal-body h5::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+.documento .modal-body section:first-child h5,
+.documento .modal-body > h5:first-child {
+  margin-top: 0.4rem;
+}
+
+.documento .modal-body p,
+.documento .modal-body li {
+  max-width: 72ch;
+  font-family: var(--font-primary);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-text-dark);
+}
+
+.documento .modal-body p {
+  margin: 0 0 0.8rem;
+}
+
+.documento .modal-body ul {
+  margin: 0 0 0.8rem;
+  padding-left: 1.3rem;
+  list-style: disc;
+}
+
+.documento .modal-body li + li {
+  margin-top: 0.35rem;
+}
+
+.documento .modal-body li::marker {
+  color: var(--color-secondary);
+}
+
+.documento strong {
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/* Enlaces dentro del texto: violeta y subrayados (WCAG 1.4.1). */
+.documento a,
+.documento .link-button {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.documento a:hover,
+.documento .link-button:hover {
+  text-decoration-thickness: 2px;
+}
+
+.documento a:focus-visible,
+.documento .link-button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 0.2rem;
+}
+
+/* «Saber más» de privacidad. */
+.documento .documento__mas {
+  margin-top: 0.4rem;
+}
+
+/* ---------- Pie del documento: fijo abajo al hacer scroll ---------- */
+
+.documento .modal-footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 1rem 2.2rem;
+  background: var(--color-lavanda);
+  box-shadow: 0 -10px 20px rgba(241, 237, 255, 0.95);
+  text-align: right;
+}
+
+/* ---------- Preguntas frecuentes ---------- */
+
+.documento .faq-collapse {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0.2rem 0 0;
+}
+
+.documento .faq-item {
+  margin: 0;
+  border: 0;
+}
+
+/* Cada pregunta, una pastilla en relieve; abierta, hundida. Violeta sobre lavanda: 7,16:1. */
+.documento .faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.75rem 0.9rem 0.75rem 1.2rem;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+  color: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.18);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.documento .faq-question:hover {
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.22);
+}
+
+.documento .faq-question[aria-expanded="true"],
+.documento .faq-question.active {
+  color: var(--color-secondary);
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.18), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.documento .faq-question:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* El «+» / «−», en un círculo. Va oculto al lector: el estado lo da aria-expanded. */
+.documento .faq-question span[aria-hidden="true"] {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.documento .faq-answer {
+  margin: 0;
+  padding: 0.9rem 1.2rem 0.2rem;
+  color: var(--color-text-dark);
+}
+
+.documento .faq-answer p {
+  margin: 0 0 0.7rem;
+}
+
+/* ---------- Móvil ---------- */
+
+@media (max-width: 640px) {
+  .modal-overlay.documento-fondo {
+    padding: 8px;
+  }
+
+  .modal-content.documento {
+    max-height: 94vh;
+    border-radius: 1.2rem;
+  }
+
+  .documento > header,
+  .documento .modal-header {
+    padding: 1.6rem 4rem 1rem 1.2rem;
+  }
+
+  .documento .modal-body {
+    padding: 1rem 1.2rem 1.2rem;
+  }
+
+  .documento .modal-footer {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .documento .modal-footer .fc-boton {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .documento .modal-close button,
+  .documento .faq-question {
+    transition: none;
+  }
+}
