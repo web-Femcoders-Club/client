@@ -7,6 +7,8 @@ interface OptimizedImageProps {
   className?: string;
   tabIndex?: number;
   loading?: "lazy" | "eager";
+  /** "high" solo para la imagen principal de la primera pantalla (LCP). */
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -16,6 +18,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   className,
   tabIndex,
   loading = "lazy",
+  fetchPriority,
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   // Si la versión optimizada falla, se recuerda en estado de React y no
@@ -63,6 +66,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       className={className}
       tabIndex={tabIndex}
       loading={loading}
+      fetchPriority={fetchPriority}
       decoding="async"
       onError={() => {
         // Si la original también falla, este setState repite el valor y React
