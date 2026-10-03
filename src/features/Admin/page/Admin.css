@@ -1,6 +1,6 @@
 .admin-container {
     
-    background: url("/bg1.webp");
+    background-image: var(--fondo-bg1);
     padding: 3rem;
     border-radius: 8px;
    

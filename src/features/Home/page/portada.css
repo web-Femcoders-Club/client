@@ -8,8 +8,9 @@
  *   y sombra a h1/h2. Cada clase de aquí fija sus propios valores; por
  *   especificidad (clase > elemento) ganan siempre.
  *
- * El fondo es el de siempre: la sección conserva `parallax bg1`, que además
- * cambia a la versión móvil de la imagen por debajo de 768px.
+ * Fondo: `bg1` (index.css), ahora un degradado en CSS que arriba es el mismo
+ * lavanda de la barra de navegación, así barra y portada se leen como una
+ * pieza, y abajo termina en blanco, donde empieza «Nuestra esencia».
  */
 
 .portada {

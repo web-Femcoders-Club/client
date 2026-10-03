@@ -108,7 +108,7 @@
   color: #ea4f33;
 }
 body {
-  background: url("/bg1.webp");
+  background-image: var(--fondo-bg1);
   background-size: cover;
 }
 
