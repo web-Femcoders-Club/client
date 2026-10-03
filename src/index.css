@@ -188,27 +188,9 @@ img {
   background-color: #bb3f28;
 }
 
-.accent-button {
-  background-color: #8937bb;
-  color: var(--color-white);
-  padding: 8px 16px;
-  border: none;
-}
-
-.accent-button:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  scale: 1.1;
-}
-.accent-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
 .secondary-button,
 .primary-button,
-.tertiary-button,
-.accent-button {
+.tertiary-button {
   padding: 8px 16px;
   border-radius: var(--radius-md);
   font-size: 1rem;
@@ -683,8 +665,7 @@ span {
   }
   .primary-button,
   .secondary-button,
-  .tertiary-button,
-  .accent-button {
+  .tertiary-button {
     font-size: 0.875rem;
     padding: 6px 12px;
   }
