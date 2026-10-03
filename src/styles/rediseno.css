@@ -18,6 +18,21 @@
   font-weight: inherit;
 }
 
+/* ---------- Solo para lectores de pantalla ---------- */
+
+/* Fuera de la vista pero en el árbol de accesibilidad. */
+.fc-solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Fondos de sección ---------- */
 
 /*
@@ -122,6 +137,67 @@
   background: var(--color-primary);
 }
 
+/* ---------- Título de sección ---------- */
+
+/* El h2 de cada sección de la home: mismo tamaño en todas. El margen lo pone cada sección. */
+.fc-titulo-seccion {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.1vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+/*
+ * La palabra destacada de un título: letras en violeta sólido (8,29:1, AAA) y
+ * el degradado de marca en un trazo de rotulador detrás, no en las letras (el
+ * naranja de un texto degradado se queda en 3,7:1). Va en un `span`: fija
+ * color, tamaño y peso contra la regla global.
+ */
+.fc-rotulador {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  color: var(--color-secondary);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.fc-rotulador::after {
+  content: "";
+  position: absolute;
+  left: -0.1em;
+  right: -0.15em;
+  bottom: 0.06em;
+  height: 0.38em;
+  z-index: -1;
+  border-radius: 0.3em 0.5em 0.4em 0.6em;
+  background: linear-gradient(90deg, rgba(234, 79, 51, 0.55), rgba(108, 99, 255, 0.45));
+  transform: rotate(-1.2deg);
+}
+
+/* ---------- Sobre fondo oscuro ---------- */
+
+/*
+ * Para una sección con fondo oscuro (bg2): antetítulo, título y rotulador en
+ * claro. Blanco y lila claro sobre el azul oscuro superan 10:1 (AAA); el
+ * trazo del rotulador sube de opacidad para que se vea sobre el oscuro.
+ */
+.fc-sobre-oscuro .fc-antetitulo {
+  color: var(--color-lila-claro);
+}
+
+.fc-sobre-oscuro .fc-titulo-seccion,
+.fc-sobre-oscuro .fc-rotulador {
+  color: #fff;
+}
+
+.fc-sobre-oscuro .fc-rotulador::after {
+  background: linear-gradient(90deg, rgba(234, 79, 51, 0.85), rgba(130, 26, 212, 0.8));
+}
+
 /* ---------- Tarjeta blanca ---------- */
 
 .fc-tarjeta {
@@ -132,21 +208,46 @@
   padding: clamp(1.4rem, 2.4vw, 2rem);
 }
 
-/* ---------- Botones ---------- */
+/* ---------- Botones: neumorfismo ---------- */
 
 /*
+ * Estilo neumórfico: el botón es del color del fondo (lavanda) y el volumen
+ * sale de una luz arriba a la izquierda y una sombra violeta abajo a la
+ * derecha. Al pulsar se hunde (sombras interiores).
+ *
+ * EXCEPCIÓN DE ACCESIBILIDAD, decidida a conciencia (octubre 2026): el
+ * contorno del botón contra el fondo queda por debajo del 3:1 que pide WCAG
+ * 1.4.11 (AA) para los controles. Lo compensan el texto, que sí cumple, y el
+ * foco, que es un contorno violeta de 3px. Si hay que cumplir 1.4.11, la
+ * salida es un borde violeta de 1.5px (la variante «neumorfismo accesible»).
+ *
+ * El levantamiento al pasar el ratón usa `translate`, no `transform`: así se
+ * suma al `transform` con que una sección coloque el botón (las flechas de
+ * los carruseles se centran con translateY(-50%)) sin pisarlo.
+ *
  * Se aplican al propio <a> o <button>: nunca un <button> dentro de un <Link>,
  * que es un control dentro de otro y el lector lo anuncia dos veces.
  */
+:root {
+  --fc-neu-fondo: var(--color-lavanda);
+  --fc-neu-luz: -6px -6px 14px rgba(255, 255, 255, 0.95);
+  --fc-neu-sombra: 6px 6px 16px rgba(71, 55, 187, 0.2);
+  --fc-neu-hundido: inset -5px -5px 12px rgba(255, 255, 255, 0.9), inset 5px 5px 12px rgba(71, 55, 187, 0.22);
+}
+
 .fc-boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
   min-height: 2.75rem;
-  padding: 0.6rem 1.25rem;
-  border: 2px solid transparent;
-  border-radius: 0.7rem;
+  padding: 0.6rem 1.35rem;
+  border: 0;
+  border-radius: 0.9rem;
+  background: var(--fc-neu-fondo);
+  box-shadow: var(--fc-neu-luz), var(--fc-neu-sombra);
+  /* Violeta sobre lavanda: 7,16:1, AAA. */
+  color: var(--color-secondary);
   font-family: var(--font-primary);
   /* 1.17rem en negrita = 18,7px: cuenta como texto grande (WCAG pide 18,66px en negrita). */
   font-size: 1.17rem;
@@ -155,16 +256,35 @@
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  transition: translate 0.2s ease, box-shadow 0.25s ease, color 0.2s ease;
 }
 
 .fc-boton:hover {
-  transform: translateY(-2px);
+  translate: 0 -1px;
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 20px rgba(71, 55, 187, 0.24);
+}
+
+.fc-boton:active {
+  translate: none;
+  box-shadow: var(--fc-neu-hundido);
 }
 
 .fc-boton:focus-visible {
   outline: 3px solid var(--color-secondary);
   outline-offset: 3px;
+}
+
+/*
+ * Deshabilitado (el «Enviar» del formulario hasta aceptar la privacidad):
+ * plano, sin relieve ni levantamiento. WCAG no exige contraste a un control
+ * inactivo, pero el texto sigue legible.
+ */
+.fc-boton:disabled,
+.fc-boton:disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.55;
+  translate: none;
+  box-shadow: none;
 }
 
 .fc-boton svg {
@@ -176,70 +296,45 @@
 /* Menos relleno, mismo tamaño de letra (sigue siendo texto grande). */
 .fc-boton--compacto {
   min-height: 2.5rem;
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.05rem;
 }
 
 /* Para la llamada principal de una sección (la portada). */
 .fc-boton--grande {
   min-height: 3.25rem;
-  padding: 0.8rem 1.8rem;
+  padding: 0.8rem 1.9rem;
   font-size: 1.2rem;
 }
 
 /*
- * Naranja de marca con texto blanco: 3,64:1. No llega a AAA ni a AA en texto
- * normal; cumple AA de texto grande (3:1) porque todos los `fc-boton` van en
- * negrita a 1.17rem o más. Es la excepción por marca que documenta index.css:
- * el naranja no se oscurece. No bajar ese tamaño sin revisar esto.
+ * Relieve sobre azul noche, para la llamada principal de cada bloque.
+ * Lavanda claro sobre el azul: más de 11:1, AAA. Al ser oscuro sobre fondo
+ * claro, su contorno sí supera el 3:1 de los controles.
  */
-.fc-boton--naranja {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
-  box-shadow: 0 10px 22px rgba(234, 79, 51, 0.25);
+.fc-boton--noche,
+.fc-boton--noche:hover {
+  color: #e9e4ff;
+  background: linear-gradient(145deg, #261d8f, #170f66);
 }
 
-.fc-boton--naranja:hover {
-  color: #fff;
-  box-shadow: 0 14px 26px rgba(234, 79, 51, 0.35);
+.fc-boton--noche {
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.9), 6px 6px 18px rgba(23, 15, 102, 0.4);
 }
 
-/* Violeta con texto blanco: 8,29:1, AAA. */
-.fc-boton--violeta {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: #fff;
+.fc-boton--noche:hover {
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 22px rgba(23, 15, 102, 0.45);
 }
 
-.fc-boton--violeta:hover {
-  color: #fff;
+.fc-boton--noche:active {
+  box-shadow: inset 4px 4px 10px rgba(4, 2, 30, 0.6), inset -3px -3px 8px rgba(110, 96, 255, 0.25);
 }
 
-/* Contorno violeta: 8,29:1 sobre blanco, AAA. */
+/* Relieve claro con texto violeta (7,16:1, AAA): el botón secundario de cada bloque. */
 .fc-boton--borde {
-  background: #fff;
-  border-color: var(--color-secondary);
   color: var(--color-secondary);
 }
 
-.fc-boton--borde:hover {
-  background: var(--color-secondary);
-  color: #fff;
-}
-
-/* Contorno lila, el «Ver eventos» de la portada: 6,89:1, AAA en texto grande. */
-.fc-boton--borde-lila {
-  background: rgba(255, 255, 255, 0.55);
-  border-color: var(--color-lila);
-  color: var(--color-lila);
-}
-
-.fc-boton--borde-lila:hover {
-  background: #fff;
-  color: var(--color-lila);
-}
-
-/* ---------- Botón redondo con icono (flechas, pausa) ---------- */
+/* ---------- Botón redondo con icono (flechas, detener carrusel) ---------- */
 
 .fc-boton-redondo {
   width: 3rem;
@@ -248,18 +343,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid rgba(71, 55, 187, 0.4);
+  border: 0;
   border-radius: 50%;
-  background: #fff;
+  background: var(--fc-neu-fondo);
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.22);
   color: var(--color-secondary);
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: translate 0.2s ease, box-shadow 0.25s ease;
 }
 
 .fc-boton-redondo:hover {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: #fff;
+  translate: 0 -1px;
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.26);
+}
+
+.fc-boton-redondo:active {
+  translate: none;
+  box-shadow: var(--fc-neu-hundido);
 }
 
 .fc-boton-redondo:focus-visible {
@@ -270,6 +370,17 @@
 .fc-boton-redondo svg {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+/* Detener/reanudar un carrusel: va junto a los puntos. 44px, objetivo táctil AAA. */
+.fc-boton-rotacion {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.fc-boton-rotacion svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 /* ---------- Chip de categoría ---------- */
@@ -318,7 +429,8 @@
     transition: none;
   }
 
-  .fc-boton:hover {
-    transform: none;
+  .fc-boton:hover,
+  .fc-boton-redondo:hover {
+    translate: none;
   }
 }

@@ -23,10 +23,10 @@ const SeccionEsencia: React.FC<{ fotos: FotoEvento[] }> = ({ fotos }) => (
     <div className="esencia__contenedor">
       <div className="esencia__texto">
         <p className="fc-antetitulo">Nuestra esencia</p>
-        <h2 className="esencia__titulo" id="esencia-titulo">
+        <h2 className="fc-titulo-seccion esencia__titulo" id="esencia-titulo">
           Más que eventos,
           <br />
-          <span className="esencia__rotulador">una comunidad</span>
+          <span className="fc-rotulador">una comunidad</span>
         </h2>
 
         <div className="esencia__parrafos">

@@ -13,7 +13,11 @@
  * `span` fija su color, tamaño y peso.
  */
 
-.noticias {
+/*
+ * La raíz no se llama `.noticias`: PostStyles.css (blog, también cargada en la
+ * home) tiene `.noticias` y `.noticias h2`, que le pisaban el relleno y el título.
+ */
+.noticias-home {
   padding: clamp(2.5rem, 4.5vw, 3.5rem) 16px clamp(3rem, 5vw, 4rem);
 }
 
@@ -35,23 +39,9 @@
   gap: 1rem 2rem;
 }
 
+/* Tamaño, fuente y color: `fc-titulo-seccion`, compartido. */
 .noticias__titulo {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.2vw, 2.7rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--color-text-dark);
-  text-shadow: none;
   margin: 0.5rem 0 0;
-}
-
-/* Naranja en texto grande: 3,71:1, AA de texto grande. Excepción por marca. */
-.noticias__titulo em {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  font-style: normal;
-  color: var(--color-primary);
 }
 
 .noticias__entradilla {
@@ -223,7 +213,6 @@
   top: 50%;
   z-index: 2;
   transform: translateY(-50%);
-  box-shadow: 0 8px 20px rgba(71, 55, 187, 0.15);
 }
 
 .noticias__flecha--anterior {
@@ -234,8 +223,10 @@
   right: -1.5rem;
 }
 
+/* Puntos y, a su derecha, el botón para detener el avance automático. */
 .noticias__puntos-carrusel {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 0.45rem;
   margin-top: 1.7rem;
@@ -255,6 +246,10 @@
   width: 1.5rem;
   border-radius: 999px;
   background: var(--color-primary);
+}
+
+.noticias__puntos-carrusel .fc-boton-rotacion {
+  margin-left: 0.6rem;
 }
 
 .noticias__punto:focus-visible {

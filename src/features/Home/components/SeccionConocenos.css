@@ -37,17 +37,11 @@
 
 /* ---------- Conócenos ---------- */
 
+/* Tamaño, fuente y color: `fc-titulo-seccion`, compartido. */
 .conocenos__titulo {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(2rem, 3.1vw, 2.8rem);
-  line-height: 1.05;
-  color: var(--color-text-dark);
-  text-shadow: none;
   margin: 0.6rem 0 0;
 }
 
-.conocenos__titulo em,
 .evento__titulo em {
   /* Hereda la fuente del título: alguna hoja global le cambiaba la familia al `em`. */
   font-family: inherit;

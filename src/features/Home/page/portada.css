@@ -109,6 +109,8 @@
 .portada__parrafo strong {
   color: var(--color-primary);
   font-weight: 700;
+  /* Un punto mayor que el párrafo: a su tamaño se perdía al lado del título. */
+  font-size: 1.2em;
 }
 
 /* Los botones son los compartidos del rediseño: `fc-boton` en src/styles/rediseno.css. */
@@ -144,11 +146,14 @@
   border-left: 0;
 }
 
+/* Sin fondo: el icono solo, más pequeño y con una sombra suave de su color para que no quede plano. */
 .portada__cifra-icono {
-  width: 2.2rem;
-  height: 2.2rem;
   flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 2.2;
   color: var(--color-primary);
+  filter: drop-shadow(0 2px 3px rgba(234, 79, 51, 0.3));
 }
 
 .portada__cifra-numero {
@@ -204,8 +209,8 @@
   }
 
   .portada__cifra-icono {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   .portada__cifra-rotulo {

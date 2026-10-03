@@ -4,16 +4,16 @@ import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "../../../context/ModalContext";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import OptimizedImage from "../../../../src/components/OptimizedImage";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import StatusModal from "../../../components/ui/StatusModal";
 import CharCounter from "../../../components/ui/CharCounter";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
-import GitHubProjects from "../components/GitHubProjects";
 import SeccionNoticias, { type NewsItem } from "../components/SeccionNoticias";
 import HeroCollage from "../components/HeroCollage";
 import SeccionEsencia from "../components/SeccionEsencia";
 import SeccionConocenos from "../components/SeccionConocenos";
+import SeccionProyectos from "../components/SeccionProyectos";
+import SeccionContacto from "../components/SeccionContacto";
 import CifraAnimada from "../components/CifraAnimada";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import "./Home.css";
@@ -595,283 +595,6 @@ const HomePage: React.FC = () => {
       link: "/login",
     },
       ];
-  const githubProjectsData = [
-    {
-      id: "14",
-      name: "testlet — Framework de Testing sin Dependencias",
-      description:
-        "Framework de testing completo construido desde cero: assertions con diff, runner con describe/it anidados, hooks, spies y stubs, fake timers y cobertura real leyendo el perfilador de V8. Cero dependencias, y se testea a sí mismo.",
-      techStack: ["JavaScript", "Testing", "Node.js"],
-      githubUrl: "https://github.com/femcodersclub/testlet",
-      demoUrl: "https://github.com/femcodersclub/testlet",
-      image: "/assets/javascript/testlet-arquitectura.webp",
-      imageAlt: "testlet — Diagrama de arquitectura del framework de testing",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "octubre 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/testing-javascript-sin-frameworks",
-      postTitle: "Testing en JavaScript sin frameworks: construye tu propio test runner",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "13",
-      name: "smart-refactor-assistant — Asistente de Refactor con IA",
-      description:
-        "Analiza código JavaScript con un linter propio que detecta anti-patterns al instante y usa la API gratuita de Gemini para explicar, refactorizar y generar tests. Proxy en Node.js nativo, caché LRU, control de cuota y streaming. Sin frameworks.",
-      techStack: ["JavaScript", "Gemini API", "Node.js"],
-      githubUrl: "https://github.com/femcodersclub/smart-refactor-assistant",
-      demoUrl: "https://femcodersclub.github.io/smart-refactor-assistant/",
-      image: "/assets/javascript/ia-javascript-gemini.webp",
-      imageAlt: "smart-refactor-assistant — integración de la API de Gemini en JavaScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "julio 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/ia-javascript-gemini",
-      postTitle: "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "12",
-      name: "perf-lab-js — Toolkit de Profiling y Benchmarking",
-      description:
-        "Toolkit de profiling y benchmarking en vanilla JavaScript: benchmark con warm-up y estadística real, profiler para funciones síncronas y asíncronas, y memory sampler con detección de fugas por tendencia. Sin dependencias, sin build.",
-      techStack: ["JavaScript", "Profiling", "Benchmarking"],
-      githubUrl: "https://github.com/femcodersclub/performance-audit-tool-js",
-      demoUrl: "https://femcodersclub.github.io/performance-audit-tool-js/",
-      image: "/assets/javascript/optimizacion-javascript.webp",
-      imageAlt: "perf-lab-js — Toolkit de profiling y benchmarking en JavaScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "junio 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/optimizacion-javascript",
-      postTitle: "Optimización en JavaScript: mide antes de tocar una línea",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "11",
-      name: "encrypted-private-notes — Notas Privadas Encriptadas",
-      description:
-        "Editor de notas con encriptación extremo a extremo construido con IndexedDB, Web Crypto API (AES-GCM-256 + PBKDF2) y File System Access API. Sin dependencias externas, sin servidor. Todo ocurre en el navegador.",
-      techStack: ["JavaScript", "IndexedDB", "Web Crypto API"],
-      githubUrl: "https://github.com/femcodersclub/encrypted-private-notes",
-      demoUrl: "https://femcodersclub.github.io/encrypted-private-notes/",
-      image: "/assets/javascript/web-apis-nueva-generacion.webp",
-      imageAlt: "Encrypted Private Notes — Notas encriptadas con Web APIs en JavaScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "junio 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion",
-      postTitle: "Web APIs de nueva generación en JavaScript: más allá del localStorage",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "10",
-      name: "productivity-dashboard-js — Dashboard Modular",
-      description:
-        "Dashboard modular con tres widgets independientes — Pomodoro, tracker de hábitos y notas con autoguardado — construido en vanilla JavaScript sin ninguna dependencia externa. Dynamic import, sistema de plugins extensible y 17 tests incluidos.",
-      techStack: ["JavaScript", "ES Modules", "Dynamic Import"],
-      githubUrl: "https://github.com/femcodersclub/productivity-dashboard-js",
-      demoUrl: "https://femcodersclub.github.io/productivity-dashboard-js/",
-      image: "/assets/javascript/modulos-arquitectura-escalable.webp",
-      imageAlt: "productivity-dashboard-js — Dashboard Modular en vanilla JavaScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "junio 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/modulos-arquitectura-escalable",
-      postTitle: "Módulos y Arquitectura Escalable en JavaScript",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "9",
-      name: "reactive-store-js — Sistema de Estado Reactivo",
-      description:
-        "Sistema de estado reactivo en menos de 300 líneas que implementa cinco patrones de diseño trabajando juntos: Observer para suscripciones, Proxy para interceptación reactiva, Memento para undo/redo, Façade en la API pública y composición funcional. Incluye dashboard de métricas con DevTools integradas.",
-      techStack: ["JavaScript", "Proxy API", "Design Patterns"],
-      githubUrl: "https://github.com/femcodersclub/reactive-store-js",
-      demoUrl: "https://femcodersclub.github.io/reactive-store-js/demo/",
-      image: "/assets/javascript/reactive-store-dashboard.webp",
-      imageAlt: "reactive-store-js — Dashboard de métricas con DevTools integradas",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "mayo 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/patrones-diseno-javascript",
-      postTitle: "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "8",
-      name: "LRU Cache — Estructuras de Datos con Map",
-      description:
-        "Implementación de un LRU Cache usando Map de JavaScript. Incluye caché de llamadas a API, 15 tests, benchmark Map vs Array (7x más rápido en lecturas) y LRUCacheWithStats para monitorizar hit ratio y evictions.",
-      techStack: ["JavaScript", "Map", "TDD"],
-      githubUrl: "https://github.com/femcodersclub/lru-cache-js",
-      demoUrl: "https://github.com/femcodersclub/lru-cache-js",
-      image: "/assets/javascript/lru-cache-proyecto.webp",
-      imageAlt: "LRU Cache implementado con Map en JavaScript — femCoders Club",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "abril 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/estructuras-datos-js",
-      postTitle: "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "7",
-      name: "Mujeres que Transforman el Futuro",
-      description: (
-        <>
-          Landing page para el evento &lsquo;Estructuras en Movimiento: Mujeres que Transforman el Futuro&rsquo;. Una página diseñada para inspirar e informar sobre el próximo evento de FemCoders Club, con reserva de entradas a través de{" "}
-          <a
-            href="https://www.eventbrite.es/e/entradas-estructuras-en-movimiento-mujeres-que-transforman-el-futuro-1984505957741?aff=oddtdtcreator"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Eventbrite
-          </a>
-        </>
-      ),
-      techStack: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/femcodersclub/mujeres-que-transforman-el-futuro",
-      demoUrl: "https://femcodersclub.github.io/mujeres-que-transforman-el-futuro/",
-      image: "mujeres-que-transforman-futuro.png",
-      imageAlt: "Mujeres que Transforman el Futuro — Landing de evento FemCoders Club",
-      author: "Ana Lucía Silva Córdoba",
-      authorAvatar: "assets/home-images/anaLuciaSilva.png",
-      lastUpdated: "marzo 2026",
-      stars: 1,
-      language: "HTML",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "1",
-      name: "State Machine — Wizard de Perfil",
-      description:
-        "Wizard de configuración de perfil profesional implementado como una state machine. Demuestra closures, scope léxico, this y bind/call/apply en acción — cada paso del wizard muestra en tiempo real cómo funcionan estos mecanismos.",
-      techStack: ["JavaScript", "State Machine", "IIFE"],
-      githubUrl: "https://github.com/femcodersclub/state-machine",
-      demoUrl: "https://femcodersclub.github.io/state-machine/",
-      image: "/assets/javascript/state-machine-scope.webp",
-      imageAlt: "State Machine Wizard — Closures, Scope y Context en JavaScript",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "marzo 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/closures-scope-context",
-      postTitle: "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "2",
-      name: "Smart Analytics Tracker",
-      description:
-        "Sistema de analytics inteligente que demuestra Event Delegation, IntersectionObserver, MutationObserver y Custom Events. Detecta rage clicks, mide visibilidad real de elementos y trackea scroll con arquitectura desacoplada.",
-      techStack: ["JavaScript", "DOM API", "Event Delegation"],
-      githubUrl: "https://github.com/femcodersclub/smart-analytics-tracker",
-      demoUrl: "https://femcodersclub.github.io/smart-analytics-tracker/",
-      image: "/assets/javascript/dashboard-metricas.png",
-      imageAlt: "Smart Analytics Tracker - Dashboard de m\u00e9tricas en tiempo real",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "febrero 2026",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera",
-      postTitle: "Manipulaci\u00f3n del DOM como una Ingeniera",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "3",
-      name: "API Resilience Wrapper",
-      description:
-        "Wrapper que añade resiliencia a cualquier API: retry automático con backoff exponencial, circuit breaker, rate limiting, timeout y fallback. Aprende patrones profesionales para manejar fallos de red.",
-      techStack: ["TypeScript", "JavaScript", "API Design"],
-      githubUrl: "https://github.com/femcodersclub/API-Resilience-Wrapper",
-      demoUrl: "https://femcodersclub.github.io/API-Resilience-Wrapper/",
-      image: "/assets/javascript/api-resilience-wrapper.webp",
-      imageAlt: "API Resilience Wrapper - Patrones de resiliencia para APIs",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "enero 2026",
-      stars: 1,
-      language: "TypeScript",
-      postUrl: "https://www.femcodersclub.com/recursos/js/event-loop-javascript",
-      postTitle: "Event Loop en JavaScript: Cómo Funciona la Asincronía",
-      difficulty: "Avanzado",
-    },
-    {
-      id: "4",
-      name: "FemPalette - Generador SASS",
-      description:
-        "Generador visual de variables SASS con tutorial completo que incluye funciones, mixins y patrón 7-1. Herramienta interactiva para aprender SASS de forma práctica.",
-      techStack: ["SASS", "JavaScript", "HTML", "CSS"],
-      githubUrl: "https://github.com/femcodersclub/sass-color-generator",
-      demoUrl: "https://femcodersclub.github.io/sass-color-generator/",
-      image: "assets/css/fempalette-generator.webp",
-      imageAlt: "Generador de variables SASS - FemPalette",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "2 meses atrás",
-      stars: 1,
-      language: "SASS",
-      postUrl: "https://www.femcodersclub.com/recursos/css/sass-next-level",
-      postTitle: "SASS: Lleva tu CSS al siguiente nivel",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "5",
-      name: "Efecto Parallax con Svelte",
-      description:
-        "Implementación elegante del efecto parallax utilizando Svelte. Demuestra las capacidades reactivas del framework para crear animaciones fluidas.",
-      techStack: ["Svelte", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/femcodersclub/Efecto-Parallax-Svelte",
-      demoUrl: "https://efecto-parallax-svelte.vercel.app/",
-      image: "assets/home-images/efecto-parallax-svelte.webp",
-      imageAlt: "Efecto Parallax desarrollado con Svelte",
-      author: "FemCoders Club",
-      authorAvatar: "assets/FemCodersClubLogo.webp",
-      lastUpdated: "2024",
-      stars: 1,
-      language: "Svelte",
-      postUrl: "",
-      postTitle: "Creando efectos parallax con Svelte",
-      difficulty: "Intermedio",
-    },
-    {
-      id: "6",
-      name: "Canvas Text Animation",
-      description:
-        "Animaciones de texto creativas usando HTML5 Canvas y JavaScript. Explora las posibilidades artísticas de la programación con efectos visuales impactantes.",
-      techStack: ["JavaScript", "HTML5 Canvas", "CSS"],
-      githubUrl: "https://github.com/femcodersclub/CanvasTextAnimation",
-      demoUrl: "https://femcodersclub.github.io/CanvasTextAnimation/",
-      image: "assets/html/ApisHtml.webp",
-      imageAlt: "Animaciones de texto con Canvas",
-      author: "Irina Ichim",
-      authorAvatar: "assets/home-images/desarolladora-profesional-irina.webp",
-      lastUpdated: "2024",
-      stars: 1,
-      language: "JavaScript",
-      postUrl: "https://www.femcodersclub.com/recursos/html/apis-html",
-      postTitle: "Introducción a las APIs en HTML: Potencia tus Proyectos Web",
-      difficulty: "Básico",
-    },
-  ];
 
   return (
     <>
@@ -1153,11 +876,11 @@ const HomePage: React.FC = () => {
             </p>
 
             <div className="portada__botones" data-aos="fade-up" data-aos-delay="800">
-              <Link to="/register" className="fc-boton fc-boton--grande fc-boton--naranja">
+              <Link to="/register" className="fc-boton fc-boton--grande fc-boton--noche">
                 Unirse al club
                 <ArrowRight aria-hidden="true" />
               </Link>
-              <Link to="/eventos" className="fc-boton fc-boton--grande fc-boton--borde-lila">
+              <Link to="/eventos" className="fc-boton fc-boton--grande fc-boton--borde">
                 Ver eventos
               </Link>
             </div>
@@ -1208,35 +931,8 @@ const HomePage: React.FC = () => {
       />
 
       <SeccionNoticias noticias={newsData} />
-      <section className="projects-section bg1">
-        <GitHubProjects
-          projects={githubProjectsData}
-          maxProjects={7}
-          showFilters={true}
-          autoRotate={true}
-          rotateInterval={8000}
-        />
-      </section>
-      <section className="parallax bg5">
-        {/* Texto superior */}
-        <div
-          className="content-text"
-          style={{ width: "100%", maxWidth: "100vw" }}
-          data-aos="fade-down"
-          data-aos-duration="800"
-        >
-          <p className="text-white">
-            Si tienes alguna pregunta o inquietud, o si estás interesada en cómo
-            puedes contribuir a nuestra comunidad, por favor llena el
-            formulario. Estamos aquí para asistirte y valoramos enormemente tu
-            interés en apoyar a FemCoders Club.
-            <br />
-          </p>
-        </div>
-
-        {/* Bloque principal: formulario + imágenes */}
-        <div className="form-and-photos">
-          {/* FORMULARIO */}
+      <SeccionProyectos />
+      <SeccionContacto>
           <div
             className="form-container"
             data-aos="fade-right"
@@ -1309,7 +1005,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="accent-button"
+                  className="fc-boton fc-boton--noche"
                   disabled={isSubmitting || !acceptedPrivacy}
                   aria-busy={isSubmitting}
                 >
@@ -1318,55 +1014,7 @@ const HomePage: React.FC = () => {
               </form>
             </div>
           </div>
-
-          {/* IMÁGENES CON EFECTO "ESFERAS DE INFLUENCIA LIGERO" */}
-          <div
-            className="image-content"
-            data-aos="fade-up-left"
-            data-aos-duration="1400"
-            data-aos-easing="ease-in-out-sine"
-            data-aos-delay="200"
-            role="presentation"
-            aria-label="Cofundadoras de FemCoders Club compartiendo experiencias"
-          >
-            <div className="esferas-container bg5-variant">
-              {/* Esfera principal */}
-              <div className="leadership-sphere primary">
-                <div 
-                  className="leadership-indicator" 
-                  data-tooltip="Pausar/Reanudar animación"
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Pausar o reanudar animación de imágenes"
-                ></div>
-                <OptimizedImage
-                  src="/fundadoras-asociacion-femCodersClub.png"
-                  alt="Cofundadoras de FemCoders Club participando en charlas STEM"
-                  title="Cofundadoras de FemCoders Club participando en charlas STEM"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Esfera secundaria */}
-              <div className="leadership-sphere secondary">
-                <div 
-                  className="leadership-indicator" 
-                  data-tooltip="Pausar/Reanudar animación"
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Pausar o reanudar animación de imágenes"
-                ></div>
-                <OptimizedImage
-                  src="/empoderando-mujeres.png"
-                  alt="Fundadoras de FemCoders Club empoderando mujeres en STEM"
-                  title="fundadoras de FemCoders Club empoderando mujeres en STEM"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </SeccionContacto>
 
       <StatusModal
         variant="success"

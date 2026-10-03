@@ -1,0 +1,375 @@
+/*
+ * Sección de contacto de la home.
+ *
+ * Fondo `bg2` (index.css, con su versión móvil). Piezas compartidas
+ * (src/styles/rediseno.css): `fc-sobre-oscuro`, `fc-antetitulo`,
+ * `fc-titulo-seccion` y `fc-rotulador`. El formulario conserva sus clases y
+ * estilos de siempre (`form-container`, `form-card`): aquí solo se coloca.
+ *
+ * El collage usa porcentajes y `cqi`, como el de la portada: escala entero
+ * con su contenedor y aguanta zoom y móvil en horizontal sin media queries
+ * por pieza.
+ *
+ * index.css pinta todos los `span` de naranja y los `h3` con sombra: cada
+ * clase que cae en uno fija su color, tamaño y peso.
+ */
+
+.contacto {
+  --contacto-mano: "Caveat", "Comic Sans MS", cursive;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 5rem) 16px clamp(3rem, 6vw, 5rem);
+}
+
+/*
+ * Veladura sobre la esquina clara de bg2: el violeta de arriba a la izquierda
+ * deja el blanco en 5,4:1; con ella pasa de 10:1 (AAA). Se desvanece antes
+ * del centro, donde el fondo ya es oscuro.
+ */
+.contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, rgba(13, 8, 60, 0.55) 0%, rgba(13, 8, 60, 0.25) 35%, rgba(13, 8, 60, 0) 60%);
+}
+
+/*
+ * Dos columnas que empiezan y acaban a la misma altura. Izquierda: cabecera
+ * y formulario. Derecha (`contacto__visual`): el collage arriba, alineado con
+ * el título, y el cierre (lema y motivos) abajo, alineado con el final del
+ * formulario. La derecha se estira al alto de la izquierda y reparte el
+ * sobrante entre las dos piezas: no quedan huecos aunque cambie el formulario.
+ */
+.contacto__rejilla {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  grid-template-areas:
+    "cabecera   visual"
+    "formulario visual";
+  grid-template-rows: auto 1fr;
+  gap: 2rem clamp(2rem, 5vw, 4.5rem);
+}
+
+.contacto__cabecera {
+  grid-area: cabecera;
+}
+
+.contacto__formulario {
+  grid-area: formulario;
+}
+
+.contacto__visual {
+  grid-area: visual;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(2rem, 4vw, 3rem);
+  min-width: 0;
+}
+
+/* ---------- Cabecera ---------- */
+
+.contacto__titulo {
+  margin: 0.6rem 0 0;
+}
+
+/* Blanco sobre el azul oscuro (con la veladura): más de 10:1, AAA. */
+.contacto__entradilla {
+  margin: 0.9rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* ---------- Formulario: solo su sitio, sin tocar su diseño ---------- */
+
+.contacto__formulario .form-container {
+  justify-content: flex-start;
+}
+
+/* ---------- Collage ---------- */
+
+.contacto__collage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  aspect-ratio: 1.3 / 1;
+  /* Algo más abajo que el antetítulo: arranca a la altura del título. */
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+}
+
+.contacto__foto {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border: 1cqi solid #fff;
+  border-radius: 3.6cqi;
+  background: var(--color-lavanda-medio);
+  box-shadow: 0 22px 44px rgba(5, 3, 30, 0.45);
+}
+
+.contacto__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contacto__foto--grupo {
+  left: 22%;
+  top: 3%;
+  width: 64%;
+  height: 58%;
+  transform: rotate(3deg);
+  z-index: 1;
+}
+
+.contacto__foto--charla {
+  left: 3%;
+  top: 52%;
+  width: 44%;
+  height: 38%;
+  transform: rotate(-2deg);
+  z-index: 2;
+}
+
+.contacto__foto--networking {
+  left: 61%;
+  top: 50%;
+  width: 31%;
+  height: 46%;
+  transform: rotate(2.5deg);
+  z-index: 2;
+}
+
+.contacto__foto--networking img {
+  object-position: center 60%;
+}
+
+/* ---------- Decoración del collage ---------- */
+
+.contacto__decoracion {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Violeta sobre blanco: 8,29:1, AAA. */
+.contacto__etiqueta {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4cqi;
+  padding: 1.6cqi 3cqi;
+  border-radius: 2.6cqi;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(5, 3, 30, 0.3);
+  font-family: var(--contacto-mano);
+  font-size: max(3.8cqi, 0.95rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+
+.contacto__etiqueta svg {
+  flex-shrink: 0;
+  width: 1.3em;
+  height: 1.3em;
+  color: var(--color-primary);
+}
+
+/* Sobre el borde inferior izquierdo de la foto grande, donde no hay caras. */
+.contacto__etiqueta--inspira {
+  left: 0;
+  top: 43%;
+  transform: rotate(-7deg);
+}
+
+.contacto__etiqueta--eventos {
+  right: 0;
+  bottom: -7%;
+  transform: rotate(-5deg);
+}
+
+.contacto__chispas {
+  position: absolute;
+  right: 6%;
+  top: -5%;
+  width: 8%;
+  overflow: visible;
+}
+
+.contacto__chispas path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+/* Curva discontinua de la etiqueta de abajo a la foto de la charla. */
+.contacto__curva {
+  position: absolute;
+  left: 20%;
+  top: 90%;
+  width: 40%;
+  aspect-ratio: 200 / 45;
+  overflow: visible;
+}
+
+.contacto__curva path {
+  fill: none;
+  stroke: var(--color-lila-claro);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+
+.contacto__curva path:first-child {
+  stroke-dasharray: 5 7;
+}
+
+/* ---------- Cierre: lema y motivos ---------- */
+
+/* Una línea fina separa el cierre del collage; el lema a la izquierda y los motivos en lista. */
+.contacto__cierre {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem clamp(2rem, 4vw, 3.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* Lila claro sobre el azul oscuro: más de 12:1. */
+.contacto__lema {
+  margin: 0 0 0 0.5rem;
+  font-family: var(--contacto-mano);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  color: var(--color-lila-claro);
+  transform: rotate(-7deg);
+}
+
+/* El subrayado mide lo que la línea más larga del lema, no lo que su celda. */
+.contacto__subrayado {
+  display: block;
+  width: 100%;
+  height: 0.5em;
+  margin-top: 0.15em;
+}
+
+.contacto__subrayado path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.contacto__motivos {
+  display: grid;
+  gap: 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacto__motivo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contacto__icono {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contacto__icono svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.contacto__icono--lila {
+  color: var(--color-lila-claro);
+}
+
+.contacto__icono--naranja {
+  color: #ff8a6e;
+}
+
+.contacto__motivo-titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Blanco sobre el azul oscuro: más de 10:1, AAA. */
+.contacto__motivo-texto {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Portátil estrecho y tableta: mismas dos columnas; el lema sube encima de los motivos. */
+@media (max-width: 1100px) {
+  .contacto__rejilla {
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  }
+
+  .contacto__cierre {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacto__lema {
+    justify-self: start;
+  }
+}
+
+/* Móvil: una columna. El formulario primero; las fotos y el cierre, después. */
+@media (max-width: 760px) {
+  .contacto__rejilla {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "cabecera"
+      "formulario"
+      "visual";
+    grid-template-rows: auto;
+  }
+
+  .contacto__formulario .form-container {
+    justify-content: center;
+  }
+
+  .contacto__visual {
+    margin-top: 1rem;
+  }
+}

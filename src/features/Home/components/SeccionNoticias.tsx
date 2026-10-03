@@ -2,6 +2,8 @@ import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import OptimizedImage from "../../../components/OptimizedImage";
+import BotonRotacion from "./BotonRotacion";
+import { useRotacion } from "./useRotacion";
 import "./SeccionNoticias.css";
 
 export interface NewsItem {
@@ -21,6 +23,9 @@ export interface NewsItem {
 
 /** Las cinco más recientes, como el carrusel anterior. */
 const DESTACADAS = 5;
+
+/** Cada cuánto avanza solo el carrusel. */
+const INTERVALO_ROTACION = 7000;
 
 /** Color del chip por categoría; las que no están aquí usan el lavanda por defecto. */
 const CHIP_POR_CATEGORIA: Record<string, string> = {
@@ -75,8 +80,10 @@ const EnlaceNoticia: React.FC<{
  * Sección de noticias de la home: las cinco más recientes en un carrusel
  * destacado. Sin tarjetas debajo: justo después viene la sección de proyectos.
  *
- * El carrusel solo avanza con flechas, puntos o teclado: nada se mueve solo,
- * así que no necesita botón de pausa. Debajo de la destacada asoman dos
+ * El carrusel avanza solo y en bucle (useRotacion): se para con el ratón
+ * encima o el foco dentro, y el botón junto a los puntos lo detiene del todo.
+ * Mientras gira, la ventana no se anuncia (aria-live="off"), para que el
+ * lector de pantalla no lea cada cambio. Debajo de la destacada asoman dos
  * tarjetas «apiladas» que indican que hay más.
  *
  * Fondo, manchas y retícula son los compartidos del rediseño
@@ -85,6 +92,11 @@ const EnlaceNoticia: React.FC<{
 const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
   const destacadas = noticias.slice(0, DESTACADAS);
   const [actual, setActual] = useState(0);
+  const rotacion = useRotacion(
+    () => setActual((a) => (a + 1) % destacadas.length),
+    INTERVALO_ROTACION,
+    destacadas.length > 1,
+  );
 
   if (noticias.length === 0) return null;
 
@@ -101,15 +113,15 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
   };
 
   return (
-    <section className="noticias fc-fondo-claro fc-manchas" aria-labelledby="noticias-titulo">
+    <section className="noticias-home fc-fondo-claro fc-manchas" aria-labelledby="noticias-titulo">
       <span className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
 
       <div className="noticias__contenedor">
         <div className="noticias__cabecera">
           <div>
             <p className="fc-antetitulo fc-antetitulo--naranja">Novedades</p>
-            <h2 className="noticias__titulo" id="noticias-titulo">
-              Últimas <em>noticias</em>
+            <h2 className="fc-titulo-seccion noticias__titulo" id="noticias-titulo">
+              Últimas <span className="fc-rotulador">noticias</span>
             </h2>
             <p className="noticias__entradilla">
               Mantente al día con las novedades, logros y actividades de nuestra comunidad.
@@ -133,8 +145,13 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
           aria-roledescription="carrusel"
           aria-label="Noticias destacadas"
           onKeyDown={alPulsarTecla}
+          {...rotacion.pausaAlInteractuar}
         >
-          <div className="noticias__ventana" id="noticias-destacadas" aria-live="polite">
+          <div
+            className="noticias__ventana"
+            id="noticias-destacadas"
+            aria-live={rotacion.girando ? "off" : "polite"}
+          >
             {destacadas.map((noticia, i) => (
               <article
                 key={noticia.id}
@@ -194,6 +211,12 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
                     aria-current={i === actual}
                   />
                 ))}
+                <BotonRotacion
+                  girando={rotacion.girando}
+                  alAlternar={rotacion.alternar}
+                  de="noticias"
+                  controla="noticias-destacadas"
+                />
               </div>
             </>
           )}

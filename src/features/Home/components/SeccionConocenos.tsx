@@ -53,10 +53,10 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
       <div className="conocenos__rejilla">
         <article className="fc-tarjeta conocenos__tarjeta">
           <p className="fc-antetitulo">Conócenos</p>
-          <h2 className="conocenos__titulo" id="conocenos-titulo">
+          <h2 className="fc-titulo-seccion conocenos__titulo" id="conocenos-titulo">
             Una comunidad para impulsar
             <br />
-            <em>tu camino en tech</em>
+            <span className="fc-rotulador">tu camino en tech</span>
           </h2>
 
           <div className="conocenos__parrafos">
@@ -84,7 +84,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
               ¿Lista para dar el siguiente paso en tu carrera tech?
             </p>
             <div className="conocenos__botones">
-              <Link to="/login" className="fc-boton fc-boton--naranja">
+              <Link to="/login" className="fc-boton fc-boton--noche">
                 Únete a la comunidad
               </Link>
               <Link to="/femcoders-quienes-somos" className="fc-boton fc-boton--borde">
@@ -185,7 +185,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
           )}
 
           <div className="evento__botones">
-            <Link to="/eventos" className="fc-boton fc-boton--violeta">
+            <Link to="/eventos" className="fc-boton fc-boton--noche">
               {evento ? "Ver todos los eventos" : "Ver eventos pasados"}
             </Link>
             <Link to="/blog/recursos" className="fc-boton fc-boton--borde">
