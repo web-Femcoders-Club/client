@@ -49,6 +49,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
 
   return (
     <section className="conocenos" aria-labelledby="conocenos-titulo">
+      <div className="conocenos__puntos" aria-hidden="true" />
       <div className="conocenos__rejilla">
         <article className="fc-tarjeta conocenos__tarjeta">
           <p className="fc-antetitulo">Conócenos</p>
