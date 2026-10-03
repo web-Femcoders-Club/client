@@ -96,6 +96,7 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
     () => setActual((a) => (a + 1) % destacadas.length),
     INTERVALO_ROTACION,
     destacadas.length > 1,
+    actual,
   );
 
   if (noticias.length === 0) return null;

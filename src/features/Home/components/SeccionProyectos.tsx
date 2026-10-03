@@ -207,7 +207,7 @@ const SeccionProyectos: React.FC = () => {
     });
   };
 
-  const rotacion = useRotacion(() => irA(pagina + 1), INTERVALO_ROTACION, paginas > 1);
+  const rotacion = useRotacion(() => irA(pagina + 1), INTERVALO_ROTACION, paginas > 1, pagina);
 
   return (
     <section
