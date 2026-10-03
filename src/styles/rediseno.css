@@ -18,6 +18,81 @@
   font-weight: inherit;
 }
 
+/* ---------- Fondos de sección ---------- */
+
+/*
+ * Los dos únicos fondos del rediseño fuera de la portada (que usa bg1).
+ * Una sección nueva elige uno de estos; no se crean fondos nuevos.
+ */
+.fc-fondo-claro {
+  background: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
+}
+
+/* El mismo, al revés: para empalmar con una sección que acaba en lavanda. */
+.fc-fondo-claro--invertido {
+  background: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
+}
+
+/*
+ * Manchas suaves de marca en dos esquinas: violeta abajo a la izquierda y
+ * naranja arriba a la derecha. Usa ::before y ::after de la sección, así que
+ * su contenido necesita `position: relative; z-index: 1`.
+ */
+.fc-manchas {
+  position: relative;
+  overflow: hidden;
+}
+
+.fc-manchas::before,
+.fc-manchas::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fc-manchas::before {
+  width: 34rem;
+  height: 34rem;
+  left: -14rem;
+  bottom: -16rem;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.16), transparent 68%);
+}
+
+.fc-manchas::after {
+  width: 30rem;
+  height: 30rem;
+  right: -10rem;
+  top: -12rem;
+  background: radial-gradient(circle, rgba(234, 79, 51, 0.1), transparent 68%);
+}
+
+/* Retícula de puntos decorativa en una esquina, que se desvanece hacia el centro. */
+.fc-puntos {
+  position: absolute;
+  z-index: 0;
+  width: min(44vw, 540px);
+  height: 60%;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(71, 55, 187, 0.22) 1.4px, transparent 1.6px);
+  background-size: 18px 18px;
+}
+
+.fc-puntos--arriba-derecha {
+  top: 0;
+  right: 0;
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+}
+
+.fc-puntos--abajo-izquierda {
+  bottom: 0;
+  left: 0;
+  -webkit-mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
+}
+
 /* ---------- Antetítulo con rayita ---------- */
 
 .fc-antetitulo {
@@ -40,6 +115,11 @@
   width: 2rem;
   height: 2px;
   background: currentColor;
+}
+
+/* Rayita naranja y texto violeta, para secciones que necesitan el acento cálido. */
+.fc-antetitulo--naranja::before {
+  background: var(--color-primary);
 }
 
 /* ---------- Tarjeta blanca ---------- */
@@ -91,6 +171,12 @@
   width: 1.2em;
   height: 1.2em;
   flex-shrink: 0;
+}
+
+/* Menos relleno, mismo tamaño de letra (sigue siendo texto grande). */
+.fc-boton--compacto {
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem;
 }
 
 /* Para la llamada principal de una sección (la portada). */
@@ -153,6 +239,71 @@
   color: var(--color-lila);
 }
 
+/* ---------- Botón redondo con icono (flechas, pausa) ---------- */
+
+.fc-boton-redondo {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(71, 55, 187, 0.4);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fc-boton-redondo:hover {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+.fc-boton-redondo:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.fc-boton-redondo svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* ---------- Chip de categoría ---------- */
+
+/* Texto pequeño: cada variante usa una pareja fondo/texto que supera 7:1 (AAA). */
+.fc-chip {
+  display: inline-block;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  background: var(--color-lavanda);
+  color: var(--color-secondary);
+}
+
+.fc-chip--naranja {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-chip--lila {
+  background: var(--color-lila-claro);
+  color: var(--color-lila-oscuro);
+}
+
+.fc-chip--neutro {
+  background: var(--color-lavanda-medio);
+  color: var(--color-text-dark);
+}
+
 /* En móviles muy estrechos (320px) un texto largo no cabe en una línea: se deja partir. */
 @media (max-width: 400px) {
   .fc-boton {
@@ -162,7 +313,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fc-boton {
+  .fc-boton,
+  .fc-boton-redondo {
     transition: none;
   }
 

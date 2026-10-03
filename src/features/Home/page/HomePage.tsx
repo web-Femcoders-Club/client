@@ -10,7 +10,7 @@ import StatusModal from "../../../components/ui/StatusModal";
 import CharCounter from "../../../components/ui/CharCounter";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
 import GitHubProjects from "../components/GitHubProjects";
-import NewsSlider, { NewsItem } from "../components/NewsSlider";
+import SeccionNoticias, { type NewsItem } from "../components/SeccionNoticias";
 import HeroCollage from "../components/HeroCollage";
 import SeccionEsencia from "../components/SeccionEsencia";
 import SeccionConocenos from "../components/SeccionConocenos";
@@ -1207,15 +1207,7 @@ const HomePage: React.FC = () => {
         }}
       />
 
-      <section className="full-height d-flex flex-column justify-content-center align-items-center parallax bg2">
-        <NewsSlider
-          newsItems={newsData}
-          autoPlay={true}
-          autoPlayInterval={6000}
-          showDots={true}
-          showArrows={true}
-        />
-      </section>
+      <SeccionNoticias noticias={newsData} />
       <section className="projects-section bg1">
         <GitHubProjects
           projects={githubProjectsData}

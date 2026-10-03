@@ -11,53 +11,11 @@
  */
 
 .esencia {
-  position: relative;
-  overflow: hidden;
-  /* Del blanco a un lavanda muy claro: da profundidad sin oscurecer la sección. */
-  background: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
+  /* Fondo: `fc-fondo-claro`, compartido (src/styles/rediseno.css). */
   padding: clamp(3.5rem, 7vw, 6rem) 16px;
 }
 
-/* Retícula de puntos en la esquina superior derecha, que se desvanece hacia el centro. */
-.esencia__puntos {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(46vw, 560px);
-  height: 70%;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(71, 55, 187, 0.22) 1.4px, transparent 1.6px);
-  background-size: 18px 18px;
-  -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
-}
-
-/* Manchas suaves de marca en las esquinas, sin oscurecer el blanco. */
-.esencia::before,
-.esencia::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.esencia::before {
-  width: 34rem;
-  height: 34rem;
-  left: -14rem;
-  bottom: -16rem;
-  background: radial-gradient(circle, rgba(108, 99, 255, 0.16), transparent 68%);
-}
-
-.esencia::after {
-  width: 30rem;
-  height: 30rem;
-  right: -10rem;
-  top: -12rem;
-  background: radial-gradient(circle, rgba(234, 79, 51, 0.1), transparent 68%);
-}
+/* Manchas de las esquinas: `fc-manchas`, compartido. */
 
 .esencia__contenedor {
   position: relative;
@@ -290,36 +248,6 @@
   margin-top: 1.4rem;
 }
 
-.galeria__boton {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid rgba(71, 55, 187, 0.45);
-  background: #fff;
-  color: var(--color-secondary);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.galeria__boton:hover {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: #fff;
-}
-
-.galeria__boton:focus-visible {
-  outline: 3px solid var(--color-secondary);
-  outline-offset: 3px;
-}
-
-.galeria__boton svg {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
 .galeria__contador {
   min-width: 3.6rem;
   text-align: center;
@@ -363,8 +291,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .galeria__foto,
-  .galeria__boton {
+  .galeria__foto {
     transition: none;
   }
 }

@@ -95,7 +95,7 @@ const GaleriaEventos: React.FC<GaleriaEventosProps> = ({ fotos, intervalo = 5000
       <div className="galeria__controles">
         <button
           type="button"
-          className="galeria__boton"
+          className="fc-boton-redondo"
           onClick={() => irA(actual - 1)}
           aria-label="Foto anterior"
           aria-controls="galeria-eventos-fotos"
@@ -107,7 +107,7 @@ const GaleriaEventos: React.FC<GaleriaEventosProps> = ({ fotos, intervalo = 5000
         </span>
         <button
           type="button"
-          className="galeria__boton"
+          className="fc-boton-redondo"
           onClick={() => setGirando((g) => !g)}
           aria-label={girando ? "Pausar el carrusel" : "Reanudar el carrusel"}
           aria-controls="galeria-eventos-fotos"
@@ -116,7 +116,7 @@ const GaleriaEventos: React.FC<GaleriaEventosProps> = ({ fotos, intervalo = 5000
         </button>
         <button
           type="button"
-          className="galeria__boton"
+          className="fc-boton-redondo"
           onClick={() => irA(actual + 1)}
           aria-label="Foto siguiente"
           aria-controls="galeria-eventos-fotos"

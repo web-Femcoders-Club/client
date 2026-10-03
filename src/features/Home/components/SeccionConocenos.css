@@ -11,57 +11,11 @@
  */
 
 .conocenos {
-  /* Continúa el lavanda en el que termina «Nuestra esencia». */
-  background: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
-  padding: clamp(3rem, 6vw, 5rem) 16px;
-  position: relative;
-  overflow: hidden;
+  /* Fondo: `fc-fondo-claro--invertido`, compartido; empalma con el lavanda de «Nuestra esencia». */
+  padding: clamp(3rem, 6vw, 5rem) 16px clamp(2.5rem, 4.5vw, 3.5rem);
 }
 
-/*
- * Profundidad: dos manchas de marca detrás de las tarjetas (lavanda arriba a
- * la izquierda, melocotón abajo a la derecha) y una retícula de puntos en la
- * esquina inferior izquierda, en espejo con la de «Nuestra esencia».
- */
-.conocenos::before,
-.conocenos::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(8px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.conocenos::before {
-  width: 30rem;
-  height: 22rem;
-  left: 2%;
-  top: 4%;
-  background: radial-gradient(circle, rgba(130, 26, 212, 0.26), transparent 68%);
-}
-
-.conocenos::after {
-  width: 28rem;
-  height: 22rem;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle, rgba(234, 79, 51, 0.22), transparent 68%);
-}
-
-.conocenos__puntos {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: min(40vw, 480px);
-  height: 60%;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(71, 55, 187, 0.22) 1.4px, transparent 1.6px);
-  background-size: 18px 18px;
-  -webkit-mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
-}
+/* Profundidad: `fc-manchas` y `fc-puntos`, compartidos. */
 
 .conocenos__rejilla {
   max-width: 1280px;

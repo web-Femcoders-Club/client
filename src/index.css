@@ -46,6 +46,10 @@
   --color-lavanda-claro: #f4f1ff;  /* cajas y fondos de tarjeta */
   --color-lavanda-medio: #ece8fb;  /* discos de icono y huecos de imagen */
   --color-melocoton: #fde9e4;      /* pareja cálida del lavanda */
+  /* Variantes oscuras para texto pequeño sobre fondos claros (chips): AAA. */
+  --color-primary-oscuro: #8f2318; /* 7,41:1 sobre --color-melocoton */
+  --color-lila-claro: #f3e8fc;
+  --color-lila-oscuro: #6a14ad;    /* 7,67:1 sobre --color-lila-claro */
 
   /* Sombras */
   --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
