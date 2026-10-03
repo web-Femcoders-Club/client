@@ -291,8 +291,10 @@
 }
 
 /*
- * En pantallas estrechas el lema se saldría por la derecha: se sube por
- * encima de la foto grande, donde el collage tiene hueco.
+ * En pantallas estrechas el lema se saldría por la derecha. Va a la esquina
+ * superior izquierda, que en móvil está vacía (la foto grande empieza en el
+ * 33 % del ancho y la de la izquierda en el 30 % del alto). Antes subía arriba
+ * a la derecha y se montaba sobre la etiqueta «Comunidad».
  */
 @media (max-width: 640px) {
   .hero-collage {
@@ -300,8 +302,8 @@
   }
 
   .hero-collage__lema {
-    left: 62%;
-    top: -9%;
+    left: 1%;
+    top: 0;
   }
 
   .hero-collage__chispas--izquierda {
