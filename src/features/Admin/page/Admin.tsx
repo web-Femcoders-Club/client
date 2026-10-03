@@ -5,6 +5,7 @@ import {
   Award,
   BarChart3,
   FileText,
+  HeartHandshake,
   Lightbulb,
   Mail,
   MailX,
@@ -27,6 +28,7 @@ import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
 import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
 import RegistroDeActividad from '../components/registro/RegistroDeActividad';
+import ComunidadReal from '../components/comunidad/ComunidadReal';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -44,6 +46,7 @@ const SECCIONES = [
   { to: '/admin/achievements', texto: '5. Gestionar Logros', Icono: Award },
   { to: '/admin/listas', texto: '6. Listas de Correo', Icono: Mail },
   { to: '/admin/proyecto-vonage', texto: '7. Proyecto Vonage', Icono: Lightbulb },
+  { to: '/admin/comunidad', texto: '8. Comunidad real', Icono: HeartHandshake },
 ];
 
 /*
@@ -138,6 +141,7 @@ const Admin: React.FC = () => {
               <Route path="achievements" element={<ManageAchievements />} />
               <Route path="listas" element={<ListasDeCorreo />} />
               <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
+              <Route path="comunidad" element={<ComunidadReal />} />
               <Route path="registro" element={<RegistroDeActividad />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
               <Route path="consents" element={<ConsentOverview />} />

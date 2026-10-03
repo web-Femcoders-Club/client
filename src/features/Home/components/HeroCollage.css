@@ -1,0 +1,460 @@
+/*
+ * Collage de la portada.
+ *
+ * Todo se coloca en porcentajes dentro de un lienzo de proporción fija, y los
+ * tamaños van en `cqi` (unidades del propio contenedor): el collage escala
+ * entero como una imagen, sin una media query por pieza, y aguanta el zoom al
+ * 200% y el móvil en horizontal sin descolocarse.
+ *
+ * index.css da color naranja, negrita y 1.5rem a TODOS los `span`. Cada clase
+ * de aquí que va en un `span` fija su propio color, tamaño y peso; por
+ * especificidad (clase > elemento) ganan siempre.
+ *
+ * Prefijo `hero-collage__` para no tocar nada de Home.css ni de index.css.
+ */
+
+.hero-collage {
+  --hero-mano: "Caveat", "Comic Sans MS", cursive;
+  --sale-suave: cubic-bezier(0.16, 1, 0.3, 1);
+  --cortina: cubic-bezier(0.77, 0, 0.175, 1);
+
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 1 / 0.8;
+  /* Bajado respecto al texto: con el menú encima, a la misma altura quedaba demasiado arriba. */
+  margin: clamp(2rem, 6vw, 5rem) auto 0;
+}
+
+/* ---------- Fotos ---------- */
+
+.hero-collage__foto {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border: 0.9cqi solid #fff;
+  border-radius: 3.4cqi;
+  box-shadow: 0 18px 40px rgba(71, 55, 187, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: var(--color-lavanda-claro);
+}
+
+.hero-collage__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Son fotos de interior y salían apagadas junto al fondo claro: algo más de luz y color. */
+  filter: brightness(1.1) saturate(1.12) contrast(1.03);
+}
+
+.hero-collage__foto--fundadoras {
+  left: 33%;
+  top: 2%;
+  width: 53%;
+  height: 60%;
+  transform: rotate(3deg);
+  z-index: 2;
+}
+
+.hero-collage__foto--cofundadoras {
+  left: 6%;
+  top: 30%;
+  width: 36%;
+  height: 52%;
+  transform: rotate(2deg);
+  z-index: 3;
+}
+
+.hero-collage__foto--cofundadoras img {
+  object-position: center 35%;
+}
+
+.hero-collage__foto--ponente {
+  /* Más a la derecha que la grande, como en el diseño: el collage gana diagonal. */
+  left: 52%;
+  top: 58%;
+  width: 42%;
+  height: 41%;
+  transform: rotate(3deg);
+  z-index: 3;
+}
+
+.hero-collage__foto--ponente img {
+  object-position: 55% center;
+}
+
+/* ---------- Manchas de color ---------- */
+
+/* Halo de luz detrás del collage: aclara el conjunto sin tocar el fondo de la sección. */
+.hero-collage::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -10% -4%;
+  background: radial-gradient(ellipse at 55% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.45) 40%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-collage__mancha {
+  position: absolute;
+  border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%;
+  filter: blur(1px);
+  z-index: 1;
+  font-size: 0;
+}
+
+.hero-collage__mancha--lila {
+  left: 19%;
+  top: 8%;
+  width: 28%;
+  height: 32%;
+  border-radius: 38% 42% 30% 34% / 40% 36% 30% 30%;
+  background: linear-gradient(160deg, #c9b3f8 0%, #9f7cf0 100%);
+  opacity: 0.9;
+}
+
+.hero-collage__mancha--rosa {
+  left: 28%;
+  top: 36%;
+  width: 44%;
+  height: 50%;
+  background: radial-gradient(circle at 50% 50%, #f4a3c8 0%, #f6c6e1 45%, transparent 72%);
+  opacity: 0.9;
+}
+
+/* ---------- Decoración: etiquetas, lema, chispas y arco ---------- */
+
+.hero-collage__decoracion {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-collage__etiqueta {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2cqi;
+  padding: 1.1cqi 2.6cqi;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(71, 55, 187, 0.16);
+  font-family: var(--hero-mano);
+  font-size: max(3.6cqi, 0.95rem);
+  font-weight: 600;
+  line-height: 1.1;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  white-space: nowrap;
+}
+
+.hero-collage__etiqueta > svg:first-child {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* Colocadas sobre los bordes de las fotos, donde no tapan caras. */
+.hero-collage__etiqueta--comunidad {
+  left: 66%;
+  top: -3%;
+  transform: rotate(-6deg);
+}
+
+.hero-collage__etiqueta--eventos {
+  left: 0;
+  top: 63%;
+  transform: rotate(-7deg);
+}
+
+.hero-collage__etiqueta--oportunidades {
+  left: 80%;
+  top: 80%;
+  transform: rotate(-6deg);
+}
+
+/* Las chispas van dentro de su etiqueta: se mueven y escalan con ella y no quedan sueltas. */
+.chispas-etiqueta {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  overflow: visible;
+}
+
+.chispas-etiqueta path {
+  fill: none;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+
+.hero-collage__etiqueta--eventos .chispas-etiqueta {
+  left: -0.95em;
+  top: -0.95em;
+}
+
+.hero-collage__etiqueta--eventos .chispas-etiqueta path {
+  stroke: var(--color-lila);
+}
+
+.hero-collage__etiqueta--oportunidades .chispas-etiqueta {
+  right: -0.55em;
+  top: -1.15em;
+}
+
+.hero-collage__etiqueta--oportunidades .chispas-etiqueta path {
+  stroke: var(--color-primary);
+}
+
+/* Las de Comunidad son las grandes de la esquina: van en la etiqueta para no quedar sueltas. */
+.hero-collage__etiqueta--comunidad .chispas-etiqueta {
+  right: -1.55em;
+  top: -1.75em;
+  width: 2em;
+  height: 2em;
+}
+
+.hero-collage__etiqueta--comunidad .chispas-etiqueta path {
+  stroke: var(--color-primary);
+  stroke-width: 2.4;
+}
+
+.hero-collage__lema {
+  position: absolute;
+  left: 89%;
+  top: 29%;
+  margin: 0;
+  font-family: var(--hero-mano);
+  font-size: max(4.4cqi, 1.1rem);
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--color-secondary);
+  transform: rotate(-8deg);
+  white-space: nowrap;
+}
+
+.hero-collage__subrayado {
+  display: block;
+  width: 120%;
+  height: 0.6em;
+  margin-top: 0.15em;
+}
+
+.hero-collage__subrayado path {
+  fill: none;
+  stroke: url(#hero-subrayado-degradado);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.hero-collage__chispas {
+  position: absolute;
+  overflow: visible;
+}
+
+.hero-collage__chispas path {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.hero-collage__chispas--izquierda {
+  left: 15%;
+  top: 16%;
+  width: 9%;
+}
+
+.hero-collage__chispas--izquierda path {
+  stroke: var(--color-lila);
+}
+
+/* Arco bajo la foto de la izquierda que sube hasta la de abajo a la derecha. */
+.hero-collage__curva {
+  position: absolute;
+  left: 22%;
+  top: 83%;
+  width: 31%;
+  height: 14%;
+  overflow: visible;
+}
+
+.hero-collage__curva > path {
+  fill: none;
+  stroke: url(#hero-curva-degradado);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+  opacity: 0.8;
+  vector-effect: non-scaling-stroke;
+}
+
+/*
+ * En pantallas estrechas el lema se saldría por la derecha: se sube por
+ * encima de la foto grande, donde el collage tiene hueco.
+ */
+@media (max-width: 640px) {
+  .hero-collage {
+    aspect-ratio: 1 / 0.95;
+  }
+
+  .hero-collage__lema {
+    left: 62%;
+    top: -9%;
+  }
+
+  .hero-collage__chispas--izquierda {
+    display: none;
+  }
+
+  /* A 390px asomaba 17px por la derecha y la sección lo recortaba. */
+  .hero-collage__etiqueta--oportunidades {
+    left: 64%;
+  }
+}
+
+/* ================= Animación =================
+   Entrada única de unos 4 s, sin rebotes ni movimiento continuo:
+   - Fotos: aparece el marco y la imagen se descubre como una cortina que
+     baja mientras se aleja (zoom de 1,22 a 1).
+   - Chispas, subrayado y arco se dibujan trazo a trazo.
+   - Etiquetas y lema entran con un desplazamiento corto y frenado.
+   Al terminar todo queda quieto, así que no hace falta botón de pausa
+   (WCAG 2.2.2). Se usan translate/scale sueltos, que se suman al
+   `transform: rotate()` de cada pieza sin pisarlo.
+   ============================================== */
+
+@keyframes hero-marco-entra {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes hero-cortina-baja {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes hero-se-aleja {
+  from { scale: 1.22; }
+  to { scale: 1; }
+}
+
+@keyframes hero-sube-aparece {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes hero-mancha-entra {
+  from { opacity: 0; scale: 0.85; }
+  to { opacity: 0.9; scale: 1; }
+}
+
+@keyframes hero-dibuja {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+.hero-collage__foto {
+  animation: hero-marco-entra 1.19s var(--sale-suave) backwards;
+}
+
+.hero-collage__foto img {
+  animation:
+    hero-cortina-baja 1.7s var(--cortina) backwards,
+    hero-se-aleja 2.72s var(--sale-suave) backwards;
+}
+
+.hero-collage__foto--fundadoras,
+.hero-collage__foto--fundadoras img {
+  animation-delay: 0.17s;
+}
+
+.hero-collage__foto--cofundadoras,
+.hero-collage__foto--cofundadoras img {
+  animation-delay: 0.59s;
+}
+
+.hero-collage__foto--ponente,
+.hero-collage__foto--ponente img {
+  animation-delay: 1.02s;
+}
+
+.hero-collage__mancha {
+  animation: hero-mancha-entra 2.38s var(--sale-suave) backwards;
+}
+
+.hero-collage__chispas path,
+.chispas-etiqueta path,
+.hero-collage__subrayado path,
+.hero-collage__mascara-trazo {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.hero-collage__chispas path,
+.chispas-etiqueta path {
+  animation: hero-dibuja 0.77s var(--sale-suave) backwards;
+}
+
+.hero-collage__chispas--izquierda path {
+  animation-delay: 1.87s;
+}
+
+.hero-collage__etiqueta--comunidad .chispas-etiqueta path {
+  animation-delay: 2.8s;
+}
+
+.hero-collage__etiqueta {
+  animation: hero-sube-aparece 1.53s var(--sale-suave) backwards;
+}
+
+.hero-collage__etiqueta--comunidad {
+  animation-delay: 1.95s;
+}
+
+.hero-collage__etiqueta--eventos {
+  animation-delay: 2.21s;
+}
+
+.hero-collage__etiqueta--oportunidades {
+  animation-delay: 2.46s;
+}
+
+.hero-collage__etiqueta--eventos .chispas-etiqueta path {
+  animation-delay: 3.06s;
+}
+
+.hero-collage__etiqueta--oportunidades .chispas-etiqueta path {
+  animation-delay: 3.31s;
+}
+
+.hero-collage__lema {
+  animation: hero-sube-aparece 1.36s var(--sale-suave) 2.21s backwards;
+}
+
+.hero-collage__subrayado path {
+  animation: hero-dibuja 1.36s var(--sale-suave) 2.98s backwards;
+}
+
+/* El arco discontinuo se recorre con una máscara: un trazo continuo que se dibuja y destapa los guiones. */
+.hero-collage__mascara-trazo {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 14;
+  animation: hero-dibuja 2.04s var(--cortina) 2.38s backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-collage__foto,
+  .hero-collage__foto img,
+  .hero-collage__mancha,
+  .hero-collage__chispas path,
+  .chispas-etiqueta path,
+  .hero-collage__etiqueta,
+  .hero-collage__lema,
+  .hero-collage__subrayado path,
+  .hero-collage__mascara-trazo {
+    animation: none;
+  }
+}
