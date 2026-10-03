@@ -1,5 +1,7 @@
 import React, { useContext, useRef } from "react";
 import "../Footer.css";
+import "./Documento.css";
+import { X } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
 import { useDialogoModal } from "../../../hooks/useDialogoModal";
@@ -19,19 +21,18 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => 
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay documento-fondo">
       <article
-        className="modal-content"
+        className="modal-content documento"
         role="dialog"
         aria-modal="true"
         aria-labelledby="cookie-policy-title"
-        style={{ maxWidth: "900px" }}
         ref={contentRef}
         tabIndex={-1}
       >
         <div className="modal-close">
           <button onClick={closeModal} aria-label="Cerrar política de cookies">
-            x
+            <X aria-hidden="true" />
           </button>
         </div>
 
@@ -122,7 +123,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ closeModal }) => 
         </div>
 
         <footer className="modal-footer">
-          <button onClick={closeModal} className="tertiary-button">
+          <button onClick={closeModal} className="fc-boton fc-boton--noche">
             Aceptar
           </button>
         </footer>

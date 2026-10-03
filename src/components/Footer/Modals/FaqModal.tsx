@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../Footer.css";
+import "./Documento.css";
+import { X } from "lucide-react";
 import BackToTop from "../../ui/BackToTop";
 import { useDialogoModal } from "../../../hooks/useDialogoModal";
 
@@ -108,7 +110,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
         "Si en algún momento deseas dejar de recibir nuestros emails, puedes hacerlo de dos formas:",
         "● Desde el email: cada comunicación que enviamos incluye un enlace de baja al pie del mensaje. Solo tienes que hacer clic en él.",
         <>● Desde nuestra web: accede a la{" "}
-          <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>
+          <a href="/baja-email">
             página de gestión de comunicaciones
           </a>
           , introduce tu dirección de email y te enviaremos un enlace de confirmación.</>,
@@ -131,14 +133,14 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay documento-fondo">
       {/*
         Los otros tres modales ya se declaraban como diálogo; este no, así que
         para el lector de pantalla era un montón de texto suelto sin principio
         ni nombre.
       */}
       <div
-        className="modal-content"
+        className="modal-content documento"
         role="dialog"
         aria-modal="true"
         aria-labelledby="faq-title"
@@ -147,12 +149,12 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
       >
         <div className="modal-close">
           <button onClick={closeModal} aria-label="Cerrar las preguntas frecuentes">
-            x
+            <X aria-hidden="true" />
           </button>
         </div>
-        <div className="modal-header">
-          <h3 id="faq-title">Preguntas Frecuentes</h3>
-        </div>
+        <header className="modal-header">
+          <h3 id="faq-title">Preguntas frecuentes</h3>
+        </header>
         <div className="modal-body">
           <div className="faq-collapse">
             {faqs.map((faq, index) => (
@@ -196,7 +198,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ closeModal }) => {
           </div>
         </div>
         <div className="modal-footer">
-          <button onClick={closeModal} className="tertiary-button">
+          <button onClick={closeModal} className="fc-boton fc-boton--noche">
             Cerrar
           </button>
         </div>
