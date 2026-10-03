@@ -259,14 +259,7 @@ const EventsPage = () => {
         <CustomCarousel />
       </section>
 
-      <section
-        className="pt-8 p-5"
-        style={{
-          backgroundImage: `url(/public-optimized/${imageFolder}/bg4.webp)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="pt-8 p-5 bg4">
         <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">
           Eventos Pasados
         </h1>

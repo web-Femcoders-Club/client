@@ -369,7 +369,8 @@ const AboutPage: React.FC = () => {
               width: "85%",
               textAlign: "center",
               margin: "0 auto",
-              backgroundColor: "rgba(71, 55, 187, 0.4)",
+              // Sólido: sobre el fondo claro de bg4 el blanco no se leía con transparencia.
+              backgroundColor: "#4737bb",
               padding: "1rem",
               borderRadius: "8px",
             }}

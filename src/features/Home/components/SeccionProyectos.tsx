@@ -211,7 +211,7 @@ const SeccionProyectos: React.FC = () => {
 
   return (
     <section
-      className="proyectos fc-fondo-claro--invertido fc-manchas"
+      className="proyectos bg4 fc-manchas"
       aria-labelledby="proyectos-titulo"
     >
       <span className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />

@@ -36,17 +36,9 @@
 /* ---------- Fondos de sección ---------- */
 
 /*
- * Los dos únicos fondos del rediseño fuera de la portada (que usa `bg1`, en index.css).
- * Una sección nueva elige uno de estos; no se crean fondos nuevos.
+ * Los fondos de sección son las clases bg1-bg4 de index.css (bg3 claro, bg4
+ * claro invertido). Aquí solo la decoración que se les pone encima.
  */
-.fc-fondo-claro {
-  background: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
-}
-
-/* El mismo, al revés: para empalmar con una sección que acaba en lavanda. */
-.fc-fondo-claro--invertido {
-  background: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
-}
 
 /*
  * Manchas suaves de marca en dos esquinas: violeta abajo a la izquierda y

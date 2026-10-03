@@ -11,7 +11,7 @@
  */
 
 .conocenos {
-  /* Fondo: `fc-fondo-claro--invertido`, compartido; empalma con el lavanda de «Nuestra esencia». */
+  /* Fondo: `bg4`, compartido; empalma con el lavanda de «Nuestra esencia». */
   padding: clamp(3rem, 6vw, 5rem) 16px clamp(2.5rem, 4.5vw, 3.5rem);
 }
 

@@ -94,9 +94,12 @@ const Collapse: React.FC = () => {
               className={`idea-card ${isExpanded ? "expanded" : ""}`}
               onClick={() => handleExpand(index)}
               style={{ 
+                // Violeta sólido y no translúcido: el fondo de la sección (bg4)
+                // ahora es claro y el blanco sobre violeta al 30 % no se leía.
+                // Blanco sobre #4737bb: 8,29:1, AAA.
                 background: isExpanded 
-                  ? "rgba(71, 55, 187, 0.7)" 
-                  : "rgba(71, 55, 187, 0.3)",
+                  ? "#2f2390" 
+                  : "#4737bb",
                 ...(isExpanded ? { gridColumn: "1 / -1" } : {}),
                 cursor: "pointer",
                 transition: "all 0.3s ease",
