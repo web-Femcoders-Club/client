@@ -264,7 +264,7 @@ const Header: React.FC = () => {
               <li key={link.path}>
                 <NavLink
                   to={link.path}
-                  className="nav-link"
+                  className="nav-link fc-enlace"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
