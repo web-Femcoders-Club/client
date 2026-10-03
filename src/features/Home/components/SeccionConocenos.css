@@ -13,7 +13,7 @@
 .conocenos {
   /* Continúa el lavanda en el que termina «Nuestra esencia». */
   background: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
-  padding: clamp(2rem, 4vw, 3rem) 16px;
+  padding: clamp(3rem, 6vw, 5rem) 16px;
 }
 
 .conocenos__rejilla {
@@ -21,13 +21,15 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
   align-items: stretch;
 }
 
 .conocenos__tarjeta {
   display: flex;
   flex-direction: column;
+  /* Más aire que la fc-tarjeta por defecto: la sección cabía con holgura en pantalla. */
+  padding: clamp(1.6rem, 3vw, 2.6rem);
 }
 
 /* ---------- Conócenos ---------- */
@@ -35,7 +37,7 @@
 .conocenos__titulo {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(1.9rem, 2.9vw, 2.6rem);
+  font-size: clamp(2rem, 3.1vw, 2.8rem);
   line-height: 1.05;
   color: var(--color-text-dark);
   text-shadow: none;
@@ -54,16 +56,16 @@
 
 .conocenos__parrafos {
   display: grid;
-  gap: 0.8rem;
+  gap: 1.1rem;
   max-width: 46rem;
-  margin: 1.1rem 0 1.4rem;
+  margin: 1.5rem 0 2rem;
 }
 
 .conocenos__parrafos p {
   margin: 0;
   font-family: var(--font-primary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: var(--color-text-dark);
 }
 
@@ -76,7 +78,7 @@
 /* Pegada al pie: si la tarjeta del evento es más alta, el aire queda encima. */
 .conocenos__cta {
   margin-top: auto;
-  padding: 1.1rem 1.3rem;
+  padding: 1.4rem 1.6rem;
   border-radius: 1rem;
   background: linear-gradient(100deg, var(--color-lavanda-claro), #fbf3f6);
   display: flex;
@@ -119,7 +121,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-  margin-top: 1rem;
+  margin-top: 1.3rem;
   transition: opacity 0.6s ease;
 }
 
@@ -132,7 +134,7 @@
 .evento__video {
   position: relative;
   flex: 1 1 auto;
-  min-height: 9.5rem;
+  min-height: 12rem;
   margin: 0;
   border-radius: 1rem;
   overflow: hidden;
@@ -220,7 +222,7 @@
   line-height: 1.15;
   color: var(--color-text-dark);
   text-shadow: none;
-  margin: 0.85rem 0 0;
+  margin: 1.1rem 0 0;
 }
 
 .evento__texto {
@@ -265,7 +267,7 @@
 }
 
 .evento__botones {
-  margin-top: 1rem;
+  margin-top: 1.4rem;
 }
 
 .evento__botones .fc-boton {
