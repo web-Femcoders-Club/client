@@ -19,8 +19,8 @@ export interface NewsItem {
   aiGenerated?: boolean;
 }
 
-const DESTACADAS = 3;
-const EN_TARJETA = 3;
+/** Las cinco más recientes, como el carrusel anterior. */
+const DESTACADAS = 5;
 
 /** Color del chip por categoría; las que no están aquí usan el lavanda por defecto. */
 const CHIP_POR_CATEGORIA: Record<string, string> = {
@@ -72,8 +72,8 @@ const EnlaceNoticia: React.FC<{
   );
 
 /*
- * Sección de noticias de la home: las tres más recientes en un carrusel
- * destacado y las tres siguientes en tarjetas.
+ * Sección de noticias de la home: las cinco más recientes en un carrusel
+ * destacado. Sin tarjetas debajo: justo después viene la sección de proyectos.
  *
  * El carrusel solo avanza con flechas, puntos o teclado: nada se mueve solo,
  * así que no necesita botón de pausa. Debajo de la destacada asoman dos
@@ -84,7 +84,6 @@ const EnlaceNoticia: React.FC<{
  */
 const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
   const destacadas = noticias.slice(0, DESTACADAS);
-  const tarjetas = noticias.slice(DESTACADAS, DESTACADAS + EN_TARJETA);
   const [actual, setActual] = useState(0);
 
   if (noticias.length === 0) return null;
@@ -199,40 +198,6 @@ const SeccionNoticias: React.FC<{ noticias: NewsItem[] }> = ({ noticias }) => {
             </>
           )}
         </div>
-
-        {tarjetas.length > 0 && (
-          <ul className="noticias__tarjetas">
-            {tarjetas.map((noticia) => {
-              const contenido = (
-                <>
-                  <figure className="noticias__tarjeta-imagen">
-                    <ImagenNoticia noticia={noticia} />
-                  </figure>
-                  <div className="noticias__tarjeta-texto">
-                    <Meta noticia={noticia} />
-                    <h3 className="noticias__tarjeta-titulo">{noticia.title}</h3>
-                    {noticia.link && (
-                      <span className="noticias__tarjeta-leer fc-texto-neutro">
-                        {noticia.linkLabel ?? "Leer más"} →
-                      </span>
-                    )}
-                  </div>
-                </>
-              );
-              return (
-                <li key={noticia.id}>
-                  {noticia.link ? (
-                    <EnlaceNoticia href={noticia.link} className="noticias__tarjeta">
-                      {contenido}
-                    </EnlaceNoticia>
-                  ) : (
-                    <div className="noticias__tarjeta">{contenido}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        )}
       </div>
     </section>
   );
