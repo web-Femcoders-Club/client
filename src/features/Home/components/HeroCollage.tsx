@@ -81,8 +81,8 @@ const HeroCollage: React.FC = () => (
         <svg className="hero-collage__subrayado" viewBox="0 0 140 20" preserveAspectRatio="none">
           <defs>
             <linearGradient id="hero-subrayado-degradado" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0" stopColor="#ea4f33" />
-              <stop offset="1" stopColor="#821ad4" />
+              <stop offset="0" style={{ stopColor: "var(--color-primary)" }} />
+              <stop offset="1" style={{ stopColor: "var(--color-lila)" }} />
             </linearGradient>
           </defs>
           <path pathLength={1} d="M3 16 C 40 4, 95 2, 137 8" />
@@ -99,10 +99,10 @@ const HeroCollage: React.FC = () => (
         <defs>
           {/* Los primeros guiones en naranja y el resto en violeta: corte seco, sin degradado. */}
           <linearGradient id="hero-curva-degradado" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#ea4f33" />
-            <stop offset=".2" stopColor="#ea4f33" />
-            <stop offset=".2" stopColor="#4737bb" />
-            <stop offset="1" stopColor="#4737bb" />
+            <stop offset="0" style={{ stopColor: "var(--color-primary)" }} />
+            <stop offset=".2" style={{ stopColor: "var(--color-primary)" }} />
+            <stop offset=".2" style={{ stopColor: "var(--color-secondary)" }} />
+            <stop offset="1" style={{ stopColor: "var(--color-secondary)" }} />
           </linearGradient>
           <mask
             id="hero-curva-mascara"

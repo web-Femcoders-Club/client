@@ -14,7 +14,6 @@
  */
 
 .hero-collage {
-  --hero-lila: #821ad4;
   --hero-mano: "Caveat", "Comic Sans MS", cursive;
   --sale-suave: cubic-bezier(0.16, 1, 0.3, 1);
   --cortina: cubic-bezier(0.77, 0, 0.175, 1);
@@ -37,7 +36,7 @@
   border: 0.9cqi solid #fff;
   border-radius: 3.4cqi;
   box-shadow: 0 18px 40px rgba(71, 55, 187, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
-  background: #f4f2fa;
+  background: var(--color-lavanda-claro);
 }
 
 .hero-collage__foto img {
@@ -197,7 +196,7 @@
 }
 
 .hero-collage__etiqueta--eventos .chispas-etiqueta path {
-  stroke: var(--hero-lila);
+  stroke: var(--color-lila);
 }
 
 .hero-collage__etiqueta--oportunidades .chispas-etiqueta {
@@ -268,7 +267,7 @@
 }
 
 .hero-collage__chispas--izquierda path {
-  stroke: var(--hero-lila);
+  stroke: var(--color-lila);
 }
 
 /* Arco bajo la foto de la izquierda que sube hasta la de abajo a la derecha. */

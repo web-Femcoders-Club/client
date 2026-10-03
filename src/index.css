@@ -36,7 +36,17 @@
   --color-accent: #6c63ff;
   --color-text-dark: #2a2170;
   --color-white: #fdfdfd;
-  
+
+  /*
+   * Colores del rediseño. Ya se repetían escritos a mano en varias secciones;
+   * aquí tienen nombre y se reutilizan desde src/styles/rediseno.css.
+   */
+  --color-lila: #821ad4;           /* 6,89:1 sobre blanco: AAA en texto grande */
+  --color-lavanda: #f1edff;        /* fondos de sección */
+  --color-lavanda-claro: #f4f1ff;  /* cajas y fondos de tarjeta */
+  --color-lavanda-medio: #ece8fb;  /* discos de icono y huecos de imagen */
+  --color-melocoton: #fde9e4;      /* pareja cálida del lavanda */
+
   /* Sombras */
   --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
   --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);

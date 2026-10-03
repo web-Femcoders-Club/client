@@ -13,6 +13,7 @@ import GitHubProjects from "../components/GitHubProjects";
 import NewsSlider, { NewsItem } from "../components/NewsSlider";
 import HeroCollage from "../components/HeroCollage";
 import SeccionEsencia from "../components/SeccionEsencia";
+import SeccionConocenos from "../components/SeccionConocenos";
 import CifraAnimada from "../components/CifraAnimada";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import "./Home.css";
@@ -1152,11 +1153,11 @@ const HomePage: React.FC = () => {
             </p>
 
             <div className="portada__botones" data-aos="fade-up" data-aos-delay="800">
-              <Link to="/register" className="portada-boton portada-boton--principal">
+              <Link to="/register" className="fc-boton fc-boton--grande fc-boton--naranja">
                 Unirse al club
                 <ArrowRight aria-hidden="true" />
               </Link>
-              <Link to="/eventos" className="portada-boton portada-boton--secundario">
+              <Link to="/eventos" className="fc-boton fc-boton--grande fc-boton--borde-lila">
                 Ver eventos
               </Link>
             </div>
@@ -1182,279 +1183,29 @@ const HomePage: React.FC = () => {
       </section>
       <SeccionEsencia fotos={images} />
 
-      <section className="parallax bg3">
-        <div className="section-content">
-          <div
-            className="call-to-action"
-            data-aos="fade-right"
-            data-aos-duration="1000"
-          >
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <h2>Conócenos</h2>
-            </div>
-
-            <p data-aos="fade-up" data-aos-delay="300">
-              Si compartes nuestra pasión por la tecnología y nuestra filosofía
-              de <strong>visibilizar a las mujeres programadoras</strong>,
-              promoviendo su desarrollo profesional, te invitamos a unirte a
-              nuestra comunidad. Ya seas una mujer en tecnología que busca
-              crecer profesionalmente o una líder con años de experiencia
-              dispuesta a compartir tu conocimiento, hay un lugar para ti en{" "}
-              <strong>FemCoders Club. </strong>
-              <br />
-              <br />
-              Además, extendemos una invitación a las empresas que se alinean
-              con nuestros valores para que colaboren con nosotras.{" "}
-              <strong>
-                Juntas, podemos crear un entorno más inclusivo y equitativo en
-                el sector tech.
-              </strong>
-              <br />
-            </p>
-
-            <br />
-
-            <div
-              className="join-cta"
-              data-aos="zoom-in"
-              data-aos-delay="1200"
-              style={{
-                textAlign: "center",
-                marginTop: "30px",
-                padding: "20px",
-                backgroundColor: "rgba(108, 99, 255, 0.1)",
-                borderRadius: "10px",
-                border: "2px solid rgba(108, 99, 255, 0.2)",
-              }}
-            >
-              <p style={{ fontSize: "1.1rem", marginBottom: "20px" }}>
-                <strong>
-                  ¿Lista para dar el siguiente paso en tu carrera tech?
-                </strong>
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "15px",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                }}
-              >
-                <Link to="/login">
-                  <button className="primary-button pulse-effect">
-                    Únete a la comunidad
-                  </button>
-                </Link>
-                <Link to="/femcoders-quienes-somos">
-                  <button className="secondary-button">
-                    Conoce más sobre nosotras
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="section-countdown"
-            data-aos="fade-left"
-            data-aos-duration="1000"
-          >
-            <div className="countdown-content">
-              <h2 data-aos="fade-down" data-aos-delay="300">
-                ¡Próximo evento!
-              </h2>
-
-              {upcomingEvents.length > 0 ? (
-                <div
-                  className={`event-carousel-slide${isEventTransitioning ? " transitioning" : ""}`}
-                >
-                  {upcomingEvents.length > 1 && (
-                    <p className="event-name-label">
-                      {upcomingEvents[activeEventIndex]?.name?.text}
-                    </p>
-                  )}
-
-                  <div className="countdown">
-                    <div className="countdown-item">
-                      <span>{timeLeft.days}</span> días
-                    </div>
-                    <div className="countdown-item">
-                      <span>{timeLeft.hours}</span> horas
-                    </div>
-                    <div className="countdown-item">
-                      <span>{timeLeft.minutes}</span> minutos
-                    </div>
-                    <div className="countdown-item">
-                      <span>{timeLeft.seconds}</span> segundos
-                    </div>
-                  </div>
-
-                  <div className="event-card">
-                    <div className="event-image-wrapper">
-                      <OptimizedImage
-                        src={
-                          upcomingEvents[activeEventIndex]?.logo?.original
-                            ?.url || "/apoyomujeres.png"
-                        }
-                        alt="Próximo evento"
-                        className="event-image"
-                      />
-                    </div>
-                    {upcomingEvents.length > 1 && (
-                      <div className="event-carousel-dots">
-                        {upcomingEvents.map((_, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            className={`event-dot${idx === activeEventIndex ? " active" : ""}`}
-                            onClick={() => {
-                              if (idx === activeEventIndex) return;
-                              setIsEventTransitioning(true);
-                              setTimeout(() => {
-                                setActiveEventIndex(idx);
-                                requestAnimationFrame(() => {
-                                  requestAnimationFrame(() => {
-                                    setIsEventTransitioning(false);
-                                  });
-                                });
-                              }, 600);
-                            }}
-                            aria-label={`Ver evento ${idx + 1}`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <Link to="/eventos">
-                      <button className="secondary-button pulse-effect">
-                        Más información
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div
-                    className="no-event-container"
-                    data-aos="fade-in"
-                    data-aos-delay="400"
-                  >
-                    <video
-                      src={`${
-                        import.meta.env.BASE_URL
-                      }assets/videos/SinEvento.mp4`}
-                      className="no-event-video"
-                      autoPlay
-                      muted
-                      loop
-                      preload="none"
-                      onError={(e) => {
-                        if ((e.target as HTMLVideoElement).error) {
-                          console.error("El video no se pudo cargar.");
-                          (e.target as HTMLVideoElement).style.display = "none";
-                        }
-                      }}
-                    />
-                    <br />
-                    <div
-                      className="no-event-info"
-                      data-aos="fade-up"
-                      data-aos-delay="500"
-                      style={{
-                        textAlign: "center",
-                        padding: "20px 10px",
-                        backgroundColor: "rgba(108, 99, 255, 0.05)",
-                        borderRadius: "15px",
-                        border: "2px dashed rgba(108, 99, 255, 0.3)",
-                      }}
-                    >
-                      <div style={{ fontSize: "2.5rem", marginBottom: "15px" }}>
-                        🔥
-                      </div>
-                      <h3
-                        style={{
-                          color: "#2a2170",
-                          fontSize: "1.5rem",
-                          fontWeight: "bold",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        ¡Grandes cosas están por venir!
-                      </h3>
-                      <p
-                        style={{
-                          color: "#2a2170",
-                          fontSize: "1.1rem",
-                          lineHeight: 1.6,
-                          marginBottom: "20px",
-                          opacity: 0.9,
-                        }}
-                      >
-                        Nuestro equipo está diseñando experiencias únicas que
-                        transformarán tu carrera tech.{" "}
-                        <strong>Mantente conectada</strong> para ser la primera
-                        en conocer nuestras próximas sorpresas.
-                      </p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          gap: "10px",
-                          fontSize: "1.2rem",
-                          marginTop: "15px",
-                        }}
-                      >
-                        <span style={{ animation: "pulse 2s infinite" }}>
-                          ✨
-                        </span>
-                        <span
-                          style={{ animation: "pulse 2s infinite 0.5s" }}
-                        >
-                          🚀
-                        </span>
-                        <span style={{ animation: "pulse 2s infinite 1s" }}>
-                          💜
-                        </span>
-                      </div>
-                    </div>
-                    <br />
-                  </div>
-                  <div
-                    className="event-placeholder-card"
-                    data-aos="zoom-in"
-                    data-aos-delay="600"
-                  >
-                    <div
-                      className="event-buttons"
-                      data-aos="fade-up"
-                      data-aos-delay="700"
-                      style={{
-                        display: "flex",
-                        gap: "15px",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Link to="/eventos">
-                        <button className="secondary-button">
-                          Ver eventos pasados
-                        </button>
-                      </Link>
-                      <Link to="/blog/recursos">
-                        <button className="primary-button">
-                          Explorar recursos
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/*
+        La lógica de eventos no se toca: la petición, la cuenta atrás y el
+        cambio automático siguen aquí. La sección solo los pinta. El manejador
+        de los puntos es el mismo que había en el marcado anterior.
+      */}
+      <SeccionConocenos
+        eventos={upcomingEvents}
+        indiceActivo={activeEventIndex}
+        tiempoRestante={timeLeft}
+        enTransicion={isEventTransitioning}
+        alElegirEvento={(idx) => {
+          if (idx === activeEventIndex) return;
+          setIsEventTransitioning(true);
+          setTimeout(() => {
+            setActiveEventIndex(idx);
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                setIsEventTransitioning(false);
+              });
+            });
+          }, 600);
+        }}
+      />
 
       <section className="full-height d-flex flex-column justify-content-center align-items-center parallax bg2">
         <NewsSlider

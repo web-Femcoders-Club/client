@@ -3,8 +3,7 @@
  * derecha tiene su propio CSS en components/HeroCollage.css.
  *
  * Prefijo `portada` y archivo aparte para no tocar Home.css ni index.css:
- * - `.primary-button` y `.secondary-button` siguen como estaban; los usan
- *   otras páginas. Los botones de aquí son clases nuevas.
+ * - Los botones son los `fc-boton` compartidos (src/styles/rediseno.css).
  * - index.css pinta TODOS los `span` en naranja, negrita y 1.5rem, y da tamaño
  *   y sombra a h1/h2. Cada clase de aquí fija sus propios valores; por
  *   especificidad (clase > elemento) ganan siempre.
@@ -112,75 +111,12 @@
   font-weight: 700;
 }
 
-/* ---------- Botones ---------- */
-
+/* Los botones son los compartidos del rediseño: `fc-boton` en src/styles/rediseno.css. */
 .portada__botones {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
-}
-
-/*
- * El estilo va en el propio enlace: antes había un <button> dentro de un
- * <Link>, un control dentro de otro, que el HTML no permite y que los
- * lectores de pantalla anunciaban dos veces.
- */
-.portada-boton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-height: 3.25rem;
-  padding: 0.8rem 1.8rem;
-  border-radius: 0.7rem;
-  font-family: var(--font-primary);
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.portada-boton svg {
-  width: 1.2em;
-  height: 1.2em;
-}
-
-/*
- * Naranja de marca con texto blanco: 3,64:1. No llega a AAA ni a AA en texto
- * normal; cumple AA de texto grande (3:1) porque va en negrita a 1.2rem
- * (19,2px). Es la excepción por marca que documenta index.css: el naranja no
- * se oscurece, el contraste se resuelve con tamaño.
- */
-.portada-boton--principal {
-  background: var(--color-primary);
-  color: #fff;
-  border: 2px solid var(--color-primary);
-  box-shadow: 0 10px 22px rgba(234, 79, 51, 0.3);
-}
-
-.portada-boton--principal:hover {
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 26px rgba(234, 79, 51, 0.38);
-}
-
-/* Lila sobre blanco: 6,89:1, AAA para texto grande. */
-.portada-boton--secundario {
-  background: rgba(255, 255, 255, 0.55);
-  color: #821ad4;
-  border: 2px solid #821ad4;
-}
-
-.portada-boton--secundario:hover {
-  background: #fff;
-  color: #821ad4;
-  transform: translateY(-2px);
-}
-
-.portada-boton:focus-visible {
-  outline: 3px solid var(--color-secondary);
-  outline-offset: 3px;
 }
 
 /* ---------- Cifras ---------- */
@@ -278,13 +214,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .portada-boton {
-    transition: none;
-  }
-
-  .portada-boton--principal:hover,
-  .portada-boton--secundario:hover {
-    transform: none;
-  }
-}

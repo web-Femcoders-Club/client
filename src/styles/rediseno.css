@@ -1,0 +1,172 @@
+/*
+ * Piezas compartidas del rediseño (rama rediseno-web).
+ *
+ * Todo lleva prefijo `fc-` para no chocar con las clases antiguas: los
+ * `.primary-button` y `.secondary-button` de index.css siguen intactos porque
+ * los usan páginas que aún no se han rediseñado.
+ *
+ * index.css pinta TODOS los `span` en naranja, negrita y 1.5rem. Esa regla se
+ * queda; cuando una pieza necesita un `span` neutro, usa `.fc-texto-neutro`.
+ */
+
+/* ---------- Texto neutro dentro de un span ---------- */
+
+/* Anula la regla global de los `span`: hereda color, tamaño y peso del padre. */
+.fc-texto-neutro {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* ---------- Antetítulo con rayita ---------- */
+
+.fc-antetitulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+}
+
+.fc-antetitulo::before {
+  content: "";
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+}
+
+/* ---------- Tarjeta blanca ---------- */
+
+.fc-tarjeta {
+  min-width: 0;
+  background: #fff;
+  border-radius: 1.4rem;
+  box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 16px 36px rgba(71, 55, 187, 0.1);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+/* ---------- Botones ---------- */
+
+/*
+ * Se aplican al propio <a> o <button>: nunca un <button> dentro de un <Link>,
+ * que es un control dentro de otro y el lector lo anuncia dos veces.
+ */
+.fc-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 0.7rem;
+  font-family: var(--font-primary);
+  /* 1.17rem en negrita = 18,7px: cuenta como texto grande (WCAG pide 18,66px en negrita). */
+  font-size: 1.17rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.fc-boton:hover {
+  transform: translateY(-2px);
+}
+
+.fc-boton:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.fc-boton svg {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+}
+
+/* Para la llamada principal de una sección (la portada). */
+.fc-boton--grande {
+  min-height: 3.25rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.2rem;
+}
+
+/*
+ * Naranja de marca con texto blanco: 3,64:1. No llega a AAA ni a AA en texto
+ * normal; cumple AA de texto grande (3:1) porque todos los `fc-boton` van en
+ * negrita a 1.17rem o más. Es la excepción por marca que documenta index.css:
+ * el naranja no se oscurece. No bajar ese tamaño sin revisar esto.
+ */
+.fc-boton--naranja {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(234, 79, 51, 0.25);
+}
+
+.fc-boton--naranja:hover {
+  color: #fff;
+  box-shadow: 0 14px 26px rgba(234, 79, 51, 0.35);
+}
+
+/* Violeta con texto blanco: 8,29:1, AAA. */
+.fc-boton--violeta {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+.fc-boton--violeta:hover {
+  color: #fff;
+}
+
+/* Contorno violeta: 8,29:1 sobre blanco, AAA. */
+.fc-boton--borde {
+  background: #fff;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.fc-boton--borde:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* Contorno lila, el «Ver eventos» de la portada: 6,89:1, AAA en texto grande. */
+.fc-boton--borde-lila {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--color-lila);
+  color: var(--color-lila);
+}
+
+.fc-boton--borde-lila:hover {
+  background: #fff;
+  color: var(--color-lila);
+}
+
+/* En móviles muy estrechos (320px) un texto largo no cabe en una línea: se deja partir. */
+@media (max-width: 400px) {
+  .fc-boton {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-boton {
+    transition: none;
+  }
+
+  .fc-boton:hover {
+    transform: none;
+  }
+}

@@ -22,7 +22,7 @@ const SeccionEsencia: React.FC<{ fotos: FotoEvento[] }> = ({ fotos }) => (
     <div className="esencia__puntos" aria-hidden="true" />
     <div className="esencia__contenedor">
       <div className="esencia__texto">
-        <p className="esencia__antetitulo">Nuestra esencia</p>
+        <p className="fc-antetitulo">Nuestra esencia</p>
         <h2 className="esencia__titulo" id="esencia-titulo">
           Más que eventos,
           <br />
