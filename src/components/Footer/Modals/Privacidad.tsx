@@ -105,8 +105,9 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               forma agregada y anónima para mejorar nuestras actividades.
             </li>
             <li>
-              <strong>Cookies técnicas:</strong> necesarias para el correcto funcionamiento del
-              sitio web. No usamos cookies de terceros ni de analítica. Más info en la{" "}
+              <strong>Cookies y almacenamiento técnicos:</strong> necesarios para el correcto
+              funcionamiento del sitio web. No usamos cookies de analítica, de seguimiento ni de
+              publicidad. Más info en la{" "}
               <button onClick={handleCookiesPolicyClick} className="link-button">
                 Política de Cookies
               </button>
@@ -262,9 +263,12 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
 
               <h5>10. Uso de Cookies</h5>
               <p>
-                Solo utilizamos cookies propias de carácter técnico necesarias para el
-                funcionamiento del sitio. No usamos cookies de terceros, ni de seguimiento ni de
-                publicidad. No almacenamos información personal mediante cookies.
+                Solo utilizamos cookies y almacenamiento del navegador de carácter técnico,
+                necesarios para el funcionamiento del sitio. No usamos cookies de analítica, de
+                seguimiento ni de publicidad. Si inicias sesión, tu navegador guarda tu nombre, tu
+                email y los datos de la sesión mientras navegas, y los borra al cerrar la pestaña.
+                Algunas entradas del blog incluyen vídeos de YouTube, que al cargarse pueden usar
+                sus propias cookies.
               </p>
               <p>
                 Puedes configurar tu navegador para bloquearlas, aunque esto puede afectar al

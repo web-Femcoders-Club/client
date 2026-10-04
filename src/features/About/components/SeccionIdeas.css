@@ -140,6 +140,13 @@
 
 /* ---------- Llamada final: una línea fina la separa, como el cierre del contacto de la home ---------- */
 
+/* Hueco a la derecha para el botón «Volver arriba», que flota en esa esquina al subir. */
+@media (min-width: 769px) {
+  .ideas__llamada {
+    padding-right: 4.5rem;
+  }
+}
+
 .ideas__llamada {
   display: flex;
   flex-wrap: wrap;

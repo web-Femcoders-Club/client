@@ -5,6 +5,27 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Aviso de cookies y «Volver arriba» (rediseño)
+
+#### Cambiado
+- **Aviso de cookies rediseñado**: tarjeta lavanda abajo a la izquierda en vez de
+  franja a todo el ancho, con ✕ además de «Entendido». Sale la primera vez y se
+  recuerda al cerrarlo; si el navegador bloquea el almacenamiento, se cierra
+  igual. Va justo después del enlace de salto, para cerrarlo con el teclado sin
+  recorrer la página, y mientras está abierto la página reserva su altura al
+  llevar el foco a un elemento. Versión compacta en móvil estrecho y pantallas
+  bajas. Sin icono fijo: con almacenamiento solo técnico no hay consentimiento
+  que retirar.
+- **Botón naranja en relieve** (`fc-boton--naranja`): tonos profundos del naranja
+  de marca para que el blanco pase de 4,5:1 (AAA en texto grande).
+- **«Volver arriba»** solo aparece al subir o al llegar al final de la página;
+  en móvil mide 44px y espera a que se cierre el aviso de cookies.
+- **Política de cookies al día**: enumera lo que la web guarda de verdad en el
+  navegador (sesión, perfil y preferencias), explica que el almacenamiento local
+  cuenta como cookies y menciona los vídeos de YouTube de algunas entradas del
+  blog. La de privacidad deja de decir que no hay cookies de terceros ni datos
+  personales guardados.
+
 ### Quiénes somos (rediseño)
 
 #### Cambiado

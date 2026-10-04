@@ -186,24 +186,23 @@
   gap: 0.8rem;
 }
 
-/*
- * Los once puntos (44px cada uno) no caben junto a las flechas: van en su
- * propia fila, encima; flechas y pausa, juntas debajo. Si no caben los once
- * en una fila, se reparten 6 + 5, nunca 10 + 1.
- */
+/* Los once puntos, siempre en una sola fila: entre las flechas o, si no caben, encima de ellas. */
 .valores__puntos {
-  flex-basis: 100%;
-  order: -1;
-  display: grid;
-  grid-template-columns: repeat(11, 2.75rem);
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* El punto se ve pequeño, pero la zona que se pulsa mide 44px (WCAG 2.5.5, AAA). */
+/*
+ * EXCEPCIÓN DE ACCESIBILIDAD, decidida a conciencia (octubre de 2026): la zona
+ * que se pulsa mide 24px. Cumple WCAG 2.5.8 (AA, 24px) pero no 2.5.5 (AAA,
+ * 44px): once puntos de 44px no caben en una fila y, partidos en dos, rompían
+ * el carrusel. Lo compensan las flechas y la pausa, que sí miden 44px y
+ * permiten recorrer los valores con objetivos grandes.
+ */
 .valores__punto {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -246,18 +245,10 @@
   }
 }
 
-/*
- * Los once en una fila solo si sobra sitio a los lados: el botón «Volver
- * arriba» flota en la esquina inferior derecha y tapaba el último punto.
- */
-@container (max-width: 595px) {
+/* Carrusel estrecho (móvil): los puntos no caben junto a las flechas y suben a su propia fila, entera. */
+@container (max-width: 470px) {
   .valores__puntos {
-    grid-template-columns: repeat(6, 2.75rem);
-  }
-}
-
-@container (max-width: 375px) {
-  .valores__puntos {
-    grid-template-columns: repeat(4, 2.75rem);
+    flex-basis: 100%;
+    order: -1;
   }
 }

@@ -65,10 +65,24 @@
   pointer-events: auto;
 }
 
+/* Móvil: 44px, el mínimo táctil AAA, para tapar menos texto. */
 @media (max-width: 768px) {
   .back-to-top--pagina {
     right: 16px;
     bottom: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/*
+ * Con el aviso de cookies abierto en el móvil (CookieBanner marca <html>), el
+ * botón espera a que se cierre: los dos irían abajo, uno encima del otro.
+ */
+@media (max-width: 640px) {
+  :root[data-aviso-cookies="abierto"] .back-to-top--pagina {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
