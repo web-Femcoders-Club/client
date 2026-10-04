@@ -21,7 +21,7 @@ const SeccionPresentacion: React.FC = () => (
   >
     <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
     <div className="presentacion__contenedor">
-      <div className="presentacion__texto">
+      <div className="presentacion__texto" data-aos="fade-right">
         <p className="fc-antetitulo">{PRESENTACION.antetitulo}</p>
         <h1 className="presentacion__titulo" id="presentacion-titulo">
           <span className="presentacion__marca">{PRESENTACION.marca}</span>{" "}
@@ -50,7 +50,7 @@ const SeccionPresentacion: React.FC = () => (
         </div>
       </div>
 
-      <figure className="presentacion__video fc-tarjeta">
+      <figure className="presentacion__video fc-tarjeta" data-aos="zoom-in">
         <video
           src={VIDEO_COMUNIDAD.archivo}
           poster={VIDEO_COMUNIDAD.miniatura}

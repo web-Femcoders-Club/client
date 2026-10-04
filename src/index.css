@@ -140,7 +140,14 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
   overflow: hidden;
+  overflow: clip;
 }
 
 img {

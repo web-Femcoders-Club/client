@@ -14,7 +14,7 @@ const SeccionCompromiso: React.FC = () => (
   >
     <div className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
     <div className="compromiso__contenedor">
-      <div className="compromiso__texto">
+      <div className="compromiso__texto" data-aos="fade-right">
         <p className="fc-antetitulo">{COMPROMISO.antetitulo}</p>
         <h2
           className="fc-titulo-seccion compromiso__titulo"
@@ -35,7 +35,9 @@ const SeccionCompromiso: React.FC = () => (
         </div>
       </div>
 
-      <CarruselValores />
+      <div className="compromiso__carrusel" data-aos="fade-up">
+        <CarruselValores />
+      </div>
     </div>
   </section>
 );

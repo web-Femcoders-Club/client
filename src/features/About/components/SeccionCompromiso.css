@@ -56,9 +56,17 @@
 
 /* ---------- Carrusel de valores ---------- */
 
+/* Envoltorio de la aparición al hacer scroll: grid para que el carrusel se siga estirando al alto del texto. */
+.compromiso__carrusel {
+  display: grid;
+  min-width: 0;
+}
+
 /* Etiqueta arriba, controles abajo y la tarjeta crece en medio hasta igualar el texto. */
 .valores {
   min-width: 0;
+  /* Los puntos se reparten según el ancho del carrusel, no de la ventana. */
+  container-type: inline-size;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 1.4rem;
@@ -118,9 +126,19 @@
   align-content: center;
 }
 
-/* `display: grid` de arriba ganaría al `hidden` del navegador: las inactivas, fuera. */
+/*
+ * Las once tarjetas en la misma celda: la pila mide lo que la más larga y no
+ * salta al rotar. Las inactivas (`hidden`) siguen ocupando sitio pero no se
+ * ven ni las lee el lector (visibility: hidden las saca del árbol de
+ * accesibilidad).
+ */
+.valores .valores__tarjeta {
+  grid-area: 1 / 1;
+}
+
 .valores .valores__tarjeta[hidden] {
-  display: none;
+  display: grid;
+  visibility: hidden;
 }
 
 .valores__cabeza {
@@ -152,6 +170,7 @@
 
 .valores__descripcion {
   margin: 0;
+  max-width: 65ch;
   font-family: var(--font-primary);
   font-size: clamp(1.05rem, 1.4vw, 1.22rem);
   line-height: 1.65;
@@ -167,17 +186,24 @@
   gap: 0.8rem;
 }
 
+/*
+ * Los once puntos (44px cada uno) no caben junto a las flechas: van en su
+ * propia fila, encima; flechas y pausa, juntas debajo. Si no caben los once
+ * en una fila, se reparten 6 + 5, nunca 10 + 1.
+ */
 .valores__puntos {
-  display: flex;
-  flex-wrap: wrap;
+  flex-basis: 100%;
+  order: -1;
+  display: grid;
+  grid-template-columns: repeat(11, 2.75rem);
   justify-content: center;
   align-items: center;
 }
 
-/* El punto se ve pequeño, pero la zona que se pulsa mide 24px (WCAG 2.5.8). */
+/* El punto se ve pequeño, pero la zona que se pulsa mide 44px (WCAG 2.5.5, AAA). */
 .valores__punto {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -193,7 +219,8 @@
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: rgba(71, 55, 187, 0.35);
+  /* 0.75 sobre blanco y sobre el lavanda de bg3: más de 3:1 (WCAG 1.4.11). */
+  background: rgba(71, 55, 187, 0.75);
   transition: width 0.3s ease, background 0.3s ease;
 }
 
@@ -216,5 +243,21 @@
 @media (prefers-reduced-motion: reduce) {
   .valores__punto::before {
     transition: none;
+  }
+}
+
+/*
+ * Los once en una fila solo si sobra sitio a los lados: el botón «Volver
+ * arriba» flota en la esquina inferior derecha y tapaba el último punto.
+ */
+@container (max-width: 595px) {
+  .valores__puntos {
+    grid-template-columns: repeat(6, 2.75rem);
+  }
+}
+
+@container (max-width: 375px) {
+  .valores__puntos {
+    grid-template-columns: repeat(4, 2.75rem);
   }
 }

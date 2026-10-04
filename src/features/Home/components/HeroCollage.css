@@ -19,6 +19,13 @@
   --cortina: cubic-bezier(0.77, 0, 0.175, 1);
 
   container-type: inline-size;
+  /*
+   * Línea de tiempo compartida del parallax: si cada pieza usa su propio
+   * view(), una etiqueta de 52px hace todo su recorrido en 52px de scroll y
+   * adelanta a la foto en la que se apoya. Con la del collage, las
+   * distancias de --hero-capa son velocidades comparables.
+   */
+  view-timeline: --hero-collage;
   position: relative;
   width: 100%;
   max-width: 720px;
@@ -174,6 +181,21 @@
   left: 80%;
   top: 80%;
   transform: rotate(-6deg);
+}
+
+/*
+ * Entre 1025 y 1366px (dos columnas; por debajo, portada.css lo centra en una)
+ * el collage llega al borde derecho de la ventana y lo
+ * que sobresale de él («Oportunidades», el lema) se cortaba. Un 10 % más
+ * estrecho y pegado a la izquierda deja ese margen a la derecha; como todo
+ * va en % y cqi, el collage escala entero sin mover piezas.
+ */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .hero-collage {
+    width: 90%;
+    margin-left: 0;
+    margin-right: auto;
+  }
 }
 
 /* Las chispas van dentro de su etiqueta: se mueven y escalan con ella y no quedan sueltas. */
@@ -484,7 +506,7 @@
       animation:
         hero-marco-entra 1.19s var(--sale-suave) backwards,
         hero-capa linear both;
-      animation-timeline: auto, view();
+      animation-timeline: auto, --hero-collage;
       animation-range: normal, exit 0% exit 100%;
       animation-composition: replace, add;
     }
@@ -493,7 +515,7 @@
       animation:
         hero-mancha-entra 2.38s var(--sale-suave) backwards,
         hero-capa linear both;
-      animation-timeline: auto, view();
+      animation-timeline: auto, --hero-collage;
       animation-range: normal, exit 0% exit 100%;
       animation-composition: replace, add;
     }
@@ -502,7 +524,7 @@
       animation:
         hero-sube-aparece 1.53s var(--sale-suave) backwards,
         hero-capa linear both;
-      animation-timeline: auto, view();
+      animation-timeline: auto, --hero-collage;
       animation-range: normal, exit 0% exit 100%;
       animation-composition: replace, add;
     }
@@ -511,7 +533,7 @@
       animation:
         hero-sube-aparece 1.36s var(--sale-suave) 2.21s backwards,
         hero-capa linear both;
-      animation-timeline: auto, view();
+      animation-timeline: auto, --hero-collage;
       animation-range: normal, exit 0% exit 100%;
       animation-composition: replace, add;
     }
@@ -533,7 +555,8 @@
     .hero-collage__foto--ponente { --hero-capa: 25px; }
     .hero-collage__mancha--lila { --hero-capa: -50px; }
     .hero-collage__mancha--rosa { --hero-capa: 80px; }
-    .hero-collage__etiqueta--comunidad { --hero-capa: 140px; }
+    /* Al ritmo de la foto en la que se apoya (fundadoras): si va más rápida, le tapa una cara. */
+    .hero-collage__etiqueta--comunidad { --hero-capa: 50px; }
     .hero-collage__etiqueta--eventos { --hero-capa: 160px; }
     .hero-collage__etiqueta--oportunidades { --hero-capa: 90px; }
     .hero-collage__lema { --hero-capa: 120px; }

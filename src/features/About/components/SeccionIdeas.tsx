@@ -70,7 +70,7 @@ const SeccionIdeas: React.FC = () => {
       aria-labelledby="ideas-titulo"
     >
       <div className="ideas__contenedor">
-        <div className="ideas__cabeza">
+        <div className="ideas__cabeza" data-aos="fade-up">
           <div>
             <p className="fc-antetitulo fc-antetitulo--naranja">
               {IDEAS.antetitulo}
@@ -83,7 +83,7 @@ const SeccionIdeas: React.FC = () => {
           <p className="ideas__entradilla">{IDEAS.entradilla}</p>
         </div>
 
-        <div className="ideas__grupos">
+        <div className="ideas__grupos" data-aos="fade-up">
           <Grupo
             id="ideas-en-marcha"
             titulo={IDEAS.enMarcha.titulo}
@@ -100,7 +100,7 @@ const SeccionIdeas: React.FC = () => {
           />
         </div>
 
-        <div className="ideas__llamada">
+        <div className="ideas__llamada" data-aos="fade-up">
           <p>{IDEAS.llamada}</p>
           <div className="ideas__botones">
             <Link to="/register" className="fc-boton">

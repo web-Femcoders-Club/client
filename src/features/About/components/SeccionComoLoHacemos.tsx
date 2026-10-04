@@ -15,7 +15,7 @@ const SeccionComoLoHacemos: React.FC = () => (
   <section className="como bg4 fc-manchas" aria-labelledby="como-titulo">
     <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
     <div className="como__contenedor">
-      <div className="como__texto">
+      <div className="como__texto" data-aos="fade-right">
         <p className="fc-antetitulo fc-antetitulo--naranja">
           {COMO_LO_HACEMOS.antetitulo}
         </p>
@@ -34,7 +34,7 @@ const SeccionComoLoHacemos: React.FC = () => (
         <p className="como__cierre">{COMO_LO_HACEMOS.cierre}</p>
       </div>
 
-      <div className="como__tarjetas">
+      <div className="como__tarjetas" data-aos="fade-up">
         <ul className="como__lista">
           <li className="como__tarjeta fc-tarjeta">
             <div className="como__fila">

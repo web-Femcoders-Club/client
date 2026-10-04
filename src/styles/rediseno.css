@@ -47,7 +47,14 @@
  */
 .fc-manchas {
   position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
   overflow: hidden;
+  overflow: clip;
 }
 
 .fc-manchas::before,
@@ -124,9 +131,9 @@
  * no lo soporta, o con «reducir movimiento» (WCAG 2.3.3), no se mueve nada y
  * el contenido se ve completo y quieto.
  *
- * Capas: las manchas (`fc-manchas`) y la retícula (`fc-puntos`) se desplazan
- * a distinta velocidad que el contenido mientras la sección cruza la
- * pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
+ * Capas: las manchas (`fc-manchas`), la retícula (`fc-puntos`) y la capa en
+ * degradado (`fc-capa`) se desplazan a distinta velocidad que el contenido
+ * mientras la sección cruza la pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
  *
  * Aparición: los elementos con `data-aos` suben y aparecen al entrar en
  * pantalla. Sustituye a la librería AOS sin tocar el marcado. Nunca empiezan
@@ -149,18 +156,18 @@
 }
 
 @keyframes fc-aparece-arriba {
-  from { opacity: 0.2; translate: 0 50px; }
-  to { opacity: 1; translate: 0 0; }
+  from { translate: 0 50px; }
+  to { translate: 0 0; }
 }
 
 @keyframes fc-aparece-lado {
-  from { opacity: 0.2; translate: -50px 0; }
-  to { opacity: 1; translate: 0 0; }
+  from { translate: -50px 0; }
+  to { translate: 0 0; }
 }
 
 @keyframes fc-aparece-zoom {
-  from { opacity: 0.2; scale: 0.9; }
-  to { opacity: 1; scale: 1; }
+  from { scale: 0.9; }
+  to { scale: 1; }
 }
 
 @supports (animation-timeline: view()) {
@@ -180,10 +187,20 @@
       animation-timeline: view();
     }
 
+    /* La capa en degradado detrás de una tarjeta: se separa de ella al hacer scroll. */
+    .fc-capa {
+      animation: fc-capa-media linear both;
+      animation-timeline: view();
+    }
+
     [data-aos] {
       animation: fc-aparece-arriba linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      /*
+       * Tramo corto y sin fundido (solo se desplazan): quien se para a mitad
+       * de una entrada nunca lee texto desvaído por debajo de 7:1.
+       */
+      animation-range: entry 0% entry 25%;
     }
 
     [data-aos="fade-right"] {
@@ -192,6 +209,20 @@
 
     [data-aos="zoom-in"] {
       animation-name: fc-aparece-zoom;
+    }
+
+    /* En una columna, la entrada lateral se recortaba contra el borde de la sección: sube. */
+    @media (max-width: 900px) {
+      [data-aos="fade-right"] {
+        animation-name: fc-aparece-arriba;
+      }
+    }
+
+    /* Pantallas bajas (móvil en horizontal): sin apariciones, el texto siempre entero. */
+    @media (max-height: 500px) {
+      [data-aos] {
+        animation: none;
+      }
     }
   }
 }

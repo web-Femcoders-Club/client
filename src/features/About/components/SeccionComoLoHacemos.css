@@ -130,6 +130,7 @@
   line-height: 1.6;
   color: var(--color-text-dark);
   text-wrap: pretty;
+  max-width: 65ch;
 }
 
 .como__texto-tarjeta strong {

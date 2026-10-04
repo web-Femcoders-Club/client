@@ -39,6 +39,19 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 - **«Nuestras ideas» se abrían con `div` clicables sin `aria-expanded`**, y la
   llamada final se ocultaba justo en el móvil. Ahora son botones desplegables y
   la llamada se ve en todos los tamaños.
+- **El parallax del rediseño estaba congelado en toda la web**: `overflow: hidden`
+  en `.fc-manchas`, `.parallax`, `.contacto` e `.ideas` convertía cada sección en
+  contenedor de scroll, y las animaciones con `view()` la tomaban a ella (que no
+  se mueve) en vez de la página. Ahora es `overflow: clip`. Al activarse, en la
+  portada «Comunidad» tapaba una cara: las piezas del collage comparten una sola
+  línea de tiempo (`view-timeline: --hero-collage`) y entre 1025 y 1366px el
+  collage deja margen a la derecha para que el lema y «Oportunidades» no se
+  corten. Las apariciones (`data-aos`) ya no funden la opacidad, solo se
+  desplazan, para que ningún texto baje de 7:1 a mitad de entrada, y se
+  desactivan en pantallas de 500px de alto o menos.
+- **Carrusel de valores**: alto estable al rotar (todas las tarjetas en la misma
+  celda), puntos de 44px con contraste de 3:1 repartidos 11, 6 + 5 o 4 + 4 + 3
+  según el ancho, sin quedar bajo el botón «Volver arriba».
 - **Una regla `.text-left` de AboutPage.css** pintaba de blanco, con relleno, el
   `text-left` de Tailwind en cualquier página visitada después, como las tablas
   del panel.

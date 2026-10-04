@@ -17,7 +17,7 @@ const SeccionProposito: React.FC = () => (
   >
     <div className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
     <div className="proposito__contenedor">
-      <div>
+      <div data-aos="fade-up">
         <p className="fc-antetitulo">{PROPOSITO.antetitulo}</p>
         <h2
           className="fc-titulo-seccion proposito__titulo"
@@ -30,6 +30,7 @@ const SeccionProposito: React.FC = () => (
 
       <div className="proposito__tarjetas">
         <article
+          data-aos="fade-up"
           className="proposito__tarjeta fc-tarjeta"
           aria-labelledby="mision-titulo"
         >
@@ -49,7 +50,7 @@ const SeccionProposito: React.FC = () => (
           ))}
         </article>
 
-        <div className="proposito__vision">
+        <div className="proposito__vision" data-aos="fade-up">
           <div className="fc-capa proposito__capa" aria-hidden="true" />
           <article
             className="proposito__tarjeta proposito__tarjeta--vision fc-tarjeta"

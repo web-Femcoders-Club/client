@@ -115,6 +115,8 @@
   line-height: 1.65;
   color: var(--color-text-dark);
   text-wrap: pretty;
+  /* En una columna la tarjeta es ancha: sin tope, líneas de más de 90 caracteres. */
+  max-width: 65ch;
 }
 
 .proposito__texto strong {
