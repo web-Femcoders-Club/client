@@ -46,7 +46,7 @@ const SeccionCompromiso: React.FC = () => (
             Si quieres conocer mejor lo que hacemos, descubre nuestras
             iniciativas en el{" "}
             <strong>
-              <Link to="/blog/noticias" className="fc-enlace fc-enlace--siempre fc-enlace--texto">
+              <Link to="/blog" className="fc-enlace fc-enlace--siempre fc-enlace--texto">
                 blog
               </Link>
             </strong>{" "}

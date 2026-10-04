@@ -45,7 +45,13 @@ export interface RutaMeta {
   jsonLd?: Record<string, unknown>[];
 }
 
-const urlAbsoluta = (ruta: string) => `https://www.femcodersclub.com${ruta}`;
+const SITIO = "https://www.femcodersclub.com";
+const urlAbsoluta = (ruta: string) => `${SITIO}${ruta}`;
+
+// Identificadores del grafo JSON-LD. #organization y #website son los de index.html.
+const ID_ORGANIZACION = `${SITIO}/#organization`;
+const ID_SITIO = `${SITIO}/#website`;
+const ID_VIDEO = `${SITIO}/femcoders-quienes-somos#video`;
 
 export const RUTAS_SPA: Record<string, RutaMeta> = {
   "/blog": {
@@ -92,10 +98,64 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     title: "FemCoders Club | Comunidad para Mujeres en Tecnología",
     description:
       "FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva.",
+    /*
+     * Grafo enlazado por `@id`: la Organization es la misma que declara
+     * index.html (#organization), y la página, el sitio y el vídeo se citan
+     * entre sí. Va aquí y no en el Helmet de AboutPage para que esté en el
+     * HTML servido, que es lo que leen los rastreadores que no ejecutan JS.
+     */
     jsonLd: [
       {
         "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": ID_ORGANIZACION,
+        name: "FemCoders Club",
+        url: SITIO,
+        logo: urlAbsoluta("/FemCodersClubLogo.png"),
+        description:
+          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y 40 eventos organizados.",
+        foundingDate: "2023-10-24",
+        email: "info@femcodersclub.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Barcelona",
+          addressCountry: "ES",
+        },
+        // Liliana Dalmarco se mantiene a propósito aunque haya salido del
+        // equipo visible (EQ1, issue #18): `founder` es quien fundó la
+        // organización, un hecho histórico que no cambia. Sin
+        // `numberOfEmployees`: en una asociación de voluntarias diría que
+        // tiene seis empleadas, y el dato ya lo da `founder`.
+        founder: [
+          { "@type": "Person", name: "Irina Ichim", jobTitle: "Fullstack Software Developer & AI Specialist", sameAs: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
+          { "@type": "Person", name: "Ana Lucía Silva Córdoba", jobTitle: "Fullstack Developer & Data Science", sameAs: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
+          { "@type": "Person", name: "Elvia Benedith", jobTitle: "Full-stack Web Developer", sameAs: "https://www.linkedin.com/in/elvia-benedith" },
+          { "@type": "Person", name: "Silvina Lucero Calderón", jobTitle: "Full Stack Developer & QA", sameAs: "https://www.linkedin.com/in/silvina-lucero" },
+          { "@type": "Person", name: "Liliana Dalmarco", jobTitle: "Fullstack Developer & Scrum Master", sameAs: "https://www.linkedin.com/in/lilianadalmarco" },
+          { "@type": "Person", name: "Isadora Matias", jobTitle: "Full Stack Developer & Designer", sameAs: "https://www.linkedin.com/in/isadoramatias/" },
+        ],
+        knowsAbout: [
+          "mujeres en tecnología", "diversidad en tech", "desarrollo web", "JavaScript", "CSS", "HTML", "React", "inteligencia artificial", "open source",
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": urlAbsoluta("/femcoders-quienes-somos"),
+        name: "Quiénes somos — FemCoders Club",
+        url: urlAbsoluta("/femcoders-quienes-somos"),
+        description:
+          "FemCoders Club es una asociación registrada fundada en Barcelona en octubre de 2023. Misión, visión y valores de la comunidad de mujeres en tecnología.",
+        inLanguage: "es",
+        isPartOf: { "@id": ID_SITIO },
+        about: { "@id": ID_ORGANIZACION },
+        mainEntity: { "@id": ID_ORGANIZACION },
+        video: { "@id": ID_VIDEO },
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "VideoObject",
+        "@id": ID_VIDEO,
         name: VIDEO_COMUNIDAD.titulo,
         description: VIDEO_COMUNIDAD.descripcion,
         thumbnailUrl: urlAbsoluta(VIDEO_COMUNIDAD.miniatura),
@@ -105,11 +165,7 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
         inLanguage: "es",
         // El mismo vídeo en YouTube. Se enlaza, no se incrusta: sin `embedUrl`.
         sameAs: VIDEO_COMUNIDAD.youtube,
-        publisher: {
-          "@type": "Organization",
-          name: "FemCoders Club",
-          url: "https://www.femcodersclub.com",
-        },
+        publisher: { "@id": ID_ORGANIZACION },
       },
     ],
   },

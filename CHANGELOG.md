@@ -12,8 +12,36 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   derecha, con el fondo de la portada (`bg1`) y las piezas compartidas `fc-`. El
   ancho del vídeo se ajusta también a la altura de la ventana para que la sección
   quepa en una pantalla de portátil.
+- **El resto de la página, rediseñado con los fondos de la home** (`bg3`, `bg4`
+  y `bg2` al cierre) y textos nuevos: «Nuestro propósito» (misión y visión),
+  «Cómo lo hacemos», «Compromiso y valores» y «Nuestras ideas», separadas en
+  lo que ya está en marcha y lo que viene. Piezas compartidas nuevas en
+  `rediseno.css`: `fc-capa`, `fc-disco`, `fc-desplegable` y `fc-enlace--texto`.
+- **Datos estructurados enlazados y en el HTML servido**: Organization,
+  AboutPage y VideoObject se citan entre sí por `@id` (`#organization` y
+  `#website` también en `index.html`) y los escribe el prerender, no el Helmet,
+  así que los leen también los rastreadores que no ejecutan JavaScript. Sale
+  `numberOfEmployees`, que en una asociación de voluntarias decía «6 empleadas».
+
+#### Eliminado
+- `CarouselValues.tsx`, `Collapse.tsx` y `AboutPage.css`, con su Tailwind, y los
+  quince iconos PNG de la página antigua con sus WebP.
 
 #### Corregido
+- **Misión y visión solo se leían pasando el ratón**: eran tarjetas que giraban
+  con `:hover`, ilegibles con teclado o en el móvil, donde además los dos
+  párrafos de debajo estaban ocultos con `display: none`. Ahora todo está a la
+  vista.
+- **El carrusel de valores no se podía parar** (WCAG 2.2.2) y llevaba texto
+  blanco sobre naranja. Ahora usa la lógica de los carruseles de la home
+  (`useRotacion`) y los once valores están en el DOM: Google indexaba solo el
+  que se veía al cargar.
+- **«Nuestras ideas» se abrían con `div` clicables sin `aria-expanded`**, y la
+  llamada final se ocultaba justo en el móvil. Ahora son botones desplegables y
+  la llamada se ve en todos los tamaños.
+- **Una regla `.text-left` de AboutPage.css** pintaba de blanco, con relleno, el
+  `text-left` de Tailwind en cualquier página visitada después, como las tablas
+  del panel.
 - **El vídeo de la página nunca se indexó en Google**: no tenía miniatura, ni
   título visible, ni datos estructurados, y el HTML servido no decía nada de él.
   Ahora lleva `poster`, título y descripción visibles, un `VideoObject` que el

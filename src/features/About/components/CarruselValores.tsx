@@ -117,8 +117,6 @@ const CarruselValores: React.FC = () => {
     }
   };
 
-  const { Icono, nombre, descripcion } = VALORES[actual];
-
   return (
     <div
       className="valores"
@@ -132,27 +130,38 @@ const CarruselValores: React.FC = () => {
         Nuestros valores
       </h3>
 
-      <div className="valores__pila">
-        <article
-          className="valores__tarjeta fc-tarjeta"
-          id="valores-tarjeta"
-          aria-roledescription="diapositiva"
-          aria-label={`${actual + 1} de ${VALORES.length}`}
-          aria-live={rotacion.girando ? "off" : "polite"}
-        >
-          <div className="valores__cabeza">
-            <div className={`fc-disco${actual % 2 ? " fc-disco--naranja" : ""}`} aria-hidden="true">
-              <Icono />
+      {/*
+        Los once valores están siempre en la página y solo el activo se ve
+        (los demás llevan `hidden`): así buscadores y modelos leen todos, no
+        solo el que estaba en pantalla al cargar.
+      */}
+      <div
+        className="valores__pila"
+        id="valores-tarjetas"
+        aria-live={rotacion.girando ? "off" : "polite"}
+      >
+        {VALORES.map(({ Icono, nombre, descripcion }, i) => (
+          <article
+            key={nombre}
+            className="valores__tarjeta fc-tarjeta"
+            aria-roledescription="diapositiva"
+            aria-label={`${i + 1} de ${VALORES.length}`}
+            hidden={i !== actual}
+          >
+            <div className="valores__cabeza">
+              <div className={`fc-disco${i % 2 ? " fc-disco--naranja" : ""}`} aria-hidden="true">
+                <Icono />
+              </div>
+              <p className="valores__contador" aria-hidden="true">
+                {i + 1} / {VALORES.length}
+              </p>
             </div>
-            <p className="valores__contador" aria-hidden="true">
-              {actual + 1} / {VALORES.length}
-            </p>
-          </div>
-          <div className="valores__cuerpo">
-            <h4 className="valores__nombre">{nombre}</h4>
-            <p className="valores__descripcion">{descripcion}</p>
-          </div>
-        </article>
+            <div className="valores__cuerpo">
+              <h4 className="valores__nombre">{nombre}</h4>
+              <p className="valores__descripcion">{descripcion}</p>
+            </div>
+          </article>
+        ))}
       </div>
 
       <div className="valores__controles">
@@ -161,7 +170,7 @@ const CarruselValores: React.FC = () => {
           className="fc-boton-redondo"
           onClick={() => irA(actual - 1)}
           aria-label="Valor anterior"
-          aria-controls="valores-tarjeta"
+          aria-controls="valores-tarjetas"
         >
           <ArrowLeft aria-hidden="true" />
         </button>
@@ -181,14 +190,14 @@ const CarruselValores: React.FC = () => {
           girando={rotacion.girando}
           alAlternar={rotacion.alternar}
           de="valores"
-          controla="valores-tarjeta"
+          controla="valores-tarjetas"
         />
         <button
           type="button"
           className="fc-boton-redondo"
           onClick={() => irA(actual + 1)}
           aria-label="Valor siguiente"
-          aria-controls="valores-tarjeta"
+          aria-controls="valores-tarjetas"
         >
           <ArrowRight aria-hidden="true" />
         </button>

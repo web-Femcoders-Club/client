@@ -118,6 +118,11 @@
   align-content: center;
 }
 
+/* `display: grid` de arriba ganaría al `hidden` del navegador: las inactivas, fuera. */
+.valores .valores__tarjeta[hidden] {
+  display: none;
+}
+
 .valores__cabeza {
   display: flex;
   align-items: center;

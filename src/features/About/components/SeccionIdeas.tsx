@@ -22,7 +22,7 @@ const EN_MARCHA: Idea[] = [
     descripcion: (
       <>
         Mujeres con experiencia acompañan a quienes empiezan o quieren dar el
-        siguiente paso. {enlace("/mentoria", "Ver mentorías")}
+        siguiente paso. {enlace("/mentoria", "Ver mentorías (con tu cuenta)")}
       </>
     ),
   },
