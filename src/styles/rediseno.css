@@ -100,6 +100,23 @@
   mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
 }
 
+/*
+ * Capa en degradado de marca, girada, detrás de una pieza para darle
+ * profundidad (como la de la galería de «Nuestra esencia»). Es un elemento
+ * con aria-hidden dentro de un contenedor con `position: relative`; quien la
+ * usa fija su posición, su tamaño y su giro. Lo que va encima necesita
+ * `position: relative; z-index: 1`.
+ */
+.fc-capa {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  background: linear-gradient(135deg, rgba(234, 79, 51, 0.9), rgba(108, 99, 255, 0.9) 60%, rgba(71, 55, 187, 0.95));
+  opacity: 0.9;
+}
+
 /* ---------- Movimiento ligado al scroll ---------- */
 
 /*
@@ -308,6 +325,27 @@
   width: calc(100% - 2 * var(--fc-enlace-margen, 0px));
 }
 
+/*
+ * Dentro de un párrafo: la línea va pegada bajo las letras y ocupa toda la
+ * palabra, para que el enlace no dependa solo del color (WCAG 1.4.1) aunque
+ * esté junto a texto en negrita del mismo violeta.
+ */
+.fc-enlace--texto {
+  --fc-enlace-bajo: -2px;
+  color: var(--color-secondary);
+}
+
+.fc-enlace--texto::after,
+.fc-enlace--texto.fc-enlace--siempre::after {
+  width: 100%;
+}
+
+.fc-enlace--texto:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .fc-sobre-oscuro .fc-enlace {
   --fc-enlace-a: #b3a8ff;
   --fc-enlace-b: #ff8a6e;
@@ -502,6 +540,35 @@
 .fc-boton-rotacion svg {
   width: 1rem;
   height: 1rem;
+}
+
+/* ---------- Disco de icono ---------- */
+
+/*
+ * Círculo con un icono dentro, junto al título de una tarjeta. Azul sobre
+ * lavanda o, con `--naranja`, naranja oscuro sobre melocotón (7,41:1).
+ * Va en un `div`: un `span` heredaría la regla global.
+ */
+.fc-disco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-lavanda-medio);
+  color: var(--color-secondary);
+}
+
+.fc-disco--naranja {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-disco svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* ---------- Chip de categoría ---------- */

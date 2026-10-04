@@ -1,0 +1,150 @@
+/*
+ * «Cómo lo hacemos» en «Quiénes somos». Piezas compartidas en
+ * src/styles/rediseno.css: `fc-manchas`, `fc-puntos`, `fc-antetitulo`,
+ * `fc-titulo-seccion`, `fc-rotulador`, `fc-tarjeta`, `fc-disco` y `fc-capa`.
+ * Fondo: `bg4`, como «Conócenos» en la home.
+ *
+ * index.css da color naranja y sombra a h3: cada clase fija sus valores.
+ */
+
+.como {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.como__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.como__texto {
+  min-width: 0;
+}
+
+.como__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+.como__parrafo {
+  margin: 1.5rem 0 0;
+  max-width: 31rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/* La frase final, como cierre de la sección: rayita de marca a la izquierda. */
+.como__cierre {
+  margin: 1.8rem 0 0;
+  max-width: 31rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.7vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.3;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  text-wrap: balance;
+}
+
+/*
+ * Las tarjetas bajan algo más allá de la frase de cierre (margen negativo
+ * abajo) y llevan detrás la capa en degradado. La segunda se desplaza a la
+ * derecha para romper la columna recta.
+ */
+.como__tarjetas {
+  position: relative;
+  min-width: 0;
+  align-self: end;
+  margin-bottom: -2.5rem;
+}
+
+.como__capa {
+  inset: 1.5rem 2rem -1rem 1rem;
+  transform: rotate(-3deg);
+}
+
+.como__lista {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* `.como` delante: este CSS carga antes que rediseno.css y el relleno de `fc-tarjeta` ganaría. */
+.como .como__tarjeta {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.como__tarjeta:nth-child(2) {
+  margin-left: clamp(1rem, 4vw, 3rem);
+}
+
+.como__fila {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.como__nombre {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.como__texto-tarjeta {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.como__texto-tarjeta strong {
+  color: var(--color-secondary);
+}
+
+/* El relleno inferior compensa las tarjetas que bajan: si no, la capa girada se corta abajo. */
+@media (min-width: 901px) {
+  .como {
+    padding-bottom: calc(clamp(3.5rem, 7vw, 5.5rem) + 1rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .como__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .como__tarjetas {
+    margin-bottom: 0;
+  }
+
+  .como__tarjeta:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .como__capa {
+    inset: 1rem 0.5rem -0.75rem 0.5rem;
+    transform: rotate(-1.5deg);
+  }
+}
