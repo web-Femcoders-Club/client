@@ -58,8 +58,8 @@
 
 /*
  * Las tarjetas bajan algo más allá de la frase de cierre (margen negativo
- * abajo) y llevan detrás la capa en degradado. La segunda se desplaza a la
- * derecha para romper la columna recta.
+ * abajo). La segunda se desplaza a la derecha para romper la columna recta y
+ * lleva detrás la capa en degradado, igual que Visión en «Nuestro propósito».
  */
 .como__tarjetas {
   position: relative;
@@ -68,9 +68,28 @@
   margin-bottom: -2.5rem;
 }
 
+.como__segunda {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  margin-left: clamp(1rem, 4vw, 3rem);
+}
+
+/* Misma forma y giro que la capa de Visión. Sin salirse por la derecha hasta que hay margen. */
 .como__capa {
-  inset: 1.5rem 2rem -1rem 1rem;
-  transform: rotate(-3deg);
+  inset: 1.5rem 0 -1rem 1.5rem;
+  transform: rotate(3deg);
+}
+
+@media (min-width: 1240px) {
+  .como__capa {
+    right: -0.75rem;
+  }
+}
+
+.como .como__segunda .como__tarjeta {
+  position: relative;
+  z-index: 1;
 }
 
 .como__lista {
@@ -89,10 +108,6 @@
   gap: 0.7rem;
   align-content: start;
   padding: clamp(1.2rem, 2vw, 1.6rem);
-}
-
-.como__tarjeta:nth-child(2) {
-  margin-left: clamp(1rem, 4vw, 3rem);
 }
 
 .como__fila {
@@ -139,12 +154,12 @@
     margin-bottom: 0;
   }
 
-  .como__tarjeta:nth-child(2) {
+  .como__segunda {
     margin-left: 0;
   }
 
   .como__capa {
     inset: 1rem 0.5rem -0.75rem 0.5rem;
-    transform: rotate(-1.5deg);
+    transform: rotate(1.5deg);
   }
 }

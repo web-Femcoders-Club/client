@@ -20,9 +20,8 @@ const SeccionComoLoHacemos: React.FC = () => (
           Reunimos a mujeres STEM en espacios donde puedan conocerse, compartir
           experiencias y crear conexiones que impulsen su desarrollo personal y
           profesional. Nuestros encuentros abordan la tecnología desde
-          diferentes perspectivas: desde conocimientos técnicos hasta
-          liderazgo, soft skills, bienestar profesional y oportunidades dentro
-          del sector.
+          diferentes perspectivas: desde conocimientos técnicos hasta liderazgo,
+          soft skills, bienestar profesional y oportunidades dentro del sector.
         </p>
         <p className="como__cierre">
           Porque cuando una mujer comparte su experiencia, no solo cuenta su
@@ -31,7 +30,6 @@ const SeccionComoLoHacemos: React.FC = () => (
       </div>
 
       <div className="como__tarjetas">
-        <div className="fc-capa como__capa" aria-hidden="true" />
         <ul className="como__lista">
           <li className="como__tarjeta fc-tarjeta">
             <div className="como__fila">
@@ -51,19 +49,23 @@ const SeccionComoLoHacemos: React.FC = () => (
               </strong>
             </p>
           </li>
-          <li className="como__tarjeta fc-tarjeta">
-            <div className="como__fila">
-              <div className="fc-disco fc-disco--naranja" aria-hidden="true">
-                <Users />
+          {/* La capa en degradado va solo detrás de la segunda, como la de Visión. */}
+          <li className="como__segunda">
+            <div className="fc-capa como__capa" aria-hidden="true" />
+            <div className="como__tarjeta fc-tarjeta">
+              <div className="como__fila">
+                <div className="fc-disco fc-disco--naranja" aria-hidden="true">
+                  <Users />
+                </div>
+                <h3 className="como__nombre">Colaboraciones</h3>
               </div>
-              <h3 className="como__nombre">Colaboraciones</h3>
+              <p className="como__texto-tarjeta">
+                Colaboramos con empresas, organizaciones y profesionales para
+                acercar nuestra comunidad al ecosistema tecnológico y generar
+                encuentros de los que puedan surgir nuevas ideas, relaciones y
+                oportunidades.
+              </p>
             </div>
-            <p className="como__texto-tarjeta">
-              Colaboramos con empresas, organizaciones y profesionales para
-              acercar nuestra comunidad al ecosistema tecnológico y generar
-              encuentros de los que puedan surgir nuevas ideas, relaciones y
-              oportunidades.
-            </p>
           </li>
         </ul>
       </div>

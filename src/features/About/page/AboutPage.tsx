@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./AboutPage.css";
-import Collapse from "../components/Collapse";
 import SeccionPresentacion from "../components/SeccionPresentacion";
 import SeccionProposito from "../components/SeccionProposito";
 import SeccionComoLoHacemos from "../components/SeccionComoLoHacemos";
 import SeccionCompromiso from "../components/SeccionCompromiso";
+import SeccionIdeas from "../components/SeccionIdeas";
 import { Helmet } from "react-helmet";
 
 const AboutPage: React.FC = () => {
@@ -135,49 +133,7 @@ const AboutPage: React.FC = () => {
 
       <SeccionCompromiso />
 
-      <section className="parallax bg4">
-        <div style={{ width: "85%", margin: "0 auto", padding: "1rem 0" }}>
-          <Collapse />
-          <div
-            className="show-on-mobile"
-            style={{
-              width: "85%",
-              textAlign: "center",
-              margin: "0 auto",
-              // Sólido: sobre el fondo claro de bg4 el blanco no se leía con transparencia.
-              backgroundColor: "#4737bb",
-              padding: "1rem",
-              borderRadius: "8px",
-            }}
-          >
-            <p
-              style={{
-                color: "#fdfdfd",
-                fontSize: "1.2rem",
-                marginBottom: "1rem",
-              }}
-            >
-              ¿Te gustaría participar en nuestras iniciativas o proponer nuevas
-              ideas?
-            </p>
-            <Link
-              to="/register"
-              style={{
-                display: "inline-block",
-                background: "#ea4f33",
-                color: "white",
-                padding: "10px 20px",
-                borderRadius: "5px",
-                textDecoration: "none",
-                fontWeight: "bold",
-                transition: "background-color 0.3s",
-              }}
-            >
-              Únete a FemCoders Club
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SeccionIdeas />
     </>
   );
 };
