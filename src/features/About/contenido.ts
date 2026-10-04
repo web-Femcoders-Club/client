@@ -35,6 +35,16 @@ export const PRESENTACION = {
     },
     ". Creamos espacios donde compartir conocimiento, generar conexiones y abrir oportunidades reales para avanzar juntas.",
   ] as Parrafo,
+  /*
+   * Datos de la organización. Son los mismos que declara el JSON-LD
+   * (scripts/spaRoutesMeta.ts): Google pide que lo que dicen los datos
+   * estructurados también se vea en la página. Cifras como en la portada.
+   */
+  datos: [
+    "Asociación sin ánimo de lucro nacida en Barcelona en octubre de 2023",
+    "más de 1.500 mujeres",
+    "más de 40 eventos",
+  ],
 };
 
 export const PROPOSITO = {

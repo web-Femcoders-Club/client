@@ -51,6 +51,7 @@ export function quienesSomosHtml(): string {
     "<main>",
     `<h1>${escapar(PRESENTACION.marca)}: ${escapar(titulo(PRESENTACION.titulo))}</h1>`,
     p(PRESENTACION.parrafo),
+    `<ul>${PRESENTACION.datos.map((d) => `<li>${escapar(d)}</li>`).join("")}</ul>`,
     `<h2>${escapar(VIDEO_COMUNIDAD.titulo)}</h2>`,
     `<p>${escapar(VIDEO_COMUNIDAD.descripcion)} <a href="${VIDEO_COMUNIDAD.youtube}">Verlo en YouTube</a></p>`,
 
@@ -104,6 +105,8 @@ export function quienesSomosMarkdown(): string {
     `Source: ${URL_PAGINA}`,
     "",
     fragmentosMd(PRESENTACION.parrafo),
+    "",
+    PRESENTACION.datos.join(" · "),
     "",
     `Video: ${VIDEO_COMUNIDAD.titulo}. ${VIDEO_COMUNIDAD.descripcion} ${VIDEO_COMUNIDAD.youtube}`,
     "",

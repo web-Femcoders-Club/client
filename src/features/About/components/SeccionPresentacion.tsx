@@ -34,6 +34,11 @@ const SeccionPresentacion: React.FC = () => (
             claseEnlace="fc-enlace fc-enlace--siempre fc-enlace--texto"
           />
         </p>
+        <ul className="presentacion__datos">
+          {PRESENTACION.datos.map((dato) => (
+            <li key={dato}>{dato}</li>
+          ))}
+        </ul>
         <div className="presentacion__botones">
           <Link to="/eventos" className="fc-boton fc-boton--noche">
             Ver eventos

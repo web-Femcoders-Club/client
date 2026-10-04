@@ -37,7 +37,7 @@ const AboutPage: React.FC = () => {
         />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/FemCodersClubLogo.png"
+          content="https://www.femcodersclub.com/og-quienes-somos.jpg"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
@@ -52,7 +52,7 @@ const AboutPage: React.FC = () => {
         />
         <meta
           name="twitter:image"
-          content="https://www.femcodersclub.com/FemCodersClubLogo.png"
+          content="https://www.femcodersclub.com/og-quienes-somos.jpg"
         />
 
         <link

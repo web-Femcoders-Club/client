@@ -75,16 +75,14 @@
   margin-left: clamp(1rem, 4vw, 3rem);
 }
 
-/* Misma forma y giro que la capa de Visión. Sin salirse por la derecha hasta que hay margen. */
+/*
+ * La misma capa que la de Visión, pero asomando por la izquierda y girada al
+ * revés: en el hueco que deja la tarjeta desplazada, sin riesgo de cortarse
+ * contra el borde derecho de la pantalla.
+ */
 .como__capa {
-  inset: 1.5rem 0 -1rem 1.5rem;
-  transform: rotate(3deg);
-}
-
-@media (min-width: 1240px) {
-  .como__capa {
-    right: -0.75rem;
-  }
+  inset: 1.5rem 1.5rem -1rem -0.75rem;
+  transform: rotate(-3deg);
 }
 
 .como .como__segunda .como__tarjeta {
@@ -160,6 +158,6 @@
 
   .como__capa {
     inset: 1rem 0.5rem -0.75rem 0.5rem;
-    transform: rotate(1.5deg);
+    transform: rotate(-1.5deg);
   }
 }

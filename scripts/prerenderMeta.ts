@@ -199,6 +199,14 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
   for (const value of ["twitter:title", "twitter:description", "description"]) {
     html = stripMeta(html, "name", value);
   }
+  if (meta.imagen) {
+    for (const value of ["og:image", "og:image:secure_url", "og:image:width", "og:image:height", "og:image:alt"]) {
+      html = stripMeta(html, "property", value);
+    }
+    for (const value of ["twitter:image", "twitter:image:alt"]) {
+      html = stripMeta(html, "name", value);
+    }
+  }
 
   const tags = [
     `    <title>${attr(meta.title)}</title>`,
@@ -214,6 +222,16 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
     "",
     `    <meta name="twitter:title" content="${attr(meta.title)}" />`,
     `    <meta name="twitter:description" content="${attr(meta.description)}" />`,
+    ...(meta.imagen
+      ? [
+          `    <meta property="og:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta property="og:image:width" content="${meta.imagen.ancho}" />`,
+          `    <meta property="og:image:height" content="${meta.imagen.alto}" />`,
+          `    <meta property="og:image:alt" content="${attr(meta.imagen.alt)}" />`,
+          `    <meta name="twitter:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta name="twitter:image:alt" content="${attr(meta.imagen.alt)}" />`,
+        ]
+      : []),
     ...(meta.jsonLd ?? []).map(
       (schema) =>
         `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`

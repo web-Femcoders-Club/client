@@ -50,6 +50,11 @@ export interface RutaMeta {
    * página hecha en React solo leen las metas.
    */
   contenidoHtml?: string;
+  /**
+   * Imagen al compartir en redes (og:image y twitter:image). Sin ella, la
+   * ruta se queda con la genérica de index.html (el logo). 1200×630.
+   */
+  imagen?: { ruta: string; ancho: number; alto: number; alt: string };
 }
 
 const SITIO = "https://www.femcodersclub.com";
@@ -106,6 +111,12 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     description:
       "Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas.",
     contenidoHtml: quienesSomosHtml(),
+    imagen: {
+      ruta: "/og-quienes-somos.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Cuatro mujeres de FemCoders Club se hacen un selfi sonriendo durante un evento",
+    },
     /*
      * Grafo enlazado por `@id`: la Organization es la misma que declara
      * index.html (#organization), y la página, el sitio y el vídeo se citan
@@ -121,7 +132,7 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
         url: SITIO,
         logo: urlAbsoluta("/FemCodersClubLogo.png"),
         description:
-          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y 40 eventos organizados.",
+          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y más de 40 eventos organizados.",
         foundingDate: "2023-10-24",
         email: "info@femcodersclub.com",
         address: {
