@@ -519,6 +519,32 @@
   box-shadow: inset 4px 4px 10px rgba(4, 2, 30, 0.6), inset -3px -3px 8px rgba(110, 96, 255, 0.25);
 }
 
+/*
+ * Relieve en el naranja de FemCoders Club. El blanco sobre el naranja de marca
+ * (#ea4f33) se queda en 3,71:1, así que el degradado va por los tonos más
+ * profundos del mismo naranja: el blanco da 4,78:1 en el extremo claro y
+ * 6,76:1 en el oscuro, por encima de 4,5:1 en todo el botón, AAA
+ * para texto grande (lo es: 1.17rem en negrita). Sobre fondo claro su
+ * contorno pasa de 3:1, como el azul noche.
+ */
+.fc-boton--naranja,
+.fc-boton--naranja:hover {
+  color: #fff;
+  background: linear-gradient(145deg, #cf3f26, #a92f17);
+}
+
+.fc-boton--naranja {
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.9), 6px 6px 18px rgba(143, 35, 24, 0.35);
+}
+
+.fc-boton--naranja:hover {
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 22px rgba(143, 35, 24, 0.42);
+}
+
+.fc-boton--naranja:active {
+  box-shadow: inset 4px 4px 10px rgba(80, 16, 6, 0.55), inset -3px -3px 8px rgba(255, 160, 130, 0.3);
+}
+
 /* Relieve claro con texto violeta (7,16:1, AAA): el botón secundario de cada bloque. */
 .fc-boton--borde {
   color: var(--color-secondary);

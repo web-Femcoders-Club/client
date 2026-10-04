@@ -186,6 +186,20 @@
   color: var(--color-text-dark);
 }
 
+/*
+ * Nombres técnicos (lo que se guarda en el navegador, en la política de
+ * cookies): fondo suave para distinguirlos y corte en cualquier punto para que
+ * un nombre largo no se salga de la hoja en el móvil. Tinta sobre lavanda medio: AAA.
+ */
+.documento code {
+  padding: 0.05em 0.35em;
+  border-radius: 0.3rem;
+  background: var(--color-lavanda-medio);
+  color: var(--color-text-dark);
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
 /* Enlaces dentro del texto: violeta y subrayados (WCAG 1.4.1). */
 .documento a,
 .documento .link-button {
