@@ -10,11 +10,11 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>FemCoders Club | Comunidad para Mujeres en Tecnología</title>
+        <title>Quiénes somos: misión, visión y valores | FemCoders Club</title>
 
         <meta
           name="description"
-          content="FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva."
+          content="Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas."
         />
 
         <meta
@@ -24,11 +24,11 @@ const AboutPage: React.FC = () => {
 
         <meta
           property="og:title"
-          content="FemCoders Club | Comunidad para Mujeres en Tecnología"
+          content="Quiénes somos: misión, visión y valores | FemCoders Club"
         />
         <meta
           property="og:description"
-          content="FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva."
+          content="Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas."
         />
         <meta property="og:type" content="website" />
         <meta
@@ -44,11 +44,11 @@ const AboutPage: React.FC = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="FemCoders Club | Comunidad para Mujeres en Tecnología"
+          content="Quiénes somos: misión, visión y valores | FemCoders Club"
         />
         <meta
           name="twitter:description"
-          content="FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva."
+          content="Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas."
         />
         <meta
           name="twitter:image"

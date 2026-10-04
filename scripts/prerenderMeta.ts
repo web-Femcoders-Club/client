@@ -264,6 +264,18 @@ function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): st
   return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
 }
 
+/**
+ * Incrusta el texto de la página en un `<noscript>` para quien no ejecuta
+ * JavaScript (los rastreadores de los modelos). Con JS activo la página real
+ * ya está ahí. Es el mismo texto que ve una persona: sale de la misma fuente
+ * que pintan los componentes (ver scripts/contenidoQuienesSomos.ts).
+ */
+function renderContenido(html: string, meta: RutaMeta): string {
+  if (!meta.contenidoHtml) return html;
+  const bloque = `    <noscript>\n${meta.contenidoHtml}\n    </noscript>`;
+  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+}
+
 export async function prerenderMeta(): Promise<void> {
   const templatePath = path.join(DIST_DIR, "index.html");
   if (!(await fs.pathExists(templatePath))) {
@@ -398,6 +410,7 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     if (meta) {
       html = renderHeadRuta(template, route, meta);
       html = renderEnlacesPosts(html, posts, meta);
+      html = renderContenido(html, meta);
     } else {
       sinMetas.push(route);
     }

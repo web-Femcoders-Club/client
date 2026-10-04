@@ -17,75 +17,24 @@ import {
 } from "lucide-react";
 import BotonRotacion from "../../Home/components/BotonRotacion";
 import { useRotacion } from "../../Home/components/useRotacion";
+import { VALORES } from "../contenido";
 
-const VALORES: { Icono: LucideIcon; nombre: string; descripcion: string }[] = [
-  {
-    Icono: Scale,
-    nombre: "Equidad",
-    descripcion:
-      "Las mujeres deben tener las mismas oportunidades de desarrollo profesional que los hombres, sin discriminación por género.",
-  },
-  {
-    Icono: HeartHandshake,
-    nombre: "Inclusión",
-    descripcion:
-      "Las mujeres deben sentirse bienvenidas y apoyadas en el sector IT, independientemente de sus antecedentes o experiencias.",
-  },
-  {
-    Icono: Sparkles,
-    nombre: "Visibilidad",
-    descripcion:
-      "Los logros de las mujeres en el sector IT deben ser reconocidos y celebrados.",
-  },
-  {
-    Icono: TrendingUp,
-    nombre: "Desarrollo profesional",
-    descripcion:
-      "Las mujeres deben tener acceso a oportunidades de desarrollo profesional que les permitan alcanzar su máximo potencial.",
-  },
-  {
-    Icono: Handshake,
-    nombre: "Colaboración",
-    descripcion:
-      "Fomentar un ambiente donde las mujeres trabajen juntas de manera colaborativa, compartiendo conocimientos y experiencias para impulsar el crecimiento mutuo.",
-  },
-  {
-    Icono: Rocket,
-    nombre: "Empoderamiento",
-    descripcion:
-      "Capacitar a las mujeres para que tomen el control de sus carreras en tecnología, brindándoles las herramientas y el apoyo necesarios para alcanzar sus metas.",
-  },
-  {
-    Icono: Shapes,
-    nombre: "Diversidad",
-    descripcion:
-      "Reconocer y valorar las diversas perspectivas, habilidades y experiencias que cada mujer aporta al campo de la tecnología, promoviendo un entorno inclusivo y enriquecedor.",
-  },
-  {
-    Icono: ShieldCheck,
-    nombre: "Ética",
-    descripcion:
-      "Promover prácticas éticas en el trabajo tecnológico, priorizando la integridad, la transparencia y el respeto hacia los demás y hacia la sociedad en general.",
-  },
-  {
-    Icono: Lightbulb,
-    nombre: "Innovación",
-    descripcion:
-      "Fomentar la creatividad y la innovación entre las mujeres en tecnología, alentándolas a pensar de manera crítica y a proponer soluciones disruptivas para los desafíos actuales y futuros.",
-  },
-  {
-    Icono: HeartPulse,
-    nombre: "Equilibrio entre vida laboral y personal",
-    descripcion:
-      "Promover un equilibrio saludable entre la vida laboral y personal, reconociendo la importancia de cuidar el bienestar físico, emocional y mental de las mujeres en la industria tecnológica.",
-  },
-  {
-    Icono: Globe,
-    nombre: "Responsabilidad social",
-    descripcion:
-      "Comprometerse con la responsabilidad social corporativa, participando en iniciativas y proyectos que tengan un impacto positivo en la comunidad y en el mundo en general.",
-  },
-];
+/* El icono es decoración (el nombre ya lo dice): se elige aquí; el texto vive en contenido.ts. */
+const ICONOS: Record<string, LucideIcon> = {
+  equidad: Scale,
+  inclusion: HeartHandshake,
+  visibilidad: Sparkles,
+  desarrollo: TrendingUp,
+  colaboracion: Handshake,
+  empoderamiento: Rocket,
+  diversidad: Shapes,
+  etica: ShieldCheck,
+  innovacion: Lightbulb,
+  equilibrio: HeartPulse,
+  responsabilidad: Globe,
+};
+
+const LISTA = VALORES.lista;
 
 const INTERVALO_ROTACION = 6000;
 
@@ -99,13 +48,13 @@ const INTERVALO_ROTACION = 6000;
 const CarruselValores: React.FC = () => {
   const [actual, setActual] = useState(0);
   const rotacion = useRotacion(
-    () => setActual((a) => (a + 1) % VALORES.length),
+    () => setActual((a) => (a + 1) % LISTA.length),
     INTERVALO_ROTACION,
     true,
     actual,
   );
 
-  const irA = (i: number) => setActual((i + VALORES.length) % VALORES.length);
+  const irA = (i: number) => setActual((i + LISTA.length) % LISTA.length);
 
   const alPulsarTecla = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "ArrowLeft") {
@@ -127,7 +76,7 @@ const CarruselValores: React.FC = () => {
       {...rotacion.pausaAlInteractuar}
     >
       <h3 className="valores__etiqueta" id="valores-titulo">
-        Nuestros valores
+        {VALORES.titulo}
       </h3>
 
       {/*
@@ -140,28 +89,34 @@ const CarruselValores: React.FC = () => {
         id="valores-tarjetas"
         aria-live={rotacion.girando ? "off" : "polite"}
       >
-        {VALORES.map(({ Icono, nombre, descripcion }, i) => (
-          <article
-            key={nombre}
-            className="valores__tarjeta fc-tarjeta"
-            aria-roledescription="diapositiva"
-            aria-label={`${i + 1} de ${VALORES.length}`}
-            hidden={i !== actual}
-          >
-            <div className="valores__cabeza">
-              <div className={`fc-disco${i % 2 ? " fc-disco--naranja" : ""}`} aria-hidden="true">
-                <Icono />
+        {LISTA.map(({ id, nombre, descripcion }, i) => {
+          const Icono = ICONOS[id];
+          return (
+            <article
+              key={id}
+              className="valores__tarjeta fc-tarjeta"
+              aria-roledescription="diapositiva"
+              aria-label={`${i + 1} de ${LISTA.length}`}
+              hidden={i !== actual}
+            >
+              <div className="valores__cabeza">
+                <div
+                  className={`fc-disco${i % 2 ? " fc-disco--naranja" : ""}`}
+                  aria-hidden="true"
+                >
+                  <Icono />
+                </div>
+                <p className="valores__contador" aria-hidden="true">
+                  {i + 1} / {LISTA.length}
+                </p>
               </div>
-              <p className="valores__contador" aria-hidden="true">
-                {i + 1} / {VALORES.length}
-              </p>
-            </div>
-            <div className="valores__cuerpo">
-              <h4 className="valores__nombre">{nombre}</h4>
-              <p className="valores__descripcion">{descripcion}</p>
-            </div>
-          </article>
-        ))}
+              <div className="valores__cuerpo">
+                <h4 className="valores__nombre">{nombre}</h4>
+                <p className="valores__descripcion">{descripcion}</p>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <div className="valores__controles">
@@ -175,9 +130,9 @@ const CarruselValores: React.FC = () => {
           <ArrowLeft aria-hidden="true" />
         </button>
         <div className="valores__puntos">
-          {VALORES.map((valor, i) => (
+          {LISTA.map((valor, i) => (
             <button
-              key={valor.nombre}
+              key={valor.id}
               type="button"
               className="valores__punto"
               onClick={() => irA(i)}

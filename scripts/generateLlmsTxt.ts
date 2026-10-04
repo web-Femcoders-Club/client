@@ -13,6 +13,7 @@ import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getPostsIndex } from "./postsIndex";
+import { quienesSomosMarkdown } from "./contenidoQuienesSomos";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const LLMS_PATH = path.join(ROOT, "public", "llms.txt");
@@ -20,6 +21,19 @@ const SITE_URL = "https://www.femcodersclub.com";
 
 const BEGIN = "<!-- BEGIN: posts generados automaticamente -->";
 const END = "<!-- END: posts generados automaticamente -->";
+// Misión, visión y valores, desde src/features/About/contenido.ts: la misma
+// fuente que pinta la página, para que llms.txt no se quede atrás.
+const BEGIN_QUIENES = "<!-- BEGIN: quienes somos generado automaticamente -->";
+const END_QUIENES = "<!-- END: quienes somos generado automaticamente -->";
+
+/** Sustituye el bloque entre marcadores o, si no existe, lo inserta antes de `antes`. */
+function ponerBloque(texto: string, inicio: string, fin: string, bloque: string, antes?: string): string {
+  if (texto.includes(inicio) && texto.includes(fin)) {
+    return texto.replace(new RegExp(`${inicio}[\\s\\S]*?${fin}`), bloque.replace(/\$/g, "$$$$"));
+  }
+  if (antes && texto.includes(antes)) return texto.replace(antes, `${bloque}\n\n${antes}`);
+  return `${texto.trimEnd()}\n\n${bloque}\n`;
+}
 
 /** "2026-08-07T10:00:00Z" -> "2026-08-07". Vacío si no hay fecha. */
 function isoDate(value: string): string {
@@ -69,15 +83,11 @@ export async function generateLlmsTxt(): Promise<void> {
     END,
   ].join("\n");
 
-  const current = await fs.readFile(LLMS_PATH, "utf-8");
-  const hasMarkers = current.includes(BEGIN) && current.includes(END);
+  const quienes = [BEGIN_QUIENES, "", quienesSomosMarkdown(), "", END_QUIENES].join("\n");
 
-  const updated = hasMarkers
-    ? current.replace(
-        new RegExp(`${BEGIN}[\\s\\S]*?${END}`),
-        section.replace(/\$/g, "$$$$")
-      )
-    : `${current.trimEnd()}\n\n${section}\n`;
+  const current = await fs.readFile(LLMS_PATH, "utf-8");
+  const conQuienes = ponerBloque(current, BEGIN_QUIENES, END_QUIENES, quienes, BEGIN);
+  const updated = ponerBloque(conQuienes, BEGIN, END, section);
 
   await fs.writeFile(LLMS_PATH, updated, "utf-8");
   console.log(

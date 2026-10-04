@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { VIDEO_COMUNIDAD } from "../videoComunidad";
+import { PRESENTACION } from "../contenido";
+import TextoRico from "./TextoRico";
 import "./SeccionPresentacion.css";
 
 /*
@@ -13,26 +15,24 @@ import "./SeccionPresentacion.css";
  * cookies de terceros; se enlaza.
  */
 const SeccionPresentacion: React.FC = () => (
-  <section className="presentacion bg1 fc-manchas" aria-labelledby="presentacion-titulo">
+  <section
+    className="presentacion bg1 fc-manchas"
+    aria-labelledby="presentacion-titulo"
+  >
     <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
     <div className="presentacion__contenedor">
       <div className="presentacion__texto">
-        <p className="fc-antetitulo">Quiénes somos</p>
+        <p className="fc-antetitulo">{PRESENTACION.antetitulo}</p>
         <h1 className="presentacion__titulo" id="presentacion-titulo">
-          <span className="presentacion__marca">FemCoders Club</span>{" "}
-          Mujeres que impulsan a otras mujeres en{" "}
-          <span className="fc-rotulador">tecnología</span>
+          <span className="presentacion__marca">{PRESENTACION.marca}</span>{" "}
+          {PRESENTACION.titulo.texto}{" "}
+          <span className="fc-rotulador">{PRESENTACION.titulo.destacado}</span>
         </h1>
         <p className="presentacion__parrafo">
-          Queremos cerrar la brecha de género en el ámbito digital y que la
-          tecnología sea un lugar donde cada mujer encuentre su sitio. Somos una
-          comunidad de mujeres vinculadas al mundo de la tecnología que{" "}
-          <strong>
-            trabajamos para que más mujeres participen, crezcan y lideren en el
-            sector
-          </strong>
-          . Creamos espacios donde compartir conocimiento, generar conexiones y
-          abrir oportunidades reales para avanzar juntas.
+          <TextoRico
+            fragmentos={PRESENTACION.parrafo}
+            claseEnlace="fc-enlace fc-enlace--siempre fc-enlace--texto"
+          />
         </p>
         <div className="presentacion__botones">
           <Link to="/eventos" className="fc-boton fc-boton--noche">
@@ -59,10 +59,15 @@ const SeccionPresentacion: React.FC = () => (
         />
         <figcaption className="presentacion__pie">
           <div className="presentacion__pie-cabeza">
-            <h2 className="presentacion__video-titulo" id="presentacion-video-titulo">
+            <h2
+              className="presentacion__video-titulo"
+              id="presentacion-video-titulo"
+            >
               {VIDEO_COMUNIDAD.titulo}
             </h2>
-            <span className="fc-chip">Vídeo · {VIDEO_COMUNIDAD.duracionSegundos} s</span>
+            <span className="fc-chip">
+              Vídeo · {VIDEO_COMUNIDAD.duracionSegundos} s
+            </span>
           </div>
           <p className="presentacion__video-desc" id="presentacion-video-desc">
             {VIDEO_COMUNIDAD.descripcion}
@@ -75,7 +80,10 @@ const SeccionPresentacion: React.FC = () => (
           >
             Verlo en YouTube
             <ExternalLink aria-hidden="true" />
-            <span className="fc-solo-lector"> (se abre en una pestaña nueva)</span>
+            <span className="fc-solo-lector">
+              {" "}
+              (se abre en una pestaña nueva)
+            </span>
           </a>
         </figcaption>
       </figure>

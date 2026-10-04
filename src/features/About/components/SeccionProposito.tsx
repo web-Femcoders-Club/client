@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
 import { Eye, Target } from "lucide-react";
+import { PROPOSITO } from "../contenido";
+import TextoRico from "./TextoRico";
 import "./SeccionProposito.css";
+
+const ENLACE = "fc-enlace fc-enlace--siempre fc-enlace--texto";
 
 /*
  * Segunda sección de «Quiénes somos»: misión y visión, con todo el texto a la
@@ -8,52 +11,42 @@ import "./SeccionProposito.css";
  * teclado o en el móvil no dejaban leer nada.
  */
 const SeccionProposito: React.FC = () => (
-  <section className="proposito bg3 fc-manchas" aria-labelledby="proposito-titulo">
+  <section
+    className="proposito bg3 fc-manchas"
+    aria-labelledby="proposito-titulo"
+  >
     <div className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
     <div className="proposito__contenedor">
       <div>
-        <p className="fc-antetitulo">Nuestro propósito</p>
-        <h2 className="fc-titulo-seccion proposito__titulo" id="proposito-titulo">
-          Por qué existimos y <span className="fc-rotulador">hacia dónde vamos</span>
+        <p className="fc-antetitulo">{PROPOSITO.antetitulo}</p>
+        <h2
+          className="fc-titulo-seccion proposito__titulo"
+          id="proposito-titulo"
+        >
+          {PROPOSITO.titulo.texto}{" "}
+          <span className="fc-rotulador">{PROPOSITO.titulo.destacado}</span>
         </h2>
       </div>
 
       <div className="proposito__tarjetas">
-        <article className="proposito__tarjeta fc-tarjeta" aria-labelledby="mision-titulo">
+        <article
+          className="proposito__tarjeta fc-tarjeta"
+          aria-labelledby="mision-titulo"
+        >
           <div className="proposito__fila">
             <div className="fc-disco" aria-hidden="true">
               <Target />
             </div>
-            <h3 className="proposito__nombre" id="mision-titulo">Misión</h3>
+            <h3 className="proposito__nombre" id="mision-titulo">
+              {PROPOSITO.mision.nombre}
+            </h3>
           </div>
-          <p className="proposito__frase">
-            Empoderar e impulsar a las mujeres en el desarrollo web y la tecnología.
-          </p>
-          <p className="proposito__texto">
-            Trabajamos para cerrar la brecha de género en la tecnología con una
-            comunidad que fortalece habilidades, conocimientos y confianza, a
-            través de{" "}
-            <strong>
-              <Link to="/eventos" className="fc-enlace fc-enlace--siempre fc-enlace--texto">
-                eventos
-              </Link>
-              , talleres y{" "}
-              <Link to="/blog/recursos" className="fc-enlace fc-enlace--siempre fc-enlace--texto">
-                recursos
-              </Link>
-            </strong>{" "}
-            que promueven la inclusión, la equidad y la diversidad.
-          </p>
-          <p className="proposito__texto">
-            Queremos que cada mujer tenga herramientas para avanzar
-            profesionalmente, compartir lo que sabe y descubrir nuevas
-            oportunidades dentro del sector. Porque aumentar la presencia de
-            mujeres en tecnología también significa{" "}
-            <strong>
-              darles espacio para crear, decidir y liderar su futuro profesional
-            </strong>
-            .
-          </p>
+          <p className="proposito__frase">{PROPOSITO.mision.frase}</p>
+          {PROPOSITO.mision.parrafos.map((parrafo, i) => (
+            <p key={i} className="proposito__texto">
+              <TextoRico fragmentos={parrafo} claseEnlace={ENLACE} />
+            </p>
+          ))}
         </article>
 
         <div className="proposito__vision">
@@ -66,24 +59,16 @@ const SeccionProposito: React.FC = () => (
               <div className="fc-disco fc-disco--naranja" aria-hidden="true">
                 <Eye />
               </div>
-              <h3 className="proposito__nombre" id="vision-titulo">Visión</h3>
+              <h3 className="proposito__nombre" id="vision-titulo">
+                {PROPOSITO.vision.nombre}
+              </h3>
             </div>
-            <p className="proposito__frase">
-              Un futuro en el que las mujeres lideren, innoven y den forma al mundo digital.
-            </p>
-            <p className="proposito__texto">
-              Aspiramos a un sector tecnológico equitativo e inclusivo, donde el
-              talento y las oportunidades no estén condicionados por el género ni
-              por el lugar de origen. Queremos contribuir a una industria en la
-              que más mujeres ocupen espacios de decisión, impulsen nuevas ideas
-              y sean referentes para las próximas generaciones.
-            </p>
-            <p className="proposito__texto">
-              <strong>
-                Una tecnología más diversa no solo abre puertas: también
-                transforma quién la crea y para quién se construye.
-              </strong>
-            </p>
+            <p className="proposito__frase">{PROPOSITO.vision.frase}</p>
+            {PROPOSITO.vision.parrafos.map((parrafo, i) => (
+              <p key={i} className="proposito__texto">
+                <TextoRico fragmentos={parrafo} claseEnlace={ENLACE} />
+              </p>
+            ))}
           </article>
         </div>
       </div>

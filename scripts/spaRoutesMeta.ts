@@ -22,6 +22,7 @@
  */
 
 import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
+import { quienesSomosHtml } from "./contenidoQuienesSomos";
 
 export interface RutaMeta {
   title: string;
@@ -43,6 +44,12 @@ export interface RutaMeta {
    * renderiza la página.
    */
   jsonLd?: Record<string, unknown>[];
+  /**
+   * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
+   * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
+   * página hecha en React solo leen las metas.
+   */
+  contenidoHtml?: string;
 }
 
 const SITIO = "https://www.femcodersclub.com";
@@ -95,9 +102,10 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino.",
   },
   "/femcoders-quienes-somos": {
-    title: "FemCoders Club | Comunidad para Mujeres en Tecnología",
+    title: "Quiénes somos: misión, visión y valores | FemCoders Club",
     description:
-      "FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva.",
+      "Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas.",
+    contenidoHtml: quienesSomosHtml(),
     /*
      * Grafo enlazado por `@id`: la Organization es la misma que declara
      * index.html (#organization), y la página, el sitio y el vídeo se citan

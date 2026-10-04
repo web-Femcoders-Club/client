@@ -1,5 +1,10 @@
 import { Mic, Users } from "lucide-react";
+import { COMO_LO_HACEMOS } from "../contenido";
+import TextoRico from "./TextoRico";
 import "./SeccionComoLoHacemos.css";
+
+const ENLACE = "fc-enlace fc-enlace--siempre fc-enlace--texto";
+const [REFERENTES, COLABORACIONES] = COMO_LO_HACEMOS.tarjetas;
 
 /*
  * Tercera sección de «Quiénes somos»: cómo trabaja la comunidad. Recoge los
@@ -11,22 +16,22 @@ const SeccionComoLoHacemos: React.FC = () => (
     <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
     <div className="como__contenedor">
       <div className="como__texto">
-        <p className="fc-antetitulo fc-antetitulo--naranja">Cómo lo hacemos</p>
+        <p className="fc-antetitulo fc-antetitulo--naranja">
+          {COMO_LO_HACEMOS.antetitulo}
+        </p>
         <h2 className="fc-titulo-seccion como__titulo" id="como-titulo">
-          Creamos espacios para conectar, compartir y{" "}
-          <span className="fc-rotulador">crecer</span>
+          {COMO_LO_HACEMOS.titulo.texto}{" "}
+          <span className="fc-rotulador">
+            {COMO_LO_HACEMOS.titulo.destacado}
+          </span>
         </h2>
         <p className="como__parrafo">
-          Reunimos a mujeres STEM en espacios donde puedan conocerse, compartir
-          experiencias y crear conexiones que impulsen su desarrollo personal y
-          profesional. Nuestros encuentros abordan la tecnología desde
-          diferentes perspectivas: desde conocimientos técnicos hasta liderazgo,
-          soft skills, bienestar profesional y oportunidades dentro del sector.
+          <TextoRico
+            fragmentos={COMO_LO_HACEMOS.parrafo}
+            claseEnlace={ENLACE}
+          />
         </p>
-        <p className="como__cierre">
-          Porque cuando una mujer comparte su experiencia, no solo cuenta su
-          historia: también puede abrir camino para muchas otras.
-        </p>
+        <p className="como__cierre">{COMO_LO_HACEMOS.cierre}</p>
       </div>
 
       <div className="como__tarjetas">
@@ -36,17 +41,10 @@ const SeccionComoLoHacemos: React.FC = () => (
               <div className="fc-disco" aria-hidden="true">
                 <Mic />
               </div>
-              <h3 className="como__nombre">Referentes</h3>
+              <h3 className="como__nombre">{REFERENTES.nombre}</h3>
             </div>
             <p className="como__texto-tarjeta">
-              Damos visibilidad a mujeres que ya están construyendo su camino
-              profesional, invitándolas a compartir su experiencia como ponentes
-              y referentes.{" "}
-              <strong>
-                Queremos que otras mujeres puedan verse reflejadas en ellas,
-                descubrir nuevos caminos y sentir que también pueden llegar
-                hasta allí.
-              </strong>
+              <TextoRico fragmentos={REFERENTES.parrafo} claseEnlace={ENLACE} />
             </p>
           </li>
           {/* La capa en degradado va solo detrás de la segunda, como la de Visión. */}
@@ -57,13 +55,13 @@ const SeccionComoLoHacemos: React.FC = () => (
                 <div className="fc-disco fc-disco--naranja" aria-hidden="true">
                   <Users />
                 </div>
-                <h3 className="como__nombre">Colaboraciones</h3>
+                <h3 className="como__nombre">{COLABORACIONES.nombre}</h3>
               </div>
               <p className="como__texto-tarjeta">
-                Colaboramos con empresas, organizaciones y profesionales para
-                acercar nuestra comunidad al ecosistema tecnológico y generar
-                encuentros de los que puedan surgir nuevas ideas, relaciones y
-                oportunidades.
+                <TextoRico
+                  fragmentos={COLABORACIONES.parrafo}
+                  claseEnlace={ENLACE}
+                />
               </p>
             </div>
           </li>
