@@ -5,6 +5,25 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Quiénes somos (rediseño)
+
+#### Cambiado
+- **Nueva primera sección de «Quiénes somos»**: texto a la izquierda y vídeo a la
+  derecha, con el fondo de la portada (`bg1`) y las piezas compartidas `fc-`. El
+  ancho del vídeo se ajusta también a la altura de la ventana para que la sección
+  quepa en una pantalla de portátil.
+
+#### Corregido
+- **El vídeo de la página nunca se indexó en Google**: no tenía miniatura, ni
+  título visible, ni datos estructurados, y el HTML servido no decía nada de él.
+  Ahora lleva `poster`, título y descripción visibles, un `VideoObject` que el
+  prerender escribe en el HTML servido (campo nuevo `jsonLd` en `RutaMeta`) y una
+  entrada `<video:video>` en el sitemap. Los datos salen de una sola fuente,
+  `src/features/About/videoComunidad.ts`. Aun así, Google indexa sobre todo
+  vídeos de páginas dedicadas a ellos; en esta página el vídeo es complementario,
+  así que la indexación no está garantizada. La versión de YouTube se enlaza,
+  no se incrusta, para no cargar cookies de terceros.
+
 ### Navegación y menús laterales
 
 #### Corregido

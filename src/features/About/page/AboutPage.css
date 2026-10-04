@@ -1,56 +1,8 @@
-.about-main-heading {
-  display: block !important;
-  visibility: visible !important;
-}
-
-@media (max-width: 768px) {
-  .about-main-heading {
-    font-size: 1.4rem !important;
-    margin-bottom: 1rem !important;
-  }
-}
-
-.contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  margin-top: 5rem;
-}
-.contenido-seccion {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 1.5rem;
-  gap: 5rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1s ease-out;
-}
-
-.banner-quienes-somos p {
-  color: #2a2170; 
-  font-family: "Roboto", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
 .video-container {
   width: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.video {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 560px; 
 }
 
 .container-bg-3 {
@@ -262,19 +214,6 @@
 }
 
 @media (max-width: 768px) {
-  .contenedor {
-    flex-direction: column;
-  }
-  .contenido-seccion {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .banner-quienes-somos p {
-    font-size: 1rem;
-  }
-
   .video-container {
     width: 100%;
     margin-bottom: 1rem;

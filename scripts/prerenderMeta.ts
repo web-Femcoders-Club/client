@@ -214,6 +214,10 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
     "",
     `    <meta name="twitter:title" content="${attr(meta.title)}" />`,
     `    <meta name="twitter:description" content="${attr(meta.description)}" />`,
+    ...(meta.jsonLd ?? []).map(
+      (schema) =>
+        `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`
+    ),
   ].join("\n");
 
   return html.replace("</head>", `${tags}\n  </head>`);

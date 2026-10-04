@@ -1,0 +1,179 @@
+/*
+ * Primera sección de «Quiénes somos». Piezas compartidas en
+ * src/styles/rediseno.css: `fc-manchas`, `fc-puntos`, `fc-antetitulo`,
+ * `fc-rotulador`, `fc-tarjeta`, `fc-boton`, `fc-chip` y `fc-enlace`.
+ * Fondo: `bg1`, el de la portada de la home.
+ *
+ * index.css pinta todos los `span` en naranja y 1.5rem y da tamaño y sombra a
+ * h1/h2: cada clase de aquí fija sus propios valores.
+ */
+
+/*
+ * Ocupa al menos una pantalla, como la portada de la home, con el contenido
+ * centrado en vertical. Es un mínimo: con zoom o el móvil en horizontal crece.
+ */
+.presentacion {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  /*
+   * La cabecera es fija y publica su altura real en --fem-header-height
+   * (80px en escritorio, 70px en móvil, más con zoom): el padding la sigue.
+   */
+  padding: calc(var(--fem-header-height, 80px) + 1.5rem) 16px clamp(2rem, 4vw, 3rem);
+}
+
+.presentacion__contenedor {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  /* La sección es flex: sin esto el grid no encoge en móvil. */
+  min-width: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.presentacion__texto {
+  min-width: 0;
+}
+
+.presentacion__titulo {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 3.6vw, 3.1rem);
+  line-height: 1.04;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* Naranja como en la portada; a este tamaño (más de 24px) es texto grande y cumple AA (3,71:1). */
+.presentacion__marca {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: inherit;
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-primary);
+}
+
+.presentacion__parrafo {
+  margin: 1.3rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.25vw, 1.15rem);
+  line-height: 1.6;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  text-wrap: pretty;
+}
+
+.presentacion__parrafo strong {
+  color: var(--color-text-dark);
+}
+
+.presentacion__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+/*
+ * El ancho del vídeo se limita también por la altura de la ventana, para que
+ * la sección quepa en una pantalla de portátil. Lo que no es vídeo, medido:
+ * cabecera + 1.5rem arriba, 3rem abajo, 2rem × 2 de padding de `fc-tarjeta`
+ * (el relleno es el suyo; no se redefine aquí porque el CSS de los
+ * componentes carga antes que rediseno.css y perdería), el hueco y el pie
+ * (≈ 8rem). Total: cabecera + 17.5rem. El mínimo de 20rem evita un vídeo
+ * diminuto con el móvil en horizontal.
+ */
+.presentacion__video {
+  margin: 0;
+  justify-self: end;
+  display: grid;
+  gap: 0.8rem;
+  width: min(100%, max(20rem, calc((100svh - var(--fem-header-height, 80px) - 17.5rem) * 16 / 9)));
+}
+
+.presentacion__video video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  background: var(--color-text-dark);
+}
+
+.presentacion__pie {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0 0.3rem 0.2rem;
+}
+
+.presentacion__pie-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.presentacion__video-titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.presentacion__video-desc {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+}
+
+.presentacion__youtube {
+  /* La caja mide 44px (táctil) y el texto menos: la rayita sube hasta las letras. */
+  --fc-enlace-bajo: 0.5rem;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  /* 44px de alto: objetivo táctil AAA. */
+  min-height: 2.75rem;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.presentacion__youtube svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.presentacion__youtube:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .presentacion__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .presentacion__video {
+    justify-self: center;
+  }
+}

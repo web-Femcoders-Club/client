@@ -21,6 +21,8 @@
  * avisa por consola, para que una ruta nueva no vuelva a caer en silencio.
  */
 
+import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
+
 export interface RutaMeta {
   title: string;
   description: string;
@@ -35,7 +37,15 @@ export interface RutaMeta {
    * dentro de la propia página.
    */
   encabezadoLista?: string;
+  /**
+   * Datos estructurados que deben estar en el HTML servido, no solo en el
+   * `<Helmet>`: el Helmet los añade en el navegador y Google solo los ve si
+   * renderiza la página.
+   */
+  jsonLd?: Record<string, unknown>[];
 }
+
+const urlAbsoluta = (ruta: string) => `https://www.femcodersclub.com${ruta}`;
 
 export const RUTAS_SPA: Record<string, RutaMeta> = {
   "/blog": {
@@ -82,6 +92,26 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     title: "FemCoders Club | Comunidad para Mujeres en Tecnología",
     description:
       "FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva.",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: VIDEO_COMUNIDAD.titulo,
+        description: VIDEO_COMUNIDAD.descripcion,
+        thumbnailUrl: urlAbsoluta(VIDEO_COMUNIDAD.miniatura),
+        uploadDate: VIDEO_COMUNIDAD.fechaSubida,
+        duration: `PT${VIDEO_COMUNIDAD.duracionSegundos}S`,
+        contentUrl: urlAbsoluta(VIDEO_COMUNIDAD.archivo),
+        inLanguage: "es",
+        // El mismo vídeo en YouTube. Se enlaza, no se incrusta: sin `embedUrl`.
+        sameAs: VIDEO_COMUNIDAD.youtube,
+        publisher: {
+          "@type": "Organization",
+          name: "FemCoders Club",
+          url: "https://www.femcodersclub.com",
+        },
+      },
+    ],
   },
   "/contacto": {
     title: "Contacto - FemCoders Club | Únete a Nuestra Comunidad Tech",

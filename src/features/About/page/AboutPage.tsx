@@ -6,8 +6,8 @@ import FemCodersClubLogo from "/FemCodersClubLogo.png";
 import "./AboutPage.css";
 import CarouselValues from "../components/CarouselValues";
 import iconCommitment from "/iconCommitment.png";
-import VideoInicialComunidad from "/VideoInicialComunidad.mp4";
 import Collapse from "../components/Collapse";
+import SeccionPresentacion from "../components/SeccionPresentacion";
 import { Helmet } from "react-helmet";
 
 const linkStyle = {
@@ -137,60 +137,7 @@ const AboutPage: React.FC = () => {
         </script>
       </Helmet>
 
-      <section className="parallax bg1 full-height">
-        <div className="contenedor">
-          <h1
-            className="about-main-heading"
-            style={{
-              fontSize: "2rem",
-              color: "#4737bb",
-              textAlign: "center",
-              marginBottom: "2rem",
-              fontFamily: "Asap, sans-serif",
-              letterSpacing: "0.5px",
-            }}
-          >
-            FemCoders Club: Empoderando Mujeres en Tecnología
-          </h1>
-
-          <div className="contenido-seccion animate-fade-in">
-            <div className="banner-quienes-somos text-left">
-              <p className="text-animate">
-                El objetivo principal de <strong>femCoders Club</strong> es
-                cerrar la brecha de género en el ámbito digital y ser un
-                referente que promueva la inclusión femenina en el mundo
-                tecnológico. <br />
-                Somos un grupo de mujeres apasionadas por la tecnología que{" "}
-                <strong className="highlight-text">
-                  trabajamos para fomentar la participación activa de las
-                  mujeres en el sector de TI.
-                </strong>{" "}
-                Descubre nuestros{" "}
-                <Link to="/eventos" style={linkStyle}>
-                  próximos eventos
-                </Link>{" "}
-                y conoce a nuestro{" "}
-                <Link to="/equipo" style={linkStyle}>
-                  increíble equipo
-                </Link>
-                .
-              </p>
-            </div>
-
-            <div className="compromise-video">
-              <video
-                src={VideoInicialComunidad}
-                className="video video-hover-effect"
-                controls
-                preload="metadata"
-                width="560"
-                height="315"
-                aria-label="Video inicial de la comunidad FemCoders Club, mostrando nuestras actividades y eventos"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SeccionPresentacion />
 
       <section className="parallax bg2 full-height">
         <div className="container-bg-3">
