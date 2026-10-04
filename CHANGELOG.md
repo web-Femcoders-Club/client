@@ -5,6 +5,66 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Quiénes somos (rediseño)
+
+#### Cambiado
+- **Nueva primera sección de «Quiénes somos»**: texto a la izquierda y vídeo a la
+  derecha, con el fondo de la portada (`bg1`) y las piezas compartidas `fc-`. El
+  ancho del vídeo se ajusta también a la altura de la ventana para que la sección
+  quepa en una pantalla de portátil.
+- **El resto de la página, rediseñado con los fondos de la home** (`bg3`, `bg4`
+  y `bg2` al cierre) y textos nuevos: «Nuestro propósito» (misión y visión),
+  «Cómo lo hacemos», «Compromiso y valores» y «Nuestras ideas», separadas en
+  lo que ya está en marcha y lo que viene. Piezas compartidas nuevas en
+  `rediseno.css`: `fc-capa`, `fc-disco`, `fc-desplegable` y `fc-enlace--texto`.
+- **Datos estructurados enlazados y en el HTML servido**: Organization,
+  AboutPage y VideoObject se citan entre sí por `@id` (`#organization` y
+  `#website` también en `index.html`) y los escribe el prerender, no el Helmet,
+  así que los leen también los rastreadores que no ejecutan JavaScript. Sale
+  `numberOfEmployees`, que en una asociación de voluntarias decía «6 empleadas».
+
+#### Eliminado
+- `CarouselValues.tsx`, `Collapse.tsx` y `AboutPage.css`, con su Tailwind, y los
+  quince iconos PNG de la página antigua con sus WebP.
+
+#### Corregido
+- **Misión y visión solo se leían pasando el ratón**: eran tarjetas que giraban
+  con `:hover`, ilegibles con teclado o en el móvil, donde además los dos
+  párrafos de debajo estaban ocultos con `display: none`. Ahora todo está a la
+  vista.
+- **El carrusel de valores no se podía parar** (WCAG 2.2.2) y llevaba texto
+  blanco sobre naranja. Ahora usa la lógica de los carruseles de la home
+  (`useRotacion`) y los once valores están en el DOM: Google indexaba solo el
+  que se veía al cargar.
+- **«Nuestras ideas» se abrían con `div` clicables sin `aria-expanded`**, y la
+  llamada final se ocultaba justo en el móvil. Ahora son botones desplegables y
+  la llamada se ve en todos los tamaños.
+- **El parallax del rediseño estaba congelado en toda la web**: `overflow: hidden`
+  en `.fc-manchas`, `.parallax`, `.contacto` e `.ideas` convertía cada sección en
+  contenedor de scroll, y las animaciones con `view()` la tomaban a ella (que no
+  se mueve) en vez de la página. Ahora es `overflow: clip`. Al activarse, en la
+  portada «Comunidad» tapaba una cara: las piezas del collage comparten una sola
+  línea de tiempo (`view-timeline: --hero-collage`) y entre 1025 y 1366px el
+  collage deja margen a la derecha para que el lema y «Oportunidades» no se
+  corten. Las apariciones (`data-aos`) ya no funden la opacidad, solo se
+  desplazan, para que ningún texto baje de 7:1 a mitad de entrada, y se
+  desactivan en pantallas de 500px de alto o menos.
+- **Carrusel de valores**: alto estable al rotar (todas las tarjetas en la misma
+  celda), puntos de 44px con contraste de 3:1 repartidos 11, 6 + 5 o 4 + 4 + 3
+  según el ancho, sin quedar bajo el botón «Volver arriba».
+- **Una regla `.text-left` de AboutPage.css** pintaba de blanco, con relleno, el
+  `text-left` de Tailwind en cualquier página visitada después, como las tablas
+  del panel.
+- **El vídeo de la página nunca se indexó en Google**: no tenía miniatura, ni
+  título visible, ni datos estructurados, y el HTML servido no decía nada de él.
+  Ahora lleva `poster`, título y descripción visibles, un `VideoObject` que el
+  prerender escribe en el HTML servido (campo nuevo `jsonLd` en `RutaMeta`) y una
+  entrada `<video:video>` en el sitemap. Los datos salen de una sola fuente,
+  `src/features/About/videoComunidad.ts`. Aun así, Google indexa sobre todo
+  vídeos de páginas dedicadas a ellos; en esta página el vídeo es complementario,
+  así que la indexación no está garantizada. La versión de YouTube se enlaza,
+  no se incrusta, para no cargar cookies de terceros.
+
 ### Navegación y menús laterales
 
 #### Corregido

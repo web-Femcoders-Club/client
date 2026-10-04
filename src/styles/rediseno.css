@@ -47,7 +47,14 @@
  */
 .fc-manchas {
   position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
   overflow: hidden;
+  overflow: clip;
 }
 
 .fc-manchas::before,
@@ -100,6 +107,23 @@
   mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
 }
 
+/*
+ * Capa en degradado de marca, girada, detrás de una pieza para darle
+ * profundidad (como la de la galería de «Nuestra esencia»). Es un elemento
+ * con aria-hidden dentro de un contenedor con `position: relative`; quien la
+ * usa fija su posición, su tamaño y su giro. Lo que va encima necesita
+ * `position: relative; z-index: 1`.
+ */
+.fc-capa {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  background: linear-gradient(135deg, rgba(234, 79, 51, 0.9), rgba(108, 99, 255, 0.9) 60%, rgba(71, 55, 187, 0.95));
+  opacity: 0.9;
+}
+
 /* ---------- Movimiento ligado al scroll ---------- */
 
 /*
@@ -107,9 +131,9 @@
  * no lo soporta, o con «reducir movimiento» (WCAG 2.3.3), no se mueve nada y
  * el contenido se ve completo y quieto.
  *
- * Capas: las manchas (`fc-manchas`) y la retícula (`fc-puntos`) se desplazan
- * a distinta velocidad que el contenido mientras la sección cruza la
- * pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
+ * Capas: las manchas (`fc-manchas`), la retícula (`fc-puntos`) y la capa en
+ * degradado (`fc-capa`) se desplazan a distinta velocidad que el contenido
+ * mientras la sección cruza la pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
  *
  * Aparición: los elementos con `data-aos` suben y aparecen al entrar en
  * pantalla. Sustituye a la librería AOS sin tocar el marcado. Nunca empiezan
@@ -132,18 +156,18 @@
 }
 
 @keyframes fc-aparece-arriba {
-  from { opacity: 0.2; translate: 0 50px; }
-  to { opacity: 1; translate: 0 0; }
+  from { translate: 0 50px; }
+  to { translate: 0 0; }
 }
 
 @keyframes fc-aparece-lado {
-  from { opacity: 0.2; translate: -50px 0; }
-  to { opacity: 1; translate: 0 0; }
+  from { translate: -50px 0; }
+  to { translate: 0 0; }
 }
 
 @keyframes fc-aparece-zoom {
-  from { opacity: 0.2; scale: 0.9; }
-  to { opacity: 1; scale: 1; }
+  from { scale: 0.9; }
+  to { scale: 1; }
 }
 
 @supports (animation-timeline: view()) {
@@ -163,10 +187,20 @@
       animation-timeline: view();
     }
 
+    /* La capa en degradado detrás de una tarjeta: se separa de ella al hacer scroll. */
+    .fc-capa {
+      animation: fc-capa-media linear both;
+      animation-timeline: view();
+    }
+
     [data-aos] {
       animation: fc-aparece-arriba linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      /*
+       * Tramo corto y sin fundido (solo se desplazan): quien se para a mitad
+       * de una entrada nunca lee texto desvaído por debajo de 7:1.
+       */
+      animation-range: entry 0% entry 25%;
     }
 
     [data-aos="fade-right"] {
@@ -175,6 +209,20 @@
 
     [data-aos="zoom-in"] {
       animation-name: fc-aparece-zoom;
+    }
+
+    /* En una columna, la entrada lateral se recortaba contra el borde de la sección: sube. */
+    @media (max-width: 900px) {
+      [data-aos="fade-right"] {
+        animation-name: fc-aparece-arriba;
+      }
+    }
+
+    /* Pantallas bajas (móvil en horizontal): sin apariciones, el texto siempre entero. */
+    @media (max-height: 500px) {
+      [data-aos] {
+        animation: none;
+      }
     }
   }
 }
@@ -306,6 +354,27 @@
 .fc-enlace:hover::after,
 .fc-enlace:active::after {
   width: calc(100% - 2 * var(--fc-enlace-margen, 0px));
+}
+
+/*
+ * Dentro de un párrafo: la línea va pegada bajo las letras y ocupa toda la
+ * palabra, para que el enlace no dependa solo del color (WCAG 1.4.1) aunque
+ * esté junto a texto en negrita del mismo violeta.
+ */
+.fc-enlace--texto {
+  --fc-enlace-bajo: -2px;
+  color: var(--color-secondary);
+}
+
+.fc-enlace--texto::after,
+.fc-enlace--texto.fc-enlace--siempre::after {
+  width: 100%;
+}
+
+.fc-enlace--texto:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .fc-sobre-oscuro .fc-enlace {
@@ -502,6 +571,123 @@
 .fc-boton-rotacion svg {
   width: 1rem;
   height: 1rem;
+}
+
+/* ---------- Disco de icono ---------- */
+
+/*
+ * Círculo con un icono dentro, junto al título de una tarjeta. Azul sobre
+ * lavanda o, con `--naranja`, naranja oscuro sobre melocotón (7,41:1).
+ * Va en un `div`: un `span` heredaría la regla global.
+ */
+.fc-disco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-lavanda-medio);
+  color: var(--color-secondary);
+}
+
+.fc-disco--naranja {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-disco svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---------- Desplegable en pastilla ---------- */
+
+/*
+ * Pregunta o apartado que se abre al pulsarlo, como las preguntas frecuentes
+ * de los documentos del pie: pastilla en relieve sobre lavanda y, abierta,
+ * hundida. Es un <button> con aria-expanded y aria-controls; el «+»/«−» va
+ * oculto al lector, porque el estado ya lo da aria-expanded.
+ * (Documento.css tiene su propia copia para las FAQ; puede pasar a esta.)
+ */
+.fc-desplegable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.7rem 0.9rem 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+  /* Violeta sobre lavanda: 7,16:1, AAA. */
+  color: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.18);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.fc-desplegable:hover {
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.22);
+}
+
+.fc-desplegable[aria-expanded="true"] {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.18), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.fc-desplegable:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/*
+ * Sobre fondo oscuro (bg2) no hay luz blanca que haga el relieve: la pastilla
+ * flota con una sombra oscura y, abierta, se hunde un poco.
+ */
+.fc-sobre-oscuro .fc-desplegable {
+  box-shadow: 0 10px 24px rgba(5, 3, 30, 0.4);
+}
+
+.fc-sobre-oscuro .fc-desplegable:hover {
+  box-shadow: 0 14px 30px rgba(5, 3, 30, 0.5);
+}
+
+.fc-sobre-oscuro .fc-desplegable[aria-expanded="true"] {
+  box-shadow: inset 3px 3px 8px rgba(71, 55, 187, 0.25), 0 6px 14px rgba(5, 3, 30, 0.3);
+}
+
+.fc-sobre-oscuro .fc-desplegable:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+/* El «+» / «−», en un círculo azul noche. */
+.fc-desplegable__signo {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+}
+
+.fc-desplegable__signo svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-desplegable {
+    transition: none;
+  }
 }
 
 /* ---------- Chip de categoría ---------- */

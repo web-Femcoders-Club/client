@@ -21,6 +21,9 @@
  * avisa por consola, para que una ruta nueva no vuelva a caer en silencio.
  */
 
+import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
+import { quienesSomosHtml } from "./contenidoQuienesSomos";
+
 export interface RutaMeta {
   title: string;
   description: string;
@@ -35,7 +38,32 @@ export interface RutaMeta {
    * dentro de la propia página.
    */
   encabezadoLista?: string;
+  /**
+   * Datos estructurados que deben estar en el HTML servido, no solo en el
+   * `<Helmet>`: el Helmet los añade en el navegador y Google solo los ve si
+   * renderiza la página.
+   */
+  jsonLd?: Record<string, unknown>[];
+  /**
+   * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
+   * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
+   * página hecha en React solo leen las metas.
+   */
+  contenidoHtml?: string;
+  /**
+   * Imagen al compartir en redes (og:image y twitter:image). Sin ella, la
+   * ruta se queda con la genérica de index.html (el logo). 1200×630.
+   */
+  imagen?: { ruta: string; ancho: number; alto: number; alt: string };
 }
+
+const SITIO = "https://www.femcodersclub.com";
+const urlAbsoluta = (ruta: string) => `${SITIO}${ruta}`;
+
+// Identificadores del grafo JSON-LD. #organization y #website son los de index.html.
+const ID_ORGANIZACION = `${SITIO}/#organization`;
+const ID_SITIO = `${SITIO}/#website`;
+const ID_VIDEO = `${SITIO}/femcoders-quienes-somos#video`;
 
 export const RUTAS_SPA: Record<string, RutaMeta> = {
   "/blog": {
@@ -79,9 +107,86 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino.",
   },
   "/femcoders-quienes-somos": {
-    title: "FemCoders Club | Comunidad para Mujeres en Tecnología",
+    title: "Quiénes somos: misión, visión y valores | FemCoders Club",
     description:
-      "FemCoders Club es una comunidad que empodera a mujeres en el mundo tecnológico, cerrando la brecha de género digital. Conoce nuestra misión, visión y valores, y únete a nuestra comunidad inclusiva.",
+      "Somos una comunidad de mujeres en tecnología nacida en Barcelona en 2023. Conoce nuestra misión, nuestra visión y los valores con los que trabajamos juntas.",
+    contenidoHtml: quienesSomosHtml(),
+    imagen: {
+      ruta: "/og-quienes-somos.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Cuatro mujeres de FemCoders Club se hacen un selfi sonriendo durante un evento",
+    },
+    /*
+     * Grafo enlazado por `@id`: la Organization es la misma que declara
+     * index.html (#organization), y la página, el sitio y el vídeo se citan
+     * entre sí. Va aquí y no en el Helmet de AboutPage para que esté en el
+     * HTML servido, que es lo que leen los rastreadores que no ejecutan JS.
+     */
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": ID_ORGANIZACION,
+        name: "FemCoders Club",
+        url: SITIO,
+        logo: urlAbsoluta("/FemCodersClubLogo.png"),
+        description:
+          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y más de 40 eventos organizados.",
+        foundingDate: "2023-10-24",
+        email: "info@femcodersclub.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Barcelona",
+          addressCountry: "ES",
+        },
+        // Liliana Dalmarco se mantiene a propósito aunque haya salido del
+        // equipo visible (EQ1, issue #18): `founder` es quien fundó la
+        // organización, un hecho histórico que no cambia. Sin
+        // `numberOfEmployees`: en una asociación de voluntarias diría que
+        // tiene seis empleadas, y el dato ya lo da `founder`.
+        founder: [
+          { "@type": "Person", name: "Irina Ichim", jobTitle: "Fullstack Software Developer & AI Specialist", sameAs: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
+          { "@type": "Person", name: "Ana Lucía Silva Córdoba", jobTitle: "Fullstack Developer & Data Science", sameAs: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
+          { "@type": "Person", name: "Elvia Benedith", jobTitle: "Full-stack Web Developer", sameAs: "https://www.linkedin.com/in/elvia-benedith" },
+          { "@type": "Person", name: "Silvina Lucero Calderón", jobTitle: "Full Stack Developer & QA", sameAs: "https://www.linkedin.com/in/silvina-lucero" },
+          { "@type": "Person", name: "Liliana Dalmarco", jobTitle: "Fullstack Developer & Scrum Master", sameAs: "https://www.linkedin.com/in/lilianadalmarco" },
+          { "@type": "Person", name: "Isadora Matias", jobTitle: "Full Stack Developer & Designer", sameAs: "https://www.linkedin.com/in/isadoramatias/" },
+        ],
+        knowsAbout: [
+          "mujeres en tecnología", "diversidad en tech", "desarrollo web", "JavaScript", "CSS", "HTML", "React", "inteligencia artificial", "open source",
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": urlAbsoluta("/femcoders-quienes-somos"),
+        name: "Quiénes somos — FemCoders Club",
+        url: urlAbsoluta("/femcoders-quienes-somos"),
+        description:
+          "FemCoders Club es una asociación registrada fundada en Barcelona en octubre de 2023. Misión, visión y valores de la comunidad de mujeres en tecnología.",
+        inLanguage: "es",
+        isPartOf: { "@id": ID_SITIO },
+        about: { "@id": ID_ORGANIZACION },
+        mainEntity: { "@id": ID_ORGANIZACION },
+        video: { "@id": ID_VIDEO },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "@id": ID_VIDEO,
+        name: VIDEO_COMUNIDAD.titulo,
+        description: VIDEO_COMUNIDAD.descripcion,
+        thumbnailUrl: urlAbsoluta(VIDEO_COMUNIDAD.miniatura),
+        uploadDate: VIDEO_COMUNIDAD.fechaSubida,
+        duration: `PT${VIDEO_COMUNIDAD.duracionSegundos}S`,
+        contentUrl: urlAbsoluta(VIDEO_COMUNIDAD.archivo),
+        inLanguage: "es",
+        // El mismo vídeo en YouTube. Se enlaza, no se incrusta: sin `embedUrl`.
+        sameAs: VIDEO_COMUNIDAD.youtube,
+        publisher: { "@id": ID_ORGANIZACION },
+      },
+    ],
   },
   "/contacto": {
     title: "Contacto - FemCoders Club | Únete a Nuestra Comunidad Tech",

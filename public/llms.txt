@@ -2,7 +2,7 @@
 
 ## About
 
-FemCoders Club is a Spanish tech community and registered association founded on October 24, 2023, in Barcelona, Spain. Its mission is to empower women in technology by providing education, mentoring, networking and professional development resources. The community is open to women and people from underrepresented groups in tech across Spain and Latin America.
+FemCoders Club is a Spanish tech community and registered association founded on October 24, 2023, in Barcelona, Spain. Its mission is to empower women in technology by providing education, mentoring, networking and professional development resources. The community is open to women and people from underrepresented groups in tech.
 
 ## Facts
 
@@ -61,7 +61,6 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Website: https://www.femcodersclub.com
 - Blog: https://www.femcodersclub.com/blog
 - Resources: https://www.femcodersclub.com/blog/recursos
-- Latest JS post: https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion
 - Events: https://www.femcodersclub.com/eventos
 - Team: https://www.femcodersclub.com/equipo
 - About: https://www.femcodersclub.com/femcoders-quienes-somos
@@ -76,6 +75,84 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 
 - General: info@femcodersclub.com
 - Partnerships: partnerships@femcodersclub.com
+
+<!-- BEGIN: quienes somos generado automaticamente -->
+
+## About us: mission, vision and values (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/femcoders-quienes-somos
+
+Queremos cerrar la brecha de género en el ámbito digital y que la tecnología sea un lugar donde cada mujer encuentre su sitio. Somos una comunidad de mujeres vinculadas al mundo de la tecnología que trabajamos para que más mujeres participen, crezcan y lideren en el sector. Creamos espacios donde compartir conocimiento, generar conexiones y abrir oportunidades reales para avanzar juntas.
+
+Asociación sin ánimo de lucro nacida en Barcelona en octubre de 2023 · más de 1.500 mujeres · más de 40 eventos
+
+Video: Así es FemCoders Club. Quiénes somos y por qué existe FemCoders Club, la comunidad de mujeres en tecnología nacida en Barcelona, contado en menos de un minuto. https://www.youtube.com/watch?v=4k3q03neEA4
+
+### Misión
+
+Empoderar e impulsar a las mujeres en el desarrollo web y la tecnología.
+
+Trabajamos para cerrar la brecha de género en la tecnología con una comunidad que fortalece habilidades, conocimientos y confianza, a través de eventos (https://www.femcodersclub.com/eventos), talleres y recursos (https://www.femcodersclub.com/blog/recursos) que promueven la inclusión, la equidad y la diversidad.
+
+Queremos que cada mujer tenga herramientas para avanzar profesionalmente, compartir lo que sabe y descubrir nuevas oportunidades dentro del sector. Porque aumentar la presencia de mujeres en tecnología también significa darles espacio para crear, decidir y liderar su futuro profesional.
+
+### Visión
+
+Un futuro en el que las mujeres lideren, innoven y den forma al mundo digital.
+
+Aspiramos a un sector tecnológico equitativo e inclusivo, donde el talento y las oportunidades no estén condicionados por el género ni por el lugar de origen. Queremos contribuir a una industria en la que más mujeres ocupen espacios de decisión, impulsen nuevas ideas y sean referentes para las próximas generaciones.
+
+Una tecnología más diversa no solo abre puertas: también transforma quién la crea y para quién se construye.
+
+### Creamos espacios para conectar, compartir y crecer
+
+Reunimos a mujeres STEM en espacios donde puedan conocerse, compartir experiencias y crear conexiones que impulsen su desarrollo personal y profesional. Nuestros encuentros abordan la tecnología desde diferentes perspectivas: desde conocimientos técnicos hasta liderazgo, soft skills, bienestar profesional y oportunidades dentro del sector.
+
+- Referentes: Damos visibilidad a mujeres que ya están construyendo su camino profesional, invitándolas a compartir su experiencia como ponentes y referentes. Queremos que otras mujeres puedan verse reflejadas en ellas, descubrir nuevos caminos y sentir que también pueden llegar hasta allí.
+- Colaboraciones: Colaboramos con empresas, organizaciones y profesionales para acercar nuestra comunidad al ecosistema tecnológico y generar encuentros de los que puedan surgir nuevas ideas, relaciones y oportunidades.
+
+### Nuestro compromiso con una tecnología más diversa
+
+Trabajamos para contribuir a reducir la brecha de género en el sector tecnológico, fomentar la inclusión y generar oportunidades para que más mujeres puedan desarrollarse, avanzar y ocupar su espacio dentro de la industria.
+
+Queremos ser un punto de encuentro donde las mujeres encuentren referentes, conexiones, recursos y oportunidades para crecer personal y profesionalmente. Un espacio donde compartir experiencias, apoyarse, crear nuevas relaciones y sentirse parte de una comunidad que avanza junta.
+
+Nuestro compromiso también pasa por dar visibilidad al talento femenino que ya está transformando el sector, porque cada mujer que comparte su experiencia puede convertirse en referente para muchas otras.
+
+Si quieres conocer mejor lo que hacemos, descubre nuestras iniciativas en el blog (https://www.femcodersclub.com/blog) o escríbenos (https://www.femcodersclub.com/contacto) y forma parte de la comunidad.
+
+### Nuestros valores
+
+- Equidad: Las mujeres deben tener las mismas oportunidades de desarrollo profesional que los hombres, sin discriminación por género.
+- Inclusión: Las mujeres deben sentirse bienvenidas y apoyadas en el sector IT, independientemente de sus antecedentes o experiencias.
+- Visibilidad: Los logros de las mujeres en el sector IT deben ser reconocidos y celebrados.
+- Desarrollo profesional: Las mujeres deben tener acceso a oportunidades de desarrollo profesional que les permitan alcanzar su máximo potencial.
+- Colaboración: Fomentar un ambiente donde las mujeres trabajen juntas de manera colaborativa, compartiendo conocimientos y experiencias para impulsar el crecimiento mutuo.
+- Empoderamiento: Capacitar a las mujeres para que tomen el control de sus carreras en tecnología, brindándoles las herramientas y el apoyo necesarios para alcanzar sus metas.
+- Diversidad: Reconocer y valorar las diversas perspectivas, habilidades y experiencias que cada mujer aporta al campo de la tecnología, promoviendo un entorno inclusivo y enriquecedor.
+- Ética: Promover prácticas éticas en el trabajo tecnológico, priorizando la integridad, la transparencia y el respeto hacia los demás y hacia la sociedad en general.
+- Innovación: Fomentar la creatividad y la innovación entre las mujeres en tecnología, alentándolas a pensar de manera crítica y a proponer soluciones disruptivas para los desafíos actuales y futuros.
+- Equilibrio entre vida laboral y personal: Promover un equilibrio saludable entre la vida laboral y personal, reconociendo la importancia de cuidar el bienestar físico, emocional y mental de las mujeres en la industria tecnológica.
+- Responsabilidad social: Comprometerse con la responsabilidad social corporativa, participando en iniciativas y proyectos que tengan un impacto positivo en la comunidad y en el mundo en general.
+
+### Ya en marcha
+
+- Mentorías: Mujeres con experiencia acompañan a quienes empiezan o quieren dar el siguiente paso. Ver mentorías (con tu cuenta) (https://www.femcodersclub.com/mentoria)
+- Recursos y herramientas: Artículos y materiales gratuitos para aprender a tu ritmo. Ver recursos (https://www.femcodersclub.com/blog/recursos)
+- Eventos tecnológicos: Charlas, talleres y hackathons, presenciales y online. Ver eventos (https://www.femcodersclub.com/eventos)
+- Espacios de networking: Encuentros para conectar, compartir experiencias y crear relaciones profesionales.
+- Alianzas con empresas: Colaboramos con empresas y organizaciones que comparten nuestra misión.
+- Comunidad virtual: Un espacio en línea para hacer preguntas, compartir recursos y apoyarnos.
+
+### En el horizonte
+
+- Directorio de miembros: Un directorio de mujeres de la comunidad, para darse a conocer y encontrarse.
+- Coworking y laboratorios: Espacios de trabajo colaborativo donde crear y diseñar juntas.
+- Grupos de interés: Grupos sobre inteligencia artificial, ciberseguridad u otras áreas, para profundizar juntas.
+- Programas de emprendimiento: Asesoramiento y contactos para mujeres que emprenden en tecnología.
+- Campañas de concienciación: Campañas sobre la importancia de la diversidad de género en la tecnología.
+
+<!-- END: quienes somos generado automaticamente -->
 
 <!-- BEGIN: posts generados automaticamente -->
 

@@ -199,6 +199,14 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
   for (const value of ["twitter:title", "twitter:description", "description"]) {
     html = stripMeta(html, "name", value);
   }
+  if (meta.imagen) {
+    for (const value of ["og:image", "og:image:secure_url", "og:image:width", "og:image:height", "og:image:alt"]) {
+      html = stripMeta(html, "property", value);
+    }
+    for (const value of ["twitter:image", "twitter:image:alt"]) {
+      html = stripMeta(html, "name", value);
+    }
+  }
 
   const tags = [
     `    <title>${attr(meta.title)}</title>`,
@@ -214,6 +222,20 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
     "",
     `    <meta name="twitter:title" content="${attr(meta.title)}" />`,
     `    <meta name="twitter:description" content="${attr(meta.description)}" />`,
+    ...(meta.imagen
+      ? [
+          `    <meta property="og:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta property="og:image:width" content="${meta.imagen.ancho}" />`,
+          `    <meta property="og:image:height" content="${meta.imagen.alto}" />`,
+          `    <meta property="og:image:alt" content="${attr(meta.imagen.alt)}" />`,
+          `    <meta name="twitter:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta name="twitter:image:alt" content="${attr(meta.imagen.alt)}" />`,
+        ]
+      : []),
+    ...(meta.jsonLd ?? []).map(
+      (schema) =>
+        `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`
+    ),
   ].join("\n");
 
   return html.replace("</head>", `${tags}\n  </head>`);
@@ -257,6 +279,18 @@ function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): st
     "    </noscript>",
   ].join("\n");
 
+  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+}
+
+/**
+ * Incrusta el texto de la página en un `<noscript>` para quien no ejecuta
+ * JavaScript (los rastreadores de los modelos). Con JS activo la página real
+ * ya está ahí. Es el mismo texto que ve una persona: sale de la misma fuente
+ * que pintan los componentes (ver scripts/contenidoQuienesSomos.ts).
+ */
+function renderContenido(html: string, meta: RutaMeta): string {
+  if (!meta.contenidoHtml) return html;
+  const bloque = `    <noscript>\n${meta.contenidoHtml}\n    </noscript>`;
   return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
 }
 
@@ -394,6 +428,7 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     if (meta) {
       html = renderHeadRuta(template, route, meta);
       html = renderEnlacesPosts(html, posts, meta);
+      html = renderContenido(html, meta);
     } else {
       sinMetas.push(route);
     }
