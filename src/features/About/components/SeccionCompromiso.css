@@ -1,0 +1,215 @@
+/*
+ * «Compromiso y valores» en «Quiénes somos», con el carrusel de valores.
+ * Piezas compartidas en src/styles/rediseno.css: `fc-manchas`, `fc-puntos`,
+ * `fc-antetitulo`, `fc-titulo-seccion`, `fc-rotulador`, `fc-tarjeta`,
+ * `fc-disco`, `fc-boton-redondo`, `fc-boton-rotacion` y `fc-enlace`.
+ * Fondo: `bg3`.
+ *
+ * index.css da color naranja y sombra a h3 y tamaño a h4: cada clase fija
+ * sus valores.
+ */
+
+.compromiso {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.compromiso__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  /* Las dos columnas a la misma altura: el carrusel ocupa todo el alto del texto. */
+  align-items: stretch;
+}
+
+.compromiso__texto {
+  min-width: 0;
+}
+
+.compromiso__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+.compromiso__parrafos {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  max-width: 33rem;
+}
+
+.compromiso__parrafos p {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.compromiso__parrafos strong {
+  color: var(--color-secondary);
+}
+
+/* ---------- Carrusel de valores ---------- */
+
+/* Etiqueta arriba, controles abajo y la tarjeta crece en medio hasta igualar el texto. */
+.valores {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.4rem;
+}
+
+.valores__etiqueta {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+/* Dos tarjetas «apiladas» detrás de la visible: indican que hay más valores. */
+.valores__pila {
+  position: relative;
+  display: grid;
+  padding: 0 1.4rem 1.4rem 0;
+}
+
+.valores__pila::before,
+.valores__pila::after {
+  content: "";
+  position: absolute;
+  border-radius: 1.4rem;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(71, 55, 187, 0.1);
+}
+
+.valores__pila::before {
+  inset: 1.4rem 0 0 1.4rem;
+  opacity: 0.55;
+}
+
+.valores__pila::after {
+  inset: 0.7rem;
+  opacity: 0.85;
+}
+
+/* `.valores` delante: este CSS carga antes que rediseno.css y el relleno de `fc-tarjeta` ganaría. */
+.valores .valores__tarjeta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.2rem;
+  /* El contenido se centra en vertical en la tarjeta alta, con el disco y el contador arriba. */
+  grid-template-rows: auto 1fr;
+  /* Alto mínimo: la tarjeta no salta al cambiar de un valor corto a uno largo. */
+  min-height: 19rem;
+  padding: clamp(1.8rem, 3.2vw, 2.8rem);
+}
+
+.valores__cuerpo {
+  display: grid;
+  gap: 1.1rem;
+  align-content: center;
+}
+
+.valores__cabeza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.valores__contador {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.valores__nombre {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  text-wrap: balance;
+}
+
+.valores__descripcion {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.valores__controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.valores__puntos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* El punto se ve pequeño, pero la zona que se pulsa mide 24px (WCAG 2.5.8). */
+.valores__punto {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+}
+
+.valores__punto::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(71, 55, 187, 0.35);
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.valores__punto[aria-current="true"]::before {
+  width: 1.3rem;
+  background: var(--color-secondary);
+}
+
+.valores__punto:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .compromiso__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .valores__punto::before {
+    transition: none;
+  }
+}

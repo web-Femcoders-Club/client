@@ -1,20 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AboutPage.css";
-import CarouselValues from "../components/CarouselValues";
-import iconCommitment from "/iconCommitment.png";
 import Collapse from "../components/Collapse";
 import SeccionPresentacion from "../components/SeccionPresentacion";
 import SeccionProposito from "../components/SeccionProposito";
 import SeccionComoLoHacemos from "../components/SeccionComoLoHacemos";
+import SeccionCompromiso from "../components/SeccionCompromiso";
 import { Helmet } from "react-helmet";
-
-const linkStyle = {
-  color: "#ea4f33",
-  textDecoration: "none",
-  fontWeight: "bold",
-  transition: "color 0.2s ease",
-};
 
 const AboutPage: React.FC = () => {
   return (
@@ -141,43 +133,7 @@ const AboutPage: React.FC = () => {
       <SeccionProposito />
       <SeccionComoLoHacemos />
 
-      <section className="parallax bg3">
-        <div className="bg3-content">
-          <div className="commitment-section">
-            <div className="compromise-text">
-              <img
-                src={iconCommitment}
-                alt="Icono Compromiso"
-                width={33}
-                height={33}
-              />
-              <h3>Nuestro Compromiso</h3>
-              <p className="mx-8 mb-16 text-bodyText text-base text-contrast text-justify md:w-[550px]">
-                Nuestra comunidad se compromete a realizar un esfuerzo real por
-                disminuir la brecha de género digital, a fomentar la inclusión y
-                a generar oportunidades para que las mujeres encuentren su lugar
-                en la industria tecnológica. Nos comprometemos a ser el espacio
-                en el cual las mujeres encuentren motivación y recursos que les
-                permitan crecer personal y profesionalmente, donde puedan y
-                elijan crear comunidad para potenciar todo tipo de crecimiento.
-                Si quieres saber más sobre nuestras iniciativas, visita nuestra
-                sección de{" "}
-                <Link to="/blog/noticias" style={linkStyle}>
-                  blog
-                </Link>{" "}
-                o{" "}
-                <Link to="/contacto" style={linkStyle}>
-                  contáctanos
-                </Link>
-                .
-              </p>
-            </div>
-            <div className="values-section">
-              <CarouselValues />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SeccionCompromiso />
 
       <section className="parallax bg4">
         <div style={{ width: "85%", margin: "0 auto", padding: "1rem 0" }}>
