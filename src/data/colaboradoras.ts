@@ -276,7 +276,8 @@ export const COLABORADORAS: Colaboradora[] = [
   {
     nombre: "Talent Arena",
     tipo: "congreso",
-    imagen: foto("assets/noticias/talent-arena-2026-partnership.webp"),
+    // Su logo es un cuadrado negro: a toda la caja se lee mejor que pequeño sobre blanco.
+    imagen: foto("assets/Eventos2025/talentArena-logo.webp"),
     colaboraciones: [{ fecha: "2026-02", descripcion: "Community Partner de Talent Arena 2026" }],
   },
   {
@@ -329,7 +330,7 @@ export const COLABORADORAS: Colaboradora[] = [
   {
     nombre: "Vonage",
     tipo: "plataforma",
-    imagen: logo("assets/Vonage/VonageLogo.webp"),
+    imagen: logo("assets/Eventos2025/logo-Vonage.webp"),
     colaboraciones: [
       { fecha: "2026-09", descripcion: "Vonage Community Partnership Program" },
       { fecha: "2026-09-20", descripcion: "Premio Best use of the Vonage Video API en HackBarna" },
