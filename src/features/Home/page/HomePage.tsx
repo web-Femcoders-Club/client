@@ -607,7 +607,7 @@ const HomePage: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://www.femcodersclub.com/cofundadoras-femCoders-club.webp"
+          content="https://www.femcodersclub.com/cofundadorasFemCodersClub.jpg"
         />
         <meta
           property="og:image:alt"

@@ -69,6 +69,13 @@
   gap: 0.9rem;
 }
 
+/* En dos columnas, el texto baja un poco: centrado, quedaba por encima del título. */
+@media (min-width: 901px) {
+  .equipo__texto {
+    margin-top: 2rem;
+  }
+}
+
 .equipo__texto p {
   margin: 0;
   max-width: 36rem;

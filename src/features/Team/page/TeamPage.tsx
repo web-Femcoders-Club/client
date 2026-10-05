@@ -1,58 +1,10 @@
 import { Helmet } from "react-helmet";
-import {
-  FaBuilding,
-  FaHandshake,
-  FaHeart,
-  FaLightbulb,
-  FaStar,
-  FaUsers,
-} from "react-icons/fa";
+import SeccionCambio from "../components/SeccionCambio";
 import SeccionEquipo from "../components/SeccionEquipo";
 import SeccionImpacto from "../components/SeccionImpacto";
 import SeccionValores from "../components/SeccionValores";
-import "./../../Home/page/Home.css";
-import "./TeamPage.css";
 
 const TeamPage = () => {
-  const sponsorshipBenefits = [
-    {
-      icon: <FaUsers className="benefit-icon" />,
-      title: "Visibiliza a tu equipo femenino",
-      description:
-        "Da protagonismo a las mujeres que forman parte de tu empresa y muéstralas como referentes del sector tech.",
-    },
-    {
-      icon: <FaStar className="benefit-icon" />,
-      title: "Visibilidad destacada",
-      description:
-        "Tu marca estará presente en eventos, redes y materiales oficiales, ganando visibilidad ante una audiencia tech comprometida.",
-    },
-    {
-      icon: <FaHandshake className="benefit-icon" />,
-      title: "Networking estratégico",
-      description:
-        "Conecta con profesionales tecnológicas y expande tu red de contactos en el sector.",
-    },
-    {
-      icon: <FaLightbulb className="benefit-icon" />,
-      title: "Innovación y talento",
-      description:
-        "Accede a talento femenino diverso y altamente cualificado para impulsar la innovación.",
-    },
-    {
-      icon: <FaBuilding className="benefit-icon" />,
-      title: "Imagen corporativa",
-      description:
-        "Refuerza tu compromiso con la diversidad y la inclusión en tecnología.",
-    },
-    {
-      icon: <FaHeart className="benefit-icon" />,
-      title: "Impacto social real",
-      description:
-        "Forma parte activa del cambio hacia un sector tecnológico más inclusivo, justo y representativo.",
-    },
-  ];
-
   return (
     <>
     <Helmet>
@@ -261,59 +213,14 @@ const TeamPage = () => {
   </script>
 </Helmet>
 
-      {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4. */}
+      {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4 → bg2. */}
       <SeccionEquipo />
 
       <SeccionValores />
 
       <SeccionImpacto />
 
-      <section
-        className="become-sponsor-section bg1"
-        data-aos="fade-up"
-        data-aos-delay="300"
-        aria-labelledby="become-sponsor-heading"
-      >
-        <h3 id="become-sponsor-heading" className="become-sponsor-title" tabIndex={0}>
-          Sé parte del cambio en la industria tecnológica
-        </h3>
-
-        <div className="benefits-grid" role="list" aria-label="Beneficios de ser sponsor">
-          {sponsorshipBenefits.map((benefit, index) => (
-            <article
-              key={index}
-              className="benefit-card"
-              data-aos="zoom-in"
-              data-aos-delay={300 + index * 100}
-              role="listitem"
-            >
-             
-              <div className="benefit-icon-container" aria-hidden="true">{benefit.icon}</div>
-              <h4 className="benefit-title">{benefit.title}</h4>
-              <p className="benefit-description">{benefit.description}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="sponsor-cta">
-        
-          <p className="sponsor-message">
-            Únete a las empresas líderes que están marcando la diferencia en
-            la inclusión de mujeres en tecnología. Tu apoyo puede ser el catalizador
-            para nuevas oportunidades y un futuro tecnológico más diverso.
-          </p>
-
-          <div className="cta-buttons">
-            <a
-              href="mailto:partnerships@femcodersclub.com"
-              className="partnership-button"
-              aria-label="Enviar correo para colaborar como partner de FemCoders Club"
-            >
-              <p>Quiero colaborar</p>
-            </a>
-          </div>
-        </div>
-      </section>
+      <SeccionCambio />
     </>
   );
 };
