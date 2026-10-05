@@ -1,44 +1,20 @@
 import { Helmet } from "react-helmet";
 import {
-  FaAward,
   FaBuilding,
   FaHandshake,
   FaHeart,
   FaLightbulb,
   FaStar,
-  FaTrophy,
   FaUsers,
 } from "react-icons/fa";
 import SeccionEquipo from "../components/SeccionEquipo";
+import SeccionImpacto from "../components/SeccionImpacto";
 import SeccionValores from "../components/SeccionValores";
 import SponsorsARExperience from "../components/SponsorsARExperience";
 import "./../../Home/page/Home.css";
 import "./TeamPage.css";
 
 const TeamPage = () => {
-  const teamAchievements = [
-    {
-      number: "1500+",
-      label: "Miembros activas",
-      icon: <FaUsers />
-    },
-    {
-      number: "40+",
-      label: "Eventos realizados",
-      icon: <FaTrophy />
-    },
-    {
-      number: "30+",
-      label: "Empresas colaboradoras",
-      icon: <FaBuilding />
-    },
-    {
-      number: "15+",
-      label: "Proyectos impulsados",
-      icon: <FaAward />
-    },
-  ];
-
   const sponsorshipBenefits = [
     {
       icon: <FaUsers className="benefit-icon" />,
@@ -491,47 +467,7 @@ const TeamPage = () => {
 
       <SeccionValores />
 
-      {/* SECCIÓN - Logros del Equipo */}
-      <section className="team-achievements-section bg1 py-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-impact-heading">
-        <div data-aos="zoom-in" className="text-center mb-8">
-          <h2 id="team-impact-heading" style={{ color: "var(--color-secondary)", fontSize: "2rem", marginBottom: "0.5rem" }} tabIndex={0}>
-            Nuestro Impacto
-          </h2>
-          <p style={{ color: "var(--color-text-dark)", fontSize: "1rem" }}>
-            Los números que reflejan nuestro compromiso y crecimiento
-          </p>
-        </div>
-        
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", maxWidth: "1200px", margin: "0 auto" }} role="list" aria-label="Estadísticas de logros">
-          {teamAchievements.map((achievement, index) => (
-            <article
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={100 + index * 100}
-              role="listitem"
-              aria-label={`${achievement.number} ${achievement.label}`}
-              style={{
-                textAlign: "center",
-                padding: "2rem 1rem",
-                background: "white",
-                borderRadius: "var(--radius-lg)",
-                boxShadow: "var(--shadow-soft)",
-                transition: "transform 0.3s ease"
-              }}
-            >
-              <div className="benefit-icon-container" aria-hidden="true">
-                {achievement.icon}
-              </div>
-              <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "var(--color-secondary)", marginBottom: "0.5rem" }} aria-hidden="true">
-                {achievement.number}
-              </div>
-              <div style={{ color: "var(--color-text-dark)", fontSize: "1rem", fontWeight: "500" }} aria-hidden="true">
-                {achievement.label}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <SeccionImpacto />
 
       <section className="parallax bg2" aria-labelledby="sponsors-heading">
         <div className="sponsors-container">

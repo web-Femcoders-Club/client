@@ -14,19 +14,21 @@ import SeccionProyectos from "../components/SeccionProyectos";
 import SeccionContacto from "../components/SeccionContacto";
 import CifraAnimada from "../components/CifraAnimada";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
+import { CIFRAS_COMUNIDAD } from "../../../data/cifrasComunidad";
 import "./Home.css";
 import "./portada.css";
 import "../../../features/Blog/page/PostStyles.css";
 
 /*
- * Cifras de la portada. Por ahora se escriben a mano; la página «Comunidad
- * real» del panel calcula las reales y más adelante saldrán de ahí.
- * `frase` es lo que oye un lector de pantalla: el número animado va oculto.
+ * Cifras de la portada; los valores viven en src/data/cifrasComunidad.ts,
+ * compartidos con /equipo. `frase` es lo que oye un lector de pantalla: el
+ * número animado va oculto.
  */
-const CIFRAS_COMUNIDAD = [
-  { valor: 1500, rotulo: "Mujeres en STEM", frase: "Más de 1500 mujeres en STEM", Icono: Users },
-  { valor: 40, rotulo: "Eventos realizados", frase: "Más de 40 eventos realizados", Icono: CalendarDays },
-  { valor: 30, rotulo: "Empresas colaboradoras", frase: "Más de 30 empresas colaboradoras", Icono: Building2 },
+const { mujeres, eventos, empresas } = CIFRAS_COMUNIDAD;
+const CIFRAS_PORTADA = [
+  { valor: mujeres, rotulo: "Mujeres en STEM", frase: `Más de ${mujeres} mujeres en STEM`, Icono: Users },
+  { valor: eventos, rotulo: "Eventos realizados", frase: `Más de ${eventos} eventos realizados`, Icono: CalendarDays },
+  { valor: empresas, rotulo: "Empresas colaboradoras", frase: `Más de ${empresas} empresas colaboradoras`, Icono: Building2 },
 ];
 
 interface Event {
@@ -860,7 +862,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <ul className="portada__cifras">
-              {CIFRAS_COMUNIDAD.map(({ valor, rotulo, frase, Icono }, i) => (
+              {CIFRAS_PORTADA.map(({ valor, rotulo, frase, Icono }, i) => (
                 <li key={rotulo} className="portada__cifra">
                   <Icono className="portada__cifra-icono" aria-hidden="true" />
                   <div>

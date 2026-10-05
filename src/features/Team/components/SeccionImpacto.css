@@ -1,0 +1,279 @@
+/*
+ * «Nuestro impacto» en /equipo. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-puntos`, `fc-antetitulo`, `fc-titulo-seccion`,
+ * `fc-rotulador` y `fc-boton-redondo`. Fondo: `bg4`, como «Conócenos» en Inicio.
+ *
+ * index.css pinta todos los `span` en naranja y 1.5rem y da color y sombra a
+ * h3: cada clase de aquí fija sus propios valores.
+ */
+
+.impacto {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.impacto__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+/* ---------- Texto y cifras ---------- */
+
+/* Distinta de las dos secciones anteriores: cifras sin tarjetas, solo tipografía. */
+.impacto__arriba {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.impacto__titulo {
+  margin: 0.9rem 0 0;
+}
+
+.impacto__parrafo {
+  margin: 1.3rem 0 0;
+  max-width: 26rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.impacto__cifras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.6rem, 3vw, 2.4rem) clamp(1.2rem, 2.5vw, 2rem);
+}
+
+/* Rayita lavanda encima de cada cifra, con el arranque en el degradado de marca. */
+.impacto__cifra {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 2px solid #ddd5fb;
+}
+
+.impacto__cifra::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 2.2rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+.impacto__numero {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  /* 8,29:1 sobre blanco y algo menos sobre el lavanda del fondo: AAA en texto grande */
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.impacto__rotulo {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Alianzas ---------- */
+
+.impacto__alianzas {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.impacto__alianzas-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.impacto__alianzas-titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.45rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.impacto__alianzas-derecha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+
+.impacto__alianzas-nota {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.98rem;
+  color: var(--color-text-dark);
+}
+
+/*
+ * Cinta infinita: la pista lleva la lista dos veces y se desplaza la mitad
+ * de su ancho. Los bordes se difuminan con una máscara. Se para con el ratón
+ * encima, con el foco dentro o con el botón.
+ */
+.impacto__cinta {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.impacto__pista {
+  display: flex;
+  width: max-content;
+  animation: impacto-cinta 45s linear infinite;
+}
+
+.impacto__cinta:hover .impacto__pista,
+.impacto__cinta:focus-within .impacto__pista,
+.impacto__cinta--detenida .impacto__pista {
+  animation-play-state: paused;
+}
+
+@keyframes impacto-cinta {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.impacto__alianzas-lista {
+  list-style: none;
+  margin: 0;
+  /* Arriba y abajo, sitio para el foco y la sombra al pasar el ratón. */
+  padding: 0.5rem 0.9rem 0.75rem 0;
+  display: flex;
+  gap: 0.9rem;
+}
+
+.impacto__alianzas-lista li {
+  flex-shrink: 0;
+  width: 17rem;
+}
+
+.impacto__ficha {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.25rem 0.8rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border: 1px solid #ddd5fb;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: border-color 0.2s ease, translate 0.2s ease, box-shadow 0.2s ease;
+}
+
+.impacto__ficha:hover {
+  translate: 0 -2px;
+  border-color: var(--color-secondary);
+  box-shadow: 0 10px 24px rgba(71, 55, 187, 0.12);
+}
+
+.impacto__ficha:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.impacto__papel {
+  grid-column: 1;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  /* 7,41:1 sobre melocotón y más sobre blanco: AAA en texto pequeño */
+  color: var(--color-primary-oscuro);
+}
+
+.impacto__nombre {
+  grid-column: 1;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+}
+
+.impacto__flecha {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-secondary);
+}
+
+/* La última: borde discontinuo, se lee como algo por llegar. */
+.impacto__ficha--por-venir {
+  border: 2px dashed #c9bff5;
+  background: transparent;
+}
+
+.impacto__ficha--por-venir .impacto__papel {
+  color: var(--color-secondary);
+}
+
+/* ---------- Tamaños ---------- */
+
+@media (max-width: 960px) {
+  .impacto__arriba {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .impacto__cifras {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Sin movimiento: la cinta no se mueve, la copia sobra y la fila se desplaza a mano. */
+@media (prefers-reduced-motion: reduce) {
+  .impacto__pista {
+    animation: none;
+  }
+
+  .impacto__alianzas-lista[aria-hidden="true"],
+  .impacto__boton {
+    display: none;
+  }
+
+  .impacto__cinta {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .impacto__ficha {
+    transition: none;
+  }
+
+  .impacto__ficha:hover {
+    translate: none;
+  }
+}
