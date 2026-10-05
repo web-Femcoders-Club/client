@@ -154,6 +154,92 @@ Si quieres conocer mejor lo que hacemos, descubre nuestras iniciativas en el blo
 
 <!-- END: quienes somos generado automaticamente -->
 
+<!-- BEGIN: equipo generado automaticamente -->
+
+## Team: the co-founders of FemCoders Club (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/equipo
+
+Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una comunidad apasionada hoy se ha formalizado como una asociación legalmente constituida.
+
+Este paso administrativo es la prueba de nuestro compromiso a largo plazo: nos da la estructura necesaria para impulsar proyectos de gran escala y ofrecer una plataforma estable donde todas puedan crecer.
+
+Cada miembro de nuestro liderazgo aporta una trayectoria sólida y una visión estratégica para asegurar que FemCoders Club continúe siendo el referente de la inclusión y el empoderamiento femenino en el sector tech.
+
+### Elvia Benedith
+
+Cofundadora · Desarrolladora Web Full-stack e Ingeniera Civil.
+
+Mis hobbies son el tai txi y el fit-boxing como forma de autodefensa.
+
+Me considero una crafter o "manitas"; me encanta leer manuales, instalar cosas, programar y pensar.
+
+Soy una persona muy observadora, siempre buscando aprender y mejorar continuamente.
+
+LinkedIn: https://www.linkedin.com/in/elvia-benedith
+
+### Ana Lucía Silva Córdoba
+
+Cofundadora · Desarrolladora Full Stack con una mente creativa, curiosa y autodidacta.
+
+Con amplia experiencia en la enseñanza, interesada por el diseño, lo que me llevó a redescubrir mi pasión por la programación.
+
+Me apasiona trabajar en equipo, aplicar metodologías ágiles y profundizar en el desarrollo web.
+
+LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
+
+### Irina Ichim
+
+Cofundadora · Emprendedora convertida en desarrolladora full-stack.
+
+Después de enfrentar desafíos laborales, descubrí mi pasión por la programación mientras exploraba nuevas oportunidades.
+
+Disfruto cada desafío que enfrento y encuentro satisfacción en resolver problemas complejos.
+
+Además, como cofundadora de FemCoders Club, estoy comprometida a apoyar a mujeres que, al igual que yo, han enfrentado momentos difíciles y están dando un giro en sus vidas al aprender programación.
+
+LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
+
+### Silvina Lucero Calderón
+
+Cofundadora · Desarrolladora Web Full Stack - Q.A Tester Funcional.
+
+Hace dos años me quedé sin trabajo, esto lo tomé como una oportunidad de crecimiento personal y laboral.
+
+Al día de hoy tengo el convencimiento de afirmar que cuando buscamos un cambio con compromiso a ti misma puedes conseguirlo.
+
+Ahora estoy en este hermoso proyecto de poder ser un pilar para todas aquellas mujeres que se lanzan al cambio.
+
+LinkedIn: https://www.linkedin.com/in/silvina-lucero
+
+### Isadora Matias
+
+Cofundadora · Desarrolladora Full Stack con pasión por el diseño y el desarrollo frontend.
+
+Gestiono la comunicación visual de FemCoders Club, capturando la esencia de nuestra comunidad a través de la fotografía y las redes sociales.
+
+Mi misión es usar la creatividad y la conciencia social para generar un impacto significativo en la tecnología con perspectiva femenina.
+
+LinkedIn: https://www.linkedin.com/in/isadoramatias/
+
+### Nuestros valores
+
+- Colaboración: Trabajamos juntas para crear un ecosistema tecnológico más inclusivo. Compartimos conocimiento, experiencias y oportunidades para aprender y crecer en comunidad.
+- Innovación: Exploramos nuevas tecnologías, ideas y formas de aprender. Nos gusta experimentar y acercarnos juntas a lo que está transformando el sector.
+- Empoderamiento: Creamos espacios seguros donde cada mujer pueda crecer personal y profesionalmente. Queremos que encuentre herramientas, confianza y oportunidades para construir su propio camino.
+- Comunidad global: Conectamos mujeres STEM de diferentes países, culturas y experiencias. Una red donde crear vínculos, compartir perspectivas y descubrir nuevas posibilidades.
+
+### Alianzas y colaboraciones
+
+- Community Partner: Talent Arena 2026 (https://www.femcodersclub.com/noticias/talent-arena-2026-partnership)
+- Community Partner: HackBarna AI Summit (https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26)
+- Ambassador: Barcelona Cybersecurity Congress 2026 (https://www.femcodersclub.com/noticias/barcelona-cybersecurity-congress-2026)
+- Community Partnership Program: Vonage (https://www.femcodersclub.com/noticias/vonage-community-partnership-program)
+- Equipo de desarrollo: June, con In CoDe (https://www.femcodersclub.com/noticias/colaboracion-june)
+- Comunidad colaboradora: Claude Community House Barcelona (https://www.femcodersclub.com/noticias/claude-community-house-barcelona)
+
+<!-- END: equipo generado automaticamente -->
+
 <!-- BEGIN: colaboradoras generado automaticamente -->
 
 ## Companies and organizations that have collaborated with FemCoders Club (in Spanish, as published)

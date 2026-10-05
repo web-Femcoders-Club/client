@@ -289,9 +289,11 @@ function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): st
  * ya está ahí. Es el mismo texto que ve una persona: sale de la misma fuente
  * que pintan los componentes (ver scripts/contenidoQuienesSomos.ts).
  */
-function renderContenido(html: string, meta: RutaMeta): string {
+async function renderContenido(html: string, meta: RutaMeta): Promise<string> {
   if (!meta.contenidoHtml) return html;
-  const bloque = `    <noscript>\n${meta.contenidoHtml}\n    </noscript>`;
+  const contenido =
+    typeof meta.contenidoHtml === "function" ? await meta.contenidoHtml() : meta.contenidoHtml;
+  const bloque = `    <noscript>\n${contenido}\n    </noscript>`;
   return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
 }
 
@@ -431,7 +433,7 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     if (meta) {
       html = renderHeadRuta(template, route, meta);
       html = renderEnlacesPosts(html, posts, meta);
-      html = renderContenido(html, meta);
+      html = await renderContenido(html, meta);
     } else {
       sinMetas.push(route);
     }

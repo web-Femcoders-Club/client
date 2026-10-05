@@ -15,6 +15,7 @@ import { fileURLToPath } from "url";
 import { getPostsIndex } from "./postsIndex";
 import { quienesSomosMarkdown } from "./contenidoQuienesSomos";
 import { colaboradorasMarkdown } from "./contenidoColaboradoras";
+import { equipoMarkdown, obtenerEquipo } from "./contenidoEquipo";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const LLMS_PATH = path.join(ROOT, "public", "llms.txt");
@@ -30,6 +31,9 @@ const END_QUIENES = "<!-- END: quienes somos generado automaticamente -->";
 // que pinta la sección de Inicio y cuenta el panel.
 const BEGIN_COLABORADORAS = "<!-- BEGIN: colaboradoras generado automaticamente -->";
 const END_COLABORADORAS = "<!-- END: colaboradoras generado automaticamente -->";
+// El equipo actual, desde src/features/Team/contenido.ts y la base de datos.
+const BEGIN_EQUIPO = "<!-- BEGIN: equipo generado automaticamente -->";
+const END_EQUIPO = "<!-- END: equipo generado automaticamente -->";
 
 /** Sustituye el bloque entre marcadores o, si no existe, lo inserta antes de `antes`. */
 function ponerBloque(texto: string, inicio: string, fin: string, bloque: string, antes?: string): string {
@@ -95,7 +99,17 @@ export async function generateLlmsTxt(): Promise<void> {
   const current = await fs.readFile(LLMS_PATH, "utf-8");
   const conQuienes = ponerBloque(current, BEGIN_QUIENES, END_QUIENES, quienes, BEGIN);
   const conColaboradoras = ponerBloque(conQuienes, BEGIN_COLABORADORAS, END_COLABORADORAS, colaboradoras, BEGIN);
-  const updated = ponerBloque(conColaboradoras, BEGIN, END, section);
+
+  // Sin respuesta de la API se conserva el bloque anterior: mejor un equipo de
+  // ayer que borrarlo de llms.txt por un fallo de red durante el build.
+  const equipo = await obtenerEquipo();
+  const bloqueEquipo = [BEGIN_EQUIPO, "", equipoMarkdown(equipo), "", END_EQUIPO].join("\n");
+  const conEquipo =
+    equipo.length > 0
+      ? ponerBloque(conColaboradoras, BEGIN_EQUIPO, END_EQUIPO, bloqueEquipo, BEGIN_COLABORADORAS)
+      : conColaboradoras;
+
+  const updated = ponerBloque(conEquipo, BEGIN, END, section);
 
   await fs.writeFile(LLMS_PATH, updated, "utf-8");
   console.log(

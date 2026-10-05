@@ -23,6 +23,7 @@
 
 import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
 import { quienesSomosHtml } from "./contenidoQuienesSomos";
+import { equipoHtml, obtenerEquipo } from "./contenidoEquipo";
 
 export interface RutaMeta {
   title: string;
@@ -47,9 +48,10 @@ export interface RutaMeta {
   /**
    * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
    * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
-   * página hecha en React solo leen las metas.
+   * página hecha en React solo leen las metas. Una función cuando el texto
+   * depende de datos que hay que pedir en el build (el equipo de /equipo).
    */
-  contenidoHtml?: string;
+  contenidoHtml?: string | (() => Promise<string>);
   /**
    * Imagen al compartir en redes (og:image y twitter:image). Sin ella, la
    * ruta se queda con la genérica de index.html (el logo). 1200×630.
@@ -105,6 +107,8 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     title: "Nuestro Equipo - FemCoders Club | Mujeres Líderes en Tecnología",
     description:
       "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino.",
+    // Textos de src/features/Team/contenido.ts y biografías de la base de datos.
+    contenidoHtml: async () => equipoHtml(await obtenerEquipo()),
   },
   "/femcoders-quienes-somos": {
     title: "Quiénes somos: misión, visión y valores | FemCoders Club",

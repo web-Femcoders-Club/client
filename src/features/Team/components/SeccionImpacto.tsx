@@ -2,32 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import BotonRotacion from "../../../components/ui/BotonRotacion";
-import {
-  ANIO_FUNDACION,
-  CIFRAS_COMUNIDAD,
-  RECURSOS_ABIERTOS,
-} from "../../../data/cifrasComunidad";
+import { IMPACTO as I } from "../contenido";
 import "./SeccionImpacto.css";
-
-const CIFRAS = [
-  { numero: `${CIFRAS_COMUNIDAD.mujeres}+`, rotulo: "mujeres en STEM forman la comunidad" },
-  { numero: `${CIFRAS_COMUNIDAD.eventos}+`, rotulo: "eventos realizados" },
-  { numero: `${CIFRAS_COMUNIDAD.empresas}+`, rotulo: "empresas colaboradoras" },
-  { numero: `${RECURSOS_ABIERTOS.repositoriosGithub}`, rotulo: "proyectos en GitHub para practicar" },
-  { numero: `${RECURSOS_ABIERTOS.articulosTecnicos}`, rotulo: "artículos técnicos en el blog" },
-  { numero: `${ANIO_FUNDACION}`, rotulo: "nace la comunidad en Barcelona" },
-];
-
-/* Cada alianza dice qué papel tiene FemCoders Club y lleva a su noticia. */
-const ALIANZAS = [
-  { papel: "Community Partner", nombre: "Talent Arena 2026", enlace: "/noticias/talent-arena-2026-partnership" },
-  { papel: "Community Partner", nombre: "HackBarna AI Summit", enlace: "/noticias/hackbarna-ai-summit-26" },
-  { papel: "Ambassador", nombre: "Barcelona Cybersecurity Congress 2026", enlace: "/noticias/barcelona-cybersecurity-congress-2026" },
-  { papel: "Community Partnership Program", nombre: "Vonage", enlace: "/noticias/vonage-community-partnership-program" },
-  { papel: "Equipo de desarrollo", nombre: "June, con In CoDe", enlace: "/noticias/colaboracion-june" },
-  { papel: "Comunidad colaboradora", nombre: "Claude Community House Barcelona", enlace: "/noticias/claude-community-house-barcelona" },
-  { papel: "Y las que vienen", nombre: "Síguelas en las noticias", enlace: "/noticias", porVenir: true },
-];
 
 const ID_CINTA = "impacto-alianzas";
 
@@ -38,7 +14,7 @@ const ID_CINTA = "impacto-alianzas";
  */
 const ListaAlianzas: React.FC<{ copia?: boolean }> = ({ copia = false }) => (
   <ul className="impacto__alianzas-lista" aria-hidden={copia || undefined}>
-    {ALIANZAS.map(({ papel, nombre, enlace, porVenir }) => (
+    {I.alianzas.map(({ papel, nombre, enlace, porVenir }) => (
       <li key={nombre}>
         <Link
           to={enlace}
@@ -56,7 +32,8 @@ const ListaAlianzas: React.FC<{ copia?: boolean }> = ({ copia = false }) => (
 
 /*
  * Tercera sección de /equipo: cifras de la comunidad y alianzas. Fondo `bg4`,
- * que empieza en el lavanda en que termina `bg3` de los valores.
+ * que empieza en el lavanda en que termina `bg3` de los valores. Los textos
+ * viven en ../contenido.ts y las cifras en src/data/cifrasComunidad.ts.
  *
  * La cinta de alianzas se mueve sola: se para con el ratón encima, con el
  * foco dentro (CSS) y con el botón (WCAG 2.2.2). Con «reducir movimiento» no
@@ -71,18 +48,15 @@ const SeccionImpacto: React.FC = () => {
       <div className="impacto__contenedor">
         <div className="impacto__arriba">
           <div data-aos="fade-right">
-            <p className="fc-antetitulo">Nuestro impacto</p>
+            <p className="fc-antetitulo">{I.antetitulo}</p>
             <h2 className="fc-titulo-seccion impacto__titulo" id="impacto-titulo">
-              Una comunidad real que <span className="fc-rotulador">no para de crecer</span>
+              {I.titulo.texto} <span className="fc-rotulador">{I.titulo.destacado}</span>
             </h2>
-            <p className="impacto__parrafo">
-              Eventos, empresas que nos acompañan, recursos para aprender y proyectos con impacto
-              social. Esto es lo que hemos construido juntas desde {ANIO_FUNDACION}.
-            </p>
+            <p className="impacto__parrafo">{I.parrafo}</p>
           </div>
 
           <ul className="impacto__cifras" data-aos="fade-up">
-            {CIFRAS.map(({ numero, rotulo }) => (
+            {I.cifras.map(({ numero, rotulo }) => (
               <li key={rotulo} className="impacto__cifra">
                 <p className="impacto__numero">{numero}</p>
                 <p className="impacto__rotulo">{rotulo}</p>
@@ -93,11 +67,9 @@ const SeccionImpacto: React.FC = () => {
 
         <div className="impacto__alianzas">
           <div className="impacto__alianzas-cabeza">
-            <h3 className="impacto__alianzas-titulo">Alianzas y colaboraciones</h3>
+            <h3 className="impacto__alianzas-titulo">{I.alianzasTitulo}</h3>
             <div className="impacto__alianzas-derecha">
-              <p className="impacto__alianzas-nota">
-                Congresos, hackathons y proyectos en los que participamos.
-              </p>
+              <p className="impacto__alianzas-nota">{I.alianzasNota}</p>
               <div className="impacto__boton">
                 <BotonRotacion
                   girando={!detenida}

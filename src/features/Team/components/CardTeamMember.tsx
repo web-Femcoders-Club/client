@@ -6,6 +6,7 @@ import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
 import BotonRotacion from "../../../components/ui/BotonRotacion";
 import { useRotacion } from "../../../hooks/useRotacion";
+import { ROL_EQUIPO_ACTUAL, partirDescripcion } from "../contenido";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
@@ -15,21 +16,6 @@ interface CardTeamMemberProps {
 const ROTACION_MS = 30000;
 const ID_LISTA = "equipo-lista";
 
-/*
- * La descripción llega de la base de datos en párrafos separados por una línea
- * en blanco, y el primero es el oficio («Desarrolladora Web Full Stack…»): va
- * bajo el nombre y el resto en «Leer más». El texto se muestra íntegro. Si no
- * hay párrafos, todo va al desplegable.
- */
-const partirDescripcion = (descripcion: string) => {
-  const parrafos = descripcion
-    .split(/\n\s*\n/)
-    .map((parrafo) => parrafo.trim())
-    .filter(Boolean);
-
-  if (parrafos.length < 2) return { oficio: null, historia: parrafos };
-  return { oficio: parrafos[0], historia: parrafos.slice(1) };
-};
 
 const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   const { data, error, isLoading } = useQuery<Member[]>({
@@ -44,7 +30,7 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     if (!data || !Array.isArray(data)) return [];
 
     if (filter === "active") {
-      return data.filter(member => member.memberRole === "Cofundadora");
+      return data.filter(member => member.memberRole === ROL_EQUIPO_ACTUAL);
     } else if (filter === "inactive") {
       return data.filter(member => member.memberRole === "Cofundadora Legacy");
     }
