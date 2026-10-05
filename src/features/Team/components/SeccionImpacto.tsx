@@ -55,8 +55,8 @@ const ListaAlianzas: React.FC<{ copia?: boolean }> = ({ copia = false }) => (
 );
 
 /*
- * Tercera sección de /equipo: cifras de la comunidad y alianzas. Fondo `bg4`,
- * el de «Conócenos» en Inicio, que empieza en el lavanda en que termina `bg3`.
+ * Cuarta sección de /equipo: cifras de la comunidad y alianzas. Fondo `bg3`,
+ * que empieza en el blanco en que termina `bg4` de los valores.
  *
  * La cinta de alianzas se mueve sola: se para con el ratón encima, con el
  * foco dentro (CSS) y con el botón (WCAG 2.2.2). Con «reducir movimiento» no
@@ -66,7 +66,7 @@ const SeccionImpacto: React.FC = () => {
   const [detenida, setDetenida] = useState(false);
 
   return (
-    <section className="impacto bg4 fc-manchas" aria-labelledby="impacto-titulo">
+    <section className="impacto bg3 fc-manchas" aria-labelledby="impacto-titulo">
       <div className="fc-puntos fc-puntos--arriba-derecha" aria-hidden="true" />
       <div className="impacto__contenedor">
         <div className="impacto__arriba">

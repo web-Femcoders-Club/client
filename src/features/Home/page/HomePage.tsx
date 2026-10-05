@@ -499,7 +499,7 @@ const HomePage: React.FC = () => {
       imageAlt: "Colaboración FemCoders Club y Extraordinary — networking para mujeres en tecnología",
       date: "Marzo 2026",
       category: "Colaboraciones",
-      link: "/equipo#sponsors-heading",
+      link: "/equipo#empresas-titulo",
     },
     {
       id: "8",

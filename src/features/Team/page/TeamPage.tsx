@@ -7,10 +7,10 @@ import {
   FaStar,
   FaUsers,
 } from "react-icons/fa";
+import SeccionEmpresas from "../components/SeccionEmpresas";
 import SeccionEquipo from "../components/SeccionEquipo";
 import SeccionImpacto from "../components/SeccionImpacto";
 import SeccionValores from "../components/SeccionValores";
-import SponsorsARExperience from "../components/SponsorsARExperience";
 import "./../../Home/page/Home.css";
 import "./TeamPage.css";
 
@@ -463,38 +463,14 @@ const TeamPage = () => {
   </script>
 </Helmet>
 
+      {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4 → bg3. */}
       <SeccionEquipo />
+
+      <SeccionEmpresas />
 
       <SeccionValores />
 
       <SeccionImpacto />
-
-      <section className="parallax bg2" aria-labelledby="sponsors-heading">
-        <div className="sponsors-container">
-          <div className="sponsors-header" data-aos="fade-up">
-            <h2 id="sponsors-heading" className="sponsors-title" tabIndex={0}>Empresas que Impulsan el Cambio</h2>
-
-            <div className="sponsors-intro">
-              <p>
-                Estas organizaciones apoyan a FemCoders Club en distintos momentos y
-                comparten nuestra visión de un futuro tecnológico más diverso e
-                inclusivo. A través de su participación en iniciativas como eventos,
-                talleres, charlas, mentorías y recursos, ayudan a promover un entorno
-                donde más mujeres puedan desarrollarse en el sector tech.
-              </p>
-            </div>
-          </div>
-
-          <div
-            className="sponsors-timeline-wrapper"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-         
-            <SponsorsARExperience />
-          </div>
-        </div>
-      </section>
 
       <section
         className="become-sponsor-section bg1"

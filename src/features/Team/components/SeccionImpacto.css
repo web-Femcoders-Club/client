@@ -1,7 +1,8 @@
 /*
  * «Nuestro impacto» en /equipo. Piezas compartidas en src/styles/rediseno.css:
  * `fc-manchas`, `fc-puntos`, `fc-antetitulo`, `fc-titulo-seccion`,
- * `fc-rotulador` y `fc-boton-redondo`. Fondo: `bg4`, como «Conócenos» en Inicio.
+ * `fc-rotulador` y `fc-boton-redondo`. Fondo: `bg3`, que empieza en el blanco
+ * en que termina `bg4` de los valores.
  *
  * index.css pinta todos los `span` en naranja y 1.5rem y da color y sombra a
  * h3: cada clase de aquí fija sus propios valores.
