@@ -12,7 +12,10 @@ const prefiereReducir = () =>
  * - `alternar` lo detiene o lo reanuda a voluntad (el botón de rotación);
  * - con «reducir movimiento» arranca detenido; el botón lo pone en marcha;
  * - `diapositiva` es la posición actual: al cambiar (a mano o sola) el
- *   temporizador se reinicia, así tras pulsar un punto hay un intervalo entero.
+ *   temporizador se reinicia, así tras pulsar un punto hay un intervalo entero;
+ * - `pausaExterna` para otras razones del propio carrusel (las tarjetas del
+ *   equipo se paran con una historia abierta). No cambia `girando`: el botón
+ *   sigue diciendo «Detener», porque al cerrar la historia vuelve a girar.
  *
  * `avanzar` se lee siempre en su última versión: puede cerrar sobre el
  * estado del render actual sin reiniciar el temporizador.
@@ -22,11 +25,12 @@ export function useRotacion(
   intervalo: number,
   habilitada: boolean,
   diapositiva: number,
+  pausaExterna = false,
 ) {
   const [detenida, setDetenida] = useState(prefiereReducir);
   const [ratonEncima, setRatonEncima] = useState(false);
   const [focoTeclado, setFocoTeclado] = useState(false);
-  const enPausa = ratonEncima || focoTeclado;
+  const enPausa = ratonEncima || focoTeclado || pausaExterna;
   const ultimoAvanzar = useRef(avanzar);
   ultimoAvanzar.current = avanzar;
 

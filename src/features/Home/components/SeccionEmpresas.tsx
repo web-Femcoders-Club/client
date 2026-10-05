@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BotonRotacion from "./BotonRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
 import {
   ANIO_PRIMERA_COLABORACION,
   COLABORADORAS,

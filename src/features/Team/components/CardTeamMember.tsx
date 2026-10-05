@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
-import BotonRotacion from "../../Home/components/BotonRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
+import { useRotacion } from "../../../hooks/useRotacion";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
@@ -38,9 +39,6 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [rotationIndex, setRotationIndex] = useState(0);
-  const [detenida, setDetenida] = useState(false);
-  const [ratonEncima, setRatonEncima] = useState(false);
-  const [focoDentro, setFocoDentro] = useState(false);
 
   const getFilteredMembers = useCallback(() => {
     if (!data || !Array.isArray(data)) return [];
@@ -64,29 +62,21 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   }, [baseMembers, rotationIndex]);
 
   /*
-   * La rotación se para mientras alguien lee o actúa sobre las tarjetas (ratón
-   * encima, foco del teclado dentro o una historia abierta) y con el botón de
-   * pausa, que pide WCAG 2.2.2 para el contenido que cambia solo. Al reanudar,
-   * los 30 segundos empiezan de cero.
+   * La misma rotación que los carruseles de Inicio y «Quiénes somos»
+   * (useRotacion, WCAG 2.2.2): se para con el ratón encima o el foco del
+   * teclado dentro, el botón la detiene y con «reducir movimiento» arranca
+   * parada. Además se para mientras hay una historia abierta.
    */
-  const enPausa = detenida || ratonEncima || focoDentro || expandedId !== null;
-
-  useEffect(() => {
-    if (baseMembers.length < 2 || enPausa) return;
-
-    const intervalId = setInterval(() => {
-      setRotationIndex(prev => prev + 1);
-    }, ROTACION_MS);
-
-    return () => clearInterval(intervalId);
-  }, [baseMembers.length, enPausa]);
+  const rotacion = useRotacion(
+    () => setRotationIndex((prev) => prev + 1),
+    ROTACION_MS,
+    baseMembers.length > 1,
+    rotationIndex,
+    expandedId !== null,
+  );
 
   const handleToggleExpand = (memberId: number) => {
     setExpandedId(expandedId === memberId ? null : memberId);
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLUListElement>) => {
-    if (!e.currentTarget.contains(e.relatedTarget)) setFocoDentro(false);
   };
 
   if (isLoading) {
@@ -119,8 +109,8 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
         </span>
         {rotatedMembers.length > 1 && (
           <BotonRotacion
-            girando={!detenida}
-            alAlternar={() => setDetenida((valor) => !valor)}
+            girando={rotacion.girando}
+            alAlternar={rotacion.alternar}
             de="equipo"
             controla={ID_LISTA}
           />
@@ -137,10 +127,7 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
             ? "Cofundadoras Legacy de FemCoders Club"
             : "Miembros del equipo de FemCoders Club"
         }
-        onMouseEnter={() => setRatonEncima(true)}
-        onMouseLeave={() => setRatonEncima(false)}
-        onFocus={() => setFocoDentro(true)}
-        onBlur={handleBlur}
+        {...rotacion.pausaAlInteractuar}
       >
         {rotatedMembers.map((member, index) => {
           const isExpanded = expandedId === member.idMember;

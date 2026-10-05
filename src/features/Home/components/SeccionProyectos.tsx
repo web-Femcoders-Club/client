@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import OptimizedImage from "../../../components/OptimizedImage";
-import BotonRotacion from "./BotonRotacion";
-import { useRotacion } from "./useRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
+import { useRotacion } from "../../../hooks/useRotacion";
 import { CATEGORIAS, PROYECTOS, type Categoria, type Proyecto } from "./proyectos";
 import "./SeccionProyectos.css";
 

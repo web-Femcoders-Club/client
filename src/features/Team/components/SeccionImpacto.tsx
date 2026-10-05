@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import BotonRotacion from "../../Home/components/BotonRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
 import {
   ANIO_FUNDACION,
   CIFRAS_COMUNIDAD,
