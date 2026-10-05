@@ -1,0 +1,159 @@
+/*
+ * «Sé parte del cambio» en /equipo. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-antetitulo`, `fc-titulo-seccion`, `fc-rotulador`, `fc-disco`, `fc-boton`
+ * y `fc-sobre-oscuro`. Fondo: `bg2`, como el contacto de Inicio.
+ *
+ * index.css da color naranja y sombra a h3: cada clase fija sus valores.
+ */
+
+/*
+ * Velo oscuro sobre bg2: la esquina superior izquierda de la imagen es un
+ * violeta muy claro y el blanco encima se quedaba en AA. Con el velo, todo el
+ * texto supera 7:1 (AAA).
+ */
+.cambio {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.cambio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(14, 9, 60, 0.55), rgba(14, 9, 60, 0.15) 60%, transparent);
+}
+
+.cambio__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* ---------- Texto y llamadas ---------- */
+
+.cambio__texto {
+  display: grid;
+  gap: 1.3rem;
+  align-content: start;
+}
+
+.cambio__titulo {
+  margin: 0.9rem 0 0;
+}
+
+.cambio__parrafo {
+  margin: 0;
+  max-width: 30rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.25vw, 1.12rem);
+  line-height: 1.65;
+  color: #ece8ff;
+  text-wrap: pretty;
+}
+
+.cambio__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+/* Sobre el azul no hay luz blanca para el relieve: los botones flotan con sombra oscura. */
+.cambio .fc-boton {
+  box-shadow: 0 10px 24px rgba(5, 3, 30, 0.4);
+}
+
+/* `:hover` con `.cambio` delante: este CSS carga antes que rediseno.css y su luz blanca ganaría. */
+.cambio .fc-boton:hover {
+  box-shadow: 0 14px 30px rgba(5, 3, 30, 0.5);
+}
+
+.cambio .fc-boton:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+.cambio__correo {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: #ece8ff;
+}
+
+.cambio__enlace {
+  font-weight: 700;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: #ff8a6e;
+}
+
+.cambio__enlace:focus-visible {
+  outline: 3px solid var(--color-lila-claro);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Beneficios ---------- */
+
+/* En dos columnas, sin tarjetas: una rayita clara separa cada uno. */
+.cambio__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.cambio__beneficio {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.3rem 1rem;
+  align-items: start;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(243, 232, 252, 0.22);
+}
+
+.cambio__beneficio .fc-disco {
+  grid-row: span 2;
+}
+
+.cambio__beneficio-titulo {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: none;
+}
+
+.cambio__beneficio-texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #ece8ff;
+  text-wrap: pretty;
+}
+
+/* ---------- Tamaños ---------- */
+
+@media (max-width: 960px) {
+  .cambio__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cambio__lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

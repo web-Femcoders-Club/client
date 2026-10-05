@@ -17,7 +17,7 @@ import {
   COLABORADORAS,
   ROTULO_TIPO,
   type TipoColaboradora,
-} from './colaboradoras';
+} from '../../../../data/colaboradoras';
 import '../resumen/resumen-panel.css';
 import './comunidad-real.css';
 

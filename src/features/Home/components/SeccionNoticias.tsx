@@ -2,8 +2,8 @@ import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import OptimizedImage from "../../../components/OptimizedImage";
-import BotonRotacion from "./BotonRotacion";
-import { useRotacion } from "./useRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
+import { useRotacion } from "../../../hooks/useRotacion";
 import "./SeccionNoticias.css";
 
 export interface NewsItem {

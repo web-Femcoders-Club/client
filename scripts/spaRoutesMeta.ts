@@ -23,6 +23,8 @@
 
 import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
 import { quienesSomosHtml } from "./contenidoQuienesSomos";
+import { equipoHtml, equipoJsonLd, obtenerEquipo } from "./contenidoEquipo";
+import { fundadorasJsonLd } from "./fundadoras";
 
 export interface RutaMeta {
   title: string;
@@ -41,15 +43,17 @@ export interface RutaMeta {
   /**
    * Datos estructurados que deben estar en el HTML servido, no solo en el
    * `<Helmet>`: el Helmet los añade en el navegador y Google solo los ve si
-   * renderiza la página.
+   * renderiza la página. Una función cuando dependen de datos que hay que
+   * pedir en el build (las personas de /equipo).
    */
-  jsonLd?: Record<string, unknown>[];
+  jsonLd?: Record<string, unknown>[] | (() => Promise<Record<string, unknown>[]>);
   /**
    * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
    * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
-   * página hecha en React solo leen las metas.
+   * página hecha en React solo leen las metas. Una función cuando el texto
+   * depende de datos que hay que pedir en el build (el equipo de /equipo).
    */
-  contenidoHtml?: string;
+  contenidoHtml?: string | (() => Promise<string>);
   /**
    * Imagen al compartir en redes (og:image y twitter:image). Sin ella, la
    * ruta se queda con la genérica de index.html (el logo). 1200×630.
@@ -102,9 +106,15 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Explora los mejores eventos tecnológicos para mujeres en Barcelona organizados por FemCoders Club. Talleres, conferencias, networking y oportunidades profesionales en el sector tech. Únete a la comunidad líder de mujeres en tecnología.",
   },
   "/equipo": {
-    title: "Nuestro Equipo - FemCoders Club | Mujeres Líderes en Tecnología",
+    // Copiado de TeamPage.tsx. El título coincide con el h1 y cabe sin cortarse.
+    title: "Nuestro equipo de liderazgo | FemCoders Club",
     description:
-      "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Líderes tech comprometidas con el empoderamiento femenino.",
+      "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias.",
+    // Textos de src/features/Team/contenido.ts y biografías de la base de datos.
+    contenidoHtml: async () => equipoHtml(await obtenerEquipo()),
+    // La página, las personas del equipo actual y la miga de pan, enlazadas por
+    // `@id` al sitio y a la Organization de index.html (scripts/contenidoEquipo.ts).
+    jsonLd: async () => equipoJsonLd(await obtenerEquipo()),
   },
   "/femcoders-quienes-somos": {
     title: "Quiénes somos: misión, visión y valores | FemCoders Club",
@@ -140,19 +150,12 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
           addressLocality: "Barcelona",
           addressCountry: "ES",
         },
-        // Liliana Dalmarco se mantiene a propósito aunque haya salido del
-        // equipo visible (EQ1, issue #18): `founder` es quien fundó la
-        // organización, un hecho histórico que no cambia. Sin
-        // `numberOfEmployees`: en una asociación de voluntarias diría que
-        // tiene seis empleadas, y el dato ya lo da `founder`.
-        founder: [
-          { "@type": "Person", name: "Irina Ichim", jobTitle: "Fullstack Software Developer & AI Specialist", sameAs: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
-          { "@type": "Person", name: "Ana Lucía Silva Córdoba", jobTitle: "Fullstack Developer & Data Science", sameAs: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
-          { "@type": "Person", name: "Elvia Benedith", jobTitle: "Full-stack Web Developer", sameAs: "https://www.linkedin.com/in/elvia-benedith" },
-          { "@type": "Person", name: "Silvina Lucero Calderón", jobTitle: "Full Stack Developer & QA", sameAs: "https://www.linkedin.com/in/silvina-lucero" },
-          { "@type": "Person", name: "Liliana Dalmarco", jobTitle: "Fullstack Developer & Scrum Master", sameAs: "https://www.linkedin.com/in/lilianadalmarco" },
-          { "@type": "Person", name: "Isadora Matias", jobTitle: "Full Stack Developer & Designer", sameAs: "https://www.linkedin.com/in/isadoramatias/" },
-        ],
+        // Desde scripts/fundadoras.ts: el equipo actual, cada una con su `@id`,
+        // el mismo que usa /equipo para describirla. Las cofundadoras que ya
+        // no están se quedan solo en la base de datos (decisión del 5 de
+        // octubre de 2026). Sin `numberOfEmployees`: en una asociación de
+        // voluntarias diría que tiene empleadas.
+        founder: fundadorasJsonLd(),
         knowsAbout: [
           "mujeres en tecnología", "diversidad en tech", "desarrollo web", "JavaScript", "CSS", "HTML", "React", "inteligencia artificial", "open source",
         ],

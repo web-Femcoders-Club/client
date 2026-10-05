@@ -15,8 +15,8 @@ import {
   TrendingUp,
   type LucideIcon,
 } from "lucide-react";
-import BotonRotacion from "../../Home/components/BotonRotacion";
-import { useRotacion } from "../../Home/components/useRotacion";
+import BotonRotacion from "../../../components/ui/BotonRotacion";
+import { useRotacion } from "../../../hooks/useRotacion";
 import { VALORES } from "../contenido";
 
 /* El icono es decoración (el nombre ya lo dice): se elige aquí; el texto vive en contenido.ts. */
