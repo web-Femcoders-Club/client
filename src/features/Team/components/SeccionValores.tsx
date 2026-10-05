@@ -36,12 +36,12 @@ const VALORES_EQUIPO: Valor[] = [
 ];
 
 /*
- * Tercera sección de /equipo: los valores con los que trabaja el equipo. Son
+ * Segunda sección de /equipo: los valores con los que trabaja el equipo. Son
  * distintos de los valores de la comunidad de «Quiénes somos» (contenido.ts),
  * aunque compartan nombre: aquí hablan de cómo trabajamos.
  */
 const SeccionValores: React.FC = () => (
-  <section className="valores-equipo bg4 fc-manchas" aria-labelledby="valores-equipo-titulo">
+  <section className="valores-equipo bg3 fc-manchas" aria-labelledby="valores-equipo-titulo">
     <div className="fc-puntos fc-puntos--abajo-izquierda" aria-hidden="true" />
     <div className="valores-equipo__contenedor">
       <div className="valores-equipo__cabeza" data-aos="fade-up">

@@ -14,6 +14,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { getPostsIndex } from "./postsIndex";
 import { quienesSomosMarkdown } from "./contenidoQuienesSomos";
+import { colaboradorasMarkdown } from "./contenidoColaboradoras";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const LLMS_PATH = path.join(ROOT, "public", "llms.txt");
@@ -25,6 +26,10 @@ const END = "<!-- END: posts generados automaticamente -->";
 // fuente que pinta la página, para que llms.txt no se quede atrás.
 const BEGIN_QUIENES = "<!-- BEGIN: quienes somos generado automaticamente -->";
 const END_QUIENES = "<!-- END: quienes somos generado automaticamente -->";
+// Organizaciones colaboradoras, desde src/data/colaboradoras.ts: la misma lista
+// que pinta la sección de Inicio y cuenta el panel.
+const BEGIN_COLABORADORAS = "<!-- BEGIN: colaboradoras generado automaticamente -->";
+const END_COLABORADORAS = "<!-- END: colaboradoras generado automaticamente -->";
 
 /** Sustituye el bloque entre marcadores o, si no existe, lo inserta antes de `antes`. */
 function ponerBloque(texto: string, inicio: string, fin: string, bloque: string, antes?: string): string {
@@ -85,9 +90,12 @@ export async function generateLlmsTxt(): Promise<void> {
 
   const quienes = [BEGIN_QUIENES, "", quienesSomosMarkdown(), "", END_QUIENES].join("\n");
 
+  const colaboradoras = [BEGIN_COLABORADORAS, "", colaboradorasMarkdown(), "", END_COLABORADORAS].join("\n");
+
   const current = await fs.readFile(LLMS_PATH, "utf-8");
   const conQuienes = ponerBloque(current, BEGIN_QUIENES, END_QUIENES, quienes, BEGIN);
-  const updated = ponerBloque(conQuienes, BEGIN, END, section);
+  const conColaboradoras = ponerBloque(conQuienes, BEGIN_COLABORADORAS, END_COLABORADORAS, colaboradoras, BEGIN);
+  const updated = ponerBloque(conColaboradoras, BEGIN, END, section);
 
   await fs.writeFile(LLMS_PATH, updated, "utf-8");
   console.log(

@@ -2,8 +2,9 @@
  * Organizaciones con las que FemCoders Club ha colaborado.
  *
  * No hay tabla en la base de datos: la lista vive aquí. La página «Comunidad
- * real» del panel la cuenta y la pinta, y la sección «Empresas que han
- * confiado en nosotras» de /equipo la muestra con su imagen y sus años. Cada
+ * real» del panel la cuenta y la pinta, la sección «Empresas que han confiado
+ * en nosotras» de Inicio la muestra con su imagen, y el prerender la escribe
+ * en el HTML servido de la portada y en llms.txt (scripts/contenidoColaboradoras). Cada
  * organización ocupa UNA entrada aunque haya colaborado muchas veces —sus
  * colaboraciones van dentro—, así que el total es la longitud del array y no
  * puede haber duplicados por repetir evento.
@@ -85,6 +86,12 @@ export const aniosDeColaboracion = ({ desde, colaboraciones }: Colaboradora): nu
     for (let anio = desde; anio <= new Date().getFullYear(); anio++) anios.add(anio);
   }
   return [...anios].sort((a, b) => a - b);
+};
+
+/** Tres años seguidos o más, como intervalo («2023–2026»); si no, separados por puntos. */
+export const textoAnios = (anios: number[]): string => {
+  const seguidos = anios.length >= 3 && anios.every((a, i) => i === 0 || a === anios[i - 1] + 1);
+  return seguidos ? `${anios[0]}–${anios[anios.length - 1]}` : anios.join(" · ");
 };
 
 export const COLABORADORAS: Colaboradora[] = [
@@ -357,3 +364,8 @@ export const COLABORADORAS: Colaboradora[] = [
     ],
   },
 ];
+
+/** El año de la colaboración más antigua: «desde 2023». */
+export const ANIO_PRIMERA_COLABORACION = Math.min(
+  ...COLABORADORAS.flatMap((colaboradora) => aniosDeColaboracion(colaboradora)),
+);

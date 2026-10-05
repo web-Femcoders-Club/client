@@ -1,8 +1,8 @@
 import { useState } from "react";
-import BotonRotacion from "../../Home/components/BotonRotacion";
+import BotonRotacion from "./BotonRotacion";
 import {
+  ANIO_PRIMERA_COLABORACION,
   COLABORADORAS,
-  aniosDeColaboracion,
   type Colaboradora,
 } from "../../../data/colaboradoras";
 import "./SeccionEmpresas.css";
@@ -11,22 +11,14 @@ const ID_CINTA = "empresas-cinta";
 
 /*
  * Segundos por ficha: con este ritmo la cinta va a la misma velocidad que la
- * de alianzas (unos 44 px por segundo), tenga las organizaciones que tenga.
+ * de alianzas de /equipo (unos 44 px por segundo), tenga las organizaciones
+ * que tenga.
  */
 const SEGUNDOS_POR_FICHA = 5.3;
 
 const ORDENADAS = [...COLABORADORAS].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
 
-const ANIO_INICIO = Math.min(...COLABORADORAS.flatMap((c) => aniosDeColaboracion(c)));
-
-/* Tres años seguidos o más, como intervalo («2023–2026»); si no, separados por puntos. */
-const textoAnios = (anios: number[]) => {
-  const seguidos = anios.length >= 3 && anios.every((a, i) => i === 0 || a === anios[i - 1] + 1);
-  return seguidos ? `${anios[0]}–${anios[anios.length - 1]}` : anios.join(" · ");
-};
-
-const Ficha: React.FC<{ colaboradora: Colaboradora }> = ({ colaboradora }) => {
-  const { nombre, imagen } = colaboradora;
+const Ficha: React.FC<{ colaboradora: Colaboradora }> = ({ colaboradora: { nombre, imagen } }) => {
   const clasesImagen = [
     "empresas__imagen",
     imagen.tipo === "foto" && "empresas__imagen--foto",
@@ -42,7 +34,6 @@ const Ficha: React.FC<{ colaboradora: Colaboradora }> = ({ colaboradora }) => {
         <img src={imagen.ruta} alt="" loading="lazy" />
       </div>
       <span className="empresas__nombre">{nombre}</span>
-      <span className="empresas__anios">{textoAnios(aniosDeColaboracion(colaboradora))}</span>
     </li>
   );
 };
@@ -61,9 +52,11 @@ const Lista: React.FC<{ copia?: boolean }> = ({ copia = false }) => (
 );
 
 /*
- * Segunda sección de /equipo: las organizaciones que han colaborado con
- * FemCoders Club, todas por igual, con su imagen y sus años. Los datos son los
- * de src/data/colaboradoras.ts, la misma lista que cuenta el panel.
+ * «Empresas que han confiado en nosotras», en Inicio, entre Proyectos y
+ * Contacto: la prueba de las «30+ empresas» de la portada. Todas por igual,
+ * con su logo (o una foto) y su nombre. Los datos son los de
+ * src/data/colaboradoras.ts, la misma lista que cuenta el panel; el HTML
+ * servido la incluye para quien no ejecuta JavaScript (scripts/prerenderMeta).
  *
  * La cinta se mueve sola: se para con el ratón encima, con el foco dentro
  * (CSS) y con el botón (WCAG 2.2.2). Con «reducir movimiento» no se mueve y se
@@ -95,7 +88,7 @@ const SeccionEmpresas: React.FC = () => {
           <p className="empresas__total">
             <span className="empresas__total-numero">{COLABORADORAS.length}</span>
             <span className="empresas__total-texto">
-              empresas y organizaciones desde {ANIO_INICIO}
+              empresas y organizaciones desde {ANIO_PRIMERA_COLABORACION}
             </span>
           </p>
           <div className="empresas__boton">

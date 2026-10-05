@@ -7,7 +7,6 @@ import {
   FaStar,
   FaUsers,
 } from "react-icons/fa";
-import SeccionEmpresas from "../components/SeccionEmpresas";
 import SeccionEquipo from "../components/SeccionEquipo";
 import SeccionImpacto from "../components/SeccionImpacto";
 import SeccionValores from "../components/SeccionValores";
@@ -66,7 +65,7 @@ const TeamPage = () => {
   />
   <meta
     name="keywords"
-    content="FemCoders Club, cofundadoras, mujeres en tecnología, desarrolladoras, mentoras tech, Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Isadora Matias, InfoJobs, Glovo, sponsors tech, empresas colaboradoras"
+    content="FemCoders Club, cofundadoras, mujeres en tecnología, desarrolladoras, mentoras tech, Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón, Isadora Matias"
   />
   <link rel="canonical" href="https://www.femcodersclub.com/equipo" />
   
@@ -198,201 +197,18 @@ const TeamPage = () => {
     `}
   </script>
 
-  {/* JSON-LD Strategic Partners - InfoJobs y Glovo */}
-  <script type="application/ld+json">
-    {`
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Strategic Partners de FemCoders Club",
-        "description": "Empresas colaboradoras estratégicas que apoyan la misión de FemCoders Club",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-              "@type": "Organization",
-              "name": "InfoJobs",
-              "url": "https://www.infojobs.net/",
-              "description": "Apoya a FemCoders Club en su misión de impulsar a mujeres en STEM y tecnología",
-              "sponsor": {
-                "@type": "Organization",
-                "name": "FemCoders Club"
-              }
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "Organization",
-              "name": "Glovo",
-              "url": "https://glovoapp.com/es/es/",
-              "description": "Apoya a FemCoders Club en su misión de impulsar a mujeres en STEM y tecnología",
-              "sponsor": {
-                "@type": "Organization",
-                "name": "FemCoders Club"
-              }
-            }
-          }
-        ]
-      }
-    `}
-  </script>
-
-  {/* JSON-LD Empresas Colaboradoras Generales */}
-  <script type="application/ld+json">
-    {`
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Empresas Colaboradoras de FemCoders Club",
-        "description": "Organizaciones que han colaborado con FemCoders Club en eventos, talleres y actividades para promover la diversidad en tecnología",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-              "@type": "Organization",
-              "name": "NTT DATA",
-              "url": "https://www.nttdata.com/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "Organization",
-              "name": "HackBarna",
-              "url": "https://hackbarna.com/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "item": {
-              "@type": "Organization",
-              "name": "SheHub",
-              "url": "https://shehub.es/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 4,
-            "item": {
-              "@type": "Organization",
-              "name": "Le Wagon",
-              "url": "https://www.lewagon.com/es"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 5,
-            "item": {
-              "@type": "Organization",
-              "name": "El Canòdrom",
-              "url": "https://canodrom.barcelona/es"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 6,
-            "item": {
-              "@type": "Organization",
-              "name": "PokeCode",
-              "url": "https://pokecode.net/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 7,
-            "item": {
-              "@type": "Organization",
-              "name": "FactoriaF5",
-              "url": "https://factoriaf5.org/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 8,
-            "item": {
-              "@type": "Organization",
-              "name": "Adevinta",
-              "url": "https://adevinta.com/es/quienes-somos/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 9,
-            "item": {
-              "@type": "Organization",
-              "name": "Factorial HR",
-              "url": "https://factorialhr.es/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 10,
-            "item": {
-              "@type": "Organization",
-              "name": "Criteo",
-              "url": "https://www.criteo.com/es/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 11,
-            "item": {
-              "@type": "Organization",
-              "name": "Dynatrace",
-              "url": "https://www.dynatrace.com/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 12,
-            "item": {
-              "@type": "Organization",
-              "name": "Codurance",
-              "url": "https://www.codurance.com/es/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 13,
-            "item": {
-              "@type": "Organization",
-              "name": "Semrush",
-              "url": "https://www.semrush.com/"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 14,
-            "item": {
-              "@type": "Organization",
-              "name": "SeatCode",
-              "url": "https://code.seat/"
-            }
-          }
-        ]
-      }
-    `}
-  </script>
-
   {/*
     * JSON-LD AboutPage.
     *
-    * Los tres elementos de su lista son grupos, no personas. «Equipo Actual -
-    * Cofundadoras» se declaraba como `Person` y no lo es: es un conjunto de
-    * cinco. Pasa a `Organization`, que es lo que ya usaban los otros dos
-    * elementos hermanos (#62).
+    * «Equipo Actual - Cofundadoras» es un grupo, no una persona: se declara como
+    * `Organization` (#62). schema.org no tiene un tipo para «equipo dentro de
+    * una organización» y es lo más cercano. A las personas se las describe una
+    * a una en el bloque de `founder` de arriba.
     *
-    * `Organization` no describe un subgrupo con precisión —schema.org no tiene
-    * un tipo para «equipo dentro de una organización»— pero es lo más cercano
-    * y, sobre todo, deja los tres elementos declarados igual. A las personas se
-    * las describe una a una en el bloque de `founder` de arriba, que es donde
-    * corresponde.
+    * Las empresas colaboradoras ya no se declaran aquí: desde octubre de 2026
+    * se muestran en Inicio, y Google pide que lo que dicen los datos
+    * estructurados se vea en la página. Su JSON-LD lo escribe el prerender en
+    * la portada, desde src/data/colaboradoras.ts.
     */}
   <script type="application/ld+json">
     {`
@@ -412,24 +228,6 @@ const TeamPage = () => {
                 "@type": "Organization",
                 "name": "Equipo Actual - Cofundadoras",
                 "description": "Cofundadoras activas que lideran las iniciativas de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "item": {
-                "@type": "Organization",
-                "name": "Strategic Partners",
-                "description": "Empresas como InfoJobs y Glovo que apoyan estratégicamente la misión de FemCoders Club"
-              }
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "item": {
-                "@type": "Organization",
-                "name": "Empresas Colaboradoras",
-                "description": "Organizaciones tecnológicas que han colaborado en eventos y actividades con FemCoders Club"
               }
             }
           ]
@@ -463,10 +261,8 @@ const TeamPage = () => {
   </script>
 </Helmet>
 
-      {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4 → bg3. */}
+      {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4. */}
       <SeccionEquipo />
-
-      <SeccionEmpresas />
 
       <SeccionValores />
 

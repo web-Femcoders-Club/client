@@ -11,6 +11,7 @@ import HeroCollage from "../components/HeroCollage";
 import SeccionEsencia from "../components/SeccionEsencia";
 import SeccionConocenos from "../components/SeccionConocenos";
 import SeccionProyectos from "../components/SeccionProyectos";
+import SeccionEmpresas from "../components/SeccionEmpresas";
 import SeccionContacto from "../components/SeccionContacto";
 import CifraAnimada from "../components/CifraAnimada";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
@@ -499,7 +500,7 @@ const HomePage: React.FC = () => {
       imageAlt: "Colaboración FemCoders Club y Extraordinary — networking para mujeres en tecnología",
       date: "Marzo 2026",
       category: "Colaboraciones",
-      link: "/equipo#empresas-titulo",
+      link: "/#empresas-titulo",
     },
     {
       id: "8",
@@ -908,6 +909,7 @@ const HomePage: React.FC = () => {
 
       <SeccionNoticias noticias={newsData} />
       <SeccionProyectos />
+      <SeccionEmpresas />
       <SeccionContacto>
           <div
             className="form-container"

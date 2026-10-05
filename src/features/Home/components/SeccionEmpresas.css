@@ -1,8 +1,9 @@
 /*
- * «Empresas que han confiado en nosotras» en /equipo. Piezas compartidas en
+ * «Empresas que han confiado en nosotras» en Inicio. Piezas compartidas en
  * src/styles/rediseno.css: `fc-manchas`, `fc-puntos`, `fc-antetitulo`,
  * `fc-titulo-seccion`, `fc-rotulador` y `fc-boton-redondo`. Fondo: `bg3`, que
- * empieza en el blanco en que termina `bg1` de la sección del equipo.
+ * empieza en el blanco en que termina `bg4` de Proyectos y acaba en el lavanda
+ * que da paso al azul de Contacto.
  *
  * index.css pinta todos los `span` en naranja y 1.5rem: cada clase de aquí
  * fija sus propios valores.
@@ -80,7 +81,7 @@
  * La pista lleva la lista dos veces y se desplaza la mitad de su ancho. Los
  * bordes se difuminan con una máscara. La duración la fija el componente
  * según el número de fichas, para ir a la misma velocidad que la cinta de
- * alianzas; los 180s de aquí son el valor de respaldo.
+ * alianzas de /equipo; los 180s de aquí son el valor de respaldo.
  */
 .empresas__cinta {
   overflow: hidden;
@@ -123,13 +124,13 @@
   gap: 1rem;
 }
 
-/* ---------- Ficha: imagen, nombre y años ---------- */
+/* ---------- Ficha: imagen y nombre ---------- */
 
 .empresas__ficha {
   flex-shrink: 0;
   width: 13.5rem;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   gap: 0.5rem;
   padding: 0.7rem 0.7rem 1rem;
   border-radius: 1.1rem;
@@ -182,17 +183,6 @@
   line-height: 1.15;
   color: var(--color-text-dark);
   text-wrap: balance;
-}
-
-.empresas__anios {
-  padding: 0 0.3rem;
-  font-family: var(--font-primary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  /* 7,41:1 sobre melocotón y más sobre blanco: AAA en texto pequeño */
-  color: var(--color-primary-oscuro);
-  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Tamaños ---------- */

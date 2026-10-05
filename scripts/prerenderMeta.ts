@@ -18,6 +18,7 @@ import { getPostsIndex, type PostMeta } from "./postsIndex";
 import { generateSocialImages, type SocialImageMap } from "./socialImages";
 import { isPrivateRoute } from "./privateRoutes";
 import { RUTAS_SPA, type RutaMeta } from "./spaRoutesMeta";
+import { colaboradorasHtml, colaboradorasJsonLd } from "./contenidoColaboradoras";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DIST_DIR = path.join(ROOT, "dist");
@@ -336,6 +337,8 @@ export async function prerenderMeta(): Promise<void> {
   }
 
   const spaRoutes = await writeSpaRoutes(posts);
+  // La última: escribe sobre dist/index.html, la plantilla de todo lo anterior.
+  await writePortada(template);
 
   console.log(`Paginas prerenderizadas: ${written}/${posts.length}`);
   console.log(`Rutas de la SPA materializadas: ${spaRoutes}`);
@@ -455,6 +458,28 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
   await fs.writeFile(path.join(DIST_DIR, "404.html"), template, "utf-8");
 
   return written;
+}
+
+/**
+ * Completa el HTML servido de la portada con lo que React pinta y un
+ * rastreador sin JavaScript no ve: las organizaciones colaboradoras de la
+ * sección «Empresas que han confiado en nosotras», en un `<noscript>` y como
+ * JSON-LD (ver scripts/contenidoColaboradoras.ts).
+ *
+ * Escribe sobre dist/index.html, que es la plantilla de los posts, de las rutas
+ * de la SPA y del 404.html. Por eso se llama al final, con todo lo demás ya
+ * escrito: hacerlo antes metería la lista de la portada en todas las páginas.
+ */
+async function writePortada(template: string): Promise<void> {
+  const jsonLd = `    <script type="application/ld+json">${JSON.stringify(colaboradorasJsonLd())}</script>`;
+  const noscript = `    <noscript>\n${colaboradorasHtml()}\n    </noscript>`;
+
+  const html = template
+    .replace("</head>", `${jsonLd}\n  </head>`)
+    .replace('<div id="root"></div>', `${noscript}\n    <div id="root"></div>`);
+
+  await fs.writeFile(path.join(DIST_DIR, "index.html"), html, "utf-8");
+  console.log("Portada: organizaciones colaboradoras añadidas al HTML servido");
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
