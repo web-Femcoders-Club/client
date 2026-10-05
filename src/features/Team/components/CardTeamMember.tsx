@@ -1,13 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FaLinkedin, FaTimes } from "react-icons/fa";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
+import BotonRotacion from "../../Home/components/BotonRotacion";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
   filter?: "active" | "inactive" | "all";
 }
+
+const ROTACION_MS = 30000;
+const ID_LISTA = "equipo-lista";
+
+/*
+ * La descripción llega de la base de datos en párrafos separados por una línea
+ * en blanco, y el primero es el oficio («Desarrolladora Web Full Stack…»): va
+ * bajo el nombre y el resto en «Leer más». El texto se muestra íntegro. Si no
+ * hay párrafos, todo va al desplegable.
+ */
+const partirDescripcion = (descripcion: string) => {
+  const parrafos = descripcion
+    .split(/\n\s*\n/)
+    .map((parrafo) => parrafo.trim())
+    .filter(Boolean);
+
+  if (parrafos.length < 2) return { oficio: null, historia: parrafos };
+  return { oficio: parrafos[0], historia: parrafos.slice(1) };
+};
 
 const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   const { data, error, isLoading } = useQuery<Member[]>({
@@ -16,13 +37,11 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   });
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
-  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   const [rotationIndex, setRotationIndex] = useState(0);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
+  const [detenida, setDetenida] = useState(false);
+  const [ratonEncima, setRatonEncima] = useState(false);
+  const [focoDentro, setFocoDentro] = useState(false);
 
-  // Memoizar función getFilteredMembers para evitar warnings de dependencias
   const getFilteredMembers = useCallback(() => {
     if (!data || !Array.isArray(data)) return [];
 
@@ -35,90 +54,46 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     return data;
   }, [data, filter]);
 
-  // Orden base de los miembros (consistente)
-  const baseMembers = useMemo(() => {
-    return getFilteredMembers();
-  }, [getFilteredMembers]);
+  const baseMembers = useMemo(() => getFilteredMembers(), [getFilteredMembers]);
 
-  // Rotación equitativa: cada miembro pasa por todas las posiciones
+  // Rotación equitativa: cada miembro pasa por todas las posiciones.
   const rotatedMembers = useMemo(() => {
     if (baseMembers.length === 0) return [];
-    
-    // Rotamos el array según el índice de rotación
-    const rotated = [...baseMembers];
     const actualRotation = rotationIndex % baseMembers.length;
-    
-    // Rotar array: mover los primeros 'actualRotation' elementos al final
-    return [...rotated.slice(actualRotation), ...rotated.slice(0, actualRotation)];
+    return [...baseMembers.slice(actualRotation), ...baseMembers.slice(0, actualRotation)];
   }, [baseMembers, rotationIndex]);
 
-  // Auto-rotación cada 30 segundos
+  /*
+   * La rotación se para mientras alguien lee o actúa sobre las tarjetas (ratón
+   * encima, foco del teclado dentro o una historia abierta) y con el botón de
+   * pausa, que pide WCAG 2.2.2 para el contenido que cambia solo. Al reanudar,
+   * los 30 segundos empiezan de cero.
+   */
+  const enPausa = detenida || ratonEncima || focoDentro || expandedId !== null;
+
   useEffect(() => {
-    if (baseMembers.length === 0) return;
+    if (baseMembers.length < 2 || enPausa) return;
 
     const intervalId = setInterval(() => {
       setRotationIndex(prev => prev + 1);
-    }, 30000); // 30 segundos
+    }, ROTACION_MS);
 
     return () => clearInterval(intervalId);
-  }, [baseMembers.length]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedMember) return;
-
-      if (e.key === "Escape") {
-        handleCloseModal();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    if (selectedMember && closeButtonRef.current) {
-      closeButtonRef.current.focus();
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedMember]);
+  }, [baseMembers.length, enPausa]);
 
   const handleToggleExpand = (memberId: number) => {
     setExpandedId(expandedId === memberId ? null : memberId);
   };
 
-  const handleOpenModal = (member: Member) => {
-    setSelectedMember(member);
-    previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
-  };
-
-  const handleCloseModal = () => {
-    setSelectedMember(null);
-
-    if (previouslyFocusedElementRef.current) {
-      previouslyFocusedElementRef.current.focus();
-    }
-  };
-
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      handleCloseModal();
-    }
+  const handleBlur = (e: React.FocusEvent<HTMLUListElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) setFocoDentro(false);
   };
 
   if (isLoading) {
     return (
-      <div
-        className="flex items-center justify-center min-h-[30vh]"
-        aria-live="polite"
-      >
-        <span
-          className="loading loading-spinner text-primary"
-          style={{ width: "4rem", height: "4rem" }}
-          role="status"
-          aria-label="Cargando miembros del equipo"
-        ></span>
-        <span className="sr-only">Cargando miembros del equipo</span>
+      <div className="equipo-estado" role="status">
+        <div className="equipo-estado__girando" aria-hidden="true" />
+        Cargando el equipo…
       </div>
     );
   }
@@ -126,175 +101,111 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
   if (error) {
     console.error("Error fetching members:", error);
     return (
-      <div aria-live="assertive" role="alert" className="text-center py-4">
-        <p>
-          Error al cargar los miembros del equipo. Por favor, intente nuevamente
-          más tarde.
-        </p>
+      <div className="equipo-estado" role="alert">
+        No hemos podido cargar el equipo. Recarga la página para volver a intentarlo.
       </div>
     );
   }
 
   if (rotatedMembers.length === 0) {
-    return (
-      <div className="text-center py-4">
-        <p>No se encontraron miembros del equipo en esta categoría.</p>
-      </div>
-    );
+    return <p className="equipo-estado">Todavía no hay nadie en esta parte del equipo.</p>;
   }
 
   return (
-    <section
-      className={`team-grid ${filter === "inactive" ? "inactive-members" : ""}`}
-      aria-label={
-        filter === "active" 
-          ? "Equipo actual de FemCoders Club" 
-          : filter === "inactive"
-          ? "Cofundadoras Legacy de FemCoders Club"
-          : "Miembros del equipo de FemCoders Club"
-      }
-    >
-      {rotatedMembers.map((member, index) => {
-        const isExpanded = expandedId === member.idMember;
+    <div className="equipo-tarjetas">
+      <div className="equipo-tarjetas__barra">
+        <span className="fc-chip">
+          {rotatedMembers.length} {rotatedMembers.length === 1 ? "cofundadora" : "cofundadoras"}
+        </span>
+        {rotatedMembers.length > 1 && (
+          <BotonRotacion
+            girando={!detenida}
+            alAlternar={() => setDetenida((valor) => !valor)}
+            de="equipo"
+            controla={ID_LISTA}
+          />
+        )}
+      </div>
 
-        return (
-          <article
-            key={`${member.idMember}-${rotationIndex}`}
-            className={`team-card ${isExpanded ? "expanded" : ""} ${
-              filter === "inactive" ? "legacy-card" : ""
-            }`}
-            style={{ 
-              animation: 'crossFadeIn 1s ease-out forwards',
-              animationDelay: `${index * 0.12}s`,
-              opacity: 0
-            }}
-          >
-            {filter === "inactive" && (
-              <span className="legacy-badge">Legacy</span>
-            )}
+      <ul
+        id={ID_LISTA}
+        className={`equipo-tarjetas__lista ${filter === "inactive" ? "equipo-tarjetas__lista--legacy" : ""}`}
+        aria-label={
+          filter === "active"
+            ? "Equipo actual de FemCoders Club"
+            : filter === "inactive"
+            ? "Cofundadoras Legacy de FemCoders Club"
+            : "Miembros del equipo de FemCoders Club"
+        }
+        onMouseEnter={() => setRatonEncima(true)}
+        onMouseLeave={() => setRatonEncima(false)}
+        onFocus={() => setFocoDentro(true)}
+        onBlur={handleBlur}
+      >
+        {rotatedMembers.map((member, index) => {
+          const isExpanded = expandedId === member.idMember;
+          const nombre = `${member.memberName} ${member.memberLastName}`;
+          const idHistoria = `historia-${member.idMember}`;
+          const { oficio, historia } = partirDescripcion(member.memberDescription);
 
-            {/* Contenido siempre visible */}
-            <div className="team-card-main">
-              <figure className="team-card-avatar">
-                <img
-                  src={member.memberImage}
-                  alt=""
-                  loading="lazy"
-                  width="140"
-                  height="140"
-                />
-              </figure>
+          return (
+            <li
+              // La clave cambia con la rotación para que la tarjeta vuelva a entrar animada.
+              key={`${member.idMember}-${rotationIndex}`}
+              className="equipo-tarjeta fc-tarjeta"
+              style={{ animationDelay: `${index * 0.12}s` }}
+            >
+              {filter === "inactive" && <p className="equipo-tarjeta__legacy">Legacy</p>}
 
-              <div className="team-card-info">
-                <h3 className="team-card-name">
-                  {member.memberName} {member.memberLastName}
-                </h3>
-                <p className="team-card-role">{member.memberRole}</p>
-              </div>
+              {/* El archivo de la foto ya trae el disco blanco y su sombra. */}
+              <img
+                className="equipo-tarjeta__foto"
+                src={member.memberImage}
+                alt=""
+                loading="lazy"
+                width="152"
+                height="152"
+              />
+              <h3 className="equipo-tarjeta__nombre">{nombre}</h3>
+              <span className="fc-chip fc-chip--naranja">{member.memberRole}</span>
+              {oficio && <p className="equipo-tarjeta__oficio">{oficio}</p>}
 
-              <nav className="team-card-actions" aria-label={`Acciones para ${member.memberName}`}>
+              <div className="equipo-tarjeta__acciones">
+                {historia.length > 0 && (
+                  <button
+                    type="button"
+                    className="equipo-tarjeta__mas"
+                    aria-expanded={isExpanded}
+                    aria-controls={idHistoria}
+                    onClick={() => handleToggleExpand(member.idMember)}
+                  >
+                    Leer más sobre {member.memberName}
+                    <ChevronDown aria-hidden="true" />
+                  </button>
+                )}
                 <a
                   href={member.memberLinkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="team-linkedin-link"
-                  aria-label={`Ver perfil de LinkedIn de ${member.memberName} ${member.memberLastName}`}
+                  className="fc-boton-redondo"
                 >
                   <FaLinkedin aria-hidden="true" />
+                  <span className="fc-solo-lector">
+                    LinkedIn de {nombre} (se abre en una pestaña nueva)
+                  </span>
                 </a>
-
-<button
-  className="team-expand-btn"
-  onClick={() => handleToggleExpand(member.idMember)}
->
-  {isExpanded ? "-" : "+"}
-</button>
-
-
-              </nav>
-            </div>
-
-            {/* Descripción expandible con scroll */}
-            {isExpanded && (
-              <div 
-                className="team-card-description"
-                id={`desc-${member.idMember}`}
-                role="region"
-                aria-label={`Descripción de ${member.memberName} ${member.memberLastName}`}
-              >
-                <div className="team-card-description-content">
-                  <p>{member.memberDescription}</p>
-                </div>
-                
-                <button
-                  className="team-modal-trigger"
-                  onClick={() => handleOpenModal(member)}
-                  aria-label={`Ver perfil completo de ${member.memberName} ${member.memberLastName}`}
-                >
-                  Ver perfil completo
-                </button>
               </div>
-            )}
-          </article>
-        );
-      })}
 
-      {/* MODAL para perfil completo */}
-      {selectedMember && (
-        <div
-          className="modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={`modal-title-${selectedMember.idMember}`}
-          onClick={handleOverlayClick}
-        >
-          <article className="modal-card" ref={modalRef} tabIndex={-1}>
-            <button
-              className="modal-close"
-              onClick={handleCloseModal}
-              aria-label="Cerrar modal"
-              ref={closeButtonRef}
-            >
-              <FaTimes aria-hidden="true" />
-            </button>
-
-            <header className="modal-header">
-              <figure className="modal-avatar">
-                <img
-                  src={selectedMember.memberImage}
-                  alt=""
-                  width="120"
-                  height="120"
-                />
-              </figure>
-              
-              <h4 className="modal-title" id={`modal-title-${selectedMember.idMember}`}>
-                {selectedMember.memberName} {selectedMember.memberLastName}
-              </h4>
-              
-              <p className="modal-role">{selectedMember.memberRole}</p>
-            </header>
-
-            <section className="modal-body">
-              <p>{selectedMember.memberDescription}</p>
-            </section>
-
-            <footer className="modal-footer">
-              <a
-                href={selectedMember.memberLinkedin}
-                className="modal-linkedin-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Abrir perfil de LinkedIn de ${selectedMember.memberName}`}
-              >
-                <FaLinkedin aria-hidden="true" />
-                Ver en LinkedIn
-              </a>
-            </footer>
-          </article>
-        </div>
-      )}
-    </section>
+              <div className="equipo-tarjeta__historia" id={idHistoria} hidden={!isExpanded}>
+                {historia.map((parrafo) => (
+                  <p key={parrafo}>{parrafo}</p>
+                ))}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

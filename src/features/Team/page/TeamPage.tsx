@@ -11,7 +11,7 @@ import {
   FaTrophy,
   FaUsers,
 } from "react-icons/fa";
-import CardTeamMember from "../components/CardTeamMember";
+import SeccionEquipo from "../components/SeccionEquipo";
 import SponsorsARExperience from "../components/SponsorsARExperience";
 import "./../../Home/page/Home.css";
 import "./TeamPage.css";
@@ -511,45 +511,7 @@ const TeamPage = () => {
   </script>
 </Helmet>
 
-      {/* SECCIÓN 0 – Intro y Equipo Actual */}
-      <section className="parallax bg1 w-full flex flex-col items-center py-2 lg:py-6 gap-5 xl:gap-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-intro-heading">
-        <h1 id="team-intro-heading" className="team-main-heading">Nuestro Equipo de Liderazgo</h1>
-
-        <div data-aos="fade-up" data-aos-delay="100" className="w-full mt-20">
-          <p className="styled-paragraph">
-            <span>¡Conoce a las líderes de FemCoders Club!</span>
-            <br />
-            <br />
-            Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una
-            comunidad apasionada, hoy se ha formalizado como una <strong>Asociación legalmente constituida</strong>.
-            <br />
-            <br />
-            Este paso administrativo es la prueba de nuestro compromiso a largo plazo: nos da la <strong>estructura necesaria</strong> para
-            impulsar proyectos de gran escala y ofrecer una plataforma estable donde todas puedan crecer.
-            <br />
-            <br />
-            Cada miembro de nuestro liderazgo aporta una trayectoria sólida y una visión estratégica para asegurar que
-            FemCoders Club continúe siendo el referente de la inclusión y el empoderamiento femenino en el sector tech.
-            <br />
-            <br />
-            Estás a punto de conocer a las profesionales que están marcando el camino.
-          </p>
-        </div>
-
-        <h2
-          id="equipo-actual"
-          className="text-3xl font-semibold text-team-primary-heading mb-6"
-          tabIndex={0}
-        >
-          Nuestro Equipo Actual
-        </h2>
-
-        <div className="w-full" data-aos="fade-up" data-aos-delay="200">
-          <div className="active-members-container">
-            <CardTeamMember filter="active" />
-          </div>
-        </div>
-      </section>
+      <SeccionEquipo />
 
       {/* SECCIÓN - Valores del Equipo */}
       <section className="team-values-section bg2 py-12 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-values-heading">
