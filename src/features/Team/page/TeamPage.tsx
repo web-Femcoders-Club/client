@@ -2,44 +2,20 @@ import { Helmet } from "react-helmet";
 import {
   FaAward,
   FaBuilding,
-  FaGlobe,
   FaHandshake,
   FaHeart,
   FaLightbulb,
-  FaRocket,
   FaStar,
   FaTrophy,
   FaUsers,
 } from "react-icons/fa";
 import SeccionEquipo from "../components/SeccionEquipo";
+import SeccionValores from "../components/SeccionValores";
 import SponsorsARExperience from "../components/SponsorsARExperience";
 import "./../../Home/page/Home.css";
 import "./TeamPage.css";
 
 const TeamPage = () => {
-  const teamValues = [
-    {
-      icon: <FaUsers className="value-icon" />,
-      title: "Colaboración",
-      description: "Trabajamos juntas para crear un ecosistema tecnológico más inclusivo."
-    },
-    {
-      icon: <FaRocket className="value-icon" />,
-      title: "Innovación",
-      description: "Impulsamos el talento femenino con metodologías actuales y proyectos reales."
-    },
-    {
-      icon: <FaHeart className="value-icon" />,
-      title: "Empoderamiento",
-      description: "Creamos espacios seguros donde cada mujer puede brillar y crecer profesionalmente."
-    },
-    {
-      icon: <FaGlobe className="value-icon" />,
-      title: "Comunidad Global",
-      description: "Conectamos mujeres tech de diferentes países, culturas y experiencias."
-    },
-  ];
-
   const teamAchievements = [
     {
       number: "1500+",
@@ -513,48 +489,7 @@ const TeamPage = () => {
 
       <SeccionEquipo />
 
-      {/* SECCIÓN - Valores del Equipo */}
-      <section className="team-values-section bg2 py-12 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-values-heading">
-        <div data-aos="fade-up" className="text-center mb-10">
-          <h2 id="team-values-heading" className="sponsors-title" tabIndex={0}>
-            Nuestros Valores
-          </h2>
-          <p style={{ color: "white", fontSize: "1.1rem", maxWidth: "800px", margin: "0 auto" }}>
-            Los principios que guían nuestro trabajo y definen quiénes somos como equipo
-          </p>
-        </div>
-        
-        <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "2rem", marginTop: "2rem" }} role="list" aria-label="Lista de valores del equipo">
-          {teamValues.map((value, index) => (
-            <div
-              key={index}
-              className="value-card"
-              data-aos="flip-left"
-              data-aos-delay={100 + index * 100}
-              role="listitem"
-              style={{
-                background: "white",
-                borderRadius: "var(--radius-lg)",
-                padding: "2rem 1.5rem",
-                textAlign: "center",
-                boxShadow: "var(--shadow-medium)",
-                transition: "all 0.3s ease",
-                border: "2px solid transparent"
-              }}
-            >
-              <div className="benefit-icon-container" aria-hidden="true">
-                {value.icon}
-              </div>
-              <h3 style={{ color: "var(--color-primary)", fontSize: "1.3rem", marginBottom: "0.8rem", fontWeight: "600" }}>
-                {value.title}
-              </h3>
-              <p style={{ color: "var(--color-text-dark)", lineHeight: "1.6", fontSize: "0.95rem" }}>
-                {value.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <SeccionValores />
 
       {/* SECCIÓN - Logros del Equipo */}
       <section className="team-achievements-section bg1 py-10 px-4 md:px-8 lg:px-16 xl:px-32" aria-labelledby="team-impact-heading">

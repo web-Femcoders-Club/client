@@ -1,0 +1,110 @@
+/*
+ * «Nuestros valores» en /equipo. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-puntos`, `fc-antetitulo`, `fc-titulo-seccion`,
+ * `fc-rotulador`, `fc-tarjeta` y `fc-disco`. Fondo: `bg3`, que empieza en el
+ * blanco con que termina `bg1` de la sección anterior.
+ *
+ * index.css da color naranja y sombra a h3: cada clase fija sus valores.
+ */
+
+.valores-equipo {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.valores-equipo__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+/* Cabecera a lo ancho: título a la izquierda y subtítulo a la derecha, como «Nuestras ideas». */
+.valores-equipo__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.valores-equipo__titulo {
+  margin: 0.9rem 0 0;
+}
+
+.valores-equipo__parrafo {
+  margin: 0;
+  max-width: 30rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+  line-height: 1.55;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/*
+ * Cuatro en fila. La primera y la tercera bajan un poco: rompen la línea
+ * recta sin decoración añadida. En tableta, 2 × 2 con el mismo escalón; en
+ * móvil, una columna y todas en línea.
+ */
+.valores-equipo__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.4rem);
+  align-items: start;
+}
+
+/* `.valores-equipo` delante: este CSS carga antes que rediseno.css y el relleno de `fc-tarjeta` ganaría. */
+.valores-equipo .valores-equipo__tarjeta {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding: clamp(1.3rem, 2vw, 1.6rem);
+}
+
+.valores-equipo .valores-equipo__tarjeta:nth-child(odd) {
+  margin-top: 2rem;
+}
+
+.valores-equipo__nombre {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.valores-equipo__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+@media (max-width: 1000px) {
+  .valores-equipo__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .valores-equipo__cabeza {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .valores-equipo__lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .valores-equipo .valores-equipo__tarjeta:nth-child(odd) {
+    margin-top: 0;
+  }
+}
