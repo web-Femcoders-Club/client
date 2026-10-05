@@ -189,7 +189,13 @@ function renderHead(template: string, post: PostMeta, image: string): string {
  * portada. Sin JSON-LD de artículo y con `og:type: website`, porque un listado
  * no es un artículo.
  */
-function renderHeadRuta(template: string, route: string, meta: RutaMeta): string {
+type JsonLd = Record<string, unknown>[];
+
+function renderHeadRuta(
+  template: string,
+  route: string,
+  meta: Omit<RutaMeta, "jsonLd"> & { jsonLd?: JsonLd }
+): string {
   const url = `${SITE_URL}${route}`;
 
   let html = template;
@@ -431,7 +437,9 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     // duplicando la portada durante meses sin que nadie lo note.
     let html = template;
     if (meta) {
-      html = renderHeadRuta(template, route, meta);
+      // El JSON-LD de /equipo se pide a la API en el build: se resuelve antes.
+      const jsonLd = typeof meta.jsonLd === "function" ? await meta.jsonLd() : meta.jsonLd;
+      html = renderHeadRuta(template, route, { ...meta, jsonLd });
       html = renderEnlacesPosts(html, posts, meta);
       html = await renderContenido(html, meta);
     } else {

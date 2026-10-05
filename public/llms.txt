@@ -17,7 +17,7 @@ FemCoders Club is a Spanish tech community and registered association founded on
 
 ## Founders
 
-FemCoders Club was co-founded by six women:
+FemCoders Club is led by its five current co-founders (full bios, as published on the website, in the "Team" section below):
 
 1. Irina Ichim — Fullstack Software Developer, AI Specialist, Backend Java Mentor
    LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
@@ -31,10 +31,7 @@ FemCoders Club was co-founded by six women:
 4. Silvina Lucero Calderón — Full Stack Web Developer, QA Functional Tester
    LinkedIn: https://www.linkedin.com/in/silvina-lucero
 
-5. Liliana Dalmarco — Fullstack Developer, Scrum Master, Project Manager
-   LinkedIn: https://www.linkedin.com/in/lilianadalmarco
-
-6. Isadora Matias — Full Stack Developer, Designer, Visual Communication
+5. Isadora Matias — Full Stack Developer, Designer, Visual Communication
    LinkedIn: https://www.linkedin.com/in/isadoramatias/
 
 ## Topics

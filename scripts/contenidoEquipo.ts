@@ -24,6 +24,7 @@ import {
   partirDescripcion,
 } from "../src/features/Team/contenido";
 import type { Member } from "../src/types/types";
+import { idPersona } from "./fundadoras";
 
 const SITIO = "https://www.femcodersclub.com";
 const URL_PAGINA = `${SITIO}/equipo`;
@@ -35,10 +36,21 @@ export interface MiembroPublico {
   oficio: string | null;
   historia: string[];
   linkedin: string;
+  imagen: string;
 }
 
-/** El equipo actual, en el orden de la base de datos. Vacío si la API falla. */
-export async function obtenerEquipo(): Promise<MiembroPublico[]> {
+let peticion: Promise<MiembroPublico[]> | null = null;
+
+/**
+ * El equipo actual, en el orden de la base de datos. Vacío si la API falla.
+ * Se pide una sola vez por build: lo usan el noscript, el JSON-LD y llms.txt.
+ */
+export function obtenerEquipo(): Promise<MiembroPublico[]> {
+  peticion ??= pedirEquipo();
+  return peticion;
+}
+
+async function pedirEquipo(): Promise<MiembroPublico[]> {
   try {
     const respuesta = await fetch(`${API}/member`, { signal: AbortSignal.timeout(15000) });
     if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
@@ -52,6 +64,7 @@ export async function obtenerEquipo(): Promise<MiembroPublico[]> {
         rol: m.memberRole,
         ...partirDescripcion(m.memberDescription ?? ""),
         linkedin: m.memberLinkedin,
+        imagen: m.memberImage?.startsWith("http") ? m.memberImage : `${SITIO}${m.memberImage}`,
       }));
   } catch (error) {
     console.warn(`⚠️  /equipo sin biografías en el HTML servido: ${(error as Error).message}`);
@@ -115,6 +128,70 @@ export function equipoHtml(equipo: MiembroPublico[]): string {
     `<p><a href="/contacto">Quiero colaborar</a> · <a href="mailto:${CAMBIO.correo}">${CAMBIO.correo}</a></p>`,
     "</main>",
   ].join("\n");
+}
+
+// ---------- JSON-LD ----------
+
+/*
+ * Cada persona con el `@id` de scripts/fundadoras.ts, el mismo que cita
+ * «Quiénes somos» en `founder` (los dos salen del nombre). Dice lo que se ve
+ * en la página: el rol de la base de datos (`jobTitle`), su primera línea
+ * (`description`), su foto y su LinkedIn.
+ */
+const idMiembro = idPersona;
+
+export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[] {
+  const ID_ORGANIZACION = `${SITIO}/#organization`;
+  const ID_SITIO = `${SITIO}/#website`;
+
+  const personas = equipo.map((m) => ({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": idMiembro(m.nombre),
+    name: m.nombre,
+    jobTitle: m.rol,
+    ...(m.oficio ? { description: m.oficio } : {}),
+    image: m.imagen,
+    ...(m.linkedin ? { sameAs: m.linkedin } : {}),
+    memberOf: { "@id": ID_ORGANIZACION },
+  }));
+
+  const pagina = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": URL_PAGINA,
+    name: `${titulo(PRESENTACION_EQUIPO.titulo)} | FemCoders Club`,
+    url: URL_PAGINA,
+    description: "Las cofundadoras que lideran FemCoders Club, sus valores y el impacto de la comunidad.",
+    inLanguage: "es",
+    isPartOf: { "@id": ID_SITIO },
+    about: { "@id": ID_ORGANIZACION },
+    // Sin equipo (la API no respondió) la página no dice que contenga a nadie.
+    ...(equipo.length
+      ? {
+          mainEntity: {
+            "@type": "ItemList",
+            name: PRESENTACION_EQUIPO.subtitulo,
+            itemListElement: personas.map((p, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: { "@id": p["@id"] },
+            })),
+          },
+        }
+      : {}),
+  };
+
+  const migas = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITIO },
+      { "@type": "ListItem", position: 2, name: "Equipo", item: URL_PAGINA },
+    ],
+  };
+
+  return [pagina, ...personas, migas];
 }
 
 // ---------- Markdown (llms.txt) ----------

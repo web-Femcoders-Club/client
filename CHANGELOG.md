@@ -5,6 +5,52 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Equipo (rediseño)
+
+#### Cambiado
+- **/equipo rediseñada entera y sin Tailwind**, con los fondos de la home: el
+  equipo actual (`bg1`), «Nuestros valores» (`bg3`), «Una comunidad real» con
+  cifras y alianzas (`bg4`) y «Sé parte del cambio» para empresas (`bg2`).
+- **El h1 ya se ve**: la cabecera fija lo tapaba. Las tarjetas del equipo
+  muestran la biografía de la base de datos íntegra, con el oficio bajo el
+  nombre y el resto en «Leer más»; sale el modal que repetía el texto. Siguen
+  rotando cada 30 s con `useRotacion`, el mismo de los carruseles de Inicio y
+  «Quiénes somos», ahora en `src/hooks` junto a `BotonRotacion` en
+  `src/components/ui`.
+- **Cifras comprobadas**: fuera «15+ proyectos impulsados». Dentro 29
+  repositorios en GitHub y 34 artículos técnicos, y las cifras de comunidad
+  salen de `src/data/cifrasComunidad.ts`, compartido con Inicio.
+- **Alianzas y colaboraciones** en una cinta infinita, cada una con el papel de
+  FemCoders Club y enlace a su noticia. Se para con ratón, foco o botón y no se
+  mueve con «reducir movimiento».
+- **Empresas que han confiado en nosotras pasa a Inicio**, entre Proyectos y
+  Contacto: una cinta con las 34 organizaciones de `src/data/colaboradoras.ts`,
+  la misma lista que cuenta el panel (que pasa de 25 a 34).
+- **«Quiero colaborar» llega a alguien**: escribía a `partnerships@`, que no
+  existe. Ahora lleva a `/contacto` y muestra `info@femcodersclub.com`.
+- **Los enlaces con ancla bajan hasta su sección** («/#empresas-titulo»), también
+  dentro de la misma página, y la cabecera fija ya no tapa el destino ni el foco
+  (`scroll-padding-top`).
+- **Solo el equipo actual en la web**: las cofundadoras que ya no están siguen en
+  la base de datos como constancia, pero salen de la página, del JSON-LD y de
+  llms.txt.
+
+#### Añadido
+- **SEO y GEO**: el HTML servido de /equipo incluye los textos y las biografías
+  (desde la API en cada build) y el JSON-LD de la página y de cada persona, con
+  `@id` estables que también cita «Quiénes somos» (`scripts/fundadoras.ts`). La
+  portada lleva las organizaciones colaboradoras en un `<noscript>` y como
+  ItemList, y llms.txt gana bloques generados del equipo y de las colaboradoras.
+
+#### Quitado
+- `SponsorsARExperience`, `DaisyAvatars`, `SpecialThanksSection` y
+  `PromoterCard` (código muerto o sustituido), `TeamPage.css` y ocho fotos
+  personales que ya no usaba ninguna página.
+
+#### Corregido
+- La ficha «Y las que vienen» enlazaba a `/noticias`, que no existe.
+- El `og:image` de Inicio apuntaba a un archivo que no existe.
+
 ### Aviso de cookies y «Volver arriba» (rediseño)
 
 #### Cambiado
