@@ -106,6 +106,16 @@
 }
 
 /*
+ * La cabecera es fija y publica su altura en --fem-header-height. Al bajar a
+ * un ancla («/#empresas-titulo») o al llevar el foco a un elemento, el
+ * navegador deja libre ese alto: sin esto, el destino quedaba tapado por la
+ * cabecera (WCAG 2.4.11, foco no oculto).
+ */
+html {
+  scroll-padding-top: calc(var(--fem-header-height, 80px) + 1rem);
+}
+
+/*
  * Indicador de foco para las pantallas de fuera del panel (#101).
  *
  * El navegador recibe Tailwind v2 por CDN mientras el código escribe sintaxis
