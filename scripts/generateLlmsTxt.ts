@@ -17,6 +17,7 @@ import { quienesSomosMarkdown } from "./contenidoQuienesSomos";
 import { colaboradorasMarkdown } from "./contenidoColaboradoras";
 import { equipoMarkdown, obtenerEquipo } from "./contenidoEquipo";
 import { eventosMarkdown, obtenerEventos } from "./contenidoEventos";
+import { contactoMarkdown } from "./contenidoContacto";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const LLMS_PATH = path.join(ROOT, "public", "llms.txt");
@@ -38,6 +39,9 @@ const END_EQUIPO = "<!-- END: equipo generado automaticamente -->";
 // Próximos y pasados, desde src/features/Events/contenido.ts y la base de datos.
 const BEGIN_EVENTOS = "<!-- BEGIN: eventos generado automaticamente -->";
 const END_EVENTOS = "<!-- END: eventos generado automaticamente -->";
+// Correo y motivos para escribir, desde src/features/Contact/contenido.ts.
+const BEGIN_CONTACTO = "<!-- BEGIN: contacto generado automaticamente -->";
+const END_CONTACTO = "<!-- END: contacto generado automaticamente -->";
 
 /** Sustituye el bloque entre marcadores o, si no existe, lo inserta antes de `antes`. */
 function ponerBloque(texto: string, inicio: string, fin: string, bloque: string, antes?: string): string {
@@ -100,8 +104,11 @@ export async function generateLlmsTxt(): Promise<void> {
 
   const colaboradoras = [BEGIN_COLABORADORAS, "", colaboradorasMarkdown(), "", END_COLABORADORAS].join("\n");
 
+  const contacto = [BEGIN_CONTACTO, "", contactoMarkdown(), "", END_CONTACTO].join("\n");
+
   const current = await fs.readFile(LLMS_PATH, "utf-8");
-  const conQuienes = ponerBloque(current, BEGIN_QUIENES, END_QUIENES, quienes, BEGIN);
+  const conContacto = ponerBloque(current, BEGIN_CONTACTO, END_CONTACTO, contacto, BEGIN_QUIENES);
+  const conQuienes = ponerBloque(conContacto, BEGIN_QUIENES, END_QUIENES, quienes, BEGIN);
   const conColaboradoras = ponerBloque(conQuienes, BEGIN_COLABORADORAS, END_COLABORADORAS, colaboradoras, BEGIN);
 
   // Sin respuesta de la API se conserva el bloque anterior: mejor un equipo de
