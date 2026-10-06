@@ -43,9 +43,9 @@ export interface FotoPonente {
 
 export const PONENTES = {
   antetitulo: "Ponentes",
-  titulo: { texto: "Expertas tecnológicas que lideran el cambio en el sector", destacado: "tech" },
+  titulo: { texto: "Experiencias que merece la pena", destacado: "compartir" },
   texto:
-    "FemCoders Club conecta a mujeres profesionales del sector tecnológico con talento emergente a través de eventos presenciales y online. Participan mujeres referentes que, desde distintos ámbitos de la tecnología, comparten conocimientos, experiencias y reflexiones para inspirar, visibilizar y apoyar el crecimiento profesional de otras mujeres en el sector.",
+    "En nuestros eventos participan profesionales de distintos ámbitos del sector tecnológico, con trayectorias, perfiles y perspectivas diversas. Comparten conocimientos, experiencias y aprendizajes reales que aportan nuevas perspectivas, generan referentes y abren caminos dentro del sector.",
   fotos: [
     {
       src: "/assets/eventos2026/ponencias-femeninas-femCodersClub.webp",
