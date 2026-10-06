@@ -1,0 +1,81 @@
+/*
+ * «Sigue cerca de la comunidad» en /contacto. Piezas compartidas en
+ * src/styles/rediseno.css: `fc-antetitulo`, `fc-titulo-seccion`,
+ * `fc-rotulador`, `fc-tarjeta`, `fc-disco` y `fc-boton`. Fondo: `bg4`.
+ *
+ * index.css da color naranja y sombra a h3: cada clase fija sus valores.
+ */
+
+.participa {
+  padding: clamp(3.5rem, 7vw, 5rem) 16px;
+}
+
+.participa__contenedor {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.participa__cabecera {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.participa__titulo {
+  margin: 0;
+}
+
+.participa__entradilla {
+  margin: 0;
+  max-width: 40rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+}
+
+/* Tres tarjetas del mismo alto; el botón queda abajo en todas. */
+.participa__tarjetas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.participa__tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.participa__tarjeta-titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.participa__tarjeta-texto {
+  flex: 1;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.participa__boton {
+  align-self: flex-start;
+}
+
+@media (max-width: 960px) {
+  .participa__tarjetas {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 36rem;
+  }
+}

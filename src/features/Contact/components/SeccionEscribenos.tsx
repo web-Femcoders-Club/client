@@ -1,42 +1,19 @@
-import { BriefcaseBusiness, Handshake, Mic, Users } from "lucide-react";
+import { BriefcaseBusiness, Handshake, Mic, Users, type LucideIcon } from "lucide-react";
 import { BsGithub, BsInstagram, BsLinkedin, BsSpotify, BsYoutube } from "react-icons/bs";
 import ContactForm from "./ContactForm";
+import { CORREO_CONTACTO, ESCRIBENOS } from "../contenido";
 import { REDES_SOCIALES } from "../../../data/redesSociales";
 import "./SeccionEscribenos.css";
 
-const CORREO = "info@femcodersclub.com";
+type ClaveMotivo = (typeof ESCRIBENOS.motivos)[number]["clave"];
 
-/*
- * Para qué se puede escribir. A empresas y comunidades se les habla de
- * vosotros; a cada persona, de tú (docs/tono-editorial.md). El icono es
- * decoración: el título ya lo dice.
- */
-const MOTIVOS = [
-  {
-    titulo: "Colaborar o patrocinar",
-    texto: "¿Formáis parte de una empresa? Podemos apoyar un evento o crear algo con vosotros para la comunidad.",
-    Icono: Handshake,
-    naranja: true,
-  },
-  {
-    titulo: "Compartir una vacante",
-    texto: "¿Buscáis talento tech? Contadnos vuestra oferta y vemos cómo acercarla a la comunidad.",
-    Icono: BriefcaseBusiness,
-    naranja: false,
-  },
-  {
-    titulo: "Dar una charla o un taller",
-    texto: "¿Tienes algo que compartir? Cuéntanos tu propuesta y pensemos cómo llevarla a la comunidad.",
-    Icono: Mic,
-    naranja: false,
-  },
-  {
-    titulo: "Organizar algo en colaboración",
-    texto: "¿Sois una comunidad o asociación tech? Podemos unir fuerzas y crear algo en colaboración.",
-    Icono: Users,
-    naranja: true,
-  },
-] as const;
+/* Icono de cada motivo, decorativo: el título ya lo dice. Naranja y violeta en damero. */
+const ICONOS: Record<ClaveMotivo, { Icono: LucideIcon; naranja: boolean }> = {
+  patrocinio: { Icono: Handshake, naranja: true },
+  vacante: { Icono: BriefcaseBusiness, naranja: false },
+  charla: { Icono: Mic, naranja: false },
+  comunidades: { Icono: Users, naranja: true },
+};
 
 const REDES = [
   { nombre: "Instagram", href: REDES_SOCIALES.instagram, Icono: BsInstagram },
@@ -56,14 +33,11 @@ const SeccionEscribenos: React.FC = () => (
   <section className="escribenos bg1 fc-manchas" aria-labelledby="escribenos-titulo">
     <div className="escribenos__rejilla">
       <header className="escribenos__cabecera">
-        <p className="fc-antetitulo fc-antetitulo--naranja">Contacto</p>
+        <p className="fc-antetitulo fc-antetitulo--naranja">{ESCRIBENOS.antetitulo}</p>
         <h1 className="escribenos__titulo" id="escribenos-titulo">
-          Escríbenos, nos encantará <span className="fc-rotulador">leerte</span>
+          {ESCRIBENOS.titulo.texto} <span className="fc-rotulador">{ESCRIBENOS.titulo.destacado}</span>
         </h1>
-        <p className="escribenos__entradilla">
-          Detrás de este formulario está el equipo de FemCoders Club. Cuéntanos
-          tu idea y te responderemos por correo.
-        </p>
+        <p className="escribenos__entradilla">{ESCRIBENOS.entradilla}</p>
       </header>
 
       <div className="escribenos__formulario">
@@ -72,31 +46,34 @@ const SeccionEscribenos: React.FC = () => (
       </div>
 
       <div className="escribenos__motivos-bloque">
-        <h2 className="escribenos__subtitulo">¿Qué tienes en mente?</h2>
+        <h2 className="escribenos__subtitulo">{ESCRIBENOS.motivosTitulo}</h2>
         <ul className="escribenos__motivos">
-          {MOTIVOS.map(({ titulo, texto, Icono, naranja }) => (
-            <li key={titulo} className="escribenos__motivo">
-              <div className={`fc-disco${naranja ? " fc-disco--naranja" : ""}`} aria-hidden="true">
-                <Icono />
-              </div>
-              <div>
-                <h3 className="escribenos__motivo-titulo">{titulo}</h3>
-                <p className="escribenos__motivo-texto">{texto}</p>
-              </div>
-            </li>
-          ))}
+          {ESCRIBENOS.motivos.map(({ clave, titulo, texto }) => {
+            const { Icono, naranja } = ICONOS[clave];
+            return (
+              <li key={clave} className="escribenos__motivo">
+                <div className={`fc-disco${naranja ? " fc-disco--naranja" : ""}`} aria-hidden="true">
+                  <Icono />
+                </div>
+                <div>
+                  <h3 className="escribenos__motivo-titulo">{titulo}</h3>
+                  <p className="escribenos__motivo-texto">{texto}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
       <div className="escribenos__directo">
         <p className="escribenos__correo">
-          ¿Prefieres el correo? Escríbenos a{" "}
-          <a className="fc-enlace fc-enlace--texto" href={`mailto:${CORREO}`}>
-            {CORREO}
+          {ESCRIBENOS.correo}{" "}
+          <a className="fc-enlace fc-enlace--texto" href={`mailto:${CORREO_CONTACTO}`}>
+            {CORREO_CONTACTO}
           </a>
         </p>
         <div className="escribenos__redes">
-          <p className="escribenos__redes-texto">También estamos en</p>
+          <p className="escribenos__redes-texto">{ESCRIBENOS.redes}</p>
           <ul className="escribenos__redes-lista">
             {REDES.map(({ nombre, href, Icono }) => (
               <li key={nombre}>
