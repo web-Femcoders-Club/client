@@ -1,0 +1,205 @@
+/*
+ * Segunda sección de /eventos. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-puntos`, `fc-antetitulo`, `fc-titulo-seccion`,
+ * `fc-rotulador`, `fc-capa` y `fc-boton-redondo`. Fondo: `bg3`, el de
+ * «Nuestra esencia» en Inicio.
+ *
+ * index.css pinta todos los `span` en naranja y da tamaño y sombra a los
+ * títulos: cada clase de aquí fija sus propios valores.
+ */
+
+.ponentes {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.ponentes__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+  gap: 2.5rem clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.ponentes__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+.ponentes__texto {
+  margin: 1.2rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/* ---------- Carrusel ---------- */
+
+.carrusel-ponentes {
+  position: relative;
+  min-width: 0;
+}
+
+/* En dos columnas, el carrusel baja un poco respecto al texto. */
+@media (min-width: 901px) {
+  .carrusel-ponentes {
+    margin-top: 3.5rem;
+  }
+}
+
+.carrusel-ponentes .fc-capa {
+  inset: 0 0 auto 0;
+  aspect-ratio: 3 / 2;
+  transform: translate(1.1rem, 1.1rem) rotate(2.5deg);
+}
+
+.carrusel-ponentes__marco {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 3 / 2;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  background: var(--color-lavanda-medio);
+  box-shadow: 0 24px 50px rgba(71, 55, 187, 0.22), 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.carrusel-ponentes__foto {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.carrusel-ponentes__foto--activa {
+  opacity: 1;
+}
+
+/* Detrás, la misma imagen difuminada: rellena el marco sin recortar la de delante. */
+.carrusel-ponentes__fondo {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  max-width: none;
+  object-fit: cover;
+  filter: blur(28px) saturate(1.15) brightness(1.05);
+}
+
+.carrusel-ponentes__imagen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Bajo la foto: el pie a la izquierda y los controles a la derecha, en una sola franja. */
+.carrusel-ponentes__barra {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem 1.5rem;
+  align-items: start;
+  margin-top: 1.9rem;
+}
+
+/* Alto de tres líneas reservado: la página no salta al cambiar de foto. */
+.carrusel-ponentes__pie {
+  min-height: 4.8em;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.carrusel-ponentes__controles {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.carrusel-ponentes__contador {
+  min-width: 3.6rem;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Ambiente: la foto activa se acerca muy despacio, el fondo difuminado deriva
+ * y la capa respira. Se detiene con el botón de pausa (WCAG 2.2.2) y no
+ * existe con «reducir movimiento».
+ */
+@keyframes ponentes-acercar {
+  from { scale: 1; }
+  to { scale: 1.06; }
+}
+
+@keyframes ponentes-derivar {
+  from { translate: -2% -1%; }
+  to { translate: 2% 1.5%; }
+}
+
+@keyframes ponentes-respirar {
+  from { transform: translate(1.1rem, 1.1rem) rotate(2deg); }
+  to { transform: translate(1.5rem, 0.7rem) rotate(4deg); }
+}
+
+.carrusel-ponentes__foto--activa .carrusel-ponentes__imagen {
+  animation: ponentes-acercar 5.5s ease-out both;
+}
+
+.carrusel-ponentes__fondo {
+  animation: ponentes-derivar 9s ease-in-out infinite alternate;
+}
+
+.carrusel-ponentes .fc-capa {
+  animation: ponentes-respirar 7s ease-in-out infinite alternate;
+}
+
+.carrusel-ponentes--detenido .carrusel-ponentes__imagen,
+.carrusel-ponentes--detenido .carrusel-ponentes__fondo,
+.carrusel-ponentes--detenido .fc-capa {
+  animation-play-state: paused;
+}
+
+@media (max-width: 900px) {
+  .ponentes__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .carrusel-ponentes__barra {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .carrusel-ponentes__controles {
+    order: -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-ponentes__foto {
+    transition: none;
+  }
+
+  .carrusel-ponentes__imagen,
+  .carrusel-ponentes__fondo,
+  .carrusel-ponentes .fc-capa {
+    animation: none;
+  }
+}

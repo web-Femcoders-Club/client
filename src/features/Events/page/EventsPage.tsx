@@ -5,7 +5,7 @@ import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
 import FemSpinner from "../../../components/FemSpinner";
 import { Event } from "../../../types/types";
 import CardEvent from "../components/CardEvent";
-import CustomCarousel from "../components/CustomCarousel";
+import SeccionPonentes from "../components/SeccionPonentes";
 import SeccionProximos from "../components/SeccionProximos";
 import "./../../Home/page/Home.css";
 import "./EventsPage.css";
@@ -172,27 +172,7 @@ const EventsPage = () => {
         cargando={isLoadingUpcomingEvents}
       />
 
-      <section id="ponentes" className="parallax bg2 centered-section">
-        <h3>Expertas tecnológicas que lideran el cambio en el sector tech</h3>
-        <p className="carousel-subheading-enhanced">
-          <a
-            href="https://femcodersclub.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-link"
-          >
-            FemCoders Club
-          </a>{" "}
-          conecta a mujeres profesionales del sector tecnológico con talento
-          emergente a través de eventos presenciales y online. Participan
-          mujeres referentes que, desde distintos ámbitos de la tecnología,
-          comparten conocimientos, experiencias y reflexiones para inspirar,
-          visibilizar y apoyar el crecimiento profesional de otras mujeres en el
-          sector.
-        </p>
-
-        <CustomCarousel />
-      </section>
+      <SeccionPonentes />
 
       <section id="eventos-pasados" className="pt-8 p-5 bg4">
         <h2 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">

@@ -5,20 +5,6 @@
   perspective: 1000px;
 }
 
-.carousel-subheading-enhanced {
-  color: #ffffff;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  text-align: center;
-  max-width: 85%;
-  margin: 1.5rem auto 2.5rem;
-  padding: 1rem 1.5rem;
-  background-color: rgba(34, 30, 95, 0.85);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 .event-flip-card-inner-custom {
   position: relative;
   width: 100%;
@@ -176,12 +162,6 @@
 }
 
 @media (max-width: 768px) {
-  .carousel-subheading-enhanced {
-    font-size: 1rem;
-    padding: 0.8rem;
-    max-width: 95%;
-    text-align: start;
-  }
   .event-flip-card-front-custom,
   .event-flip-card-back-custom {
     background-image: url("/public-optimized/mobile/bg2.webp");
