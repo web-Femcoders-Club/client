@@ -35,6 +35,15 @@ export const PROXIMOS_EVENTOS = {
   },
 };
 
+export const EVENTOS_PASADOS = {
+  antetitulo: "Eventos pasados",
+  titulo: { texto: "Lo que ya hemos vivido", destacado: "juntas" },
+  texto:
+    "Charlas, talleres y encuentros que ya han pasado por FemCoders Club. Cada uno dejó conversaciones, contactos y aprendizajes que siguen sumando.",
+  sello: "Celebrado",
+  sinEventos: "Todavía no hay eventos pasados que mostrar.",
+};
+
 export interface FotoPonente {
   src: string;
   /** Pie de foto: quién es y de qué habló. También describe la imagen. */

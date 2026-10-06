@@ -1,0 +1,116 @@
+/*
+ * Tercera sección de /eventos. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-sobre-oscuro`, `fc-antetitulo`, `fc-titulo-seccion`, `fc-rotulador` y
+ * `fc-boton-redondo`. Fondo: `bg2`. Cada evento está en EntradaEvento.css.
+ */
+
+.pasados {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.pasados__contenedor {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.pasados__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.pasados__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+/* Lavanda claro sobre el azul noche: más de 10:1, AAA. */
+.pasados__texto {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: #ece8ff;
+  text-wrap: pretty;
+}
+
+.pasados__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.4rem, 2.6vw, 2.2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* La entrada mide las muescas con 50cqi; la sombra va aquí porque su máscara la recortaría. */
+.pasados__lista > li {
+  container-type: inline-size;
+  filter: drop-shadow(0 16px 26px rgba(5, 3, 30, 0.45));
+}
+
+/* ---------- Paginación ---------- */
+
+.paginas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+/* Sobre oscuro, la luz blanca del relieve no tiene sentido: solo sombra. */
+.pasados .fc-boton-redondo,
+.pasados .fc-boton-redondo:hover {
+  box-shadow: 0 8px 20px rgba(5, 3, 30, 0.45);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pasados .fc-boton-redondo:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+.pasados .fc-boton-redondo:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  translate: none;
+}
+
+/* Blanco sobre el naranja profundo de fc-boton--naranja: más de 4,5:1 en todo el degradado. */
+.pasados .paginas__numero[aria-current="page"] {
+  background: linear-gradient(145deg, #cf3f26, #a92f17);
+  color: #fff;
+}
+
+.paginas__estado {
+  width: 100%;
+  margin: 0.4rem 0 0;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: #ece8ff;
+}
+
+@media (max-width: 1000px) {
+  .pasados__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .pasados__cabeza {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .pasados__lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

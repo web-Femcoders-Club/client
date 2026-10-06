@@ -1,5 +1,6 @@
 import { Event } from "../../../types/types";
 import { PROXIMOS_EVENTOS } from "../contenido";
+import { fechaIso, leerFecha } from "../fecha";
 import "./EventoTarjeta.css";
 
 interface EventoTarjetaProps {
@@ -28,7 +29,7 @@ const formatearFecha = (fecha: Date) => {
  */
 const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3" }) => {
   const Titulo = nivelTitulo;
-  const inicio = new Date(evento.start_local);
+  const inicio = leerFecha(evento.start_local);
   const haPasado = inicio < new Date();
   const idTitulo = `evento-${evento.id}`;
 
@@ -46,7 +47,7 @@ const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3
         />
       )}
       <div className="evento-tarjeta__datos">
-        <time className="evento-tarjeta__fecha" dateTime={evento.start_local}>
+        <time className="evento-tarjeta__fecha" dateTime={fechaIso(evento.start_local)}>
           {formatearFecha(inicio)}
         </time>
         {evento.location && <span className="fc-chip fc-chip--lila">{evento.location}</span>}

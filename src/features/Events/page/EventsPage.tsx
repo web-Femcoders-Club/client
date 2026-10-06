@@ -1,19 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
-import FemSpinner from "../../../components/FemSpinner";
-import { Event } from "../../../types/types";
-import CardEvent from "../components/CardEvent";
+import SeccionPasados from "../components/SeccionPasados";
 import SeccionPonentes from "../components/SeccionPonentes";
 import SeccionProximos from "../components/SeccionProximos";
+import { leerFecha } from "../fecha";
 import "./../../Home/page/Home.css";
-import "./EventsPage.css";
 
 const EventsPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 3;
-
   const {
     data: pastEventsData,
     isLoading: isLoadingPastEvents,
@@ -39,27 +33,9 @@ const EventsPage = () => {
   const sortedPastEvents = pastEventsData
     ? [...pastEventsData].sort(
         (a, b) =>
-          new Date(b.start_local).getTime() - new Date(a.start_local).getTime()
+          leerFecha(b.start_local).getTime() - leerFecha(a.start_local).getTime()
       )
     : [];
-
-  const paginatedEvents = sortedPastEvents.slice(
-    (currentPage - 1) * eventsPerPage,
-    currentPage * eventsPerPage
-  );
-
-  const totalPages = Math.ceil(sortedPastEvents.length / eventsPerPage);
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const goToNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
 
   return (
     <>
@@ -174,106 +150,7 @@ const EventsPage = () => {
 
       <SeccionPonentes />
 
-      <section id="eventos-pasados" className="pt-8 p-5 bg4">
-        <h2 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">
-          Eventos Pasados
-        </h2>
-        <div className="flex items-center justify-center flex-col gap-y-8">
-          {isLoadingPastEvents ? (
-            <FemSpinner />
-          ) : paginatedEvents && paginatedEvents.length > 0 ? (
-            paginatedEvents.map((event: Event) => {
-              const date = new Date(event.start_local).toLocaleDateString(
-                "es-ES",
-                {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                }
-              );
-              return (
-                <CardEvent
-                  key={event.id}
-                  title={event.name}
-                  image={event.logo_url || ""}
-                  date={date}
-                  location={event.location || ""}
-                  description={event.description || ""}
-                  eventUrl={event.event_url || "#"}
-                  start={{ local: event.start_local }}
-                />
-              );
-            })
-          ) : (
-            <p>No hay eventos pasados disponibles</p>
-          )}
-        </div>
-
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-4">
-            <div className="btn-group pagination-custom">
-              <button
-                className={`btn ${currentPage === 1 ? "btn-disabled" : ""}`}
-                onClick={goToPreviousPage}
-                disabled={currentPage === 1}
-                title="Previous Page"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index}
-                  className={`btn ${
-                    currentPage === index + 1 ? "btn-active" : ""
-                  }`}
-                  onClick={() => setCurrentPage(index + 1)}
-                >
-                  {index + 1}
-                </button>
-              ))}
-
-              <button
-                className={`btn ${
-                  currentPage === totalPages ? "btn-disabled" : ""
-                }`}
-                onClick={goToNextPage}
-                disabled={currentPage === totalPages}
-                title="Next Page"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-      </section>
+      <SeccionPasados eventos={sortedPastEvents} cargando={isLoadingPastEvents} />
     </>
   );
 };
