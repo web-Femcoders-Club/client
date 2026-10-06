@@ -295,7 +295,12 @@ En nuestros eventos participan profesionales de distintos ámbitos del sector te
 - Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla.
 - Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.
 
-### Past events (33, most recent first)
+### Past events (34, most recent first)
+
+- HackBarna AI Summit 26 - FemCoders Club Community Partner
+  Date: 2026-09-19
+  Location: Norrsken House Barcelona
+  Summary: Tercera edición del hackathon de IA de Barcelona, el 19 y 20 de septiembre en Norrsken House. Repetimos como community partner y nuestro equipo ganó el premio Best use of the Vonage Video API.
 
 - Sesión informativa: HackBarna AI Summit 26
   Date: 2026-09-03
