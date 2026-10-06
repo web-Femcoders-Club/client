@@ -40,9 +40,15 @@
 
 /* ---------- Carrusel ---------- */
 
+/*
+ * Contenedor de consulta: la franja de pie y controles se apila según el
+ * ancho del propio carrusel, no el de la ventana. En móvil horizontal el
+ * carrusel se estrecha aunque la ventana sea ancha.
+ */
 .carrusel-ponentes {
   position: relative;
   min-width: 0;
+  container-type: inline-size;
 }
 
 /* En dos columnas, el carrusel baja un poco respecto al texto. */
@@ -205,7 +211,7 @@
   }
 }
 
-@media (max-width: 560px) {
+@container (max-width: 480px) {
   .carrusel-ponentes__barra {
     grid-template-columns: minmax(0, 1fr);
   }
