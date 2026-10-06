@@ -67,7 +67,23 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
-      src: "/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp",
+      src: "/assets/eventos2026/femCodersClub-ganadoras-hackBarna-reto-Vonage.jpg",
+      alt: "El equipo de FemCoders Club, con el premio del reto de Vonage, posa en el escenario de HackBarna AI Summit 2026",
+      title: "Ganadoras del reto de Vonage en HackBarna AI Summit 2026",
+    },
+    {
+      src: "/assets/eventos2026/mujeres-hackBarna-2026.jpeg",
+      alt: "Mujeres de FemCoders Club sonríen juntas delante de la pantalla de HackBarna AI Summit 2026",
+      title: "Mujeres de FemCoders Club en HackBarna AI Summit 2026",
+    },
+    {
+      src: "/assets/eventos2026/norrsken-femCodersClub.jpeg",
+      alt: "Cuatro mujeres de FemCoders Club posan bajo el letrero iluminado de Norrsken Club en Barcelona",
+      title: "FemCoders Club en Norrsken, sede de HackBarna AI Summit 2026",
+    },
+    {
+      // La ruta del original: OptimizedImage añade public-optimized/ y elige escritorio o móvil.
+      src: "/assets/noticias/taller-decidim-elvia.jpeg",
       alt: "Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club, mayo 2026",
       title: "Taller práctico sobre Decidim con Elvia Benedith (Pokecode) — Canòdrom, mayo 2026",
     },

@@ -26,13 +26,16 @@ const TeamPage = () => {
         <meta property="og:description" content="Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias." />
         <meta property="og:url" content="https://www.femcodersclub.com/equipo" />
         <meta property="og:type" content="website" />
-        {/* Sin foto de las cinco juntas todavía: el logo (pendiente, og-equipo.jpg). */}
-        <meta property="og:image" content="https://www.femcodersclub.com/FemCodersClubLogo.png" />
+        <meta property="og:image" content="https://www.femcodersclub.com/og-equipo.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Las cinco cofundadoras de FemCoders Club se hacen un selfi sonriendo al sol en Barcelona durante HackBarna AI Summit 2026" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Nuestro equipo de liderazgo | FemCoders Club" />
         <meta name="twitter:description" content="Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias." />
-        <meta name="twitter:image" content="https://www.femcodersclub.com/FemCodersClubLogo.png" />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/og-equipo.jpg" />
+        <meta name="twitter:image:alt" content="Las cinco cofundadoras de FemCoders Club se hacen un selfi sonriendo al sol en Barcelona durante HackBarna AI Summit 2026" />
       </Helmet>
 
       {/* Cada fondo empieza en el color en que acaba el anterior: bg1 → bg3 → bg4 → bg2. */}

@@ -112,6 +112,12 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias.",
     // Textos de src/features/Team/contenido.ts y biografías de la base de datos.
     contenidoHtml: async () => equipoHtml(await obtenerEquipo()),
+    imagen: {
+      ruta: "/og-equipo.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Las cinco cofundadoras de FemCoders Club se hacen un selfi sonriendo al sol en Barcelona durante HackBarna AI Summit 2026",
+    },
     // La página, las personas del equipo actual y la miga de pan, enlazadas por
     // `@id` al sitio y a la Organization de index.html (scripts/contenidoEquipo.ts).
     jsonLd: async () => equipoJsonLd(await obtenerEquipo()),
