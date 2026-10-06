@@ -46,108 +46,34 @@ const EventsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Eventos Tech para Mujeres | FemCoders Club Barcelona</title>
-        <meta
-          name="description"
-          content="Explora los mejores eventos tecnológicos para mujeres en Barcelona organizados por FemCoders Club. Talleres, conferencias, networking y oportunidades profesionales en el sector tech. Únete a la comunidad líder de mujeres en tecnología."
-        />
-        <meta
-          name="keywords"
-          content="FemCoders Club, comunidad tech mujeres Barcelona, eventos tecnológicos femeninos, femcoders, networking tech mujeres, talleres programación Barcelona, mujeres en tecnología, comunidad tech femenina, DataConnect, eventos diversidad tecnológica, desarrollo profesional tech, oportunidades laborales tecnología"
-        />
-        <link rel="canonical" href="https://femcodersclub.com/eventos" />
-
-        {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Eventos Tech para Mujeres | FemCoders Club Barcelona"
-        />
-        <meta
-          property="og:description"
-          content="Descubre los mejores eventos tecnológicos para mujeres en Barcelona. Aprende, conecta y crece profesionalmente con la comunidad líder de mujeres en tech. ¡Únete a nosotras!"
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content="https://www.femcodersclub.com/eventos"
-        />
-        <meta property="og:site_name" content="FemCoders Club" />
-        <meta property="og:locale" content="es_ES" />
         {/*
-          Apuntaba a `cofundadoras-femCoders-club.webp`, un archivo que no
-          existe: el real es `cofundadoras-femCodersClub.webp` y vive en
-          `public-optimized/`, no en la raíz.
+          Los mismos textos que escribe el prerender en el HTML servido
+          (scripts/spaRoutesMeta.ts, entrada "/eventos"): si se cambian aquí,
+          hay que cambiarlos también allí. El título coincide con el h1.
 
-          A quien lo comparte no le cambia nada: `prerenderMeta` solo cubre los
-          posts del blog, así que WhatsApp y LinkedIn reciben el index.html
-          genérico y usan el logo. Esta meta la lee Googlebot, que sí ejecuta
-          JS. Se deja el .jpg y no el .webp por si algún día el prerender cubre
-          esta ruta: WhatsApp aún no previsualiza WebP en `og:image`.
+          El JSON-LD de esta página (la página, cada evento y la miga de pan)
+          no va aquí: lo escribe el prerender en el HTML servido, desde la base
+          de datos (scripts/contenidoEventos.ts), para que lo lean también los
+          rastreadores que no ejecutan JavaScript.
         */}
-        <meta
-          property="og:image"
-          content="https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg"
-        />
-        <meta
-          property="og:image:alt"
-          content="Evento de mujeres en tecnología organizado por FemCoders Club Barcelona"
-        />
+        <title>Eventos para mujeres en tecnología | FemCoders Club</title>
+        <meta name="description" content="Charlas, talleres, encuentros y networking sobre tecnología, IA y desarrollo profesional, presenciales en Barcelona y online. Más de 40 eventos de FemCoders Club." />
+        <link rel="canonical" href="https://www.femcodersclub.com/eventos" />
 
-        {/* Twitter/X Card */}
+        <meta property="og:title" content="Eventos para mujeres en tecnología | FemCoders Club" />
+        <meta property="og:description" content="Charlas, talleres, encuentros y networking sobre tecnología, IA y desarrollo profesional, presenciales en Barcelona y online. Más de 40 eventos de FemCoders Club." />
+        <meta property="og:url" content="https://www.femcodersclub.com/eventos" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.femcodersclub.com/og-eventos.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Asistentes y organizadoras de un taller de FemCoders Club posan sonriendo en el Canòdrom de Barcelona" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Eventos Tech para Mujeres | FemCoders Club Barcelona"
-        />
-        <meta
-          name="twitter:description"
-          content="Únete a los mejores eventos tecnológicos para mujeres en Barcelona. Desarrollo profesional, networking y oportunidades en el sector tech."
-        />
-        <meta name="twitter:site" content="@FemCodersClub" />
-        <meta
-          name="twitter:image"
-          content="https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg"
-        />
-        <meta name="twitter:creator" content="@FemCodersClub" />
-
-        {/* Enlaces a redes sociales */}
-        <link rel="me" href="https://x.com/FemCodersClub" />
-        <link
-          rel="me"
-          href="https://www.linkedin.com/company/fem-coders-club/"
-        />
-        <link rel="me" href="https://www.instagram.com/femcoders_club/" />
-
-        {/* Datos estructurados para eventos */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "EventSeries",
-            name: "Eventos FemCoders Club Barcelona",
-            description:
-              "Serie de eventos tecnológicos para mujeres organizados por FemCoders Club, la comunidad líder de mujeres en tecnología en Barcelona",
-            url: "https://www.femcodersclub.com/eventos",
-            // Sin `image`, Search Console avisa de que falta un campo
-            // recomendado: `EventSeries` hereda de `Event` y se valida igual.
-            image:
-              "https://www.femcodersclub.com/cofundadoras-femCodersClub.jpg",
-            location: {
-              "@type": "Place",
-              name: "Barcelona, España",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Barcelona",
-                addressRegion: "Cataluña",
-                addressCountry: "ES",
-              },
-            },
-            organizer: {
-              "@type": "Organization",
-              name: "FemCoders Club",
-              url: "https://www.femcodersclub.com",
-            },
-          })}
-        </script>
+        <meta name="twitter:title" content="Eventos para mujeres en tecnología | FemCoders Club" />
+        <meta name="twitter:description" content="Charlas, talleres, encuentros y networking sobre tecnología, IA y desarrollo profesional, presenciales en Barcelona y online. Más de 40 eventos de FemCoders Club." />
+        <meta name="twitter:image" content="https://www.femcodersclub.com/og-eventos.jpg" />
+        <meta name="twitter:image:alt" content="Asistentes y organizadoras de un taller de FemCoders Club posan sonriendo en el Canòdrom de Barcelona" />
       </Helmet>
       <SeccionProximos
         eventos={upcomingEventsData ?? []}

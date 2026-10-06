@@ -1,6 +1,7 @@
 import { Event } from "../../../types/types";
 import { EVENTOS_PASADOS } from "../contenido";
 import { fechaIso, leerFecha } from "../fecha";
+import ImagenEvento from "./ImagenEvento";
 import "./EntradaEvento.css";
 
 interface EntradaEventoProps {
@@ -24,9 +25,7 @@ const EntradaEvento: React.FC<EntradaEventoProps> = ({ evento }) => {
   return (
     <article className="entrada" aria-labelledby={idTitulo}>
       <div className="entrada__imagen">
-        {evento.logo_url && (
-          <img src={evento.logo_url} alt="" width={800} height={400} loading="lazy" decoding="async" />
-        )}
+        {evento.logo_url && <ImagenEvento url={evento.logo_url} />}
         <div className="entrada__sello" aria-hidden="true">
           {EVENTOS_PASADOS.sello}
         </div>

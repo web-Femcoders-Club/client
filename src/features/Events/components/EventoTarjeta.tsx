@@ -1,6 +1,7 @@
 import { Event } from "../../../types/types";
 import { PROXIMOS_EVENTOS } from "../contenido";
 import { fechaIso, leerFecha } from "../fecha";
+import ImagenEvento from "./ImagenEvento";
 import "./EventoTarjeta.css";
 
 interface EventoTarjetaProps {
@@ -35,17 +36,7 @@ const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3
 
   return (
     <article className="fc-tarjeta evento-tarjeta" aria-labelledby={idTitulo}>
-      {evento.logo_url && (
-        <img
-          className="evento-tarjeta__imagen"
-          src={evento.logo_url}
-          alt=""
-          width={800}
-          height={400}
-          loading="lazy"
-          decoding="async"
-        />
-      )}
+      {evento.logo_url && <ImagenEvento className="evento-tarjeta__imagen" url={evento.logo_url} />}
       <div className="evento-tarjeta__datos">
         <time className="evento-tarjeta__fecha" dateTime={fechaIso(evento.start_local)}>
           {formatearFecha(inicio)}
