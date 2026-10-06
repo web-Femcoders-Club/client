@@ -95,6 +95,11 @@
   color: var(--color-secondary);
 }
 
+/* La versión corta solo en pantallas bajas (más abajo). */
+.aviso-cookies__corto {
+  display: none;
+}
+
 .aviso-cookies__acciones {
   display: flex;
   flex-wrap: wrap;
@@ -206,6 +211,7 @@
 @media (max-height: 500px) {
   .aviso-cookies {
     max-width: 34rem;
+    margin-inline: auto;
   }
 }
 
@@ -218,7 +224,52 @@
 
 @media (min-width: 641px) and (max-height: 500px) {
   .aviso-cookies {
-    width: calc(100% - 32px);
+    /* Los dos lados fijados: así max-width y margin-inline: auto lo centran. */
+    width: auto;
     left: 16px;
+    right: 16px;
+  }
+}
+
+/*
+ * Pantallas bajas y móviles estrechos: el texto entero ocupaba unos 150px de
+ * 320-390 en horizontal y el 41 % de la pantalla a 320 de ancho. Aquí va la
+ * frase corta.
+ */
+@media (max-height: 500px), (max-width: 400px) {
+  .aviso-cookies__largo {
+    display: none;
+  }
+
+  .aviso-cookies__corto {
+    display: inline;
+  }
+}
+
+/*
+ * Bajas y con anchura (móvil grande en horizontal): todo en una fila, texto a
+ * la izquierda, botones a la derecha y la ✕ centrada al final. Unos 64px.
+ */
+@media (max-height: 500px) and (min-width: 720px) {
+  .aviso-cookies {
+    max-width: 56rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 1.2rem;
+    padding-block: 0.55rem;
+  }
+
+  .aviso-cookies__texto {
+    padding-right: 0;
+  }
+
+  .aviso-cookies__acciones {
+    flex-wrap: nowrap;
+    padding-right: 2.5rem;
+  }
+
+  .aviso-cookies__cerrar {
+    top: 50%;
+    translate: 0 -50%;
   }
 }
