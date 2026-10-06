@@ -211,6 +211,7 @@
 @media (max-height: 500px) {
   .aviso-cookies {
     max-width: 34rem;
+    margin-inline: auto;
   }
 }
 
@@ -229,10 +230,11 @@
 }
 
 /*
- * Pantallas bajas: el texto entero ocupaba unos 150px de 320-390 (casi media
- * pantalla en el móvil en horizontal). Aquí va la frase corta.
+ * Pantallas bajas y móviles estrechos: el texto entero ocupaba unos 150px de
+ * 320-390 en horizontal y el 41 % de la pantalla a 320 de ancho. Aquí va la
+ * frase corta.
  */
-@media (max-height: 500px) {
+@media (max-height: 500px), (max-width: 400px) {
   .aviso-cookies__largo {
     display: none;
   }
@@ -248,7 +250,7 @@
  */
 @media (max-height: 500px) and (min-width: 720px) {
   .aviso-cookies {
-    max-width: 50rem;
+    max-width: 56rem;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     column-gap: 1.2rem;
