@@ -55,7 +55,7 @@
   filter: brightness(1.1) saturate(1.12) contrast(1.03);
 }
 
-.hero-collage__foto--fundadoras {
+.hero-collage__foto--grande {
   left: 33%;
   top: 2%;
   width: 53%;
@@ -64,7 +64,7 @@
   z-index: 2;
 }
 
-.hero-collage__foto--cofundadoras {
+.hero-collage__foto--izquierda {
   left: 6%;
   top: 30%;
   width: 36%;
@@ -73,11 +73,11 @@
   z-index: 3;
 }
 
-.hero-collage__foto--cofundadoras img {
+.hero-collage__foto--izquierda img {
   object-position: center 35%;
 }
 
-.hero-collage__foto--ponente {
+.hero-collage__foto--abajo {
   /* Más a la derecha que la grande, como en el diseño: el collage gana diagonal. */
   left: 52%;
   top: 58%;
@@ -87,8 +87,9 @@
   z-index: 3;
 }
 
-.hero-collage__foto--ponente img {
-  object-position: 55% center;
+/* La foto de las fundadoras es vertical y el marco apaisado: se encuadra la franja de las caras. */
+.hero-collage__foto--abajo img {
+  object-position: center 62%;
 }
 
 /* ---------- Manchas de color ---------- */
@@ -177,9 +178,14 @@
   transform: rotate(-7deg);
 }
 
+/*
+ * Sobre el borde inferior de la foto de abajo: con las fundadoras en ese marco,
+ * a media altura tapaba dos caras. Ahí abajo solo pisa camisetas y
+ * acreditaciones (las caras quedan entre el 40 % y el 73 % del marco).
+ */
 .hero-collage__etiqueta--oportunidades {
   left: 80%;
-  top: 80%;
+  top: 93%;
   transform: rotate(-6deg);
 }
 
@@ -221,9 +227,15 @@
   stroke: var(--color-lila);
 }
 
+/*
+ * Las chispas salen hacia abajo, fuera de la foto: hacia arriba caían sobre
+ * las caras (en móvil la etiqueta va más a la izquierda, encima de una).
+ * `scale` y no `transform`: así no pisa nada que anime el transform.
+ */
 .hero-collage__etiqueta--oportunidades .chispas-etiqueta {
   right: -0.55em;
-  top: -1.15em;
+  bottom: -1.15em;
+  scale: 1 -1;
 }
 
 .hero-collage__etiqueta--oportunidades .chispas-etiqueta path {
@@ -389,18 +401,18 @@
     hero-se-aleja 2.72s var(--sale-suave) backwards;
 }
 
-.hero-collage__foto--fundadoras,
-.hero-collage__foto--fundadoras img {
+.hero-collage__foto--grande,
+.hero-collage__foto--grande img {
   animation-delay: 0.17s;
 }
 
-.hero-collage__foto--cofundadoras,
-.hero-collage__foto--cofundadoras img {
+.hero-collage__foto--izquierda,
+.hero-collage__foto--izquierda img {
   animation-delay: 0.59s;
 }
 
-.hero-collage__foto--ponente,
-.hero-collage__foto--ponente img {
+.hero-collage__foto--abajo,
+.hero-collage__foto--abajo img {
   animation-delay: 1.02s;
 }
 
@@ -542,20 +554,20 @@
      * El atajo `animation` de arriba reinicia los retrasos escalonados de la
      * entrada: se reponen como lista (entrada, scroll).
      */
-    .hero-collage__foto--fundadoras { animation-delay: 0.17s, 0s; }
-    .hero-collage__foto--cofundadoras { animation-delay: 0.59s, 0s; }
-    .hero-collage__foto--ponente { animation-delay: 1.02s, 0s; }
+    .hero-collage__foto--grande { animation-delay: 0.17s, 0s; }
+    .hero-collage__foto--izquierda { animation-delay: 0.59s, 0s; }
+    .hero-collage__foto--abajo { animation-delay: 1.02s, 0s; }
     .hero-collage__etiqueta--comunidad { animation-delay: 1.95s, 0s; }
     .hero-collage__etiqueta--eventos { animation-delay: 2.21s, 0s; }
     .hero-collage__etiqueta--oportunidades { animation-delay: 2.46s, 0s; }
 
     /* Cuánto se desplaza cada pieza: distintas distancias = distintas velocidades. */
-    .hero-collage__foto--fundadoras { --hero-capa: 50px; }
-    .hero-collage__foto--cofundadoras { --hero-capa: 110px; }
-    .hero-collage__foto--ponente { --hero-capa: 25px; }
+    .hero-collage__foto--grande { --hero-capa: 50px; }
+    .hero-collage__foto--izquierda { --hero-capa: 110px; }
+    .hero-collage__foto--abajo { --hero-capa: 25px; }
     .hero-collage__mancha--lila { --hero-capa: -50px; }
     .hero-collage__mancha--rosa { --hero-capa: 80px; }
-    /* Al ritmo de la foto en la que se apoya (fundadoras): si va más rápida, le tapa una cara. */
+    /* Al ritmo de la foto en la que se apoya (la grande): si va más rápida, le tapa una cara. */
     .hero-collage__etiqueta--comunidad { --hero-capa: 50px; }
     .hero-collage__etiqueta--eventos { --hero-capa: 160px; }
     .hero-collage__etiqueta--oportunidades { --hero-capa: 90px; }

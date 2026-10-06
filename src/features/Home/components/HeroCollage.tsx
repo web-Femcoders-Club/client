@@ -9,6 +9,9 @@ const ARCO = "M4 2 C 0 70, 50 116, 130 116 C 200 116, 240 80, 258 50";
  * Collage de la portada: tres fotos de la comunidad con etiquetas y el lema
  * «Juntas llegamos más lejos» escrito a mano.
  *
+ * Los marcos se nombran por su sitio (grande, izquierda, abajo), no por la
+ * foto que llevan, para poder cambiarla sin que el nombre quede falso.
+ *
  * Las fotos son contenido y llevan su `alt`. Todo lo demás —etiquetas, lema,
  * chispas, manchas y el arco discontinuo— es decoración y va con
  * `aria-hidden`: lo que dicen las etiquetas ya lo cuentan el titular y el
@@ -22,16 +25,16 @@ const HeroCollage: React.FC = () => (
     <span className="hero-collage__mancha hero-collage__mancha--lila" aria-hidden="true" />
     <span className="hero-collage__mancha hero-collage__mancha--rosa" aria-hidden="true" />
 
-    <figure className="hero-collage__foto hero-collage__foto--fundadoras">
+    <figure className="hero-collage__foto hero-collage__foto--grande">
       <OptimizedImage
-        src="/fundadorasFemCodersClub.png"
-        alt="Elvia, Lili y Silvina, fundadoras de FemCoders Club, sonríen juntas en un evento"
+        src="/assets/eventos2026/hackaton-femCodersClub-2026.jpeg"
+        alt="El equipo de FemCoders Club trabaja con portátiles en torno a una mesa durante el hackathon HackBarna AI Summit 2026"
         loading="eager"
         fetchPriority="high"
       />
     </figure>
 
-    <figure className="hero-collage__foto hero-collage__foto--cofundadoras">
+    <figure className="hero-collage__foto hero-collage__foto--izquierda">
       <OptimizedImage
         src="/assets/home-images/asociacion-mujeresTech-Barcelona.webp"
         alt="Las cofundadoras de FemCoders Club se hacen un selfi al aire libre"
@@ -39,10 +42,10 @@ const HeroCollage: React.FC = () => (
       />
     </figure>
 
-    <figure className="hero-collage__foto hero-collage__foto--ponente">
+    <figure className="hero-collage__foto hero-collage__foto--abajo">
       <OptimizedImage
-        src="/assets/home-images/eventoCarmenAnsio.webp"
-        alt="Una ponente presenta una charla sobre diseño UI ante una sala llena en un evento de FemCoders Club"
+        src="/assets/eventos2026/fundadoras-femCodersClub-2026.jpeg"
+        alt="Las cinco cofundadoras de FemCoders Club se hacen un selfi sonriendo al sol en Barcelona"
         loading="eager"
       />
     </figure>
