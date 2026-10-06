@@ -100,10 +100,20 @@ const CookieBanner: React.FC = () => {
           <X aria-hidden="true" />
         </button>
       </div>
+      {/*
+        Dos versiones del mismo mensaje: en pantallas bajas (móvil en
+        horizontal, zoom) sale la corta, para no tapar media pantalla. La otra
+        se oculta con display: none, así que el lector solo lee una.
+      */}
       <p className="aviso-cookies__texto">
-        Usamos únicamente cookies y almacenamiento técnicos para que la web funcione.{" "}
-        <strong>No hacemos seguimiento</strong> ni usamos cookies de análisis o
-        publicidad.
+        <span className="aviso-cookies__largo fc-texto-neutro">
+          Usamos únicamente cookies y almacenamiento técnicos para que la web funcione.{" "}
+          <strong>No hacemos seguimiento</strong> ni usamos cookies de análisis o
+          publicidad.
+        </span>
+        <span className="aviso-cookies__corto fc-texto-neutro">
+          Solo usamos cookies técnicas: <strong>sin seguimiento</strong> ni publicidad.
+        </span>
       </p>
       <div className="aviso-cookies__acciones">
         <button
