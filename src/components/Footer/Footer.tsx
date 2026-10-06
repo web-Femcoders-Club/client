@@ -3,20 +3,17 @@ import { Link } from "react-router-dom";
 import { BsGithub, BsInstagram, BsLinkedin, BsSpotify, BsTwitterX, BsYoutube } from "react-icons/bs";
 import { Slack } from "lucide-react";
 import { ModalContext } from "../../context/ModalContext";
+import { REDES_SOCIALES } from "../../data/redesSociales";
 import { SLACK_INVITE_URL } from "../../utils/constants";
 import "./Footer.css";
 
 const REDES = [
-  { nombre: "Instagram", url: "https://www.instagram.com/femcoders_club/", Icono: BsInstagram },
-  { nombre: "LinkedIn", url: "https://www.linkedin.com/company/fem-coders-club/", Icono: BsLinkedin },
-  { nombre: "YouTube", url: "https://www.youtube.com/@FemcodersClub", Icono: BsYoutube },
-  { nombre: "GitHub", url: "https://github.com/femcodersclub", Icono: BsGithub },
-  { nombre: "X", url: "https://x.com/FemCodersClub", Icono: BsTwitterX },
-  {
-    nombre: "Spotify",
-    url: "https://open.spotify.com/user/31wgl44unbqdv6nh4igsgw5pp6t4?si=29d0152b29404e44",
-    Icono: BsSpotify,
-  },
+  { nombre: "Instagram", url: REDES_SOCIALES.instagram, Icono: BsInstagram },
+  { nombre: "LinkedIn", url: REDES_SOCIALES.linkedin, Icono: BsLinkedin },
+  { nombre: "YouTube", url: REDES_SOCIALES.youtube, Icono: BsYoutube },
+  { nombre: "GitHub", url: REDES_SOCIALES.github, Icono: BsGithub },
+  { nombre: "X", url: REDES_SOCIALES.x, Icono: BsTwitterX },
+  { nombre: "Spotify", url: REDES_SOCIALES.spotify, Icono: BsSpotify },
 ];
 
 /*

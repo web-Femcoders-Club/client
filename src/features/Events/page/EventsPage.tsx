@@ -1,29 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
 import FemSpinner from "../../../components/FemSpinner";
 import { Event } from "../../../types/types";
 import CardEvent from "../components/CardEvent";
 import CustomCarousel from "../components/CustomCarousel";
+import SeccionProximos from "../components/SeccionProximos";
 import "./../../Home/page/Home.css";
 import "./EventsPage.css";
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 3;
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const imageFolder = isMobile ? "mobile" : "desktop";
 
   const {
     data: pastEventsData,
@@ -178,66 +167,12 @@ const EventsPage = () => {
           })}
         </script>
       </Helmet>
-      <section
-        className="background-image-mobile"
-        style={{
-          backgroundImage: `url(/public-optimized/${imageFolder}/textofemcodersclub.webp)`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center bottom",
-        }}
-      >
-        <h1 className="text-eventos">Próximos eventos tech </h1>
-        <h2 className="text-eventos">conectando talento en tecnología</h2>
-      </section>
+      <SeccionProximos
+        eventos={upcomingEventsData ?? []}
+        cargando={isLoadingUpcomingEvents}
+      />
 
-      <section>
-        <div className="mt-16 flex items-center justify-center flex-col gap-y-8 p-5">
-          {isLoadingUpcomingEvents ? (
-            <FemSpinner />
-          ) : upcomingEventsData && upcomingEventsData.length > 0 ? (
-            upcomingEventsData.map((event: Event) => {
-              const date = new Date(event.start_local).toLocaleDateString(
-                "es-ES",
-                {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                }
-              );
-              return (
-                <CardEvent
-                  key={event.id}
-                  title={event.name}
-                  image={event.logo_url || ""}
-                  date={date}
-                  location={event.location || ""}
-                  description={event.description || ""}
-                  eventUrl={event.event_url || "#"}
-                  start={{ local: event.start_local }}
-                />
-              );
-            })
-          ) : (
-            <div className="no-events">
-              <video
-                src="/assets/videos/SinEvento.mp4"
-                className="custom-video"
-                style={{ height: "350px", width: "auto" }}
-                controls
-                autoPlay
-                loop
-                muted
-                aria-label="Video promocional: Próximamente más eventos de femCoders Club."
-              ></video>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="parallax bg2 centered-section">
+      <section id="ponentes" className="parallax bg2 centered-section">
         <h3>Expertas tecnológicas que lideran el cambio en el sector tech</h3>
         <p className="carousel-subheading-enhanced">
           <a
@@ -259,10 +194,10 @@ const EventsPage = () => {
         <CustomCarousel />
       </section>
 
-      <section className="pt-8 p-5 bg4">
-        <h1 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">
+      <section id="eventos-pasados" className="pt-8 p-5 bg4">
+        <h2 className="text-3xl font-bold text-secondary flex justify-center text-center mb-8">
           Eventos Pasados
-        </h1>
+        </h2>
         <div className="flex items-center justify-center flex-col gap-y-8">
           {isLoadingPastEvents ? (
             <FemSpinner />

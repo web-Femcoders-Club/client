@@ -156,8 +156,8 @@
   background: var(--color-melocoton);
 }
 
-.evento__imagen img,
-.evento__video video {
+/* El vídeo y su botón de pausa: src/components/VideoSinEventos. */
+.evento__imagen img {
   position: absolute;
   inset: 0;
   width: 100%;
