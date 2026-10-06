@@ -24,6 +24,7 @@
 import { VIDEO_COMUNIDAD } from "../src/features/About/videoComunidad";
 import { quienesSomosHtml } from "./contenidoQuienesSomos";
 import { equipoHtml, equipoJsonLd, obtenerEquipo } from "./contenidoEquipo";
+import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 
 export interface RutaMeta {
@@ -101,9 +102,21 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
   },
 
   "/eventos": {
-    title: "Eventos Tech para Mujeres | FemCoders Club Barcelona",
+    // Copiado de EventsPage.tsx. El título coincide con el h1 y cabe sin cortarse.
+    title: "Eventos para mujeres en tecnología | FemCoders Club",
     description:
-      "Explora los mejores eventos tecnológicos para mujeres en Barcelona organizados por FemCoders Club. Talleres, conferencias, networking y oportunidades profesionales en el sector tech. Únete a la comunidad líder de mujeres en tecnología.",
+      "Charlas, talleres, encuentros y networking sobre tecnología, IA y desarrollo profesional, presenciales en Barcelona y online. Más de 40 eventos de FemCoders Club.",
+    // Textos de src/features/Events/contenido.ts y eventos de la base de datos.
+    contenidoHtml: async () => eventosHtml(await obtenerEventos()),
+    imagen: {
+      ruta: "/og-eventos.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Asistentes y organizadoras de un taller de FemCoders Club posan sonriendo en el Canòdrom de Barcelona",
+    },
+    // La página, cada evento (próximos y pasados) y la miga de pan, enlazados
+    // por `@id` al sitio y a la Organization de index.html (scripts/contenidoEventos.ts).
+    jsonLd: async () => eventosJsonLd(await obtenerEventos()),
   },
   "/equipo": {
     // Copiado de TeamPage.tsx. El título coincide con el h1 y cabe sin cortarse.

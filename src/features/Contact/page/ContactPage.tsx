@@ -9,6 +9,7 @@ import {
 } from "react-icons/bs";
 import { FaLightbulb, FaRocket, FaSlack, FaUsers } from "react-icons/fa";
 import ContactForm from "../components/ContactForm";
+import { REDES_SOCIALES } from "../../../data/redesSociales";
 import { SLACK_INVITE_URL } from "../../../utils/constants";
 import "./ContactPage.css";
 
@@ -82,7 +83,7 @@ const ContactPage: React.FC = () => {
           </ul>
           <div className="social-links">
             <a
-              href="https://open.spotify.com/user/31wgl44unbqdv6nh4igsgw5pp6t4?si=29d0152b29404e44"
+              href={REDES_SOCIALES.spotify}
               aria-label="Spotify"
               target="_blank"
               rel="noopener noreferrer"
@@ -90,7 +91,7 @@ const ContactPage: React.FC = () => {
               <BsSpotify className="social-icon" />
             </a>
             <a
-              href="https://www.instagram.com/femcoders_club/"
+              href={REDES_SOCIALES.instagram}
               aria-label="Instagram"
               target="_blank"
               rel="noopener noreferrer"
@@ -98,7 +99,7 @@ const ContactPage: React.FC = () => {
               <BsInstagram className="social-icon" />
             </a>
             <a
-              href="https://www.linkedin.com/company/fem-coders-club/"
+              href={REDES_SOCIALES.linkedin}
               aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
@@ -106,7 +107,7 @@ const ContactPage: React.FC = () => {
               <BsLinkedin className="social-icon" />
             </a>
             <a
-              href="https://www.youtube.com/@FemcodersClub"
+              href={REDES_SOCIALES.youtube}
               aria-label="YouTube"
               target="_blank"
               rel="noopener noreferrer"
@@ -114,7 +115,7 @@ const ContactPage: React.FC = () => {
               <BsYoutube className="social-icon" />
             </a>
             <a
-              href="https://github.com/femcodersclub"
+              href={REDES_SOCIALES.github}
               aria-label="GitHub"
               target="_blank"
               rel="noopener noreferrer"

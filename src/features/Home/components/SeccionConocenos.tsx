@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import OptimizedImage from "../../../components/OptimizedImage";
+import VideoSinEventos from "../../../components/VideoSinEventos/VideoSinEventos";
 import "./SeccionConocenos.css";
 
 /** La forma mínima del evento que pinta esta sección; la petición vive en HomePage. */
@@ -158,23 +159,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
             </div>
           ) : (
             <div className="evento__cuerpo">
-              <div className="evento__video">
-                <video
-                  src={`${import.meta.env.BASE_URL}assets/videos/SinEvento.mp4`}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  aria-hidden="true"
-                  onError={(e) => {
-                    if ((e.target as HTMLVideoElement).error) {
-                      console.error("El video no se pudo cargar.");
-                      (e.target as HTMLVideoElement).style.display = "none";
-                    }
-                  }}
-                />
-              </div>
+              <VideoSinEventos className="evento__video" />
               <h3 className="evento__nombre">¡Grandes cosas están por venir!</h3>
               <p className="evento__texto">
                 Nuestro equipo está diseñando experiencias únicas que

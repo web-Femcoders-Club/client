@@ -237,6 +237,206 @@ LinkedIn: https://www.linkedin.com/in/isadoramatias/
 
 <!-- END: equipo generado automaticamente -->
 
+<!-- BEGIN: eventos generado automaticamente -->
+
+## Events (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/eventos
+
+Organizamos eventos presenciales en Barcelona y sesiones online con profesionales del sector: charlas, talleres, encuentros y espacios de networking sobre tecnología, inteligencia artificial, desarrollo profesional, liderazgo y mucho más.
+
+Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
+
+### Upcoming events (0)
+
+No upcoming events announced right now.
+
+### Speakers
+
+En nuestros eventos participan profesionales de distintos ámbitos del sector tecnológico, con trayectorias, perfiles y perspectivas diversas. Comparten conocimientos, experiencias y aprendizajes reales que aportan nuevas perspectivas, generan referentes y abren caminos dentro del sector.
+
+- Ponencias femeninas en el evento de FemCoders Club, destacando el talento y la experiencia de nuestras ponentes en el sector tecnológico.
+- Segundo taller presencial con Jennifer C. Neyra en el Canòdrom: cómo construir y comunicar tu propuesta de valor para destacar en los procesos de selección del sector IT.
+- Liderando la revolución de la IA con talento femenino en tecnología, en colaboración con InfoJobs y NTT Data.
+- Participación de Ana Lucía Silva y Silvina Lucero en el Mes del QA. Hablamos sobre accesibilidad en el ciclo de QA y cómo convertir requisitos en éxito.
+- Entrevista con Nadia Soledad Cavalleri, experta en QA y ponente internacional. Un espacio online para aprender, inspirarse y preguntar en directo.
+- En el evento Data Connect: Inspire ideas. Learn from experts. Grow together!, exploramos el poder de los datos con la colaboración de InfoJobs. Glovo y LeWagon.
+- Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.
+- En el evento 'Iníciate en programación', Ana Lucía Silva mostró proyectos en Realidad Aumentada con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen y Three.js.
+- Àurea Rodríguez, fuente de inspiración para la comunidad FemCoders Club.
+- En el evento Adopta Un Junior, entrevistamos a las fundadoras sobre su valioso trabajo.
+- Àurea Rodríguez y Marina Altés liderando una sesión sobre los últimos avances en inteligencia artificial.
+- Carmen Ansio, especialista en sistemas de diseño, uniendo diseño y desarrollo web.
+- Erika Vicente: Analista de datos y ponente destacada en el evento del Día Internacional de la Mujer.
+- Compartiendo un momento especial con Àurea Rodríguez, una verdadera inspiración para FemCoders Club.
+- Celebrando junto a Carmen Ansio, cuya visión y liderazgo inspiran a toda la comunidad femCoders Club.
+- Agradecidas a Criteo y Marina Altés por su apoyo y colaboración en nuestro evento: Antes Muerta que Sin IA.
+- Gran evento en Factorial, aprendiendo sobre soluciones tecnológicas sostenibles con María Alexandra Galarza.
+- Inspirándonos con Marta Díez Asensio, desarrolladora y asesora en blockchain, en el evento del 8 de Marzo.
+- En Glovo con las ponentes del evento 'Análisis profundo sobre el Testing en Backend y los Obstáculos de Escalabilidad'.
+- Evento online con Mari Carmen, aprendiendo a customizar tu perfil de GitHub.
+- Unlocking Data: Visualización y métricas esenciales para el éxito, con las brillantes Alba Vicente Olmo y Patricia Márquez Valle.
+- Disfrutando de la experiencia y talento de Sarah, destacada desarrolladora de juegos, en el evento del 8 de Marzo.
+- Explorando cómo la gestión emocional puede ser la clave para el éxito personal en todas las áreas de la vida.
+- Disfrutando de la experiencia en Unlocking Data con la talentosa Alba Vicente Olmo, aprendiendo sobre visualización de datos.
+- Disfrutando de la experiencia en Unlocking Data con la brillante Patricia Márquez Valle, explorando métricas clave para el éxito.
+- Espectacular evento: Mesa redonda sobre mujeres en tecnología, explorando los retos y oportunidades en el campo.
+- Workshop con Asia Noble: Predice la brecha salarial de género con IA, explorando técnicas de análisis de datos con Python y Pandas.
+- De la mano de Carolina Muradas, exploramos cómo la IA está transformando el mundo laboral.
+- De la mano de Laura Pourtier, analizamos la rentabilidad de Walmart utilizando Tableau en colaboración con Le Wagon. Un evento imprescindible para los apasionados por el análisis de datos y la tecnología.
+- Daniela Trifu, referente en ciberseguridad, aportando su valiosa experiencia durante el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek'
+- Yeraldin Salazar, especialista en ciberseguridad, brindando su visión experta en el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek''.
+- Anna Vía, Product Manager de Machine Learning en Adevinta, compartió su conocimiento en la presentación 'Desbloqueando el potencial de IA: del problema al impacto', durante un evento organizado con el apoyo de Le Wagon.
+- Paula Oses, ingeniera de IA en IAG, presentó 'Construyendo tu propio modelo Rag' en el evento organizado con el apoyo de Le Wagon.
+- En colaboración con Le Wagon, femCoders Club organizó un evento sobre Machine Learning, donde las ponentes compartieron su conocimiento y experiencia en el campo.
+- Liliana Dalmarco, que formó parte del equipo fundador de FemCoders Club, nos inspiró con su charla «Soft Skills: comunicación asertiva» en un evento organizado junto al Canòdrom.
+- Daria Naidikova, desarrolladora front-end en Semrush, compartió estrategias clave sobre cómo mejorar la accesibilidad en productos digitales, inspirando a nuestra comunidad a crear experiencias web inclusivas para todos.
+- Cris Mouta, arquitecta convertida en programadora y formadora fullstack, nos mostró los fundamentos de la Programación Orientada a Objetos (POO), destacando la importancia de la creatividad y pasión en el desarrollo de software.
+- Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla.
+- Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.
+
+### Past events (34, most recent first)
+
+- HackBarna AI Summit 26 - FemCoders Club Community Partner
+  Date: 2026-09-19
+  Location: Norrsken House Barcelona
+  Summary: Tercera edición del hackathon de IA de Barcelona, el 19 y 20 de septiembre en Norrsken House. Repetimos como community partner y nuestro equipo ganó el premio Best use of the Vonage Video API.
+
+- Sesión informativa: HackBarna AI Summit 26
+  Date: 2026-09-03
+  Summary: Únete online para descubrir todo sobre HackBarna AI Summit 26 y cómo sacarle el máximo provecho.
+
+- La gestión de tu estado interno también forma parte de tu búsqueda laboral
+  Date: 2026-06-04
+  Summary: Aprende a manejar tus emociones para que la búsqueda de trabajo sea menos estresante y más efectiva.
+
+- Hacking Decidim: personalización y desarrollo con Ruby on Rails
+  Date: 2026-05-27
+  Summary: Únete al Hacking Decidim para aprender a personalizar y desarrollar con Ruby on Rails en vivo y en directo.
+
+- Customiza tu Perfil de Github
+  Date: 2026-05-14
+  Summary: Personaliza tu perfil de GitHub para destacar tus proyectos, habilidades y estilo como desarrolladora.
+
+- Soft Skills: Comunicación Asertiva en el Ambiente Laboral
+  Date: 2026-04-15
+  Summary: Aprende a comunicarte claro y con confianza en el trabajo para evitar malentendidos y mejorar el ambiente.
+
+- Estructuras en Movimiento: mujeres que transforman el futuro
+  Date: 2026-03-26
+  Summary: Celebra el Día de la Mujer con una jornada de charlas inspiradoras junto a referentes que comparten sus historias, aprendizajes y visión
+
+- Taller Presencial: Propuesta de Valor con Jennifer Neyra - Sesion 2
+  Date: 2026-02-26
+  Location: Canodromo, Barcelona
+  Summary: Segundo encuentro con Jennifer Neyra. Trae tu CV aplicando lo aprendido en la sesion online y trabajaremos tu propuesta de valor. Plazas limitadas a 10 personas. Practica con feedback personalizado, networking con profesionales del sector y ejercicios para fortalecer tu narrativa profesional. Inscripciones: info@femcodersclub.com
+
+- CV Tech vs Selección IT: ¡Mejora tu CV y comunica tu propuesta de valor!
+  Date: 2026-02-12
+  Summary: Join us for an exciting showdown between CV Tech and Selección IT to level up your CV and nail your value proposition!
+
+- Mesa Redonda de IA: Liderando la revolución de la IA con talento femenino.
+  Date: 2025-10-29
+  Summary: Únete a nosotros para una mesa redonda sobre la revolución de la inteligencia artificial ¡será una experiencia inspiradora!
+
+- HackBarna 2025 - FemCoders Club Community Partner
+  Date: 2025-10-11
+  Location: Glovo HQ, Barcelona
+
+- Taller Práctico: Tu Primera Página Web con HTML y CSS
+  Date: 2025-09-27
+  Location: Carrer de Concepción Arenal, 165, Sant Andreu, 08027 Barcelona
+
+- Mes del QA 2025
+  Date: 2025-06-27
+  Location: Online
+
+- Entrevista con Nadia Soledad Cavalleri
+  Date: 2025-06-19
+  Location: Online
+
+- DataConnect. Inspire ideas.Learn from experts. Grow together
+  Date: 2025-05-28
+  Summary: A unique event co-hosted by InfoJobs, FemCoders Club, Le Wagon, and Glovo. Join us for a unique data event to learn, get inspired.
+
+- El sector tecnológico necesita de más mujeres: Celebra con nosotras
+  Date: 2025-03-13
+  Summary: FemCoders Club e InfoJobs te invitan a festejar el Día Internacional de la Mujer patrocinado por InfoJobs .
+
+- Inteligencia Emocional en el Ambiente Laboral
+  Date: 2024-12-04
+  Summary: Aprende a manejar tus emociones en el trabajo para tener éxito y ser feliz en tu día a día laboral.
+
+- Diseño, Accesibilidad y Ciberseguridad en el desarrollo Web
+  Date: 2024-11-28
+  Summary: Aprende sobre cómo integrar diseño atractivo, accesibilidad para todos y ciberseguridad en tus proyectos web en nuestro evento.
+
+- Estratégias de accesibilidad y Fundamentos de POO
+  Date: 2024-11-07
+  Summary: ¡Aprende cómo hacer que tus programas sean accesibles para todos y domina los fundamentos de la programación orientada a objetos en este eve
+
+- Machine Learning
+  Date: 2024-09-19
+  Summary: En este evento, daremos lugar a dos charlas muy interesantes en colaboración de Le Wagon:
+
+- Ciberseguridad - Catch Me If You Can: Malware Hide and Seek
+  Date: 2024-09-05
+  Summary: En este taller, nos adentraremos en el intrigante mundo del malware, explorando los diferentes tipos que acechan en el ciberespacio.
+
+- AI in Tech: A New Era of Jobs
+  Date: 2024-07-17
+  Summary: Join us for AI in Tech: A New Era of Jobs, where we'll explore how artificial intelligence is shaping the future of work!
+
+- Mesa redonda: Mujeres en Tecnología: Retos y Oportunidades
+  Date: 2024-07-11
+  Summary: ¡Ven a nuestra mesa redonda sobre mujeres en tecnología y descubre los retos y oportunidades que enfrentan en el campo!
+
+- Workshop: Analyze Walmart’s profitability using Tableau
+  Date: 2024-07-03
+  Summary: Learn how to work with Tableau, one of the most widely used data analysis and visualization software programs in the world.
+
+- Workshop: Predict the gender pay gap with AI
+  Date: 2024-06-27
+  Summary: Learn how to use Python and Pandas to analyze how gender equality (or inequality) reveals itself through data.
+
+- Unlocking Data: Essential Visualization and Metrics for Success
+  Date: 2024-06-19
+  Summary: Learn how to make sense of data through cool visuals and key metrics for achieving success at our event on June 19th.
+
+- Antes muerta que sin IA
+  Date: 2024-05-29
+  Summary: La IA es una herramienta poderosa que puede empoderarnos o borrarnos del mapa. Educarnos es la mejor manera de saber de qué lado estamos.
+
+- Green Software: ¿es realmente posible?
+  Date: 2024-05-16
+  Summary: En un mundo cada vez más consciente del medio ambiente, la tecnología juega un papel crucial en la búsqueda de soluciones sostenibles.
+
+- Más allá de la superficie
+  Date: 2024-04-22
+  Summary: Análisis profundo sobre el Testing en Backend y los Obstáculos de Escalabilidad.
+
+- Actitud mental y gestión emocional para ser líder de tu vida
+  Date: 2024-04-17
+  Summary: En esta charla, exploraremos cómo la gestión emocional puede ser la clave para alcanzar el éxito personal en todas las áreas de la vida.
+
+- Customiza tu Perfil de Github
+  Date: 2024-03-18
+  Summary: Quieres destacar en el mundo del desarrollo y mostrar tu identidad única en GitHub? Entonces este evento es para ti!
+
+- Día Internacional de la Mujer: Celebremos el Talento Tecnológico Femenino
+  Date: 2024-03-07
+  Summary: FemCoders Club y TechFems te invitan a festejar el Día Internacional de la Mujer con este evento especial, patrocinado por Adevinta.
+
+- Las skills que necesitas para ser UX Engineer
+  Date: 2024-02-20
+  Summary: Estamos muy emocionadas de compartir con ustedes la oportunidad de explorar el universo del UX Engineering de la mano de Carmen Ansio.
+
+- Iníciate en la programación con femCoders Club
+  Date: 2024-01-21
+  Location: Online
+
+<!-- END: eventos generado automaticamente -->
+
 <!-- BEGIN: colaboradoras generado automaticamente -->
 
 ## Companies and organizations that have collaborated with FemCoders Club (in Spanish, as published)

@@ -16,6 +16,7 @@ import { getPostsIndex } from "./postsIndex";
 import { quienesSomosMarkdown } from "./contenidoQuienesSomos";
 import { colaboradorasMarkdown } from "./contenidoColaboradoras";
 import { equipoMarkdown, obtenerEquipo } from "./contenidoEquipo";
+import { eventosMarkdown, obtenerEventos } from "./contenidoEventos";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const LLMS_PATH = path.join(ROOT, "public", "llms.txt");
@@ -34,6 +35,9 @@ const END_COLABORADORAS = "<!-- END: colaboradoras generado automaticamente -->"
 // El equipo actual, desde src/features/Team/contenido.ts y la base de datos.
 const BEGIN_EQUIPO = "<!-- BEGIN: equipo generado automaticamente -->";
 const END_EQUIPO = "<!-- END: equipo generado automaticamente -->";
+// Próximos y pasados, desde src/features/Events/contenido.ts y la base de datos.
+const BEGIN_EVENTOS = "<!-- BEGIN: eventos generado automaticamente -->";
+const END_EVENTOS = "<!-- END: eventos generado automaticamente -->";
 
 /** Sustituye el bloque entre marcadores o, si no existe, lo inserta antes de `antes`. */
 function ponerBloque(texto: string, inicio: string, fin: string, bloque: string, antes?: string): string {
@@ -109,7 +113,15 @@ export async function generateLlmsTxt(): Promise<void> {
       ? ponerBloque(conColaboradoras, BEGIN_EQUIPO, END_EQUIPO, bloqueEquipo, BEGIN_COLABORADORAS)
       : conColaboradoras;
 
-  const updated = ponerBloque(conEquipo, BEGIN, END, section);
+  // Igual que el equipo: sin respuesta de la API se conserva el bloque anterior.
+  const eventos = await obtenerEventos();
+  const hayEventos = eventos.proximos.length + eventos.pasados.length > 0;
+  const bloqueEventos = [BEGIN_EVENTOS, "", eventosMarkdown(eventos), "", END_EVENTOS].join("\n");
+  const conEventos = hayEventos
+    ? ponerBloque(conEquipo, BEGIN_EVENTOS, END_EVENTOS, bloqueEventos, BEGIN_COLABORADORAS)
+    : conEquipo;
+
+  const updated = ponerBloque(conEventos, BEGIN, END, section);
 
   await fs.writeFile(LLMS_PATH, updated, "utf-8");
   console.log(
