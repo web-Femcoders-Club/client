@@ -26,6 +26,7 @@ import { quienesSomosHtml } from "./contenidoQuienesSomos";
 import { equipoHtml, equipoJsonLd, obtenerEquipo } from "./contenidoEquipo";
 import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
+import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
 
 export interface RutaMeta {
   title: string;
@@ -211,9 +212,20 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     ],
   },
   "/contacto": {
-    title: "Contacto - FemCoders Club | Únete a Nuestra Comunidad Tech",
+    // Copiado de ContactPage.tsx.
+    title: "Contacto | FemCoders Club · Mujeres en tecnología",
     description:
-      "Conéctate con FemCoders Club. Únete a nuestra comunidad de mujeres en tecnología, participa en eventos, recibe mentoring o colabora en proyectos. ¡Tu voz importa!",
+      "Escribe a FemCoders Club para colaborar o patrocinar, compartir una vacante, dar una charla u organizar algo entre comunidades. Te responderemos por correo.",
+    // Textos de src/features/Contact/contenido.ts (scripts/contenidoContacto.ts).
+    contenidoHtml: contactoHtml(),
+    imagen: {
+      ruta: "/og-contacto.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Cuatro asistentes posan abrazadas y sonrientes durante el networking de un evento de FemCoders Club",
+    },
+    // La página, el punto de contacto de la Organization y la miga de pan.
+    jsonLd: contactoJsonLd(),
   },
   "/login": {
     title: "Iniciar Sesión - FemCoders Club",

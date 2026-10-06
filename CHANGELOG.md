@@ -5,6 +5,31 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Contacto (rediseño)
+
+#### Cambiado
+- **/contacto pasa de cinco secciones a dos, sin Tailwind ni estilos en
+  línea**: el formulario con los motivos para escribir (`bg1`) y «Sigue cerca de
+  la comunidad» (`bg4`) con Slack, cuenta y eventos. Salen «¿Por qué
+  contactarnos?», el bloque de Slack, la llamada final y «Email directo», que
+  repetía el correo de arriba. Textos en `src/features/Contact/contenido.ts`.
+- **El formulario envía lo mismo que antes**; cambian el aspecto y el marcado.
+  Las etiquetas por fin están asociadas a sus campos (el lector leía «name»),
+  hay autocompletado en nombre, apellidos y correo, y el borde de los campos
+  supera 3:1.
+- **Metadatos sin cifras que no casaban** («más de 1000», «miles», «la mayor
+  comunidad»): título y descripción dicen para qué escribir.
+
+#### Añadido
+- **SEO y GEO**: el HTML servido de /contacto incluye el texto de la página y el
+  JSON-LD de `ContactPage`, el punto de contacto de la Organization y la miga de
+  pan. Imagen para compartir propia (`og-contacto.jpg`); la anterior apuntaba a
+  un archivo que no existía.
+
+#### Corregido
+- **llms.txt ya no anuncia `partnerships@femcodersclub.com`**, que no existe. El
+  bloque de contacto se genera desde la misma fuente que la página.
+
 ### Equipo (rediseño)
 
 #### Cambiado
