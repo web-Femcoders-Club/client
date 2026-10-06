@@ -27,7 +27,13 @@ const EventsPage = () => {
   });
 
   if (pastEventsError || upcomingEventsError) {
-    return <div>Error loading events. Please try again later.</div>;
+    return (
+      <section className="eventos-proximos bg1">
+        <p className="eventos-proximos__texto" role="alert">
+          No hemos podido cargar los eventos. Vuelve a intentarlo en unos minutos.
+        </p>
+      </section>
+    );
   }
 
   const sortedPastEvents = pastEventsData

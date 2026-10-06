@@ -41,7 +41,7 @@ const SeccionPasados: React.FC<SeccionPasadosProps> = ({ eventos, cargando }) =>
     >
       <div className="pasados__contenedor">
         <div className="pasados__cabeza">
-          <div>
+          <div data-aos="fade-right">
             <p className="fc-antetitulo fc-antetitulo--naranja">{P.antetitulo}</p>
             <h2 className="fc-titulo-seccion pasados__titulo" id="pasados-titulo">
               {P.titulo.texto} <span className="fc-rotulador">{P.titulo.destacado}</span>
@@ -55,7 +55,7 @@ const SeccionPasados: React.FC<SeccionPasadosProps> = ({ eventos, cargando }) =>
         ) : visibles.length === 0 ? (
           <p className="pasados__texto">{P.sinEventos}</p>
         ) : (
-          <ul className="pasados__lista">
+          <ul className="pasados__lista" data-aos="fade-up">
             {visibles.map((evento) => (
               <li key={evento.id}>
                 <EntradaEvento evento={evento} />
