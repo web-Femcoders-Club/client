@@ -136,7 +136,46 @@
   }
 }
 
-@media (max-width: 560px) {
+/*
+ * Móvil (vertical u horizontal): la tarjeta medía unos 800px, más que la
+ * pantalla. Nombre y apellidos siguen lado a lado (son cortos); correo y
+ * asunto pasan a todo el ancho; logo, mensaje y relleno, más pequeños.
+ */
+@media (max-width: 560px), (max-height: 500px) {
+  .formulario-contacto {
+    padding: 1.1rem;
+  }
+
+  .formulario-contacto__cabecera {
+    margin-bottom: 0.9rem;
+  }
+
+  .formulario-contacto__logo {
+    width: 56px;
+  }
+
+  .formulario-contacto__titulo {
+    font-size: 1.4rem;
+  }
+
+  .formulario-contacto__campos {
+    gap: 0.8rem 0.75rem;
+  }
+
+  .formulario-contacto__campo--ancho-movil {
+    grid-column: 1 / -1;
+  }
+
+  .formulario-contacto__campo textarea {
+    min-height: 6rem;
+  }
+}
+
+/*
+ * A 320px dos campos por fila quedan demasiado estrechos: uno por fila. Desde
+ * 360px (muchos Android) caben, y esa fila de menos deja el botón en pantalla.
+ */
+@media (max-width: 359px) {
   .formulario-contacto__campos {
     grid-template-columns: minmax(0, 1fr);
   }

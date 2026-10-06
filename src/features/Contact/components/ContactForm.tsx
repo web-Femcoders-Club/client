@@ -118,7 +118,7 @@ const ContactForm: React.FC = () => {
               />
             </div>
 
-            <div className="formulario-contacto__campo">
+            <div className="formulario-contacto__campo formulario-contacto__campo--ancho-movil">
               <label htmlFor="userEmail">Correo electrónico</label>
               <input
                 required
@@ -129,7 +129,7 @@ const ContactForm: React.FC = () => {
               />
             </div>
 
-            <div className="formulario-contacto__campo">
+            <div className="formulario-contacto__campo formulario-contacto__campo--ancho-movil">
               <label htmlFor="asunto">Asunto</label>
               <input required type="text" id="asunto" name="asunto" />
             </div>
