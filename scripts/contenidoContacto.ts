@@ -74,7 +74,7 @@ export function contactoJsonLd(): Record<string, unknown>[] {
       "@id": `${SITIO}/#organization`,
       contactPoint: {
         "@type": "ContactPoint",
-        contactType: "Consultas generales, colaboraciones y patrocinio",
+        contactType: "consultas generales",
         email: CORREO_CONTACTO,
         url: URL_PAGINA,
         availableLanguage: ["es"],

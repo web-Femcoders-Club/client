@@ -89,7 +89,7 @@ Detrás de este formulario está el equipo de FemCoders Club. Cuéntanos tu idea
 ### Sigue cerca de la comunidad
 
 - Conversa en nuestro Slack: Un espacio para hacer preguntas, compartir oportunidades y celebrar logros con otras mujeres en tecnología. https://join.slack.com/t/femcodersclub/shared_invite/zt-47z21fehv-wOH2xK6eayobO_MIRfvMew
-- Crea tu cuenta: Es gratuita y te da acceso a las ofertas de empleo y a las mentorías. Desde tu perfil eliges qué avisos quieres recibir. https://www.femcodersclub.com/register
+- Crea tu cuenta: Es gratuita y te da acceso a las ofertas de empleo y a las mentorías. Al crearla eliges qué avisos quieres recibir. https://www.femcodersclub.com/register
 - Ven a un evento: Charlas, talleres y encuentros para aprender y conocer a otras personas de la comunidad. https://www.femcodersclub.com/eventos
 
 <!-- END: contacto generado automaticamente -->

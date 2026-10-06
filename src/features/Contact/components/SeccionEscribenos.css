@@ -169,17 +169,33 @@
 
 /* ---------- Responsive ---------- */
 
-/* Una columna: título, formulario, motivos y correo, en ese orden. */
-@media (max-width: 960px) {
+/*
+ * Una columna: título, formulario, motivos y correo, en ese orden. Desde
+ * 1100px y no 960: entre medias los motivos quedaban en columnas de 140px,
+ * con 2 o 3 palabras por línea.
+ */
+@media (max-width: 1100px) {
   .escribenos__rejilla {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "cabecera" "formulario" "motivos" "directo";
     grid-template-rows: auto;
   }
 
+  /* Margen para la capa girada, que si no roza el subtítulo de los motivos. */
   .escribenos__formulario {
     width: 100%;
     max-width: 36rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/*
+ * Portátiles bajos (1366×768 deja ~650px útiles): menos aire arriba para que
+ * el botón de enviar quede dentro de la pantalla. El resto, en ContactForm.css.
+ */
+@media (min-width: 1101px) and (max-height: 720px) {
+  .escribenos {
+    padding-top: calc(var(--fem-header-height, 80px) + 1.5rem);
   }
 }
 
@@ -190,5 +206,12 @@
 
   .escribenos__formulario .fc-capa {
     inset: 1rem -0.4rem -0.6rem 1rem;
+  }
+}
+
+/* A 320px los cinco botones de redes no cabían en una fila y Spotify bajaba solo. */
+@media (max-width: 360px) {
+  .escribenos__redes-lista {
+    gap: 0.75rem;
   }
 }

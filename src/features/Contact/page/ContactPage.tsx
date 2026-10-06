@@ -2,14 +2,14 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import SeccionEscribenos from "../components/SeccionEscribenos";
 import SeccionParticipa from "../components/SeccionParticipa";
+import { META_CONTACTO } from "../contenido";
 
-const TITULO = "Contacto | FemCoders Club · Mujeres en tecnología";
-const DESCRIPCION =
-  "Escribe a FemCoders Club para colaborar o patrocinar, compartir una vacante, dar una charla u organizar algo entre comunidades. Te responderemos por correo.";
-const URL = "https://www.femcodersclub.com/contacto";
-const IMAGEN = "https://www.femcodersclub.com/og-contacto.jpg";
-const IMAGEN_ALT =
-  "Cuatro asistentes posan abrazadas y sonrientes durante el networking de un evento de FemCoders Club";
+const SITIO = "https://www.femcodersclub.com";
+const TITULO = META_CONTACTO.titulo;
+const DESCRIPCION = META_CONTACTO.descripcion;
+const URL = `${SITIO}/contacto`;
+const IMAGEN = `${SITIO}${META_CONTACTO.imagen}`;
+const IMAGEN_ALT = META_CONTACTO.imagenAlt;
 
 /*
  * /contacto en dos secciones: el formulario con los motivos para escribir
@@ -19,9 +19,8 @@ const ContactPage: React.FC = () => (
   <>
     <Helmet>
       {/*
-        Los mismos textos que escribe el prerender en el HTML servido
-        (scripts/spaRoutesMeta.ts, entrada "/contacto"): si se cambian aquí,
-        hay que cambiarlos también allí.
+        Título, descripción e imagen salen de META_CONTACTO, el mismo objeto
+        que escribe el prerender en el HTML servido (scripts/spaRoutesMeta.ts).
 
         El JSON-LD (ContactPage, punto de contacto y miga de pan) no va aquí:
         lo escribe el prerender en el HTML servido (scripts/contenidoContacto.ts),
@@ -35,7 +34,6 @@ const ContactPage: React.FC = () => (
       <meta property="og:description" content={DESCRIPCION} />
       <meta property="og:url" content={URL} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="FemCoders Club" />
       <meta property="og:image" content={IMAGEN} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

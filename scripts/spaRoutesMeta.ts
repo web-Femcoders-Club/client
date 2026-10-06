@@ -27,6 +27,7 @@ import { equipoHtml, equipoJsonLd, obtenerEquipo } from "./contenidoEquipo";
 import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
+import { META_CONTACTO } from "../src/features/Contact/contenido";
 
 export interface RutaMeta {
   title: string;
@@ -212,18 +213,12 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     ],
   },
   "/contacto": {
-    // Copiado de ContactPage.tsx.
-    title: "Contacto | FemCoders Club · Mujeres en tecnología",
-    description:
-      "Escribe a FemCoders Club para colaborar o patrocinar, compartir una vacante, dar una charla u organizar algo entre comunidades. Te responderemos por correo.",
-    // Textos de src/features/Contact/contenido.ts (scripts/contenidoContacto.ts).
+    // Metas y textos de src/features/Contact/contenido.ts, los mismos que lee
+    // el Helmet de ContactPage.tsx: no hay copia que mantener.
+    title: META_CONTACTO.titulo,
+    description: META_CONTACTO.descripcion,
     contenidoHtml: contactoHtml(),
-    imagen: {
-      ruta: "/og-contacto.jpg",
-      ancho: 1200,
-      alto: 630,
-      alt: "Cuatro asistentes posan abrazadas y sonrientes durante el networking de un evento de FemCoders Club",
-    },
+    imagen: { ruta: META_CONTACTO.imagen, ancho: 1200, alto: 630, alt: META_CONTACTO.imagenAlt },
     // La página, el punto de contacto de la Organization y la miga de pan.
     jsonLd: contactoJsonLd(),
   },

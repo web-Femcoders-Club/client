@@ -10,6 +10,16 @@ import { SLACK_INVITE_URL } from "../../utils/constants";
 
 export const CORREO_CONTACTO = "info@femcodersclub.com";
 
+/* Metas de la página: las leen el Helmet y el prerender (scripts/spaRoutesMeta.ts). */
+export const META_CONTACTO = {
+  titulo: "Contacto | FemCoders Club · Mujeres en tecnología",
+  descripcion:
+    "Escribe a FemCoders Club para colaborar o patrocinar, compartir una vacante, dar una charla u organizar algo entre comunidades. Te responderemos por correo.",
+  imagen: "/og-contacto.jpg",
+  imagenAlt:
+    "Cuatro asistentes posan abrazadas y sonrientes durante el networking de un evento de FemCoders Club",
+} as const;
+
 export const ESCRIBENOS = {
   antetitulo: "Contacto",
   titulo: { texto: "Escríbenos, nos encantará", destacado: "leerte" },
@@ -60,7 +70,7 @@ export const PARTICIPA = {
       clave: "cuenta",
       titulo: "Crea tu cuenta",
       texto:
-        "Es gratuita y te da acceso a las ofertas de empleo y a las mentorías. Desde tu perfil eliges qué avisos quieres recibir.",
+        "Es gratuita y te da acceso a las ofertas de empleo y a las mentorías. Al crearla eliges qué avisos quieres recibir.",
       boton: "Crear cuenta",
       enlace: "/register",
       externo: false,

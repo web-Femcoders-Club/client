@@ -174,7 +174,7 @@ const ContactForm: React.FC = () => {
               >
                 Política de Privacidad
               </button>
-              . <span aria-hidden="true">*</span>
+              . <span aria-hidden="true" className="formulario-contacto__obligatorio">*</span>
             </label>
           </div>
 
