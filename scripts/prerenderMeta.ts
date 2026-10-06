@@ -25,6 +25,16 @@ const DIST_DIR = path.join(ROOT, "dist");
 const SITE_URL = "https://www.femcodersclub.com";
 const LOGO = `${SITE_URL}/FemCodersClubLogo.png`;
 
+/**
+ * JSON-LD para un <script>. JSON.stringify no escapa "<": un texto con
+ * "</script>" (las descripciones de eventos llegan de la base de datos y de
+ * Eventbrite) cerraría la etiqueta y metería HTML en la página. El escape
+ * < es el mismo carácter para quien lee el JSON.
+ */
+function jsonLdSeguro(schema: unknown): string {
+  return JSON.stringify(schema).replace(/</g, "\\u003c");
+}
+
 /** Escapa el texto que se incrusta en un atributo HTML. */
 function attr(value: string): string {
   return value
@@ -101,7 +111,7 @@ function buildJsonLd(post: PostMeta, image: string): string {
   return [article, breadcrumb]
     .map(
       (schema) =>
-        `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`
+        `    <script type="application/ld+json">${jsonLdSeguro(schema)}</script>`
     )
     .join("\n");
 }
@@ -241,7 +251,7 @@ function renderHeadRuta(
       : []),
     ...(meta.jsonLd ?? []).map(
       (schema) =>
-        `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`
+        `    <script type="application/ld+json">${jsonLdSeguro(schema)}</script>`
     ),
   ].join("\n");
 
@@ -481,7 +491,7 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
  * escrito: hacerlo antes metería la lista de la portada en todas las páginas.
  */
 async function writePortada(template: string): Promise<void> {
-  const jsonLd = `    <script type="application/ld+json">${JSON.stringify(colaboradorasJsonLd())}</script>`;
+  const jsonLd = `    <script type="application/ld+json">${jsonLdSeguro(colaboradorasJsonLd())}</script>`;
   const noscript = `    <noscript>\n${colaboradorasHtml()}\n    </noscript>`;
 
   const html = template

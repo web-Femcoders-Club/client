@@ -4,6 +4,7 @@ import { getPastEvents, getUpcomingEvents } from "../../../api/eventsApi";
 import SeccionPasados from "../components/SeccionPasados";
 import SeccionPonentes from "../components/SeccionPonentes";
 import SeccionProximos from "../components/SeccionProximos";
+import { PRESENTACION_EVENTOS } from "../contenido";
 import { leerFecha } from "../fecha";
 import "./../../Home/page/Home.css";
 
@@ -26,15 +27,7 @@ const EventsPage = () => {
     queryFn: getUpcomingEvents,
   });
 
-  if (pastEventsError || upcomingEventsError) {
-    return (
-      <section className="eventos-proximos bg1">
-        <p className="eventos-proximos__texto" role="alert">
-          No hemos podido cargar los eventos. Vuelve a intentarlo en unos minutos.
-        </p>
-      </section>
-    );
-  }
+  const hayError = Boolean(pastEventsError || upcomingEventsError);
 
   const sortedPastEvents = pastEventsData
     ? [...pastEventsData].sort(
@@ -75,14 +68,32 @@ const EventsPage = () => {
         <meta name="twitter:image" content="https://www.femcodersclub.com/og-eventos.jpg" />
         <meta name="twitter:image:alt" content="Asistentes y organizadoras de un taller de FemCoders Club posan sonriendo en el Canòdrom de Barcelona" />
       </Helmet>
-      <SeccionProximos
-        eventos={upcomingEventsData ?? []}
-        cargando={isLoadingUpcomingEvents}
-      />
+      {/*
+        Si la API falla, la página conserva su título y su h1 (lo que ve
+        Google, que ejecuta JS) y en lugar de los eventos sale el aviso.
+      */}
+      {hayError ? (
+        <section className="eventos-proximos bg1" aria-labelledby="eventos-titulo">
+          <h1 className="eventos-proximos__titulo" id="eventos-titulo">
+            {PRESENTACION_EVENTOS.titulo.texto}{" "}
+            <span className="fc-rotulador">{PRESENTACION_EVENTOS.titulo.destacado}</span>
+          </h1>
+          <p className="eventos-proximos__texto" role="alert">
+            No hemos podido cargar los eventos. Vuelve a intentarlo en unos minutos.
+          </p>
+        </section>
+      ) : (
+        <>
+          <SeccionProximos
+            eventos={upcomingEventsData ?? []}
+            cargando={isLoadingUpcomingEvents}
+          />
 
-      <SeccionPonentes />
+          <SeccionPonentes />
 
-      <SeccionPasados eventos={sortedPastEvents} cargando={isLoadingPastEvents} />
+          <SeccionPasados eventos={sortedPastEvents} cargando={isLoadingPastEvents} />
+        </>
+      )}
     </>
   );
 };

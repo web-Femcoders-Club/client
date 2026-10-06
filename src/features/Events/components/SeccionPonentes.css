@@ -111,15 +111,25 @@
   margin-top: 1.9rem;
 }
 
-/* Alto de tres líneas reservado: la página no salta al cambiar de foto. */
+/* Todos los pies apilados en la misma celda: la caja mide lo que el más largo. */
+.carrusel-ponentes__pies {
+  display: grid;
+  min-width: 0;
+}
+
 .carrusel-ponentes__pie {
-  min-height: 4.8em;
+  grid-area: 1 / 1;
+  visibility: hidden;
   margin: 0;
   font-family: var(--font-primary);
   font-size: 1.02rem;
   line-height: 1.6;
   color: var(--color-text-dark);
   text-wrap: pretty;
+}
+
+.carrusel-ponentes__pie--activo {
+  visibility: visible;
 }
 
 .carrusel-ponentes__controles {
@@ -179,6 +189,19 @@
 @media (max-width: 900px) {
   .ponentes__contenedor {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/*
+ * Móvil en horizontal (y zoom al 200 %): la foto 3:2 a todo el ancho no cabía
+ * en pantalla junto a sus controles. El ancho sale del alto disponible: la
+ * ventana menos la cabecera fija y unos 7rem para pie y botones.
+ */
+@media (orientation: landscape) and (max-height: 500px) {
+  .carrusel-ponentes {
+    width: 100%;
+    max-width: min(100%, calc((100svh - var(--fem-header-height, 70px) - 7rem) * 1.5));
+    margin-inline: auto;
   }
 }
 

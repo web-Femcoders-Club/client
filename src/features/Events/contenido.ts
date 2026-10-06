@@ -229,7 +229,7 @@ export const PONENTES = {
     {
       src: "/assets/ML-ComunicacionAcertiva/LiliDemarco-ponente.png",
       texto:
-        "Liliana, una de las cofundadoras más queridas de femCoders Club, nos inspiró con su presentación 'Soft Skill: Comunicación Asertiva' en un evento organizado junto a Canodrum.",
+        "Liliana Dalmarco, que formó parte del equipo fundador de FemCoders Club, nos inspiró con su charla «Soft Skills: comunicación asertiva» en un evento organizado junto al Canòdrom.",
     },
     {
       src: "/assets/semRush/dariaNaidikova.jpg",

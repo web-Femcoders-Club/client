@@ -83,12 +83,27 @@ const SeccionPonentes: React.FC = () => {
           </div>
 
           <div className="carrusel-ponentes__barra">
-            <p className="carrusel-ponentes__pie" aria-live={rotacion.girando ? "off" : "polite"}>
-              <span className="fc-solo-lector">
-                Ponente {actual + 1} de {total}:{" "}
-              </span>
-              {P.fotos[actual].texto}
-            </p>
+            {/*
+              Todos los pies en la misma celda y solo el activo visible: la
+              caja mide siempre lo que el más largo y la página no salta al
+              cambiar de foto. Los ocultos no los lee el lector de pantalla.
+            */}
+            <div className="carrusel-ponentes__pies" aria-live={rotacion.girando ? "off" : "polite"}>
+              {P.fotos.map((foto, i) => (
+                <p
+                  key={foto.src}
+                  className={`carrusel-ponentes__pie${i === actual ? " carrusel-ponentes__pie--activo" : ""}`}
+                  aria-hidden={i !== actual}
+                >
+                  {i === actual && (
+                    <span className="fc-solo-lector">
+                      Ponente {actual + 1} de {total}:{" "}
+                    </span>
+                  )}
+                  {foto.texto}
+                </p>
+              ))}
+            </div>
             <div className="carrusel-ponentes__controles">
               <button
                 type="button"

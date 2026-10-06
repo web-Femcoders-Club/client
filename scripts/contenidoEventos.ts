@@ -47,8 +47,22 @@ async function pedirLista(ruta: string): Promise<Event[]> {
   if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
   const eventos = (await respuesta.json()) as Event[];
   if (!Array.isArray(eventos)) throw new Error("la respuesta no es una lista");
-  return eventos;
+  return eventos.map(limpiar);
 }
+
+/*
+ * Los textos de Eventbrite traen saltos de línea y dobles espacios («Customiza
+ * tu Perfil  de Github»). En HTML no se notan, pero un salto rompía la lista
+ * de llms.txt. Se normalizan una vez, al recibirlos.
+ */
+const enUnaLinea = (texto?: string) => texto?.replace(/\s+/g, " ").trim();
+
+const limpiar = (evento: Event): Event => ({
+  ...evento,
+  name: enUnaLinea(evento.name) ?? "",
+  description: enUnaLinea(evento.description),
+  location: enUnaLinea(evento.location),
+});
 
 async function pedirEventos(): Promise<EventosPublicos> {
   try {
@@ -78,9 +92,12 @@ function fechaLegible(evento: Event): string {
 /*
  * La API da la hora local de Barcelona sin zona. Google pide la zona en
  * `startDate`: se añade la de Europe/Madrid en esa fecha (+01:00 o +02:00).
+ * Los eventos sin hora llegan a las 00:00: entonces solo la fecha, sin
+ * inventar una hora que nadie dio.
  */
-function conZonaMadrid(startLocal: string): string {
+function inicioJsonLd(startLocal: string): string {
   const local = fechaIso(startLocal).slice(0, 19);
+  if (local.endsWith("T00:00:00")) return local.slice(0, 10);
   const zona = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Madrid", timeZoneName: "longOffset" })
     .formatToParts(new Date(`${local}Z`))
     .find((parte) => parte.type === "timeZoneName")?.value;
@@ -146,11 +163,43 @@ function imagenAbsoluta(url: string): string | null {
 }
 
 /*
+ * Dónde fue, solo si la base de datos lo dice. «Online» es un sitio virtual,
+ * no un lugar en España. Sin dato no se inventa presencial u online (sin
+ * `location`, Google no lo muestra como resultado enriquecido de evento, pero
+ * tampoco miente).
+ */
+function lugarJsonLd(evento: Event): Record<string, unknown> {
+  if (!evento.location) return {};
+  if (/^online$/i.test(evento.location)) {
+    return {
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      location: { "@type": "VirtualLocation", ...(evento.event_url ? { url: evento.event_url } : {}) },
+    };
+  }
+  return {
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: evento.location,
+      address: {
+        "@type": "PostalAddress",
+        ...(/barcelona/i.test(evento.location) ? { addressLocality: "Barcelona" } : {}),
+        addressCountry: "ES",
+      },
+    },
+  };
+}
+
+/*
+ * Un formulario de inscripción (Google Forms) no es la página del evento: no
+ * se declara como `url`.
+ */
+const esPaginaDelEvento = (url?: string) => !!url && !/^https?:\/\/(forms\.gle|docs\.google\.com\/forms)\//.test(url);
+
+/*
  * Cada evento dice lo que se ve en la página: nombre, fecha, descripción,
- * imagen y enlace de Eventbrite. El lugar solo cuando la base de datos lo
- * trae: muchos eventos no lo tienen y no se sabe si fueron presenciales u
- * online, así que no se inventa (sin `location`, Google no los muestra como
- * resultado enriquecido de evento, pero tampoco miente).
+ * imagen, lugar y enlace. En todos FemCoders Club tuvo un papel importante en
+ * la organización, también en los de colaboración: `organizer` en todos.
  */
 function eventoJsonLd(evento: Event): Record<string, unknown> {
   const imagen = evento.logo_url ? imagenAbsoluta(evento.logo_url) : null;
@@ -158,26 +207,13 @@ function eventoJsonLd(evento: Event): Record<string, unknown> {
     "@type": "Event",
     "@id": `${URL_PAGINA}#evento-${evento.id}`,
     name: evento.name,
-    startDate: conZonaMadrid(evento.start_local),
+    startDate: inicioJsonLd(evento.start_local),
     eventStatus: "https://schema.org/EventScheduled",
     ...(evento.description ? { description: evento.description } : {}),
     ...(imagen ? { image: imagen } : {}),
-    ...(evento.event_url ? { url: evento.event_url } : {}),
-    ...(evento.location
-      ? {
-          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-          location: {
-            "@type": "Place",
-            name: evento.location,
-            address: {
-              "@type": "PostalAddress",
-              ...(/barcelona/i.test(evento.location) ? { addressLocality: "Barcelona" } : {}),
-              addressCountry: "ES",
-            },
-          },
-        }
-      : {}),
-    organizer: { "@id": `${SITIO}/#organization` },
+    ...(esPaginaDelEvento(evento.event_url) ? { url: evento.event_url } : {}),
+    ...lugarJsonLd(evento),
+    organizer: { "@type": "Organization", "@id": `${SITIO}/#organization`, name: "FemCoders Club", url: SITIO },
   };
 }
 
@@ -188,7 +224,7 @@ export function eventosJsonLd({ proximos, pasados }: EventosPublicos): Record<st
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": URL_PAGINA,
-    name: `${titulo(PRESENTACION_EVENTOS.titulo)} | FemCoders Club`,
+    name: titulo(PRESENTACION_EVENTOS.titulo),
     url: URL_PAGINA,
     description: PRESENTACION_EVENTOS.parrafos[0],
     inLanguage: "es",
@@ -250,6 +286,8 @@ export function eventosMarkdown({ proximos, pasados }: EventosPublicos): string 
     `### Speakers`,
     "",
     PONENTES.texto,
+    "",
+    ...PONENTES.fotos.map((f) => `- ${f.texto}`),
     "",
     `### Past events (${pasados.length}, most recent first)`,
     "",
