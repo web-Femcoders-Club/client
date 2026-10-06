@@ -1,0 +1,134 @@
+/*
+ * Formulario de /contacto. La tarjeta es `fc-tarjeta` y el botón `fc-boton
+ * fc-boton--noche` (src/styles/rediseno.css); el consentimiento usa las
+ * clases compartidas de index.css (`form-consent`, `link-button`).
+ *
+ * Etiquetas siempre visibles encima de cada campo: a diferencia de las
+ * flotantes, no encogen a 12 px ni desaparecen al escribir.
+ *
+ * index.css da tamaño, color y sombra a h2: aquí se fijan los valores.
+ */
+
+.formulario-contacto {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.4rem, 2.6vw, 1.9rem);
+}
+
+/* Logo al lado del título, no encima: la tarjeta cabe en una pantalla de portátil. */
+.formulario-contacto__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.formulario-contacto__logo {
+  flex-shrink: 0;
+  width: 80px;
+  height: auto;
+}
+
+.formulario-contacto__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+}
+
+.formulario-contacto__nota {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Campos ---------- */
+
+.formulario-contacto__campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.formulario-contacto__campo {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.formulario-contacto__campo--ancho {
+  grid-column: 1 / -1;
+}
+
+.formulario-contacto__campo label {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/*
+ * Borde violeta al 75 %: unos 4,7:1 contra el blanco de la tarjeta, por
+ * encima del 3:1 que pide un campo (WCAG 1.4.11). Al 55 % se quedaba en 2,7:1.
+ */
+.formulario-contacto__campo input,
+.formulario-contacto__campo textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  border-radius: 0.7rem;
+  background: var(--color-lavanda-claro);
+  color: var(--color-text-dark);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.formulario-contacto__campo textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.formulario-contacto__campo input:hover,
+.formulario-contacto__campo textarea:hover {
+  border-color: var(--color-secondary);
+}
+
+.formulario-contacto__campo input:focus-visible,
+.formulario-contacto__campo textarea:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-color: var(--color-secondary);
+  background: #fff;
+}
+
+/* El contador trae margen abajo para otros formularios; aquí lo da la rejilla. */
+.formulario-contacto .char-counter {
+  margin: 0;
+}
+
+/* ---------- Consentimiento y envío ---------- */
+
+.formulario-contacto .form-consent {
+  margin: 1rem 0 0;
+}
+
+.formulario-contacto__enviar {
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 560px) {
+  .formulario-contacto__campos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formulario-contacto__campo input,
+  .formulario-contacto__campo textarea {
+    transition: none;
+  }
+}

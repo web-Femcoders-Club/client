@@ -1,105 +1,8 @@
-/* TU CÓDIGO CSS ORIGINAL - SIN MODIFICAR */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.contact-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-
-.contact-info {
-  text-align: center;
-  margin-bottom: 2rem;
-  gap: 2rem;
-  margin-left: 5rem;
-  animation: fadeInUp 1s ease-out;
-  color: #2a2170;
-  margin-top: 12rem;
-}
-
-.contact-info p {
-  margin: 0.5rem 0;
-  font-size: 1.3rem;
-  color: #2a2170;
-}
-
-.contact-info ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contact-info li {
-  margin: 0.5rem 0;
-  font-size: 1.3rem;
-  color: #2a2170;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.social-icon {
-  margin-top: 3rem;
-  font-size: 2rem;
-  color: #ea4f33;
-  transition: color 0.3s;
-}
-
-.social-icon:hover {
-  color: #4737bb;
-  scale: 1.3;
-}
-
-.contact-form-section {
-  width: 100%;
-  max-width: 600px;
-}
-
-@media (max-width: 768px) {
-  .contact-main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contact-info {
-    margin-left: 0;
-  }
-
-  .contact-info p,
-  .contact-info li {
-    font-size: 1rem;
-  }
-
-  .social-links {
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  .social-icon {
-    font-size: 1.5rem;
-  }
-
-  .contact-form-section {
-    max-width: 100%;
-  }
-}
-
-/* NUEVAS CLASES AGREGADAS - SIN MODIFICAR LAS EXISTENTES */
+/*
+ * Secciones antiguas de /contacto que aún no se han rediseñado (razones,
+ * Slack y llamada final). La primera sección vive en
+ * components/SeccionEscribenos.css.
+ */
 
 /* Sección de razones para contactar */
 .contact-reasons-wrapper {
@@ -229,77 +132,6 @@
   transform: scale(1.1);
 }
 
-/* Sección de email directo */
-.contact-email-wrapper {
-  background-color: white;
-  padding: 4rem 2rem;
-}
-
-.contact-email-container {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.contact-email-container h3 {
-  font-family: "Asap Condensed", sans-serif;
-  font-weight: bold;
-  color: #4737bb;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.contact-email-container p {
-  color: #2a2170;
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  font-family: "Roboto", sans-serif;
-}
-
-.contact-email-direct {
-  color: #ea4f33;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  transition: color 0.3s ease;
-  font-family: "Roboto", sans-serif;
-}
-
-.contact-email-direct:hover {
-  color: #4737bb;
-}
-
-/* Sección del formulario con contexto */
-.contact-form-wrapper {
-  background-color: #f7f4fa;
-  padding: 4rem 2rem;
-}
-
-.contact-form-container {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.contact-form-container h3 {
-  font-family: "Asap Condensed", sans-serif;
-  font-weight: bold;
-  color: #ea4f33;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.contact-form-container p {
-  color: #2a2170;
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-  font-family: "Roboto", sans-serif;
-}
-
 /* Banner final CTA */
 .contact-cta-wrapper {
   background: linear-gradient(135deg, #2a2170, #4737bb);
@@ -376,8 +208,6 @@
 @media (max-width: 768px) {
   .contact-reasons-wrapper,
   .contact-slack-wrapper,
-  .contact-email-wrapper,
-  .contact-form-wrapper,
   .contact-cta-wrapper {
     padding: 2rem 1rem;
   }
@@ -407,18 +237,11 @@
     font-size: 3rem;
   }
   
-  .contact-slack-container h3,
-  .contact-email-container h3 {
+  .contact-slack-container h3 {
     font-size: 1.2rem;
   }
   
-  .contact-form-container h3 {
-    font-size: 1.1rem;
-  }
-  
-  .contact-slack-container p,
-  .contact-email-container p,
-  .contact-form-container p {
+  .contact-slack-container p {
     font-size: 0.875rem;
   }
   
@@ -465,9 +288,7 @@
     font-size: 2.5rem;
   }
   
-  .contact-slack-container h3,
-  .contact-email-container h3,
-  .contact-form-container h3 {
+  .contact-slack-container h3 {
     font-size: 0.9rem;
   }
   

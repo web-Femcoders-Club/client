@@ -1,21 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import {
-  BsGithub,
-  BsInstagram,
-  BsLinkedin,
-  BsSpotify,
-  BsYoutube,
-} from "react-icons/bs";
 import { FaLightbulb, FaRocket, FaSlack, FaUsers } from "react-icons/fa";
-import ContactForm from "../components/ContactForm";
-import { REDES_SOCIALES } from "../../../data/redesSociales";
+import SeccionEscribenos from "../components/SeccionEscribenos";
 import { SLACK_INVITE_URL } from "../../../utils/constants";
 import "./ContactPage.css";
 
 const ContactPage: React.FC = () => {
-  const recipientEmail = "info@femcodersclub.com";
-
   return (
     <div className="contact-page">
       <Helmet>
@@ -55,88 +45,7 @@ const ContactPage: React.FC = () => {
         />
       </Helmet>
 
-      {/*
-        Era un <main> dentro del <main> del Layout: dos landmarks "principal" en
-        la misma página, uno metido en el otro. El HTML no lo permite, el lector
-        de pantalla ofrece dos contenidos principales a elegir y quien extrae la
-        página —buscadores y motores generativos— no sabe cuál de los dos es el
-        contenido. La caja sigue igual; solo deja de mentir sobre lo que es.
-      */}
-      <div className="contact-main">
-        <section className="contact-info">
-          <h1>Información de contacto</h1>
-          <h2>¿Tienes una propuesta?</h2>
-          <p>
-            ¿Tienes una propuesta de colaboración, quieres patrocinar un evento o 
-            simplemente quieres contarnos tu historia? Escríbenos:
-          </p>
-          <ul>
-            <li>
-              <span>
-                {" "}
-                Email:{" "}
-                <a href={`mailto:${recipientEmail}`} aria-label="Email">
-                  {recipientEmail}
-                </a>
-              </span>
-            </li>
-          </ul>
-          <div className="social-links">
-            <a
-              href={REDES_SOCIALES.spotify}
-              aria-label="Spotify"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsSpotify className="social-icon" />
-            </a>
-            <a
-              href={REDES_SOCIALES.instagram}
-              aria-label="Instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsInstagram className="social-icon" />
-            </a>
-            <a
-              href={REDES_SOCIALES.linkedin}
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsLinkedin className="social-icon" />
-            </a>
-            <a
-              href={REDES_SOCIALES.youtube}
-              aria-label="YouTube"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsYoutube className="social-icon" />
-            </a>
-            <a
-              href={REDES_SOCIALES.github}
-              aria-label="GitHub"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BsGithub className="social-icon" />
-            </a>
-            <a
-              href={SLACK_INVITE_URL}
-              aria-label="Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaSlack className="social-icon" />
-            </a>
-          </div>
-        </section>
-
-        <section className="contact-form-section">
-          <ContactForm />
-        </section>
-      </div>
+      <SeccionEscribenos />
 
       <section className="contact-reasons-wrapper">
         <div className="contact-reasons-container">
@@ -188,19 +97,6 @@ const ContactPage: React.FC = () => {
             rel="noopener noreferrer"
           >
             Únete a Slack
-          </a>
-        </div>
-      </section>
-
-      {/* Sección de email directo */}
-      <section className="contact-email-wrapper bg1">
-        <div className="contact-email-container">
-          <h3>Email directo</h3>
-          <p>
-            Para consultas generales, colaboraciones y propuestas, contáctanos directamente:
-          </p>
-          <a href={`mailto:${recipientEmail}`} className="contact-email-direct">
-            {recipientEmail}
           </a>
         </div>
       </section>
