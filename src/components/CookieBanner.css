@@ -224,8 +224,10 @@
 
 @media (min-width: 641px) and (max-height: 500px) {
   .aviso-cookies {
-    width: calc(100% - 32px);
+    /* Los dos lados fijados: así max-width y margin-inline: auto lo centran. */
+    width: auto;
     left: 16px;
+    right: 16px;
   }
 }
 
