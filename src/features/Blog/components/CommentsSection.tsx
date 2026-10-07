@@ -6,6 +6,7 @@ import { Comment } from "../../../types/types";
 import CharCounter from "../../../components/ui/CharCounter";
 import { useFocusMessage } from "../../../hooks/useFocusMessage";
 import { MESSAGE_MAX_LENGTH } from "../../../utils/constants";
+import "./CommentsSection.css";
 
 interface CommentsSectionProps {
   postId: number;
@@ -79,71 +80,98 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   };
 
   return (
-    <div className="comments-section">
-      <h3>¡Queremos saber de ti! 💬</h3>
-      <form ref={formRef} onSubmit={handleSubmit} className="comment-form">
-        <label htmlFor="alias" style={{ color: "#2a2170" }}>
-          Tu nombre o alias:
-        </label>
+    <section className="post-comentarios" aria-labelledby="comentarios-titulo">
+      <h2 id="comentarios-titulo">
+        Comentarios
+        {comments.length > 0 && (
+          <span className="post-comentarios__numero">{comments.length}</span>
+        )}
+      </h2>
 
-        <input
-          type="text"
-          id="alias"
-          value={alias}
-          onChange={(e) => setAlias(e.target.value)}
-          placeholder="Escribe tu nombre o alias"
-          className="comment-item"
-        />
-        <label htmlFor="commentText" style={{ color: "#2a2170" }}>
-          Tu comentario:
-        </label>
-        <textarea
-          id="commentText"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-          placeholder="Escribe tu comentario aquí..."
-          required
-          maxLength={MESSAGE_MAX_LENGTH}
-          aria-describedby="comment-counter"
-          className="comment-item"
-        />
-        <CharCounter
-          id="comment-counter"
-          current={commentText.length}
-          max={MESSAGE_MAX_LENGTH}
-        />
-        <button type="submit" disabled={loading} className="comment-button">
-          {loading ? "Enviando..." : "Enviar comentario"}
-        </button>
-      </form>
-      {error && (
-        <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
-          {error}
-        </p>
-      )}
-      {submitted && (
-        <p className="success-message" role="status">
-          Tu comentario ha sido enviado y está pendiente de moderación. ¡Gracias
-          por participar!
-        </p>
-      )}
-      <div className="approved-comments">
-        <h3>Lo que dicen nuestras lectoras 🌸</h3>
-        <ul className="comments-list">
+      {comments.length > 0 ? (
+        <ol className="post-comentarios__lista">
           {comments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              <strong>{comment.alias || "Anónimo"}:</strong>
-              <p>{comment.content}</p>
-              <small>
-                {format(comment.createdAt, "d 'de' MMMM 'de' yyyy", {
-                  locale: es,
-                })}
-              </small>
+            <li key={comment.id} className="post-comentario">
+              <span className="post-comentario__inicial" aria-hidden="true">
+                {(comment.alias || "Anónimo").charAt(0).toUpperCase()}
+              </span>
+              <div>
+                <p className="post-comentario__cabecera">
+                  <strong>{comment.alias || "Anónimo"}</strong>{" "}
+                  <time dateTime={comment.createdAt.toISOString()}>
+                    {format(comment.createdAt, "d de MMMM de yyyy", {
+                      locale: es,
+                    })}
+                  </time>
+                  {!comment.approved && (
+                    <span className="post-comentario__pendiente"> · pendiente de revisión</span>
+                  )}
+                </p>
+                <p>{comment.content}</p>
+              </div>
             </li>
           ))}
-        </ul>
-      </div>
-    </div>
+        </ol>
+      ) : (
+        <p className="post-comentarios__vacio">
+          Todavía no hay comentarios. ¿Te animas a dejar el primero?
+        </p>
+      )}
+
+      <form ref={formRef} onSubmit={handleSubmit} className="post-comentarios__formulario">
+        <h3>Deja tu comentario</h3>
+        <div className="fc-campo">
+          <label htmlFor="alias">
+            Tu nombre o alias <span className="post-comentarios__opcional">(opcional)</span>
+          </label>
+          <input
+            type="text"
+            id="alias"
+            value={alias}
+            onChange={(e) => setAlias(e.target.value)}
+            autoComplete="nickname"
+          />
+        </div>
+        <div className="fc-campo">
+          <label htmlFor="commentText">Tu comentario</label>
+          <textarea
+            id="commentText"
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            required
+            maxLength={MESSAGE_MAX_LENGTH}
+            aria-describedby="comment-counter"
+          />
+          <CharCounter
+            id="comment-counter"
+            current={commentText.length}
+            max={MESSAGE_MAX_LENGTH}
+          />
+        </div>
+        <p className="post-comentarios__aviso">
+          Los comentarios se publican después de revisarlos.
+        </p>
+        {error && (
+          <p className="fc-aviso fc-aviso--error" role="alert" tabIndex={-1} ref={errorRef}>
+            {error}
+          </p>
+        )}
+        {submitted && (
+          <p className="fc-aviso fc-aviso--exito" role="status">
+            Tu comentario se ha enviado y se publicará cuando lo revisemos.
+            ¡Gracias por participar!
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={loading}
+          aria-busy={loading}
+          className="fc-boton fc-boton--noche"
+        >
+          {loading ? "Enviando…" : "Enviar comentario"}
+        </button>
+      </form>
+    </section>
   );
 };
 

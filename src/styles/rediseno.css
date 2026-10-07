@@ -787,7 +787,8 @@
 
 /* Misma altura para campo y desplegable: el select medía 1-3px menos. */
 .fc-campo input,
-.fc-campo select {
+.fc-campo select,
+.fc-campo textarea {
   width: 100%;
   min-height: 3rem;
   padding: 0.7rem 0.85rem;
@@ -801,12 +802,14 @@
 }
 
 .fc-campo input:hover,
-.fc-campo select:hover {
+.fc-campo select:hover,
+.fc-campo textarea:hover {
   border-color: var(--color-secondary);
 }
 
 .fc-campo input:focus-visible,
-.fc-campo select:focus-visible {
+.fc-campo select:focus-visible,
+.fc-campo textarea:focus-visible {
   outline: 3px solid var(--color-secondary);
   outline-offset: 2px;
   border-color: var(--color-secondary);

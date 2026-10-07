@@ -7,6 +7,20 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ### Blog (rediseño): página principal, Noticias y Recursos
 
+#### Añadido
+- **Plantilla común de los posts** (`components/post/PlantillaPost`): la
+  portada al ancho del texto, migas, tema, título, entradilla, autora, fecha
+  y tiempo de lectura; al final, compartir y comentarios en la misma columna;
+  fuera del artículo, «Sigue aprendiendo» con tres posts del mismo tema.
+  Fecha, tema e imagen salen del índice del blog. Piezas para el contenido:
+  `SeccionPost`, `CodigoPost` (con botón de copiar), `NotaPost` y `TablaPost`.
+- **«Introducción a HTML» es el primer post migrado**: sin Tailwind ni
+  `PostStyles.css`, y su `<Helmet>` sin cambios.
+- **Comentarios y compartir con el aspecto del rediseño** y su propio CSS
+  (antes dependían de `PostStyles.css`). La lógica no cambia. La lista va
+  antes del formulario, el comentario recién enviado se marca como pendiente
+  de revisión y los títulos ya no dan por hecho que quien comenta es mujer.
+
 #### Eliminado
 - **Media `PostStyles.css` (de 1243 a 662 líneas)**: 79 reglas y 8 animaciones
   de la portada antigua del blog y de las listas a mano que ya no usa nadie.

@@ -1,0 +1,59 @@
+/*
+ * Botones de compartir (ShareButtons.tsx): círculos en relieve, como los de
+ * redes del rediseño (`fc-boton-redondo`). Antes vivían en PostStyles.css y
+ * el componente dependía de que el post cargara ese archivo.
+ */
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* 44px: objetivo táctil AAA. */
+.share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-lavanda);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.18);
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: translate 0.2s ease, box-shadow 0.25s ease;
+}
+
+.share-link:hover {
+  translate: 0 -1px;
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 1), 5px 5px 14px rgba(71, 55, 187, 0.24);
+}
+
+.share-link:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.social-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: inherit;
+}
+
+/* Verde oscuro: 7,5:1 sobre el lavanda. */
+.social-icon--copied {
+  color: #0f5a26;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .share-link {
+    transition: none;
+  }
+
+  .share-link:hover {
+    translate: none;
+  }
+}
