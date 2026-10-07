@@ -114,41 +114,40 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
           >
             <div className="blog-portada__texto">
               <p className="fc-antetitulo fc-antetitulo--naranja">Blog</p>
-            <h1 className="blog-portada__titulo" id="listado-titulo">
+              <h1 className="blog-portada__titulo" id="listado-titulo">
                 {textos.titulo}{" "}
                 <span className="fc-rotulador">{textos.destacado}</span>
               </h1>
               <p className="blog-portada__entradilla">{textos.entradilla}</p>
               <NavBlog />
+              {temas.length > 1 && (
+                <div
+                  className="blog-temas"
+                  role="group"
+                  aria-label="Filtrar por tema"
+                >
+                  {[TODOS, ...temas].map((opcion) => (
+                    <button
+                      key={opcion}
+                      type="button"
+                      className="blog-tema"
+                      aria-pressed={tema === opcion}
+                      onClick={() => elegirTema(opcion)}
+                    >
+                      {opcion}
+                      <span className="blog-tema__numero">
+                        {opcion === TODOS
+                          ? deLaSeccion.length
+                          : deLaSeccion.filter((post) => post.tema === opcion)
+                              .length}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             {seccion === "recurso" && <KitEntrevistas />}
           </div>
-
-          {temas.length > 1 && (
-            <div
-              className="blog-temas"
-              role="group"
-              aria-label="Filtrar por tema"
-            >
-              {[TODOS, ...temas].map((opcion) => (
-                <button
-                  key={opcion}
-                  type="button"
-                  className="blog-tema"
-                  aria-pressed={tema === opcion}
-                  onClick={() => elegirTema(opcion)}
-                >
-                  {opcion}
-                  <span className="blog-tema__numero">
-                    {opcion === TODOS
-                      ? deLaSeccion.length
-                      : deLaSeccion.filter((post) => post.tema === opcion)
-                          .length}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 

@@ -127,18 +127,13 @@
 .blog-listado__cabecera {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  /* La columna lleva título, pestañas y temas: mide casi lo que la tarjeta y quedan centradas. */
   align-items: center;
   gap: 2rem clamp(2rem, 5vw, 4rem);
 }
 
-/*
- * Más baja que el título: es más alta que su columna y marca la altura de la
- * fila, así que centrarla la dejaba por encima del antetítulo. En una
- * columna (≤860px) va debajo y el margen se anula.
- */
 .blog-kit {
   position: relative;
-  margin-top: 3rem;
 }
 
 .blog-kit .fc-capa {
@@ -232,6 +227,11 @@
   font-size: 0.88rem;
   line-height: 1.5;
   color: var(--color-text-dark);
+}
+
+/* En los listados los temas van dentro de la columna del título. */
+.blog-portada__texto .blog-temas {
+  margin-top: 0.75rem;
 }
 
 .blog-listado__contador {
