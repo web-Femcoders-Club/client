@@ -233,7 +233,14 @@
     padding-top: calc(var(--fem-header-height, 80px) + 1.25rem);
   }
 
-  /* Sin asomar a la derecha: con el giro, -0.4rem la sacaba de la pantalla. */
+}
+
+/*
+ * Sin asomar a la derecha: con el giro, el margen de escritorio la sacaba de
+ * la pantalla. Hasta 640px y no 560: la tarjeta ancha del registro ocupa toda
+ * la columna hasta unos 620px.
+ */
+@media (max-width: 640px) {
   .acceso__formulario .fc-capa {
     inset: 1rem 0 -0.6rem 1rem;
   }

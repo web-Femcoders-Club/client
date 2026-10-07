@@ -14,6 +14,18 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   y borde. Las llamadas al servidor y sus estados son los mismos; los enlaces
   internos ya no recargan la web y las tres tienen su `<title>`.
 
+#### Añadido (RGPD)
+- **El registro explica para qué se piden los datos** (art. 13): caja «Sobre
+  tus datos» antes de las casillas (quién, para qué, correos, con quién y
+  derechos) y una ayuda bajo el género: algunos eventos son solo para mujeres
+  y otros mixtos.
+- **Política de privacidad**: apartados de la cuenta en la web y del género
+  (qué decide cada respuesta y qué puede hacer el equipo con «No binario» y
+  «Prefiero no decir»), la deducción orientativa del género por el nombre en
+  las inscripciones de Eventbrite, la base legal de la cuenta y su plazo de
+  conservación (papelera de 48 horas). Se corrige la frase «no elaboramos
+  perfiles», que no describía esa deducción.
+
 #### Corregido
 - **«Nueva contraseña» decía que el enlace había caducado cuando la
   contraseña era débil.** El servidor responde 400 a las dos cosas y el

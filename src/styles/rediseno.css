@@ -767,8 +767,13 @@
  * Lo usan las páginas de acceso; el formulario de /contacto tiene aún su
  * copia en ContactForm.css (`formulario-contacto__campo`) y puede pasar a esta.
  */
+/*
+ * `align-content: start`: en una fila de dos, si el otro campo lleva una ayuda
+ * debajo, este no reparte la altura sobrante entre etiqueta y campo.
+ */
 .fc-campo {
   display: grid;
+  align-content: start;
   gap: 0.35rem;
   min-width: 0;
 }

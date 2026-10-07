@@ -303,6 +303,7 @@ const RegisterForm: React.FC = () => {
                       name="userGender"
                       value={formData.userGender}
                       onChange={handleChange}
+                      aria-describedby="genero-ayuda"
                       required
                     >
                       <option value="">Selecciona tu género</option>
@@ -311,7 +312,45 @@ const RegisterForm: React.FC = () => {
                       <option value="No binario">No binario</option>
                       <option value="Prefiero no decir">Prefiero no decir</option>
                     </select>
+                    {/* Debajo y no bajo la etiqueta: arriba desalinearía el campo del teléfono. */}
+                    <p className="fc-campo__ayuda" id="genero-ayuda">
+                      Si aceptas recibir invitaciones, nos ayuda a enviarte las
+                      adecuadas: algunos eventos son solo para mujeres y otros son
+                      mixtos.
+                    </p>
                   </div>
+                </div>
+
+                {/*
+                  Información básica en el momento de recoger los datos (RGPD,
+                  art. 13), justo antes de las casillas; el detalle está en la
+                  Política de Privacidad que enlaza la primera casilla.
+                */}
+                <div className="formulario-acceso__datos">
+                  <p className="formulario-acceso__datos-titulo">Sobre tus datos</p>
+                  <ul className="formulario-acceso__datos-lista">
+                    <li>
+                      <strong>Quién los trata:</strong> FemCoders Club.
+                    </li>
+                    <li>
+                      <strong>Para qué:</strong> crear tu cuenta y darte acceso a
+                      tu espacio.
+                    </li>
+                    <li>
+                      <strong>Correos:</strong> la newsletter y las invitaciones a
+                      eventos, solo si marcas la segunda casilla. Los de tu
+                      cuenta, como recuperar la contraseña, te llegarán siempre.
+                    </li>
+                    <li>
+                      <strong>Con quién:</strong> con nadie, salvo los servicios
+                      que hacen funcionar la web, como el alojamiento y el envío
+                      de correo.
+                    </li>
+                    <li>
+                      <strong>Tus derechos:</strong> puedes ver, corregir o borrar
+                      tus datos escribiendo a info@femcodersclub.com.
+                    </li>
+                  </ul>
                 </div>
 
                 <div className="formulario-acceso__consentimientos">
