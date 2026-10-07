@@ -312,7 +312,9 @@ const RegisterForm: React.FC = () => {
                       name="userTelephone"
                       value={formData.userTelephone}
                       onChange={handleChange}
-                      autoComplete="tel"
+                      // Sin prefijo: con "tel" el navegador rellena «+34…» y
+                      // validateForm solo acepta dígitos.
+                      autoComplete="tel-national"
                     />
                   </div>
                   <div className="fc-campo">
