@@ -2,7 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
-import { CircleAlert, UserPlus } from "lucide-react";
+import {
+  Briefcase,
+  CircleAlert,
+  FolderOpen,
+  Heart,
+  Presentation,
+  UserPlus,
+  type LucideIcon,
+} from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import FraseAnimada from "../../LogIn/components/FraseAnimada";
@@ -11,6 +19,17 @@ import "../../LogIn/page/Acceso.css";
 import "../../LogIn/components/FormularioAcceso.css";
 
 const PALABRAS = ["eventos", "mentoría", "recursos", "oportunidades", "apoyo mutuo"] as const;
+
+/*
+ * Lo que hay en la zona privada: las secciones reales del menú de /welcome.
+ * Icono decorativo (el título ya lo dice); naranja y violeta en damero.
+ */
+const VENTAJAS: { titulo: string; texto: string; Icono: LucideIcon; naranja: boolean }[] = [
+  { titulo: "Recursos exclusivos", texto: "Guías y materiales que comparte la comunidad.", Icono: FolderOpen, naranja: true },
+  { titulo: "Mentoría", texto: "Pide acompañamiento para tu siguiente paso.", Icono: Heart, naranja: false },
+  { titulo: "Presentaciones", texto: "Las charlas de nuestros eventos, para verlas cuando quieras.", Icono: Presentation, naranja: false },
+  { titulo: "Ofertas de trabajo", texto: "Vacantes que las empresas comparten con la comunidad.", Icono: Briefcase, naranja: true },
+];
 
 // Nombres y apellidos reales: acentos, ñ, ç y alfabetos no latinos (\p{L}),
 // más espacios, guiones y apóstrofos de los nombres compuestos
@@ -428,6 +447,24 @@ const RegisterForm: React.FC = () => {
                 </Link>
               </p>
             </div>
+          </div>
+
+          {/* Después del formulario en el HTML: en móvil no lo aleja; en escritorio la rejilla lo sube a la izquierda. */}
+          <div className="acceso__ventajas-bloque">
+            <h2 className="acceso__subtitulo">Con tu cuenta tendrás</h2>
+            <ul className="acceso__ventajas">
+              {VENTAJAS.map(({ titulo, texto, Icono, naranja }) => (
+                <li key={titulo} className="acceso__ventaja">
+                  <div className={`fc-disco${naranja ? " fc-disco--naranja" : ""}`} aria-hidden="true">
+                    <Icono />
+                  </div>
+                  <div>
+                    <h3 className="acceso__ventaja-titulo">{titulo}</h3>
+                    <p className="acceso__ventaja-texto">{texto}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

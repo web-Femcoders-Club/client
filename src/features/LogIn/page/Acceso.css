@@ -27,17 +27,71 @@
 
 /*
  * Formulario largo (registro): tarjeta más ancha para los campos de dos en
- * dos, y el saludo arriba en su columna en vez de centrado frente a la
- * tarjeta, que lo dejaría flotando en mitad de un formulario alto.
+ * dos; a la izquierda, el saludo y debajo lo que trae la cuenta, para que
+ * esa columna no se quede medio vacía frente a un formulario alto.
  */
 .acceso--ancho .acceso__rejilla {
   grid-template-columns: minmax(0, 1fr) minmax(0, 36rem);
+  grid-template-areas:
+    "cabecera formulario"
+    "ventajas formulario";
+  grid-template-rows: auto 1fr;
   align-items: start;
 }
 
 .acceso--ancho .acceso__cabecera {
-  position: sticky;
-  top: calc(var(--fem-header-height, 80px) + 2rem);
+  grid-area: cabecera;
+}
+
+.acceso--ancho .acceso__formulario {
+  grid-area: formulario;
+}
+
+.acceso__ventajas-bloque {
+  grid-area: ventajas;
+  min-width: 0;
+}
+
+.acceso__subtitulo {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+.acceso__ventajas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.5rem;
+}
+
+.acceso__ventaja {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.acceso__ventaja-titulo {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.acceso__ventaja-texto {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
 }
 
 .acceso__cabecera {
@@ -88,8 +142,9 @@
     justify-items: start;
   }
 
-  .acceso--ancho .acceso__cabecera {
-    position: static;
+  .acceso--ancho .acceso__rejilla {
+    grid-template-areas: "cabecera" "formulario" "ventajas";
+    grid-template-rows: auto;
   }
 
   .acceso--ancho .acceso__formulario {
@@ -118,5 +173,9 @@
 
   .acceso__formulario .fc-capa {
     inset: 1rem -0.4rem -0.6rem 1rem;
+  }
+
+  .acceso__ventajas {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
