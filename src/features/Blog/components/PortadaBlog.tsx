@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
+import NavBlog from "./NavBlog";
 import Paginacion from "./Paginacion";
 import TarjetaPost from "./TarjetaPost";
 import { POSTS_DEL_BLOG, POSTS_POR_PAGINA, TEMAS_DEL_BLOG, type PostDelBlog } from "../postsDelBlog";
@@ -72,6 +73,7 @@ const PortadaBlog: React.FC = () => {
                 Noticias de FemCoders Club y recursos para aprender desarrollo web:
                 HTML, CSS, JavaScript y más.
               </p>
+              <NavBlog />
             </div>
 
             <form className="blog-buscador" role="search" onSubmit={(e) => e.preventDefault()}>

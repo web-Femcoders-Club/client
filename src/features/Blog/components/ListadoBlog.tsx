@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import KitEntrevistas from "./KitEntrevistas";
+import NavBlog from "./NavBlog";
 import Paginacion from "./Paginacion";
 import TarjetaPost from "./TarjetaPost";
 import {
@@ -113,18 +113,13 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
             }
           >
             <div className="blog-portada__texto">
-              <Link
-                to="/blog"
-                className="fc-enlace fc-enlace--texto blog-volver"
-              >
-                <ArrowLeft aria-hidden="true" />
-                Volver al blog
-              </Link>
-              <h1 className="blog-portada__titulo" id="listado-titulo">
+              <p className="fc-antetitulo fc-antetitulo--naranja">Blog</p>
+            <h1 className="blog-portada__titulo" id="listado-titulo">
                 {textos.titulo}{" "}
                 <span className="fc-rotulador">{textos.destacado}</span>
               </h1>
               <p className="blog-portada__entradilla">{textos.entradilla}</p>
+              <NavBlog />
             </div>
             {seccion === "recurso" && <KitEntrevistas />}
           </div>

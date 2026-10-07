@@ -18,6 +18,9 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 - **Recursos destaca los quizzes de entrevistas técnicas** en un bloque junto
   al título («Prepara tu entrevista técnica»). Se reconocen por la ruta
   (`/quiz-…`): uno nuevo aparece sin tocar el código.
+- **Pestañas Todo el blog / Noticias / Recursos** (con su número de posts) en
+  las tres páginas, bajo la entradilla: antes Noticias y Recursos solo se
+  veían al final de cada columna de la portada. Sustituyen a «Volver al blog».
 - **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
   temas (con su número real de posts), «Lo último» con los cuatro posts más
   nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada

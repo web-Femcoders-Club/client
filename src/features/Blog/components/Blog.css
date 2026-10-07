@@ -56,22 +56,70 @@
   text-wrap: pretty;
 }
 
-/* «Volver al blog» en los listados: enlace suelto de 44px (objetivo táctil AAA). */
-.blog-portada__texto .blog-volver {
-  --fc-enlace-bajo: 0.6rem;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-height: 2.75rem;
-  font-family: var(--font-primary);
-  font-size: 0.95rem;
-  font-weight: 700;
+/* ---------- Navegación del blog: Todo el blog, Noticias y Recursos ---------- */
+
+.blog-secciones__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.blog-volver svg {
-  width: 1.1em;
-  height: 1.1em;
+.blog-secciones__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  /* Borde violeta al 75 %: ~4,7:1, por encima del 3:1 de WCAG 1.4.11. */
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-secciones__enlace:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-lavanda-claro);
+}
+
+.blog-secciones__enlace[aria-current="page"] {
+  border-color: transparent;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+}
+
+.blog-secciones__enlace:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* Es un span: fija color, tamaño y peso contra la regla global. */
+.blog-secciones__numero {
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-lavanda-medio);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.blog-secciones__enlace[aria-current="page"] .blog-secciones__numero {
+  background: rgba(233, 228, 255, 0.18);
+  color: #e9e4ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-secciones__enlace {
+    transition: none;
+  }
 }
 
 /* ---------- Recursos: título a la izquierda, kit de entrevistas a la derecha ---------- */
