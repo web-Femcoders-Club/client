@@ -50,6 +50,92 @@
   gap: 1rem;
 }
 
+/* Dos campos cortos lado a lado (nombre y apellido, contraseña y repetición). */
+.formulario-acceso__fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 0.9rem;
+}
+
+/*
+ * Asterisco de obligatorio: naranja oscurecido (7,38:1 sobre blanco). El de
+ * marca se queda en 3,71:1. Es un `span`: fija tamaño contra la regla global.
+ */
+.formulario-acceso__obligatorio {
+  font-size: inherit;
+  font-weight: 700;
+  color: #a32617;
+}
+
+/* El teléfono es el único opcional: se dice, y esto sí lo lee el lector. */
+.formulario-acceso__opcional {
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Requisitos de la contraseña ---------- */
+
+.formulario-acceso__requisitos {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.7rem;
+  background: var(--color-lavanda-claro);
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__requisitos-titulo {
+  margin: 0 0 0.4rem;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.formulario-acceso__requisitos-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.3rem 0.75rem;
+}
+
+.formulario-acceso__requisito {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+/*
+ * El estado no depende solo del color: marca ✓/× y, para el lector,
+ * «Cumplido»/«Pendiente». Verde oscuro: 7,5:1 sobre el lavanda (el verde de
+ * --color-success se quedaba en 3:1).
+ */
+.formulario-acceso__requisito--cumplido {
+  color: #0f5a26;
+}
+
+.formulario-acceso__requisito-marca {
+  width: 1em;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-align: center;
+}
+
+/* ---------- Consentimientos ---------- */
+
+/* Las casillas usan `form-consent` y `link-button` de index.css, como /contacto. */
+.formulario-acceso__consentimientos {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.formulario-acceso__consentimientos .form-consent {
+  margin: 0;
+}
+
 .formulario-acceso__olvido {
   justify-self: end;
   margin-top: 0.15rem;
@@ -76,6 +162,22 @@
 
 .formulario-acceso__pie .fc-enlace {
   font-weight: 700;
+}
+
+/*
+ * En móvil cada campo a todo el ancho: con dos por fila, la contraseña
+ * dejaba unos 110px de texto junto al ojo y el género se cortaba.
+ */
+@media (max-width: 560px) {
+  .formulario-acceso__fila {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 359px) {
+  .formulario-acceso__requisitos-lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 560px), (max-height: 500px) {

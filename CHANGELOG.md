@@ -5,9 +5,20 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
-### Acceso (rediseño): inicio de sesión
+### Acceso (rediseño): inicio de sesión y registro
 
 #### Cambiado
+- **/register con el mismo diseño que /login**: «Tu lugar en la tecnología» y
+  la frase «Aquí encontrarás…» escrita a mano, a la izquierda y fija al bajar;
+  el formulario en una tarjeta más ancha, con los campos de dos en dos (uno por
+  fila en móvil). El alta envía lo mismo que antes: misma validación, mismos
+  consentimientos, mismos mensajes del servidor.
+- **Registro más accesible**: autocompletado en nombre, apellido, correo y
+  teléfono (teclado numérico en móvil); los requisitos de la contraseña dicen
+  «Cumplido» o «Pendiente» al lector y ya no dependen de un verde y un gris que
+  no llegaban a 3:1; el registro tiene por fin su `<title>`.
+- **Metas de /register en `src/features/User/contenido.ts`**: las leen el
+  `<Helmet>` y el prerender, sin copias.
 - **/login con el diseño de /contacto**: saludo a la izquierda y tarjeta del
   formulario a la derecha con la capa en degradado, sobre `bg1`. Las siete
   palabras animadas (siete `h2` seguidos, sin `h1`) pasan a una frase, «Juntas
@@ -27,6 +38,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 #### Añadido
 - **Piezas compartidas** en `rediseno.css`: `fc-campo` (etiqueta y campo) y
   `fc-aviso--error`; `--font-mano` en `index.css`.
+
+#### Eliminado
+- `LoginPage.css`, `LoginForm.css` y `RegisterForm.css`, con la animación de
+  palabras con desenfoque: ya no los usa ninguna página.
 
 ### Contacto (rediseño)
 

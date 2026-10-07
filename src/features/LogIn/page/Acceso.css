@@ -25,6 +25,21 @@
   gap: 2.5rem clamp(2rem, 6vw, 5.5rem);
 }
 
+/*
+ * Formulario largo (registro): tarjeta más ancha para los campos de dos en
+ * dos, y el saludo arriba en su columna en vez de centrado frente a la
+ * tarjeta, que lo dejaría flotando en mitad de un formulario alto.
+ */
+.acceso--ancho .acceso__rejilla {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 36rem);
+  align-items: start;
+}
+
+.acceso--ancho .acceso__cabecera {
+  position: sticky;
+  top: calc(var(--fem-header-height, 80px) + 2rem);
+}
+
 .acceso__cabecera {
   display: grid;
   gap: 1rem;
@@ -67,9 +82,18 @@
 
 /* Una columna: saludo y formulario debajo. */
 @media (max-width: 960px) {
-  .acceso__rejilla {
+  .acceso__rejilla,
+  .acceso--ancho .acceso__rejilla {
     grid-template-columns: minmax(0, 1fr);
     justify-items: start;
+  }
+
+  .acceso--ancho .acceso__cabecera {
+    position: static;
+  }
+
+  .acceso--ancho .acceso__formulario {
+    max-width: 36rem;
   }
 
   /* Margen para la capa girada, que si no rozaría el pie de la página. */
