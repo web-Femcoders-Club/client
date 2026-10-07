@@ -17,5 +17,8 @@ export type PostDelBlog = {
 
 export const POSTS_DEL_BLOG = posts as PostDelBlog[];
 
+/** Doce caben sin huecos en filas de 4, 3, 2 y 1 tarjetas. */
+export const POSTS_POR_PAGINA = 12;
+
 /** Temas del filtro, en este orden; cada uno con su número real de posts. */
 export const TEMAS_DEL_BLOG = ["FemCoders Club", "JavaScript", "CSS", "HTML", "React"] as const;

@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
+import Paginacion from "./Paginacion";
 import TarjetaPost from "./TarjetaPost";
-import { POSTS_DEL_BLOG, TEMAS_DEL_BLOG, type PostDelBlog } from "../postsDelBlog";
+import { POSTS_DEL_BLOG, POSTS_POR_PAGINA, TEMAS_DEL_BLOG, type PostDelBlog } from "../postsDelBlog";
 import "./Blog.css";
 
 const TODOS = "Todo";
@@ -28,6 +29,8 @@ const contarPorTema = (tema: string) =>
 const PortadaBlog: React.FC = () => {
   const [tema, setTema] = useState<string>(TODOS);
   const [busqueda, setBusqueda] = useState("");
+  const [pagina, setPagina] = useState(1);
+  const contadorRef = useRef<HTMLParagraphElement>(null);
 
   const filtrando = tema !== TODOS || busqueda.trim() !== "";
 
@@ -39,6 +42,15 @@ const PortadaBlog: React.FC = () => {
         (!termino || normalizar(`${post.titulo} ${post.descripcion}`).includes(termino))
     );
   }, [tema, busqueda]);
+
+  const totalPaginas = Math.max(1, Math.ceil(resultados.length / POSTS_POR_PAGINA));
+  const deEstaPagina = resultados.slice((pagina - 1) * POSTS_POR_PAGINA, pagina * POSTS_POR_PAGINA);
+
+  const irAPagina = (nueva: number) => {
+    setPagina(nueva);
+    contadorRef.current?.focus({ preventScroll: true });
+    contadorRef.current?.scrollIntoView({ block: "start" });
+  };
 
   const destacados = POSTS_DEL_BLOG.slice(0, DESTACADOS);
   const siguientes = (seccion: PostDelBlog["seccion"]) =>
@@ -70,7 +82,10 @@ const PortadaBlog: React.FC = () => {
                   type="search"
                   id="blog-buscar"
                   value={busqueda}
-                  onChange={(e) => setBusqueda(e.target.value)}
+                  onChange={(e) => {
+                    setBusqueda(e.target.value);
+                    setPagina(1);
+                  }}
                   placeholder="Por ejemplo, flexbox o HackBarna"
                 />
               </div>
@@ -84,7 +99,10 @@ const PortadaBlog: React.FC = () => {
                 type="button"
                 className="blog-tema"
                 aria-pressed={tema === opcion}
-                onClick={() => setTema(opcion)}
+                onClick={() => {
+                  setTema(opcion);
+                  setPagina(1);
+                }}
               >
                 {opcion}
                 <span className="blog-tema__numero">
@@ -103,18 +121,22 @@ const PortadaBlog: React.FC = () => {
               <h2 className="fc-titulo-seccion blog-bloque__titulo" id="blog-resultados-titulo">
                 {tema === TODOS ? "Resultados" : tema}
               </h2>
-              <p className="blog-bloque__contador" aria-live="polite">
+              <p className="blog-bloque__contador" aria-live="polite" tabIndex={-1} ref={contadorRef}>
                 {resultados.length === 1 ? "1 publicación" : `${resultados.length} publicaciones`}
+                {totalPaginas > 1 && ` · página ${pagina} de ${totalPaginas}`}
               </p>
             </div>
             {resultados.length > 0 ? (
-              <ul className="blog-rejilla">
-                {resultados.map((post) => (
-                  <li key={post.ruta}>
-                    <TarjetaPost post={post} />
-                  </li>
-                ))}
-              </ul>
+              <>
+                <ul className="blog-rejilla">
+                  {deEstaPagina.map((post) => (
+                    <li key={post.ruta}>
+                      <TarjetaPost post={post} />
+                    </li>
+                  ))}
+                </ul>
+                <Paginacion pagina={pagina} totalPaginas={totalPaginas} onCambiar={irAPagina} />
+              </>
             ) : (
               <p className="blog-vacio">
                 No hay publicaciones con ese filtro. Prueba con otro tema o con otra palabra.
