@@ -1,0 +1,247 @@
+/*
+ * Páginas de acceso (login; después registro y contraseña). Piezas
+ * compartidas en src/styles/rediseno.css: `fc-manchas`, `fc-antetitulo`,
+ * `fc-rotulador` y `fc-capa`. Fondo: `bg1`, el de la portada.
+ * La tarjeta del formulario tiene su CSS (FormularioAcceso.css).
+ *
+ * index.css da tamaño, color y sombra a h1 y, en móvil, encoge todos los p:
+ * cada clase de aquí fija sus propios valores.
+ */
+
+.acceso {
+  /* La cabecera es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(3.5rem, 7vw, 5rem);
+}
+
+/* Escritorio: saludo a la izquierda, formulario a la derecha, centrados en vertical. */
+.acceso__rejilla {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+  align-items: center;
+  gap: 2.5rem clamp(2rem, 6vw, 5.5rem);
+}
+
+/*
+ * Formulario largo (registro): tarjeta más ancha para los campos de dos en
+ * dos; a la izquierda, el saludo y debajo lo que trae la cuenta, para que
+ * esa columna no se quede medio vacía frente a un formulario alto.
+ */
+.acceso--ancho .acceso__rejilla {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 36rem);
+  grid-template-areas:
+    "cabecera formulario"
+    "ventajas formulario";
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+
+.acceso--ancho .acceso__cabecera {
+  grid-area: cabecera;
+}
+
+.acceso--ancho .acceso__formulario {
+  grid-area: formulario;
+}
+
+.acceso__ventajas-bloque {
+  grid-area: ventajas;
+  min-width: 0;
+}
+
+.acceso__subtitulo {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+/*
+ * Columnas según el ancho que tenga la lista, no la pantalla: a 1024px la
+ * columna izquierda mide ~355px y en dos columnas quedaban 2 palabras por línea.
+ */
+.acceso__ventajas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1.1rem 1.5rem;
+}
+
+.acceso__ventaja {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.acceso__ventaja-titulo {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.acceso__ventaja-texto {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.acceso__cabecera {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.acceso__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.acceso__entradilla {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/*
+ * Páginas cortas (contraseña y baja del correo, AccesoCentrado.tsx): título y
+ * tarjeta centrados en una columna. Altura mínima para que el pie no suba a
+ * media pantalla con una tarjeta tan corta.
+ */
+.acceso--centrada {
+  min-height: 85vh;
+  min-height: 85svh;
+}
+
+.acceso--centrada .acceso__rejilla {
+  grid-template-columns: minmax(0, 30rem);
+  justify-content: center;
+  justify-items: stretch;
+  gap: 2rem;
+}
+
+.acceso--centrada .acceso__cabecera {
+  justify-items: center;
+  text-align: center;
+}
+
+.acceso--centrada .acceso__titulo {
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+}
+
+/* ---------- Formulario: sitio y capa en degradado detrás ---------- */
+
+.acceso__formulario {
+  position: relative;
+}
+
+.acceso__formulario .fc-capa {
+  inset: 1.4rem -1rem -1rem 1.4rem;
+  transform: rotate(2.5deg);
+}
+
+/* ---------- Responsive ---------- */
+
+/* Una columna: saludo y formulario debajo. */
+@media (max-width: 960px) {
+  .acceso__rejilla,
+  .acceso--ancho .acceso__rejilla {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+
+  .acceso--centrada .acceso__rejilla {
+    justify-items: stretch;
+  }
+
+  .acceso--centrada .acceso__formulario {
+    max-width: none;
+  }
+
+  .acceso--ancho .acceso__rejilla {
+    grid-template-areas: "cabecera" "formulario" "ventajas";
+    grid-template-rows: auto;
+  }
+
+  .acceso--ancho .acceso__formulario {
+    max-width: 36rem;
+  }
+
+  /* La tarjeta del registro es alta: con 2,5° la capa se desplaza ~22px y se corta. */
+  .acceso--ancho .acceso__formulario .fc-capa {
+    transform: rotate(1.2deg);
+  }
+
+  /*
+   * Del ancho de la tarjeta: con `justify-items: start` el bloque tomaba el
+   * ancho de su contenido y las ventajas se apretaban en columnas de 224px.
+   */
+  .acceso__ventajas-bloque {
+    justify-self: stretch;
+    max-width: 36rem;
+  }
+
+  /* Margen para la capa girada, que si no rozaría el pie de la página. */
+  .acceso__formulario {
+    width: 100%;
+    max-width: 30rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/*
+ * Entre tablet horizontal y portátil la capa girada asomaba 10-20px por el
+ * borde derecho y se veía cortada en seco: se le reserva sitio.
+ */
+@media (min-width: 961px) and (max-width: 1240px) {
+  .acceso__formulario {
+    margin-right: 1.25rem;
+  }
+}
+
+/* Portátiles bajos (1366×768 deja ~650px útiles): menos aire arriba. */
+@media (min-width: 961px) and (max-height: 720px) {
+  .acceso {
+    padding-top: calc(var(--fem-header-height, 80px) + 1.5rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .acceso {
+    padding-top: calc(var(--fem-header-height, 80px) + 1.25rem);
+  }
+
+}
+
+/*
+ * Sin asomar a la derecha: con el giro, el margen de escritorio la sacaba de
+ * la pantalla. Hasta 640px y no 560: la tarjeta ancha del registro ocupa toda
+ * la columna hasta unos 620px.
+ */
+@media (max-width: 640px) {
+  .acceso__formulario .fc-capa {
+    inset: 1rem 0 -0.6rem 1rem;
+  }
+}

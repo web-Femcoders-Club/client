@@ -5,6 +5,85 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Acceso (rediseño): inicio de sesión, registro, contraseña y baja
+
+#### Cambiado
+- **«He olvidado mi contraseña», «Nueva contraseña» y /baja-email con el
+  diseño del acceso**: título y tarjeta centrados (`AccesoCentrado`), sin la
+  imagen lateral del logo ni estilos en línea. Avisos de éxito y error con icono
+  y borde. Las llamadas al servidor y sus estados son los mismos; los enlaces
+  internos ya no recargan la web y las tres tienen su `<title>`.
+
+#### Añadido (RGPD)
+- **Política de privacidad**: apartados de la cuenta en la web, el teléfono
+  (opcional, para avisos urgentes de eventos) y el género (eventos solo para
+  mujeres y mixtos; qué decide cada respuesta y qué puede hacer el equipo con
+  «No binario» y «Prefiero no decir»), la deducción orientativa del género por el nombre en
+  las inscripciones de Eventbrite, la base legal de la cuenta y su plazo de
+  conservación (papelera de 48 horas). Se corrige la frase «no elaboramos
+  perfiles», que no describía esa deducción.
+
+#### Corregido
+- **«Nueva contraseña» decía que el enlace había caducado cuando la
+  contraseña era débil.** El servidor responde 400 a las dos cosas y el
+  formulario traducía todo 400 como enlace no válido. Ahora enseña los
+  requisitos en vivo (los mismos del registro, `politicaContrasena.ts`) y no
+  envía una contraseña que no los cumple.
+- **El teléfono del registro se autocompletaba con «+34»** y la validación,
+  que solo acepta dígitos, rechazaba el alta.
+- **En el móvil, la casilla de privacidad y «Crear cuenta» no respondían al
+  primer toque** si se venía de escribir la contraseña: los requisitos solo se
+  veían con el foco en ese campo, y al tocar fuera desaparecían y todo subía
+  ~150px. Ahora están siempre a la vista.
+- **Los enlaces de texto perdían el subrayado al partirse en dos líneas** (a
+  320px o con zoom), en toda la web: la línea de `fc-enlace--texto` es ahora un
+  fondo que se repite bajo cada línea, con el mismo degradado.
+- **Objetivos táctiles de 44px**: el ojo de la contraseña, «Pausar animación»,
+  «¿Has olvidado tu contraseña?» y «Volver a…».
+- **Detalles de maquetación**: las ventajas del registro ya no se apretaban en
+  dos columnas en tablet; la capa girada no se corta en el borde; el
+  desplegable de género mide lo mismo que los campos; la baja con enlace
+  separa el título del aviso.
+- **Contraseñas con emojis**: el cliente las contaba como el doble de largas
+  que el servidor.
+- **/register con el mismo diseño que /login**: «Tu lugar en la tecnología» y
+  la frase «Aquí encontrarás…» escrita a mano, a la izquierda y fija al bajar;
+  el formulario en una tarjeta más ancha, con los campos de dos en dos (uno por
+  fila en móvil). El alta envía lo mismo que antes: misma validación, mismos
+  consentimientos, mismos mensajes del servidor.
+- **Registro más accesible**: autocompletado en nombre, apellido, correo y
+  teléfono (teclado numérico en móvil); los requisitos de la contraseña dicen
+  «Cumplido» o «Pendiente» al lector y ya no dependen de un verde y un gris que
+  no llegaban a 3:1; el registro tiene por fin su `<title>`.
+- **Metas de /register en `src/features/User/contenido.ts`**: las leen el
+  `<Helmet>` y el prerender, sin copias.
+- **/login con el diseño de /contacto**: saludo a la izquierda y tarjeta del
+  formulario a la derecha con la capa en degradado, sobre `bg1`. Las siete
+  palabras animadas (siete `h2` seguidos, sin `h1`) pasan a una frase, «Juntas
+  crecemos en…», cuya última palabra se escribe a mano (Caveat, ya cargada para
+  la portada) y se subraya con el rotulador. Tiene botón de pausa (WCAG 2.2.2) y
+  se queda fija con «reducir movimiento»; el lector oye la frase una sola vez.
+- **El inicio de sesión hace lo mismo que antes**: misma llamada, mismos datos
+  de sesión, misma redirección por rol. Cambian el marcado y el aspecto:
+  etiquetas fijas, autocompletado del correo, aviso de error con icono y borde
+  (no solo color) y el enlace de contraseña olvidada después del campo, para no
+  desviar el tabulador.
+- **Los enlaces a «He olvidado mi contraseña» y al registro ya no recargan la
+  web entera**: son enlaces de la SPA.
+- **El ojo de la contraseña mide 40 px** y deja su hueco en el campo también en
+  «Nueva contraseña».
+
+#### Añadido
+- **Piezas compartidas** en `rediseno.css`: `fc-campo` (etiqueta y campo) y
+  `fc-aviso--error`; `--font-mano` en `index.css`.
+
+#### Eliminado
+- `LoginPage.css`, `LoginForm.css`, `RegisterForm.css` y
+  `ForgotPasswordForm.css`, con la animación de palabras con desenfoque: ya no
+  los usa ninguna página. `ForgotPasswordForm.css` redefinía además
+  `.primary-button`, `.error-message` y `.success-message` para toda la web en
+  cuanto alguien abría una de estas páginas.
+
 ### Contacto (rediseño)
 
 #### Cambiado

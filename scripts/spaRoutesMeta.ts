@@ -28,6 +28,7 @@ import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
 import { META_CONTACTO } from "../src/features/Contact/contenido";
+import { META_REGISTRO } from "../src/features/User/contenido";
 
 export interface RutaMeta {
   title: string;
@@ -228,15 +229,13 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Accede a tu cuenta de FemCoders Club para participar en nuestra comunidad tech.",
   },
 
-  /*
-   * Estas dos no tenían `<Helmet>` en ningún sitio, así que sus textos se
-   * escriben aquí por primera vez.
-   */
+  // Los mismos textos que lee el <Helmet> de RegisterForm.tsx.
   "/register": {
-    title: "Únete a FemCoders Club",
-    description:
-      "Crea tu cuenta para apuntarte a los eventos, guardar tus recursos favoritos y formar parte de la comunidad de mujeres en tecnología.",
+    title: META_REGISTRO.titulo,
+    description: META_REGISTRO.descripcion,
   },
+
+  // Esta no tenía `<Helmet>` en ningún sitio: su texto se escribe aquí.
   "/baja-email": {
     title: "Dar de baja tu correo - FemCoders Club",
     description:
