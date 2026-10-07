@@ -124,37 +124,6 @@
   text-align: center;
 }
 
-/* ---------- Información sobre los datos (registro) ---------- */
-
-/* Primera capa del RGPD: corta, en una caja tenue para que no compita con los campos. */
-.formulario-acceso__datos {
-  padding: 0.8rem 0.95rem;
-  border-radius: 0.7rem;
-  background: var(--color-lavanda-claro);
-  font-family: var(--font-primary);
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--color-text-dark);
-}
-
-.formulario-acceso__datos-titulo {
-  margin: 0 0 0.35rem;
-  font-size: inherit;
-  font-weight: 700;
-}
-
-.formulario-acceso__datos-lista {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.3rem;
-}
-
-.formulario-acceso__datos-lista strong {
-  font-weight: 700;
-}
-
 /* ---------- Consentimientos ---------- */
 
 /* Las casillas usan `form-consent` y `link-button` de index.css, como /contacto. */

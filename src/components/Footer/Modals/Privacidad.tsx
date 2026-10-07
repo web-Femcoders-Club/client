@@ -78,16 +78,17 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
           <ul>
             <li>
               <strong>Cuenta en la web:</strong> nombre, apellidos, correo electrónico,
-              contraseña (nunca la guardamos tal cual, solo una versión cifrada que no se puede
-              revertir), género y, si quieres darlos, teléfono y foto de perfil. Los usamos para
+              contraseña (nunca la guardamos tal cual, solo una huella que no permite
+              recuperarla), género y, si quieres darlos, teléfono y foto de perfil. Los usamos para
               crear tu cuenta y darte acceso a tu espacio: recursos, mentorías, presentaciones y
-              ofertas de trabajo.
+              ofertas de trabajo. El teléfono es opcional y solo lo usamos para avisarte si surge
+              algo urgente relacionado con un evento.
             </li>
             <li>
               <strong>Género:</strong> organizamos eventos solo para mujeres y eventos mixtos, y lo
               usamos para que las invitaciones te lleguen a los que corresponden. Solo te invitamos
               si has aceptado recibir invitaciones. Si eliges «Mujer» u «Hombre», esa respuesta
-              decide a qué invitaciones entras y nadie la cambia por ti. Si eliges «No binario» o
+              decide a qué invitaciones entras y nadie la cambia por ti desde el panel. Si eliges «No binario» o
               «Prefiero no decir», no entras por defecto en ninguna de las dos listas; el equipo
               puede incluirte en una para invitarte a un evento, sin cambiar nunca lo que
               respondiste en tu perfil. Puedes cambiar tu respuesta cuando quieras.
@@ -103,7 +104,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               deducimos de forma orientativa a partir del nombre de pila, con un diccionario de
               nombres del INE que funciona en nuestro propio servidor (el nombre no se envía a
               ningún servicio externo). Si el nombre es ambiguo no deducimos nada, y el equipo
-              puede corregir el resultado. Si es tu caso y prefieres que no lo hagamos, escríbenos.
+              puede corregir el resultado. Si no es correcto, escríbenos y lo corregiremos a mano.
             </li>
             <li>
               <strong>DNI (solo en algunos eventos):</strong> cuando el evento se celebra en las
@@ -161,8 +162,9 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                   eventos solo te llegan si lo has aceptado.
                 </li>
                 <li>
-                  <strong>Interés legítimo:</strong> para la difusión de actividades y la gestión
-                  interna de eventos y comunidad.
+                  <strong>Interés legítimo:</strong> para informar de nuestras actividades a quienes
+                  se inscribieron en alguno de nuestros eventos, y para la gestión interna de
+                  eventos y comunidad.
                 </li>
               </ul>
               <p>
@@ -181,8 +183,10 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               <ul>
                 <li>
                   <strong>Cuenta en la web:</strong> mientras la mantengas. Si nos pides borrarla,
-                  queda 48 horas en una papelera, por si fue un error, y después se elimina del todo
-                  junto con tus logros y los resultados de los cuestionarios.
+                  queda 48 horas en una papelera, por si fue un error, y después se borran tu
+                  cuenta, tu foto, tus logros y los resultados de los cuestionarios. Guardamos
+                  durante 12 meses una anotación interna con tu nombre y tu correo, que deja
+                  constancia del borrado.
                 </li>
                 <li>
                   <strong>Contacto:</strong> hasta responder la consulta y cerrar el seguimiento.
