@@ -5,6 +5,20 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Blog (rediseño): página principal
+
+#### Cambiado
+- **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
+  temas (con su número real de posts), «Lo último» con los cuatro posts más
+  nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada
+  una. Tarjetas con la portada de cada post (`TarjetaPost`), encuadradas hacia
+  arriba para no cortar caras. Fuera «Python», que no tenía ningún post.
+- **Un post nuevo aparece en la portada del blog sin tocar `BlogPage.tsx`**:
+  la lista sale de `src/features/Blog/postsDelBlog.json`, que genera
+  `pnpm generate:posts` (en el prebuild) desde el mismo índice que el sitemap
+  y `llms.txt`. Desaparecen el array de 53 posts y el `switch` que buscaba el
+  enlace por el título exacto.
+
 ### Acceso (rediseño): inicio de sesión, registro, contraseña y baja
 
 #### Cambiado
