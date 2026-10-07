@@ -748,6 +748,99 @@
   color: var(--color-text-dark);
 }
 
+/* ---------- Campo de formulario ---------- */
+
+/*
+ * Etiqueta siempre visible encima del campo: a diferencia de las flotantes,
+ * no encoge ni desaparece al escribir. Borde violeta al 75 %: unos 4,7:1
+ * contra el blanco de la tarjeta, por encima del 3:1 de WCAG 1.4.11.
+ * Lo usan las páginas de acceso; el formulario de /contacto tiene aún su
+ * copia en ContactForm.css (`formulario-contacto__campo`) y puede pasar a esta.
+ */
+.fc-campo {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.fc-campo label {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.fc-campo input,
+.fc-campo select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  border-radius: 0.7rem;
+  background: var(--color-lavanda-claro);
+  color: var(--color-text-dark);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.fc-campo input:hover,
+.fc-campo select:hover {
+  border-color: var(--color-secondary);
+}
+
+.fc-campo input:focus-visible,
+.fc-campo select:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-color: var(--color-secondary);
+  background: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-campo input,
+  .fc-campo select {
+    transition: none;
+  }
+}
+
+/* ---------- Aviso de error ---------- */
+
+/*
+ * Naranja oscuro sobre melocotón (7,41:1, AAA), con borde e icono para que
+ * el error no dependa solo del color. Sin `span` dentro: la regla global lo
+ * pondría a 1.5rem.
+ */
+.fc-aviso {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.8rem;
+  border-left: 4px solid currentColor;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.fc-aviso svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.fc-aviso--error {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-aviso:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
 /* En móviles muy estrechos (320px) un texto largo no cabe en una línea: se deja partir. */
 @media (max-width: 400px) {
   .fc-boton {

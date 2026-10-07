@@ -91,6 +91,8 @@
   /* Fuentes */
   --font-primary: "Roboto", sans-serif;
   --font-heading: "Asap Condensed", sans-serif;
+  /* Letra a mano (Caveat 600, ya cargada en index.html para la portada). */
+  --font-mano: "Caveat", "Comic Sans MS", cursive;
 
   /* Estados */
   --color-success: #16a34a;

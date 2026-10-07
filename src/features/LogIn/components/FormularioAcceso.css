@@ -1,0 +1,97 @@
+/*
+ * Tarjeta de los formularios de acceso (login; después registro y
+ * contraseña). Piezas compartidas en src/styles/rediseno.css: `fc-tarjeta`,
+ * `fc-campo`, `fc-aviso`, `fc-boton fc-boton--noche` y `fc-enlace`.
+ *
+ * index.css da tamaño, color y sombra a h2 y, en móvil, encoge todos los p:
+ * aquí se fijan los valores.
+ */
+
+.formulario-acceso {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+/* Logo al lado del título, no encima: la tarjeta cabe en una pantalla de portátil. */
+.formulario-acceso__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.3rem;
+}
+
+.formulario-acceso__logo {
+  flex-shrink: 0;
+  width: 64px;
+  height: auto;
+}
+
+.formulario-acceso__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.formulario-acceso__nota {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__campos {
+  display: grid;
+  gap: 1rem;
+}
+
+.formulario-acceso__olvido {
+  justify-self: end;
+  margin-top: 0.15rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.formulario-acceso__enviar {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.formulario-acceso__pie {
+  margin: 1.3rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(71, 55, 187, 0.16);
+  font-family: var(--font-primary);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__pie .fc-enlace {
+  font-weight: 700;
+}
+
+@media (max-width: 560px), (max-height: 500px) {
+  .formulario-acceso {
+    padding: 1.2rem;
+  }
+
+  .formulario-acceso__cabecera {
+    margin-bottom: 1rem;
+  }
+
+  .formulario-acceso__logo {
+    width: 52px;
+  }
+
+  .formulario-acceso__titulo {
+    font-size: 1.4rem;
+  }
+}

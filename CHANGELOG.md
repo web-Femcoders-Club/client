@@ -5,6 +5,29 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Acceso (rediseño): inicio de sesión
+
+#### Cambiado
+- **/login con el diseño de /contacto**: saludo a la izquierda y tarjeta del
+  formulario a la derecha con la capa en degradado, sobre `bg1`. Las siete
+  palabras animadas (siete `h2` seguidos, sin `h1`) pasan a una frase, «Juntas
+  crecemos en…», cuya última palabra se escribe a mano (Caveat, ya cargada para
+  la portada) y se subraya con el rotulador. Tiene botón de pausa (WCAG 2.2.2) y
+  se queda fija con «reducir movimiento»; el lector oye la frase una sola vez.
+- **El inicio de sesión hace lo mismo que antes**: misma llamada, mismos datos
+  de sesión, misma redirección por rol. Cambian el marcado y el aspecto:
+  etiquetas fijas, autocompletado del correo, aviso de error con icono y borde
+  (no solo color) y el enlace de contraseña olvidada después del campo, para no
+  desviar el tabulador.
+- **Los enlaces a «He olvidado mi contraseña» y al registro ya no recargan la
+  web entera**: son enlaces de la SPA.
+- **El ojo de la contraseña mide 40 px** y deja su hueco en el campo también en
+  «Nueva contraseña».
+
+#### Añadido
+- **Piezas compartidas** en `rediseno.css`: `fc-campo` (etiqueta y campo) y
+  `fc-aviso--error`; `--font-mano` en `index.css`.
+
 ### Contacto (rediseño)
 
 #### Cambiado
