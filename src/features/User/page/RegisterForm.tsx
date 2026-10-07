@@ -14,6 +14,7 @@ import {
 import { ModalContext } from "../../../context/ModalContext";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import FraseAnimada from "../../LogIn/components/FraseAnimada";
+import RequisitosContrasena from "../../LogIn/components/RequisitosContrasena";
 import { META_REGISTRO } from "../contenido";
 import "../../LogIn/page/Acceso.css";
 import "../../LogIn/components/FormularioAcceso.css";
@@ -148,25 +149,6 @@ const RegisterForm: React.FC = () => {
     }
   };
 
-  const passwordRequirements = [
-    {
-      met: formData.userPassword.length >= 8,
-      text: "Mínimo 8 caracteres",
-    },
-    {
-      met: /[A-Z]/.test(formData.userPassword),
-      text: "Al menos una mayúscula",
-    },
-    {
-      met: /[a-z]/.test(formData.userPassword),
-      text: "Al menos una minúscula",
-    },
-    {
-      met: /[0-9]/.test(formData.userPassword),
-      text: "Al menos un número",
-    },
-  ];
-
   return (
     <>
       <Helmet>
@@ -293,31 +275,7 @@ const RegisterForm: React.FC = () => {
                 </div>
 
                 {passwordFocus && (
-                  <div className="formulario-acceso__requisitos">
-                    <p className="formulario-acceso__requisitos-titulo">
-                      Tu contraseña necesita:
-                    </p>
-                    <ul className="formulario-acceso__requisitos-lista">
-                      {passwordRequirements.map((req, index) => (
-                        <li
-                          key={index}
-                          className={
-                            req.met
-                              ? "formulario-acceso__requisito formulario-acceso__requisito--cumplido"
-                              : "formulario-acceso__requisito"
-                          }
-                        >
-                          <span className="formulario-acceso__requisito-marca" aria-hidden="true">
-                            {req.met ? "✓" : "×"}
-                          </span>
-                          <span className="fc-solo-lector">
-                            {req.met ? "Cumplido: " : "Pendiente: "}
-                          </span>
-                          {req.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <RequisitosContrasena contrasena={formData.userPassword} />
                 )}
 
                 <div className="formulario-acceso__fila">

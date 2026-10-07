@@ -796,6 +796,15 @@
   background: #fff;
 }
 
+/* Indicación bajo la etiqueta; el campo la enlaza con aria-describedby. */
+.fc-campo__ayuda {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--color-text-dark);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fc-campo input,
   .fc-campo select {
@@ -834,6 +843,12 @@
 .fc-aviso--error {
   background: var(--color-melocoton);
   color: var(--color-primary-oscuro);
+}
+
+/* Verde oscuro sobre verde muy claro: 7,5:1 (AAA). */
+.fc-aviso--exito {
+  background: #e6f4ea;
+  color: #0f5a26;
 }
 
 .fc-aviso:focus-visible {

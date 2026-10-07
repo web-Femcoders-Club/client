@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import "./ForgotPasswordForm.css";
+import { ArrowLeft, CircleAlert, CircleCheck, Send } from "lucide-react";
+import AccesoCentrado from "../../LogIn/components/AccesoCentrado";
 
 const ForgotPasswordForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -33,65 +34,74 @@ const ForgotPasswordForm: React.FC = () => {
   };
 
   return (
-    <div className="forgot-password-container">
-      <div className="form-card">
-        <img
-          src="/FemCodersClubLogo.png"
-          alt="FemCoders Club Logo"
-          className="form-logo"
-        />
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Correo Electrónico</label>
-            <p className="instruction-text">
-              Escribe tu correo para recibir instrucciones de restablecimiento.
+    <>
+      <Helmet>
+        <title>Recupera tu contraseña - FemCoders Club</title>
+      </Helmet>
+      <AccesoCentrado
+        antetitulo="Tu cuenta"
+        titulo={
+          <>
+            ¿Has olvidado tu <span className="fc-rotulador">contraseña</span>?
+          </>
+        }
+        entradilla="Te enviamos un enlace por correo para que crees una nueva."
+      >
+        <form onSubmit={handleSubmit} className="formulario-acceso__campos">
+          <div className="fc-campo">
+            <label htmlFor="email">Correo electrónico</label>
+            <p className="fc-campo__ayuda" id="email-ayuda">
+              El mismo con el que te registraste.
             </p>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              aria-describedby="email-ayuda"
               required
             />
           </div>
+
           <button
             type="submit"
-            className="primary-button"
+            className="fc-boton fc-boton--noche formulario-acceso__enviar"
             disabled={isSubmitting}
             aria-busy={isSubmitting}
           >
-            {isSubmitting ? "Enviando…" : "Enviar"}
+            {isSubmitting ? "Enviando…" : "Enviar enlace"}
+            <Send aria-hidden="true" />
           </button>
+
           {message && (
-            <p className="success-message" role="status">
+            <p className="fc-aviso fc-aviso--exito" role="status">
+              <CircleCheck aria-hidden="true" />
               {message}
             </p>
           )}
           {error && (
-            <p className="error-message" role="alert">
+            <p className="fc-aviso fc-aviso--error" role="alert">
+              <CircleAlert aria-hidden="true" />
               {error}
             </p>
           )}
+        </form>
 
-          <Link to="/login" className="back-to-login">
-            <ArrowLeft size={16} aria-hidden="true" />
+        <div className="formulario-acceso__pie">
+          <Link to="/login" className="fc-enlace fc-enlace--texto formulario-acceso__volver">
+            <ArrowLeft aria-hidden="true" />
             Volver a iniciar sesión
           </Link>
-
-          <p className="forgot-help-text">
+          <p className="formulario-acceso__ayuda">
             ¿Sigues sin poder acceder? Escríbenos a{" "}
-            <a href="mailto:info@femcodersclub.com">info@femcodersclub.com</a>
+            <a href="mailto:info@femcodersclub.com" className="fc-enlace fc-enlace--texto">
+              info@femcodersclub.com
+            </a>
           </p>
-        </form>
-      </div>
-      <div className="image-container">
-        <img
-          src="/FemCodersClubLogo.png"
-          alt="FemCoders Club"
-          className="side-image"
-        />
-      </div>
-    </div>
+        </div>
+      </AccesoCentrado>
+    </>
   );
 };
 

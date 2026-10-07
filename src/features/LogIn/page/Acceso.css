@@ -121,6 +121,32 @@
   text-wrap: pretty;
 }
 
+/*
+ * Páginas cortas (contraseña y baja del correo, AccesoCentrado.tsx): título y
+ * tarjeta centrados en una columna. Altura mínima para que el pie no suba a
+ * media pantalla con una tarjeta tan corta.
+ */
+.acceso--centrada {
+  min-height: 85vh;
+  min-height: 85svh;
+}
+
+.acceso--centrada .acceso__rejilla {
+  grid-template-columns: minmax(0, 30rem);
+  justify-content: center;
+  justify-items: stretch;
+  gap: 2rem;
+}
+
+.acceso--centrada .acceso__cabecera {
+  justify-items: center;
+  text-align: center;
+}
+
+.acceso--centrada .acceso__titulo {
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+}
+
 /* ---------- Formulario: sitio y capa en degradado detrás ---------- */
 
 .acceso__formulario {
@@ -140,6 +166,14 @@
   .acceso--ancho .acceso__rejilla {
     grid-template-columns: minmax(0, 1fr);
     justify-items: start;
+  }
+
+  .acceso--centrada .acceso__rejilla {
+    justify-items: stretch;
+  }
+
+  .acceso--centrada .acceso__formulario {
+    max-width: none;
   }
 
   .acceso--ancho .acceso__rejilla {

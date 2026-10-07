@@ -5,9 +5,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
-### Acceso (rediseño): inicio de sesión y registro
+### Acceso (rediseño): inicio de sesión, registro, contraseña y baja
 
 #### Cambiado
+- **«He olvidado mi contraseña», «Nueva contraseña» y /baja-email con el
+  diseño del acceso**: título y tarjeta centrados (`AccesoCentrado`), sin la
+  imagen lateral del logo ni estilos en línea. Avisos de éxito y error con icono
+  y borde. Las llamadas al servidor y sus estados son los mismos; los enlaces
+  internos ya no recargan la web y las tres tienen su `<title>`.
+
+#### Corregido
+- **«Nueva contraseña» decía que el enlace había caducado cuando la
+  contraseña era débil.** El servidor responde 400 a las dos cosas y el
+  formulario traducía todo 400 como enlace no válido. Ahora enseña los
+  requisitos en vivo (los mismos del registro, `politicaContrasena.ts`) y no
+  envía una contraseña que no los cumple.
+- **El teléfono del registro se autocompletaba con «+34»** y la validación,
+  que solo acepta dígitos, rechazaba el alta.
 - **/register con el mismo diseño que /login**: «Tu lugar en la tecnología» y
   la frase «Aquí encontrarás…» escrita a mano, a la izquierda y fija al bajar;
   el formulario en una tarjeta más ancha, con los campos de dos en dos (uno por
@@ -40,8 +54,11 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   `fc-aviso--error`; `--font-mano` en `index.css`.
 
 #### Eliminado
-- `LoginPage.css`, `LoginForm.css` y `RegisterForm.css`, con la animación de
-  palabras con desenfoque: ya no los usa ninguna página.
+- `LoginPage.css`, `LoginForm.css`, `RegisterForm.css` y
+  `ForgotPasswordForm.css`, con la animación de palabras con desenfoque: ya no
+  los usa ninguna página. `ForgotPasswordForm.css` redefinía además
+  `.primary-button`, `.error-message` y `.success-message` para toda la web en
+  cuanto alguien abría una de estas páginas.
 
 ### Contacto (rediseño)
 

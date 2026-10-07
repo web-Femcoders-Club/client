@@ -164,6 +164,38 @@
   font-weight: 700;
 }
 
+/* Páginas centradas: «Volver a iniciar sesión» y la ayuda de contacto. */
+.formulario-acceso__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+
+.formulario-acceso__volver svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.formulario-acceso__ayuda {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text-dark);
+  overflow-wrap: anywhere;
+}
+
+/* Texto suelto dentro de la tarjeta (estados de la baja del correo). */
+.formulario-acceso__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
 /*
  * En móvil cada campo a todo el ancho: con dos por fila, la contraseña
  * dejaba unos 110px de texto junto al ojo y el género se cortaba.

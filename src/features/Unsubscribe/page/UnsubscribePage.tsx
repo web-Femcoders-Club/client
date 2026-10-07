@@ -1,7 +1,38 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import "../../ForgotPassword/components/ForgotPasswordForm.css";
+import { Helmet } from "react-helmet";
+import { Link, useLocation } from "react-router-dom";
+import { ArrowLeft, CircleAlert, CircleCheck, Send } from "lucide-react";
+import AccesoCentrado from "../../LogIn/components/AccesoCentrado";
+
+const CORREO_AYUDA = "femcodersclub@gmail.com";
+
+const CABECERA = {
+  antetitulo: "Tus correos",
+  titulo: (
+    <>
+      Gestiona tus <span className="fc-rotulador">comunicaciones</span>
+    </>
+  ),
+};
+
+const VolverALaWeb: React.FC = () => (
+  <div className="formulario-acceso__pie">
+    <Link to="/" className="fc-enlace fc-enlace--texto formulario-acceso__volver">
+      <ArrowLeft aria-hidden="true" />
+      Volver a FemCoders Club
+    </Link>
+  </div>
+);
+
+const Ayuda: React.FC<{ texto: string }> = ({ texto }) => (
+  <p className="formulario-acceso__ayuda">
+    {texto}{" "}
+    <a href={`mailto:${CORREO_AYUDA}`} className="fc-enlace fc-enlace--texto">
+      {CORREO_AYUDA}
+    </a>
+  </p>
+);
 
 type ConfirmStatus = "loading" | "success" | "already" | "error";
 /**
@@ -93,120 +124,117 @@ const UnsubscribePage: React.FC = () => {
     const { title, body, type } = content[confirmStatus];
 
     return (
-      <div className="forgot-password-container">
-        <div className="form-card">
-          <img src="/FemCodersClubLogo.png" alt="FemCoders Club" className="form-logo" />
-          <h2>{title}</h2>
-          {type === "neutral" && <p style={{ color: "#4737bb", textAlign: "center" }}>{body}</p>}
-          {type === "success" && <p className="success-message" style={{ textAlign: "center" }}>{body}</p>}
-          {type === "error" && <p className="error-message" style={{ textAlign: "center" }}>{body}</p>}
-          {(type === "success" || type === "error") && (
-            <p style={{ marginTop: "1.5rem", fontSize: "0.85rem", color: "#666", textAlign: "center" }}>
-              ¿Necesitas ayuda? Escríbenos a{" "}
-              <a href="mailto:femcodersclub@gmail.com" style={{ color: "#4737bb" }}>
-                femcodersclub@gmail.com
-              </a>
+      <>
+        <Helmet>
+          <title>Dar de baja tu correo - FemCoders Club</title>
+        </Helmet>
+        <AccesoCentrado {...CABECERA}>
+          <h2 className="formulario-acceso__titulo">{title}</h2>
+          {type === "neutral" && (
+            <p className="formulario-acceso__texto" role="status">
+              {body}
             </p>
           )}
-          <div style={{ marginTop: "2rem", textAlign: "center" }}>
-            <a href="/" className="primary-button" style={{ display: "inline-block" }}>
-              Volver a FemCoders Club
-            </a>
-          </div>
-        </div>
-        <div className="image-container">
-          <img src="/FemCodersClubLogo.png" alt="FemCoders Club" className="side-image" />
-        </div>
-      </div>
+          {type === "success" && (
+            <p className="fc-aviso fc-aviso--exito" role="status">
+              <CircleCheck aria-hidden="true" />
+              {body}
+            </p>
+          )}
+          {type === "error" && (
+            <p className="fc-aviso fc-aviso--error" role="alert">
+              <CircleAlert aria-hidden="true" />
+              {body}
+            </p>
+          )}
+          {(type === "success" || type === "error") && (
+            <Ayuda texto="¿Necesitas ayuda? Escríbenos a" />
+          )}
+          <VolverALaWeb />
+        </AccesoCentrado>
+      </>
     );
   }
 
   // — Render: formulario de solicitud
   return (
-    <div className="forgot-password-container">
-      <div className="form-card">
-        <img src="/FemCodersClubLogo.png" alt="FemCoders Club" className="form-logo" />
-        <h2>Gestionar comunicaciones</h2>
-        <p style={{ textAlign: "center", color: "#555", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
-          Si no deseas recibir más comunicaciones de FemCoders Club, introduce tu dirección de
-          email y te enviaremos un enlace para confirmar la baja.
-        </p>
-
+    <>
+      <Helmet>
+        <title>Dar de baja tu correo - FemCoders Club</title>
+      </Helmet>
+      <AccesoCentrado
+        {...CABECERA}
+        entradilla="Si no quieres recibir más correos de FemCoders Club, te enviamos un enlace para confirmar la baja."
+      >
         {requestStatus === "idle" ||
         requestStatus === "loading" ||
         requestStatus === "error" ? (
-          <form onSubmit={handleRequest} style={{ width: "100%" }}>
-            <div className="form-group">
+          <form onSubmit={handleRequest} className="formulario-acceso__campos">
+            <div className="fc-campo">
+              <label htmlFor="unsub-email">Tu correo electrónico</label>
               <input
                 type="email"
                 id="unsub-email"
                 value={inputEmail}
                 onChange={(e) => setInputEmail(e.target.value)}
+                autoComplete="email"
                 required
-                placeholder=" "
-                className="form-input"
                 disabled={requestStatus === "loading"}
               />
-              <label htmlFor="unsub-email">Tu dirección de email</label>
             </div>
 
             {requestStatus === "error" && (
-              <p className="error-message" style={{ textAlign: "center" }}>
-                No se pudo enviar el enlace. Inténtalo de nuevo o escríbenos a{" "}
-                <a href="mailto:femcodersclub@gmail.com" style={{ color: "#4737bb" }}>
-                  femcodersclub@gmail.com
-                </a>
+              <p className="fc-aviso fc-aviso--error" role="alert">
+                <CircleAlert aria-hidden="true" />
+                <span className="fc-texto-neutro">
+                  No se pudo enviar el enlace. Inténtalo de nuevo o escríbenos a{" "}
+                  <a href={`mailto:${CORREO_AYUDA}`} className="fc-enlace fc-enlace--texto">
+                    {CORREO_AYUDA}
+                  </a>
+                </span>
               </p>
             )}
 
             <button
               type="submit"
-              className="primary-button"
-              style={{ width: "100%", marginTop: "1rem" }}
+              className="fc-boton fc-boton--noche formulario-acceso__enviar"
               disabled={requestStatus === "loading"}
+              aria-busy={requestStatus === "loading"}
             >
-              {requestStatus === "loading" ? "Enviando..." : "Enviarme el enlace de baja"}
+              {requestStatus === "loading" ? "Enviando…" : "Enviarme el enlace de baja"}
+              <Send aria-hidden="true" />
             </button>
           </form>
         ) : requestStatus === "sent" ? (
-          <p className="success-message" style={{ textAlign: "center" }}>
-            Te hemos enviado un email con el enlace de confirmación. Revisa tu bandeja de entrada
-            (y la carpeta de spam si no lo encuentras).
+          <p className="fc-aviso fc-aviso--exito" role="status">
+            <CircleCheck aria-hidden="true" />
+            Te hemos enviado un email con el enlace de confirmación. Revisa tu
+            bandeja de entrada (y la carpeta de spam si no lo encuentras).
           </p>
         ) : requestStatus === "queued" ? (
-          <div role="status" style={{ textAlign: "center" }}>
-            <p className="success-message" style={{ textAlign: "center" }}>
+          <div className="formulario-acceso__campos" role="status">
+            <p className="fc-aviso fc-aviso--exito">
+              <CircleCheck aria-hidden="true" />
               Hemos registrado tu solicitud de baja.
             </p>
-            <p style={{ color: "#3d3d3d", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+            <p className="formulario-acceso__texto">
               Ahora mismo no podemos enviarte el email de confirmación por un
               problema técnico nuestro, así que la tramitaremos a mano. No
               tienes que hacer nada más ni volver a intentarlo.
             </p>
-            <p style={{ color: "#3d3d3d", fontSize: "0.9rem", marginTop: "0.75rem" }}>
-              Si prefieres que te confirmemos por escrito, escríbenos a{" "}
-              <a href="mailto:femcodersclub@gmail.com" style={{ color: "#4737bb" }}>
-                femcodersclub@gmail.com
-              </a>
-              .
-            </p>
+            <Ayuda texto="Si prefieres que te confirmemos por escrito, escríbenos a" />
           </div>
         ) : (
-          <p className="success-message" style={{ textAlign: "center" }}>
-            Este email ya estaba dado de baja anteriormente. No tienes que hacer nada más.
+          <p className="fc-aviso fc-aviso--exito" role="status">
+            <CircleCheck aria-hidden="true" />
+            Este email ya estaba dado de baja anteriormente. No tienes que hacer
+            nada más.
           </p>
         )}
 
-        <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <a href="/" style={{ color: "#4737bb", fontSize: "0.85rem" }}>
-            Volver a FemCoders Club
-          </a>
-        </div>
-      </div>
-      <div className="image-container">
-        <img src="/FemCodersClubLogo.png" alt="FemCoders Club" className="side-image" />
-      </div>
-    </div>
+        <VolverALaWeb />
+      </AccesoCentrado>
+    </>
   );
 };
 
