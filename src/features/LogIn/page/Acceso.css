@@ -194,6 +194,15 @@
     transform: rotate(1.2deg);
   }
 
+  /*
+   * Del ancho de la tarjeta: con `justify-items: start` el bloque tomaba el
+   * ancho de su contenido y las ventajas se apretaban en columnas de 224px.
+   */
+  .acceso__ventajas-bloque {
+    justify-self: stretch;
+    max-width: 36rem;
+  }
+
   /* Margen para la capa girada, que si no rozaría el pie de la página. */
   .acceso__formulario {
     width: 100%;
@@ -224,7 +233,8 @@
     padding-top: calc(var(--fem-header-height, 80px) + 1.25rem);
   }
 
+  /* Sin asomar a la derecha: con el giro, -0.4rem la sacaba de la pantalla. */
   .acceso__formulario .fc-capa {
-    inset: 1rem -0.4rem -0.6rem 1rem;
+    inset: 1rem 0 -0.6rem 1rem;
   }
 }
