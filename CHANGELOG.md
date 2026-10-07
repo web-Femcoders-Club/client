@@ -7,6 +7,13 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ### Blog (rediseño): página principal, Noticias y Recursos
 
+#### Eliminado
+- **Media `PostStyles.css` (de 1243 a 662 líneas)**: 79 reglas y 8 animaciones
+  de la portada antigua del blog y de las listas a mano que ya no usa nadie.
+  La portada de la web lo importaba solo por dos enlaces, que pasan a
+  `fc-enlace--texto`; ya no carga los estilos de los posts. Su regla `body`
+  (el fondo lavanda) pasa a `index.css` y vale para todas las páginas.
+
 #### Cambiado
 - **/blog/noticias y /blog/recursos son un mismo listado** (`ListadoBlog`)
   con las tarjetas de la portada, del más nuevo al más antiguo; Recursos

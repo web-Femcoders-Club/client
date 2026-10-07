@@ -18,7 +18,6 @@ import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import { CIFRAS_COMUNIDAD } from "../../../data/cifrasComunidad";
 import "./Home.css";
 import "./portada.css";
-import "../../../features/Blog/page/PostStyles.css";
 
 /*
  * Cifras de la portada; los valores viven en src/data/cifrasComunidad.ts,
@@ -497,7 +496,7 @@ const HomePage: React.FC = () => {
             href="https://play.google.com/store/apps/details?id=com.extraordinayversion1&hl=es_419"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
+            className="fc-enlace fc-enlace--texto"
           >
             Descarga la app
           </a>{" "}
@@ -506,7 +505,7 @@ const HomePage: React.FC = () => {
             href="https://www.linkedin.com/company/extraordinary-women-in-barcelona/posts/?feedView=all"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
+            className="fc-enlace fc-enlace--texto"
           >
             LinkedIn
           </a>
