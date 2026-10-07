@@ -1,16 +1,29 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import KitEntrevistas from "./KitEntrevistas";
 import Paginacion from "./Paginacion";
 import TarjetaPost from "./TarjetaPost";
-import { POSTS_DEL_BLOG, POSTS_POR_PAGINA, TEMAS_DEL_BLOG, type PostDelBlog } from "../postsDelBlog";
+import {
+  POSTS_DEL_BLOG,
+  POSTS_POR_PAGINA,
+  TEMAS_DEL_BLOG,
+  type PostDelBlog,
+} from "../postsDelBlog";
 import "./Blog.css";
 
 const TODOS = "Todo";
 
 const TEXTOS: Record<
   PostDelBlog["seccion"],
-  { titulo: string; destacado: string; entradilla: string; singular: string; plural: string; todas: string }
+  {
+    titulo: string;
+    destacado: string;
+    entradilla: string;
+    singular: string;
+    plural: string;
+    todas: string;
+  }
 > = {
   noticia: {
     titulo: "Noticias de la",
@@ -52,17 +65,29 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
 
   const deLaSeccion = useMemo(
     () => POSTS_DEL_BLOG.filter((post) => post.seccion === seccion),
-    [seccion]
+    [seccion],
   );
   // Solo los temas que tienen algún post en esta sección (en noticias, ninguno que filtrar).
-  const temas = TEMAS_DEL_BLOG.filter((t) => deLaSeccion.some((post) => post.tema === t));
-  const visibles = tema === TODOS ? deLaSeccion : deLaSeccion.filter((post) => post.tema === tema);
-  const totalPaginas = Math.max(1, Math.ceil(visibles.length / POSTS_POR_PAGINA));
+  const temas = TEMAS_DEL_BLOG.filter((t) =>
+    deLaSeccion.some((post) => post.tema === t),
+  );
+  const visibles =
+    tema === TODOS
+      ? deLaSeccion
+      : deLaSeccion.filter((post) => post.tema === tema);
+  const totalPaginas = Math.max(
+    1,
+    Math.ceil(visibles.length / POSTS_POR_PAGINA),
+  );
   const pedida = Number(parametros.get("pagina")) || 1;
   const pagina = Math.min(Math.max(1, pedida), totalPaginas);
-  const deEstaPagina = visibles.slice((pagina - 1) * POSTS_POR_PAGINA, pagina * POSTS_POR_PAGINA);
+  const deEstaPagina = visibles.slice(
+    (pagina - 1) * POSTS_POR_PAGINA,
+    pagina * POSTS_POR_PAGINA,
+  );
   const cuantos = `${visibles.length} ${visibles.length === 1 ? textos.singular : textos.plural}`;
-  const donde = totalPaginas > 1 ? ` · página ${pagina} de ${totalPaginas}` : "";
+  const donde =
+    totalPaginas > 1 ? ` · página ${pagina} de ${totalPaginas}` : "";
 
   const irAPagina = (nueva: number) => {
     setParametros(nueva === 1 ? {} : { pagina: String(nueva) });
@@ -77,21 +102,39 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
 
   return (
     <>
-      <section className="blog-portada bg1 fc-manchas" aria-labelledby="listado-titulo">
+      <section
+        className="blog-portada bg1 fc-manchas"
+        aria-labelledby="listado-titulo"
+      >
         <div className="blog-portada__contenido">
-          <div className="blog-portada__texto">
-            <Link to="/blog" className="fc-enlace fc-enlace--texto blog-volver">
-              <ArrowLeft aria-hidden="true" />
-              Volver al blog
-            </Link>
-            <h1 className="blog-portada__titulo" id="listado-titulo">
-              {textos.titulo} <span className="fc-rotulador">{textos.destacado}</span>
-            </h1>
-            <p className="blog-portada__entradilla">{textos.entradilla}</p>
+          <div
+            className={
+              seccion === "recurso" ? "blog-listado__cabecera" : undefined
+            }
+          >
+            <div className="blog-portada__texto">
+              <Link
+                to="/blog"
+                className="fc-enlace fc-enlace--texto blog-volver"
+              >
+                <ArrowLeft aria-hidden="true" />
+                Volver al blog
+              </Link>
+              <h1 className="blog-portada__titulo" id="listado-titulo">
+                {textos.titulo}{" "}
+                <span className="fc-rotulador">{textos.destacado}</span>
+              </h1>
+              <p className="blog-portada__entradilla">{textos.entradilla}</p>
+            </div>
+            {seccion === "recurso" && <KitEntrevistas />}
           </div>
 
           {temas.length > 1 && (
-            <div className="blog-temas" role="group" aria-label="Filtrar por tema">
+            <div
+              className="blog-temas"
+              role="group"
+              aria-label="Filtrar por tema"
+            >
               {[TODOS, ...temas].map((opcion) => (
                 <button
                   key={opcion}
@@ -104,7 +147,8 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
                   <span className="blog-tema__numero">
                     {opcion === TODOS
                       ? deLaSeccion.length
-                      : deLaSeccion.filter((post) => post.tema === opcion).length}
+                      : deLaSeccion.filter((post) => post.tema === opcion)
+                          .length}
                   </span>
                 </button>
               ))}
@@ -131,7 +175,11 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
               </li>
             ))}
           </ul>
-          <Paginacion pagina={pagina} totalPaginas={totalPaginas} onCambiar={irAPagina} />
+          <Paginacion
+            pagina={pagina}
+            totalPaginas={totalPaginas}
+            onCambiar={irAPagina}
+          />
         </div>
       </section>
     </>

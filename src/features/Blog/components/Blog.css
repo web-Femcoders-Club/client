@@ -74,6 +74,112 @@
   height: 1.1em;
 }
 
+/* ---------- Recursos: título a la izquierda, kit de entrevistas a la derecha ---------- */
+
+.blog-listado__cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  align-items: center;
+  gap: 2rem clamp(2rem, 5vw, 4rem);
+}
+
+.blog-kit {
+  position: relative;
+}
+
+.blog-kit .fc-capa {
+  inset: 1rem -0.8rem -0.8rem 1rem;
+  transform: rotate(2deg);
+}
+
+.blog-kit__tarjeta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+}
+
+.blog-kit__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.blog-kit__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.blog-kit__lista {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada quiz, una fila clicable de al menos 44px sobre lavanda. */
+.blog-kit__enlace {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.9rem;
+  background: var(--color-lavanda-claro);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.blog-kit__enlace:hover {
+  background: var(--color-lavanda-medio);
+}
+
+.blog-kit__enlace:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Son `span`: fijan color, tamaño y peso contra la regla global. */
+.blog-kit__tema {
+  grid-column: 1;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.blog-kit__detalle {
+  grid-column: 1;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+.blog-kit__flecha {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--color-secondary);
+}
+
+.blog-kit__nota {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+}
+
 .blog-listado__contador {
   margin-bottom: 1.25rem;
 }
@@ -363,8 +469,21 @@
 
 @media (max-width: 860px) {
   .blog-portada__cabecera,
-  .blog-columnas {
+  .blog-columnas,
+  .blog-listado__cabecera {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Margen para la capa girada, que si no roza los temas de debajo. */
+  .blog-kit {
+    max-width: 30rem;
+    margin: 0 0.8rem 1rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-kit__enlace {
+    transition: none;
   }
 }
 

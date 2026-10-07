@@ -15,6 +15,9 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 - **Paginación de 12 en 12** en Noticias, Recursos y los resultados del
   buscador de la portada. En los listados la página va en la URL
   (`?pagina=2`), así que Atrás y los enlaces compartidos funcionan.
+- **Recursos destaca los quizzes de entrevistas técnicas** en un bloque junto
+  al título («Prepara tu entrevista técnica»). Se reconocen por la ruta
+  (`/quiz-…`): uno nuevo aparece sin tocar el código.
 - **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
   temas (con su número real de posts), «Lo último» con los cuatro posts más
   nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada
