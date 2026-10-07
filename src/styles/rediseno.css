@@ -360,15 +360,25 @@
  * Dentro de un párrafo: la línea va pegada bajo las letras y ocupa toda la
  * palabra, para que el enlace no dependa solo del color (WCAG 1.4.1) aunque
  * esté junto a texto en negrita del mismo violeta.
+ *
+ * Es un fondo y no el `::after`: un pseudoelemento absoluto mide 0px cuando
+ * el enlace se parte en dos líneas, y el enlace se quedaba sin subrayado (a
+ * 320px o con zoom). El fondo con `box-decoration-break: clone` se repite
+ * bajo cada línea. `--fc-enlace-bajo` sube la línea desde el borde inferior,
+ * para los enlaces con caja de 44px (`ideas__proponer`).
  */
 .fc-enlace--texto {
-  --fc-enlace-bajo: -2px;
+  --fc-enlace-bajo: 0px;
+  padding-bottom: 2px;
   color: var(--color-secondary);
+  background: linear-gradient(90deg, var(--fc-enlace-a, var(--color-secondary)), var(--fc-enlace-b, var(--color-primary)))
+    no-repeat 0 calc(100% - var(--fc-enlace-bajo)) / 100% 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.fc-enlace--texto::after,
-.fc-enlace--texto.fc-enlace--siempre::after {
-  width: 100%;
+.fc-enlace--texto::after {
+  content: none;
 }
 
 .fc-enlace--texto:focus-visible {
@@ -770,9 +780,11 @@
   color: var(--color-text-dark);
 }
 
+/* Misma altura para campo y desplegable: el select medía 1-3px menos. */
 .fc-campo input,
 .fc-campo select {
   width: 100%;
+  min-height: 3rem;
   padding: 0.7rem 0.85rem;
   border: 1.5px solid rgba(71, 55, 187, 0.75);
   border-radius: 0.7rem;

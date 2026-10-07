@@ -61,12 +61,16 @@
   color: var(--color-text-dark);
 }
 
+/*
+ * Columnas según el ancho que tenga la lista, no la pantalla: a 1024px la
+ * columna izquierda mide ~355px y en dos columnas quedaban 2 palabras por línea.
+ */
 .acceso__ventajas {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   gap: 1.1rem 1.5rem;
 }
 
@@ -185,11 +189,26 @@
     max-width: 36rem;
   }
 
+  /* La tarjeta del registro es alta: con 2,5° la capa se desplaza ~22px y se corta. */
+  .acceso--ancho .acceso__formulario .fc-capa {
+    transform: rotate(1.2deg);
+  }
+
   /* Margen para la capa girada, que si no rozaría el pie de la página. */
   .acceso__formulario {
     width: 100%;
     max-width: 30rem;
     margin-bottom: 1rem;
+  }
+}
+
+/*
+ * Entre tablet horizontal y portátil la capa girada asomaba 10-20px por el
+ * borde derecho y se veía cortada en seco: se le reserva sitio.
+ */
+@media (min-width: 961px) and (max-width: 1240px) {
+  .acceso__formulario {
+    margin-right: 1.25rem;
   }
 }
 
@@ -207,9 +226,5 @@
 
   .acceso__formulario .fc-capa {
     inset: 1rem -0.4rem -0.6rem 1rem;
-  }
-
-  .acceso__ventajas {
-    grid-template-columns: minmax(0, 1fr);
   }
 }

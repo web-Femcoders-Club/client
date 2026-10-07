@@ -79,7 +79,7 @@ const LoginForm: React.FC = () => {
       <div className="formulario-acceso__cabecera">
         <img
           src="/logo-femcoders-animado.webp"
-          alt="FemCoders Club"
+          alt=""
           className="formulario-acceso__logo"
           width={64}
           height={64}

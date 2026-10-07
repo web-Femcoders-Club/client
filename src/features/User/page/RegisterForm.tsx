@@ -54,7 +54,6 @@ const RegisterForm: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [emailTaken, setEmailTaken] = useState(false);
   const errorRef = useRef<HTMLParagraphElement>(null);
-  const [passwordFocus, setPasswordFocus] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (
@@ -178,7 +177,7 @@ const RegisterForm: React.FC = () => {
               <div className="formulario-acceso__cabecera">
                 <img
                   src="/logo-femcoders-animado.webp"
-                  alt="FemCoders Club"
+                  alt=""
                   className="formulario-acceso__logo"
                   width={64}
                   height={64}
@@ -254,8 +253,6 @@ const RegisterForm: React.FC = () => {
                       id="userPassword"
                       value={formData.userPassword}
                       onChange={handleChange}
-                      onFocus={() => setPasswordFocus(true)}
-                      onBlur={() => setPasswordFocus(false)}
                       autoComplete="new-password"
                       required
                     />
@@ -274,9 +271,12 @@ const RegisterForm: React.FC = () => {
                   </div>
                 </div>
 
-                {passwordFocus && (
-                  <RequisitosContrasena contrasena={formData.userPassword} />
-                )}
+                {/*
+                  Siempre visible: si aparecía solo con el foco en la contraseña,
+                  al pulsar la casilla o «Crear cuenta» el recuadro desaparecía,
+                  todo subía ~150px y el primer toque caía en el vacío.
+                */}
+                <RequisitosContrasena contrasena={formData.userPassword} />
 
                 <div className="formulario-acceso__fila">
                   <div className="fc-campo">

@@ -22,6 +22,21 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   envía una contraseña que no los cumple.
 - **El teléfono del registro se autocompletaba con «+34»** y la validación,
   que solo acepta dígitos, rechazaba el alta.
+- **En el móvil, la casilla de privacidad y «Crear cuenta» no respondían al
+  primer toque** si se venía de escribir la contraseña: los requisitos solo se
+  veían con el foco en ese campo, y al tocar fuera desaparecían y todo subía
+  ~150px. Ahora están siempre a la vista.
+- **Los enlaces de texto perdían el subrayado al partirse en dos líneas** (a
+  320px o con zoom), en toda la web: la línea de `fc-enlace--texto` es ahora un
+  fondo que se repite bajo cada línea, con el mismo degradado.
+- **Objetivos táctiles de 44px**: el ojo de la contraseña, «Pausar animación»,
+  «¿Has olvidado tu contraseña?» y «Volver a…».
+- **Detalles de maquetación**: las ventajas del registro ya no se apretaban en
+  dos columnas en tablet; la capa girada no se corta en el borde; el
+  desplegable de género mide lo mismo que los campos; la baja con enlace
+  separa el título del aviso.
+- **Contraseñas con emojis**: el cliente las contaba como el doble de largas
+  que el servidor.
 - **/register con el mismo diseño que /login**: «Tu lugar en la tecnología» y
   la frase «Aquí encontrarás…» escrita a mano, a la izquierda y fija al bajar;
   el formulario en una tarjeta más ancha, con los campos de dos en dos (uno por

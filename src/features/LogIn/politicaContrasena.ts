@@ -5,7 +5,8 @@
  * contraseña». Si el backend la endurece, cambia también aquí.
  */
 export const REQUISITOS_CONTRASENA: { texto: string; cumple: (contrasena: string) => boolean }[] = [
-  { texto: "Mínimo 8 caracteres", cumple: (c) => c.length >= 8 },
+  // Por caracteres y no por unidades UTF-16: un emoji cuenta uno, como en el servidor.
+  { texto: "Mínimo 8 caracteres", cumple: (c) => [...c].length >= 8 },
   { texto: "Al menos una mayúscula", cumple: (c) => /[A-Z]/.test(c) },
   { texto: "Al menos una minúscula", cumple: (c) => /[a-z]/.test(c) },
   { texto: "Al menos un número", cumple: (c) => /[0-9]/.test(c) },

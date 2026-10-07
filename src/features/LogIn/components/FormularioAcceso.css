@@ -136,12 +136,26 @@
   margin: 0;
 }
 
+/*
+ * Enlaces sueltos (no dentro de una frase): caja de 44px, objetivo táctil
+ * AAA; `--fc-enlace-bajo` sube la línea hasta las letras.
+ */
+/* Dos clases: rediseno.css carga después y su `fc-enlace--texto` ganaría. */
+.formulario-acceso .formulario-acceso__olvido,
+.formulario-acceso .formulario-acceso__volver {
+  --fc-enlace-bajo: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 700;
+}
+
 .formulario-acceso__olvido {
   justify-self: end;
-  margin-top: 0.15rem;
+  /* La caja alta añadiría aire: se compensa con el hueco de la rejilla. */
+  margin-top: -0.4rem;
   font-family: var(--font-primary);
   font-size: 0.9rem;
-  font-weight: 700;
 }
 
 .formulario-acceso__enviar {
@@ -166,10 +180,7 @@
 
 /* Páginas centradas: «Volver a iniciar sesión» y la ayuda de contacto. */
 .formulario-acceso__volver {
-  display: inline-flex;
-  align-items: center;
   gap: 0.4rem;
-  font-weight: 700;
 }
 
 .formulario-acceso__volver svg {

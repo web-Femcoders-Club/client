@@ -129,27 +129,29 @@ const UnsubscribePage: React.FC = () => {
           <title>Dar de baja tu correo - FemCoders Club</title>
         </Helmet>
         <AccesoCentrado {...CABECERA}>
-          <h2 className="formulario-acceso__titulo">{title}</h2>
-          {type === "neutral" && (
-            <p className="formulario-acceso__texto" role="status">
-              {body}
-            </p>
-          )}
-          {type === "success" && (
-            <p className="fc-aviso fc-aviso--exito" role="status">
-              <CircleCheck aria-hidden="true" />
-              {body}
-            </p>
-          )}
-          {type === "error" && (
-            <p className="fc-aviso fc-aviso--error" role="alert">
-              <CircleAlert aria-hidden="true" />
-              {body}
-            </p>
-          )}
-          {(type === "success" || type === "error") && (
-            <Ayuda texto="¿Necesitas ayuda? Escríbenos a" />
-          )}
+          <div className="formulario-acceso__campos">
+            <h2 className="formulario-acceso__titulo">{title}</h2>
+            {type === "neutral" && (
+              <p className="formulario-acceso__texto" role="status">
+                {body}
+              </p>
+            )}
+            {type === "success" && (
+              <p className="fc-aviso fc-aviso--exito" role="status">
+                <CircleCheck aria-hidden="true" />
+                {body}
+              </p>
+            )}
+            {type === "error" && (
+              <p className="fc-aviso fc-aviso--error" role="alert">
+                <CircleAlert aria-hidden="true" />
+                {body}
+              </p>
+            )}
+            {(type === "success" || type === "error") && (
+              <Ayuda texto="¿Necesitas ayuda? Escríbenos a" />
+            )}
+          </div>
           <VolverALaWeb />
         </AccesoCentrado>
       </>
