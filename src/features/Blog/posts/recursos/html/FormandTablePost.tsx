@@ -1,15 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const FormandTablePost: React.FC = () => {
-  const publicationDate = "9 de noviembre de 2023";
-
-  return (
-    <div className="blog-post">
+const FormandTablePost: React.FC = () => (
+  <>
       <Helmet>
         <title>Formularios y Tablas en HTML | FemCoders Club</title>
         <meta
@@ -66,33 +61,28 @@ const FormandTablePost: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="language" content="Spanish" />
       </Helmet>
-      <div className="post-image-container">
-        <img
-          src="/assets/html/Formularios-Tablas-HTML.png"
-          alt="Formularios y Tablas en HTML"
-          className="blog-post-image"
-        />
-      </div>
 
-      <h1 className="blog-post-title">Formularios y Tablas en HTML</h1>
-
-      <ShareButtons path="/recursos/html/formularios-y-tablas" title="Formularios y Tablas en HTML" />
-
-      <p className="intro-text">
-        En esta sección, exploraremos a fondo cómo crear formularios y tablas en
-        HTML, dos elementos fundamentales para construir páginas web
-        interactivas y presentar información de manera organizada. Aprenderás a
-        estructurar formularios así como a crear tablas de datos para mostrar
-        información de forma clara y concisa. Descubrirás los elementos HTML
-        esenciales, los atributos más utilizados y las mejores prácticas para
-        garantizar una experiencia de usuario óptima y una correcta
-        accesibilidad. Además, te mostraremos cómo combinar HTML con CSS para
-        darle estilo a tus formularios y tablas y hacer que se integren
-        perfectamente en tu diseño web.
-      </p>
-
-      <div className="highlight-box">
-        <h2>¿Qué son los formularios y tablas en HTML?</h2>
+    <PlantillaPost
+      ruta="/recursos/html/formularios-y-tablas"
+      titulo="Formularios y Tablas en HTML"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={6}
+      entradilla={
+        <p>
+          En esta sección, exploraremos a fondo cómo crear formularios y tablas
+          en HTML, dos elementos fundamentales para construir páginas web
+          interactivas y presentar información de manera organizada. Aprenderás
+          a estructurar formularios así como a crear tablas de datos para
+          mostrar información de forma clara y concisa. Descubrirás los
+          elementos HTML esenciales, los atributos más utilizados y las mejores
+          prácticas para garantizar una experiencia de usuario óptima y una
+          correcta accesibilidad. Además, te mostraremos cómo combinar HTML con
+          CSS para darle estilo a tus formularios y tablas y hacer que se
+          integren perfectamente en tu diseño web.
+        </p>
+      }
+    >
+      <SeccionPost titulo="¿Qué son los formularios y tablas en HTML?">
         <p>
           Los formularios son como los cuestionarios digitales de una página
           web. Nos permiten recopilar datos de los usuarios, como su nombre,
@@ -101,10 +91,9 @@ const FormandTablePost: React.FC = () => {
           información de manera clara y concisa, como listas de precios,
           horarios o resultados de una búsqueda.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Elementos Clave Para Crear Formularios HTML</h2>
+      <SeccionPost titulo="Elementos Clave Para Crear Formularios HTML">
         <p>
           Para crear un formulario en HTML, necesitas utilizar las siguientes
           etiquetas y atributos:
@@ -123,7 +112,6 @@ const FormandTablePost: React.FC = () => {
             </ul>
           </li>
           <li>
-            {" "}
             <strong>
               <code>&lt;input&gt;</code>:
             </strong>
@@ -197,7 +185,8 @@ const FormandTablePost: React.FC = () => {
             </ul>
           </li>
         </ul>
-        <h3>**Otros elementos y atributos importantes:</h3>
+
+        <h3>Otros elementos y atributos importantes</h3>
         <ul>
           <li>
             <strong>
@@ -224,10 +213,9 @@ const FormandTablePost: React.FC = () => {
             : Establecen la longitud mínima y máxima permitida para un campo.
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Construcción de tablas</h2>
+      <SeccionPost titulo="Construcción de tablas">
         <p>
           Las tablas son útiles para presentar datos en filas y columnas. Aquí
           están las etiquetas clave para construir tablas en HTML:
@@ -271,7 +259,7 @@ const FormandTablePost: React.FC = () => {
           </li>
         </ul>
 
-        <h3>**Estilos y atributos adicionales:</h3>
+        <h3>Estilos y atributos adicionales</h3>
         <ul>
           <li>
             <strong>
@@ -287,16 +275,16 @@ const FormandTablePost: React.FC = () => {
           </li>
         </ul>
 
-        <h3>**Estilo con CSS:</h3>
+        <h3>Estilo con CSS</h3>
         <p>
           El estilo de las tablas se define principalmente con CSS. Puedes
-          utilizar propiedades como
-          <strong>`border`, `padding`, `margin` y `text-align`</strong> para
-          personalizar su apariencia.
+          utilizar propiedades como <code>border</code>, <code>padding</code>,{" "}
+          <code>margin</code> y <code>text-align</code> para personalizar su
+          apariencia.
         </p>
-      </div>
-      <div className="highlight-box">
-        <h2>Casos de uso comunes de formularios y tablas</h2>
+      </SeccionPost>
+
+      <SeccionPost titulo="Casos de uso comunes de formularios y tablas">
         <p>
           Los formularios y tablas son herramientas esenciales en el desarrollo
           web, utilizados para crear interfaces interactivas y presentar
@@ -341,11 +329,10 @@ const FormandTablePost: React.FC = () => {
           tablas en el desarrollo web. La versatilidad de estas herramientas las
           hace indispensables para crear sitios web dinámicos y funcionales.
         </p>
-      </div>
-      <div className="highlight-box">
-        <h2>Ejemplo práctico de una tabla</h2>
-        <pre className="code-block bg3">
-          {`<table>
+      </SeccionPost>
+
+      <SeccionPost titulo="Ejemplo práctico de una tabla">
+        <CodigoPost lenguaje="HTML">{`<table>
   <thead>
     <tr>
       <th>Producto</th> 
@@ -365,12 +352,10 @@ const FormandTablePost: React.FC = () => {
       <td>Agotado</td>
     </tr>
   </tbody>
-</table>`}
-        </pre>
-      </div>
-      <div className="highlight-box">
-        <h2>Mejores Prácticas para Formularios y Tablas en HTML</h2>
+</table>`}</CodigoPost>
+      </SeccionPost>
 
+      <SeccionPost titulo="Mejores Prácticas para Formularios y Tablas en HTML">
         <h3>Formularios</h3>
         <ul>
           <li>
@@ -423,11 +408,9 @@ const FormandTablePost: React.FC = () => {
             las tablas se ajusten correctamente en diferentes pantallas.
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Sugerencias para Mejorar</h2>
-
+      <SeccionPost titulo="Sugerencias para Mejorar">
         <h3>Profundizar en la Accesibilidad</h3>
         <ul>
           <li>
@@ -489,83 +472,65 @@ const FormandTablePost: React.FC = () => {
             enviados a través de formularios.
           </li>
         </ul>
-      </div>
-      <div className="highlight-box">
-        <h2>Herramientas y Librerías</h2>
+      </SeccionPost>
+
+      <SeccionPost titulo="Herramientas y Librerías">
         <ul>
           <li>
-            <strong>Form Builders:</strong> Herramientas como
-            <span>
-              {" "}
-              <a
-                href="https://www.typeform.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                Typeform
-              </a>{" "}
-              y{" "}
-              <a
-                href="https://www.jotform.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                JotForm
-              </a>{" "}
-            </span>
+            <strong>Form Builders:</strong> Herramientas como{" "}
+            <a href="https://www.typeform.com/" target="_blank" rel="noopener noreferrer">
+              Typeform
+            </a>{" "}
+            y{" "}
+            <a href="https://www.jotform.com/" target="_blank" rel="noopener noreferrer">
+              JotForm
+            </a>{" "}
             permiten crear formularios visuales sin necesidad de escribir
             código, facilitando el proceso de diseño.
           </li>
           <li>
             <strong>Librerías de Tablas:</strong> Librerías como{" "}
-            <span>
-              <a
-                href="https://datatables.net/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                DataTables
-              </a>{" "}
-              y{" "}
-              <a
-                href="https://www.ag-grid.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                Ag-Grid
-              </a>{" "}
-            </span>
+            <a href="https://datatables.net/" target="_blank" rel="noopener noreferrer">
+              DataTables
+            </a>{" "}
+            y{" "}
+            <a href="https://www.ag-grid.com/" target="_blank" rel="noopener noreferrer">
+              Ag-Grid
+            </a>{" "}
             ofrecen funcionalidades avanzadas para crear tablas interactivas,
             personalizables y eficientes para la visualización de datos.
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>¿Te gustaría practicar lo aprendido?</h2>
+      <SeccionPost titulo="¿Te gustaría practicar lo aprendido?">
         <p>
           Te invitamos a explorar un{" "}
-          <span>
-            <a
-              href="https://github.com/femcodersclub/Formularios-Tablas-HTML-CSS"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "underline" }}
-            >
-              ejemplo práctico de formularios y tablas
-            </a>{" "}
-          </span>
+          <a
+            href="https://github.com/femcodersclub/Formularios-Tablas-HTML-CSS"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ejemplo práctico de formularios y tablas
+          </a>{" "}
           que hemos preparado. ¡Pon en práctica tus conocimientos de HTML y CSS
           de una forma visual y dinámica!
         </p>
-      </div>
+        <p>
+          Si quieres verlo funcionando antes de abrir el código, puedes probar
+          la{" "}
+          <a
+            href="https://femcodersclub.github.io/Formularios-Tablas-HTML-CSS/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            demo en GitHub Pages
+          </a>
+          .
+        </p>
+      </SeccionPost>
 
-      <div className="highlight-box conclusion">
-        <h2>Conclusión</h2>
+      <SeccionPost titulo="Conclusión">
         <p>
           La correcta estructuración de formularios y tablas en HTML no solo
           mejora la usabilidad y accesibilidad de las páginas web, sino que
@@ -577,27 +542,9 @@ const FormandTablePost: React.FC = () => {
           sigan siendo relevantes y funcionales en un entorno web en constante
           evolución.
         </p>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Irina Ichim</strong>
-        </p>
-        <p>Co-fundadora de femCoders Club</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={6} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default FormandTablePost;

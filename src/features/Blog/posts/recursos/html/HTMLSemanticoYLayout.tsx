@@ -1,14 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const HTMLSemanticoYLayout: React.FC = () => {
-  const publicationDate = "30 de octubre de 2023";
-  return (
-    <div className="blog-post">
+const HTMLSemanticoYLayout: React.FC = () => (
+  <>
       <Helmet>
         <title>HTML Semántico y Diseño de Layout | FemCoders Club</title>
         <meta
@@ -81,104 +77,81 @@ const HTMLSemanticoYLayout: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <img
-          src="/assets/html/ejemplo-layout.png"
-          alt="Ejemplo de layout en HTML"
-          className="blog-post-image"
-        />
-      </div>
-
-      <h1 className="blog-post-title">HTML Semántico y Diseño de Layout</h1>
-
-      <ShareButtons path="/recursos/html/html-semantico" title="HTML Semántico y Diseño de Layout" />
-
-      <div className="intro-text">
+    <PlantillaPost
+      ruta="/recursos/html/html-semantico"
+      titulo="HTML Semántico y Diseño de Layout"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={8}
+      entradilla={
         <p>
           El HTML semántico y el diseño de layouts son conceptos fundamentales
           en la creación de páginas web efectivas. En este post, exploraremos
           qué es un layout, la importancia del HTML semántico, y cómo estas
           prácticas se relacionan para mejorar la accesibilidad y la experiencia
           del usuario. Si estás empezando, te recomendamos comenzar por nuestra{" "}
-          <a
-            href="/recursos/html/introduccion-html"
-            className="highlight underline"
-          >
-            introducción a HTML
-          </a>{" "}
-          y continuar con los{" "}
-          <a
-            href="/recursos/html/elementos-html-clave"
-            className="highlight underline"
-          >
-            elementos clave de HTML
-          </a>{" "}
+          <a href="/recursos/html/introduccion-html">introducción a HTML</a> y
+          continuar con los{" "}
+          <a href="/recursos/html/elementos-html-clave">elementos clave de HTML</a>{" "}
           antes de sumergirte en esta parte más avanzada.
         </p>
-      </div>
-
-      <div className="highlight-box">
-        <h2>¿Qué es un layout🏗️?</h2>
+      }
+    >
+      <SeccionPost titulo="¿Qué es un layout?">
         <p>
           Un layout es la organización de los elementos visuales en una página
           web, determinando cómo se presenta la información al usuario. Es
           decir, cómo se organizan los diferentes bloques de contenido (texto,
           imágenes, videos, etc.) en la pantalla.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>¿Cómo se crea un layout en HTML?</h2>
+      <SeccionPost titulo="¿Cómo se crea un layout en HTML?">
         <p>
           Para crear un layout en HTML, se utilizan principalmente las
           siguientes etiquetas:
         </p>
         <ul>
           <li>
-            <span>
+            <strong>
               Etiquetas de división (<code>div</code>):
-            </span>{" "}
+            </strong>{" "}
             Son como contenedores que agrupan otros elementos. Puedes asignar
             estilos CSS a estas divisiones para controlar su tamaño, posición y
             apariencia.
           </li>
           <li>
-            <span>Etiquetas semánticas:</span> Etiquetas como{" "}
+            <strong>Etiquetas semánticas:</strong> Etiquetas como{" "}
             <strong>
               <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,{" "}
               <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>,{" "}
-              <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>{" "}
+              <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>
             </strong>{" "}
             proporcionan una estructura semántica a tu contenido, lo que
             facilita tanto a los navegadores como a los motores de búsqueda
             entender la organización de tu página.
           </li>
           <li>
-            <span>
+            <strong>
               Tablas (<code>table</code>):
-            </span>{" "}
+            </strong>{" "}
             Aunque menos utilizadas en diseños modernos, las tablas siguen
             siendo útiles para organizar datos en filas y columnas.
           </li>
           <li>
-            <span>Flexbox y Grid:</span> Son modelos de diseño más modernos y
+            <strong>Flexbox y Grid:</strong> Son modelos de diseño más modernos y
             flexibles que permiten crear layouts complejos de manera más
             sencilla.
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Ejemplo de Layout en HTML</h2>
-
+      <SeccionPost titulo="Ejemplo de Layout en HTML">
         <p>
           En este diagrama textual, puedes ver cómo se utilizan diferentes
           secciones semánticas para organizar el contenido de manera coherente y
           accesible.
         </p>
-
-        <pre className="code-block bg3">
-          {`+---------------------------------------+
+        <CodigoPost lenguaje="Texto">{`+---------------------------------------+
 |        <header>                       | 🏠  // Define la cabecera de un documento o sección
 |        Header                         |
 +---------------------------------------+
@@ -207,12 +180,10 @@ const HTMLSemanticoYLayout: React.FC = () => {
 |        <footer>                       | 📜  // Define un pie de página para el documento
 |        Footer                         |
 +---------------------------------------+
-`}
-        </pre>
-      </div>
+`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>HTML Semántico: ¿Por qué es importante🔍?</h2>
+      <SeccionPost titulo="HTML Semántico: ¿Por qué es importante?">
         <p>
           El HTML semántico es una práctica que consiste en utilizar las
           etiquetas de HTML de manera significativa, es decir, asignando un
@@ -223,20 +194,18 @@ const HTMLSemanticoYLayout: React.FC = () => {
           de búsqueda a entender la estructura y el propósito de cada sección de
           la página.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Etiquetas semánticas importantes💡</h2>
-        <ul>
-          <li>
-            <span>
-              <code>&lt;header&gt;</code>{" "}
-            </span>
-            - Define la cabecera de un documento o sección. Suele contener el
-            título principal, el logotipo, el menú de navegación principal y
-            otros elementos de identificación de la página o sección.
-            <pre className="code-block bg3">
-              {`<header>
+      <SeccionPost titulo="Etiquetas semánticas importantes">
+        <h3>
+          <code>&lt;header&gt;</code>
+        </h3>
+        <p>
+          Define la cabecera de un documento o sección. Suele contener el
+          título principal, el logotipo, el menú de navegación principal y
+          otros elementos de identificación de la página o sección.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<header>
   <h1>Bienvenidos a mi blog</h1>
   <nav>
     <ul>
@@ -245,128 +214,112 @@ const HTMLSemanticoYLayout: React.FC = () => {
       <li><a href="#contact">Contacto</a></li>
     </ul>
   </nav>
-</header>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              {" "}
-              <code>&lt;nav&gt;</code>{" "}
-            </span>
-            - Define un conjunto de enlaces de navegación. Se utiliza para
-            agrupar los enlaces principales que permiten al usuario navegar
-            entre las diferentes secciones de un sitio web, facilitando la
-            orientación y mejorando la experiencia del usuario.
-            <pre className="code-block bg3">
-              {`<nav>
+</header>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;nav&gt;</code>
+        </h3>
+        <p>
+          Define un conjunto de enlaces de navegación. Se utiliza para
+          agrupar los enlaces principales que permiten al usuario navegar
+          entre las diferentes secciones de un sitio web, facilitando la
+          orientación y mejorando la experiencia del usuario.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<nav>
   <ul>
     <li><a href="#home">Inicio</a></li>
     <li><a href="#services">Servicios</a></li>
     <li><a href="#portfolio">Portafolio</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
-</nav>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              {" "}
-              <code>&lt;section&gt;</code>{" "}
-            </span>
-            - Define una sección en un documento. Se utiliza para agrupar
-            contenido temático relacionado dentro de una página. Por ejemplo,
-            una sección de noticias, una sección de productos, etc.
-            <pre className="code-block bg3">
-              {`<section>
+</nav>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;section&gt;</code>
+        </h3>
+        <p>
+          Define una sección en un documento. Se utiliza para agrupar
+          contenido temático relacionado dentro de una página. Por ejemplo,
+          una sección de noticias, una sección de productos, etc.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<section>
   <h2>Últimas Noticias</h2>
   <article>
     <h3>Título de la noticia</h3>
     <p>Descripción de la noticia...</p>
   </article>
-</section>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              {" "}
-              <code>&lt;article&gt;</code>{" "}
-            </span>
-            - Define un contenido independiente y autocontenido. Se emplea para
-            encapsular contenido que podría ser distribuido o reutilizado por sí
-            solo, como una entrada de blog, un artículo de noticias, un
-            comentario, etc.
-            <pre className="code-block bg3">
-              {`<article>
+</section>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;article&gt;</code>
+        </h3>
+        <p>
+          Define un contenido independiente y autocontenido. Se emplea para
+          encapsular contenido que podría ser distribuido o reutilizado por sí
+          solo, como una entrada de blog, un artículo de noticias, un
+          comentario, etc.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<article>
   <h2>Cómo aprender a programar</h2>
   <p>La programación es una habilidad valiosa en el mundo digital actual...</p>
-</article>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              {" "}
-              <code>&lt;aside&gt;</code>{" "}
-            </span>
-            - Define contenido secundario relacionado. Sirve para contener
-            contenido complementario, como barras laterales, citas, cuadros
-            informativos, etc.
-            <pre className="code-block bg3">
-              {`<aside>
+</article>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;aside&gt;</code>
+        </h3>
+        <p>
+          Define contenido secundario relacionado. Sirve para contener
+          contenido complementario, como barras laterales, citas, cuadros
+          informativos, etc.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<aside>
   <h3>Citas Destacadas</h3>
   <p>"El único modo de hacer un gran trabajo es amar lo que haces." - Steve Jobs</p>
-</aside>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              <code>&lt;footer&gt;</code>
-            </span>{" "}
-            - Define un pie de página para un documento o sección. Suele
-            contener información de copyright, enlaces a políticas de
-            privacidad, mapas del sitio, etc.
-            <pre className="code-block bg3">
-              {`<footer>
+</aside>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;footer&gt;</code>
+        </h3>
+        <p>
+          Define un pie de página para un documento o sección. Suele
+          contener información de copyright, enlaces a políticas de
+          privacidad, mapas del sitio, etc.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<footer>
   <p>&copy; 2024 Mi Blog. Todos los derechos reservados.</p>
   <a href="#privacy-policy">Política de privacidad</a>
-</footer>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              <code>&lt;details&gt;</code>{" "}
-            </span>
-            - Define detalles adicionales que el usuario puede abrir y cerrar.
-            Permite ocultar contenido adicional que el usuario puede expandir si
-            lo desea, como una descripción detallada de un producto, una
-            transcripción de un video, etc.
-            <pre className="code-block bg3">
-              {`<details>
+</footer>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;details&gt;</code>
+        </h3>
+        <p>
+          Define detalles adicionales que el usuario puede abrir y cerrar.
+          Permite ocultar contenido adicional que el usuario puede expandir si
+          lo desea, como una descripción detallada de un producto, una
+          transcripción de un video, etc.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<details>
   <summary>Más información sobre el curso</summary>
   <p>Este curso te enseñará los fundamentos de la programación...</p>
-</details>`}
-            </pre>
-          </li>
-          <li>
-            <span>
-              {" "}
-              <code>&lt;summary&gt;</code>{" "}
-            </span>
-            - Define un encabezado para el elemento <code>&lt;details&gt;</code>
-            . Sirve como un título o etiqueta para el contenido oculto dentro
-            del elemento <code>&lt;details&gt;</code>. Al hacer clic en el{" "}
-            <code>&lt;summary&gt;</code>, el contenido se expande o contrae.
-            <pre className="code-block bg3">
-              {`<details>
+</details>`}</CodigoPost>
+
+        <h3>
+          <code>&lt;summary&gt;</code>
+        </h3>
+        <p>
+          Define un encabezado para el elemento <code>&lt;details&gt;</code>.
+          Sirve como un título o etiqueta para el contenido oculto dentro del
+          elemento <code>&lt;details&gt;</code>. Al hacer clic en el{" "}
+          <code>&lt;summary&gt;</code>, el contenido se expande o contrae.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<details>
   <summary>Contenido Adicional</summary>
   <p>Más información detallada...</p>
-</details>`}
-            </pre>
-          </li>
-        </ul>
-      </div>
+</details>`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>¿Por qué son importantes las etiquetas semánticas?</h2>
+      <SeccionPost titulo="¿Por qué son importantes las etiquetas semánticas?">
         <p>
           <strong>Accesibilidad:</strong> Las etiquetas semánticas proporcionan
           información adicional sobre la estructura y el propósito de cada
@@ -398,10 +351,9 @@ const HTMLSemanticoYLayout: React.FC = () => {
           permite a los desarrolladores y navegadores entender mejor la
           estructura de la página.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2> Conclusión🌟</h2>
+      <SeccionPost titulo="Conclusión">
         <p>
           En resumen, el uso de etiquetas semánticas en HTML no solo mejora la
           accesibilidad de tus páginas web, sino que también facilita la
@@ -417,91 +369,47 @@ const HTMLSemanticoYLayout: React.FC = () => {
           práctica, sino que es esencial para crear experiencias de usuario
           efectivas y accesibles.
         </p>
+      </SeccionPost>
 
-        <h2>Referencias</h2>
+      <SeccionPost titulo="Referencias">
         <p>
           Para profundizar en el HTML semántico y el diseño de layouts, aquí
           tienes algunos recursos útiles:
         </p>
         <ul>
           <li>
-            <span>
-              <a
-                href="https://www.w3schools.com/html/html_layout.asp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                W3Schools: HTML Layouts
-              </a>
-            </span>
+            <a href="https://www.w3schools.com/html/html_layout.asp" target="_blank" rel="noopener noreferrer">
+              W3Schools: HTML Layouts
+            </a>
           </li>
           <li>
-            <span>
-              {" "}
-              <a
-                href="https://developer.mozilla.org/es/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="highlight underline"
-              >
-                MDN Web Docs: Introducción a HTML
-              </a>
-            </span>
+            <a
+              href="https://developer.mozilla.org/es/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MDN Web Docs: Introducción a HTML
+            </a>
           </li>
         </ul>
         <p>
           ¿Te ha gustado este artículo? Entonces también te puede interesar
-          nuestra{" "}
-          <a
-            href="/recursos/html/introduccion-html"
-            className="highlight underline"
-          >
-            introducción a HTML
-          </a>
-          , los{" "}
-          <a
-            href="/recursos/html/elementos-html-clave"
-            className="highlight underline"
-          >
-            elementos clave de HTML
-          </a>{" "}
+          nuestra <a href="/recursos/html/introduccion-html">introducción a HTML</a>,
+          los{" "}
+          <a href="/recursos/html/elementos-html-clave">elementos clave de HTML</a>{" "}
           y nuestra guía sobre{" "}
-          <a
-            href="/recursos/html/html-seo-accesibilidad"
-            className="highlight underline"
-          >
-            HTML, SEO y accesibilidad
-          </a>
+          <a href="/recursos/html/html-seo-accesibilidad">HTML, SEO y accesibilidad</a>
           . ¡Sigue explorando y mejorando tus habilidades!
         </p>
-
         <p>
           Nos encantaría conocer tus experiencias y preguntas sobre HTML
           semántico y diseño de layouts. ¿Has implementado etiquetas semánticas
           en tus proyectos? ¿Qué desafíos has encontrado? ¡Comparte tus
           pensamientos en los comentarios a continuación!
         </p>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Irina Ichim</strong>
-        </p>
-        <p>Co-fundadora de femCoders Club</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={8} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default HTMLSemanticoYLayout;

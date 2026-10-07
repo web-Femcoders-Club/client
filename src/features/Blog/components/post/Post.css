@@ -189,6 +189,17 @@
   color: var(--color-text-dark);
 }
 
+/*
+ * En una rejilla, un elemento no encoge por debajo de su contenido: una línea
+ * de código larga ensanchaba el apartado y la página entera hacía scroll
+ * lateral. Con min-width: 0 el scroll se queda dentro del bloque de código.
+ */
+.post__contenido > *,
+.post-seccion > *,
+.post__final > * {
+  min-width: 0;
+}
+
 .post__contenido p,
 .post__contenido li {
   font-size: inherit;
@@ -223,6 +234,23 @@
   outline: 3px solid var(--color-secondary);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Imágenes dentro del texto: nunca más anchas que la columna. */
+.post__contenido img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+
+/* Vídeos incrustados (YouTube): al ancho de la columna en 16:9. */
+.post__contenido iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 1rem;
 }
 
 /* Código dentro de una frase. */
@@ -287,6 +315,30 @@
 
 .post-seccion li::marker {
   color: var(--color-primary-oscuro);
+}
+
+/* Las listas también son rejilla: sin esto, un bloque de código dentro de un <li> ensanchaba la página. */
+.post-seccion li {
+  min-width: 0;
+}
+
+/*
+ * Un elemento de lista que empieza por una foto (las personas creadoras de
+ * los frameworks): la foto, pequeña y redonda, al lado del texto.
+ */
+.post-seccion li:has(> img:first-child) {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  list-style: none;
+}
+
+.post-seccion li > img:first-child {
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* ---------- CodigoPost: claro y sobrio; texto azul oscuro sobre lavanda muy claro (más de 12:1) ---------- */

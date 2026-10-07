@@ -14,8 +14,15 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   fuera del artículo, «Sigue aprendiendo» con tres posts del mismo tema.
   Fecha, tema e imagen salen del índice del blog. Piezas para el contenido:
   `SeccionPost`, `CodigoPost` (con botón de copiar), `NotaPost` y `TablaPost`.
-- **«Introducción a HTML» es el primer post migrado**: sin Tailwind ni
-  `PostStyles.css`, y su `<Helmet>` sin cambios.
+- **Los 8 posts de HTML migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz conserva su
+  lógica (30 preguntas, logros y guía en PDF). Erratas arregladas por el camino:
+  palabras pegadas, restos de Markdown en títulos y un ejemplo de `<pre>` que
+  salía en una línea. «Formularios y tablas» enlaza también la demo en
+  GitHub Pages.
+- **La plantilla admite fotos y vídeos dentro del texto**: imágenes al ancho
+  de la columna como máximo, vídeos de YouTube en 16:9 y listas con foto
+  redonda; los bloques de código ya no ensanchan la página en móvil.
 - **Comentarios y compartir con el aspecto del rediseño** y su propio CSS
   (antes dependían de `PostStyles.css`). La lógica no cambia. La lista va
   antes del formulario, el comentario recién enviado se marca como pendiente

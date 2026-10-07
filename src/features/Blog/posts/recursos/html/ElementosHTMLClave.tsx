@@ -1,15 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  CodigoPost,
+  NotaPost,
+  SeccionPost,
+} from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const ElementosHTMLClave: React.FC = () => {
-  const publicationDate = "21 de octubre de 2023";
-
-  return (
-    <div className="blog-post">
+const ElementosHTMLClave: React.FC = () => (
+  <>
   <Helmet>
   <title>Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes</title>
   <meta
@@ -86,45 +85,27 @@ const ElementosHTMLClave: React.FC = () => {
   <meta name="language" content="Spanish" />
 </Helmet>
 
-      <div className="post-image-container">
-        <img
-          src="/assets/html/Elementos-HTML-Clave.png"
-          alt="Elementos HTML Clave"
-          className="blog-post-image"
-        />
-      </div>
-
-      <h1 className="blog-post-title">
-        Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes
-      </h1>
-
-      <ShareButtons path="/recursos/html/elementos-html-clave" title="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes" />
-
-    <div className="intro-text">
-  <p>
-    ¿Alguna vez te has preguntado cómo los encabezados organizan la
-    información en una página o cómo se crean enlaces que llevan a otros
-    sitios? En esta sección, exploraremos los elementos esenciales de HTML
-    que te permitirán estructurar tu contenido de forma clara y efectiva.
-    Si aún no has leído nuestra{" "}
-    <a
-      href="/recursos/html/introduccion-html"
-      className="highlight underline"
+    <PlantillaPost
+      ruta="/recursos/html/elementos-html-clave"
+      titulo="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={3}
+      entradilla={
+        <p>
+          ¿Alguna vez te has preguntado cómo los encabezados organizan la
+          información en una página o cómo se crean enlaces que llevan a otros
+          sitios? En esta sección, exploraremos los elementos esenciales de HTML
+          que te permitirán estructurar tu contenido de forma clara y efectiva.
+          Si aún no has leído nuestra{" "}
+          <a href="/recursos/html/introduccion-html">introducción a HTML</a>, te
+          recomendamos empezar por allí para comprender la base de este
+          lenguaje. Además, aprenderás a añadir imágenes, videos y emojis para
+          hacer tu página más atractiva y accesible. ¡Vamos a sumergirnos en el
+          mundo de los elementos HTML clave!
+        </p>
+      }
     >
-      introducción a HTML
-    </a>
-    , te recomendamos empezar por allí para comprender la base de este
-    lenguaje. Además, aprenderás a añadir imágenes, videos y emojis para hacer tu
-    página más atractiva y accesible. ¡Vamos a sumergirnos en el mundo de
-    los elementos HTML clave!
-  </p>
-</div>
-
-
-      <div className="highlight-box">
-        <h2>
-          1. Encabezados (<code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code>)
-        </h2>
+      <SeccionPost titulo="1. Encabezados (<h1> - <h6>)" id="encabezados">
         <p>
           Comenzaremos por los encabezados (<code>&lt;h1&gt;</code> a{" "}
           <code>&lt;h6&gt;</code>), que sirven para organizar el contenido
@@ -132,18 +113,17 @@ const ElementosHTMLClave: React.FC = () => {
           fácil de leer, sino que también ayudan a los motores de búsqueda a
           entender el contenido de tu página.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>
-          2. Párrafos (<code>&lt;p&gt;</code>) y otras etiquetas de texto
-        </h2>
+      <SeccionPost
+        titulo="2. Párrafos (<p>) y otras etiquetas de texto"
+        id="parrafos"
+      >
         <p>
           El elemento <code>&lt;p&gt;</code> define un párrafo. Para darle
           formato al texto dentro de un párrafo, podemos utilizar diferentes
           etiquetas:
         </p>
-
         <ul>
           <li>
             <strong>
@@ -173,18 +153,15 @@ const ElementosHTMLClave: React.FC = () => {
               <code>&lt;pre&gt;</code>
             </strong>
             : Muestra texto preformateado, ideal para código:
-            <pre>
-              function saludar(nombre) {"{"}
-              console.log("Hola, " + nombre + "!");
-              {"}"}
-            </pre>
+            <CodigoPost lenguaje="JavaScript">{`function saludar(nombre) {
+  console.log("Hola, " + nombre + "!");
+}`}</CodigoPost>
           </li>
           <li>
             <strong>
               <code>&lt;code&gt;</code>
             </strong>
-            : Resalta fragmentos de código dentro de un párrafo. Por ejemplo:{" "}
-            <br />
+            : Resalta fragmentos de código dentro de un párrafo. Por ejemplo:
             Utiliza el método <code>console.log()</code> para mostrar mensajes
             en la consola.
           </li>
@@ -206,41 +183,32 @@ const ElementosHTMLClave: React.FC = () => {
             .
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>
-          3. Enlaces (<code>&lt;a&gt;</code>)
-        </h2>
+      <SeccionPost titulo="3. Enlaces (<a>)" id="enlaces">
         <p>
           Los enlaces (<code>&lt;a&gt;</code>) son fundamentales para conectar
           diferentes páginas web. Aprenderás cómo crear enlaces internos y
           externos, y cómo utilizar atributos como target para controlar dónde
           se abre un enlace.
         </p>
-        <pre className="code-block bg3">
-          {`<a href="https://www.femcodersclub.com" target="_blank">Visita femCoders Club</a>`}
-        </pre>
-      </div>
+        <CodigoPost lenguaje="HTML">{`<a href="https://www.femcodersclub.com" target="_blank">Visita femCoders Club</a>`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>
-          4. Imágenes (<code>&lt;img&gt;</code>) y la importancia del atributo{" "}
-          <code>alt</code>
-        </h2>
+      <SeccionPost
+        titulo="4. Imágenes (<img>) y la importancia del atributo alt"
+        id="imagenes"
+      >
         <p>
           Las imágenes (<code>&lt;img&gt;</code>) añaden vida a tus páginas web.
           Descubrirás cómo insertar imágenes y la importancia del atributo alt
           para la accesibilidad. El atributo alt describe el contenido de la
           imagen para las personas que utilizan lectores de pantalla.
         </p>
-        <pre className="code-block bg3">
-          {`<img src="/FemCodersClubLogo.png" alt="Logo femCoders Club">`}
-        </pre>
-      </div>
+        <CodigoPost lenguaje="HTML">{`<img src="/FemCodersClubLogo.png" alt="Logo femCoders Club">`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>5. Usando Emojis en HTML</h2>
+      <SeccionPost titulo="5. Usando Emojis en HTML">
         <p>
           ¡Los emojis pueden hacer que tu página sea más atractiva y amigable!
           Puedes añadirlos directamente en el texto como cualquier otro
@@ -249,18 +217,17 @@ const ElementosHTMLClave: React.FC = () => {
         <p>
           ¿Sabías que los emojis tienen códigos específicos? Por ejemplo, el
           emoji de pulgar hacia arriba (👍) se representa como{" "}
-          <code>&#128077;</code>. Aunque puedes copiar y pegar emojis
+          <code>&amp;#128077;</code>. Aunque puedes copiar y pegar emojis
           directamente, conocer su código puede ser útil en ciertas situaciones.
         </p>
-        <p>
-          ¡Atención a la cultura! El significado de los emojis puede variar
-          según el país o la región. Lo que en un lugar es un gesto positivo, en
-          otro puede ser negativo. ¡Elige tus emojis con cuidado!
-        </p>
-        <pre className="code-block bg3">
-          {`<p>🌟 ¡Aprender HTML es divertido y esencial! 💻🚀</p>`}
-        </pre>
-
+        <NotaPost titulo="¡Atención a la cultura!">
+          <p>
+            El significado de los emojis puede variar según el país o la región.
+            Lo que en un lugar es un gesto positivo, en otro puede ser negativo.
+            ¡Elige tus emojis con cuidado!
+          </p>
+        </NotaPost>
+        <CodigoPost lenguaje="HTML">{`<p>🌟 ¡Aprender HTML es divertido y esencial! 💻🚀</p>`}</CodigoPost>
         <p>
           Aquí tienes algunos ejemplos de cómo puedes usar emojis en diferentes
           contextos:
@@ -268,105 +235,71 @@ const ElementosHTMLClave: React.FC = () => {
         <ul>
           <li>
             <strong>En listas de características:</strong>
-          </li>
-          <li>
-            <pre className="code-block bg3">
-              {`<ul>
+            <CodigoPost lenguaje="HTML">{`<ul>
   <li>💻 Curso de programación</li>
   <li>📚 Documentación completa</li>
   <li>🌍 Comunidad internacional</li>
-</ul>`}
-            </pre>
+</ul>`}</CodigoPost>
           </li>
-
           <li>
             <strong>En botones de acción:</strong>
+            <CodigoPost lenguaje="HTML">{`<button>📥 Descargar ahora</button>`}</CodigoPost>
           </li>
-          <li>
-            <pre className="code-block bg3">
-              {`<button>📥 Descargar ahora</button>`}
-            </pre>
-          </li>
-
           <li>
             <strong>Para mejorar la accesibilidad:</strong>
-          </li>
-          <li>
             <p>
               Emojis pueden ser útiles para usuarios con lectores de pantalla.
               Asegúrate de incluir una descripción en texto alternativo para
               mejorar la accesibilidad. Por ejemplo:
             </p>
-            <pre className="code-block bg3">
-              {`<p><span role="img" aria-label="estrella">🌟</span> ¡Este es un contenido destacado!</p>`}
-            </pre>
+            <CodigoPost lenguaje="HTML">{`<p><span role="img" aria-label="estrella">🌟</span> ¡Este es un contenido destacado!</p>`}</CodigoPost>
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>
-          6. Videos en HTML (<code>&lt;video&gt;</code>)
-        </h2>
+      <SeccionPost titulo="6. Videos en HTML (<video>)" id="videos">
         <p>
           El contenido multimedia es esencial hoy en día para captar la atención
           de tus visitantes. La etiqueta <code>&lt;video&gt;</code> te permite
           integrar videos en tu página web de manera sencilla. Asegúrate de que
           tus videos estén en un formato compatible como MP4, WebM o Ogg.
         </p>
-
         <p>
           Para agregar controles de reproducción (play, pause, volumen), utiliza
           el atributo <code>controls</code>:
         </p>
-
-        <pre className="code-block bg3">
-          {`<video controls>
+        <CodigoPost lenguaje="HTML">{`<video controls>
   <source src="/VideoInicialComunidad.mp4" type="video/mp4">
   Tu navegador no soporta la etiqueta video.
-</video>`}
-        </pre>
-      </div>
-      <div className="highlight-box">
+</video>`}</CodigoPost>
         <p>
           Aquí tienes un ejemplo de cómo puedes incrustar un video de YouTube:
         </p>
-
         <p>
           Además de cargar videos locales, también puedes incrustar videos de
           plataformas externas como YouTube o Vimeo usando un{" "}
-          <span>iframe</span>.{" "}
-          <p>
-            Esto es especialmente útil si quieres compartir contenido de estas
-            plataformas directamente en tu página web. Ejemplo de cómo incrustar
-            un video de YouTube:
-          </p>
+          <strong>iframe</strong>.
         </p>
-        <br />
-
-        <pre className="code-block bg3">
-          {`<iframe width="560" height="315"  
+        <p>
+          Esto es especialmente útil si quieres compartir contenido de estas
+          plataformas directamente en tu página web. Ejemplo de cómo incrustar
+          un video de YouTube:
+        </p>
+        <CodigoPost lenguaje="HTML">{`<iframe width="560" height="315"  
       src="https://www.youtube.com/embed/fluYWEn7d5g" 
       title="YouTube video player" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>`}
-        </pre>
+      allowfullscreen></iframe>`}</CodigoPost>
+        <iframe
+          src="https://www.youtube.com/embed/fluYWEn7d5g"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </SeccionPost>
 
-        <br />
-
-        <div className="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/fluYWEn7d5g"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
-      <div className="highlight-box conclusion">
-        <h2>Conclusión</h2>
+      <SeccionPost titulo="Conclusión">
         <p>
           Ahora que conoces los elementos clave de HTML, tienes una sólida base
           para estructurar y enriquecer cualquier página web. Encabezados,
@@ -385,38 +318,16 @@ const ElementosHTMLClave: React.FC = () => {
           multimedia, y no dudes en compartir tus descubrimientos con la
           comunidad. ¡Estamos emocionadas de ver lo que construirás!
         </p>
-      <p>
-  ¿Tienes alguna duda o te gustaría compartir algo? No olvides dejar un
-  comentario o seguirnos en nuestras redes sociales para más contenido
-  interesante. Y si aún no formas parte de nuestra comunidad,{" "}
-  <a href="/register" className="highlight underline">
-    regístrate aquí
-  </a>{" "}
-  y comienza a aprender y compartir con femCoders Club.
-</p>
-
-      </div>
-
-      <div className="author-info">
         <p>
-          Escrito por: <strong>Irina Ichim</strong>
+          ¿Tienes alguna duda o te gustaría compartir algo? No olvides dejar un
+          comentario o seguirnos en nuestras redes sociales para más contenido
+          interesante. Y si aún no formas parte de nuestra comunidad,{" "}
+          <a href="/register">regístrate aquí</a> y comienza a aprender y
+          compartir con femCoders Club.
         </p>
-        <p>Co-fundadora de femCoders Club</p>
-        <p>
-          <p>
-            Fecha de publicación: <strong>{publicationDate}</strong>
-          </p>
-        </p>
-      </div>
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={3} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default ElementosHTMLClave;
