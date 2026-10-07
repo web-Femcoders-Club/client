@@ -131,8 +131,14 @@
   gap: 2rem clamp(2rem, 5vw, 4rem);
 }
 
+/*
+ * Más baja que el título: es más alta que su columna y marca la altura de la
+ * fila, así que centrarla la dejaba por encima del antetítulo. En una
+ * columna (≤860px) va debajo y el margen se anula.
+ */
 .blog-kit {
   position: relative;
+  margin-top: 3rem;
 }
 
 .blog-kit .fc-capa {
