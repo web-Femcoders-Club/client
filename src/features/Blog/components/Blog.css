@@ -1,5 +1,6 @@
 /*
- * Portada de /blog (PortadaBlog.tsx). Piezas compartidas en
+ * Páginas del blog: la portada (PortadaBlog.tsx) y los listados de Noticias y
+ * Recursos (ListadoBlog.tsx). Piezas compartidas en
  * src/styles/rediseno.css: `fc-manchas`, `fc-antetitulo`, `fc-rotulador`,
  * `fc-titulo-seccion` y `fc-boton`. Fondos: `bg1` y `bg4`, los de la portada.
  * Las tarjetas tienen su propio CSS (TarjetaPost.css).
@@ -53,6 +54,28 @@
   line-height: 1.65;
   color: var(--color-text-dark);
   text-wrap: pretty;
+}
+
+/* «Volver al blog» en los listados: enlace suelto de 44px (objetivo táctil AAA). */
+.blog-portada__texto .blog-volver {
+  --fc-enlace-bajo: 0.6rem;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.blog-volver svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.blog-listado__contador {
+  margin-bottom: 1.25rem;
 }
 
 /* ---------- Buscador ---------- */

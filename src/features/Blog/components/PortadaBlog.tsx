@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
 import TarjetaPost from "./TarjetaPost";
 import { POSTS_DEL_BLOG, TEMAS_DEL_BLOG, type PostDelBlog } from "../postsDelBlog";
-import "./PortadaBlog.css";
+import "./Blog.css";
 
 const TODOS = "Todo";
 const DESTACADOS = 4;

@@ -5,9 +5,13 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
-### Blog (rediseño): página principal
+### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Cambiado
+- **/blog/noticias y /blog/recursos son un mismo listado** (`ListadoBlog`)
+  con las tarjetas de la portada, del más nuevo al más antiguo; Recursos
+  filtra por tema. Fuera `Noticias.tsx` y `Recursos.tsx`, dos listas más
+  escritas a mano: a la de recursos le faltaban 8 de los 34.
 - **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
   temas (con su número real de posts), «Lo último» con los cuatro posts más
   nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada

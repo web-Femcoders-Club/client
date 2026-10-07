@@ -1,14 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
+import ListadoBlog from "../components/ListadoBlog";
 import PortadaBlog from "../components/PortadaBlog";
-import Noticias from "./Noticias";
-import Recursos from "./Recursos";
 
 /*
  * /blog y sus dos secciones. La portada lee los posts de postsDelBlog.json,
  * que se genera en el prebuild: publicar un post ya no exige tocar este
- * archivo. Noticias y Recursos todavía tienen sus listas propias.
+ * archivo. Noticias y Recursos son el mismo listado con otra sección.
  */
 const BlogPage: React.FC = () => {
   const location = useLocation();
@@ -75,8 +74,8 @@ const BlogPage: React.FC = () => {
 
       <Routes>
         <Route index element={<PortadaBlog />} />
-        <Route path="noticias" element={<Noticias />} />
-        <Route path="recursos" element={<Recursos />} />
+        <Route path="noticias" element={<ListadoBlog seccion="noticia" />} />
+        <Route path="recursos" element={<ListadoBlog seccion="recurso" />} />
       </Routes>
     </>
   );
