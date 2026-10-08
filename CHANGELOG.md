@@ -8,6 +8,9 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 ### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Añadido
+- **El post de React migrado: el blog entero usa ya la plantilla común.**
+  `PostStyles.css` y `PostImage` se borran: ningún post los usaba, y la
+  hoja era global (al visitar el blog se quedaba cargada en toda la web).
 - **Las 19 noticias migradas a la plantilla**, sin estilos en línea,
   `react-icons` ni `PostStyles.css`, con su `<Helmet>` y sus JSON-LD sin
   cambios. Los vídeos propios van con `VideoPost` (con versión móvil y sin

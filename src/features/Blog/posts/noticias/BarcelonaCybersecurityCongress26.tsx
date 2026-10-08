@@ -188,8 +188,8 @@ const BarcelonaCybersecurityCongress26: React.FC = () => (
       </Helmet>
 
     {/*
-      El `speakable` del prerender apunta a `.blog-post-title` y a
-      `.intro-text`: esto es lo que un asistente lee cuando le preguntan por
+      El `speakable` del prerender apunta al título y a la
+      entradilla (`.post__titulo`, `.post__entradilla`): esto es lo que un asistente lee cuando le preguntan por
       el congreso. Por eso la intro lleva las fechas, la sede y las dos
       entradas, y no solo el gancho.
     */}

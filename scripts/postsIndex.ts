@@ -30,14 +30,9 @@ export interface PostMeta {
   coverIsAiGenerated: boolean;
 }
 
-/**
- * Un post migrado lo declara con `portadaConIA` en <PlantillaPost>. Uno
- * antiguo, con `aiGenerated` en su primer <PostImage>, que es la portada.
- */
+/** El post lo declara con `portadaConIA` en <PlantillaPost>. */
 function readCoverIsAiGenerated(source: string): boolean {
-  if (source.includes("<PlantillaPost")) return /\bportadaConIA\b/.test(source);
-  const firstPostImage = source.match(/<PostImage\b[\s\S]*?\/>/)?.[0] ?? "";
-  return /\baiGenerated\b/.test(firstPostImage);
+  return /\bportadaConIA\b/.test(source);
 }
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");

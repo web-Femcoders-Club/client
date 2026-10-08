@@ -88,8 +88,7 @@ function buildJsonLd(post: PostMeta, image: string): string {
     // Pensado para asistentes de voz y respuestas generativas.
     speakable: {
       "@type": "SpeakableSpecification",
-      // Los posts migrados usan PlantillaPost; los de React, aún, las clases antiguas.
-      cssSelector: [".post__titulo", ".post__entradilla", ".blog-post-title", ".intro-text"],
+      cssSelector: [".post__titulo", ".post__entradilla"],
     },
   };
 
