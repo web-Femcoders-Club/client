@@ -83,6 +83,12 @@
   text-wrap: balance;
 }
 
+/* Varios párrafos en la entradilla: separados, no en un solo bloque. */
+.post__entradilla {
+  display: grid;
+  gap: 0.75rem;
+}
+
 .post__entradilla,
 .post__entradilla p {
   margin: 0;

@@ -19,9 +19,10 @@ import { urlAbsoluta } from "../../components/siteUrl";
 const CODIGO_EXPO_GRATIS = "THBJGMZT";
 const CODIGO_CONGRESO_DESCUENTO = "SABSUJNR";
 
-const REGISTRO_BASE = "https://registration.firabarcelona.com/?cod_prom=";
-const URL_EXPO_GRATIS = `${REGISTRO_BASE}${CODIGO_EXPO_GRATIS}#en_GB/J137026`;
-const URL_CONGRESO_DESCUENTO = `${REGISTRO_BASE}${CODIGO_CONGRESO_DESCUENTO}#en_GB/J137026`;
+// La página de registro no recibe el código en la URL: se escribe al registrarse.
+const URL_REGISTRO = "https://registration.firabarcelona.com/#/tickets/selection-list";
+const URL_EXPO_GRATIS = URL_REGISTRO;
+const URL_CONGRESO_DESCUENTO = URL_REGISTRO;
 
 const BarcelonaCybersecurityCongress26: React.FC = () => (
   <>
@@ -201,27 +202,25 @@ const BarcelonaCybersecurityCongress26: React.FC = () => (
       entradilla={
         <>
           <p>
-            La ciberseguridad no es solo un tema técnico: es un reto social. En
-            un mundo donde la tecnología lo abarca todo, desde cómo trabajamos
-            hasta cómo nos relacionamos, la seguridad digital se ha convertido
-            en una prioridad. Pero ¿quién construye ese futuro seguro?
+            La ciberseguridad no es solo un tema técnico: es un reto social. La
+            seguridad digital influye en cómo trabajamos y en cómo nos
+            relacionamos, y queremos que más mujeres participen en construirla.
           </p>
           <p>
-            Todas deberíamos ser parte de la respuesta, y por eso en FemCoders
-            Club estamos encantadas de contarte que somos{" "}
+            Por eso nos hace tanta ilusión contarte que FemCoders Club es{" "}
             <strong>
-              Ambassadors oficiales del Barcelona Cybersecurity Congress 2026
+              Ambassador oficial del Barcelona Cybersecurity Congress 2026
             </strong>{" "}
-            (#BCC26).
+            (#BCC26). El congreso se celebra del{" "}
+            <strong>3 al 5 de noviembre de 2026</strong> en{" "}
+            <strong>Fira de Barcelona, recinto Gran Via, hall 2.1</strong>.
           </p>
           <p>
-            El congreso se celebra del{" "}
-            <strong>3 al 5 de noviembre de 2026</strong> en{" "}
-            <strong>Fira de Barcelona, recinto Gran Via, hall 2.1</strong>. Como
-            Ambassadors tenemos dos códigos para la comunidad: uno que te da la{" "}
-            <strong>entrada Expo+ gratis</strong> y otro que deja el{" "}
-            <strong>pase completo en 225 € en lugar de 495 €</strong>. Los dos
-            están más abajo y ninguno tiene límite de plazas.
+            Tenemos dos códigos para la comunidad, sin límite de plazas: uno
+            para entrar <strong>gratis a la zona Expo+</strong> y otro para
+            conseguir el{" "}
+            <strong>pase completo por 225 € en lugar de 495 €</strong>. Más
+            abajo te contamos cómo usarlos.
           </p>
         </>
       }
@@ -329,6 +328,10 @@ const BarcelonaCybersecurityCongress26: React.FC = () => (
           Aquí viene la parte buena de ser Ambassadors: tenemos códigos para ti.
           Hay dos formas de entrar y la diferencia entre una y otra es cuánto
           del congreso ves.
+        </p>
+        <p>
+          Las dos se consiguen en la web de registro de Fira de Barcelona: elige
+          la entrada y, cuando te lo pida, escribe el código que corresponde.
         </p>
 
         <h3>Entrada Expo+, gratis</h3>
