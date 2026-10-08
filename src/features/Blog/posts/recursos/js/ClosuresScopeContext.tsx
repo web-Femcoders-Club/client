@@ -16,8 +16,7 @@ const ClosuresScopeContext: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Closures, Scope y Context: Lo que Realmente Pasa en el Motor de
-          JavaScript | femCoders Club
+          Closures, scope y context: lo que realmente pasa en el motor de JavaScript | FemCoders Club
         </title>
         <meta
           name="description"
@@ -32,7 +31,7 @@ const ClosuresScopeContext: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript | femCoders Club"
+          content="Closures, scope y context: lo que realmente pasa en el motor de JavaScript | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -48,7 +47,7 @@ const ClosuresScopeContext: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Closures, Scope y Context en JavaScript - femCoders Club"
+          content="Closures, scope y context en JavaScript - FemCoders Club"
         />
         <meta
           name="twitter:description"
@@ -857,7 +856,7 @@ a(); a(); b();
           </li>
           <li>
             <Link to="/recursos/js/event-loop-javascript">
-              Event Loop en JavaScript: Cómo Funciona la Asincronía
+              Event Loop en JavaScript: cómo funciona la asincronía
             </Link>
           </li>
         </ul>

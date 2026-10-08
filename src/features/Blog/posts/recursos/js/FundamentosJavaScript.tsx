@@ -12,7 +12,7 @@ import {
 const FundamentosJavaScript: React.FC = () => (
   <>
       <Helmet>
-        <title>Los Fundamentos de JavaScript que Realmente Importan: De HTML/CSS a Programación Real | femCoders Club</title>
+        <title>Los fundamentos de JavaScript que realmente importan: de HTML/CSS a programación real | FemCoders Club</title>
         <meta
           name="description"
           content="Aprende los fundamentos profundos de JavaScript: execution context, closures, event loop, prototypes. De maquetadora a desarrolladora con ejemplos reales del día a día."
@@ -26,7 +26,7 @@ const FundamentosJavaScript: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Los Fundamentos de JavaScript que Realmente Importan | femCoders Club"
+          content="Los fundamentos de JavaScript que realmente importan | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -42,7 +42,7 @@ const FundamentosJavaScript: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Fundamentos Profundos de JavaScript - femCoders Club"
+          content="Fundamentos profundos de JavaScript - FemCoders Club"
         />
         <meta
           name="twitter:description"
@@ -54,7 +54,7 @@ const FundamentosJavaScript: React.FC = () => (
         />
         
         <meta property="article:published_time" content="2025-11-25T10:00:00Z" />
-        <meta property="article:author" content="Irina Ichim - femCoders Club" />
+        <meta property="article:author" content="Irina Ichim - FemCoders Club" />
         <meta property="article:section" content="Desarrollo Web" />
         <meta property="article:tag" content="JavaScript" />
         <meta property="article:tag" content="Fundamentos" />

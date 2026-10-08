@@ -16,7 +16,7 @@ import {
 const CssVariablesSass: React.FC = () => (
   <>
       <Helmet>
-        <title>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | femCoders Club</title>
+        <title>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. Guía completa con ejemplos prácticos, arquitectura híbrida y migración estratégica para desarrollo frontend moderno."
@@ -45,7 +45,7 @@ const CssVariablesSass: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | femCoders Club"
+          content="CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | FemCoders Club"
         />
         <meta
           property="og:description"

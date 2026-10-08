@@ -8,7 +8,7 @@ import { SeccionPost, TarjetasPost } from "../../../components/post/PiezasPost";
 const ReplicaNike: React.FC = () => (
   <>
       <Helmet>
-        <title>Réplica de Nike Store con React: Un Proyecto E-commerce Completo | FemCoders Club</title>
+        <title>Réplica de Nike Store con React: un proyecto e-commerce completo | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas."
@@ -32,7 +32,7 @@ const ReplicaNike: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Réplica de Nike Store con React: Un Proyecto E-commerce Completo | FemCoders Club" />
+        <meta property="og:title" content="Réplica de Nike Store con React: un proyecto e-commerce completo | FemCoders Club" />
         <meta property="og:description" content="Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas." />
         <meta
           property="og:url"
@@ -44,7 +44,7 @@ const ReplicaNike: React.FC = () => (
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Réplica de Nike Store con React: Un Proyecto E-commerce Completo" />
+        <meta name="twitter:title" content="Réplica de Nike Store con React: un proyecto e-commerce completo" />
         <meta name="twitter:description" content="Proyecto e-commerce completo con React, carrito de compras, diseño responsivo y funcionalidades avanzadas por Almudena Rendón." />
         <meta name="twitter:image" content="https://www.femcodersclub.com/assets/react/nike-store-replica.jpg" />
 

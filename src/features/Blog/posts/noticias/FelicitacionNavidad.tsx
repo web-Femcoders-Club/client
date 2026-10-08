@@ -7,7 +7,7 @@ import { SeccionPost, TarjetasPost, VideoPost } from "../../components/post/Piez
 const FelicitacionNavidad: React.FC = () => (
   <>
       <Helmet>
-        <title>femCoders Club - Felices Fiestas 2024</title>
+        <title>FemCoders Club: felices fiestas 2024</title>
         <meta
           name="description"
           content="Felicitamos la Navidad y Año Nuevo desde femCoders Club, celebrando los logros del 2024 y mirando hacia un 2025 lleno de innovación y empoderamiento."
@@ -24,7 +24,7 @@ const FelicitacionNavidad: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="femCoders Club - Felices Fiestas 2024"
+          content="FemCoders Club: felices fiestas 2024"
         />
         <meta
           property="og:description"
@@ -49,7 +49,7 @@ const FelicitacionNavidad: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="femCoders Club - Felices Fiestas 2024"
+          content="FemCoders Club: felices fiestas 2024"
         />
         <meta
           name="twitter:description"

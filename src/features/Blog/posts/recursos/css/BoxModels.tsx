@@ -13,7 +13,7 @@ import {
 const BoxModels: React.FC = () => (
   <>
       <Helmet>
-        <title>Box Model en CSS | Guía Completa para Frontend</title>
+        <title>Box Model en CSS | Guía completa para frontend</title>
         <meta
           name="description"
           content="Aprende todo sobre el Box Model en CSS con ejemplos, optimización y mejores prácticas. FemCoders Club te ayuda a mejorar tu diseño web y frontend."
@@ -37,7 +37,7 @@ const BoxModels: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Box Model en CSS | Guía Completa con FemCoders Club" />
+        <meta property="og:title" content="Box Model en CSS | Guía completa con FemCoders Club" />
         <meta property="og:description" content="Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club." />
         <meta
           property="og:url"
@@ -49,7 +49,7 @@ const BoxModels: React.FC = () => (
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Box Model en CSS | Guía Completa para Frontend" />
+        <meta name="twitter:title" content="Box Model en CSS | Guía completa para frontend" />
         <meta name="twitter:description" content="Aprende Box Model en CSS con ejemplos prácticos, optimización y mejores prácticas para diseño web profesional." />
         <meta name="twitter:image" content="https://www.femcodersclub.com/assets/css/boxModel.jpg" />
 

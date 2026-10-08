@@ -15,7 +15,7 @@ const Flexbox: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Flexbox: El poder de crear layouts flexibles | femCoders Club
+          Flexbox: El poder de crear layouts flexibles | FemCoders Club
         </title>
         <meta
           name="description"
@@ -42,7 +42,7 @@ const Flexbox: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Flexbox: El poder de crear layouts flexibles | femCoders Club"
+          content="Flexbox: El poder de crear layouts flexibles | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -85,7 +85,7 @@ const Flexbox: React.FC = () => (
               type: "Article",
               path: "/recursos/css/flexbox",
               headline:
-                "Flexbox: El poder de crear layouts flexibles | femCoders Club",
+                "Flexbox: El poder de crear layouts flexibles | FemCoders Club",
               description:
                 "Aprende a usar Flexbox en CSS para crear layouts flexibles y responsivos de manera sencilla. Incluye ejemplos prácticos y recursos útiles.",
               image: "/assets/css/flexbox.jpg",

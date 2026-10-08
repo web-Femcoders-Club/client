@@ -17,7 +17,7 @@ const TestingJavaScriptSinFrameworks: React.FC = () => (
       <Helmet>
         <title>
           Testing en JavaScript sin frameworks: construye tu propio test
-          runner | femCoders Club
+          runner | FemCoders Club
         </title>
         <meta
           name="description"
@@ -32,7 +32,7 @@ const TestingJavaScriptSinFrameworks: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Testing en JavaScript sin frameworks: construye tu propio test runner | femCoders Club"
+          content="Testing en JavaScript sin frameworks: construye tu propio test runner | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -324,7 +324,7 @@ async function run() {
             microtareas entre avance y avance. Es la distinción entre
             macrotasks y microtasks que vimos en{" "}
             <Link to="/recursos/js/event-loop-javascript">
-              Event Loop en JavaScript: Cómo Funciona la Asincronía
+              Event Loop en JavaScript: cómo funciona la asincronía
             </Link>
             , y aquí deja de ser teoría de entrevista para convertirse en la
             razón por la que tu test se cuelga. En el ejemplo del repo esto
@@ -379,7 +379,7 @@ async function run() {
           Ese <code>assert</code> nativo, por cierto, es el que llevamos
           usando en todos los proyectos de esta serie desde{" "}
           <Link to="/recursos/js/event-loop-javascript">
-            Event Loop en JavaScript: Cómo Funciona la Asincronía
+            Event Loop en JavaScript: cómo funciona la asincronía
           </Link>
           . Este es el momento de mirar qué hay debajo.
         </p>
@@ -428,7 +428,7 @@ async function run() {
         <p>
           Esa decisión de diseño es el patrón Observer de{" "}
           <Link to="/recursos/js/patrones-diseno-javascript">
-            Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo
+            Patrones de diseño en JavaScript puro: más allá del catálogo
           </Link>
           , aplicado a un caso donde se nota inmediatamente: emites eventos
           y no te importa quién escucha.
@@ -559,12 +559,12 @@ async function run() {
           </li>
           <li>
             <Link to="/recursos/js/event-loop-javascript">
-              Event Loop en JavaScript: Cómo Funciona la Asincronía
+              Event Loop en JavaScript: cómo funciona la asincronía
             </Link>
           </li>
           <li>
             <Link to="/recursos/js/patrones-diseno-javascript">
-              Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo
+              Patrones de diseño en JavaScript puro: más allá del catálogo
             </Link>
           </li>
           <li>

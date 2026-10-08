@@ -7,7 +7,7 @@ const ApisHtml: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Guía Completa: APIs en HTML para Proyectos Web - femCoders Club
+          Guía completa: APIs en HTML para proyectos web - FemCoders Club
         </title>
         <meta
           name="description"
@@ -34,7 +34,7 @@ const ApisHtml: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Guía Completa: APIs en HTML para Proyectos Web - femCoders Club"
+          content="Guía completa: APIs en HTML para proyectos web - FemCoders Club"
         />
         <meta
           property="og:description"
@@ -54,7 +54,7 @@ const ApisHtml: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Guía Completa: APIs en HTML para Proyectos Web - femCoders Club"
+          content="Guía completa: APIs en HTML para proyectos web - FemCoders Club"
         />
         <meta
           name="twitter:description"

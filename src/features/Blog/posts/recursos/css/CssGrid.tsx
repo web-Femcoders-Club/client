@@ -15,7 +15,7 @@ import {
 const CssGrid: React.FC = () => (
   <>
      <Helmet>
-  <title>CSS Grid: Domina el sistema de cuadrículas en tu página web | FemCoders Club</title>
+  <title>CSS Grid: domina el sistema de cuadrículas en tu página web | FemCoders Club</title>
   <meta
     name="description"
     content="Aprende a usar CSS Grid para crear layouts web profesionales. Descubre diferencias con Flexbox, propiedades avanzadas, ejemplos prácticos y optimizaciones de rendimiento."
@@ -36,7 +36,7 @@ const CssGrid: React.FC = () => (
   
   {/* Open Graph para compartir en redes sociales */}
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="CSS Grid: Domina el sistema de cuadrículas en tu página web" />
+  <meta property="og:title" content="CSS Grid: domina el sistema de cuadrículas en tu página web" />
   <meta property="og:description" content="Aprende a usar CSS Grid para crear layouts web profesionales. Guía completa con ejemplos prácticos, compatibilidad con navegadores y optimización de rendimiento." />
   <meta property="og:url" content="https://www.femcodersclub.com/recursos/css/css-grid" />
   <meta property="og:image" content="https://www.femcodersclub.com/public-optimized/desktop/assets/css/CssGrid.webp" />
@@ -44,7 +44,7 @@ const CssGrid: React.FC = () => (
   
   {/* Twitter Card */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CSS Grid: Domina el sistema de cuadrículas en tu página web" />
+  <meta name="twitter:title" content="CSS Grid: domina el sistema de cuadrículas en tu página web" />
   <meta name="twitter:description" content="Guía completa de CSS Grid: desde conceptos básicos hasta técnicas avanzadas para desarrolladoras web. Con ejemplos prácticos y código." />
   <meta name="twitter:image" content="https://www.femcodersclub.com/public-optimized/desktop/assets/css/CssGrid.webp" />
   

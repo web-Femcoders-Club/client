@@ -16,8 +16,7 @@ const CssGridFlexbox: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y
-          Flexbox | FemCoders Club
+          Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox | FemCoders Club
         </title>
         <meta
           name="description"
@@ -44,7 +43,7 @@ const CssGridFlexbox: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y Flexbox"
+          content="Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox"
         />
         <meta
           property="og:description"
@@ -64,7 +63,7 @@ const CssGridFlexbox: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y Flexbox"
+          content="Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox"
         />
         <meta
           name="twitter:description"

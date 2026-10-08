@@ -15,7 +15,7 @@ const DataConnectEvento: React.FC = () => (
   <>
       <Helmet>
         <title>
-          DataConnect: Revive una tarde épica de comunidad tech en Barcelona | FemCoders Club
+          DataConnect: revive una tarde épica de comunidad tech en Barcelona | FemCoders Club
         </title>
         <meta
           name="description"
@@ -42,7 +42,7 @@ const DataConnectEvento: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="DataConnect: Revive una tarde épica de comunidad tech en Barcelona"
+          content="DataConnect: revive una tarde épica de comunidad tech en Barcelona"
         />
         <meta
           property="og:description"

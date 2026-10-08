@@ -16,7 +16,7 @@ const ResponsiveDesign: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Responsive Design: De Principiante a Experta con Media Queries | FemCoders Club
+          Responsive design: de principiante a experta con media queries | FemCoders Club
         </title>
         <meta
           name="description"
@@ -42,7 +42,7 @@ const ResponsiveDesign: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Responsive Design: De Principiante a Experta con Media Queries"
+          content="Responsive design: de principiante a experta con media queries"
         />
         <meta
           property="og:description"
@@ -62,7 +62,7 @@ const ResponsiveDesign: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Responsive Design: De Principiante a Experta"
+          content="Responsive design: de principiante a experta"
         />
         <meta
           name="twitter:description"

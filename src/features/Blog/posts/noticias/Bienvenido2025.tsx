@@ -7,7 +7,7 @@ import { SeccionPost, TarjetasPost } from "../../components/post/PiezasPost";
 const Bienvenido2025: React.FC = () => (
   <>
       <Helmet>
-        <title>femCoders Club - ¡Bienvenidas a 2025! 🎉</title>
+        <title>FemCoders Club - ¡Bienvenidas a 2025! 🎉</title>
         <meta
           name="description"
           content="Explora los logros de 2024 y nuestras emocionantes iniciativas para 2025 en FemCoders Club. Aprende, conecta y crece en nuestra comunidad."

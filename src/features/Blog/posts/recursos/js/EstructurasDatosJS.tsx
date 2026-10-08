@@ -16,8 +16,8 @@ const EstructurasDatosJS: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y
-          WeakSet | femCoders Club
+          Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y
+          WeakSet | FemCoders Club
         </title>
         <meta
           name="description"
@@ -32,7 +32,7 @@ const EstructurasDatosJS: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet | femCoders Club"
+          content="Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y WeakSet | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -48,7 +48,7 @@ const EstructurasDatosJS: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Estructuras de Datos Avanzadas en JavaScript - femCoders Club"
+          content="Estructuras de datos avanzadas en JavaScript - FemCoders Club"
         />
         <meta
           name="twitter:description"

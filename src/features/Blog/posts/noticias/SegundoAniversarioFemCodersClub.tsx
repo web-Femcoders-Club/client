@@ -8,7 +8,7 @@ import { SeccionPost, TarjetasPost } from "../../components/post/PiezasPost";
 const SegundoAniversarioFemCoders: React.FC = () => (
   <>
       <Helmet>
-        <title>Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico | FemCoders Club</title>
+        <title>Segundo aniversario de FemCoders Club: nuestra historia, nuestro equipo y el futuro tecnológico | FemCoders Club</title>
         <meta
           name="description"
           content="Celebramos 2 años de FemCoders Club: de un espacio seguro a una Asociación con +1.300 mujeres. Conoce nuestro equipo, logros y visión de futuro con IA y tecnología."
@@ -24,7 +24,7 @@ const SegundoAniversarioFemCoders: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico"
+          content="Segundo aniversario de FemCoders Club: nuestra historia, nuestro equipo y el futuro tecnológico"
         />
         <meta
           property="og:description"
@@ -42,7 +42,7 @@ const SegundoAniversarioFemCoders: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Segundo Aniversario de FemCoders Club: Nuestra historia y futuro"
+          content="Segundo aniversario de FemCoders Club: nuestra historia y futuro"
         />
         <meta
           name="twitter:description"

@@ -16,8 +16,7 @@ const PatronesDisenioJavaScript: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo |
-          femCoders Club
+          Patrones de diseño en JavaScript puro: más allá del catálogo | FemCoders Club
         </title>
         <meta
           name="description"
@@ -32,7 +31,7 @@ const PatronesDisenioJavaScript: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo | femCoders Club"
+          content="Patrones de diseño en JavaScript puro: más allá del catálogo | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -48,7 +47,7 @@ const PatronesDisenioJavaScript: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Patrones de Diseño en JavaScript Puro - femCoders Club"
+          content="Patrones de diseño en JavaScript puro - FemCoders Club"
         />
         <meta
           name="twitter:description"

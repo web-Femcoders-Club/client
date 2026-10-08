@@ -15,7 +15,7 @@ const WebApisNuevaGeneracion: React.FC = () => (
       <Helmet>
         <title>
           Web APIs de nueva generación en JavaScript: más allá del localStorage
-          | femCoders Club
+          | FemCoders Club
         </title>
         <meta
           name="description"
@@ -30,7 +30,7 @@ const WebApisNuevaGeneracion: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Web APIs de nueva generación en JavaScript: más allá del localStorage | femCoders Club"
+          content="Web APIs de nueva generación en JavaScript: más allá del localStorage | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -512,17 +512,17 @@ const WebApisNuevaGeneracion: React.FC = () => (
           </li>
           <li>
             <Link to="/recursos/js/modulos-arquitectura-escalable">
-              Módulos y Arquitectura Escalable en JavaScript
+              Módulos y arquitectura escalable en JavaScript
             </Link>
           </li>
           <li>
             <Link to="/recursos/js/patrones-diseno-javascript">
-              Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo
+              Patrones de diseño en JavaScript puro: más allá del catálogo
             </Link>
           </li>
           <li>
             <Link to="/recursos/js/estructuras-datos-js">
-              Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y
+              Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y
               WeakSet
             </Link>
           </li>

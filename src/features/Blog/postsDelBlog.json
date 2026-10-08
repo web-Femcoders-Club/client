@@ -114,7 +114,7 @@
   },
   {
     "ruta": "/recursos/js/modulos-arquitectura-escalable",
-    "titulo": "Módulos y Arquitectura Escalable en JavaScript",
+    "titulo": "Módulos y arquitectura escalable en JavaScript",
     "descripcion": "ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto JavaScript que va a crecer. Proyecto práctico: Productivity Dashboard.",
     "imagen": "/assets/javascript/modulos-arquitectura-escalable.png",
     "fecha": "2026-06-03",
@@ -133,7 +133,7 @@
   },
   {
     "ruta": "/recursos/js/patrones-diseno-javascript",
-    "titulo": "Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo",
+    "titulo": "Patrones de diseño en JavaScript puro: más allá del catálogo",
     "descripcion": "Patrones de diseño en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js.",
     "imagen": "/assets/javascript/patrones-diseno-javascript.png",
     "fecha": "2026-05-10",
@@ -143,7 +143,7 @@
   },
   {
     "ruta": "/recursos/js/estructuras-datos-js",
-    "titulo": "Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+    "titulo": "Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
     "descripcion": "Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.",
     "imagen": "/assets/javascript/estructuras-datos-js.png",
     "fecha": "2026-04-25",
@@ -161,7 +161,7 @@
   },
   {
     "ruta": "/recursos/js/closures-scope-context",
-    "titulo": "Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript",
+    "titulo": "Closures, scope y context: lo que realmente pasa en el motor de JavaScript",
     "descripcion": "El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva.",
     "imagen": "/assets/javascript/closures-scope-context.png",
     "fecha": "2026-03-01",
@@ -170,7 +170,7 @@
   },
   {
     "ruta": "/recursos/js/manipulacion-dom-ingeniera",
-    "titulo": "Manipulación del DOM como una Ingeniera",
+    "titulo": "Manipulación del DOM como una ingeniera",
     "descripcion": "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulación del DOM.",
     "imagen": "/assets/javascript/manipulacion-dom-ingeniera.png",
     "fecha": "2026-02-08",
@@ -188,7 +188,7 @@
   },
   {
     "ruta": "/recursos/js/event-loop-javascript",
-    "titulo": "Event Loop en JavaScript: Cómo Funciona la Asincronía",
+    "titulo": "Event Loop en JavaScript: cómo funciona la asincronía",
     "descripcion": "Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks y código asíncrono en JavaScript.",
     "imagen": "/assets/javascript/event-loop-javascript.webp",
     "fecha": "2026-01-24",
@@ -206,7 +206,7 @@
   },
   {
     "ruta": "/recursos/js/fundamentos-javascript-profundos",
-    "titulo": "Los Fundamentos de JavaScript que Realmente Importan",
+    "titulo": "Los fundamentos de JavaScript que realmente importan",
     "descripcion": "El salto de HTML/CSS a JavaScript explicado sin tecnicismos. Entiende cómo funciona JavaScript por dentro con ejemplos reales.",
     "imagen": "/public-optimized/desktop/assets/javascript/fundamentos-javascript.webp",
     "fecha": "2025-11-25",
@@ -215,7 +215,7 @@
   },
   {
     "ruta": "/noticias/segundo-aniversario",
-    "titulo": "Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico",
+    "titulo": "Segundo aniversario de FemCoders Club: nuestra historia, nuestro equipo y el futuro tecnológico",
     "descripcion": "De un espacio seguro a una Asociación con +1.300 mujeres en tech. Celebramos 2 años de crecimiento, comunidad y futuro tecnológico.",
     "imagen": "/public-optimized/desktop/assets/Eventos2025/segundoAniversario-femCodersClub.webp",
     "fecha": "2025-10-24",
@@ -224,7 +224,7 @@
   },
   {
     "ruta": "/recursos/css/quiz-css-entrevistas",
-    "titulo": "Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales",
+    "titulo": "Quiz CSS para entrevistas técnicas: 30 preguntas esenciales",
     "descripcion": "Quiz interactivo para preparar entrevistas técnicas de CSS. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
     "imagen": "/public-optimized/desktop/assets/css/CSS-Quiz-Entrevistas.webp",
     "fecha": "2025-10-17",
@@ -242,7 +242,7 @@
   },
   {
     "ruta": "/recursos/html/quiz-html-entrevistas",
-    "titulo": "Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales",
+    "titulo": "Quiz HTML para entrevistas técnicas: 30 preguntas esenciales",
     "descripcion": "Quiz interactivo para preparar entrevistas técnicas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
     "imagen": "/public-optimized/desktop/assets/html/HTML-Quiz-Entrevistas.webp",
     "fecha": "2025-09-15",
@@ -278,7 +278,7 @@
   },
   {
     "ruta": "/recursos/css/accesibilidad-css",
-    "titulo": "Accesibilidad en CSS: Diseñando Experiencias Inclusivas",
+    "titulo": "Accesibilidad en CSS: diseñando experiencias inclusivas",
     "descripcion": "Domina la accesibilidad en CSS: contraste, tipografía, navegación por teclado y preferencias del usuario. Con ejemplos reales de sitios web.",
     "imagen": "/public-optimized/desktop/assets/css/Accesibilidad-CSS.webp",
     "fecha": "2025-07-12",
@@ -287,7 +287,7 @@
   },
   {
     "ruta": "/recursos/css/animaciones-css",
-    "titulo": "Domina las Animaciones CSS: De Básico a Avanzado",
+    "titulo": "Domina las animaciones CSS: de básico a avanzado",
     "descripcion": "Guía completa de animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Aprende performance, accesibilidad y mejores prácticas con ejemplos reales.",
     "imagen": "/public-optimized/desktop/assets/css/AnimacionesCSS.webp",
     "fecha": "2025-07-01",
@@ -296,7 +296,7 @@
   },
   {
     "ruta": "/noticias/EntrevistaNadiaTesting",
-    "titulo": "Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA",
+    "titulo": "Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA",
     "descripcion": "Una conversación inspiradora con una de las voces más influyentes en testing de Latinoamérica. Descubre su historia, consejos y visión del futuro del QA.",
     "imagen": "/public-optimized/desktop/assets/Eventos2025/nadiaCavalleri.webp",
     "fecha": "2025-06-20",
@@ -305,7 +305,7 @@
   },
   {
     "ruta": "/noticias/DataConnectEvento",
-    "titulo": "DataConnect: Revive una tarde épica de comunidad tech en Barcelona",
+    "titulo": "DataConnect: revive una tarde épica de comunidad tech en Barcelona",
     "descripcion": "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada increíble de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen.",
     "imagen": "/public-optimized/desktop/assets/Eventos2025/comunidadData.webp",
     "fecha": "2025-06-02",
@@ -314,7 +314,7 @@
   },
   {
     "ruta": "/recursos/css/transiciones-transformaciones",
-    "titulo": "Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada",
+    "titulo": "Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada",
     "descripcion": "Guía completa de transformaciones y transiciones CSS 2D y 3D. Aprende rendering pipeline, hardware acceleration, timing functions avanzadas, debugging y ejemplos reales con Dashboard futurista.",
     "imagen": "/public-optimized/desktop/assets/css/TransformacionesCSS.webp",
     "fecha": "2025-05-25",
@@ -323,7 +323,7 @@
   },
   {
     "ruta": "/recursos/css/css-grid-flexbox",
-    "titulo": "Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y Flexbox",
+    "titulo": "Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox",
     "descripcion": "Aprende a combinar CSS Grid y Flexbox estratégicamente para crear layouts modernos, complejos y responsivos. Descubre 5 estrategias eficaces y ejemplos prácticos.",
     "imagen": "/public-optimized/desktop/assets/css/CssGridFlexbox.webp",
     "fecha": "2025-04-27",
@@ -332,7 +332,7 @@
   },
   {
     "ruta": "/recursos/react/nike-store-replica",
-    "titulo": "Réplica de Nike Store con React: Un Proyecto E-commerce Completo",
+    "titulo": "Réplica de Nike Store con React: un proyecto e-commerce completo",
     "descripcion": "Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas.",
     "imagen": "/assets/react/nike-store-replica.jpg",
     "fecha": "2025-03-16",
@@ -350,7 +350,7 @@
   },
   {
     "ruta": "/recursos/css/box-model",
-    "titulo": "Box Model en CSS | Guía Completa con FemCoders Club",
+    "titulo": "Box Model en CSS | Guía completa con FemCoders Club",
     "descripcion": "Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club.",
     "imagen": "/assets/css/boxModel.jpg",
     "fecha": "2025-02-16",
@@ -359,7 +359,7 @@
   },
   {
     "ruta": "/recursos/css/selectores-css",
-    "titulo": "Domina los Selectores en CSS",
+    "titulo": "Domina los selectores en CSS",
     "descripcion": "Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos.",
     "imagen": "/assets/css/SelectoresCss.jpg",
     "fecha": "2025-01-17",
@@ -368,7 +368,7 @@
   },
   {
     "ruta": "/recursos/css/css-grid",
-    "titulo": "CSS Grid: Domina el sistema de cuadrículas en tu página web",
+    "titulo": "CSS Grid: domina el sistema de cuadrículas en tu página web",
     "descripcion": "Aprende a usar CSS Grid para crear layouts web profesionales. Guía completa con ejemplos prácticos, compatibilidad con navegadores y optimización de rendimiento.",
     "imagen": "/public-optimized/desktop/assets/css/CssGrid.webp",
     "fecha": "2025-01-15",
@@ -377,7 +377,7 @@
   },
   {
     "ruta": "/recursos/css/responsive-design",
-    "titulo": "Responsive Design: De Principiante a Experta con Media Queries",
+    "titulo": "Responsive design: de principiante a experta con media queries",
     "descripcion": "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first con ejemplos prácticos.",
     "imagen": "/public-optimized/desktop/assets/css/ResponsiveDesign.webp",
     "fecha": "2025-01-04",
@@ -395,7 +395,7 @@
   },
   {
     "ruta": "/noticias/FelicitacionNavidad",
-    "titulo": "femCoders Club - Felices Fiestas 2024",
+    "titulo": "FemCoders Club: felices fiestas 2024",
     "descripcion": "Felicitamos la Navidad y el Año Nuevo desde femCoders Club, celebrando los logros de 2024 y mirando hacia un 2025 lleno de innovación.",
     "imagen": "/FemCodersClubLogo.png",
     "fecha": "2024-12-22",
@@ -413,7 +413,7 @@
   },
   {
     "ruta": "/recursos/html/integracion-frameworks",
-    "titulo": "Integración de Frameworks y Librerías",
+    "titulo": "Integración de frameworks y librerías",
     "descripcion": "Explora cómo combinar HTML con frameworks modernos como React y Svelte para crear aplicaciones dinámicas y escalables.",
     "imagen": "/assets/html/htmlFrameworks.jpg",
     "fecha": "2023-11-14",
@@ -422,7 +422,7 @@
   },
   {
     "ruta": "/recursos/html/formularios-y-tablas",
-    "titulo": "Formularios y Tablas en HTML",
+    "titulo": "Formularios y tablas en HTML",
     "descripcion": "Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos.",
     "imagen": "/assets/html/Formularios-Tablas-HTML.png",
     "fecha": "2023-11-09",
@@ -431,7 +431,7 @@
   },
   {
     "ruta": "/recursos/html/apis-html",
-    "titulo": "Guía Completa: APIs en HTML para Proyectos Web - femCoders Club",
+    "titulo": "Guía completa: APIs en HTML para proyectos web - FemCoders Club",
     "descripcion": "Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras.",
     "imagen": "/assets/html/ApisHtml.png",
     "fecha": "2023-11-09",
@@ -440,7 +440,7 @@
   },
   {
     "ruta": "/recursos/html/html-seo-accesibilidad",
-    "titulo": "HTML Avanzado para SEO y Accesibilidad",
+    "titulo": "HTML avanzado para SEO y accesibilidad",
     "descripcion": "Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más.",
     "imagen": "/assets/html/Html-Accesibilidad-SEO.jpg",
     "fecha": "2023-11-05",
@@ -449,7 +449,7 @@
   },
   {
     "ruta": "/recursos/html/html-semantico",
-    "titulo": "HTML Semántico y Diseño de Layout",
+    "titulo": "HTML semántico y diseño de layout",
     "descripcion": "Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web.",
     "imagen": "/assets/html/ejemplo-layout.png",
     "fecha": "2023-10-30",
@@ -458,7 +458,7 @@
   },
   {
     "ruta": "/noticias/Aniversario",
-    "titulo": "femCoders Club - Primer Aniversario",
+    "titulo": "FemCoders Club: primer aniversario",
     "descripcion": "Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.",
     "imagen": "/femCodersClubpost.png",
     "fecha": "2023-10-24",
@@ -467,7 +467,7 @@
   },
   {
     "ruta": "/recursos/html/elementos-html-clave",
-    "titulo": "Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes",
+    "titulo": "Elementos HTML clave: encabezados, párrafos, enlaces e imágenes",
     "descripcion": "Explora los elementos esenciales de HTML y aprende a enriquecer tus páginas web con imágenes, enlaces, emojis y videos.",
     "imagen": "/assets/html/Elementos-HTML-Clave.png",
     "fecha": "2023-10-21",
@@ -476,7 +476,7 @@
   },
   {
     "ruta": "/recursos/html/introduccion-html",
-    "titulo": "Introducción a HTML: La base de la web",
+    "titulo": "Introducción a HTML: la base de la web",
     "descripcion": "Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.",
     "imagen": "/assets/html/Introduccion-HTML.png",
     "fecha": "2023-10-14",

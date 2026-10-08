@@ -17,7 +17,7 @@ const CssPerformancePost: React.FC = () => {
   const downloadActionPlanPDF = () => {
     const actionPlanContent = `
 PLAN DE ACCIÓN: EL CHALLENGE DE 7 DÍAS
-CSS Performance Optimization - femCoders Club
+CSS Performance Optimization - FemCoders Club
 
 ═══════════════════════════════════════════════════════════
 
@@ -82,7 +82,7 @@ Descargado desde: femcodersclub.com
   return (
     <>
       <Helmet>
-        <title>El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance | femCoders Club</title>
+        <title>El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre cómo optimizar CSS para mejorar performance web. De 81 a 97 en PageSpeed: técnicas avanzadas, Critical CSS, selectores eficientes y herramientas de medición 2025."
@@ -111,7 +111,7 @@ Descargado desde: femcodersclub.com
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance | femCoders Club"
+          content="El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -131,7 +131,7 @@ Descargado desde: femcodersclub.com
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="El Lado Oculto del CSS: Optimización de Performance Web"
+          content="El lado oculto del CSS: optimización de performance web"
         />
         <meta
           name="twitter:description"

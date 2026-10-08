@@ -16,7 +16,7 @@ import {
 const SassNextLevel: React.FC = () => (
   <>
       <Helmet>
-        <title>SASS: Lleva tu CSS al siguiente nivel | femCoders Club</title>
+        <title>SASS: Lleva tu CSS al siguiente nivel | FemCoders Club</title>
         <meta
           name="description"
           content="Domina SASS desde variables básicas hasta arquitectura 7-1 profesional. Tutorial completo con proyecto interactivo FemPalette, comparación con CSS Custom Properties y ejemplos reales."
@@ -45,7 +45,7 @@ const SassNextLevel: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="SASS: Lleva tu CSS al siguiente nivel | femCoders Club"
+          content="SASS: Lleva tu CSS al siguiente nivel | FemCoders Club"
         />
         <meta
           property="og:description"

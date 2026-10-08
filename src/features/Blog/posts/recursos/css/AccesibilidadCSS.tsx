@@ -13,7 +13,7 @@ const AccesibilidadCSS: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Accesibilidad en CSS: Diseñando Experiencias Inclusivas | FemCoders Club
+          Accesibilidad en CSS: diseñando experiencias inclusivas | FemCoders Club
         </title>
         <meta
           name="description"
@@ -40,7 +40,7 @@ const AccesibilidadCSS: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Accesibilidad en CSS: Diseñando Experiencias Inclusivas | FemCoders Club"
+          content="Accesibilidad en CSS: diseñando experiencias inclusivas | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -60,7 +60,7 @@ const AccesibilidadCSS: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Accesibilidad en CSS: Diseñando Experiencias Inclusivas"
+          content="Accesibilidad en CSS: diseñando experiencias inclusivas"
         />
         <meta
           name="twitter:description"

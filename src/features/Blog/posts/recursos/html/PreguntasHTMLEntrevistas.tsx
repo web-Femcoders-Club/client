@@ -588,7 +588,7 @@ Fecha: ${publicationDate}
   return (
     <>
       <Helmet>
-        <title>Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club</title>
+        <title>Quiz HTML para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club</title>
         <meta
           name="description"
           content="Prepárate para entrevistas técnicas con nuestro quiz interactivo de HTML. 30 preguntas (básico a avanzado), explicaciones detalladas y guía de estudio descargable."
@@ -617,7 +617,7 @@ Fecha: ${publicationDate}
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club"
+          content="Quiz HTML para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -637,7 +637,7 @@ Fecha: ${publicationDate}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Quiz HTML para Entrevistas Técnicas - femCoders Club"
+          content="Quiz HTML para entrevistas técnicas - FemCoders Club"
         />
         <meta
           name="twitter:description"

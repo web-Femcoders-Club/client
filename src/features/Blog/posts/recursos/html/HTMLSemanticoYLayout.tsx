@@ -6,7 +6,7 @@ import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 const HTMLSemanticoYLayout: React.FC = () => (
   <>
       <Helmet>
-        <title>HTML Semántico y Diseño de Layout | FemCoders Club</title>
+        <title>HTML semántico y diseño de layout | FemCoders Club</title>
         <meta
           name="description"
           content="Explora el HTML semántico, su importancia para la accesibilidad y SEO, y cómo estructurar layouts de manera efectiva."
@@ -30,7 +30,7 @@ const HTMLSemanticoYLayout: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="HTML Semántico y Diseño de Layout" />
+        <meta property="og:title" content="HTML semántico y diseño de layout" />
         <meta
           property="og:description"
           content="Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web."
@@ -49,7 +49,7 @@ const HTMLSemanticoYLayout: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="HTML Semántico y Diseño de Layout"
+          content="HTML semántico y diseño de layout"
         />
         <meta
           name="twitter:description"
@@ -79,7 +79,7 @@ const HTMLSemanticoYLayout: React.FC = () => (
 
     <PlantillaPost
       ruta="/recursos/html/html-semantico"
-      titulo="HTML Semántico y Diseño de Layout"
+      titulo="HTML semántico y diseño de layout"
       autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
       idComentarios={8}
       entradilla={

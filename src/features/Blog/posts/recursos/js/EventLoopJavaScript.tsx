@@ -14,7 +14,7 @@ import {
 const EventLoopJavaScript: React.FC = () => (
   <>
       <Helmet>
-        <title>Event Loop en JavaScript: Cómo Funciona la Asincronía (Guía 2026) | femCoders Club</title>
+        <title>Event Loop en JavaScript: cómo funciona la asincronía (Guía 2026) | FemCoders Club</title>
         <meta
           name="description"
           content="Aprende cómo funciona el Event Loop en JavaScript: Call Stack, Task Queue, Microtasks vs Macrotasks, Promises, async/await y AbortController. Guía completa con ejemplos prácticos."
@@ -28,7 +28,7 @@ const EventLoopJavaScript: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Event Loop en JavaScript: Cómo Funciona la Asincronía | femCoders Club"
+          content="Event Loop en JavaScript: cómo funciona la asincronía | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -44,7 +44,7 @@ const EventLoopJavaScript: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Event Loop en JavaScript - femCoders Club"
+          content="Event Loop en JavaScript - FemCoders Club"
         />
         <meta
           name="twitter:description"

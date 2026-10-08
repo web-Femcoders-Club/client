@@ -14,7 +14,7 @@ const TransicionesyTransformaciones: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada | FemCoders Club
+          Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada | FemCoders Club
         </title>
         <meta
           name="description"
@@ -41,7 +41,7 @@ const TransicionesyTransformaciones: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada"
+          content="Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada"
         />
         <meta
           property="og:description"
@@ -61,7 +61,7 @@ const TransicionesyTransformaciones: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada"
+          content="Transformaciones y transiciones CSS 2D/3D: guía avanzada"
         />
         <meta
           name="twitter:description"

@@ -6,7 +6,7 @@ import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 const FormandTablePost: React.FC = () => (
   <>
       <Helmet>
-        <title>Formularios y Tablas en HTML | FemCoders Club</title>
+        <title>Formularios y tablas en HTML | FemCoders Club</title>
         <meta
           name="description"
           content="Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos y mejores prácticas."
@@ -30,7 +30,7 @@ const FormandTablePost: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Formularios y Tablas en HTML | FemCoders Club" />
+        <meta property="og:title" content="Formularios y tablas en HTML | FemCoders Club" />
         <meta property="og:description" content="Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos." />
         <meta
           property="og:url"
@@ -41,7 +41,7 @@ const FormandTablePost: React.FC = () => (
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Formularios y Tablas en HTML | FemCoders Club" />
+        <meta name="twitter:title" content="Formularios y tablas en HTML | FemCoders Club" />
         <meta name="twitter:description" content="Guía completa para crear formularios y tablas en HTML con ejemplos prácticos, mejores prácticas y casos de uso." />
         <meta name="twitter:image" content="https://www.femcodersclub.com/assets/html/Formularios-Tablas-HTML.png" />
 
@@ -64,7 +64,7 @@ const FormandTablePost: React.FC = () => (
 
     <PlantillaPost
       ruta="/recursos/html/formularios-y-tablas"
-      titulo="Formularios y Tablas en HTML"
+      titulo="Formularios y tablas en HTML"
       autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
       idComentarios={6}
       entradilla={
@@ -355,7 +355,7 @@ const FormandTablePost: React.FC = () => (
 </table>`}</CodigoPost>
       </SeccionPost>
 
-      <SeccionPost titulo="Mejores Prácticas para Formularios y Tablas en HTML">
+      <SeccionPost titulo="Mejores Prácticas para Formularios y tablas en HTML">
         <h3>Formularios</h3>
         <ul>
           <li>

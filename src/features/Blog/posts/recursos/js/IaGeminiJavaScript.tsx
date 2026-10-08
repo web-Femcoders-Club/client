@@ -9,7 +9,7 @@ const IaGeminiJavaScript: React.FC = () => (
       <Helmet>
         <title>
           IA en JavaScript: cómo integrar la API gratuita de Gemini sin
-          frameworks | femCoders Club
+          frameworks | FemCoders Club
         </title>
         <meta
           name="description"
@@ -24,7 +24,7 @@ const IaGeminiJavaScript: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks | femCoders Club"
+          content="IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks | FemCoders Club"
         />
         <meta
           property="og:description"

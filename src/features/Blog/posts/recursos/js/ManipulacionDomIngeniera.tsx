@@ -15,7 +15,7 @@ import {
 const ManipulacionDomIngeniera: React.FC = () => (
   <>
       <Helmet>
-        <title>Manipulaci&oacute;n del DOM como una Ingeniera: Event Delegation, Performance y Observers | femCoders Club</title>
+        <title>Manipulación del DOM como una ingeniera: event delegation, performance y observers | FemCoders Club</title>
         <meta
           name="description"
           content="Aprende manipulaci&oacute;n del DOM con enfoque de ingenier&iacute;a: Event Delegation, DocumentFragment, IntersectionObserver, MutationObserver y Custom Events. Gu&iacute;a completa con proyecto pr&aacute;ctico Smart Analytics Tracker."
@@ -29,7 +29,7 @@ const ManipulacionDomIngeniera: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Manipulaci&oacute;n del DOM como una Ingeniera | femCoders Club"
+          content="Manipulación del DOM como una ingeniera | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -45,7 +45,7 @@ const ManipulacionDomIngeniera: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Manipulaci&oacute;n del DOM como una Ingeniera - femCoders Club"
+          content="Manipulación del DOM como una ingeniera - FemCoders Club"
         />
         <meta
           name="twitter:description"

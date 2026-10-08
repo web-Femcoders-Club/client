@@ -13,7 +13,7 @@ const ModulosArquitecturaEscalable: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Módulos y Arquitectura Escalable en JavaScript | femCoders Club
+          Módulos y arquitectura escalable en JavaScript | FemCoders Club
         </title>
         <meta
           name="description"
@@ -28,7 +28,7 @@ const ModulosArquitecturaEscalable: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Módulos y Arquitectura Escalable en JavaScript | femCoders Club"
+          content="Módulos y arquitectura escalable en JavaScript | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -44,7 +44,7 @@ const ModulosArquitecturaEscalable: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Módulos y Arquitectura Escalable en JavaScript — femCoders Club"
+          content="Módulos y arquitectura escalable en JavaScript — femCoders Club"
         />
         <meta
           name="twitter:description"

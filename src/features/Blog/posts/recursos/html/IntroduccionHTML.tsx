@@ -10,7 +10,7 @@ import {
 const IntroduccionHTML: React.FC = () => (
   <>
       <Helmet>
-        <title>Introducción a HTML: La base de la web</title>
+        <title>Introducción a HTML: la base de la web</title>
         <meta
           name="description"
           content="Conoce los fundamentos de HTML, su importancia y cómo se relaciona con CSS y JavaScript para crear páginas web modernas."
@@ -34,7 +34,7 @@ const IntroduccionHTML: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Introducción a HTML: La base de la web" />
+        <meta property="og:title" content="Introducción a HTML: la base de la web" />
         <meta
           property="og:description"
           content="Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS."
@@ -51,7 +51,7 @@ const IntroduccionHTML: React.FC = () => (
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Introducción a HTML: La base de la web" />
+        <meta name="twitter:title" content="Introducción a HTML: la base de la web" />
         <meta
           name="twitter:description"
           content="Explora las bases de HTML y cómo estructurar contenido web accesible y moderno."

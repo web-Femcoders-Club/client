@@ -7,7 +7,7 @@ const IntroduccionCSS: React.FC = () => (
   <>
       <Helmet>
         <title>
-          ¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club
+          ¿Qué es CSS y cómo usarlo para diseñar páginas web? | FemCoders Club
         </title>
         <meta
           name="description"
@@ -37,7 +37,7 @@ const IntroduccionCSS: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club"
+          content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | FemCoders Club"
         />
         <meta
           property="og:description"

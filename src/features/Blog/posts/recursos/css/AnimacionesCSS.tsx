@@ -16,7 +16,7 @@ const AnimacionesCSS: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Domina las Animaciones CSS: De Básico a Avanzado | FemCoders Club
+          Domina las animaciones CSS: de básico a avanzado | FemCoders Club
         </title>
         <meta
           name="description"
@@ -43,7 +43,7 @@ const AnimacionesCSS: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Domina las Animaciones CSS: De Básico a Avanzado"
+          content="Domina las animaciones CSS: de básico a avanzado"
         />
         <meta
           property="og:description"
@@ -63,7 +63,7 @@ const AnimacionesCSS: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Animaciones CSS: De Básico a Avanzado"
+          content="Animaciones CSS: de básico a avanzado"
         />
         <meta
           name="twitter:description"

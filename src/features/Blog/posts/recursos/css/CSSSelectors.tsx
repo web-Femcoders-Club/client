@@ -13,7 +13,7 @@ import {
 const CSSSelectors: React.FC = () => (
   <>
       <Helmet>
-        <title>Domina los Selectores en CSS | femCoders Club</title>
+        <title>Domina los selectores en CSS | FemCoders Club</title>
         <meta
           name="description"
           content="Guía completa para dominar los selectores CSS. Aprende selectores básicos, avanzados, combinados, y cómo utilizarlos con preprocesadores como Sass y Less."
@@ -37,7 +37,7 @@ const CSSSelectors: React.FC = () => (
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Domina los Selectores en CSS | femCoders Club" />
+        <meta property="og:title" content="Domina los selectores en CSS | FemCoders Club" />
         <meta property="og:description" content="Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos." />
         <meta
           property="og:url"
@@ -49,7 +49,7 @@ const CSSSelectors: React.FC = () => (
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Domina los Selectores en CSS | femCoders Club" />
+        <meta name="twitter:title" content="Domina los selectores en CSS | FemCoders Club" />
         <meta name="twitter:description" content="Explora todos los tipos de selectores CSS con ejemplos y práctica. Aprende a usarlos como una pro." />
         <meta name="twitter:image" content="https://www.femcodersclub.com/assets/css/SelectoresCss.jpg" />
 

@@ -9,7 +9,7 @@ const EntrevistaNadiaTesting: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA | FemCoders Club
+          Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA | FemCoders Club
         </title>
         <meta
           name="description"
@@ -30,7 +30,7 @@ const EntrevistaNadiaTesting: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA"
+          content="Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA"
         />
         <meta
           property="og:description"
@@ -50,7 +50,7 @@ const EntrevistaNadiaTesting: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA"
+          content="Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA"
         />
         <meta
           name="twitter:description"

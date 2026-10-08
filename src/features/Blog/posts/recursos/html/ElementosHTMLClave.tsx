@@ -10,7 +10,7 @@ import {
 const ElementosHTMLClave: React.FC = () => (
   <>
   <Helmet>
-  <title>Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes</title>
+  <title>Elementos HTML clave: encabezados, párrafos, enlaces e imágenes</title>
   <meta
     name="description"
     content="Descubre cómo usar encabezados, párrafos, enlaces, imágenes y más en HTML. Aprende buenas prácticas para estructurar contenido accesible y atractivo."
@@ -36,7 +36,7 @@ const ElementosHTMLClave: React.FC = () => (
   <meta property="og:type" content="article" />
   <meta
     property="og:title"
-    content="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+    content="Elementos HTML clave: encabezados, párrafos, enlaces e imágenes"
   />
   <meta
     property="og:description"
@@ -56,7 +56,7 @@ const ElementosHTMLClave: React.FC = () => (
   <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
-    content="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+    content="Elementos HTML clave: encabezados, párrafos, enlaces e imágenes"
   />
   <meta
     name="twitter:description"
@@ -87,7 +87,7 @@ const ElementosHTMLClave: React.FC = () => (
 
     <PlantillaPost
       ruta="/recursos/html/elementos-html-clave"
-      titulo="Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes"
+      titulo="Elementos HTML clave: encabezados, párrafos, enlaces e imágenes"
       autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
       idComentarios={3}
       entradilla={

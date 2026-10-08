@@ -14,8 +14,7 @@ const OptimizacionJavaScript: React.FC = () => (
   <>
       <Helmet>
         <title>
-          Optimización en JavaScript: mide antes de tocar una línea |
-          femCoders Club
+          Optimización en JavaScript: mide antes de tocar una línea | FemCoders Club
         </title>
         <meta
           name="description"
@@ -30,7 +29,7 @@ const OptimizacionJavaScript: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Optimización en JavaScript: mide antes de tocar una línea | femCoders Club"
+          content="Optimización en JavaScript: mide antes de tocar una línea | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -458,13 +457,13 @@ npm run demo      # la demo visual en el navegador`}</CodigoPost>
           </li>
           <li>
             <Link to="/recursos/js/estructuras-datos-js">
-              Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap
+              Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap
               y WeakSet
             </Link>
           </li>
           <li>
             <Link to="/recursos/js/manipulacion-dom-ingeniera">
-              Manipulación del DOM como una Ingeniera
+              Manipulación del DOM como una ingeniera
             </Link>
           </li>
         </ul>

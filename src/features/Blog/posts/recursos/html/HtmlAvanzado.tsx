@@ -6,7 +6,7 @@ import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 const HtmlAvanzado: React.FC = () => (
   <>
      <Helmet>
-  <title>HTML Avanzado para SEO y Accesibilidad | femCoders Club</title>
+  <title>HTML avanzado para SEO y accesibilidad | FemCoders Club</title>
 
   <meta
     name="description"
@@ -31,7 +31,7 @@ const HtmlAvanzado: React.FC = () => (
 
   {/* Open Graph para compartir en redes sociales */}
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="HTML Avanzado para SEO y Accesibilidad | femCoders Club" />
+  <meta property="og:title" content="HTML avanzado para SEO y accesibilidad | FemCoders Club" />
   <meta property="og:description" content="Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más." />
   <meta
     property="og:url"
@@ -42,7 +42,7 @@ const HtmlAvanzado: React.FC = () => (
 
   {/* Twitter Card */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="HTML Avanzado para SEO y Accesibilidad | femCoders Club" />
+  <meta name="twitter:title" content="HTML avanzado para SEO y accesibilidad | FemCoders Club" />
   <meta name="twitter:description" content="Explora buenas prácticas de HTML para SEO y accesibilidad con ejemplos claros y modernos." />
   <meta name="twitter:image" content="https://www.femcodersclub.com/assets/html/Html-Accesibilidad-SEO.jpg" />
 
@@ -65,7 +65,7 @@ const HtmlAvanzado: React.FC = () => (
 
     <PlantillaPost
       ruta="/recursos/html/html-seo-accesibilidad"
-      titulo="HTML Avanzado para SEO y Accesibilidad"
+      titulo="HTML avanzado para SEO y accesibilidad"
       autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
       idComentarios={6}
       entradilla={

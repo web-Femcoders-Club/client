@@ -10,7 +10,7 @@ import {
 const FrameworksIntegration: React.FC = () => (
   <>
       <Helmet>
-        <title>Integración de Frameworks y Librerías | femCoders Club</title>
+        <title>Integración de frameworks y librerías | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre la relación entre HTML y frameworks modernos como React, Vue.js, Angular y Svelte. Aprende cómo estas herramientas transforman el desarrollo web."
@@ -36,7 +36,7 @@ const FrameworksIntegration: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Integración de Frameworks y Librerías | femCoders Club"
+          content="Integración de frameworks y librerías | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -56,7 +56,7 @@ const FrameworksIntegration: React.FC = () => (
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Integración de Frameworks y Librerías | femCoders Club"
+          content="Integración de frameworks y librerías | FemCoders Club"
         />
         <meta
           name="twitter:description"
@@ -86,7 +86,7 @@ const FrameworksIntegration: React.FC = () => (
 
     <PlantillaPost
       ruta="/recursos/html/integracion-frameworks"
-      titulo="Integración de Frameworks y Librerías"
+      titulo="Integración de frameworks y librerías"
       autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
       idComentarios={9}
       entradilla={
