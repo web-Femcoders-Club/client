@@ -1,0 +1,118 @@
+/*
+ * Primera sección de /equipo. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-puntos`, `fc-antetitulo` y `fc-rotulador`. Fondo: `bg1`,
+ * el de la portada de la home. Las tarjetas están en CardTeamMember.css.
+ *
+ * index.css pinta todos los `span` en naranja y 1.5rem y da tamaño y sombra a
+ * h1/h2: cada clase de aquí fija sus propios valores.
+ */
+
+.equipo {
+  /*
+   * La cabecera es fija y publica su altura real en --fem-header-height
+   * (más con zoom o en móvil): el padding la sigue para que no tape el h1.
+   */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(3.5rem, 7vw, 5rem);
+}
+
+.equipo__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.equipo__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1.4rem clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.equipo__titulo {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 3.6vw, 3.1rem);
+  line-height: 1.04;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* Naranja como en la portada; a este tamaño (más de 24px) es texto grande y cumple AA (3,71:1). */
+.equipo__marca {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: inherit;
+  font-size: 0.62em;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.equipo__lema {
+  margin: 1.1rem 0 0;
+  max-width: 26rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.25;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  text-wrap: balance;
+}
+
+.equipo__texto {
+  display: grid;
+  gap: 0.9rem;
+}
+
+/* En dos columnas, el texto baja un poco: centrado, quedaba por encima del título. */
+@media (min-width: 901px) {
+  .equipo__texto {
+    margin-top: 2rem;
+  }
+}
+
+.equipo__texto p {
+  margin: 0;
+  max-width: 36rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.equipo__texto strong {
+  color: var(--color-secondary);
+}
+
+.equipo__actual {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.equipo__subtitulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.equipo__intro {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-primary);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+}
+
+@media (max-width: 900px) {
+  .equipo__cabeza {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

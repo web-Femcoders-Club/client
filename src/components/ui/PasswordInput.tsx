@@ -38,6 +38,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   return (
     <div className="password-field">
       <input
+        className="password-field__input"
         type={show ? "text" : "password"}
         id={id}
         name={name ?? id}

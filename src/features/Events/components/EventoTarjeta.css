@@ -1,0 +1,65 @@
+/*
+ * Tarjeta de evento. La base es `fc-tarjeta` (src/styles/rediseno.css).
+ * index.css pinta todos los `span` en naranja y da tamaño a los títulos:
+ * cada clase de aquí fija sus propios valores.
+ */
+
+.evento-tarjeta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Las imágenes de Eventbrite son 2:1. */
+.evento-tarjeta__imagen {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 1rem;
+  background: var(--color-lavanda-medio);
+}
+
+.evento-tarjeta__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* 8,29:1 sobre blanco: AAA */
+.evento-tarjeta__fecha {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.evento-tarjeta__nombre {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.evento-tarjeta__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.evento-tarjeta .fc-boton {
+  justify-self: start;
+  white-space: normal;
+}

@@ -14,17 +14,17 @@
     "generate-sitemap": "tsx src/utils/generate-sitemap.ts",
     "generate:llms": "tsx scripts/generateLlmsTxt.ts",
     "prerender": "tsx scripts/prerenderMeta.ts",
-    "prebuild": "npm run validate:posts && npm run generate:llms && npm run generate-sitemap",
+    "prebuild": "npm run validate:posts && npm run generate:llms && npm run generate:posts && npm run generate-sitemap",
     "build": "npm run optimize && tsc && vite build && npm run prerender",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "start": "npm run optimize && serve dist"
+    "start": "npm run optimize && serve dist",
+    "generate:posts": "tsx scripts/generatePostsBlog.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tanstack/react-query": "^5.101.4",
-    "aos": "^2.3.4",
     "autoprefixer": "^10.5.4",
     "axios": "^1.19.0",
     "date-fns": "^3.6.0",
@@ -43,7 +43,6 @@
     "sitemap": "^8.0.3"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.8",
     "@types/date-fns": "^2.6.3",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.19.43",

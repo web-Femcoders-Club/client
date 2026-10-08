@@ -1,0 +1,217 @@
+/*
+ * Primera sección de /contacto. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-antetitulo`, `fc-rotulador`, `fc-capa`, `fc-disco`,
+ * `fc-enlace` y `fc-boton-redondo`. Fondo: `bg1`, el de la portada.
+ * El formulario tiene su propio CSS (ContactForm.css).
+ *
+ * index.css pinta todos los `span` en naranja y da tamaño, color y sombra a
+ * h1/h2/h3: cada clase de aquí fija sus propios valores.
+ */
+
+.escribenos {
+  /* La cabecera es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(3.5rem, 7vw, 5rem);
+}
+
+/*
+ * Escritorio: a la izquierda cabecera, motivos y correo; a la derecha el
+ * formulario, de arriba abajo. El correo baja al final de su columna para
+ * acabar a la altura del formulario.
+ */
+.escribenos__rejilla {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 32rem);
+  grid-template-areas:
+    "cabecera formulario"
+    "motivos  formulario"
+    "directo  formulario";
+  grid-template-rows: auto auto 1fr;
+  gap: 2.25rem clamp(2rem, 5vw, 4.5rem);
+}
+
+/* ---------- Cabecera ---------- */
+
+.escribenos__cabecera {
+  grid-area: cabecera;
+  display: grid;
+  gap: 1rem;
+}
+
+.escribenos__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.escribenos__entradilla {
+  margin: 0;
+  max-width: 36rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/* ---------- Formulario: sitio y capa en degradado detrás ---------- */
+
+.escribenos__formulario {
+  grid-area: formulario;
+  position: relative;
+  align-self: start;
+}
+
+.escribenos__formulario .fc-capa {
+  inset: 1.4rem -1rem -1rem 1.4rem;
+  transform: rotate(2.5deg);
+}
+
+/* ---------- Motivos ---------- */
+
+.escribenos__motivos-bloque {
+  grid-area: motivos;
+}
+
+.escribenos__subtitulo {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+.escribenos__motivos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.5rem;
+}
+
+.escribenos__motivo {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.escribenos__motivo-titulo {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.escribenos__motivo-texto {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Correo y redes ---------- */
+
+.escribenos__directo {
+  grid-area: directo;
+  align-self: end;
+  display: grid;
+  gap: 1.1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(71, 55, 187, 0.18);
+}
+
+.escribenos__correo,
+.escribenos__redes-texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.escribenos__correo {
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.escribenos__redes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.escribenos__redes-texto {
+  font-size: 0.95rem;
+}
+
+.escribenos__redes-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+
+/*
+ * Una columna: título, formulario, motivos y correo, en ese orden. Desde
+ * 1100px y no 960: entre medias los motivos quedaban en columnas de 140px,
+ * con 2 o 3 palabras por línea.
+ */
+@media (max-width: 1100px) {
+  .escribenos__rejilla {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "cabecera" "formulario" "motivos" "directo";
+    grid-template-rows: auto;
+  }
+
+  /* Margen para la capa girada, que si no roza el subtítulo de los motivos. */
+  .escribenos__formulario {
+    width: 100%;
+    max-width: 36rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/*
+ * Portátiles bajos (1366×768 deja ~650px útiles): menos aire arriba para que
+ * el botón de enviar quede dentro de la pantalla. El resto, en ContactForm.css.
+ */
+@media (min-width: 1101px) and (max-height: 720px) {
+  .escribenos {
+    padding-top: calc(var(--fem-header-height, 80px) + 1.5rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .escribenos__motivos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .escribenos__formulario .fc-capa {
+    inset: 1rem -0.4rem -0.6rem 1rem;
+  }
+}
+
+/* A 320px los cinco botones de redes no cabían en una fila y Spotify bajaba solo. */
+@media (max-width: 360px) {
+  .escribenos__redes-lista {
+    gap: 0.75rem;
+  }
+}

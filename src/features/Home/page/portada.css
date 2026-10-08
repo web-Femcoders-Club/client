@@ -1,0 +1,222 @@
+/*
+ * Portada de la home (hero): texto, botones y cifras. El collage de la
+ * derecha tiene su propio CSS en components/HeroCollage.css.
+ *
+ * Prefijo `portada` y archivo aparte para no tocar Home.css ni index.css:
+ * - Los botones son los `fc-boton` compartidos (src/styles/rediseno.css).
+ * - index.css pinta TODOS los `span` en naranja, negrita y 1.5rem, y da tamaño
+ *   y sombra a h1/h2. Cada clase de aquí fija sus propios valores; por
+ *   especificidad (clase > elemento) ganan siempre.
+ *
+ * Fondo: `bg1` (index.css), ahora un degradado en CSS que arriba es el mismo
+ * lavanda de la barra de navegación, así barra y portada se leen como una
+ * pieza, y abajo termina en blanco, donde empieza «Nuestra esencia».
+ */
+
+.portada {
+  /* La cabecera es fija: el padding superior deja sitio al menú. */
+  padding: clamp(6.5rem, 9vw, 8rem) 16px clamp(2rem, 4vw, 3rem);
+  min-height: 100svh;
+}
+
+.portada__contenedor {
+  width: 100%;
+  /* `.parallax` es flex: sin esto el grid no encoge por debajo de su contenido y en móvil se sale por la derecha. */
+  min-width: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.portada__texto {
+  min-width: 0;
+  /* Baja el bloque para alinearlo con el collage, que ya baja para dejar sitio al menú. */
+  margin-top: clamp(1rem, 4vw, 3rem);
+}
+
+/* Textos y colores de siempre: H1 naranja, H2 violeta y párrafo violeta. */
+.portada__titulo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5vw, 3.9rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--color-primary);
+  /* Sombra mínima: la doble de los h1 del sitio emborronaba el naranja. */
+  text-shadow: 0 1px 2px rgba(42, 33, 112, 0.12);
+  margin: 0;
+}
+
+.portada__lema {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.3vw, 2.75rem);
+  line-height: 1.12;
+  color: var(--color-secondary);
+  margin: 0.5rem 0 0;
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.portada__subrayada {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Solo bajo las últimas letras («logía»), como un trazo a mano. */
+.portada__curva {
+  position: absolute;
+  left: 50%;
+  bottom: -0.3em;
+  width: 50%;
+  height: 0.3em;
+  overflow: visible;
+}
+
+.portada__curva path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.portada__parrafo {
+  font-family: var(--font-primary);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  /* Hueco para la curva de «logía», que sobresale por debajo del subtítulo. */
+  margin: 1.9rem 0 0;
+  max-width: 36rem;
+  /* Evita líneas con una sola palabra al final («nosotras!» suelto). */
+  text-wrap: pretty;
+}
+
+/*
+ * «Juntas,» en naranja, como antes. Ojo: 3,71:1 sobre fondo claro. En
+ * escritorio (1.25rem en negrita) cuenta como texto grande y cumple AA; en
+ * móvil (1.05rem) no llega. Es la deuda conocida del naranja como texto que
+ * recoge index.css; no se resuelve aquí.
+ */
+.portada__parrafo strong {
+  color: var(--color-primary);
+  font-weight: 700;
+  /* Un punto mayor que el párrafo: a su tamaño se perdía al lado del título. */
+  font-size: 1.2em;
+}
+
+/* Los botones son los compartidos del rediseño: `fc-boton` en src/styles/rediseno.css. */
+.portada__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* ---------- Cifras ---------- */
+
+.portada__cifras {
+  list-style: none;
+  padding: 0;
+  margin: 2.75rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, auto));
+  justify-content: start;
+}
+
+.portada__cifra {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.35rem;
+  min-width: 0;
+  border-left: 1px solid rgba(71, 55, 187, 0.25);
+}
+
+.portada__cifra:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+/* Sin fondo: el icono solo, más pequeño y con una sombra suave de su color para que no quede plano. */
+.portada__cifra-icono {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 2.2;
+  color: var(--color-primary);
+  filter: drop-shadow(0 2px 3px rgba(234, 79, 51, 0.3));
+}
+
+.portada__cifra-numero {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.portada__cifra-rotulo {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-text-dark);
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.portada__solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .portada__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portada .hero-collage {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .portada__cifra {
+    padding: 0 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .portada__cifra-numero {
+    font-size: 1.25rem;
+  }
+
+  .portada__cifra-icono {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .portada__cifra-rotulo {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
+}
+

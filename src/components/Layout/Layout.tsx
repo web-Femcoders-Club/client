@@ -19,6 +19,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       {/* Primero en el DOM porque tiene que ser el primero en recibir el Tab. */}
       <SaltarAlContenido />
+      {/*
+        Justo después del salto y no al final: con el teclado se llega a él
+        y se cierra antes de recorrer toda la página. Aunque se ve abajo, es
+        un aviso de una sola vez, así que anunciarlo primero es aceptable.
+      */}
+      <CookieBanner />
       <Header />
       <main
         id={ID_CONTENIDO_PRINCIPAL}
@@ -27,10 +33,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         aria-label="Contenido principal"
       >
         {children}
+        {/*
+          Al final del contenido y no después del pie: va en un ancla `sticky`,
+          así flota abajo mientras se hace scroll y se para justo encima del
+          pie en vez de taparlo.
+        */}
+        <BackToTop />
       </main>
       <Footer />
-      <BackToTop />
-      <CookieBanner />
     </>
   );
 };

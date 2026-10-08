@@ -1,625 +1,259 @@
-/* ========================================
-   TEAM GRID - Layout Principal
-   ======================================== */
+/*
+ * Tarjetas del equipo (CardTeamMember). Piezas compartidas en
+ * src/styles/rediseno.css: `fc-tarjeta`, `fc-chip`, `fc-boton-redondo` y
+ * `fc-solo-lector`. Sin Tailwind.
+ *
+ * Aquí ya no viven `.modal-*` ni `.sr-only`: el modal se quitó (repetía el
+ * texto del desplegable) y esos nombres globales pisaban a los modales del
+ * pie en cuanto se visitaba /equipo.
+ *
+ * index.css pinta todos los `span` en naranja y 1.5rem: aquí solo hay los de
+ * `fc-chip` y `fc-solo-lector`, que fijan los suyos.
+ */
 
-.team-grid {
+/* ---------- Barra: número de cofundadoras y botón para detener la rotación ---------- */
+
+.equipo-tarjetas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  padding: var(--spacing-md) 0;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  transition: all 0.5s ease;
+  gap: 1.25rem;
 }
 
-/* ========================================
-   TEAM CARD - Estado Compacto
-   ======================================== */
-
-.team-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all 0.4s ease-out;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(71, 55, 187, 0.1);
-  position: relative;
-  will-change: opacity, transform;
-}
-
-.team-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-medium);
-  border-color: rgba(71, 55, 187, 0.3);
-}
-
-.team-card.expanded {
-  grid-column: span 1;
-}
-
-/* ========================================
-   CONTENIDO PRINCIPAL - Siempre visible
-   ======================================== */
-
-.team-card-main {
-  padding: var(--spacing-md);
+.equipo-tarjetas__barra {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+
+/* ---------- Lista ---------- */
+
+/*
+ * Tres por fila y la última centrada (3 + 2 con cinco): cada tarjeta tiene
+ * ancho para leer la historia abierta, y la rotación hace que todas pasen por
+ * la primera fila. En tableta, 2 + 2 + 1; en móvil, una debajo de otra. Con
+ * flex y no con grid para poder centrar la fila incompleta.
+ */
+.equipo-tarjetas__lista {
+  --hueco: clamp(1.25rem, 2.5vw, 1.75rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--hueco);
+}
+
+/* ---------- Tarjeta ---------- */
+
+.equipo-tarjeta {
+  position: relative;
+  flex: 0 0 calc((100% - 2 * var(--hueco)) / 3);
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
   text-align: center;
-  gap: var(--spacing-sm);
+  animation: equipo-entra 0.9s ease-out both;
 }
 
-/* Avatar */
-.team-card-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 0 var(--spacing-sm) 0;
-  position: relative;
+/*
+ * Entrada al cambiar de orden. Empieza visible (35 %): quien mire justo en
+ * ese momento nunca ve una tarjeta vacía.
+ */
+@keyframes equipo-entra {
+  from {
+    opacity: 0.35;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
-.team-card-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+/* La foto tal cual: el archivo ya trae el disco blanco y su sombra. */
+.equipo-tarjeta__foto {
+  display: block;
+  width: 9.5rem;
+  height: 9.5rem;
+  margin: -0.6rem 0 -0.3rem;
+  object-fit: contain;
 }
 
-/* Info básica */
-.team-card-info {
-  width: 100%;
-}
-
-.team-card-name {
+.equipo-tarjeta__nombre {
+  margin: 0;
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 700;
+  line-height: 1.1;
   color: var(--color-text-dark);
-  margin: 0 0 0.3rem 0;
-  line-height: 1.2;
+  text-shadow: none;
+  text-wrap: balance;
 }
 
-.team-card-role {
-  font-size: 0.95rem;
+.equipo-tarjeta__oficio {
+  margin: 0;
+  max-width: 18rem;
+  font-family: var(--font-primary);
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.45;
+  /* 8,29:1 sobre blanco: AAA */
   color: var(--color-secondary);
-  font-weight: 600;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 0.85rem;
+  text-wrap: balance;
 }
 
-/* ========================================
-   ACCIONES - LinkedIn + Expandir
-   ======================================== */
-
-.team-card-actions {
+.equipo-tarjeta__acciones {
   display: flex;
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem 0.9rem;
 }
 
-.team-linkedin-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
+/* Botón de texto con subrayado naranja; 44px de alto: objetivo táctil AAA. */
+.equipo-tarjeta__mas {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--color-secondary), #5e50d8);
-  color: var(--color-white);
-  font-size: 1.2rem;
-  transition: all var(--transition-fast);
-  box-shadow: 0 3px 10px rgba(71, 55, 187, 0.3);
-}
-
-.team-linkedin-link:hover,
-.team-linkedin-link:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(71, 55, 187, 0.4);
-  background: linear-gradient(135deg, #5e50d8, #7a6ef2);
-}
-
-.team-expand-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--color-primary);
-  background: transparent;
-  color: var(--color-primary);
-  font-size: 1.5rem;
-  font-weight: 300;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.2rem;
+  border: 0;
+  background: none;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-secondary);
   cursor: pointer;
-  transition: all var(--transition-fast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(234, 79, 51, 0.7);
 }
 
-.team-expand-btn:hover,
-.team-expand-btn:focus {
-  background: var(--color-primary);
-  color: var(--color-white);
-  transform: rotate(90deg);
-  box-shadow: 0 3px 10px rgba(234, 79, 51, 0.3);
+.equipo-tarjeta__mas svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
 }
 
-.team-card.expanded .team-expand-btn {
-  background: var(--color-primary);
-  color: var(--color-white);
-  transform: rotate(45deg);
+.equipo-tarjeta__mas[aria-expanded="true"] svg {
+  transform: rotate(180deg);
 }
 
-/* ========================================
-   DESCRIPCIÓN EXPANDIBLE
-   ======================================== */
-
-.team-card-description {
-  padding: 0 var(--spacing-md) var(--spacing-md);
-  animation: expandIn 0.3s ease;
-  border-top: 1px solid rgba(71, 55, 187, 0.1);
-  margin-top: var(--spacing-sm);
+.equipo-tarjeta__mas:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-.team-card-description-content {
-  max-height: 180px;
-  overflow-y: auto;
-  padding: var(--spacing-md);
-  background: rgba(71, 55, 187, 0.03);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-sm);
+.equipo-tarjeta .fc-boton-redondo svg {
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
-.team-card-description-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.team-card-description-content::-webkit-scrollbar-track {
-  background: rgba(71, 55, 187, 0.05);
-  border-radius: 3px;
-}
-
-.team-card-description-content::-webkit-scrollbar-thumb {
-  background: var(--color-secondary);
-  border-radius: 3px;
-}
-
-.team-card-description-content::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
-}
-
-.team-card-description-content p {
-  color: var(--color-text-dark);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.team-modal-trigger {
+.equipo-tarjeta__historia {
   width: 100%;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: linear-gradient(135deg, var(--color-secondary), #5e50d8);
-  color: var(--color-white);
-  border: none;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  box-shadow: 0 3px 10px rgba(71, 55, 187, 0.2);
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+  text-align: left;
 }
 
-.team-modal-trigger:hover,
-.team-modal-trigger:focus {
-  background: linear-gradient(135deg, #5e50d8, #7a6ef2);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(71, 55, 187, 0.3);
+.equipo-tarjeta__historia[hidden] {
+  display: none;
 }
 
-/* ========================================
-   LEGACY CARDS
-   ======================================== */
+.equipo-tarjeta__historia p {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  /* Más de 12:1 sobre lavanda: AAA */
+  color: var(--color-text-dark);
+}
 
-.team-card.legacy-card {
-  opacity: 0.85;
+/* ---------- Cofundadoras Legacy (filter="inactive"; hoy no se muestran) ---------- */
+
+.equipo-tarjetas__lista--legacy .equipo-tarjeta__foto {
   filter: grayscale(0.2);
 }
 
-.team-card.legacy-card:hover {
-  opacity: 1;
-  filter: grayscale(0);
-}
-
-.legacy-badge {
+.equipo-tarjeta__legacy {
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-sm);
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: var(--color-text-dark);
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-md);
-  font-weight: 700;
+  top: 1rem;
+  right: 1rem;
+  margin: 0;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-lavanda-medio);
+  font-family: var(--font-primary);
   font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-  z-index: 2;
-}
-
-/* ========================================
-   MODAL - Perfil Completo
-   ======================================== */
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: var(--spacing-lg);
-  animation: fadeIn 0.3s ease;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.modal-card {
-  background: var(--color-white);
-  border-radius: var(--radius-xl);
-  max-width: 500px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: var(--shadow-soft);
-  animation: slideUp 0.4s ease;
-}
-
-.modal-card::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal-card::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.modal-card::-webkit-scrollbar-thumb {
-  background: var(--color-secondary);
-  border-radius: 4px;
-}
-
-.modal-card::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
-}
-
-.modal-close {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: none;
-  color: var(--color-white);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  box-shadow: 0 2px 8px rgba(234, 79, 51, 0.3);
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  background: var(--color-secondary);
-  transform: rotate(90deg);
-  box-shadow: 0 4px 12px rgba(71, 55, 187, 0.4);
-}
-
-.modal-header {
-  text-align: center;
-  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
-  border-bottom: 1px solid rgba(71, 55, 187, 0.1);
-}
-
-.modal-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  margin: 0 auto var(--spacing-md) auto;
-  overflow: hidden;
-}
-
-.modal-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.modal-title {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--color-text-dark);
-  margin: 0 0 0.5rem 0;
-}
-
-.modal-role {
-  font-size: 1rem;
-  color: var(--color-secondary);
-  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 0;
-}
-
-.modal-body {
-  padding: var(--spacing-lg);
-}
-
-.modal-body p {
   color: var(--color-text-dark);
-  line-height: 1.7;
-  font-size: 1rem;
-  margin: 0;
 }
 
-.modal-footer {
-  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
-  text-align: center;
-  border-top: 1px solid rgba(71, 55, 187, 0.1);
-}
+/* ---------- Carga y error ---------- */
 
-.modal-linkedin-btn {
-  display: inline-flex;
+.equipo-estado {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-secondary), #5e50d8);
-  color: var(--color-white);
-  border: none;
-  border-radius: var(--radius-xl);
-  font-weight: 600;
+  gap: 0.8rem;
+  min-height: 30vh;
+  margin: 0;
+  font-family: var(--font-primary);
   font-size: 1rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(71, 55, 187, 0.3);
+  color: var(--color-text-dark);
+  text-align: center;
 }
 
-.modal-linkedin-btn:hover,
-.modal-linkedin-btn:focus {
-  background: linear-gradient(135deg, #5e50d8, #7a6ef2);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(71, 55, 187, 0.4);
+.equipo-estado__girando {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-lavanda-medio);
+  border-top-color: var(--color-secondary);
+  border-radius: 50%;
+  animation: equipo-gira 0.9s linear infinite;
 }
 
-/* ========================================
-   ANIMACIONES
-   ======================================== */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+@keyframes equipo-gira {
   to {
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* ---------- Tamaños ---------- */
+
+@media (max-width: 899px) {
+  .equipo-tarjeta {
+    flex-basis: calc((100% - var(--hueco)) / 2);
   }
 }
 
-@keyframes expandIn {
-  from {
-    opacity: 0;
-    max-height: 0;
+@media (max-width: 559px) {
+  .equipo-tarjeta {
+    flex-basis: 100%;
   }
-  to {
-    opacity: 1;
-    max-height: 500px;
+
+  .equipo-tarjetas__barra {
+    justify-content: flex-start;
   }
 }
-
-/* Animación Cross-Fade elegante y sutil */
-@keyframes crossFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-    filter: blur(1px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* Para cards que salen */
-@keyframes crossFadeOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-/* TABLETS (hasta 768px) */
-@media (max-width: 768px) {
-  .team-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--spacing-md);
-  }
-
-  .team-card-name {
-    font-size: 1.2rem;
-  }
-
-  .team-card-avatar {
-    width: 120px;
-    height: 120px;
-  }
-
-  .modal-card {
-    max-width: 90%;
-  }
-
-  .modal-avatar {
-    width: 120px;
-    height: 120px;
-  }
-
-  .modal-title {
-    font-size: 1.5rem;
-  }
-
-  .modal-body p {
-    font-size: 0.95rem;
-  }
-}
-
-/* MÓVILES (hasta 576px) */
-@media (max-width: 576px) {
-  .team-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) 0;
-  }
-
-  .team-card-main {
-    padding: var(--spacing-sm);
-  }
-
-  .team-card-avatar {
-    width: 110px;
-    height: 110px;
-  }
-
-  .team-card-name {
-    font-size: 1.1rem;
-  }
-
-  .team-card-role {
-    font-size: 0.8rem;
-  }
-
-  .team-linkedin-link,
-  .team-expand-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
-
-  .team-card-description-content {
-    max-height: 150px;
-    padding: var(--spacing-sm);
-  }
-
-  .team-card-description-content p {
-    font-size: 0.85rem;
-  }
-
-  .modal-card {
-    max-width: 95%;
-    max-height: 90vh;
-  }
-
-  .modal-header {
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-sm);
-  }
-
-  .modal-avatar {
-    width: 100px;
-    height: 100px;
-  }
-
-  .modal-title {
-    font-size: 1.3rem;
-  }
-
-  .modal-body {
-    padding: var(--spacing-md);
-  }
-
-  .modal-body p {
-    font-size: 0.9rem;
-  }
-
-  .modal-linkedin-btn {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.9rem;
-  }
-
-  .legacy-badge {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-  }
-}
-
-/* ========================================
-   ACCESIBILIDAD
-   ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .team-card,
-  .team-linkedin-link,
-  .team-expand-btn,
-  .team-modal-trigger,
-  .modal-overlay,
-  .modal-card,
-  .modal-close {
+  .equipo-tarjeta,
+  .equipo-estado__girando {
     animation: none;
+  }
+
+  .equipo-tarjeta__mas svg {
     transition: none;
   }
-
-  .team-card:hover,
-  .team-linkedin-link:hover,
-  .team-expand-btn:hover,
-  .modal-close:hover {
-    transform: none;
-  }
-}
-
-/* Clase de utilidad para lectores de pantalla */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }

@@ -2,6 +2,20 @@
    VARIABLES CSS - Design System
    ======================================== */
 :root {
+  /*
+   * Fondo claro de marca (antes la imagen bg1): arriba el lavanda de la barra
+   * de navegación, halo azul violeta abajo a la izquierda, toque naranja arriba
+   * a la derecha y blanco abajo. En CSS: sin descarga y en un solo sitio.
+   */
+  --fondo-bg1: radial-gradient(ellipse 55% 60% at 6% 58%, rgba(108, 99, 255, 0.2), transparent 70%),
+    radial-gradient(ellipse 40% 45% at 96% 72%, rgba(71, 55, 187, 0.09), transparent 70%),
+    radial-gradient(ellipse 35% 35% at 78% 12%, rgba(234, 79, 51, 0.06), transparent 70%),
+    linear-gradient(180deg, var(--color-lavanda) 0%, #f6f4ff 35%, #fbfaff 75%, #fff 100%);
+  /* Fondo claro: blanco arriba, lavanda abajo (Nuestra esencia, Noticias). */
+  --fondo-bg3: linear-gradient(180deg, #fff 0%, #faf8ff 45%, var(--color-lavanda) 100%);
+  /* El mismo, al revés: lavanda arriba, blanco abajo (Conócenos, Proyectos). */
+  --fondo-bg4: linear-gradient(180deg, var(--color-lavanda) 0%, #f7f4ff 60%, #fff 100%);
+
   /* Colores principales */
 
   /*
@@ -36,7 +50,21 @@
   --color-accent: #6c63ff;
   --color-text-dark: #2a2170;
   --color-white: #fdfdfd;
-  
+
+  /*
+   * Colores del rediseño. Ya se repetían escritos a mano en varias secciones;
+   * aquí tienen nombre y se reutilizan desde src/styles/rediseno.css.
+   */
+  --color-lila: #821ad4;           /* 6,89:1 sobre blanco: AAA en texto grande */
+  --color-lavanda: #f1edff;        /* fondos de sección */
+  --color-lavanda-claro: #f4f1ff;  /* cajas y fondos de tarjeta */
+  --color-lavanda-medio: #ece8fb;  /* discos de icono y huecos de imagen */
+  --color-melocoton: #fde9e4;      /* pareja cálida del lavanda */
+  /* Variantes oscuras para texto pequeño sobre fondos claros (chips): AAA. */
+  --color-primary-oscuro: #8f2318; /* 7,41:1 sobre --color-melocoton */
+  --color-lila-claro: #f3e8fc;
+  --color-lila-oscuro: #6a14ad;    /* 7,67:1 sobre --color-lila-claro */
+
   /* Sombras */
   --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.15);
   --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -63,6 +91,8 @@
   /* Fuentes */
   --font-primary: "Roboto", sans-serif;
   --font-heading: "Asap Condensed", sans-serif;
+  /* Letra a mano (Caveat 600, ya cargada en index.html para la portada). */
+  --font-mano: "Caveat", "Comic Sans MS", cursive;
 
   /* Estados */
   --color-success: #16a34a;
@@ -75,6 +105,25 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-primary);
+}
+
+/*
+ * La cabecera es fija y publica su altura en --fem-header-height. Al bajar a
+ * un ancla («/#empresas-titulo») o al llevar el foco a un elemento, el
+ * navegador deja libre ese alto: sin esto, el destino quedaba tapado por la
+ * cabecera (WCAG 2.4.11, foco no oculto).
+ */
+html {
+  scroll-padding-top: calc(var(--fem-header-height, 80px) + 1rem);
+}
+
+/*
+ * Fondo de la página, detrás de las secciones. Estaba en PostStyles.css y
+ * solo se aplicaba tras cargar la portada o el blog; aquí vale para todas.
+ */
+body {
+  background-image: var(--fondo-bg1);
+  background-size: cover;
 }
 
 /*
@@ -94,39 +143,32 @@
   border-radius: 2px;
 }
 
+/*
+ * Sección a pantalla completa. Ya no lleva `background-attachment: fixed`:
+ * el fondo fijo rompía los empalmes de los degradados bg1/bg3/bg4 (se
+ * pintaban respecto a la ventana, no a la sección), Safari de iPhone y iPad
+ * lo ignoraba y obligaba a repintar el fondo en cada scroll. La profundidad
+ * la dan ahora las capas (`fc-manchas`, `fc-puntos` y el collage), en
+ * rediseno.css.
+ */
 .parallax {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
-}
-.parallax [data-aos] {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.parallax [data-aos="fade-up"] {
-  transform: translateY(100px);
-}
-
-.parallax [data-aos="fade-down"] {
-  transform: translateY(-100px);
-}
-
-.parallax [data-aos="fade-right"] {
-  transform: translateX(-100px);
-}
-
-.parallax [data-aos="fade-left"] {
-  transform: translateX(100px);
+  overflow: clip;
 }
 
 img {
@@ -174,27 +216,9 @@ img {
   background-color: #bb3f28;
 }
 
-.accent-button {
-  background-color: #8937bb;
-  color: var(--color-white);
-  padding: 8px 16px;
-  border: none;
-}
-
-.accent-button:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  scale: 1.1;
-}
-.accent-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
 .secondary-button,
 .primary-button,
-.tertiary-button,
-.accent-button {
+.tertiary-button {
   padding: 8px 16px;
   border-radius: var(--radius-md);
   font-size: 1rem;
@@ -379,8 +403,15 @@ span {
   text-align: center;
 }
 
+/*
+ * Fondos de sección del rediseño: bg1 portada (degradado), bg2 azul oscuro
+ * (imagen), bg3 claro y bg4 claro invertido (degradados). Una sección nueva
+ * elige uno de estos; no se crean fondos nuevos.
+ *
+ * `background-image` y no `background`: no pisa el color que ponga otra clase.
+ */
 .bg1 {
-  background-image: url("/public-optimized/desktop/bg1.webp");
+  background-image: var(--fondo-bg1);
   background-size: cover;
   background-position: center;
 }
@@ -392,19 +423,13 @@ span {
 }
 
 .bg3 {
-  background-image: url("/public-optimized/desktop/bg3.webp");
+  background-image: var(--fondo-bg3);
   background-size: cover;
   background-position: center;
 }
 
 .bg4 {
-  background-image: url("/public-optimized/desktop/bg4.webp");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg5 {
-  background-image: url("/public-optimized/desktop/bg5.webp");
+  background-image: var(--fondo-bg4);
   background-size: cover;
   background-position: center;
 }
@@ -607,37 +632,6 @@ span {
   transform: scale(1.1);
 }
 
-/* Pagination */
-.pagination-custom .btn {
-  background-color: var(--color-white);
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
-  border-radius: var(--radius-sm);
-  padding: 8px 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  min-width: 42px;
-}
-
-.pagination-custom .btn:hover:not(.btn-disabled) {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-light);
-}
-
-.pagination-custom .btn-active {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
-}
-
-.pagination-custom .btn-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 @media (max-width: 768px) {
   h1 {
     font-size: 1.7rem;
@@ -669,8 +663,7 @@ span {
   }
   .primary-button,
   .secondary-button,
-  .tertiary-button,
-  .accent-button {
+  .tertiary-button {
     font-size: 0.875rem;
     padding: 6px 12px;
   }
@@ -701,24 +694,8 @@ span {
     padding: 1.3rem;
     font-size: 1rem;
   }
-  .bg1 {
-    background-image: url("/public-optimized/mobile/bg1.webp");
-  }
-
   .bg2 {
     background-image: url("/public-optimized/mobile/bg2.webp");
-  }
-
-  .bg3 {
-    background-image: url("/public-optimized/mobile/bg3.webp");
-  }
-
-  .bg4 {
-    background-image: url("/public-optimized/mobile/bg4.webp");
-  }
-
-  .bg5 {
-    background-image: url("/public-optimized/mobile/bg5.webp");
   }
 
   .timeline-card {
@@ -736,12 +713,6 @@ span {
 
   .timeline-actions {
     gap: var(--spacing-xs);
-  }
-
-  .pagination-custom .btn {
-    padding: 6px 10px;
-    min-width: 36px;
-    font-size: 0.875rem;
   }
 }
 

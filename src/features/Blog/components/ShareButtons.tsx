@@ -3,6 +3,7 @@ import { BsFacebook, BsLinkedin, BsWhatsapp } from "react-icons/bs";
 import { FaLink, FaCheck } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { SITE_URL } from "./siteUrl";
+import "./ShareButtons.css";
 
 interface ShareButtonsProps {
   /** Ruta canónica del post, por ejemplo "/noticias/hackbarna-ai-summit-26" */
@@ -109,7 +110,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ path, title }) => {
       </div>
 
       {/* Confirmación anunciada por lectores de pantalla */}
-      <span role="status" aria-live="polite" className="visually-hidden">
+      <span role="status" aria-live="polite" className="fc-solo-lector">
         {copied ? "Enlace copiado al portapapeles" : ""}
       </span>
     </div>

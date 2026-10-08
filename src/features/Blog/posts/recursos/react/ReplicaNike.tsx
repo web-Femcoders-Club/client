@@ -1,17 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import { Link } from "react-router-dom";
+import { Download, Linkedin } from "lucide-react";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import { SeccionPost, TarjetasPost } from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const ReplicaNike: React.FC = () => {
-  const publicationDate = "16 de marzo de 2025";
-
-  return (
-    <div className="blog-post">
+const ReplicaNike: React.FC = () => (
+  <>
       <Helmet>
-        <title>Réplica de Nike Store con React: Un Proyecto E-commerce Completo | FemCoders Club</title>
+        <title>Réplica de Nike Store con React: un proyecto e-commerce completo | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas."
@@ -35,7 +32,7 @@ const ReplicaNike: React.FC = () => {
 
         {/* Open Graph para compartir en redes sociales */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Réplica de Nike Store con React: Un Proyecto E-commerce Completo | FemCoders Club" />
+        <meta property="og:title" content="Réplica de Nike Store con React: un proyecto e-commerce completo | FemCoders Club" />
         <meta property="og:description" content="Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas." />
         <meta
           property="og:url"
@@ -47,7 +44,7 @@ const ReplicaNike: React.FC = () => {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Réplica de Nike Store con React: Un Proyecto E-commerce Completo" />
+        <meta name="twitter:title" content="Réplica de Nike Store con React: un proyecto e-commerce completo" />
         <meta name="twitter:description" content="Proyecto e-commerce completo con React, carrito de compras, diseño responsivo y funcionalidades avanzadas por Almudena Rendón." />
         <meta name="twitter:image" content="https://www.femcodersclub.com/assets/react/nike-store-replica.jpg" />
 
@@ -68,156 +65,148 @@ const ReplicaNike: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <img
-          src="/assets/react/nike-store-replica.jpg"
-          alt="Réplica de Nike Store desarrollada con React por Almudena Rendón"
-          className="blog-post-image"
-        />
-      </div>
-
-      <h1 className="blog-post-title">
-        Réplica de Nike Store con React: Un Proyecto E-commerce Completo
-      </h1>
-
-      <ShareButtons path="/recursos/react/nike-store-replica" title="Réplica de Nike Store con React: Un Proyecto E-commerce Completo" />
-
-      <div className="intro-text">
+    <PlantillaPost
+      ruta="/recursos/react/nike-store-replica"
+      titulo="Réplica de Nike Store con React: un proyecto e-commerce completo"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={15}
+      entradilla={
         <p>
-          ¡Estamos emocionadas de presentar un impresionante proyecto que han compartido con nuestra comunidad! <span><a href="https://www.linkedin.com/in/almudena-rendon-fernandez/" target="_blank" rel="noopener noreferrer" className="underline">Almudena Rendón Fernández</a></span>, Software Developer y Top 10 Women in IT & Tech LinkedIn Spain, ha desarrollado una increíble réplica de la Nike Store utilizando tecnologías modernas de desarrollo web. Este proyecto es un excelente ejemplo de las capacidades de React para crear experiencias de e-commerce completas y profesionales.
-        </p>
-      </div>
-
-      <div className="highlight-box">
-        <h2>👟 Réplica de Nike Store: Demo y Características</h2>
-        <p>
-          Almudena ha compartido con nuestra comunidad FemCoders Club su proyecto de réplica de Nike Store, una tienda online con todas las funcionalidades esenciales de un e-commerce moderno. Puedes ver la demo en vivo aquí: <a href="https://lnkd.in/dHytgcnB" target="_blank" rel="noopener noreferrer" className="underline font-medium">Ver Demo</a>
-        </p>
-      </div>
-<div className="highlight-box">
-      <h2>Características Principales del Proyecto:</h2>
-      <br />
-      <h3>1️⃣ Diseño cuidado y responsivo</h3>
-      < br/>
-      <ul>
-        <li>Diseño realizado por Almudena inspirado en la Nike Store oficial</li>
-        <li>Elección meticulosa de paleta de colores y diseño de la web</li>
-        <li>Selección cuidadosa de imágenes y vídeos</li>
-        <li>Creación de imágenes de zapatillas con herramientas de IA de Freepik</li>
-        <li>Diseño totalmente responsivo que se adapta a todo tipo de pantallas</li>
-      </ul>
-
-      <h3>2️⃣ Stack Tecnológico Moderno</h3>
-        <br />
-      <ul className="styled-list">
-        <li>Vite como build tool para un desarrollo rápido y eficiente</li>
-        <li>React para la construcción de interfaces de usuario</li>
-        <li>JavaScript como lenguaje principal</li>
-        <li>CSS para estilos personalizados</li>
-        <li>React Hot Toast para notificaciones elegantes</li>
-        <li>Axios para peticiones HTTP</li>
-        <li>React Scroll para navegación fluida</li>
-        <li>React Hook Form para gestión avanzada de formularios</li>
-        <li>Node.js y Nodemailer para funcionalidad de backend</li>
-      </ul>
-
-      <div className="code-example-box">
-        <h3>3️⃣ Carrito de compra con persistencia de datos</h3>
-        <br />
-        <p>El proyecto implementa un sistema de carrito de compras completo con las siguientes características:</p>
-        <br />
-        <ul className="styled-list">
-          <li><strong>CreateContext:</strong> Para crear un contexto que permite compartir el estado del carrito en toda la aplicación</li>
-          <li><strong>useReducer:</strong> Para manejar el estado del carrito al que se pueden añadir o eliminar elementos</li>
-          <li><strong>useEffect:</strong> Para sincronizar el carrito con localStorage, de modo que los datos persistan guardados aunque el usuario cierre la página</li>
-        </ul>
-      </div>
-
-      <div className="code-example-box">
-        <h3>4️⃣ Gestión avanzada de formularios</h3>
-        <br />
-        <p>El manejo de formularios utiliza react-hook-form con las siguientes ventajas:</p>
-        <br />
-        <ul className="styled-list">
-          <li>Manejo de los inputs de forma controlada y validación en tiempo real</li>
-          <li>No permite avanzar en el formulario a menos que el usuario haya rellenado todos los campos requeridos</li>
-          <li>Reset de valores una vez el usuario cierra el formulario</li>
-        </ul>
-      </div>
-
-      <div className="code-example-box">
-        <h3>5️⃣ Sistema de envío de email al realizar pedidos</h3>
-    <br />
-        <p>Cuando el usuario finaliza su compra:</p>
-        <br />
-        <ul className="styled-list">
-          <li>Se envían los datos del pedido a la API</li>
-          <li>El usuario recibe un correo electrónico con su nombre y los detalles completos del pedido</li>
-        </ul>
-      </div>
-</div>
-<div className="highlight-box">
-        <h2>🎯 Conclusión</h2>
-        <p>
-          El proyecto de Almudena es un excelente ejemplo de cómo se puede crear una experiencia de e-commerce completa utilizando tecnologías web modernas. La atención al detalle en el diseño, combinada con la implementación de funcionalidades avanzadas como la persistencia de datos y la validación de formularios, demuestra un nivel profesional de desarrollo frontend.
-        </p>
-        <p>
-          Agradecemos enormemente a Almudena por compartir este valioso recurso con femCoders Club. Su trabajo inspira a otras mujeres desarrolladoras a crear proyectos ambiciosos y de alta calidad.
-        </p>
-        
-        <div className="resource-links mt-4">
-          <p>
-            <strong>Recursos disponibles:</strong>
-          </p>
-          <ul className="list-disc pl-6 my-2">
-            <li>
-              🔗 <a href="/presentaciones-destacadas" className="text-blue-600 hover:text-blue-800 font-medium">Descarga el proyecto completo</a> en nuestra sección de Presentaciones Destacadas
-            </li>
-            <li>
-              👩‍💻 Conéctate con <a href="https://www.linkedin.com/in/almudena-rendon-fernandez/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 font-medium">Almudena en LinkedIn</a> para seguir su trabajo
-            </li>
-          </ul>
-        </div>
-
-        <h3 className="mt-6">💜 Forma parte de nuestra comunidad</h3>
-        <br />
-        <p>
-          En <strong>FemCoders Club</strong>, creemos en el aprendizaje
-          colaborativo y en el crecimiento conjunto. Invitamos a todas las mujeres interesadas en tecnología a unirse a nuestra comunidad donde compartimos recursos, experiencias y oportunidades de crecimiento profesional.
-        </p>
-        <p className="mt-2">
-          Visítanos en{" "}
+          ¡Estamos emocionadas de presentar un proyecto que han compartido con
+          nuestra comunidad!{" "}
           <a
-            href="https://www.femcodersclub.com"
+            href="https://www.linkedin.com/in/almudena-rendon-fernandez/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 font-medium"
           >
-            FemCoders Club
-          </a>{" "}
-          y síguenos en nuestras redes sociales para estar al día de nuestras actividades y recursos.
+            Almudena Rendón Fernández
+          </a>
+          , Software Developer y Top 10 Women in IT &amp; Tech LinkedIn Spain,
+          ha desarrollado una réplica de la Nike Store con tecnologías modernas
+          de desarrollo web. Es un excelente ejemplo de lo que React permite
+          hacer para crear experiencias de e-commerce completas y
+          profesionales.
         </p>
-      </div>
-
-      <div className="author-info">
+      }
+    >
+      <SeccionPost titulo="Réplica de Nike Store: demo y características">
         <p>
-          Escrito por: <strong>Irina Ichim</strong>
+          Almudena ha compartido con FemCoders Club su réplica de Nike Store,
+          una tienda online con todas las funcionalidades esenciales de un
+          e-commerce moderno. Puedes{" "}
+          <a href="https://lnkd.in/dHytgcnB" target="_blank" rel="noopener noreferrer">
+            ver la demo en vivo
+          </a>
+          .
         </p>
-        <p>Co-fundadora de femCoders Club</p>
+      </SeccionPost>
+
+      <SeccionPost titulo="Características principales del proyecto">
+        <h3>1. Diseño cuidado y adaptable</h3>
+        <ul>
+          <li>Diseño de Almudena, inspirado en la Nike Store oficial.</li>
+          <li>Elección meticulosa de la paleta de colores y del diseño de la web.</li>
+          <li>Selección cuidadosa de imágenes y vídeos.</li>
+          <li>Imágenes de zapatillas creadas con las herramientas de IA de Freepik.</li>
+          <li>Diseño totalmente adaptable a todo tipo de pantallas.</li>
+        </ul>
+
+        <h3>2. Stack tecnológico moderno</h3>
+        <ul>
+          <li>Vite como herramienta de build, para un desarrollo rápido y eficiente.</li>
+          <li>React para construir la interfaz.</li>
+          <li>JavaScript como lenguaje principal.</li>
+          <li>CSS para los estilos personalizados.</li>
+          <li>React Hot Toast para las notificaciones.</li>
+          <li>Axios para las peticiones HTTP.</li>
+          <li>React Scroll para la navegación fluida.</li>
+          <li>React Hook Form para la gestión de formularios.</li>
+          <li>Node.js y Nodemailer para el backend.</li>
+        </ul>
+
+        <h3>3. Carrito de compra con persistencia de datos</h3>
+        <p>El carrito se apoya en tres piezas de React:</p>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "createContext",
+              texto: "Crea un contexto para compartir el estado del carrito en toda la aplicación.",
+            },
+            {
+              titulo: "useReducer",
+              texto: "Gestiona el estado del carrito: añadir y eliminar productos.",
+            },
+            {
+              titulo: "useEffect",
+              texto: "Sincroniza el carrito con localStorage, para que no se pierda aunque cierres la página.",
+            },
+          ]}
+        />
+
+        <h3>4. Gestión avanzada de formularios</h3>
+        <p>Los formularios usan react-hook-form, que permite:</p>
+        <ul>
+          <li>Manejar los inputs de forma controlada y validarlos en tiempo real.</li>
+          <li>No avanzar en el formulario hasta rellenar todos los campos obligatorios.</li>
+          <li>Reiniciar los valores al cerrar el formulario.</li>
+        </ul>
+
+        <h3>5. Correo de confirmación al hacer un pedido</h3>
+        <p>Cuando alguien finaliza su compra:</p>
+        <ul>
+          <li>Los datos del pedido se envían a la API.</li>
+          <li>Recibe un correo con su nombre y todos los detalles del pedido.</li>
+        </ul>
+      </SeccionPost>
+
+      <SeccionPost titulo="Conclusión">
         <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
+          El proyecto de Almudena es un excelente ejemplo de cómo crear una
+          experiencia de e-commerce completa con tecnologías web modernas. La
+          atención al detalle en el diseño, junto con funcionalidades como la
+          persistencia de datos y la validación de formularios, demuestra un
+          nivel profesional de desarrollo frontend.
         </p>
-      </div>
+        <p>
+          Agradecemos enormemente a Almudena que comparta este recurso con
+          FemCoders Club. Su trabajo inspira a otras mujeres desarrolladoras a
+          crear proyectos ambiciosos y de calidad.
+        </p>
+        <TarjetasPost
+          titulo="Recursos disponibles"
+          tarjetas={[
+            {
+              titulo: "Descarga el proyecto completo",
+              texto: "En nuestra sección de Presentaciones destacadas.",
+              enlace: "/presentaciones-destacadas",
+              icono: <Download aria-hidden="true" />,
+            },
+            {
+              titulo: "Almudena en LinkedIn",
+              texto: "Conecta con ella para seguir su trabajo.",
+              enlace: "https://www.linkedin.com/in/almudena-rendon-fernandez/",
+              icono: <Linkedin aria-hidden="true" />,
+            },
+          ]}
+        />
 
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={15} />
-    </div>
-  );
-};
+        <h3>Forma parte de nuestra comunidad</h3>
+        <p>
+          En <strong>FemCoders Club</strong> creemos en el aprendizaje
+          colaborativo y en crecer juntas. Invitamos a todas las mujeres
+          interesadas en la tecnología a unirse a una comunidad donde
+          compartimos recursos, experiencias y oportunidades de crecimiento
+          profesional.
+        </p>
+        <p>
+          <Link to="/register" className="fc-boton">
+            Únete a la comunidad
+          </Link>
+        </p>
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default ReplicaNike;

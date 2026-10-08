@@ -1,11 +1,36 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  Briefcase,
+  CircleAlert,
+  FolderOpen,
+  Heart,
+  Presentation,
+  UserPlus,
+  type LucideIcon,
+} from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import PasswordInput from "../../../components/ui/PasswordInput";
-import "../../LogIn/page/LoginPage.css";
-import "../../LogIn/components/LoginForm.css";
-import "./RegisterForm.css";
+import FraseAnimada from "../../LogIn/components/FraseAnimada";
+import RequisitosContrasena from "../../LogIn/components/RequisitosContrasena";
+import { META_REGISTRO } from "../contenido";
+import "../../LogIn/page/Acceso.css";
+import "../../LogIn/components/FormularioAcceso.css";
+
+const PALABRAS = ["eventos", "mentoría", "recursos", "oportunidades", "apoyo mutuo"] as const;
+
+/*
+ * Lo que hay en la zona privada: las secciones reales del menú de /welcome.
+ * Icono decorativo (el título ya lo dice); naranja y violeta en damero.
+ */
+const VENTAJAS: { titulo: string; texto: string; Icono: LucideIcon; naranja: boolean }[] = [
+  { titulo: "Recursos exclusivos", texto: "Guías y materiales que comparte la comunidad.", Icono: FolderOpen, naranja: true },
+  { titulo: "Mentoría", texto: "Pide acompañamiento para tu siguiente paso.", Icono: Heart, naranja: false },
+  { titulo: "Presentaciones", texto: "Las charlas de nuestros eventos, para verlas cuando quieras.", Icono: Presentation, naranja: false },
+  { titulo: "Ofertas de trabajo", texto: "Vacantes que las empresas comparten con la comunidad.", Icono: Briefcase, naranja: true },
+];
 
 // Nombres y apellidos reales: acentos, ñ, ç y alfabetos no latinos (\p{L}),
 // más espacios, guiones y apóstrofos de los nombres compuestos
@@ -29,7 +54,6 @@ const RegisterForm: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [emailTaken, setEmailTaken] = useState(false);
   const errorRef = useRef<HTMLParagraphElement>(null);
-  const [passwordFocus, setPasswordFocus] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (
@@ -124,234 +148,285 @@ const RegisterForm: React.FC = () => {
     }
   };
 
-  const passwordRequirements = [
-    {
-      met: formData.userPassword.length >= 8,
-      text: "Mínimo 8 caracteres",
-    },
-    {
-      met: /[A-Z]/.test(formData.userPassword),
-      text: "Al menos una mayúscula",
-    },
-    {
-      met: /[a-z]/.test(formData.userPassword),
-      text: "Al menos una minúscula",
-    },
-    {
-      met: /[0-9]/.test(formData.userPassword),
-      text: "Al menos un número",
-    },
-  ];
-
   return (
-    <div className="login-page register-page bg1">
-      <div className="login-container">
-        <div className="login-background-text">
-          <h3 className="typing main-title">¡Únete a nuestra comunidad!</h3>
-          <div className="words">
-            <h2 className="typing">Networking</h2>
-            <h2 className="typing">Eventos</h2>
-            <h2 className="typing">Mentoría</h2>
-            <h2 className="typing">Oportunidades</h2>
-            <h2 className="typing">Recursos</h2>
-            <h2 className="typing">Apoyo Mutuo</h2>
-            <h2 className="typing word-finale">Tu lugar en la tecnología</h2>
-          </div>
-        </div>
-        <div className="login-form-container">
-          <div className="login-form">
-            <form onSubmit={handleSubmit}>
-              {/*
-                La convención hay que enunciarla: el asterisco existía ya, pero
-                solo en la casilla de privacidad y sin nada que dijera qué
-                significaba.
+    <>
+      <Helmet>
+        <title>{META_REGISTRO.titulo}</title>
+        <meta name="description" content={META_REGISTRO.descripcion} />
+      </Helmet>
+      <section
+        className="acceso acceso--ancho bg1 fc-manchas"
+        aria-labelledby="registro-titulo"
+      >
+        <div className="acceso__rejilla">
+          <header className="acceso__cabecera">
+            <p className="fc-antetitulo fc-antetitulo--naranja">Únete</p>
+            <h1 className="acceso__titulo" id="registro-titulo">
+              Tu lugar en la <span className="fc-rotulador">tecnología</span>
+            </h1>
+            <FraseAnimada inicio="Aquí encontrarás" palabras={PALABRAS} />
+            <p className="acceso__entradilla">
+              Crea tu cuenta para acceder a los recursos, las presentaciones y
+              las mentorías de la comunidad.
+            </p>
+          </header>
 
-                La leyenda va oculta al lector de pantalla a propósito: quien
-                navega así ya recibe el `required` de cada campo, y con el
-                asterisco oculto la frase se oiría partida.
-              */}
-              <p className="register-leyenda" aria-hidden="true">
-                Los campos con <span className="register-obligatorio" aria-hidden="true">*</span> son obligatorios.
-              </p>
-              <div className="register-row">
-                <div className="register-field">
-                  <label htmlFor="userName">Nombre: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-                  <input
-                    type="text"
-                    id="userName"
-                    name="userName"
-                    value={formData.userName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="register-field">
-                  <label htmlFor="userLastName">Apellido: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-                  <input
-                    type="text"
-                    id="userLastName"
-                    name="userLastName"
-                    value={formData.userLastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <label htmlFor="userEmail">Correo Electrónico: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="userEmail"
-                name="userEmail"
-                value={formData.userEmail}
-                onChange={handleChange}
-                required
-              />
-              <div className="register-row">
-                <div className="register-field">
-                  <label htmlFor="userPassword">Contraseña: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-                  <PasswordInput
-                    id="userPassword"
-                    value={formData.userPassword}
-                    onChange={handleChange}
-                    onFocus={() => setPasswordFocus(true)}
-                    onBlur={() => setPasswordFocus(false)}
-                    autoComplete="new-password"
-                    required
-                  />
-                </div>
-                <div className="register-field">
-                  <label htmlFor="confirmPassword">Repetir Contraseña: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-                  <PasswordInput
-                    id="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    autoComplete="new-password"
-                    required
-                  />
+          <div className="acceso__formulario">
+            <div className="fc-capa" aria-hidden="true" />
+            <div className="fc-tarjeta formulario-acceso">
+              <div className="formulario-acceso__cabecera">
+                <img
+                  src="/logo-femcoders-animado.webp"
+                  alt=""
+                  className="formulario-acceso__logo"
+                  width={64}
+                  height={64}
+                />
+                <div>
+                  <h2 className="formulario-acceso__titulo">Crea tu cuenta</h2>
+                  {/*
+                    La leyenda va oculta al lector de pantalla a propósito:
+                    quien navega así ya recibe el `required` de cada campo, y
+                    con el asterisco oculto la frase se oiría partida.
+                  */}
+                  <p className="formulario-acceso__nota" aria-hidden="true">
+                    Los campos con{" "}
+                    <span className="formulario-acceso__obligatorio">*</span>{" "}
+                    son obligatorios.
+                  </p>
                 </div>
               </div>
 
-              {passwordFocus && (
-                <div className="password-requirements">
-                  <p className="password-requirements-title">Requisitos:</p>
-                  <ul className="password-requirements-list">
-                    {passwordRequirements.map((req, index) => (
-                      <li
-                        key={index}
-                        className={
-                          req.met ? "requirement-met" : "requirement-unmet"
-                        }
+              <form onSubmit={handleSubmit} className="formulario-acceso__campos">
+                <div className="formulario-acceso__fila">
+                  <div className="fc-campo">
+                    <label htmlFor="userName">
+                      Nombre <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="userName"
+                      name="userName"
+                      value={formData.userName}
+                      onChange={handleChange}
+                      autoComplete="given-name"
+                      required
+                    />
+                  </div>
+                  <div className="fc-campo">
+                    <label htmlFor="userLastName">
+                      Apellido <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="userLastName"
+                      name="userLastName"
+                      value={formData.userLastName}
+                      onChange={handleChange}
+                      autoComplete="family-name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="fc-campo">
+                  <label htmlFor="userEmail">
+                    Correo electrónico <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="userEmail"
+                    name="userEmail"
+                    value={formData.userEmail}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    required
+                  />
+                </div>
+
+                <div className="formulario-acceso__fila">
+                  <div className="fc-campo">
+                    <label htmlFor="userPassword">
+                      Contraseña <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                    <PasswordInput
+                      id="userPassword"
+                      value={formData.userPassword}
+                      onChange={handleChange}
+                      autoComplete="new-password"
+                      required
+                    />
+                  </div>
+                  <div className="fc-campo">
+                    <label htmlFor="confirmPassword">
+                      Repite la contraseña <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                    <PasswordInput
+                      id="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      autoComplete="new-password"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/*
+                  Siempre visible: si aparecía solo con el foco en la contraseña,
+                  al pulsar la casilla o «Crear cuenta» el recuadro desaparecía,
+                  todo subía ~150px y el primer toque caía en el vacío.
+                */}
+                <RequisitosContrasena contrasena={formData.userPassword} />
+
+                <div className="formulario-acceso__fila">
+                  <div className="fc-campo">
+                    <label htmlFor="userTelephone">
+                      Teléfono <span className="formulario-acceso__opcional">(opcional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="userTelephone"
+                      name="userTelephone"
+                      value={formData.userTelephone}
+                      onChange={handleChange}
+                      // Sin prefijo: con "tel" el navegador rellena «+34…» y
+                      // validateForm solo acepta dígitos.
+                      autoComplete="tel-national"
+                    />
+                  </div>
+                  <div className="fc-campo">
+                    <label htmlFor="userGender">
+                      Género <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                    <select
+                      id="userGender"
+                      name="userGender"
+                      value={formData.userGender}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">Selecciona tu género</option>
+                      <option value="Mujer">Mujer</option>
+                      <option value="Hombre">Hombre</option>
+                      <option value="No binario">No binario</option>
+                      <option value="Prefiero no decir">Prefiero no decir</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="formulario-acceso__consentimientos">
+                  <div className="form-consent">
+                    <input
+                      type="checkbox"
+                      id="acceptsPrivacy"
+                      name="acceptsPrivacy"
+                      checked={acceptsPrivacy}
+                      onChange={(e) => {
+                        setAcceptsPrivacy(e.target.checked);
+                        setError("");
+                      }}
+                      required
+                      aria-required="true"
+                      aria-invalid={!!error && !acceptsPrivacy}
+                      aria-describedby={
+                        error && !acceptsPrivacy ? "register-error" : undefined
+                      }
+                    />
+                    <label htmlFor="acceptsPrivacy">
+                      He leído y acepto la{" "}
+                      <button
+                        type="button"
+                        className="link-button"
+                        onClick={(e) => {
+                          // Evita que el clic en el enlace marque/desmarque la casilla.
+                          e.stopPropagation();
+                          openModal("privacyPolicy");
+                        }}
                       >
-                        <span aria-hidden="true">{req.met ? "✓" : "×"}</span>{" "}
-                        {req.text}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                        Política de Privacidad
+                      </button>
+                      . <span className="formulario-acceso__obligatorio" aria-hidden="true">*</span>
+                    </label>
+                  </div>
 
-              <div className="register-row">
-                <div className="register-field">
-                  <label htmlFor="userTelephone">Teléfono: <span className="register-opcional">(opcional)</span></label>
-                  <input
-                    type="text"
-                    id="userTelephone"
-                    name="userTelephone"
-                    value={formData.userTelephone}
-                    onChange={handleChange}
-                  />
+                  <div className="form-consent">
+                    <input
+                      type="checkbox"
+                      id="marketingConsent"
+                      name="marketingConsent"
+                      checked={marketingConsent}
+                      onChange={(e) => setMarketingConsent(e.target.checked)}
+                    />
+                    <label htmlFor="marketingConsent">
+                      Quiero recibir la newsletter de FemCoders Club e
+                      invitaciones a futuros eventos por email. Puedo darme de
+                      baja cuando quiera.
+                    </label>
+                  </div>
                 </div>
-                <div className="register-field">
-                  <label htmlFor="userGender">Género: <span className="register-obligatorio" aria-hidden="true">*</span></label>
-                  <select
-                    id="userGender"
-                    name="userGender"
-                    value={formData.userGender}
-                    onChange={handleChange}
-                    required
+
+                {error && (
+                  <p
+                    id="register-error"
+                    className="fc-aviso fc-aviso--error"
+                    role="alert"
+                    tabIndex={-1}
+                    ref={errorRef}
                   >
-                    <option value="">Selecciona tu género</option>
-                    <option value="Mujer">Mujer</option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="No binario">No binario</option>
-                    <option value="Prefiero no decir">Prefiero no decir</option>
-                  </select>
-                </div>
-              </div>
+                    <CircleAlert aria-hidden="true" />
+                    <span className="fc-texto-neutro">
+                      {error}
+                      {emailTaken && (
+                        <>
+                          {" "}
+                          ¿Ya tienes cuenta?{" "}
+                          <Link to="/login" className="fc-enlace fc-enlace--texto">
+                            Inicia sesión
+                          </Link>
+                        </>
+                      )}
+                    </span>
+                  </p>
+                )}
 
-              <div className="register-consent">
-                <input
-                  type="checkbox"
-                  id="acceptsPrivacy"
-                  name="acceptsPrivacy"
-                  checked={acceptsPrivacy}
-                  onChange={(e) => {
-                    setAcceptsPrivacy(e.target.checked);
-                    setError("");
-                  }}
-                  required
-                  aria-required="true"
-                  aria-invalid={!!error && !acceptsPrivacy}
-                  aria-describedby={
-                    error && !acceptsPrivacy ? "register-error" : undefined
-                  }
-                />
-                <label htmlFor="acceptsPrivacy">
-                  He leído y acepto la{" "}
-                  <button
-                    type="button"
-                    className="link-button"
-                    onClick={(e) => {
-                      // Evita que el clic en el enlace marque/desmarque la casilla.
-                      e.stopPropagation();
-                      openModal("privacyPolicy");
-                    }}
-                  >
-                    Política de Privacidad
-                  </button>
-                  . <span className="register-obligatorio" aria-hidden="true">*</span>
-                </label>
-              </div>
-
-              <div className="register-consent">
-                <input
-                  type="checkbox"
-                  id="marketingConsent"
-                  name="marketingConsent"
-                  checked={marketingConsent}
-                  onChange={(e) => setMarketingConsent(e.target.checked)}
-                />
-                <label htmlFor="marketingConsent">
-                  Quiero recibir la newsletter de FemCoders Club e invitaciones a
-                  futuros eventos por email. Puedo darme de baja cuando quiera.
-                </label>
-              </div>
-
-              {error && (
-                <p
-                  id="register-error"
-                  className="error-message"
-                  role="alert"
-                  tabIndex={-1}
-                  ref={errorRef}
+                <button
+                  type="submit"
+                  className="fc-boton fc-boton--noche formulario-acceso__enviar"
                 >
-                  {error}
-                  {emailTaken && (
-                    <>
-                      {" "}
-                      ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
-                    </>
-                  )}
-                </p>
-              )}
-              <button type="submit" className="primary-button">
-                Registrarse
-              </button>
-            </form>
+                  Crear cuenta
+                  <UserPlus aria-hidden="true" />
+                </button>
+              </form>
+
+              <p className="formulario-acceso__pie">
+                ¿Ya tienes cuenta?{" "}
+                <Link to="/login" className="fc-enlace fc-enlace--texto">
+                  Inicia sesión
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Después del formulario en el HTML: en móvil no lo aleja; en escritorio la rejilla lo sube a la izquierda. */}
+          <div className="acceso__ventajas-bloque">
+            <h2 className="acceso__subtitulo">Con tu cuenta tendrás</h2>
+            <ul className="acceso__ventajas">
+              {VENTAJAS.map(({ titulo, texto, Icono, naranja }) => (
+                <li key={titulo} className="acceso__ventaja">
+                  <div className={`fc-disco${naranja ? " fc-disco--naranja" : ""}`} aria-hidden="true">
+                    <Icono />
+                  </div>
+                  <div>
+                    <h3 className="acceso__ventaja-titulo">{titulo}</h3>
+                    <p className="acceso__ventaja-texto">{texto}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

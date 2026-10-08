@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { BookOpen, Download, Globe, Hammer, MessageSquare, Share2, Trophy, Users } from "lucide-react";
 import Quiz, { QuizQuestion, QuizResults } from "../../../../../components/Quiz";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
-
-import ShareButtons from "../../../components/ShareButtons";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  ListaMarcadaPost,
+  NotaPost,
+  PasosPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
 const preguntasCSSEntrevistas: QuizQuestion[] = [
   // NIVEL BÁSICO (10 preguntas)
@@ -33,7 +39,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "!important" }
     ],
     correct: ["d"],
-    explanation: "!important tiene la mayor especificidad y sobrescribe todo, seguido de estilos inline, IDs, clases y etiquetas. Sin embargo, abusar de !important es una mala práctica."
+    explanation: "!important no forma parte de la especificidad, pero se impone a ella: gana a los estilos inline, los IDs, las clases y las etiquetas. Sin embargo, abusar de !important es una mala práctica."
   },
   {
     id: "css-basic-3",
@@ -59,7 +65,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "vh (viewport height)" }
     ],
     correct: ["b"],
-    explanation: "em es relativo al font-size del elemento padre. rem es relativo al font-size del elemento raíz (html). px es absoluto y vh es relativo al viewport."
+    explanation: "em es relativo al font-size del elemento padre cuando se usa en font-size (en el resto de propiedades, al font-size del propio elemento). rem es relativo al font-size del elemento raíz (html). px es absoluto y vh es relativo al viewport."
   },
   {
     id: "css-basic-5",
@@ -124,7 +130,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "@viewport (768px) { }" }
     ],
     correct: ["a", "b"],
-    explanation: "Las media queries usan @media seguido de condiciones. Puedes especificar tipo (screen) y características (width). La sintaxis con < es nueva pero no ampliamente soportada."
+    explanation: "Las media queries usan @media seguido de condiciones. Puedes especificar tipo (screen) y características (width). La opción c no es válida porque le falta la @; escrita como @media (width < 768px) es la sintaxis de rangos, que ya admiten los navegadores actuales."
   },
   {
     id: "css-basic-10",
@@ -230,7 +236,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "::before, ::after" }
     ],
     correct: ["a", "b", "c"],
-    explanation: "Todas excepto d son pseudo-clases (:). ::before y ::after son pseudo-elementos (::) que crean elementos en el DOM."
+    explanation: "Todas excepto d son pseudo-clases (:). ::before y ::after son pseudo-elementos (::) que generan contenido al pintar la página, pero no forman parte del DOM."
   },
   {
     id: "css-int-8",
@@ -284,7 +290,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "No funcionan en navegadores modernos" }
     ],
     correct: ["a", "b", "c"],
-    explanation: "CSS Custom Properties son variables nativas del navegador, heredables, dinámicas y modificables via JavaScript. Ideales para theming y diseño responsive."
+    explanation: "CSS Custom Properties son variables nativas del navegador, heredables, dinámicas y modificables vía JavaScript. Ideales para theming y diseño responsive."
   },
   {
     id: "css-adv-2",
@@ -323,7 +329,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
       { id: "d", text: "Todas eliminan completamente la necesidad de CSS" }
     ],
     correct: ["a", "b", "c"],
-    explanation: "CSS-in-JS ofrece scope, theming dinámico y co-location. Trade-offs: runtime overhead, bundle size, no funcionan sin JS. CSS puro sigue siendo necesario para progressive enhancement."
+    explanation: "CSS-in-JS ofrece scope, theming dinámico y co-location. Trade-offs: runtime overhead, bundle size, no funcionan sin JS. CSS Modules no es CSS-in-JS en sentido estricto (se procesa al compilar), pero se suele comparar con estas librerías. CSS puro sigue siendo necesario para progressive enhancement."
   },
   {
     id: "css-adv-5",
@@ -369,7 +375,7 @@ const preguntasCSSEntrevistas: QuizQuestion[] = [
     level: "avanzado",
     question: "¿Cómo funcionan las subgrid en CSS Grid?",
     options: [
-      { id: "a", text: "display: subgrid permite heredar grid del padre" },
+      { id: "a", text: "grid-template-columns: subgrid (o rows) permite heredar las pistas del grid padre" },
       { id: "b", text: "Útil para alinear elementos anidados con el grid principal" },
       { id: "c", text: "Resuelve problemas complejos de alineación multi-nivel" },
       { id: "d", text: "Funciona automáticamente sin configuración" }
@@ -447,10 +453,6 @@ const PreguntasCSSEntrevistas: React.FC = () => {
         console.error("Error registrando quiz:", error);
       }
     }
-  };
-
-  const closeAchievementModal = () => {
-    setAchievementModal({ show: false, title: "", message: "" });
   };
 
   const downloadStudyGuide = () => {
@@ -598,10 +600,44 @@ Fecha: ${publicationDate}
     window.URL.revokeObjectURL(url);
   };
 
+  /*
+   * Bajo los resultados del quiz: el logro, si se ha desbloqueado (solo con la
+   * sesión iniciada: handleQuizComplete se lo pide al servidor); si no hay
+   * sesión, cómo guardarlo; y siempre la guía de estudio. Sustituye a la
+   * ventana flotante de «¡Logro desbloqueado!».
+   */
+  const conSesion = Boolean(sessionStorage.getItem("userId") && sessionStorage.getItem("authToken"));
+  const extraResultados = (
+    <div className="quiz__extra">
+      <p className="quiz__extra-texto">
+        <Trophy aria-hidden="true" />
+        {achievementModal.show ? (
+          <span className="fc-texto-neutro">
+            <strong>Has desbloqueado el logro «{achievementModal.title}».</strong>{" "}
+            {achievementModal.message} Lo tienes en <Link to="/welcome">tu espacio</Link>.
+          </span>
+        ) : conSesion ? (
+          <span className="fc-texto-neutro">
+            Tus logros se guardan en <Link to="/welcome">tu espacio</Link>.
+          </span>
+        ) : (
+          <span className="fc-texto-neutro">
+            <Link to="/login">Inicia sesión</Link> antes de hacer el quiz para guardar tu
+            logro en tu espacio.
+          </span>
+        )}
+      </p>
+      <button type="button" className="fc-boton" onClick={downloadStudyGuide}>
+        <Download aria-hidden="true" />
+        Descargar la guía de estudio
+      </button>
+    </div>
+  );
+
   return (
-    <div className="blog-post">
+    <>
       <Helmet>
-        <title>Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club</title>
+        <title>Quiz CSS para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club</title>
         <meta
           name="description"
           content="Prepárate para entrevistas técnicas con nuestro quiz interactivo de CSS. 30 preguntas (básico a avanzado), explicaciones detalladas y guía de estudio descargable."
@@ -622,12 +658,12 @@ Fecha: ${publicationDate}
         />
         <meta name="googlebot" content="index, follow" />
         <meta name="bingbot" content="index, follow" />
-        <meta name="author" content="Irina ichim" />
+        <meta name="author" content="Irina Ichim" />
 
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club"
+          content="Quiz CSS para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -646,7 +682,7 @@ Fecha: ${publicationDate}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Quiz CSS para Entrevistas Técnicas - femCoders Club"
+          content="Quiz CSS para entrevistas técnicas - FemCoders Club"
         />
         <meta
           name="twitter:description"
@@ -672,381 +708,336 @@ Fecha: ${publicationDate}
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/css/CSS-Quiz-Entrevistas.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/css/CSS-Quiz-Entrevistas.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/css/CSS-Quiz-Entrevistas.webp"
-            alt="Quiz CSS para Entrevistas Técnicas - 30 preguntas esenciales femCoders Club"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        Quiz CSS para Entrevistas Técnicas
-        <br />
-        30 Preguntas que Debes Dominar
-      </h1>
-
-      <ShareButtons path="/recursos/css/quiz-css-entrevistas" title="Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales" />
-
-      <p className="intro-text">
-        ¿Te estás preparando para una entrevista como desarrolladora frontend? Este quiz interactivo te ayudará a 
-        <strong> evaluar tu nivel de CSS</strong> con las preguntas más frecuentes que suelen hacer los reclutadores técnicos. 
-        Desde conceptos básicos hasta técnicas avanzadas de <strong>Grid, Flexbox, Performance y CSS moderno</strong>.
-      </p>
-
-      <p className="intro-text">
-        He seleccionado cuidadosamente <strong>30 preguntas</strong> distribuidas en 3 niveles de dificultad, 
-        basándome en entrevistas reales de empresas tech. Cada pregunta incluye una explicación detallada 
-        para que entiendas no solo <em>qué</em> es correcto, sino <em>por qué</em>.
-      </p>
-
-      <div className="highlight-box">
-        <h2>🎯 ¿Qué encontrarás en este quiz?</h2>
-        
-        <div className="table-container">
-          <table className="framework-comparison-table">
-            <thead>
-              <tr>
-                <th>Nivel</th>
-                <th>Preguntas</th>
-                <th>Temas Clave</th>
-                <th>Perfil Candidato</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Básico</strong></td>
-                <td>10</td>
-                <td>Box Model, selectores, position, unidades, media queries</td>
-                <td>Junior Developer, Bootcamp graduate</td>
-              </tr>
-              <tr>
-                <td><strong>Intermedio</strong></td>
-                <td>10</td>
-                <td>Flexbox, Grid, transforms, animations, especificidad</td>
-                <td>Mid-level Developer, 1-3 años experiencia</td>
-              </tr>
-              <tr>
-                <td><strong>Avanzado</strong></td>
-                <td>10</td>
-                <td>Custom Properties, Performance, Container Queries, Houdini</td>
-                <td>Senior Developer, Tech Lead</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <button 
-            onClick={downloadStudyGuide}
-            style={{
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 24px",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "1rem",
-              fontWeight: "bold",
-              cursor: "pointer",
-              transition: "background-color 0.3s ease",
-              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-            }}
-            onMouseOver={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#3d2ea1"}
-            onMouseOut={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#4737bb"}
-          >
-            📚 Descargar Guía de Estudio
-          </button>
-          <p style={{ fontSize: "0.9rem", color: "#666", marginTop: "8px" }}>
-            Todos los conceptos clave organizados para repasar
-          </p>
-        </div>
-      </div>
-
-      <div className="highlight-box">
-        <h2>💡 Cómo aprovechar al máximo este quiz</h2>
-        
-        <h3>Antes de empezar:</h3>
-        <ul>
-          <li><strong>No busques las respuestas</strong> - La idea es evaluar tu conocimiento actual</li>
-          <li><strong>Lee cada pregunta cuidadosamente</strong> - Algunas tienen múltiples respuestas correctas</li>
-          <li><strong>Tómate tu tiempo</strong> - No hay límite de tiempo, enfócate en entender</li>
-        </ul>
-
-        <h3>Durante el quiz:</h3>
-        <ul>
-          <li><strong>Piensa en voz alta</strong> - Como harías en una entrevista real</li>
-          <li><strong>Considera el contexto</strong> - ¿Cuándo usarías cada opción?</li>
-          <li><strong>Lee las explicaciones</strong> - Son tan importantes como las respuestas</li>
-        </ul>
-
-        <h3>Después del quiz:</h3>
-        <ul>
-          <li><strong>Revisa tus áreas débiles</strong> - El sistema te dará feedback por nivel</li>
-          <li><strong>Practica los conceptos</strong> - Implementa lo que no domines</li>
-          <li><strong>Repite en una semana</strong> - Para reforzar el aprendizaje</li>
-        </ul>
-      </div>
-
-      <div className="highlight-box">
-        <h2>🚀 El Quiz Interactivo</h2>
-        <p>
-          <strong>Instrucciones:</strong> Selecciona la(s) respuesta(s) que consideres correcta(s) y haz clic en 
-          "Verificar Respuesta". Algunas preguntas pueden tener múltiples opciones válidas.
-        </p>
-        
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "20px",
-          borderLeft: "4px solid #4737bb"
-        }}>
-          <p style={{ margin: "0", fontSize: "1.1rem" }}>
-            <strong>💡 Tip de entrevista:</strong> En entrevistas reales, siempre explica tu razonamiento. 
-            No solo digas "la respuesta es B", sino "elijo B porque...". Los entrevistadores valoran 
-            el proceso de pensamiento tanto como la respuesta correcta.
-          </p>
-        </div>
-      </div>
-
-      <Quiz 
-        title="Quiz CSS - Entrevistas Técnicas" 
-        questions={preguntasCSSEntrevistas}
-        showLevelIndicator={true}
-        shuffleQuestions={false}
-        passPercentage={70}
-        onComplete={handleQuizComplete}
-      />
-
-      <div className="highlight-box">
-        <h2>📊 Interpretando tu puntuación</h2>
-        
-        <h3>Puntuación Global:</h3>
-        <ul>
-          <li><strong>90-100%:</strong> ¡Excelente! Estás preparada para entrevistas senior</li>
-          <li><strong>75-89%:</strong> Muy bien. Repasa algunos conceptos específicos</li>
-          <li><strong>60-74%:</strong> Buen nivel base. Practica las áreas débiles</li>
-          <li><strong>Menos de 60%:</strong> Necesitas más estudio. Usa nuestra guía de recursos</li>
-        </ul>
-
-        <h3>Por Nivel de Dificultad:</h3>
-        <ul>
-          <li><strong>Básico:</strong> Fundamental dominar 8/10 o más para cualquier posición frontend</li>
-          <li><strong>Intermedio:</strong> Necesario para posiciones mid-level y senior</li>
-          <li><strong>Avanzado:</strong> Diferenciador para roles técnicos leadership y arquitectura</li>
-        </ul>
-      </div>
-
-      <div className="highlight-box">
-        <h2>🎓 Recursos para seguir aprendiendo</h2>
-        <p>
-          Si quieres profundizar en algún tema específico que apareció en el quiz, 
-          estos recursos de femCoders Club te ayudarán:
-        </p>
-
-        <h3>📖 Posts relacionados:</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/introduccion-css"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Introducción a CSS: Fundamentos Esenciales
-              </a>
-            </strong> - Perfecto si necesitas reforzar conceptos básicos
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/flexbox-guia-completa"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Flexbox: Guía Completa
-              </a>
-            </strong> - Domina el layout unidimensional
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/css-grid-completo"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Grid: De Cero a Experta
-              </a>
-            </strong> - Aprende layouts bidimensionales
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/css-performance-optimization"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Performance: Optimización Avanzada
-              </a>
-            </strong> - Hardware acceleration y mejores prácticas
-          </li>
-        </ul>
-
-        <h3>🌐 Recursos externos recomendados:</h3>
-        <ul>
-          <li><strong>MDN CSS Reference</strong> - Documentación técnica completa</li>
-          <li><strong>CSS-Tricks</strong> - Tutoriales y tips prácticos</li>
-          <li><strong>Can I Use</strong> - Compatibilidad de características CSS</li>
-          <li><strong>Web.dev</strong> - Guías de Google sobre performance y mejores prácticas</li>
-        </ul>
-      </div>
-
-      <div className="highlight-box">
-        <h2>🤝 Comparte tu experiencia</h2>
-        <p>
-          Comparte tus resultados y aprendizajes:
-        </p>
-
-        <ul>
-          <li>
-            <strong>En nuestra comunidad Slack:</strong> 
-            <a
-              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-              className="highlight-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}Únete a femCoders Club
-            </a>
-          </li>
-          <li><strong>En redes sociales:</strong> Usa el hashtag #femCodersQuiz</li>
-          <li><strong>En los comentarios:</strong> Cuéntanos qué temas te resultaron más desafiantes</li>
-        </ul>
-
-        <p>
-          <em>Tu feedback nos ayuda a crear mejores recursos para toda la comunidad. 
-          ¡Cada experiencia compartida es una oportunidad de aprendizaje para otras desarrolladoras!</em>
-        </p>
-      </div>
-
-      <div style={{ textAlign: "center", margin: "2rem 0" }}>
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "20px",
-          borderRadius: "10px",
-          borderLeft: "5px solid #4737bb"
-        }}>
-          <p style={{ margin: "0", fontSize: "1.2rem", fontStyle: "italic" }}>
-            <strong>🎯 Recuerda:</strong> El conocimiento técnico es solo una parte de la entrevista. 
-            La capacidad de comunicar ideas, trabajar en equipo y seguir aprendiendo son igualmente importantes. 
-            <strong> ¡Confía en tu preparación y muestra tu pasión por el desarrollo!</strong>
-          </p>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Creado por: <strong>femCoders Club</strong>
-        </p>
-        <p>Comunidad de mujeres desarrolladoras</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <Link to="/blog" className="back-to-blog">
-          Volver al Blog
-        </Link>
-      </div>
-
-      <CommentsSection postId={postId} />
-
-      {achievementModal.show && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-          onClick={closeAchievementModal}
-        >
-          <div
-            style={{
-              backgroundColor: "white",
-              borderRadius: "20px",
-              padding: "40px",
-              maxWidth: "450px",
-              textAlign: "center",
-              boxShadow: "0 10px 40px rgba(71, 55, 187, 0.3)",
-              animation: "fadeIn 0.3s ease-out",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{ fontSize: "4rem", marginBottom: "20px" }}>🏆</div>
-            <h2
-              style={{
-                color: "#4737bb",
-                marginBottom: "15px",
-                fontSize: "1.8rem",
-              }}
-            >
-              ¡Logro Desbloqueado!
-            </h2>
-            <h3
-              style={{
-                color: "#6d2c95",
-                marginBottom: "20px",
-                fontSize: "1.4rem",
-              }}
-            >
-              {achievementModal.title}
-            </h3>
-            <p style={{ color: "#666", marginBottom: "25px", lineHeight: 1.6 }}>
-              {achievementModal.message}
+      <PlantillaPost
+        ruta="/recursos/css/quiz-css-entrevistas"
+        titulo="Quiz CSS para entrevistas técnicas: 30 preguntas que debes dominar"
+        autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+        idComentarios={postId}
+        entradilla={
+          <>
+            <p>
+              ¿Te estás preparando para una entrevista como desarrolladora frontend? Este quiz interactivo te ayudará a
+              <strong> evaluar tu nivel de CSS</strong> con las preguntas más frecuentes que suelen hacer los reclutadores técnicos.
+              Desde conceptos básicos hasta técnicas avanzadas de <strong>Grid, Flexbox, performance y CSS moderno</strong>.
             </p>
-            <button
-              onClick={closeAchievementModal}
-              style={{
-                backgroundColor: "#4737bb",
-                color: "white",
-                border: "none",
-                padding: "12px 30px",
-                borderRadius: "8px",
-                fontSize: "1rem",
-                fontWeight: "bold",
-                cursor: "pointer",
-                transition: "background-color 0.3s ease",
-              }}
-            >
-              ¡Genial!
+            <p>
+              He seleccionado cuidadosamente <strong>30 preguntas</strong> distribuidas en 3 niveles de dificultad,
+              basándome en entrevistas reales de empresas tech. Cada pregunta incluye una explicación detallada
+              para que entiendas no solo <em>qué</em> es correcto, sino <em>por qué</em>.
+            </p>
+          </>
+        }
+      >
+        <SeccionPost titulo="¿Qué encontrarás en este quiz?">
+          <TablaPost descripcion="Niveles del quiz">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nivel</th>
+                  <th>Preguntas</th>
+                  <th>Temas clave</th>
+                  <th>Perfil candidato</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Básico</strong></td>
+                  <td>10</td>
+                  <td>Box Model, selectores, position, unidades, media queries</td>
+                  <td>Junior Developer, Bootcamp graduate</td>
+                </tr>
+                <tr>
+                  <td><strong>Intermedio</strong></td>
+                  <td>10</td>
+                  <td>Flexbox, Grid, transforms, animations, especificidad</td>
+                  <td>Mid-level Developer, 1-3 años de experiencia</td>
+                </tr>
+                <tr>
+                  <td><strong>Avanzado</strong></td>
+                  <td>10</td>
+                  <td>Custom Properties, performance, container queries, Houdini</td>
+                  <td>Senior Developer, Tech Lead</td>
+                </tr>
+              </tbody>
+            </table>
+          </TablaPost>
+
+          <p>
+            <button type="button" className="fc-boton" onClick={downloadStudyGuide}>
+              <Download aria-hidden="true" />
+              Descargar la guía de estudio
             </button>
-          </div>
-        </div>
-      )}
-    </div>
+          </p>
+          <p>Todos los conceptos clave organizados para repasar.</p>
+        </SeccionPost>
+
+        <SeccionPost titulo="Cómo aprovechar al máximo este quiz">
+          <h3>Antes de empezar:</h3>
+          <ul>
+            <li><strong>No busques las respuestas</strong> - La idea es evaluar tu conocimiento actual</li>
+            <li><strong>Lee cada pregunta cuidadosamente</strong> - Algunas tienen múltiples respuestas correctas</li>
+            <li><strong>Tómate tu tiempo</strong> - No hay límite de tiempo, enfócate en entender</li>
+          </ul>
+
+          <h3>Durante el quiz:</h3>
+          <ul>
+            <li><strong>Piensa en voz alta</strong> - Como harías en una entrevista real</li>
+            <li><strong>Considera el contexto</strong> - ¿Cuándo usarías cada opción?</li>
+            <li><strong>Lee las explicaciones</strong> - Son tan importantes como las respuestas</li>
+          </ul>
+
+          <h3>Después del quiz:</h3>
+          <ul>
+            <li><strong>Revisa tus áreas débiles</strong> - El sistema te dará feedback por nivel</li>
+            <li><strong>Practica los conceptos</strong> - Implementa lo que no domines</li>
+            <li><strong>Repite en una semana</strong> - Para reforzar el aprendizaje</li>
+          </ul>
+        </SeccionPost>
+
+        <SeccionPost titulo="El quiz interactivo">
+          <p>
+            <strong>Instrucciones:</strong> Selecciona la(s) respuesta(s) que consideres correcta(s) y pulsa
+            «Comprobar respuesta». Algunas preguntas pueden tener múltiples opciones válidas.
+          </p>
+
+          <NotaPost titulo="Tip de entrevista">
+            <p>
+              En entrevistas reales, siempre explica tu razonamiento.
+              No solo digas "la respuesta es B", sino "elijo B porque...". Los entrevistadores valoran
+              el proceso de pensamiento tanto como la respuesta correcta.
+            </p>
+          </NotaPost>
+
+          <Quiz
+            title="Quiz CSS · Entrevistas técnicas"
+            questions={preguntasCSSEntrevistas}
+            showLevelIndicator={true}
+            shuffleQuestions={false}
+            passPercentage={70}
+            onComplete={handleQuizComplete}
+            extraResultados={extraResultados}
+          />
+        </SeccionPost>
+
+        <SeccionPost titulo="Interpretando tu puntuación">
+          <TarjetasPost
+            titulo="Tu puntuación global"
+            columnas={4}
+            tarjetas={[
+              { titulo: "90-100 %", texto: "¡Excelente! Estás preparada para entrevistas senior." },
+              { titulo: "75-89 %", texto: "Muy bien. Repasa algunos conceptos concretos." },
+              { titulo: "60-74 %", texto: "Buena base. Practica las áreas en las que fallaste." },
+              { titulo: "Menos de 60 %", texto: "Toca estudiar un poco más: empieza por los recursos de abajo." },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Qué pide cada nivel"
+            columnas={3}
+            tarjetas={[
+              { titulo: "Básico", texto: "Acertar 8 de 10 o más es lo esperable en cualquier puesto de frontend." },
+              { titulo: "Intermedio", texto: "Lo que se pide en puestos mid y senior." },
+              { titulo: "Avanzado", texto: "Lo que te distingue en roles técnicos de liderazgo y arquitectura." },
+            ]}
+          />
+        </SeccionPost>
+
+        <SeccionPost titulo="Recursos para seguir aprendiendo">
+          <p>Si quieres profundizar en algún tema del quiz, empieza por aquí:</p>
+          <TarjetasPost
+            titulo="Posts de FemCoders Club"
+            tarjetas={[
+              {
+                titulo: "Introducción a CSS",
+                texto: "Perfecto si necesitas reforzar los conceptos básicos.",
+                enlace: "/recursos/css/introduccion-css",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "Flexbox",
+                texto: "Domina el layout unidimensional.",
+                enlace: "/recursos/css/flexbox",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "CSS Grid",
+                texto: "Aprende a crear layouts bidimensionales.",
+                enlace: "/recursos/css/css-grid",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "El lado oculto del CSS",
+                texto: "Aceleración por hardware y buenas prácticas de rendimiento.",
+                enlace: "/recursos/css/css-performance-optimization",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Recursos externos"
+            tarjetas={[
+              {
+                titulo: "MDN CSS Reference",
+                texto: "Documentación técnica completa.",
+                enlace: "https://developer.mozilla.org/es/docs/Web/CSS",
+                icono: <Globe aria-hidden="true" />,
+              },
+              {
+                titulo: "CSS-Tricks",
+                texto: "Tutoriales y trucos prácticos.",
+                enlace: "https://css-tricks.com/",
+                icono: <Globe aria-hidden="true" />,
+              },
+              {
+                titulo: "Can I Use",
+                texto: "Compatibilidad de las características de CSS con cada navegador.",
+                enlace: "https://caniuse.com/",
+                icono: <Globe aria-hidden="true" />,
+              },
+              {
+                titulo: "web.dev",
+                texto: "Guías de Google sobre rendimiento y buenas prácticas.",
+                enlace: "https://web.dev/",
+                icono: <Globe aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
+
+        <SeccionPost titulo="Consejos para la entrevista">
+          <ListaMarcadaPost titulo="Lo que se valora" tipo="bien">
+            <li>
+              <strong>La cascada y la especificidad:</strong> saber explicar por qué gana una regla y no otra.
+            </li>
+            <li>
+              <strong>Elegir bien el layout:</strong> cuándo usar Flexbox, cuándo Grid y por qué.
+            </li>
+            <li>
+              <strong>Diseño adaptable:</strong> mobile first, unidades relativas y media o container queries.
+            </li>
+            <li>
+              <strong>Accesibilidad:</strong> contraste, foco visible y <code>prefers-reduced-motion</code>, aunque no te pregunten.
+            </li>
+          </ListaMarcadaPost>
+
+          <ListaMarcadaPost titulo="Preguntas que suelen venir después" tipo="pregunta">
+            <li>¿Cómo centrarías un elemento en vertical y en horizontal?</li>
+            <li>¿Qué harías si un estilo no se aplica y no sabes por qué?</li>
+            <li>¿Cómo organizarías el CSS de un proyecto grande para que no se descontrole?</li>
+            <li>¿Qué propiedades animarías para que una animación vaya fluida?</li>
+          </ListaMarcadaPost>
+
+          <ListaMarcadaPost titulo="Errores que conviene evitar" tipo="mal">
+            <li>
+              <strong>Tapar problemas con <code>!important</code>:</strong> explica cómo lo resolverías con la especificidad.
+            </li>
+            <li>
+              <strong>Medidas fijas en todo:</strong> los píxeles fijos rompen el diseño en otras pantallas y con zoom.
+            </li>
+            <li>
+              <strong>Quitar el <code>outline</code> sin sustituto:</strong> quien navega con teclado deja de ver dónde está.
+            </li>
+            <li>
+              <strong>Respuestas genéricas:</strong> sé concreta y pon ejemplos de tus proyectos.
+            </li>
+          </ListaMarcadaPost>
+        </SeccionPost>
+
+        <SeccionPost titulo="Tu plan de estudio">
+          <PasosPost
+            pasos={[
+              {
+                etiqueta: "Semanas 1 y 2",
+                titulo: "Refuerza lo básico",
+                puntos: [
+                  "Selectores, cascada y especificidad",
+                  "El modelo de caja y box-sizing",
+                  "Unidades: px, em, rem, % y las del viewport",
+                ],
+              },
+              {
+                etiqueta: "Semanas 3 y 4",
+                titulo: "Profundiza en lo intermedio",
+                puntos: [
+                  "Flexbox y Grid, y cuándo usar cada uno",
+                  "Diseño adaptable con media queries y container queries",
+                  "Variables CSS y temas",
+                ],
+              },
+              {
+                etiqueta: "Semanas 5 y 6",
+                titulo: "Domina lo avanzado",
+                puntos: [
+                  "Transiciones y animaciones que no fuerzan el repintado",
+                  "Arquitectura del CSS: BEM, CSS Modules o Sass",
+                  "Rendimiento: CSS crítico y CSS sin usar",
+                ],
+              },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Para practicar con las manos"
+            tarjetas={[
+              {
+                titulo: "Una página adaptable",
+                texto: "De móvil a escritorio, sin una sola medida fija.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un layout con Grid",
+                texto: "Con áreas con nombre y Flexbox dentro de cada componente.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un tema oscuro",
+                texto: "Con variables CSS y prefers-color-scheme.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Una animación accesible",
+                texto: "Que respete prefers-reduced-motion.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
+
+        <SeccionPost titulo="Comparte tu experiencia">
+          <p>
+            ¿Cómo te ha ido? Nos encanta saber qué tal le va a la comunidad, y lo que cuentas ayuda a
+            otras desarrolladoras que se preparan como tú.
+          </p>
+          <TarjetasPost
+            columnas={3}
+            tarjetas={[
+              {
+                titulo: "En nuestro Slack",
+                texto: "Únete a la comunidad y cuéntanos tus resultados.",
+                enlace: "https://communityinviter.com/apps/femcodersclub/femcoders-club",
+                icono: <Users aria-hidden="true" />,
+              },
+              {
+                titulo: "En redes sociales",
+                texto: "Con el hashtag #femCodersQuiz.",
+                icono: <Share2 aria-hidden="true" />,
+              },
+              {
+                titulo: "En los comentarios",
+                texto: "Dinos qué temas te han costado más.",
+                icono: <MessageSquare aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
+
+        <NotaPost titulo="Recuerda">
+          <p>
+            El conocimiento técnico es solo una parte de la entrevista.
+            La capacidad de comunicar ideas, trabajar en equipo y seguir aprendiendo son igualmente importantes.{" "}
+            <strong>¡Confía en tu preparación y muestra tu pasión por el desarrollo!</strong>
+          </p>
+        </NotaPost>
+      </PlantillaPost>
+    </>
   );
 };
 

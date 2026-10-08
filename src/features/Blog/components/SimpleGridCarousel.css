@@ -1,0 +1,130 @@
+.grid-carousel {
+  position: relative;
+  /* Sin esto, dentro de la rejilla del post mide 0 hasta que carga la imagen. */
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.grid-carousel-slide {
+  position: relative;
+}
+
+.grid-carousel-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  /* En horizontal, que el pie y los puntos quepan en la pantalla. */
+  max-height: calc(100svh - var(--fem-header-height, 80px) - 2rem - 2.75rem);
+  object-fit: cover;
+  display: block;
+}
+
+.grid-carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Sólido: sobre capturas blancas, al 80 % el texto de 16px no llegaba a 7:1. Ahora 8,3:1. */
+  background-color: var(--color-secondary);
+  padding: 15px;
+  color: white;
+}
+
+/* Dos clases: las reglas del post (.post-seccion h3, .post__contenido p) le ganaban el color y el tamaño. */
+.grid-carousel .grid-carousel-caption h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.5rem;
+  color: #fdfdfd;
+  line-height: 1.4;
+}
+
+.grid-carousel .grid-carousel-caption p {
+  margin: 0;
+  font-size: 1rem;
+  color: #fdfdfd;
+  line-height: 1.4;
+}
+
+/* Barra bajo la imagen: ‹ flecha, puntos, flecha ›. Fuera de la imagen para no tapar el pie. */
+.grid-carousel-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: var(--color-secondary);
+}
+
+.grid-carousel-button {
+  /* 44px: objetivo táctil AAA. */
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.grid-carousel-button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.grid-carousel-button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: -3px;
+}
+
+.grid-carousel-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* El botón mide 44px (objetivo táctil AAA); el punto visible, 10px, va en ::before. */
+.grid-carousel-dot {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.grid-carousel-dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.grid-carousel-dot.active::before {
+  /* No solo más claro: también más grande, para verlo sin depender del brillo. */
+  width: 14px;
+  height: 14px;
+  background-color: white;
+}
+
+.grid-carousel-dot:focus-visible {
+  outline: 3px solid white;
+  outline-offset: -6px;
+}
+
+/* Móvil: el pie va debajo de la imagen; encima la tapaba casi entera. */
+@media (max-width: 560px) {
+  .grid-carousel-caption {
+    position: static;
+  }
+}

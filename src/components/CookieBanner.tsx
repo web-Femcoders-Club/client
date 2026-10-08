@@ -1,138 +1,139 @@
-import React, { useState, useContext } from 'react';
-import { ModalContext } from '../context/ModalContext';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Cookie, X } from "lucide-react";
+import { ModalContext } from "../context/ModalContext";
+import "./CookieBanner.css";
 
-const CookieBanner: React.FC = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(() => {
-        return localStorage.getItem('cookieBannerDismissed') !== 'true';
-    });
+const CLAVE = "cookieBannerDismissed";
 
-    const { openModal } = useContext(ModalContext);
-
-    const handleDismiss = () => {
-        setIsVisible(false);
-        localStorage.setItem('cookieBannerDismissed', 'true');
-    };
-
-    const handlePolicyClick = () => {
-        openModal('cookiePolicy');
-    };
-
-    if (!isVisible) return null;
-
-    /*
-      `role="banner"` es la cabecera del sitio, y ya la tiene el <header>.
-      Declarado aquí la página acaba con dos, y el lector de pantalla ofrece dos
-      "banner" idénticos en el índice de regiones sin decir cuál es la cabecera y
-      cuál el aviso. Una región con nombre propio dice lo que es.
-    */
-    return (
-        <div
-            style={bannerStyle}
-            role="region"
-            aria-label="Aviso sobre cookies"
-        >
-            <div style={contentWrapperStyle}>
-                <p style={textStyle}>
-                    🍪 Este sitio utiliza únicamente <strong>cookies técnicas necesarias</strong> para 
-                    su correcto funcionamiento. <br /><strong>No realizamos seguimiento</strong> ni usamos 
-                    cookies de análisis o publicidad.{" "}
-                    {/* No lleva a otra página: abre una ventana sobre esta. */}
-                    <button
-                        type="button"
-                        onClick={handlePolicyClick}
-                        style={linkStyle}
-                    >
-                        Consulta la política de cookies completa
-                    </button>
-                </p>
-                <button 
-                    onClick={handleDismiss} 
-                    style={dismissButtonStyle}
-                    aria-label="Cerrar aviso de cookies"
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#bb3f28'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ea4f33'}
-                >
-                    Entendido
-                </button>
-            </div>
-        </div>
-    );
-};
-
-const bannerStyle: React.CSSProperties = {
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    right: '0',
-    width: '100%',
-    background: 'linear-gradient(135deg, #4737bb 0%, #6d2c95 100%)',
-    color: '#fff',
-    padding: '16px 20px',
-    zIndex: 1000,
-    boxShadow: '0 -4px 12px rgba(0, 0, 0, 0.15)',
-    animation: 'slideUp 0.5s ease-out',
-};
-
-const contentWrapperStyle: React.CSSProperties = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '20px',
-    flexWrap: 'wrap',
-};
-
-const textStyle: React.CSSProperties = {
-    fontSize: '0.95rem',
-    fontWeight: 'normal',
-    margin: '0',
-    lineHeight: '1.6',
-    flex: '1',
-    minWidth: '280px',
+/*
+ * El almacenamiento puede fallar (ventana privada, datos bloqueados). Si no se
+ * puede leer, el aviso se muestra; si no se puede guardar, se cierra igual y
+ * solo volverá a salir en la próxima visita.
+ */
+const yaVisto = () => {
+  try {
+    return localStorage.getItem(CLAVE) === "true";
+  } catch {
+    return false;
+  }
 };
 
 /*
-  Era #ea4f33 sobre el degradado morado del aviso: 2,3:1 de contraste, por debajo
-  incluso del 4,5:1 de AA. En blanco sube a 8,3:1 en el extremo más claro del
-  degradado, que cumple AAA (7:1) en todo el ancho.
+ * Aviso de cookies. La web solo usa cookies técnicas, así que no pide
+ * consentimiento: informa. Sale la primera vez; «Entendido» o la ✕ lo cierran
+ * y no vuelve a salir. La política sigue a mano en el pie.
+ *
+ * Mientras está abierto marca `data-aviso-cookies` en <html>: en el móvil el
+ * botón «Volver arriba» espera a que se cierre para no apilar dos cosas abajo.
+ *
+ * Es una región con nombre propio y no `role="banner"`: ese papel es el de la
+ * cabecera del sitio, y con dos el lector ofrecía dos «banner» iguales.
+ */
+const CookieBanner: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(() => !yaVisto());
+  const { openModal } = useContext(ModalContext);
+  const aviso = useRef<HTMLElement | null>(null);
 
-  Sigue en negrita y subrayado, así que no depende del color para distinguirse
-  del texto de alrededor. El resto son los apagados de rigor del <button>, que
-  antes era un <a>.
-*/
-const linkStyle: React.CSSProperties = {
-    background: 'none',
-    border: 'none',
-    padding: '0',
-    // Por separado y no con el atajo `font`, que al ir después borraría el
-    // `fontWeight` de abajo: en un objeto de estilos gana la última clave.
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    color: '#ffffff',
-    textDecoration: 'underline',
-    textUnderlineOffset: '3px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-};
+  useEffect(() => {
+    const raiz = document.documentElement;
+    if (visible) raiz.dataset.avisoCookies = "abierto";
+    else delete raiz.dataset.avisoCookies;
+    return () => {
+      delete raiz.dataset.avisoCookies;
+    };
+  }, [visible]);
 
-const dismissButtonStyle: React.CSSProperties = {
-    padding: '10px 24px',
-    backgroundColor: '#ea4f33',
-    color: 'white',
-    border: 'none',
-    borderRadius: 'var(--radius-md)',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-    transition: 'all 0.3s ease',
-    whiteSpace: 'nowrap',
-    boxShadow: '0 2px 8px rgba(234, 79, 51, 0.3)',
+  /*
+   * Publica la altura del aviso en --aviso-cookies-alto: con ella, CookieBanner.css
+   * reserva ese sitio al hacer scroll hasta un elemento enfocado, para que el
+   * foco del teclado nunca quede debajo del aviso. Medida, no fija: cambia
+   * con el ancho, el zoom y la versión compacta.
+   */
+  useEffect(() => {
+    const elemento = aviso.current;
+    if (!visible || !elemento) return;
+    const raiz = document.documentElement;
+    const publicar = () =>
+      raiz.style.setProperty(
+        "--aviso-cookies-alto",
+        `${elemento.offsetHeight}px`,
+      );
+    publicar();
+    const observador = new ResizeObserver(publicar);
+    observador.observe(elemento);
+    return () => {
+      observador.disconnect();
+      raiz.style.removeProperty("--aviso-cookies-alto");
+    };
+  }, [visible]);
+
+  const cerrar = () => {
+    setVisible(false);
+    try {
+      localStorage.setItem(CLAVE, "true");
+    } catch {
+      // Sin almacenamiento: se cierra igual para esta visita.
+    }
+  };
+
+  if (!visible) return null;
+
+  return (
+    <section
+      ref={aviso}
+      className="aviso-cookies"
+      aria-labelledby="aviso-cookies-titulo"
+    >
+      <div className="aviso-cookies__cabeza">
+        <div className="aviso-cookies__icono" aria-hidden="true">
+          <Cookie />
+        </div>
+        <h2 className="aviso-cookies__titulo" id="aviso-cookies-titulo">
+          Solo cookies necesarias
+        </h2>
+        <button
+          type="button"
+          className="aviso-cookies__cerrar"
+          onClick={cerrar}
+          aria-label="Cerrar el aviso de cookies"
+        >
+          <X aria-hidden="true" />
+        </button>
+      </div>
+      {/*
+        Dos versiones del mismo mensaje: en pantallas bajas (móvil en
+        horizontal, zoom) sale la corta, para no tapar media pantalla. La otra
+        se oculta con display: none, así que el lector solo lee una.
+      */}
+      <p className="aviso-cookies__texto">
+        <span className="aviso-cookies__largo fc-texto-neutro">
+          Usamos únicamente cookies y almacenamiento técnicos para que la web funcione.{" "}
+          <strong>No hacemos seguimiento</strong> ni usamos cookies de análisis o
+          publicidad.
+        </span>
+        <span className="aviso-cookies__corto fc-texto-neutro">
+          Solo usamos cookies técnicas: <strong>sin seguimiento</strong> ni publicidad.
+        </span>
+      </p>
+      <div className="aviso-cookies__acciones">
+        <button
+          type="button"
+          className="fc-boton fc-boton--naranja"
+          onClick={cerrar}
+        >
+          Entendido
+        </button>
+        {/* No lleva a otra página: abre la política en una ventana sobre esta. */}
+        <button
+          type="button"
+          className="aviso-cookies__enlace"
+          onClick={() => openModal("cookiePolicy")}
+        >
+          Ver la política de cookies
+        </button>
+      </div>
+    </section>
+  );
 };
 
 export default CookieBanner;
-
-
-
-
-

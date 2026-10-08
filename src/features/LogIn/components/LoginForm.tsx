@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { CircleAlert, LogIn } from "lucide-react";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import { useFocusMessage } from "../../../hooks/useFocusMessage";
-import "./LoginForm.css";
+import "./FormularioAcceso.css";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -74,23 +75,42 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
+    <div className="fc-tarjeta formulario-acceso">
+      <div className="formulario-acceso__cabecera">
         <img
           src="/logo-femcoders-animado.webp"
-          alt="Fem Coders Club Logo"
-          className="logo"
+          alt=""
+          className="formulario-acceso__logo"
+          width={64}
+          height={64}
         />
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Correo Electrónico:</label>
+        <div>
+          <h2 className="formulario-acceso__titulo">Inicia sesión</h2>
+          <p className="formulario-acceso__nota">
+            Con el correo con el que te registraste.
+          </p>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="formulario-acceso__campos">
+        <div className="fc-campo">
+          <label htmlFor="email">Correo electrónico</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             required
           />
-          <label htmlFor="password">Contraseña:</label>
+        </div>
+
+        {/*
+          El enlace va después del campo y no junto a la etiqueta: así el
+          tabulador pasa del correo a la contraseña sin desvíos.
+        */}
+        <div className="fc-campo">
+          <label htmlFor="password">Contraseña</label>
           <PasswordInput
             id="password"
             value={password}
@@ -98,21 +118,41 @@ const LoginForm: React.FC = () => {
             autoComplete="current-password"
             required
           />
-          {error && (
-            <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
-              {error}
-            </p>
-          )}
-          <button type="submit" className="primary-button">
-            Iniciar Sesión
-          </button>
-        </form>
-        <div className="links">
-          <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
-          <br />
-          <a href="/register">¿No tienes cuenta? Regístrate</a>
+          <Link
+            to="/forgot-password"
+            className="fc-enlace fc-enlace--texto formulario-acceso__olvido"
+          >
+            ¿Has olvidado tu contraseña?
+          </Link>
         </div>
-      </div>
+
+        {error && (
+          <p
+            className="fc-aviso fc-aviso--error"
+            role="alert"
+            tabIndex={-1}
+            ref={errorRef}
+          >
+            <CircleAlert aria-hidden="true" />
+            {error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          className="fc-boton fc-boton--noche formulario-acceso__enviar"
+        >
+          Iniciar sesión
+          <LogIn aria-hidden="true" />
+        </button>
+      </form>
+
+      <p className="formulario-acceso__pie">
+        ¿Todavía no tienes cuenta?{" "}
+        <Link to="/register" className="fc-enlace fc-enlace--texto">
+          Únete a la comunidad
+        </Link>
+      </p>
     </div>
   );
 };

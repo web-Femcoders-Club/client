@@ -7,6 +7,8 @@ interface OptimizedImageProps {
   className?: string;
   tabIndex?: number;
   loading?: "lazy" | "eager";
+  /** "high" solo para la imagen principal de la primera pantalla (LCP). */
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -16,6 +18,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   className,
   tabIndex,
   loading = "lazy",
+  fetchPriority,
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   // Si la versión optimizada falla, se recuerda en estado de React y no
@@ -54,15 +57,22 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const optimizedSrc = `/public-optimized/${folder}/${cleanSrc}`
     .replace(/\.(jpg|jpeg|png|webp)$/i, ".webp")
     .replace(/\/{2,}/g, "/");
-  
+
+  // Una ruta que ya está optimizada, o un formato que optimize-images.ts no
+  // convierte (gif animado, svg), se sirve tal cual: si no, se pedía antes una
+  // ruta inexistente que daba 404 y luego la buena.
+  const sinVersionOptimizada =
+    cleanSrc.startsWith("public-optimized/") || !/\.(jpg|jpeg|png|webp)$/i.test(cleanSrc);
+
   return (
     <img
-      src={optimizadaFallo ? src : optimizedSrc}
+      src={optimizadaFallo || sinVersionOptimizada ? src : optimizedSrc}
       alt={alt}
       title={title}
       className={className}
       tabIndex={tabIndex}
       loading={loading}
+      fetchPriority={fetchPriority}
       decoding="async"
       onError={() => {
         // Si la original también falla, este setState repite el valor y React

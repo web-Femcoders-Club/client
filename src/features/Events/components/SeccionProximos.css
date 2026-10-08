@@ -1,0 +1,155 @@
+/*
+ * Primera sección de /eventos. Piezas compartidas en src/styles/rediseno.css:
+ * `fc-manchas`, `fc-puntos`, `fc-antetitulo`, `fc-rotulador`, `fc-tarjeta`,
+ * `fc-capa`, `fc-chip` y `fc-boton`. Fondo: `bg1`, el de la portada.
+ * La tarjeta de cada evento está en EventoTarjeta.css.
+ *
+ * index.css pinta todos los `span` en naranja y da tamaño y sombra a
+ * h1/h2: cada clase de aquí fija sus propios valores.
+ */
+
+.eventos-proximos {
+  /* La cabecera es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(3.5rem, 7vw, 5rem);
+}
+
+.eventos-proximos__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 2.5rem clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.eventos-proximos__titulo {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 3.6vw, 3.1rem);
+  line-height: 1.04;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.eventos-proximos__lema {
+  margin: 1.1rem 0 0;
+  max-width: 28rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  text-wrap: balance;
+}
+
+.eventos-proximos__texto {
+  margin: 1rem 0 0;
+  max-width: 36rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.eventos-proximos__formatos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eventos-proximos__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.eventos-proximos__lado {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.eventos-proximos__subtitulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.eventos-proximos__pila {
+  position: relative;
+}
+
+.eventos-proximos__pila .fc-capa {
+  inset: 1.2rem -0.9rem -0.9rem 1.2rem;
+  rotate: 2.5deg;
+}
+
+.eventos-proximos__lista {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sin eventos próximos: mismo mensaje y vídeo que la tarjeta de Inicio. */
+.eventos-vacio {
+  display: grid;
+  gap: 1rem;
+}
+
+/* El vídeo y su botón de pausa: src/components/VideoSinEventos. */
+.eventos-vacio__video {
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: var(--color-melocoton);
+}
+
+.eventos-vacio__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.eventos-vacio__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.eventos-vacio__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* El ancla deja sitio a la cabecera fija. */
+#eventos-pasados,
+#ponentes {
+  scroll-margin-top: var(--fem-header-height, 80px);
+}
+
+@media (max-width: 900px) {
+  .eventos-proximos__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

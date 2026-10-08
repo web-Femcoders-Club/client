@@ -1,0 +1,916 @@
+/*
+ * Piezas compartidas del rediseño (rama rediseno-web).
+ *
+ * Todo lleva prefijo `fc-` para no chocar con las clases antiguas: los
+ * `.primary-button` y `.secondary-button` de index.css siguen intactos porque
+ * los usan páginas que aún no se han rediseñado.
+ *
+ * index.css pinta TODOS los `span` en naranja, negrita y 1.5rem. Esa regla se
+ * queda; cuando una pieza necesita un `span` neutro, usa `.fc-texto-neutro`.
+ */
+
+/* ---------- Texto neutro dentro de un span ---------- */
+
+/* Anula la regla global de los `span`: hereda color, tamaño y peso del padre. */
+.fc-texto-neutro {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* ---------- Solo para lectores de pantalla ---------- */
+
+/* Fuera de la vista pero en el árbol de accesibilidad. */
+.fc-solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Fondos de sección ---------- */
+
+/*
+ * Los fondos de sección son las clases bg1-bg4 de index.css (bg3 claro, bg4
+ * claro invertido). Aquí solo la decoración que se les pone encima.
+ */
+
+/*
+ * Manchas suaves de marca en dos esquinas: violeta abajo a la izquierda y
+ * naranja arriba a la derecha. Usa ::before y ::after de la sección, así que
+ * su contenido necesita `position: relative; z-index: 1`.
+ */
+.fc-manchas {
+  position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
+  overflow: hidden;
+  overflow: clip;
+}
+
+.fc-manchas::before,
+.fc-manchas::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fc-manchas::before {
+  width: 34rem;
+  height: 34rem;
+  left: -14rem;
+  bottom: -16rem;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.16), transparent 68%);
+}
+
+.fc-manchas::after {
+  width: 30rem;
+  height: 30rem;
+  right: -10rem;
+  top: -12rem;
+  background: radial-gradient(circle, rgba(234, 79, 51, 0.1), transparent 68%);
+}
+
+/* Retícula de puntos decorativa en una esquina, que se desvanece hacia el centro. */
+.fc-puntos {
+  position: absolute;
+  z-index: 0;
+  width: min(44vw, 540px);
+  height: 60%;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(71, 55, 187, 0.22) 1.4px, transparent 1.6px);
+  background-size: 18px 18px;
+}
+
+.fc-puntos--arriba-derecha {
+  top: 0;
+  right: 0;
+  -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 70%);
+}
+
+.fc-puntos--abajo-izquierda {
+  bottom: 0;
+  left: 0;
+  -webkit-mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at bottom left, #000 0%, transparent 70%);
+}
+
+/*
+ * Capa en degradado de marca, girada, detrás de una pieza para darle
+ * profundidad (como la de la galería de «Nuestra esencia»). Es un elemento
+ * con aria-hidden dentro de un contenedor con `position: relative`; quien la
+ * usa fija su posición, su tamaño y su giro. Lo que va encima necesita
+ * `position: relative; z-index: 1`.
+ */
+.fc-capa {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  background: linear-gradient(135deg, rgba(234, 79, 51, 0.9), rgba(108, 99, 255, 0.9) 60%, rgba(71, 55, 187, 0.95));
+  opacity: 0.9;
+}
+
+/* ---------- Movimiento ligado al scroll ---------- */
+
+/*
+ * Todo solo con CSS (animation-timeline), sin JavaScript. Donde el navegador
+ * no lo soporta, o con «reducir movimiento» (WCAG 2.3.3), no se mueve nada y
+ * el contenido se ve completo y quieto.
+ *
+ * Capas: las manchas (`fc-manchas`), la retícula (`fc-puntos`) y la capa en
+ * degradado (`fc-capa`) se desplazan a distinta velocidad que el contenido
+ * mientras la sección cruza la pantalla. Solo `translate`: no provoca saltos de maquetación ni repintados.
+ *
+ * Aparición: los elementos con `data-aos` suben y aparecen al entrar en
+ * pantalla. Sustituye a la librería AOS sin tocar el marcado. Nunca empiezan
+ * del todo invisibles, y lo que ya está en pantalla al cargar aparece en su
+ * estado final (no retrasa la imagen principal).
+ */
+@keyframes fc-capa-lenta {
+  from { translate: 0 -40px; }
+  to { translate: 0 40px; }
+}
+
+@keyframes fc-capa-media {
+  from { translate: 0 30px; }
+  to { translate: 0 -30px; }
+}
+
+@keyframes fc-capa-rapida {
+  from { translate: 0 60px; }
+  to { translate: 0 -60px; }
+}
+
+@keyframes fc-aparece-arriba {
+  from { translate: 0 50px; }
+  to { translate: 0 0; }
+}
+
+@keyframes fc-aparece-lado {
+  from { translate: -50px 0; }
+  to { translate: 0 0; }
+}
+
+@keyframes fc-aparece-zoom {
+  from { scale: 0.9; }
+  to { scale: 1; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fc-manchas::before {
+      animation: fc-capa-lenta linear both;
+      animation-timeline: view();
+    }
+
+    .fc-manchas::after {
+      animation: fc-capa-media linear both;
+      animation-timeline: view();
+    }
+
+    .fc-puntos {
+      animation: fc-capa-rapida linear both;
+      animation-timeline: view();
+    }
+
+    /* La capa en degradado detrás de una tarjeta: se separa de ella al hacer scroll. */
+    .fc-capa {
+      animation: fc-capa-media linear both;
+      animation-timeline: view();
+    }
+
+    [data-aos] {
+      animation: fc-aparece-arriba linear both;
+      animation-timeline: view();
+      /*
+       * Tramo corto y sin fundido (solo se desplazan): quien se para a mitad
+       * de una entrada nunca lee texto desvaído por debajo de 7:1.
+       */
+      animation-range: entry 0% entry 25%;
+    }
+
+    [data-aos="fade-right"] {
+      animation-name: fc-aparece-lado;
+    }
+
+    [data-aos="zoom-in"] {
+      animation-name: fc-aparece-zoom;
+    }
+
+    /* En una columna, la entrada lateral se recortaba contra el borde de la sección: sube. */
+    @media (max-width: 900px) {
+      [data-aos="fade-right"] {
+        animation-name: fc-aparece-arriba;
+      }
+    }
+
+    /* Pantallas bajas (móvil en horizontal): sin apariciones, el texto siempre entero. */
+    @media (max-height: 500px) {
+      [data-aos] {
+        animation: none;
+      }
+    }
+  }
+}
+
+/* ---------- Antetítulo con rayita ---------- */
+
+.fc-antetitulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+}
+
+.fc-antetitulo::before {
+  content: "";
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+}
+
+/* Rayita naranja y texto violeta, para secciones que necesitan el acento cálido. */
+.fc-antetitulo--naranja::before {
+  background: var(--color-primary);
+}
+
+/* ---------- Título de sección ---------- */
+
+/* El h2 de cada sección de la home: mismo tamaño en todas. El margen lo pone cada sección. */
+.fc-titulo-seccion {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.1vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+/*
+ * La palabra destacada de un título: letras en violeta sólido (8,29:1, AAA) y
+ * el degradado de marca en un trazo de rotulador detrás, no en las letras (el
+ * naranja de un texto degradado se queda en 3,7:1). Va en un `span`: fija
+ * color, tamaño y peso contra la regla global.
+ */
+.fc-rotulador {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  color: var(--color-secondary);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.fc-rotulador::after {
+  content: "";
+  position: absolute;
+  left: -0.1em;
+  right: -0.15em;
+  bottom: 0.06em;
+  height: 0.38em;
+  z-index: -1;
+  border-radius: 0.3em 0.5em 0.4em 0.6em;
+  background: linear-gradient(90deg, rgba(234, 79, 51, 0.55), rgba(108, 99, 255, 0.45));
+  transform: rotate(-1.2deg);
+}
+
+/* ---------- Sobre fondo oscuro ---------- */
+
+/*
+ * Para una sección con fondo oscuro (bg2): antetítulo, título y rotulador en
+ * claro. Blanco y lila claro sobre el azul oscuro superan 10:1 (AAA); el
+ * trazo del rotulador sube de opacidad para que se vea sobre el oscuro.
+ */
+.fc-sobre-oscuro .fc-antetitulo {
+  color: var(--color-lila-claro);
+}
+
+.fc-sobre-oscuro .fc-titulo-seccion,
+.fc-sobre-oscuro .fc-rotulador {
+  color: #fff;
+}
+
+.fc-sobre-oscuro .fc-rotulador::after {
+  background: linear-gradient(90deg, rgba(234, 79, 51, 0.85), rgba(130, 26, 212, 0.8));
+}
+
+/* ---------- Enlace con línea en degradado ---------- */
+
+/*
+ * Línea fina violeta-naranja bajo el enlace. En reposo, corta (o ninguna);
+ * al pasar el ratón crece hasta el largo de la palabra. Nunca fondo.
+ * - `aria-current="page"`: línea corta fija (la página actual, en la barra).
+ * - `fc-enlace--siempre`: línea corta siempre visible, para enlaces sueltos
+ *   que sin ella se confundirían con texto (los avisos del pie).
+ * `--fc-enlace-margen` es el relleno lateral del enlace: la línea va bajo el
+ * texto, no bajo el relleno. Sobre `fc-sobre-oscuro`, tonos más claros.
+ */
+.fc-enlace {
+  position: relative;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fc-enlace::after {
+  content: "";
+  position: absolute;
+  left: var(--fc-enlace-margen, 0px);
+  bottom: var(--fc-enlace-bajo, 0.35rem);
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--fc-enlace-a, var(--color-secondary)), var(--fc-enlace-b, var(--color-primary)));
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-enlace[aria-current="page"]::after,
+.fc-enlace--siempre::after {
+  width: 1.6rem;
+}
+
+.fc-enlace:hover::after,
+.fc-enlace:active::after {
+  width: calc(100% - 2 * var(--fc-enlace-margen, 0px));
+}
+
+/*
+ * Dentro de un párrafo: la línea va pegada bajo las letras y ocupa toda la
+ * palabra, para que el enlace no dependa solo del color (WCAG 1.4.1) aunque
+ * esté junto a texto en negrita del mismo violeta.
+ *
+ * Es un fondo y no el `::after`: un pseudoelemento absoluto mide 0px cuando
+ * el enlace se parte en dos líneas, y el enlace se quedaba sin subrayado (a
+ * 320px o con zoom). El fondo con `box-decoration-break: clone` se repite
+ * bajo cada línea. `--fc-enlace-bajo` sube la línea desde el borde inferior,
+ * para los enlaces con caja de 44px (`ideas__proponer`).
+ */
+.fc-enlace--texto {
+  --fc-enlace-bajo: 0px;
+  padding-bottom: 2px;
+  color: var(--color-secondary);
+  background: linear-gradient(90deg, var(--fc-enlace-a, var(--color-secondary)), var(--fc-enlace-b, var(--color-primary)))
+    no-repeat 0 calc(100% - var(--fc-enlace-bajo)) / 100% 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.fc-enlace--texto::after {
+  content: none;
+}
+
+.fc-enlace--texto:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.fc-sobre-oscuro .fc-enlace {
+  --fc-enlace-a: #b3a8ff;
+  --fc-enlace-b: #ff8a6e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-enlace::after {
+    transition: none;
+  }
+}
+
+/* ---------- Tarjeta blanca ---------- */
+
+.fc-tarjeta {
+  min-width: 0;
+  background: #fff;
+  border-radius: 1.4rem;
+  box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 16px 36px rgba(71, 55, 187, 0.1);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+/* ---------- Botones: neumorfismo ---------- */
+
+/*
+ * Estilo neumórfico: el botón es del color del fondo (lavanda) y el volumen
+ * sale de una luz arriba a la izquierda y una sombra violeta abajo a la
+ * derecha. Al pulsar se hunde (sombras interiores).
+ *
+ * EXCEPCIÓN DE ACCESIBILIDAD, decidida a conciencia (octubre 2026): el
+ * contorno del botón contra el fondo queda por debajo del 3:1 que pide WCAG
+ * 1.4.11 (AA) para los controles. Lo compensan el texto, que sí cumple, y el
+ * foco, que es un contorno violeta de 3px. Si hay que cumplir 1.4.11, la
+ * salida es un borde violeta de 1.5px (la variante «neumorfismo accesible»).
+ *
+ * El levantamiento al pasar el ratón usa `translate`, no `transform`: así se
+ * suma al `transform` con que una sección coloque el botón (las flechas de
+ * los carruseles se centran con translateY(-50%)) sin pisarlo.
+ *
+ * Se aplican al propio <a> o <button>: nunca un <button> dentro de un <Link>,
+ * que es un control dentro de otro y el lector lo anuncia dos veces.
+ */
+:root {
+  --fc-neu-fondo: var(--color-lavanda);
+  --fc-neu-luz: -6px -6px 14px rgba(255, 255, 255, 0.95);
+  --fc-neu-sombra: 6px 6px 16px rgba(71, 55, 187, 0.2);
+  --fc-neu-hundido: inset -5px -5px 12px rgba(255, 255, 255, 0.9), inset 5px 5px 12px rgba(71, 55, 187, 0.22);
+}
+
+.fc-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.35rem;
+  border: 0;
+  border-radius: 0.9rem;
+  background: var(--fc-neu-fondo);
+  box-shadow: var(--fc-neu-luz), var(--fc-neu-sombra);
+  /* Violeta sobre lavanda: 7,16:1, AAA. */
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  /* 1.17rem en negrita = 18,7px: cuenta como texto grande (WCAG pide 18,66px en negrita). */
+  font-size: 1.17rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: translate 0.2s ease, box-shadow 0.25s ease, color 0.2s ease;
+}
+
+.fc-boton:hover {
+  translate: 0 -1px;
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 20px rgba(71, 55, 187, 0.24);
+}
+
+.fc-boton:active {
+  translate: none;
+  box-shadow: var(--fc-neu-hundido);
+}
+
+.fc-boton:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/*
+ * Deshabilitado (el «Enviar» del formulario hasta aceptar la privacidad):
+ * plano, sin relieve ni levantamiento. WCAG no exige contraste a un control
+ * inactivo, pero el texto sigue legible.
+ */
+.fc-boton:disabled,
+.fc-boton:disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.55;
+  translate: none;
+  box-shadow: none;
+}
+
+.fc-boton svg {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+}
+
+/* Menos relleno, mismo tamaño de letra (sigue siendo texto grande). */
+.fc-boton--compacto {
+  min-height: 2.5rem;
+  padding: 0.45rem 1.05rem;
+}
+
+/* Para la llamada principal de una sección (la portada). */
+.fc-boton--grande {
+  min-height: 3.25rem;
+  padding: 0.8rem 1.9rem;
+  font-size: 1.2rem;
+}
+
+/*
+ * Relieve sobre azul noche, para la llamada principal de cada bloque.
+ * Lavanda claro sobre el azul: más de 11:1, AAA. Al ser oscuro sobre fondo
+ * claro, su contorno sí supera el 3:1 de los controles.
+ */
+.fc-boton--noche,
+.fc-boton--noche:hover {
+  color: #e9e4ff;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+}
+
+.fc-boton--noche {
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.9), 6px 6px 18px rgba(23, 15, 102, 0.4);
+}
+
+.fc-boton--noche:hover {
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 22px rgba(23, 15, 102, 0.45);
+}
+
+.fc-boton--noche:active {
+  box-shadow: inset 4px 4px 10px rgba(4, 2, 30, 0.6), inset -3px -3px 8px rgba(110, 96, 255, 0.25);
+}
+
+/*
+ * Relieve en el naranja de FemCoders Club. El blanco sobre el naranja de marca
+ * (#ea4f33) se queda en 3,71:1, así que el degradado va por los tonos más
+ * profundos del mismo naranja: el blanco da 4,78:1 en el extremo claro y
+ * 6,76:1 en el oscuro, por encima de 4,5:1 en todo el botón, AAA
+ * para texto grande (lo es: 1.17rem en negrita). Sobre fondo claro su
+ * contorno pasa de 3:1, como el azul noche.
+ */
+.fc-boton--naranja,
+.fc-boton--naranja:hover {
+  color: #fff;
+  background: linear-gradient(145deg, #cf3f26, #a92f17);
+}
+
+.fc-boton--naranja {
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.9), 6px 6px 18px rgba(143, 35, 24, 0.35);
+}
+
+.fc-boton--naranja:hover {
+  box-shadow: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 22px rgba(143, 35, 24, 0.42);
+}
+
+.fc-boton--naranja:active {
+  box-shadow: inset 4px 4px 10px rgba(80, 16, 6, 0.55), inset -3px -3px 8px rgba(255, 160, 130, 0.3);
+}
+
+/* Relieve claro con texto violeta (7,16:1, AAA): el botón secundario de cada bloque. */
+.fc-boton--borde {
+  color: var(--color-secondary);
+}
+
+/* ---------- Botón redondo con icono (flechas, detener carrusel) ---------- */
+
+.fc-boton-redondo {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fc-neu-fondo);
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.22);
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: translate 0.2s ease, box-shadow 0.25s ease;
+}
+
+.fc-boton-redondo:hover {
+  translate: 0 -1px;
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.26);
+}
+
+.fc-boton-redondo:active {
+  translate: none;
+  box-shadow: var(--fc-neu-hundido);
+}
+
+.fc-boton-redondo:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.fc-boton-redondo svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Detener/reanudar un carrusel: va junto a los puntos. 44px, objetivo táctil AAA. */
+.fc-boton-rotacion {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.fc-boton-rotacion svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ---------- Disco de icono ---------- */
+
+/*
+ * Círculo con un icono dentro, junto al título de una tarjeta. Azul sobre
+ * lavanda o, con `--naranja`, naranja oscuro sobre melocotón (7,41:1).
+ * Va en un `div`: un `span` heredaría la regla global.
+ */
+.fc-disco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-lavanda-medio);
+  color: var(--color-secondary);
+}
+
+.fc-disco--naranja {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-disco svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---------- Desplegable en pastilla ---------- */
+
+/*
+ * Pregunta o apartado que se abre al pulsarlo, como las preguntas frecuentes
+ * de los documentos del pie: pastilla en relieve sobre lavanda y, abierta,
+ * hundida. Es un <button> con aria-expanded y aria-controls; el «+»/«−» va
+ * oculto al lector, porque el estado ya lo da aria-expanded.
+ * (Documento.css tiene su propia copia para las FAQ; puede pasar a esta.)
+ */
+.fc-desplegable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.7rem 0.9rem 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+  /* Violeta sobre lavanda: 7,16:1, AAA. */
+  color: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.18);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.fc-desplegable:hover {
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.22);
+}
+
+.fc-desplegable[aria-expanded="true"] {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.18), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.fc-desplegable:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/*
+ * Sobre fondo oscuro (bg2) no hay luz blanca que haga el relieve: la pastilla
+ * flota con una sombra oscura y, abierta, se hunde un poco.
+ */
+.fc-sobre-oscuro .fc-desplegable {
+  box-shadow: 0 10px 24px rgba(5, 3, 30, 0.4);
+}
+
+.fc-sobre-oscuro .fc-desplegable:hover {
+  box-shadow: 0 14px 30px rgba(5, 3, 30, 0.5);
+}
+
+.fc-sobre-oscuro .fc-desplegable[aria-expanded="true"] {
+  box-shadow: inset 3px 3px 8px rgba(71, 55, 187, 0.25), 0 6px 14px rgba(5, 3, 30, 0.3);
+}
+
+.fc-sobre-oscuro .fc-desplegable:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+/* El «+» / «−», en un círculo azul noche. */
+.fc-desplegable__signo {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+}
+
+.fc-desplegable__signo svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-desplegable {
+    transition: none;
+  }
+}
+
+/* ---------- Chip de categoría ---------- */
+
+/* Texto pequeño: cada variante usa una pareja fondo/texto que supera 7:1 (AAA). */
+.fc-chip {
+  display: inline-block;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  background: var(--color-lavanda);
+  color: var(--color-secondary);
+}
+
+/*
+ * Distintivo de imagen generada con IA (AI Act art. 50), sobre la esquina
+ * inferior izquierda de la imagen: el contenedor ha de ir en position:
+ * relative. Blanco sobre tinta: AAA.
+ */
+.fc-distintivo-ia {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(42, 33, 112, 0.9);
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.fc-chip--naranja {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+.fc-chip--lila {
+  background: var(--color-lila-claro);
+  color: var(--color-lila-oscuro);
+}
+
+.fc-chip--neutro {
+  background: var(--color-lavanda-medio);
+  color: var(--color-text-dark);
+}
+
+/* ---------- Campo de formulario ---------- */
+
+/*
+ * Etiqueta siempre visible encima del campo: a diferencia de las flotantes,
+ * no encoge ni desaparece al escribir. Borde violeta al 75 %: unos 4,7:1
+ * contra el blanco de la tarjeta, por encima del 3:1 de WCAG 1.4.11.
+ * Lo usan las páginas de acceso; el formulario de /contacto tiene aún su
+ * copia en ContactForm.css (`formulario-contacto__campo`) y puede pasar a esta.
+ */
+/*
+ * `align-content: start`: en una fila de dos, si el otro campo lleva una ayuda
+ * debajo, este no reparte la altura sobrante entre etiqueta y campo.
+ */
+.fc-campo {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.fc-campo label {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/* Misma altura para campo y desplegable: el select medía 1-3px menos. */
+.fc-campo input,
+.fc-campo select,
+.fc-campo textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  border-radius: 0.7rem;
+  background: var(--color-lavanda-claro);
+  color: var(--color-text-dark);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.fc-campo input:hover,
+.fc-campo select:hover,
+.fc-campo textarea:hover {
+  border-color: var(--color-secondary);
+}
+
+.fc-campo input:focus-visible,
+.fc-campo select:focus-visible,
+.fc-campo textarea:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-color: var(--color-secondary);
+  background: #fff;
+}
+
+/* Indicación bajo la etiqueta; el campo la enlaza con aria-describedby. */
+.fc-campo__ayuda {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--color-text-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-campo input,
+  .fc-campo select {
+    transition: none;
+  }
+}
+
+/* ---------- Aviso de error ---------- */
+
+/*
+ * Naranja oscuro sobre melocotón (7,41:1, AAA), con borde e icono para que
+ * el error no dependa solo del color. Sin `span` dentro: la regla global lo
+ * pondría a 1.5rem.
+ */
+.fc-aviso {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.8rem;
+  border-left: 4px solid currentColor;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.fc-aviso svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.fc-aviso--error {
+  background: var(--color-melocoton);
+  color: var(--color-primary-oscuro);
+}
+
+/* Verde oscuro sobre verde muy claro: 7,5:1 (AAA). */
+.fc-aviso--exito {
+  background: #e6f4ea;
+  color: #0f5a26;
+}
+
+.fc-aviso:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* En móviles muy estrechos (320px) un texto largo no cabe en una línea: se deja partir. */
+@media (max-width: 400px) {
+  .fc-boton {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-boton,
+  .fc-boton-redondo {
+    transition: none;
+  }
+
+  .fc-boton:hover,
+  .fc-boton-redondo:hover {
+    translate: none;
+  }
+}

@@ -1,0 +1,269 @@
+/*
+ * Sección «Nuestra esencia» de la home y su galería.
+ *
+ * Fondo blanco (antes, la imagen oscura bg2), texto en --color-text-dark y un
+ * solo color de realce: --color-secondary. Prefijos `esencia` y `galeria` para
+ * no tocar Home.css ni index.css.
+ *
+ * index.css pinta TODOS los `span` en naranja, negrita y 1.5rem y da tamaño a
+ * h2: cada clase de aquí que cae en un `span` o un `h2` fija sus propios
+ * valores (clase > elemento, gana siempre).
+ */
+
+.esencia {
+  /* Fondo: `bg3`, compartido (src/index.css). */
+  padding: clamp(3.5rem, 7vw, 6rem) 16px;
+}
+
+/* Manchas de las esquinas: `fc-manchas`, compartido. */
+
+.esencia__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.esencia__texto {
+  min-width: 0;
+}
+
+/* Tamaño, fuente y color: `fc-titulo-seccion`, compartido. */
+.esencia__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+/* Mismo ancho para los tres párrafos: así arrancan y terminan alineados. */
+.esencia__parrafos {
+  margin-top: 1.6rem;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 31rem;
+}
+
+.esencia__parrafos p {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.esencia__parrafos strong {
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.esencia__claves {
+  list-style: none;
+  padding: 0;
+  margin: 2.25rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.esencia__clave {
+  min-width: 0;
+  padding: 0 1rem;
+  border-left: 1px solid rgba(71, 55, 187, 0.18);
+}
+
+.esencia__clave:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.esencia__clave-disco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 50%;
+}
+
+.esencia__clave svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* Iconos alternos: azul sobre lavanda y naranja sobre melocotón. */
+.esencia__clave:nth-child(odd) .esencia__clave-disco {
+  background: var(--color-lavanda-medio);
+  color: var(--color-secondary);
+}
+
+.esencia__clave:nth-child(even) .esencia__clave-disco {
+  background: var(--color-melocoton);
+  color: var(--color-primary);
+}
+
+.esencia__clave-titulo {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--font-primary);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.esencia__clave-texto {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Galería ---------- */
+
+.galeria {
+  position: relative;
+  min-width: 0;
+  margin-top: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.galeria__capa {
+  position: absolute;
+  inset: 0 0 auto 0;
+  aspect-ratio: 5 / 4;
+  z-index: 0;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  background: linear-gradient(135deg, rgba(234, 79, 51, 0.9), rgba(108, 99, 255, 0.9) 60%, rgba(71, 55, 187, 0.95));
+  transform: translate(-1.1rem, 1.1rem) rotate(-3.5deg);
+  opacity: 0.9;
+}
+
+.galeria__marco {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border-top-right-radius: 4.5rem;
+  box-shadow: 0 24px 50px rgba(71, 55, 187, 0.22), 0 6px 16px rgba(0, 0, 0, 0.08);
+  background: var(--color-lavanda-medio);
+}
+
+.galeria__foto {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.galeria__foto--activa {
+  opacity: 1;
+}
+
+.galeria__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.06) saturate(1.08);
+}
+
+/* Blanco sobre la franja oscura de abajo: más de 7:1 en la zona del texto. */
+.galeria__pie {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 1.4rem 1.1rem;
+  background: linear-gradient(transparent, rgba(42, 33, 112, 0.85));
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.galeria__chispas {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.galeria__chispas path {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.galeria__chispas--arriba {
+  right: -1.6rem;
+  top: -2.4rem;
+  width: 4.5rem;
+}
+
+.galeria__chispas--arriba path {
+  stroke: var(--color-primary);
+}
+
+.galeria__controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.galeria__contador {
+  min-width: 3.6rem;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .esencia__contenedor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .galeria {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .esencia__claves {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 0;
+  }
+
+  .esencia__clave:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .galeria__chispas--arriba {
+    right: -0.4rem;
+    top: -2rem;
+    width: 3.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeria__foto {
+    transition: none;
+  }
+}

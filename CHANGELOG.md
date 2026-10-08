@@ -5,6 +5,343 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Blog (rediseño): página principal, Noticias y Recursos
+
+#### Añadido
+- **El post de React migrado: el blog entero usa ya la plantilla común.**
+  `PostStyles.css` y `PostImage` se borran: ningún post los usaba, y la
+  hoja era global (al visitar el blog se quedaba cargada en toda la web).
+- **Las 19 noticias migradas a la plantilla**, sin estilos en línea,
+  `react-icons` ni `PostStyles.css`, con su `<Helmet>` y sus JSON-LD sin
+  cambios. Los vídeos propios van con `VideoPost` (con versión móvil y sin
+  reproducción automática: la felicitación de Navidad empezaba sola y en
+  bucle); las redes sociales, como enlaces con su nombre visible. Fechas,
+  cifras y estados de cada noticia se quedan como se escribieron.
+- **`OptimizedImage` ya no pide rutas inexistentes**: una imagen que ya
+  estaba en `/public-optimized/`, un `.gif` o un `.svg` se sirven tal cual
+  (antes, primero un 404 y luego la buena).
+- **`speakable`** del JSON-LD de los posts apunta al título y la entradilla
+  de la plantilla nueva.
+- **Los 11 posts de JavaScript migrados a la plantilla**, sin estilos en
+  línea, `react-icons` ni `PostStyles.css`, con su `<Helmet>` sin cambios.
+  Los ejercicios de Closures se pliegan con `RespuestaPost`. Por el camino:
+  el Decorator de Patrones ya memoiza de verdad, el `ClickCollector` del
+  EventBus recibe su bus, la coerción de Fundamentos recupera sus comillas
+  (`"5" + 2`), File System Access deja de presentarse como disponible en
+  todos los navegadores y la búsqueda «con debounce» de Event Loop se
+  llama por lo que hace (cancela la petición anterior). Las invitaciones a
+  la comunidad dicen «más de 1.600 mujeres» (antes 1.300 o 1.500 según el
+  post) y el club firma igual en todos: «FemCoders Club».
+- **Distintivo de IA en las portadas del blog**: tarjetas, listados y
+  portada del post marcan las imágenes generadas con IA (AI Act, art. 50).
+- **Los 14 posts de CSS migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz de CSS queda como
+  el de HTML (logro y guía en los resultados). Por el camino: valores de
+  `ease-in`/`ease-out` corregidos, `web-vitals` con la API actual, contrastes
+  de ejemplo recalculados, preguntas del quiz matizadas (especificidad,
+  `subgrid`, pseudoelementos), enlaces internos rotos arreglados y restos de
+  Markdown y de prompt eliminados.
+- **Piezas nuevas para los posts**: `ImagenPost` (imagen con pie),
+  `DemoPost` (resultado en vivo de un ejemplo, en recuadro punteado) y
+  `NotaPost tipo="aviso"`. El texto de `TarjetasPost` admite listas.
+  Guía para escribir posts nuevos en `docs/posts-del-blog.md`.
+- **El carrusel de CSS Grid lleva su propio CSS** (`SimpleGridCarousel.css`),
+  fuera de `PostStyles.css`.
+- **Plantilla común de los posts** (`components/post/PlantillaPost`): la
+  portada al ancho del texto, migas, tema, título, entradilla, autora, fecha
+  y tiempo de lectura; al final, compartir y comentarios en la misma columna;
+  fuera del artículo, «Sigue aprendiendo» con tres posts del mismo tema.
+  Fecha, tema e imagen salen del índice del blog. Piezas para el contenido:
+  `SeccionPost`, `CodigoPost` (con botón de copiar), `NotaPost` y `TablaPost`.
+- **Los 8 posts de HTML migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz conserva su
+  lógica (30 preguntas, logros y guía en PDF). Erratas arregladas por el camino:
+  palabras pegadas, restos de Markdown en títulos y un ejemplo de `<pre>` que
+  salía en una línea. «Formularios y tablas» enlaza también la demo en
+  GitHub Pages.
+- **La plantilla admite fotos y vídeos dentro del texto**: imágenes al ancho
+  de la columna como máximo, vídeos de YouTube en 16:9 y listas con foto
+  redonda; los bloques de código ya no ensanchan la página en móvil.
+- **Comentarios y compartir con el aspecto del rediseño** y su propio CSS
+  (antes dependían de `PostStyles.css`). La lógica no cambia. La lista va
+  antes del formulario, el comentario recién enviado se marca como pendiente
+  de revisión y los títulos ya no dan por hecho que quien comenta es mujer.
+- **Quiz de entrevistas rediseñado** (`components/Quiz`, sin cambios en la
+  lógica): barra de progreso, nivel en etiqueta, opciones con su estado dicho
+  en texto («Correcta», «Tu respuesta») y resultados con anillo y barras por
+  nivel. El foco acompaña cada paso. El logro y la guía de estudio salen en
+  la pantalla de resultados (`extraResultados`) en lugar de una ventana
+  flotante; sin sesión, se invita a iniciarla para guardar el logro.
+- **Piezas para apartados de ideas cortas**: `TarjetasPost`,
+  `ListaMarcadaPost` y `PasosPost`. El quiz de HTML las usa en la guía de
+  después del quiz (puntuación, recursos, consejos y plan de estudio), que
+  antes eran listas de viñetas seguidas. Su enlace a «Accesibilidad HTML»
+  (no existía) apunta ahora a «HTML avanzado para SEO y accesibilidad».
+- **Personas creadoras en tarjetas** en «Integración de frameworks».
+
+#### Eliminado
+- **Media `PostStyles.css` (de 1243 a 662 líneas)**: 79 reglas y 8 animaciones
+  de la portada antigua del blog y de las listas a mano que ya no usa nadie.
+  La portada de la web lo importaba solo por dos enlaces, que pasan a
+  `fc-enlace--texto`; ya no carga los estilos de los posts. Su regla `body`
+  (el fondo lavanda) pasa a `index.css` y vale para todas las páginas.
+
+#### Cambiado
+- **/blog/noticias y /blog/recursos son un mismo listado** (`ListadoBlog`)
+  con las tarjetas de la portada, del más nuevo al más antiguo; Recursos
+  filtra por tema. Fuera `Noticias.tsx` y `Recursos.tsx`, dos listas más
+  escritas a mano: a la de recursos le faltaban 8 de los 34.
+- **Paginación de 12 en 12** en Noticias, Recursos y los resultados del
+  buscador de la portada. En los listados la página va en la URL
+  (`?pagina=2`), así que Atrás y los enlaces compartidos funcionan.
+- **Recursos destaca los quizzes de entrevistas técnicas** en un bloque junto
+  al título («Prepara tu entrevista técnica»). Se reconocen por la ruta
+  (`/quiz-…`): uno nuevo aparece sin tocar el código.
+- **Pestañas Todo el blog / Noticias / Recursos** (con su número de posts) en
+  las tres páginas, bajo la entradilla: antes Noticias y Recursos solo se
+  veían al final de cada columna de la portada. Sustituyen a «Volver al blog».
+- **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
+  temas (con su número real de posts), «Lo último» con los cuatro posts más
+  nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada
+  una. Tarjetas con la portada de cada post (`TarjetaPost`), encuadradas hacia
+  arriba para no cortar caras. Fuera «Python», que no tenía ningún post.
+- **Un post nuevo aparece en la portada del blog sin tocar `BlogPage.tsx`**:
+  la lista sale de `src/features/Blog/postsDelBlog.json`, que genera
+  `pnpm generate:posts` (en el prebuild) desde el mismo índice que el sitemap
+  y `llms.txt`. Desaparecen el array de 53 posts y el `switch` que buscaba el
+  enlace por el título exacto.
+
+### Acceso (rediseño): inicio de sesión, registro, contraseña y baja
+
+#### Cambiado
+- **«He olvidado mi contraseña», «Nueva contraseña» y /baja-email con el
+  diseño del acceso**: título y tarjeta centrados (`AccesoCentrado`), sin la
+  imagen lateral del logo ni estilos en línea. Avisos de éxito y error con icono
+  y borde. Las llamadas al servidor y sus estados son los mismos; los enlaces
+  internos ya no recargan la web y las tres tienen su `<title>`.
+
+#### Añadido (RGPD)
+- **Política de privacidad**: apartados de la cuenta en la web, el teléfono
+  (opcional, para avisos urgentes de eventos) y el género (eventos solo para
+  mujeres y mixtos; qué decide cada respuesta y qué puede hacer el equipo con
+  «No binario» y «Prefiero no decir»), la deducción orientativa del género por el nombre en
+  las inscripciones de Eventbrite, la base legal de la cuenta y su plazo de
+  conservación (papelera de 48 horas). Se corrige la frase «no elaboramos
+  perfiles», que no describía esa deducción.
+
+#### Corregido
+- **«Nueva contraseña» decía que el enlace había caducado cuando la
+  contraseña era débil.** El servidor responde 400 a las dos cosas y el
+  formulario traducía todo 400 como enlace no válido. Ahora enseña los
+  requisitos en vivo (los mismos del registro, `politicaContrasena.ts`) y no
+  envía una contraseña que no los cumple.
+- **El teléfono del registro se autocompletaba con «+34»** y la validación,
+  que solo acepta dígitos, rechazaba el alta.
+- **En el móvil, la casilla de privacidad y «Crear cuenta» no respondían al
+  primer toque** si se venía de escribir la contraseña: los requisitos solo se
+  veían con el foco en ese campo, y al tocar fuera desaparecían y todo subía
+  ~150px. Ahora están siempre a la vista.
+- **Los enlaces de texto perdían el subrayado al partirse en dos líneas** (a
+  320px o con zoom), en toda la web: la línea de `fc-enlace--texto` es ahora un
+  fondo que se repite bajo cada línea, con el mismo degradado.
+- **Objetivos táctiles de 44px**: el ojo de la contraseña, «Pausar animación»,
+  «¿Has olvidado tu contraseña?» y «Volver a…».
+- **Detalles de maquetación**: las ventajas del registro ya no se apretaban en
+  dos columnas en tablet; la capa girada no se corta en el borde; el
+  desplegable de género mide lo mismo que los campos; la baja con enlace
+  separa el título del aviso.
+- **Contraseñas con emojis**: el cliente las contaba como el doble de largas
+  que el servidor.
+- **/register con el mismo diseño que /login**: «Tu lugar en la tecnología» y
+  la frase «Aquí encontrarás…» escrita a mano, a la izquierda y fija al bajar;
+  el formulario en una tarjeta más ancha, con los campos de dos en dos (uno por
+  fila en móvil). El alta envía lo mismo que antes: misma validación, mismos
+  consentimientos, mismos mensajes del servidor.
+- **Registro más accesible**: autocompletado en nombre, apellido, correo y
+  teléfono (teclado numérico en móvil); los requisitos de la contraseña dicen
+  «Cumplido» o «Pendiente» al lector y ya no dependen de un verde y un gris que
+  no llegaban a 3:1; el registro tiene por fin su `<title>`.
+- **Metas de /register en `src/features/User/contenido.ts`**: las leen el
+  `<Helmet>` y el prerender, sin copias.
+- **/login con el diseño de /contacto**: saludo a la izquierda y tarjeta del
+  formulario a la derecha con la capa en degradado, sobre `bg1`. Las siete
+  palabras animadas (siete `h2` seguidos, sin `h1`) pasan a una frase, «Juntas
+  crecemos en…», cuya última palabra se escribe a mano (Caveat, ya cargada para
+  la portada) y se subraya con el rotulador. Tiene botón de pausa (WCAG 2.2.2) y
+  se queda fija con «reducir movimiento»; el lector oye la frase una sola vez.
+- **El inicio de sesión hace lo mismo que antes**: misma llamada, mismos datos
+  de sesión, misma redirección por rol. Cambian el marcado y el aspecto:
+  etiquetas fijas, autocompletado del correo, aviso de error con icono y borde
+  (no solo color) y el enlace de contraseña olvidada después del campo, para no
+  desviar el tabulador.
+- **Los enlaces a «He olvidado mi contraseña» y al registro ya no recargan la
+  web entera**: son enlaces de la SPA.
+- **El ojo de la contraseña mide 40 px** y deja su hueco en el campo también en
+  «Nueva contraseña».
+
+#### Añadido
+- **Piezas compartidas** en `rediseno.css`: `fc-campo` (etiqueta y campo) y
+  `fc-aviso--error`; `--font-mano` en `index.css`.
+
+#### Eliminado
+- `LoginPage.css`, `LoginForm.css`, `RegisterForm.css` y
+  `ForgotPasswordForm.css`, con la animación de palabras con desenfoque: ya no
+  los usa ninguna página. `ForgotPasswordForm.css` redefinía además
+  `.primary-button`, `.error-message` y `.success-message` para toda la web en
+  cuanto alguien abría una de estas páginas.
+
+### Contacto (rediseño)
+
+#### Cambiado
+- **/contacto pasa de cinco secciones a dos, sin Tailwind ni estilos en
+  línea**: el formulario con los motivos para escribir (`bg1`) y «Sigue cerca de
+  la comunidad» (`bg4`) con Slack, cuenta y eventos. Salen «¿Por qué
+  contactarnos?», el bloque de Slack, la llamada final y «Email directo», que
+  repetía el correo de arriba. Textos en `src/features/Contact/contenido.ts`.
+- **El formulario envía lo mismo que antes**; cambian el aspecto y el marcado.
+  Las etiquetas por fin están asociadas a sus campos (el lector leía «name»),
+  hay autocompletado en nombre, apellidos y correo, y el borde de los campos
+  supera 3:1.
+- **Metadatos sin cifras que no casaban** («más de 1000», «miles», «la mayor
+  comunidad»): título y descripción dicen para qué escribir.
+
+#### Añadido
+- **SEO y GEO**: el HTML servido de /contacto incluye el texto de la página y el
+  JSON-LD de `ContactPage`, el punto de contacto de la Organization y la miga de
+  pan. Imagen para compartir propia (`og-contacto.jpg`); la anterior apuntaba a
+  un archivo que no existía.
+
+#### Corregido
+- **llms.txt ya no anuncia `partnerships@femcodersclub.com`**, que no existe. El
+  bloque de contacto se genera desde la misma fuente que la página.
+
+### Equipo (rediseño)
+
+#### Cambiado
+- **/equipo rediseñada entera y sin Tailwind**, con los fondos de la home: el
+  equipo actual (`bg1`), «Nuestros valores» (`bg3`), «Una comunidad real» con
+  cifras y alianzas (`bg4`) y «Sé parte del cambio» para empresas (`bg2`).
+- **El h1 ya se ve**: la cabecera fija lo tapaba. Las tarjetas del equipo
+  muestran la biografía de la base de datos íntegra, con el oficio bajo el
+  nombre y el resto en «Leer más»; sale el modal que repetía el texto. Siguen
+  rotando cada 30 s con `useRotacion`, el mismo de los carruseles de Inicio y
+  «Quiénes somos», ahora en `src/hooks` junto a `BotonRotacion` en
+  `src/components/ui`.
+- **Cifras comprobadas**: fuera «15+ proyectos impulsados». Dentro 29
+  repositorios en GitHub y 34 artículos técnicos, y las cifras de comunidad
+  salen de `src/data/cifrasComunidad.ts`, compartido con Inicio.
+- **Alianzas y colaboraciones** en una cinta infinita, cada una con el papel de
+  FemCoders Club y enlace a su noticia. Se para con ratón, foco o botón y no se
+  mueve con «reducir movimiento».
+- **Empresas que han confiado en nosotras pasa a Inicio**, entre Proyectos y
+  Contacto: una cinta con las 34 organizaciones de `src/data/colaboradoras.ts`,
+  la misma lista que cuenta el panel (que pasa de 25 a 34).
+- **«Quiero colaborar» llega a alguien**: escribía a `partnerships@`, que no
+  existe. Ahora lleva a `/contacto` y muestra `info@femcodersclub.com`.
+- **Los enlaces con ancla bajan hasta su sección** («/#empresas-titulo»), también
+  dentro de la misma página, y la cabecera fija ya no tapa el destino ni el foco
+  (`scroll-padding-top`).
+- **Solo el equipo actual en la web**: las cofundadoras que ya no están siguen en
+  la base de datos como constancia, pero salen de la página, del JSON-LD y de
+  llms.txt.
+
+#### Añadido
+- **SEO y GEO**: el HTML servido de /equipo incluye los textos y las biografías
+  (desde la API en cada build) y el JSON-LD de la página y de cada persona, con
+  `@id` estables que también cita «Quiénes somos» (`scripts/fundadoras.ts`). La
+  portada lleva las organizaciones colaboradoras en un `<noscript>` y como
+  ItemList, y llms.txt gana bloques generados del equipo y de las colaboradoras.
+
+#### Quitado
+- `SponsorsARExperience`, `DaisyAvatars`, `SpecialThanksSection` y
+  `PromoterCard` (código muerto o sustituido), `TeamPage.css` y ocho fotos
+  personales que ya no usaba ninguna página.
+
+#### Corregido
+- La ficha «Y las que vienen» enlazaba a `/noticias`, que no existe.
+- El `og:image` de Inicio apuntaba a un archivo que no existe.
+
+### Aviso de cookies y «Volver arriba» (rediseño)
+
+#### Cambiado
+- **Aviso de cookies rediseñado**: tarjeta lavanda abajo a la izquierda en vez de
+  franja a todo el ancho, con ✕ además de «Entendido». Sale la primera vez y se
+  recuerda al cerrarlo; si el navegador bloquea el almacenamiento, se cierra
+  igual. Va justo después del enlace de salto, para cerrarlo con el teclado sin
+  recorrer la página, y mientras está abierto la página reserva su altura al
+  llevar el foco a un elemento. Versión compacta en móvil estrecho y pantallas
+  bajas. Sin icono fijo: con almacenamiento solo técnico no hay consentimiento
+  que retirar.
+- **Botón naranja en relieve** (`fc-boton--naranja`): tonos profundos del naranja
+  de marca para que el blanco pase de 4,5:1 (AAA en texto grande).
+- **«Volver arriba»** solo aparece al subir o al llegar al final de la página;
+  en móvil mide 44px y espera a que se cierre el aviso de cookies.
+- **Política de cookies al día**: enumera lo que la web guarda de verdad en el
+  navegador (sesión, perfil y preferencias), explica que el almacenamiento local
+  cuenta como cookies y menciona los vídeos de YouTube de algunas entradas del
+  blog. La de privacidad deja de decir que no hay cookies de terceros ni datos
+  personales guardados.
+
+### Quiénes somos (rediseño)
+
+#### Cambiado
+- **Nueva primera sección de «Quiénes somos»**: texto a la izquierda y vídeo a la
+  derecha, con el fondo de la portada (`bg1`) y las piezas compartidas `fc-`. El
+  ancho del vídeo se ajusta también a la altura de la ventana para que la sección
+  quepa en una pantalla de portátil.
+- **El resto de la página, rediseñado con los fondos de la home** (`bg3`, `bg4`
+  y `bg2` al cierre) y textos nuevos: «Nuestro propósito» (misión y visión),
+  «Cómo lo hacemos», «Compromiso y valores» y «Nuestras ideas», separadas en
+  lo que ya está en marcha y lo que viene. Piezas compartidas nuevas en
+  `rediseno.css`: `fc-capa`, `fc-disco`, `fc-desplegable` y `fc-enlace--texto`.
+- **Datos estructurados enlazados y en el HTML servido**: Organization,
+  AboutPage y VideoObject se citan entre sí por `@id` (`#organization` y
+  `#website` también en `index.html`) y los escribe el prerender, no el Helmet,
+  así que los leen también los rastreadores que no ejecutan JavaScript. Sale
+  `numberOfEmployees`, que en una asociación de voluntarias decía «6 empleadas».
+
+#### Eliminado
+- `CarouselValues.tsx`, `Collapse.tsx` y `AboutPage.css`, con su Tailwind, y los
+  quince iconos PNG de la página antigua con sus WebP.
+
+#### Corregido
+- **Misión y visión solo se leían pasando el ratón**: eran tarjetas que giraban
+  con `:hover`, ilegibles con teclado o en el móvil, donde además los dos
+  párrafos de debajo estaban ocultos con `display: none`. Ahora todo está a la
+  vista.
+- **El carrusel de valores no se podía parar** (WCAG 2.2.2) y llevaba texto
+  blanco sobre naranja. Ahora usa la lógica de los carruseles de la home
+  (`useRotacion`) y los once valores están en el DOM: Google indexaba solo el
+  que se veía al cargar.
+- **«Nuestras ideas» se abrían con `div` clicables sin `aria-expanded`**, y la
+  llamada final se ocultaba justo en el móvil. Ahora son botones desplegables y
+  la llamada se ve en todos los tamaños.
+- **El parallax del rediseño estaba congelado en toda la web**: `overflow: hidden`
+  en `.fc-manchas`, `.parallax`, `.contacto` e `.ideas` convertía cada sección en
+  contenedor de scroll, y las animaciones con `view()` la tomaban a ella (que no
+  se mueve) en vez de la página. Ahora es `overflow: clip`. Al activarse, en la
+  portada «Comunidad» tapaba una cara: las piezas del collage comparten una sola
+  línea de tiempo (`view-timeline: --hero-collage`) y entre 1025 y 1366px el
+  collage deja margen a la derecha para que el lema y «Oportunidades» no se
+  corten. Las apariciones (`data-aos`) ya no funden la opacidad, solo se
+  desplazan, para que ningún texto baje de 7:1 a mitad de entrada, y se
+  desactivan en pantallas de 500px de alto o menos.
+- **Carrusel de valores**: alto estable al rotar (todas las tarjetas en la misma
+  celda), puntos de 44px con contraste de 3:1 repartidos 11, 6 + 5 o 4 + 4 + 3
+  según el ancho, sin quedar bajo el botón «Volver arriba».
+- **Una regla `.text-left` de AboutPage.css** pintaba de blanco, con relleno, el
+  `text-left` de Tailwind en cualquier página visitada después, como las tablas
+  del panel.
+- **El vídeo de la página nunca se indexó en Google**: no tenía miniatura, ni
+  título visible, ni datos estructurados, y el HTML servido no decía nada de él.
+  Ahora lleva `poster`, título y descripción visibles, un `VideoObject` que el
+  prerender escribe en el HTML servido (campo nuevo `jsonLd` en `RutaMeta`) y una
+  entrada `<video:video>` en el sitemap. Los datos salen de una sola fuente,
+  `src/features/About/videoComunidad.ts`. Aun así, Google indexa sobre todo
+  vídeos de páginas dedicadas a ellos; en esta página el vídeo es complementario,
+  así que la indexación no está garantizada. La versión de YouTube se enlaza,
+  no se incrusta, para no cargar cookies de terceros.
+
 ### Navegación y menús laterales
 
 #### Corregido

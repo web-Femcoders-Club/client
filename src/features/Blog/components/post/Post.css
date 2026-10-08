@@ -1,0 +1,1017 @@
+/*
+ * Plantilla de los posts (PlantillaPost.tsx y PiezasPost.tsx): un artículo en
+ * una columna de lectura de ~70 caracteres sobre blanco. El color de marca
+ * queda en el tema, los enlaces y la rayita de los títulos; los posts son
+ * largos y el color en cada bloque cansaba.
+ *
+ * index.css da tamaño, color y sombra a h1/h2/h3, encoge los p en móvil y
+ * pinta todos los `span` en naranja: cada clase fija sus propios valores.
+ */
+
+/*
+ * 880px: unos 90 caracteres por línea. WCAG 1.4.8 (AAA) pide no pasar de 80;
+ * se acepta a conciencia para no dejar tanto margen a los lados (decisión de
+ * diseño, octubre de 2026). Con 760px se cumplía.
+ */
+.post__columna {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ---------- Cabecera ---------- */
+
+.post__cabecera {
+  /* La cabecera de la web es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 2.5rem)) 16px 0;
+  background: #fff;
+}
+
+.post__cabecera .post__columna {
+  display: grid;
+  gap: 1rem;
+}
+
+.post__migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+}
+
+.post__migas li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+  color: var(--color-secondary);
+}
+
+.post__migas a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.post__migas a:hover {
+  text-decoration: underline;
+}
+
+.post__migas a:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.post__tema {
+  margin: 0;
+}
+
+.post__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.post__entradilla,
+.post__entradilla p {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(1.12rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.25rem;
+  margin-top: 0.4rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(71, 55, 187, 0.15);
+  border-bottom: 1px solid rgba(71, 55, 187, 0.15);
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+}
+
+.post__meta p {
+  margin: 0;
+  font-size: inherit;
+}
+
+.post__autora {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-right: auto;
+}
+
+.post__autora strong,
+.post__autora small {
+  display: block;
+  line-height: 1.3;
+}
+
+.post__autora small {
+  font-size: 0.85rem;
+}
+
+.post__inicial {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-lavanda-medio);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.post__dato {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.post__dato svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--color-secondary);
+}
+
+/*
+ * La portada abre el post, al ancho exacto de la columna de texto. A 880px
+ * de ancho y 2,2:1 mide 400px de alto: a las portadas 2:1 (casi todas) se
+ * les recortan unos 11px arriba y abajo, sin tocar el texto que llevan. Las
+ * 16:9 pierden algo más; si alguna corta su texto, ajustar su encuadre.
+ */
+.post__portada {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto 2rem;
+}
+
+.post__portada img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.2 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1.2rem;
+  background: var(--color-lavanda-medio);
+}
+
+/* ---------- Cuerpo ---------- */
+
+.post__cuerpo {
+  padding: clamp(2rem, 4vw, 3rem) 16px clamp(3rem, 5vw, 4rem);
+  background: #fff;
+}
+
+.post__contenido {
+  display: grid;
+  gap: 2.75rem;
+  font-family: var(--font-primary);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--color-text-dark);
+}
+
+/*
+ * En una rejilla, un elemento no encoge por debajo de su contenido: una línea
+ * de código larga ensanchaba el apartado y la página entera hacía scroll
+ * lateral. Con min-width: 0 el scroll se queda dentro del bloque de código.
+ */
+.post__contenido > *,
+.post-seccion > *,
+.post-respuesta__contenido > *,
+.post__final > * {
+  min-width: 0;
+}
+
+.post__contenido p,
+.post__contenido li {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.post__contenido p {
+  margin: 0;
+}
+
+.post__contenido strong {
+  color: inherit;
+}
+
+/* Un span suelto dentro del texto (énfasis antiguo): sin la regla global naranja. */
+.post__contenido span:not([class]) {
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+}
+
+.post__contenido a:not([class]) {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.post__contenido a:not([class]):focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Dos botones en un mismo párrafo: separados también cuando bajan de línea. */
+.post__contenido p:has(> .fc-boton) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Imágenes dentro del texto: nunca más anchas que la columna. */
+.post__contenido img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+
+/* Vídeos incrustados (YouTube): al ancho de la columna en 16:9. */
+.post__contenido iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 1rem;
+}
+
+/* Código dentro de una frase. */
+.post__contenido :not(pre) > code {
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+  background: var(--color-lavanda-medio);
+  color: var(--color-lila-oscuro);
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
+/* Una cita destacada: más grande, con una línea lila a la izquierda; la última línea, la autoría. */
+.post__contenido blockquote {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.25rem 0;
+  padding: 0.2rem 0 0.2rem 1.25rem;
+  border-left: 3px solid var(--color-secondary);
+}
+
+.post__contenido blockquote p:first-child {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.post__contenido blockquote p:last-child:not(:first-child) {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* ---------- SeccionPost ---------- */
+
+.post-seccion {
+  display: grid;
+  gap: 1rem;
+}
+
+.post-seccion h2 {
+  position: relative;
+  margin: 0;
+  padding-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.post-seccion h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+.post-seccion h3 {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.post-seccion ul,
+.post-seccion ol {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.post-seccion li::marker {
+  color: var(--color-primary-oscuro);
+}
+
+/* Las listas también son rejilla: sin esto, un bloque de código dentro de un <li> ensanchaba la página. */
+.post-seccion li {
+  min-width: 0;
+}
+
+/*
+ * Lista de personas (las creadoras de contenido de «Integración de
+ * frameworks»): tarjetas lavanda, dos por fila; en cada una, la foto y el
+ * nombre arriba y el texto debajo.
+ */
+.post-seccion ul:has(> li > img:first-child) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-left: 0;
+}
+
+.post-seccion li:has(> img:first-child) {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-content: start;
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 1.2rem;
+  background: var(--color-lavanda-claro);
+  list-style: none;
+}
+
+.post-seccion li > img:first-child {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post-seccion li:has(> img:first-child) > strong {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.15;
+}
+
+.post-seccion li:has(> img:first-child) > p {
+  grid-column: 1 / -1;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .post-seccion ul:has(> li > img:first-child) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- CodigoPost: claro y sobrio; texto azul oscuro sobre lavanda muy claro (más de 12:1) ---------- */
+
+.post-codigo {
+  margin: 0.25rem 0;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: 0.9rem;
+  overflow: clip;
+  background: #faf9ff;
+}
+
+.post-codigo__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0.35rem 0.15rem 1rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+}
+
+.post-codigo__lenguaje {
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.post-codigo__copiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-codigo__copiar:hover {
+  background: var(--color-lavanda-medio);
+}
+
+.post-codigo__copiar:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: -3px;
+}
+
+.post-codigo__copiar svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.post-codigo__copiar-texto {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.post-codigo pre {
+  margin: 0;
+  padding: 0.9rem 1.1rem 1rem;
+  overflow-x: auto;
+  background: none;
+  color: var(--color-text-dark);
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  tab-size: 2;
+  text-shadow: none;
+}
+
+.post-codigo pre:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: -3px;
+}
+
+.post-codigo code {
+  font-family: inherit;
+}
+
+/* ---------- NotaPost: una línea naranja a la izquierda, sin caja de color ---------- */
+
+.post-nota {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid var(--color-primary);
+}
+
+.post-nota > svg {
+  flex-shrink: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-top: 0.3rem;
+  color: var(--color-primary-oscuro);
+}
+
+.post-nota__titulo {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-primary-oscuro);
+}
+
+.post-nota p {
+  font-size: 1rem;
+}
+
+/* ---------- TablaPost ---------- */
+
+.post-tabla {
+  overflow-x: auto;
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: 0.9rem;
+}
+
+.post-tabla:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.post-tabla table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.post-tabla th,
+.post-tabla td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+  text-align: left;
+  vertical-align: top;
+  color: var(--color-text-dark);
+}
+
+.post-tabla th {
+  background: var(--color-lavanda-claro);
+  font-weight: 700;
+}
+
+.post-tabla tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ---------- ImagenPost: al ancho de la columna, con pie opcional ---------- */
+
+.post-imagen {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.25rem 0;
+}
+
+.post-imagen__marco {
+  position: relative;
+}
+
+.post-imagen img {
+  display: block;
+  width: 100%;
+}
+
+.post-imagen figcaption {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+  text-align: center;
+}
+
+/* ---------- VideoPost: vídeo propio al ancho de la columna ---------- */
+
+.post-video {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.25rem 0;
+}
+
+.post-video video {
+  display: block;
+  width: 100%;
+  max-height: calc(100svh - var(--fem-header-height, 80px) - 1rem);
+  border-radius: 1rem;
+  background: var(--color-lila-oscuro);
+}
+
+.post-video figcaption {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ---------- RespuestaPost: la respuesta de un ejercicio, plegada ---------- */
+
+.post-respuesta {
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: 0.9rem;
+}
+
+.post-respuesta summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 0.9rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-respuesta summary:hover {
+  background: var(--color-lavanda-claro);
+}
+
+.post-respuesta summary:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.post-respuesta[open] summary {
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+  border-radius: 0.9rem 0.9rem 0 0;
+}
+
+.post-respuesta__contenido {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+/* ---------- DemoPost: el resultado en vivo de un ejemplo, en recuadro punteado ---------- */
+
+.post-demo {
+  margin: 0.25rem 0;
+  border: 2px dashed rgba(71, 55, 187, 0.35);
+  border-radius: 0.9rem;
+  overflow: clip;
+}
+
+.post-demo__titulo {
+  padding: 0.45rem 1rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.post-demo__escenario {
+  padding: 1.25rem;
+  overflow-x: auto;
+  background: var(--color-lavanda-claro);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* El bloque de muestra: los ejemplos le añaden en línea la propiedad que enseñan. */
+.post-demo__caja {
+  padding: 1rem;
+  border: 2px solid var(--color-secondary);
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--color-text-dark);
+}
+
+/*
+ * ---------- TarjetasPost, ListaMarcadaPost y PasosPost ----------
+ * Para los apartados hechos de ideas cortas (guías de estudio, consejos):
+ * en viñetas con negritas se leían como un párrafo tras otro.
+ * `.post-seccion ul` da rejilla y sangría a todas las listas: aquí se anulan.
+ */
+
+.post-tarjetas,
+.post-marcada {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.post-tarjetas .post-tarjetas__lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.post-tarjetas .post-tarjetas__lista--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.post-tarjetas .post-tarjetas__lista--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.post-tarjetas__tarjeta {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(71, 55, 187, 0.14);
+  border-radius: 1.1rem;
+  background: var(--color-lavanda-claro);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__enlace:hover) {
+  border-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__enlace:focus-visible) {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Con icono: el icono a la izquierda, título y texto a su lado (menos alto en móvil). */
+.post-tarjetas__tarjeta:has(.post-tarjetas__icono) {
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__icono) > p {
+  grid-column: 2;
+}
+
+.post-tarjetas__icono {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--color-secondary);
+}
+
+.post-tarjetas__icono svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.post__contenido .post-tarjetas__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+.post__contenido .post-tarjetas__texto {
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+/* Todo el área de la tarjeta lleva al enlace; el foco se marca en la tarjeta. */
+.post-tarjetas__enlace {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.post-tarjetas__enlace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.post-tarjetas__enlace:focus-visible {
+  outline: none;
+}
+
+/* ListaMarcadaPost */
+.post-marcada ul {
+  gap: 0.7rem;
+  padding: 0;
+  list-style: none;
+}
+
+.post-marcada li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.post-marcada li > svg {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: 0.3rem;
+}
+
+.post-marcada--bien li > svg {
+  color: #0f5a26;
+}
+
+.post-marcada--mal li > svg {
+  color: var(--color-primary-oscuro);
+}
+
+.post-marcada--pregunta li > svg {
+  color: var(--color-secondary);
+}
+
+/* Las preguntas, como burbujas de conversación. */
+.post-marcada--pregunta ul {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.post-marcada--pregunta li {
+  padding: 0.85rem 1rem;
+  border-radius: 1rem 1rem 1rem 0.25rem;
+  background: var(--color-lavanda-claro);
+}
+
+.post-marcada__texto {
+  min-width: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.post-marcada--pregunta .post-marcada__texto {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+/* PasosPost: una línea vertical que une los números. */
+.post-seccion .post-pasos {
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-pasos__paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.post-pasos__paso:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 2.75rem;
+  bottom: 0;
+  left: calc(1.375rem - 1px);
+  width: 2px;
+  background: var(--color-lavanda-medio);
+}
+
+.post-pasos__numero {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.post__contenido .post-pasos__etiqueta {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-oscuro);
+}
+
+.post__contenido .post-pasos__titulo {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.post-pasos ul {
+  gap: 0.3rem;
+  padding-left: 1.1rem;
+  font-size: 1rem;
+  list-style: disc;
+}
+
+@media (max-width: 860px) {
+  .post-tarjetas .post-tarjetas__lista--3,
+  .post-tarjetas .post-tarjetas__lista--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .post-tarjetas .post-tarjetas__lista,
+  .post-tarjetas .post-tarjetas__lista--3,
+  .post-tarjetas .post-tarjetas__lista--4,
+  .post-marcada--pregunta ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-tarjetas__tarjeta {
+    transition: none;
+  }
+
+  .post-tarjetas__tarjeta:has(.post-tarjetas__enlace:hover) {
+    transform: none;
+  }
+}
+
+/* ---------- Final: compartir y comentarios ---------- */
+
+.post__final {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.75rem;
+}
+
+.post__compartir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(71, 55, 187, 0.15);
+}
+
+.post__compartir-texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Sigue aprendiendo ---------- */
+
+.post__relacionados {
+  padding: clamp(2.5rem, 5vw, 4rem) 16px;
+}
+
+.post__relacionados-contenido {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.post__relacionados-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post__relacionados-cabecera .fc-titulo-seccion {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+}
+
+.post__relacionados-lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post__relacionados-lista > li {
+  display: flex;
+}
+
+.post__relacionados-lista .tarjeta-post {
+  flex: 1;
+}
+
+@media (max-width: 860px) {
+  .post__relacionados-lista {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 30rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .post__contenido {
+    font-size: 1.02rem;
+  }
+
+  .post-codigo pre {
+    font-size: 0.85rem;
+  }
+}

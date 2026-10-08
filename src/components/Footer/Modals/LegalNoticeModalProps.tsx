@@ -1,6 +1,8 @@
 // src/components/Footer/modals/LegalNoticeModal.tsx
 import React, { useContext, useRef } from "react";
 import "../Footer.css";
+import "./Documento.css";
+import { X } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
 import { useDialogoModal } from "../../../hooks/useDialogoModal";
@@ -25,13 +27,12 @@ const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay documento-fondo">
       <article
-        className="modal-content"
+        className="modal-content documento"
         role="dialog"
         aria-modal="true"
         aria-labelledby="legal-notice-title"
-        style={{ maxWidth: "900px" }}
         ref={contentRef}
         tabIndex={-1}
       >
@@ -40,7 +41,7 @@ const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ closeModal }) => {
             onClick={closeModal}
             aria-label="Cerrar aviso legal"
           >
-            x
+            <X aria-hidden="true" />
           </button>
         </div>
 
@@ -228,7 +229,7 @@ const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({ closeModal }) => {
         </div>
 
         <footer className="modal-footer">
-          <button onClick={closeModal} className="tertiary-button">
+          <button onClick={closeModal} className="fc-boton fc-boton--noche">
             Aceptar
           </button>
         </footer>

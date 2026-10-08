@@ -1,18 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import { CodigoPost, SeccionPost } from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const IntroduccionCSS: React.FC = () => {
-  const postId = 4;
-
-  return (
-    <div className="blog-post">
+const IntroduccionCSS: React.FC = () => (
+  <>
       <Helmet>
         <title>
-          ¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club
+          ¿Qué es CSS y cómo usarlo para diseñar páginas web? | FemCoders Club
         </title>
         <meta
           name="description"
@@ -42,7 +37,7 @@ const IntroduccionCSS: React.FC = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | femCoders Club"
+          content="¿Qué es CSS y cómo usarlo para diseñar páginas web? | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -78,42 +73,33 @@ const IntroduccionCSS: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <img
-          src="/assets/css/IntroduccionCss.png"
-          alt="CSS Design"
-          className="blog-post-image"
-        />
-      </div>
-
-      <h1 className="blog-post-title">
-        ¿Qué es CSS y por qué es esencial para el diseño web?
-      </h1>
-
-      <ShareButtons path="/recursos/css/introduccion-css" title="¿Qué es CSS y cómo usarlo para diseñar páginas web?" />
-
-      <div className="intro-text">
+    <PlantillaPost
+      ruta="/recursos/css/introduccion-css"
+      titulo="¿Qué es CSS y por qué es esencial para el diseño web?"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={4}
+      entradilla={
+        <>
+          <p>
+            <strong>CSS (Cascading Style Sheets)</strong> es un lenguaje de
+            estilo que se utiliza para describir la presentación de un
+            documento escrito en HTML. Con CSS defines colores, fuentes,
+            márgenes y posiciones: es lo que da vida a tus páginas web.
+          </p>
+          <p>
+            Separar la estructura del contenido (HTML) del estilo (CSS) es
+            fundamental para mantener un código limpio y facilitar el
+            mantenimiento de tus proyectos.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="Ejemplos básicos de CSS">
         <p>
-          <strong>CSS (Cascading Style Sheets)</strong> es un lenguaje de estilo
-          que se utiliza para describir la presentación de un documento escrito
-          en HTML. A través de CSS, puedes definir colores, fuentes, márgenes y
-          posiciones, lo que te permite dar vida a tus páginas web.
-        </p>
-        <p>
-          Separar la estructura del contenido (HTML) del estilo (CSS) es
-          fundamental para mantener un código limpio y facilitar el
-          mantenimiento de tus proyectos.
-        </p>
-      </div>
-
-      <div className="highlight-box">
-        <h2>Ejemplos básicos de CSS</h2>
-        <p>
-          Con CSS, puedes cambiar el color del texto, la fuente y el espacio
+          Con CSS puedes cambiar el color del texto, la fuente y el espacio
           entre elementos. Por ejemplo:
         </p>
-        <pre className="code-block bg3">
-          {`body {
+        <CodigoPost lenguaje="CSS">{`body {
   background-color: #f0f0f0;
   color: #333;
 }
@@ -126,85 +112,64 @@ h1 {
 
 p {
   line-height: 1.6;
-}`}
-        </pre>
-      </div>
+}`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Primeros pasos: Inline, Internal y External CSS</h2>
+      <SeccionPost titulo="Primeros pasos: CSS en línea, interno y externo">
         <p>Hay tres formas de aplicar CSS a un documento HTML:</p>
-        <ul>
-          <li>
-            <span>Inline CSS:</span> Se aplica directamente en el elemento HTML
-            utilizando el atributo <code>style</code>.
-            <pre className="code-block bg3">
-              {`<h1 style="color: blue;">Este es un título en azul</h1>`}
-            </pre>
-          </li>
-          <li>
-            <span>Internal CSS:</span> Se incluye en la sección{" "}
-            <code>&lt;head&gt;</code> del HTML.
-            <pre className="code-block bg3">
-              {`<style>
+
+        <h3>En línea (inline)</h3>
+        <p>
+          Se aplica directamente en el elemento HTML con el atributo{" "}
+          <code>style</code>.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<h1 style="color: blue;">Este es un título en azul</h1>`}</CodigoPost>
+
+        <h3>Interno (internal)</h3>
+        <p>
+          Se incluye en la sección <code>&lt;head&gt;</code> del HTML.
+        </p>
+        <CodigoPost lenguaje="HTML">{`<style>
 h1 {
   color: blue;
 }
-</style>`}
-            </pre>
-          </li>
-          <li>
-            <span>External CSS:</span> Se enlaza a un archivo CSS externo.
-            <pre className="code-block bg3">
-              {`<link rel="stylesheet" href="styles.css">`}
-            </pre>
-          </li>
-        </ul>
-      </div>
+</style>`}</CodigoPost>
 
-      <div className="highlight-box">
-        <h2>Uso de Selectores en CSS</h2>
+        <h3>Externo (external)</h3>
+        <p>Se enlaza a un archivo CSS aparte.</p>
+        <CodigoPost lenguaje="HTML">{`<link rel="stylesheet" href="styles.css">`}</CodigoPost>
+      </SeccionPost>
+
+      <SeccionPost titulo="Uso de selectores en CSS">
         <p>
           En CSS, los selectores son fundamentales para aplicar estilos a
-          elementos específicos. Aquí tienes un ejemplo de cómo aplicar un
-          estilo a un párrafo:
+          elementos específicos. Así se aplica un estilo a un párrafo:
         </p>
-        <pre className="code-block bg3">
-          {`p {
+        <CodigoPost lenguaje="CSS">{`p {
   color: red;
-}`}
-        </pre>
+}`}</CodigoPost>
         <p>
-          Si quieres aplicar un estilo a un elemento con una clase, debes
-          utilizar el punto <code>.</code>
-          antes del nombre de la clase. Por ejemplo:
+          Para aplicar un estilo a un elemento con una clase, se escribe un
+          punto <code>.</code> antes del nombre de la clase:
         </p>
-        <pre className="code-block bg3">
-          {`.mi-clase {
+        <CodigoPost lenguaje="CSS">{`.mi-clase {
   color: blue;
-}`}
-        </pre>
+}`}</CodigoPost>
         <p>
-          De manera similar, si deseas aplicar estilos a un elemento con un ID,
-          debes utilizar el símbolo de almohadilla <code>#</code> antes del
-          nombre del ID. Por ejemplo:
+          Y para un elemento con un ID, la almohadilla <code>#</code> antes del
+          nombre del ID:
         </p>
-        <pre className="code-block bg3">
-          {`#mi-id {
+        <CodigoPost lenguaje="CSS">{`#mi-id {
   font-size: 20px;
-}`}
-        </pre>
+}`}</CodigoPost>
         <p>
-          Recuerda que el uso correcto de selectores es esencial para aplicar
-          estilos de manera efectiva en tus documentos HTML. Utiliza selectores
-          de clase para estilos que se aplican a múltiples elementos y
-          selectores de ID para estilos únicos.
+          Usar bien los selectores es esencial para aplicar estilos de manera
+          efectiva. Utiliza selectores de clase para los estilos que se repiten
+          en varios elementos y selectores de ID para los estilos únicos.
         </p>
-      </div>
 
-      <h3>Ejemplo práctico de cómo enlazar una hoja de CSS</h3>
-
-      <pre className="code-block bg3">
-        {`<!DOCTYPE html>
+        <h3>Ejemplo práctico: cómo enlazar una hoja de CSS</h3>
+        <CodigoPost lenguaje="HTML">{`<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="mystyle.css">
@@ -215,94 +180,61 @@ h1 {
 <p>En femCoders Club, apoyamos a las mujeres en la tecnología.</p>
 
 </body>
-</html>`}
-      </pre>
+</html>`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Comentarios en CSS</h2>
-        <p>Puedes hacer comentarios en CSS utilizando el siguiente formato:</p>
-        <pre className="code-block bg3">
-          {`/* Este es un comentario en CSS */`}
-        </pre>
+      <SeccionPost titulo="Comentarios en CSS">
+        <p>Puedes escribir comentarios en CSS con este formato:</p>
+        <CodigoPost lenguaje="CSS">{`/* Este es un comentario en CSS */`}</CodigoPost>
+        <p>En VS Code tienes atajos de teclado para comentar más rápido:</p>
+        <ul>
+          <li>
+            <strong>Ctrl + /</strong> (<strong>Cmd + /</strong> en Mac):
+            comenta o descomenta las líneas seleccionadas.
+          </li>
+          <li>
+            <strong>Ctrl + K, Ctrl + U</strong>: quita el comentario.
+          </li>
+        </ul>
         <p>
-          Para quitar un comentario, puedes usar los atajos de teclado:
-          <ul>
-            <li>
-              <span>Ctrl + K:</span> Agregar comentario.
-            </li>
-            <li>
-              <span>Ctrl + K + U:</span> Para deshacer el comentario.
-            </li>
-          </ul>
+          Eso sí, no dejes demasiados comentarios en tu código: en exceso lo
+          hacen más difícil de leer y de mantener. Úsalos para explicar las
+          partes complejas, sin sobrecargar de información.
         </p>
-        <p>
-          Sin embargo, es importante no dejar demasiados comentarios en tu
-          código. Los comentarios excesivos pueden hacer que el código sea más
-          difícil de leer y mantener. Utiliza los comentarios de manera efectiva
-          para explicar partes complejas, pero evita la sobrecarga de
-          información.
-        </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>¡Explora el proyecto! 🚀</h2>
-        <p className="intro-text">
-          Para que entiendas mejor y para que puedas practicar, hemos creado un
-          ejemplo básico. Visita el proyecto en:{" "}
-          <span>
-            <a
-              href="https://femcodersclub.github.io/IntroduccionCSS/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight underline"
-            >
-              👉 GitHub Pages{" "}
-            </a>
-          </span>
-          o accede al repositorio en
-          <span>
-            {" "}
-            <a
-              href="https://github.com/femcodersclub/IntroduccionCSS"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight underline"
-            >
-              👉 GitHub.
-            </a>
-          </span>
+      <SeccionPost titulo="Explora el proyecto">
+        <p>
+          Para que lo entiendas mejor y puedas practicar, hemos creado un
+          ejemplo básico. Puedes verlo en{" "}
+          <a
+            href="https://femcodersclub.github.io/IntroduccionCSS/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Pages
+          </a>{" "}
+          o consultar el código en{" "}
+          <a
+            href="https://github.com/femcodersclub/IntroduccionCSS"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            su repositorio de GitHub
+          </a>.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Conclusión</h2>
+      <SeccionPost titulo="Conclusión">
         <p>
-          En este post, hemos aprendido sobre los conceptos básicos de CSS y
-          cómo aplicarlo a nuestros proyectos web. En futuros artículos,
-          profundizaremos en técnicas más avanzadas y en el uso de CSS para
-          crear diseños atractivos y responsivos. ¡Esperamos que te unas a
-          nosotras en este viaje!
+          En este post hemos visto los conceptos básicos de CSS y cómo
+          aplicarlo a nuestros proyectos web. En los próximos artículos
+          profundizaremos en técnicas más avanzadas y en cómo usar CSS para
+          crear diseños atractivos y adaptables. ¡Te esperamos!
         </p>
-      </div>
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Irina Ichim</strong>
-        </p>
-        <p>Co-fundadora de femCoders Club</p>
-        <p>
-          Fecha de publicación:{" "}
-          <strong>{new Date().toLocaleDateString()}</strong>
-        </p>
-      </div>
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default IntroduccionCSS;

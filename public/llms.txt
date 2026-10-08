@@ -2,7 +2,7 @@
 
 ## About
 
-FemCoders Club is a Spanish tech community and registered association founded on October 24, 2023, in Barcelona, Spain. Its mission is to empower women in technology by providing education, mentoring, networking and professional development resources. The community is open to women and people from underrepresented groups in tech across Spain and Latin America.
+FemCoders Club is a Spanish tech community and registered association founded on October 24, 2023, in Barcelona, Spain. Its mission is to empower women in technology by providing education, mentoring, networking and professional development resources. The community is open to women and people from underrepresented groups in tech.
 
 ## Facts
 
@@ -10,14 +10,14 @@ FemCoders Club is a Spanish tech community and registered association founded on
 - Location: Barcelona, Spain
 - Legal status: Registered association (Asociación)
 - Language: Spanish
-- Members: 1,500+
+- Members: 1,600+
 - Events organized: 40+
 - Partner companies: 30+
 - Focus areas: web development, JavaScript, CSS, HTML, React, artificial intelligence, open source, women in tech, diversity in technology
 
 ## Founders
 
-FemCoders Club was co-founded by six women:
+FemCoders Club is led by its five current co-founders (full bios, as published on the website, in the "Team" section below):
 
 1. Irina Ichim — Fullstack Software Developer, AI Specialist, Backend Java Mentor
    LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
@@ -31,10 +31,7 @@ FemCoders Club was co-founded by six women:
 4. Silvina Lucero Calderón — Full Stack Web Developer, QA Functional Tester
    LinkedIn: https://www.linkedin.com/in/silvina-lucero
 
-5. Liliana Dalmarco — Fullstack Developer, Scrum Master, Project Manager
-   LinkedIn: https://www.linkedin.com/in/lilianadalmarco
-
-6. Isadora Matias — Full Stack Developer, Designer, Visual Communication
+5. Isadora Matias — Full Stack Developer, Designer, Visual Communication
    LinkedIn: https://www.linkedin.com/in/isadoramatias/
 
 ## Topics
@@ -61,7 +58,6 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Website: https://www.femcodersclub.com
 - Blog: https://www.femcodersclub.com/blog
 - Resources: https://www.femcodersclub.com/blog/recursos
-- Latest JS post: https://www.femcodersclub.com/recursos/js/web-apis-nueva-generacion
 - Events: https://www.femcodersclub.com/eventos
 - Team: https://www.femcodersclub.com/equipo
 - About: https://www.femcodersclub.com/femcoders-quienes-somos
@@ -72,10 +68,444 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Twitter/X: https://x.com/FemCodersClub
 - Slack community: https://communityinviter.com/apps/femcodersclub/femcoders-club
 
-## Contact
+<!-- BEGIN: contacto generado automaticamente -->
 
-- General: info@femcodersclub.com
-- Partnerships: partnerships@femcodersclub.com
+## Contact (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/contacto
+
+- Email: info@femcodersclub.com
+- Contact form: https://www.femcodersclub.com/contacto
+
+Detrás de este formulario está el equipo de FemCoders Club. Cuéntanos tu idea y te responderemos por correo.
+
+### ¿Qué tienes en mente?
+
+- Colaborar o patrocinar: ¿Formáis parte de una empresa? Podemos apoyar un evento o crear algo con vosotros para la comunidad.
+- Compartir una vacante: ¿Buscáis talento tech? Contadnos vuestra oferta y vemos cómo acercarla a la comunidad.
+- Dar una charla o un taller: ¿Tienes algo que compartir? Cuéntanos tu propuesta y pensemos cómo llevarla a la comunidad.
+- Organizar algo en colaboración: ¿Sois una comunidad o asociación tech? Podemos unir fuerzas y crear algo en colaboración.
+
+### Sigue cerca de la comunidad
+
+- Conversa en nuestro Slack: Un espacio para hacer preguntas, compartir oportunidades y celebrar logros con otras mujeres en tecnología. https://join.slack.com/t/femcodersclub/shared_invite/zt-47z21fehv-wOH2xK6eayobO_MIRfvMew
+- Crea tu cuenta: Es gratuita y te da acceso a las ofertas de empleo y a las mentorías. Al crearla eliges qué avisos quieres recibir. https://www.femcodersclub.com/register
+- Ven a un evento: Charlas, talleres y encuentros para aprender y conocer a otras personas de la comunidad. https://www.femcodersclub.com/eventos
+
+<!-- END: contacto generado automaticamente -->
+
+<!-- BEGIN: quienes somos generado automaticamente -->
+
+## About us: mission, vision and values (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/femcoders-quienes-somos
+
+Queremos cerrar la brecha de género en el ámbito digital y que la tecnología sea un lugar donde cada mujer encuentre su sitio. Somos una comunidad de mujeres vinculadas al mundo de la tecnología que trabajamos para que más mujeres participen, crezcan y lideren en el sector. Creamos espacios donde compartir conocimiento, generar conexiones y abrir oportunidades reales para avanzar juntas.
+
+Asociación sin ánimo de lucro nacida en Barcelona en octubre de 2023 · más de 1.600 mujeres · más de 40 eventos
+
+Video: Así es FemCoders Club. Quiénes somos y por qué existe FemCoders Club, la comunidad de mujeres en tecnología nacida en Barcelona, contado en menos de un minuto. https://www.youtube.com/watch?v=4k3q03neEA4
+
+### Misión
+
+Empoderar e impulsar a las mujeres en el desarrollo web y la tecnología.
+
+Trabajamos para cerrar la brecha de género en la tecnología con una comunidad que fortalece habilidades, conocimientos y confianza, a través de eventos (https://www.femcodersclub.com/eventos), talleres y recursos (https://www.femcodersclub.com/blog/recursos) que promueven la inclusión, la equidad y la diversidad.
+
+Queremos que cada mujer tenga herramientas para avanzar profesionalmente, compartir lo que sabe y descubrir nuevas oportunidades dentro del sector. Porque aumentar la presencia de mujeres en tecnología también significa darles espacio para crear, decidir y liderar su futuro profesional.
+
+### Visión
+
+Un futuro en el que las mujeres lideren, innoven y den forma al mundo digital.
+
+Aspiramos a un sector tecnológico equitativo e inclusivo, donde el talento y las oportunidades no estén condicionados por el género ni por el lugar de origen. Queremos contribuir a una industria en la que más mujeres ocupen espacios de decisión, impulsen nuevas ideas y sean referentes para las próximas generaciones.
+
+Una tecnología más diversa no solo abre puertas: también transforma quién la crea y para quién se construye.
+
+### Creamos espacios para conectar, compartir y crecer
+
+Reunimos a mujeres STEM en espacios donde puedan conocerse, compartir experiencias y crear conexiones que impulsen su desarrollo personal y profesional. Nuestros encuentros abordan la tecnología desde diferentes perspectivas: desde conocimientos técnicos hasta liderazgo, soft skills, bienestar profesional y oportunidades dentro del sector.
+
+- Referentes: Damos visibilidad a mujeres que ya están construyendo su camino profesional, invitándolas a compartir su experiencia como ponentes y referentes. Queremos que otras mujeres puedan verse reflejadas en ellas, descubrir nuevos caminos y sentir que también pueden llegar hasta allí.
+- Colaboraciones: Colaboramos con empresas, organizaciones y profesionales para acercar nuestra comunidad al ecosistema tecnológico y generar encuentros de los que puedan surgir nuevas ideas, relaciones y oportunidades.
+
+### Nuestro compromiso con una tecnología más diversa
+
+Trabajamos para contribuir a reducir la brecha de género en el sector tecnológico, fomentar la inclusión y generar oportunidades para que más mujeres puedan desarrollarse, avanzar y ocupar su espacio dentro de la industria.
+
+Queremos ser un punto de encuentro donde las mujeres encuentren referentes, conexiones, recursos y oportunidades para crecer personal y profesionalmente. Un espacio donde compartir experiencias, apoyarse, crear nuevas relaciones y sentirse parte de una comunidad que avanza junta.
+
+Nuestro compromiso también pasa por dar visibilidad al talento femenino que ya está transformando el sector, porque cada mujer que comparte su experiencia puede convertirse en referente para muchas otras.
+
+Si quieres conocer mejor lo que hacemos, descubre nuestras iniciativas en el blog (https://www.femcodersclub.com/blog) o escríbenos (https://www.femcodersclub.com/contacto) y forma parte de la comunidad.
+
+### Nuestros valores
+
+- Equidad: Las mujeres deben tener las mismas oportunidades de desarrollo profesional que los hombres, sin discriminación por género.
+- Inclusión: Las mujeres deben sentirse bienvenidas y apoyadas en el sector IT, independientemente de sus antecedentes o experiencias.
+- Visibilidad: Los logros de las mujeres en el sector IT deben ser reconocidos y celebrados.
+- Desarrollo profesional: Las mujeres deben tener acceso a oportunidades de desarrollo profesional que les permitan alcanzar su máximo potencial.
+- Colaboración: Fomentar un ambiente donde las mujeres trabajen juntas de manera colaborativa, compartiendo conocimientos y experiencias para impulsar el crecimiento mutuo.
+- Empoderamiento: Capacitar a las mujeres para que tomen el control de sus carreras en tecnología, brindándoles las herramientas y el apoyo necesarios para alcanzar sus metas.
+- Diversidad: Reconocer y valorar las diversas perspectivas, habilidades y experiencias que cada mujer aporta al campo de la tecnología, promoviendo un entorno inclusivo y enriquecedor.
+- Ética: Promover prácticas éticas en el trabajo tecnológico, priorizando la integridad, la transparencia y el respeto hacia los demás y hacia la sociedad en general.
+- Innovación: Fomentar la creatividad y la innovación entre las mujeres en tecnología, alentándolas a pensar de manera crítica y a proponer soluciones disruptivas para los desafíos actuales y futuros.
+- Equilibrio entre vida laboral y personal: Promover un equilibrio saludable entre la vida laboral y personal, reconociendo la importancia de cuidar el bienestar físico, emocional y mental de las mujeres en la industria tecnológica.
+- Responsabilidad social: Comprometerse con la responsabilidad social corporativa, participando en iniciativas y proyectos que tengan un impacto positivo en la comunidad y en el mundo en general.
+
+### Ya en marcha
+
+- Mentorías: Mujeres con experiencia acompañan a quienes empiezan o quieren dar el siguiente paso. Ver mentorías (con tu cuenta) (https://www.femcodersclub.com/mentoria)
+- Recursos y herramientas: Artículos y materiales gratuitos para aprender a tu ritmo. Ver recursos (https://www.femcodersclub.com/blog/recursos)
+- Eventos tecnológicos: Charlas, talleres y hackathons, presenciales y online. Ver eventos (https://www.femcodersclub.com/eventos)
+- Espacios de networking: Encuentros para conectar, compartir experiencias y crear relaciones profesionales.
+- Alianzas con empresas: Colaboramos con empresas y organizaciones que comparten nuestra misión.
+- Comunidad virtual: Un espacio en línea para hacer preguntas, compartir recursos y apoyarnos.
+
+### En el horizonte
+
+- Directorio de miembros: Un directorio de mujeres de la comunidad, para darse a conocer y encontrarse.
+- Coworking y laboratorios: Espacios de trabajo colaborativo donde crear y diseñar juntas.
+- Grupos de interés: Grupos sobre inteligencia artificial, ciberseguridad u otras áreas, para profundizar juntas.
+- Programas de emprendimiento: Asesoramiento y contactos para mujeres que emprenden en tecnología.
+- Campañas de concienciación: Campañas sobre la importancia de la diversidad de género en la tecnología.
+
+<!-- END: quienes somos generado automaticamente -->
+
+<!-- BEGIN: equipo generado automaticamente -->
+
+## Team: the co-founders of FemCoders Club (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/equipo
+
+Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una comunidad apasionada hoy se ha formalizado como una asociación legalmente constituida.
+
+Este paso administrativo es la prueba de nuestro compromiso a largo plazo: nos da la estructura necesaria para impulsar proyectos de gran escala y ofrecer una plataforma estable donde todas puedan crecer.
+
+Cada miembro de nuestro liderazgo aporta una trayectoria sólida y una visión estratégica para asegurar que FemCoders Club continúe siendo el referente de la inclusión y el empoderamiento femenino en el sector tech.
+
+### Elvia Benedith
+
+Cofundadora · Desarrolladora Web Full-stack e Ingeniera Civil.
+
+Mis hobbies son el tai txi y el fit-boxing como forma de autodefensa.
+
+Me considero una crafter o "manitas"; me encanta leer manuales, instalar cosas, programar y pensar.
+
+Soy una persona muy observadora, siempre buscando aprender y mejorar continuamente.
+
+LinkedIn: https://www.linkedin.com/in/elvia-benedith
+
+### Ana Lucía Silva Córdoba
+
+Cofundadora · Desarrolladora Full Stack con una mente creativa, curiosa y autodidacta.
+
+Con amplia experiencia en la enseñanza, interesada por el diseño, lo que me llevó a redescubrir mi pasión por la programación.
+
+Me apasiona trabajar en equipo, aplicar metodologías ágiles y profundizar en el desarrollo web.
+
+LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
+
+### Irina Ichim
+
+Cofundadora · Emprendedora convertida en desarrolladora full-stack.
+
+Después de enfrentar desafíos laborales, descubrí mi pasión por la programación mientras exploraba nuevas oportunidades.
+
+Disfruto cada desafío que enfrento y encuentro satisfacción en resolver problemas complejos.
+
+Además, como cofundadora de FemCoders Club, estoy comprometida a apoyar a mujeres que, al igual que yo, han enfrentado momentos difíciles y están dando un giro en sus vidas al aprender programación.
+
+LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
+
+### Silvina Lucero Calderón
+
+Cofundadora · Desarrolladora Web Full Stack - Q.A Tester Funcional.
+
+Hace dos años me quedé sin trabajo, esto lo tomé como una oportunidad de crecimiento personal y laboral.
+
+Al día de hoy tengo el convencimiento de afirmar que cuando buscamos un cambio con compromiso a ti misma puedes conseguirlo.
+
+Ahora estoy en este hermoso proyecto de poder ser un pilar para todas aquellas mujeres que se lanzan al cambio.
+
+LinkedIn: https://www.linkedin.com/in/silvina-lucero
+
+### Isadora Matias
+
+Cofundadora · Desarrolladora Full Stack con pasión por el diseño y el desarrollo frontend.
+
+Gestiono la comunicación visual de FemCoders Club, capturando la esencia de nuestra comunidad a través de la fotografía y las redes sociales.
+
+Mi misión es usar la creatividad y la conciencia social para generar un impacto significativo en la tecnología con perspectiva femenina.
+
+LinkedIn: https://www.linkedin.com/in/isadoramatias/
+
+### Nuestros valores
+
+- Colaboración: Trabajamos juntas para crear un ecosistema tecnológico más inclusivo. Compartimos conocimiento, experiencias y oportunidades para aprender y crecer en comunidad.
+- Innovación: Exploramos nuevas tecnologías, ideas y formas de aprender. Nos gusta experimentar y acercarnos juntas a lo que está transformando el sector.
+- Empoderamiento: Creamos espacios seguros donde cada mujer pueda crecer personal y profesionalmente. Queremos que encuentre herramientas, confianza y oportunidades para construir su propio camino.
+- Comunidad global: Conectamos mujeres STEM de diferentes países, culturas y experiencias. Una red donde crear vínculos, compartir perspectivas y descubrir nuevas posibilidades.
+
+### Alianzas y colaboraciones
+
+- Community Partner: Talent Arena 2026 (https://www.femcodersclub.com/noticias/talent-arena-2026-partnership)
+- Community Partner: HackBarna AI Summit (https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26)
+- Ambassador: Barcelona Cybersecurity Congress 2026 (https://www.femcodersclub.com/noticias/barcelona-cybersecurity-congress-2026)
+- Community Partnership Program: Vonage (https://www.femcodersclub.com/noticias/vonage-community-partnership-program)
+- Equipo de desarrollo: June, con In CoDe (https://www.femcodersclub.com/noticias/colaboracion-june)
+- Comunidad colaboradora: Claude Community House Barcelona (https://www.femcodersclub.com/noticias/claude-community-house-barcelona)
+
+<!-- END: equipo generado automaticamente -->
+
+<!-- BEGIN: eventos generado automaticamente -->
+
+## Events (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/eventos
+
+Organizamos eventos presenciales en Barcelona y sesiones online con profesionales del sector: charlas, talleres, encuentros y espacios de networking sobre tecnología, inteligencia artificial, desarrollo profesional, liderazgo y mucho más.
+
+Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
+
+### Upcoming events (1)
+
+- Mujeres, talento e IA: celebramos tres años de FemCoders Club
+  Date: 2026-11-11
+  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
+  Summary: Celebramos el tercer aniversario de FemCoders Club de la mano de Vonage. Áurea Rodríguez, Virginia Carreras y Anna Tsolakou conversarán sobre mujeres, talento e inteligencia artificial: sesgos, oportunidades y carreras profesionales, y sobre cómo conseguir que la IA amplíe las oportunidades de las mujeres en lugar de reproducir desigualdades. Habrá networking y un concurso de Vonage con premios para las asistentes.
+  Tickets: https://www.aicampus.barcelona/es/program/mujeres-talento-e-ia-women-talent-and-ai-2026-11-11
+
+### Speakers
+
+En nuestros eventos participan profesionales de distintos ámbitos del sector tecnológico, con trayectorias, perfiles y perspectivas diversas. Comparten conocimientos, experiencias y aprendizajes reales que aportan nuevas perspectivas, generan referentes y abren caminos dentro del sector.
+
+- Ponencias femeninas en el evento de FemCoders Club, destacando el talento y la experiencia de nuestras ponentes en el sector tecnológico.
+- Segundo taller presencial con Jennifer C. Neyra en el Canòdrom: cómo construir y comunicar tu propuesta de valor para destacar en los procesos de selección del sector IT.
+- Liderando la revolución de la IA con talento femenino en tecnología, en colaboración con InfoJobs y NTT Data.
+- Participación de Ana Lucía Silva y Silvina Lucero en el Mes del QA. Hablamos sobre accesibilidad en el ciclo de QA y cómo convertir requisitos en éxito.
+- Entrevista con Nadia Soledad Cavalleri, experta en QA y ponente internacional. Un espacio online para aprender, inspirarse y preguntar en directo.
+- En el evento Data Connect: Inspire ideas. Learn from experts. Grow together!, exploramos el poder de los datos con la colaboración de InfoJobs. Glovo y LeWagon.
+- Gracias a InfoJobs y a las increíbles mujeres líderes que nos inspiraron en este evento, impulsando el talento femenino en tecnología.
+- En el evento 'Iníciate en programación', Ana Lucía Silva mostró proyectos en Realidad Aumentada con Glitch y A-Frame. Gilda Irina Ichim presentó un proyecto interactivo con CodePen y Three.js.
+- Àurea Rodríguez, fuente de inspiración para la comunidad FemCoders Club.
+- En el evento Adopta Un Junior, entrevistamos a las fundadoras sobre su valioso trabajo.
+- Àurea Rodríguez y Marina Altés liderando una sesión sobre los últimos avances en inteligencia artificial.
+- Carmen Ansio, especialista en sistemas de diseño, uniendo diseño y desarrollo web.
+- Erika Vicente: Analista de datos y ponente destacada en el evento del Día Internacional de la Mujer.
+- Compartiendo un momento especial con Àurea Rodríguez, una verdadera inspiración para FemCoders Club.
+- Celebrando junto a Carmen Ansio, cuya visión y liderazgo inspiran a toda la comunidad femCoders Club.
+- Agradecidas a Criteo y Marina Altés por su apoyo y colaboración en nuestro evento: Antes Muerta que Sin IA.
+- Gran evento en Factorial, aprendiendo sobre soluciones tecnológicas sostenibles con María Alexandra Galarza.
+- Inspirándonos con Marta Díez Asensio, desarrolladora y asesora en blockchain, en el evento del 8 de Marzo.
+- En Glovo con las ponentes del evento 'Análisis profundo sobre el Testing en Backend y los Obstáculos de Escalabilidad'.
+- Evento online con Mari Carmen, aprendiendo a customizar tu perfil de GitHub.
+- Unlocking Data: Visualización y métricas esenciales para el éxito, con las brillantes Alba Vicente Olmo y Patricia Márquez Valle.
+- Disfrutando de la experiencia y talento de Sarah, destacada desarrolladora de juegos, en el evento del 8 de Marzo.
+- Explorando cómo la gestión emocional puede ser la clave para el éxito personal en todas las áreas de la vida.
+- Disfrutando de la experiencia en Unlocking Data con la talentosa Alba Vicente Olmo, aprendiendo sobre visualización de datos.
+- Disfrutando de la experiencia en Unlocking Data con la brillante Patricia Márquez Valle, explorando métricas clave para el éxito.
+- Espectacular evento: Mesa redonda sobre mujeres en tecnología, explorando los retos y oportunidades en el campo.
+- Workshop con Asia Noble: Predice la brecha salarial de género con IA, explorando técnicas de análisis de datos con Python y Pandas.
+- De la mano de Carolina Muradas, exploramos cómo la IA está transformando el mundo laboral.
+- De la mano de Laura Pourtier, analizamos la rentabilidad de Walmart utilizando Tableau en colaboración con Le Wagon. Un evento imprescindible para los apasionados por el análisis de datos y la tecnología.
+- Daniela Trifu, referente en ciberseguridad, aportando su valiosa experiencia durante el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek'
+- Yeraldin Salazar, especialista en ciberseguridad, brindando su visión experta en el evento 'Ciberseguridad: Catch Me If You Can: Malware Hide and Seek''.
+- Anna Vía, Product Manager de Machine Learning en Adevinta, compartió su conocimiento en la presentación 'Desbloqueando el potencial de IA: del problema al impacto', durante un evento organizado con el apoyo de Le Wagon.
+- Paula Oses, ingeniera de IA en IAG, presentó 'Construyendo tu propio modelo Rag' en el evento organizado con el apoyo de Le Wagon.
+- En colaboración con Le Wagon, femCoders Club organizó un evento sobre Machine Learning, donde las ponentes compartieron su conocimiento y experiencia en el campo.
+- Liliana Dalmarco, que formó parte del equipo fundador de FemCoders Club, nos inspiró con su charla «Soft Skills: comunicación asertiva» en un evento organizado junto al Canòdrom.
+- Daria Naidikova, desarrolladora front-end en Semrush, compartió estrategias clave sobre cómo mejorar la accesibilidad en productos digitales, inspirando a nuestra comunidad a crear experiencias web inclusivas para todos.
+- Cris Mouta, arquitecta convertida en programadora y formadora fullstack, nos mostró los fundamentos de la Programación Orientada a Objetos (POO), destacando la importancia de la creatividad y pasión en el desarrollo de software.
+- Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla.
+- Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.
+
+### Past events (34, most recent first)
+
+- HackBarna AI Summit 26 - FemCoders Club Community Partner
+  Date: 2026-09-19
+  Location: Norrsken House Barcelona
+  Summary: Tercera edición del hackathon de IA de Barcelona, el 19 y 20 de septiembre en Norrsken House. Repetimos como community partner y nuestro equipo ganó el premio Best use of the Vonage Video API.
+
+- Sesión informativa: HackBarna AI Summit 26
+  Date: 2026-09-03
+  Summary: Únete online para descubrir todo sobre HackBarna AI Summit 26 y cómo sacarle el máximo provecho.
+
+- La gestión de tu estado interno también forma parte de tu búsqueda laboral
+  Date: 2026-06-04
+  Summary: Aprende a manejar tus emociones para que la búsqueda de trabajo sea menos estresante y más efectiva.
+
+- Hacking Decidim: personalización y desarrollo con Ruby on Rails
+  Date: 2026-05-27
+  Summary: Únete al Hacking Decidim para aprender a personalizar y desarrollar con Ruby on Rails en vivo y en directo.
+
+- Customiza tu Perfil de Github
+  Date: 2026-05-14
+  Summary: Personaliza tu perfil de GitHub para destacar tus proyectos, habilidades y estilo como desarrolladora.
+
+- Soft Skills: Comunicación Asertiva en el Ambiente Laboral
+  Date: 2026-04-15
+  Summary: Aprende a comunicarte claro y con confianza en el trabajo para evitar malentendidos y mejorar el ambiente.
+
+- Estructuras en Movimiento: mujeres que transforman el futuro
+  Date: 2026-03-26
+  Summary: Celebra el Día de la Mujer con una jornada de charlas inspiradoras junto a referentes que comparten sus historias, aprendizajes y visión
+
+- Taller Presencial: Propuesta de Valor con Jennifer Neyra - Sesion 2
+  Date: 2026-02-26
+  Location: Canodromo, Barcelona
+  Summary: Segundo encuentro con Jennifer Neyra. Trae tu CV aplicando lo aprendido en la sesion online y trabajaremos tu propuesta de valor. Plazas limitadas a 10 personas. Practica con feedback personalizado, networking con profesionales del sector y ejercicios para fortalecer tu narrativa profesional. Inscripciones: info@femcodersclub.com
+
+- CV Tech vs Selección IT: ¡Mejora tu CV y comunica tu propuesta de valor!
+  Date: 2026-02-12
+  Summary: Join us for an exciting showdown between CV Tech and Selección IT to level up your CV and nail your value proposition!
+
+- Mesa Redonda de IA: Liderando la revolución de la IA con talento femenino.
+  Date: 2025-10-29
+  Summary: Únete a nosotros para una mesa redonda sobre la revolución de la inteligencia artificial ¡será una experiencia inspiradora!
+
+- HackBarna 2025 - FemCoders Club Community Partner
+  Date: 2025-10-11
+  Location: Glovo HQ, Barcelona
+
+- Taller Práctico: Tu Primera Página Web con HTML y CSS
+  Date: 2025-09-27
+  Location: Carrer de Concepción Arenal, 165, Sant Andreu, 08027 Barcelona
+
+- Mes del QA 2025
+  Date: 2025-06-27
+  Location: Online
+
+- Entrevista con Nadia Soledad Cavalleri
+  Date: 2025-06-19
+  Location: Online
+
+- DataConnect. Inspire ideas.Learn from experts. Grow together
+  Date: 2025-05-28
+  Summary: A unique event co-hosted by InfoJobs, FemCoders Club, Le Wagon, and Glovo. Join us for a unique data event to learn, get inspired.
+
+- El sector tecnológico necesita de más mujeres: Celebra con nosotras
+  Date: 2025-03-13
+  Summary: FemCoders Club e InfoJobs te invitan a festejar el Día Internacional de la Mujer patrocinado por InfoJobs .
+
+- Inteligencia Emocional en el Ambiente Laboral
+  Date: 2024-12-04
+  Summary: Aprende a manejar tus emociones en el trabajo para tener éxito y ser feliz en tu día a día laboral.
+
+- Diseño, Accesibilidad y Ciberseguridad en el desarrollo Web
+  Date: 2024-11-28
+  Summary: Aprende sobre cómo integrar diseño atractivo, accesibilidad para todos y ciberseguridad en tus proyectos web en nuestro evento.
+
+- Estratégias de accesibilidad y Fundamentos de POO
+  Date: 2024-11-07
+  Summary: ¡Aprende cómo hacer que tus programas sean accesibles para todos y domina los fundamentos de la programación orientada a objetos en este eve
+
+- Machine Learning
+  Date: 2024-09-19
+  Summary: En este evento, daremos lugar a dos charlas muy interesantes en colaboración de Le Wagon:
+
+- Ciberseguridad - Catch Me If You Can: Malware Hide and Seek
+  Date: 2024-09-05
+  Summary: En este taller, nos adentraremos en el intrigante mundo del malware, explorando los diferentes tipos que acechan en el ciberespacio.
+
+- AI in Tech: A New Era of Jobs
+  Date: 2024-07-17
+  Summary: Join us for AI in Tech: A New Era of Jobs, where we'll explore how artificial intelligence is shaping the future of work!
+
+- Mesa redonda: Mujeres en Tecnología: Retos y Oportunidades
+  Date: 2024-07-11
+  Summary: ¡Ven a nuestra mesa redonda sobre mujeres en tecnología y descubre los retos y oportunidades que enfrentan en el campo!
+
+- Workshop: Analyze Walmart’s profitability using Tableau
+  Date: 2024-07-03
+  Summary: Learn how to work with Tableau, one of the most widely used data analysis and visualization software programs in the world.
+
+- Workshop: Predict the gender pay gap with AI
+  Date: 2024-06-27
+  Summary: Learn how to use Python and Pandas to analyze how gender equality (or inequality) reveals itself through data.
+
+- Unlocking Data: Essential Visualization and Metrics for Success
+  Date: 2024-06-19
+  Summary: Learn how to make sense of data through cool visuals and key metrics for achieving success at our event on June 19th.
+
+- Antes muerta que sin IA
+  Date: 2024-05-29
+  Summary: La IA es una herramienta poderosa que puede empoderarnos o borrarnos del mapa. Educarnos es la mejor manera de saber de qué lado estamos.
+
+- Green Software: ¿es realmente posible?
+  Date: 2024-05-16
+  Summary: En un mundo cada vez más consciente del medio ambiente, la tecnología juega un papel crucial en la búsqueda de soluciones sostenibles.
+
+- Más allá de la superficie
+  Date: 2024-04-22
+  Summary: Análisis profundo sobre el Testing en Backend y los Obstáculos de Escalabilidad.
+
+- Actitud mental y gestión emocional para ser líder de tu vida
+  Date: 2024-04-17
+  Summary: En esta charla, exploraremos cómo la gestión emocional puede ser la clave para alcanzar el éxito personal en todas las áreas de la vida.
+
+- Customiza tu Perfil de Github
+  Date: 2024-03-18
+  Summary: Quieres destacar en el mundo del desarrollo y mostrar tu identidad única en GitHub? Entonces este evento es para ti!
+
+- Día Internacional de la Mujer: Celebremos el Talento Tecnológico Femenino
+  Date: 2024-03-07
+  Summary: FemCoders Club y TechFems te invitan a festejar el Día Internacional de la Mujer con este evento especial, patrocinado por Adevinta.
+
+- Las skills que necesitas para ser UX Engineer
+  Date: 2024-02-20
+  Summary: Estamos muy emocionadas de compartir con ustedes la oportunidad de explorar el universo del UX Engineering de la mano de Carmen Ansio.
+
+- Iníciate en la programación con femCoders Club
+  Date: 2024-01-21
+  Location: Online
+
+<!-- END: eventos generado automaticamente -->
+
+<!-- BEGIN: colaboradoras generado automaticamente -->
+
+## Companies and organizations that have collaborated with FemCoders Club (in Spanish, as published)
+
+Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en nosotras»)
+
+34 empresas y organizaciones han colaborado con FemCoders Club desde 2023.
+
+- Actividades para Mujeres (2026: Alianza de impacto: juntas para poner a la mujer en el centro)
+- Adevinta (2024: 8M: Mujeres en Tecnología, retos y oportunidades)
+- Barcelona Cybersecurity Congress (2026: Embajadoras oficiales de BCC26)
+- Between (2025: El sector tecnológico necesita de más mujeres, en InfoJobs; Ofertas de empleo para la comunidad)
+- Claude Community House Barcelona (2026: Primer evento de la comunidad de Claude en Barcelona; Claude Community House, con código para la comunidad)
+- Coboi Lab (2026: Alianza con la comunidad)
+- Codurance (2024: Catch Me If You Can: Malware Hide and Seek)
+- Criteo (2024: Antes muerta que sin IA)
+- Dynatrace (2024: Essential Visualization and Metrics for Success)
+- El Canòdrom (2023–2026: Presentación del club: Música y Código; Customiza tu perfil de GitHub; Taller: tu primera página web con HTML y CSS; Soft skills: comunicación asertiva; Taller con Jennifer C. Neyra; Soft skills; Customiza tu perfil de GitHub; Taller de Decidim)
+- Extraordinary (2026: Alianza de networking)
+- EY (2026: Estructuras en movimiento (8M), en InfoJobs)
+- Factoría F5 (2023 · 2024: Presentación del club, con El Canòdrom; Las skills que necesitas para ser una UX Engineer)
+- Factorial HR (2024: Green Software)
+- Fundación Asti (2024: Iníciate en programación con FemCoders Club)
+- Glovo (2024 · 2025: Backend Testing & Scalability Pitfalls, en sus oficinas; DataConnect; Sede de HackBarna 2025)
+- HackBarna (2025 · 2026: Community Partner de HackBarna 2025; Sesión informativa del AI Summit 26; Community Partner de HackBarna AI Summit 26)
+- In CoDe (2026: Desarrollo de la plataforma June)
+- InfoJobs (2025 · 2026: El sector tecnológico necesita de más mujeres; DataConnect, en sus oficinas; Liderar la revolución de la IA con talento femenino, con NTT DATA; Estructuras en movimiento (8M))
+- K-LAGAN (2025: El sector tecnológico necesita de más mujeres, en InfoJobs)
+- Keapps (2025: El sector tecnológico necesita de más mujeres, en InfoJobs)
+- Le Wagon (2024 · 2025: Talleres de datos; Evento de Machine Learning; DataConnect)
+- Lexy (2025: Ofertas de empleo para la comunidad)
+- NTT DATA (2025: Liderar la revolución de la IA con talento femenino)
+- Oxigent (2025: El sector tecnológico necesita de más mujeres, en InfoJobs; Ofertas de empleo para la comunidad)
+- PokeCode (2023–2026: Las reuniones online de la comunidad, desde 2023; Taller de Decidim con Elvia Benedith)
+- SEAT:CODE (2024: Diseño, accesibilidad y ciberseguridad)
+- Semrush (2024: Accesibilidad y POO)
+- SheHub (2025: Alianza para impulsar el talento femenino)
+- Subdirección General de Ciudadanía, Talento y Emprendimiento Digital (2026: Diseño de programas de competencias digitales para mujeres)
+- Talent Arena (2026: Community Partner de Talent Arena 2026)
+- TechFems (2024: Coorganizamos el 8M «Celebremos el Talento Tecnológico Femenino»)
+- Vonage (2026: Vonage Community Partnership Program; Premio Best use of the Vonage Video API en HackBarna)
+- Women Techmakers (2025: Colaboración entre comunidades)
+
+<!-- END: colaboradoras generado automaticamente -->
 
 <!-- BEGIN: posts generados automaticamente -->
 
@@ -145,7 +575,7 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2025-12-28
   Summary: Más de 1,300 mujeres en tech, logros reales y un 2026 lleno de proyectos. Así cierra FemCoders Club el año 2025.
 
-- Segundo Aniversario de FemCoders Club: Nuestra historia, nuestro equipo y el futuro tecnológico
+- Segundo aniversario de FemCoders Club: nuestra historia, nuestro equipo y el futuro tecnológico
   URL: https://www.femcodersclub.com/noticias/segundo-aniversario
   Published: 2025-10-24
   Summary: De un espacio seguro a una Asociación con +1.300 mujeres en tech. Celebramos 2 años de crecimiento, comunidad y futuro tecnológico.
@@ -155,12 +585,12 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2025-09-30
   Summary: ¡Una noticia que nos llena de orgullo! Somos Community Partner oficial del hackathon de IA más importante de Barcelona. ¡Te esperamos!
 
-- Entrevista con Nadia Cavalleri: De psicóloga a líder en testing y QA
+- Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA
   URL: https://www.femcodersclub.com/noticias/EntrevistaNadiaTesting
   Published: 2025-06-20
   Summary: Una conversación inspiradora con una de las voces más influyentes en testing de Latinoamérica. Descubre su historia, consejos y visión del futuro del QA.
 
-- DataConnect: Revive una tarde épica de comunidad tech en Barcelona
+- DataConnect: revive una tarde épica de comunidad tech en Barcelona
   URL: https://www.femcodersclub.com/noticias/DataConnectEvento
   Published: 2025-06-02
   Summary: Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada increíble de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen.
@@ -170,12 +600,12 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2025-01-03
   Summary: Explora los logros de 2024 y nuestras iniciativas para 2025 en FemCoders Club. Aprende, conecta y crece en nuestra comunidad.
 
-- femCoders Club - Felices Fiestas 2024
+- FemCoders Club: felices fiestas 2024
   URL: https://www.femcodersclub.com/noticias/FelicitacionNavidad
   Published: 2024-12-22
   Summary: Felicitamos la Navidad y el Año Nuevo desde femCoders Club, celebrando los logros de 2024 y mirando hacia un 2025 lleno de innovación.
 
-- femCoders Club - Primer Aniversario
+- FemCoders Club: primer aniversario
   URL: https://www.femcodersclub.com/noticias/Aniversario
   Published: 2023-10-24
   Summary: Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.
@@ -202,47 +632,47 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2026-06-12
   Summary: IndexedDB, Web Crypto API y File System Access API: las APIs del navegador que reemplazan dependencias externas. Proyecto práctico: Encrypted Private Notes con encriptación extremo a extremo.
 
-- Módulos y Arquitectura Escalable en JavaScript
+- Módulos y arquitectura escalable en JavaScript
   URL: https://www.femcodersclub.com/recursos/js/modulos-arquitectura-escalable
   Published: 2026-06-03
   Summary: ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto JavaScript que va a crecer. Proyecto práctico: Productivity Dashboard.
 
-- Patrones de Diseño en JavaScript Puro: Más Allá del Catálogo
+- Patrones de diseño en JavaScript puro: más allá del catálogo
   URL: https://www.femcodersclub.com/recursos/js/patrones-diseno-javascript
   Published: 2026-05-10
   Summary: Patrones de diseño en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js.
 
-- Estructuras de Datos Avanzadas en JavaScript: Map, Set, WeakMap y WeakSet
+- Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y WeakSet
   URL: https://www.femcodersclub.com/recursos/js/estructuras-datos-js
   Published: 2026-04-25
   Summary: Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.
 
-- Closures, Scope y Context: Lo que Realmente Pasa en el Motor de JavaScript
+- Closures, scope y context: lo que realmente pasa en el motor de JavaScript
   URL: https://www.femcodersclub.com/recursos/js/closures-scope-context
   Published: 2026-03-01
   Summary: El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva.
 
-- Manipulaci&oacute;n del DOM como una Ingeniera
+- Manipulación del DOM como una ingeniera
   URL: https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera
   Published: 2026-02-08
-  Summary: Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulaci&oacute;n del DOM.
+  Summary: Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulación del DOM.
 
-- Event Loop en JavaScript: Cómo Funciona la Asincronía
+- Event Loop en JavaScript: cómo funciona la asincronía
   URL: https://www.femcodersclub.com/recursos/js/event-loop-javascript
   Published: 2026-01-24
   Summary: Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks y código asíncrono en JavaScript.
 
-- Los Fundamentos de JavaScript que Realmente Importan
+- Los fundamentos de JavaScript que realmente importan
   URL: https://www.femcodersclub.com/recursos/js/fundamentos-javascript-profundos
   Published: 2025-11-25
   Summary: El salto de HTML/CSS a JavaScript explicado sin tecnicismos. Entiende cómo funciona JavaScript por dentro con ejemplos reales.
 
-- Quiz CSS para Entrevistas Técnicas: 30 Preguntas Esenciales
+- Quiz CSS para entrevistas técnicas: 30 preguntas esenciales
   URL: https://www.femcodersclub.com/recursos/css/quiz-css-entrevistas
   Published: 2025-10-17
   Summary: Quiz interactivo para preparar entrevistas técnicas de CSS. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.
 
-- Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales
+- Quiz HTML para entrevistas técnicas: 30 preguntas esenciales
   URL: https://www.femcodersclub.com/recursos/html/quiz-html-entrevistas
   Published: 2025-09-15
   Summary: Quiz interactivo para preparar entrevistas técnicas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.
@@ -262,27 +692,27 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2025-07-20
   Summary: Tutorial completo de SASS: desde variables hasta arquitectura 7-1. Incluye proyecto FemPalette interactivo y comparación con CSS moderno.
 
-- Accesibilidad en CSS: Diseñando Experiencias Inclusivas
+- Accesibilidad en CSS: diseñando experiencias inclusivas
   URL: https://www.femcodersclub.com/recursos/css/accesibilidad-css
   Published: 2025-07-12
   Summary: Domina la accesibilidad en CSS: contraste, tipografía, navegación por teclado y preferencias del usuario. Con ejemplos reales de sitios web.
 
-- Domina las Animaciones CSS: De Básico a Avanzado
+- Domina las animaciones CSS: de básico a avanzado
   URL: https://www.femcodersclub.com/recursos/css/animaciones-css
   Published: 2025-07-01
   Summary: Guía completa de animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Aprende performance, accesibilidad y mejores prácticas con ejemplos reales.
 
-- Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada
+- Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada
   URL: https://www.femcodersclub.com/recursos/css/transiciones-transformaciones
   Published: 2025-05-25
   Summary: Guía completa de transformaciones y transiciones CSS 2D y 3D. Aprende rendering pipeline, hardware acceleration, timing functions avanzadas, debugging y ejemplos reales con Dashboard futurista.
 
-- Estrategias avanzadas para dominar el layout en CSS: Combinando Grid y Flexbox
+- Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox
   URL: https://www.femcodersclub.com/recursos/css/css-grid-flexbox
   Published: 2025-04-27
   Summary: Aprende a combinar CSS Grid y Flexbox estratégicamente para crear layouts modernos, complejos y responsivos. Descubre 5 estrategias eficaces y ejemplos prácticos.
 
-- Réplica de Nike Store con React: Un Proyecto E-commerce Completo
+- Réplica de Nike Store con React: un proyecto e-commerce completo
   URL: https://www.femcodersclub.com/recursos/react/nike-store-replica
   Published: 2025-03-16
   Summary: Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas.
@@ -292,22 +722,22 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2025-03-02
   Summary: Descubre cómo utilizar Flexbox en CSS para crear layouts flexibles y responsivos. Ejemplos prácticos y consejos para mejorar tu diseño web.
 
-- Box Model en CSS | Guía Completa con FemCoders Club
+- Box Model en CSS | Guía completa con FemCoders Club
   URL: https://www.femcodersclub.com/recursos/css/box-model
   Published: 2025-02-16
   Summary: Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club.
 
-- Domina los Selectores en CSS
+- Domina los selectores en CSS
   URL: https://www.femcodersclub.com/recursos/css/selectores-css
   Published: 2025-01-17
   Summary: Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos.
 
-- CSS Grid: Domina el sistema de cuadrículas en tu página web
+- CSS Grid: domina el sistema de cuadrículas en tu página web
   URL: https://www.femcodersclub.com/recursos/css/css-grid
   Published: 2025-01-15
   Summary: Aprende a usar CSS Grid para crear layouts web profesionales. Guía completa con ejemplos prácticos, compatibilidad con navegadores y optimización de rendimiento.
 
-- Responsive Design: De Principiante a Experta con Media Queries
+- Responsive design: de principiante a experta con media queries
   URL: https://www.femcodersclub.com/recursos/css/responsive-design
   Published: 2025-01-04
   Summary: Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first con ejemplos prácticos.
@@ -317,37 +747,37 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2024-11-15
   Summary: Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar.
 
-- Integración de Frameworks y Librerías
+- Integración de frameworks y librerías
   URL: https://www.femcodersclub.com/recursos/html/integracion-frameworks
   Published: 2023-11-14
   Summary: Explora cómo combinar HTML con frameworks modernos como React y Svelte para crear aplicaciones dinámicas y escalables.
 
-- Formularios y Tablas en HTML
+- Formularios y tablas en HTML
   URL: https://www.femcodersclub.com/recursos/html/formularios-y-tablas
   Published: 2023-11-09
   Summary: Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos.
 
-- Guía Completa: APIs en HTML para Proyectos Web - femCoders Club
+- Guía completa: APIs en HTML para proyectos web - FemCoders Club
   URL: https://www.femcodersclub.com/recursos/html/apis-html
   Published: 2023-11-09
   Summary: Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras.
 
-- HTML Avanzado para SEO y Accesibilidad
+- HTML avanzado para SEO y accesibilidad
   URL: https://www.femcodersclub.com/recursos/html/html-seo-accesibilidad
   Published: 2023-11-05
   Summary: Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más.
 
-- HTML Semántico y Diseño de Layout
+- HTML semántico y diseño de layout
   URL: https://www.femcodersclub.com/recursos/html/html-semantico
   Published: 2023-10-30
   Summary: Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web.
 
-- Elementos HTML Clave: Encabezados, Párrafos, Enlaces e Imágenes
+- Elementos HTML clave: encabezados, párrafos, enlaces e imágenes
   URL: https://www.femcodersclub.com/recursos/html/elementos-html-clave
   Published: 2023-10-21
   Summary: Explora los elementos esenciales de HTML y aprende a enriquecer tus páginas web con imágenes, enlaces, emojis y videos.
 
-- Introducción a HTML: La base de la web
+- Introducción a HTML: la base de la web
   URL: https://www.femcodersclub.com/recursos/html/introduccion-html
   Published: 2023-10-14
   Summary: Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.

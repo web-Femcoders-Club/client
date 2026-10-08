@@ -1,0 +1,242 @@
+/*
+ * Tarjeta de los formularios de acceso (login; después registro y
+ * contraseña). Piezas compartidas en src/styles/rediseno.css: `fc-tarjeta`,
+ * `fc-campo`, `fc-aviso`, `fc-boton fc-boton--noche` y `fc-enlace`.
+ *
+ * index.css da tamaño, color y sombra a h2 y, en móvil, encoge todos los p:
+ * aquí se fijan los valores.
+ */
+
+.formulario-acceso {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+/* Logo al lado del título, no encima: la tarjeta cabe en una pantalla de portátil. */
+.formulario-acceso__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.3rem;
+}
+
+.formulario-acceso__logo {
+  flex-shrink: 0;
+  width: 64px;
+  height: auto;
+}
+
+.formulario-acceso__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.formulario-acceso__nota {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__campos {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Dos campos cortos lado a lado (nombre y apellido, contraseña y repetición). */
+.formulario-acceso__fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 0.9rem;
+}
+
+/*
+ * Asterisco de obligatorio: naranja oscurecido (7,38:1 sobre blanco). El de
+ * marca se queda en 3,71:1. Es un `span`: fija tamaño contra la regla global.
+ */
+.formulario-acceso__obligatorio {
+  font-size: inherit;
+  font-weight: 700;
+  color: #a32617;
+}
+
+/* El teléfono es el único opcional: se dice, y esto sí lo lee el lector. */
+.formulario-acceso__opcional {
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Requisitos de la contraseña ---------- */
+
+.formulario-acceso__requisitos {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.7rem;
+  background: var(--color-lavanda-claro);
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__requisitos-titulo {
+  margin: 0 0 0.4rem;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.formulario-acceso__requisitos-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.3rem 0.75rem;
+}
+
+.formulario-acceso__requisito {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+/*
+ * El estado no depende solo del color: marca ✓/× y, para el lector,
+ * «Cumplido»/«Pendiente». Verde oscuro: 7,5:1 sobre el lavanda (el verde de
+ * --color-success se quedaba en 3:1).
+ */
+.formulario-acceso__requisito--cumplido {
+  color: #0f5a26;
+}
+
+.formulario-acceso__requisito-marca {
+  width: 1em;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-align: center;
+}
+
+/* ---------- Consentimientos ---------- */
+
+/* Las casillas usan `form-consent` y `link-button` de index.css, como /contacto. */
+.formulario-acceso__consentimientos {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.formulario-acceso__consentimientos .form-consent {
+  margin: 0;
+}
+
+/*
+ * Enlaces sueltos (no dentro de una frase): caja de 44px, objetivo táctil
+ * AAA; `--fc-enlace-bajo` sube la línea hasta las letras.
+ */
+/* Dos clases: rediseno.css carga después y su `fc-enlace--texto` ganaría. */
+.formulario-acceso .formulario-acceso__olvido,
+.formulario-acceso .formulario-acceso__volver {
+  --fc-enlace-bajo: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 700;
+}
+
+.formulario-acceso__olvido {
+  justify-self: end;
+  /* La caja alta añadiría aire: se compensa con el hueco de la rejilla. */
+  margin-top: -0.3rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+}
+
+.formulario-acceso__enviar {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.formulario-acceso__pie {
+  margin: 1.3rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(71, 55, 187, 0.16);
+  font-family: var(--font-primary);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-text-dark);
+}
+
+.formulario-acceso__pie .fc-enlace {
+  font-weight: 700;
+}
+
+/* Páginas centradas: «Volver a iniciar sesión» y la ayuda de contacto. */
+.formulario-acceso__volver {
+  gap: 0.4rem;
+}
+
+.formulario-acceso__volver svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.formulario-acceso__ayuda {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text-dark);
+  overflow-wrap: anywhere;
+}
+
+/* Texto suelto dentro de la tarjeta (estados de la baja del correo). */
+.formulario-acceso__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+/*
+ * En móvil cada campo a todo el ancho: con dos por fila, la contraseña
+ * dejaba unos 110px de texto junto al ojo y el género se cortaba.
+ */
+@media (max-width: 560px) {
+  .formulario-acceso__fila {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 359px) {
+  .formulario-acceso__requisitos-lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px), (max-height: 500px) {
+  .formulario-acceso {
+    padding: 1.2rem;
+  }
+
+  .formulario-acceso__cabecera {
+    margin-bottom: 1rem;
+  }
+
+  .formulario-acceso__logo {
+    width: 52px;
+  }
+
+  .formulario-acceso__titulo {
+    font-size: 1.4rem;
+  }
+}

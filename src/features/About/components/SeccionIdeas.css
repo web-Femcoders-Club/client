@@ -1,0 +1,218 @@
+/*
+ * «Nuestras ideas», última sección de «Quiénes somos». Fondo `bg2` (azul
+ * oscuro), como el cierre de la home; los textos sobre él van en claro con
+ * `fc-sobre-oscuro`. Las ideas son los desplegables compartidos
+ * `fc-desplegable` (rediseno.css), directamente sobre el azul, sin caja.
+ *
+ * index.css da color naranja y sombra a h3 y pinta los `span`: cada clase
+ * fija sus valores.
+ */
+
+.ideas {
+  position: relative;
+  /*
+   * `clip` y no `hidden`: `hidden` convierte la sección en contenedor de
+   * scroll y las animaciones con view() la toman a ella (que no se mueve)
+   * en vez de la página, así que el parallax se quedaba congelado.
+   * `hidden` queda de respaldo para navegadores sin `clip`.
+   */
+  overflow: hidden;
+  overflow: clip;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+/*
+ * Veladura sobre la esquina clara de bg2, la misma que la sección de contacto
+ * de la home: sin ella, el blanco del título baja a 5,4:1; con ella pasa de 10:1.
+ */
+.ideas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, rgba(13, 8, 60, 0.55) 0%, rgba(13, 8, 60, 0.25) 35%, rgba(13, 8, 60, 0) 60%);
+}
+
+.ideas__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2rem, 4vw, 2.75rem);
+}
+
+.ideas__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.ideas__titulo {
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+/* Blanco sobre el azul oscuro: más de 10:1, AAA. */
+.ideas__entradilla {
+  margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.6;
+  color: #fff;
+  text-wrap: pretty;
+}
+
+/* ---------- Ideas: dos columnas sobre el azul ---------- */
+
+.ideas__grupos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.ideas__grupo {
+  min-width: 0;
+}
+
+/* Como los apartados de los documentos, en claro: lila claro sobre el azul, más de 12:1. */
+.ideas__grupo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-lila-claro);
+  text-shadow: none;
+}
+
+.ideas__grupo-titulo::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #b3a8ff, #ff8a6e);
+}
+
+.ideas__lista {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Blanco sobre el azul oscuro: más de 10:1, AAA. */
+.ideas__respuesta {
+  margin: 0;
+  padding: 0.8rem 1.1rem 0.2rem;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* Enlaces dentro del texto: lila claro y subrayados (WCAG 1.4.1). */
+.ideas__enlace {
+  color: var(--color-lila-claro);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.ideas__enlace:hover {
+  text-decoration-thickness: 2px;
+}
+
+.ideas__enlace:focus-visible {
+  outline: 3px solid var(--color-lila-claro);
+  outline-offset: 2px;
+  border-radius: 0.2rem;
+}
+
+/* ---------- Llamada final: una línea fina la separa, como el cierre del contacto de la home ---------- */
+
+/* Hueco a la derecha para el botón «Volver arriba», que flota en esa esquina al subir. */
+@media (min-width: 769px) {
+  .ideas__llamada {
+    padding-right: 4.5rem;
+  }
+}
+
+.ideas__llamada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem 2rem;
+  padding-top: clamp(1.5rem, 3vw, 2.2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.ideas__llamada p {
+  margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.ideas__botones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.8rem;
+}
+
+/*
+ * El relieve de `fc-boton` lleva una luz blanca arriba a la izquierda, pensada
+ * para fondos claros: sobre el azul parece un halo. Aquí, solo sombra oscura.
+ * `.ideas` delante: este CSS carga antes que rediseno.css.
+ */
+.ideas .fc-boton,
+.ideas .fc-boton:hover {
+  box-shadow: 0 10px 24px rgba(5, 3, 30, 0.45);
+}
+
+.ideas .fc-boton:active {
+  box-shadow: var(--fc-neu-hundido);
+}
+
+.ideas .fc-boton:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+/* Enlace secundario en blanco junto al botón (el violeta de `fc-enlace--texto` no se leería). */
+.ideas .ideas__proponer {
+  --fc-enlace-bajo: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  /* 44px de alto: objetivo táctil AAA. */
+  min-height: 2.75rem;
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ideas .ideas__proponer:focus-visible {
+  outline-color: var(--color-lila-claro);
+}
+
+@media (max-width: 900px) {
+  .ideas__cabeza,
+  .ideas__grupos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

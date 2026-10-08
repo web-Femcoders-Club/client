@@ -1,540 +1,352 @@
+/*
+ * Cabecera en neumorfismo: la barra es del lavanda de la portada y sale en
+ * relieve (luz arriba, sombra violeta abajo), como los botones del rediseño
+ * (src/styles/rediseno.css). «Iniciar sesión» es un `fc-boton--noche`.
+ *
+ * Los enlaces no llevan fondo en ningún estado: llevan `fc-enlace`
+ * (rediseno.css), la línea en degradado violeta-naranja que comparten con el
+ * pie. Corta en la página actual (aria-current, que pone NavLink) y del largo
+ * de la palabra al pasar el ratón.
+ *
+ * index.css pinta todos los `span` de naranja: aquí no hay ninguno.
+ */
+
 .header {
-  background: linear-gradient(to right, #6d2c95, #4737bb);
-  padding: 16px 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: background 0.3s ease;
+  padding: 0.6rem 0;
+  background: var(--color-lavanda);
+  box-shadow: inset 0 -6px 14px rgba(255, 255, 255, 0.9), 0 10px 22px rgba(71, 55, 187, 0.14),
+    0 2px 0 rgba(255, 255, 255, 0.8);
+  transition: box-shadow 0.3s ease;
 }
 
+/* Al bajar, el relieve se marca un poco más: la barra se despega del contenido. */
 .header.scrolled {
-  backdrop-filter: blur(10px);
-  background: rgba(71, 55, 187, 0.7);
+  box-shadow: inset 0 -6px 14px rgba(255, 255, 255, 0.9), 0 12px 28px rgba(71, 55, 187, 0.22),
+    0 2px 0 rgba(255, 255, 255, 0.8);
 }
 
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(16px, 3vw, 2rem);
 }
+
+/* ---------- Logo: quieto, en una pastilla en relieve ---------- */
 
 .logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.95), 5px 5px 14px rgba(71, 55, 187, 0.2);
+  transition: box-shadow 0.25s ease;
+}
+
+.logo-link:hover {
+  box-shadow: -7px -7px 16px rgba(255, 255, 255, 1), 7px 7px 18px rgba(71, 55, 187, 0.24);
+}
+
+.logo-link:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* El logo tiene fondo blanco: `multiply` lo funde con el lavanda de la pastilla. */
+.logo {
+  display: block;
+  width: auto;
+  height: 54px;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Panel: enlaces y sesión ---------- */
+
+.nav-panel {
+  flex: 1;
   display: flex;
   align-items: center;
-  position: relative;
-}
-
-@keyframes logo-breathe {
-  0% { 
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
-    transform: scale(1) rotate(0deg);
-    filter: brightness(1) opacity(1) saturate(1) hue-rotate(0deg);
-  }
-  15% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
-    transform: scale(1.015) rotate(-0.5deg);
-    filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(-2deg);
-  }
-  30% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
-    transform: scale(1.015) rotate(0.5deg);
-    filter: brightness(1.02) opacity(0.95) saturate(1.05) hue-rotate(2deg);
-  }
-  
-  45% { 
-    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
-    transform: scale(1.025) rotate(1deg);
-    filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(4deg);
-  }
-  
-  50% { 
-    box-shadow: 
-      0 6px 15px rgba(255, 255, 255, 0.52), 
-      0 12px 25px rgba(234, 79, 51, 0.15),
-      0 0 15px rgba(234, 79, 51, 0.2);
-    transform: scale(1.03) rotate(1.2deg);
-    filter: brightness(1.06) opacity(0.88) saturate(1.1) hue-rotate(5deg);
-  }
-  
-
-  55% { 
-    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.5), 0 12px 22px rgba(234, 79, 51, 0.12);
-    transform: scale(1.025) rotate(0.8deg);
-    filter: brightness(1.04) opacity(0.92) saturate(1.08) hue-rotate(3deg);
-  }
-  
-  /* Exhalación más rápida */
-  75% { 
-    box-shadow: 0 5px 12px rgba(255, 255, 255, 0.45), 0 10px 18px rgba(234, 79, 51, 0.08);
-    transform: scale(1.015) rotate(0.3deg);
-    filter: brightness(1.02) opacity(0.95) saturate(1.03) hue-rotate(1deg);
-  }
-  
-  /* Pausa natural al final */
-  85% { 
-    box-shadow: 0 4px 11px rgba(255, 255, 255, 0.42), 0 9px 16px rgba(0, 0, 0, 0.18);
-    transform: scale(1.005) rotate(0.1deg);
-    filter: brightness(1.01) opacity(0.98) saturate(1.01) hue-rotate(0.5deg);
-  }
-  
-  100% { 
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
-    transform: scale(1) rotate(0deg);
-    filter: brightness(1) opacity(1) saturate(1) hue-rotate(0deg);
-  }
-}
-
-/* Animación de pulso mejorada para hover */
-@keyframes border-pulse {
-  0%, 100% { 
-    filter: brightness(1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4)) saturate(1.2);
-    transform: scale(1.1) rotate(-1deg);
-  }
-  50% { 
-    filter: brightness(1.15) drop-shadow(0 0 15px rgba(234, 79, 51, 0.7)) saturate(1.4);
-    transform: scale(1.12) rotate(1deg);
-  }
-}
-
-.logo {
-  width: 70px;
-  height: auto;
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), filter 0.3s ease;
-  border-radius: 10%;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 8px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 15%;
-  cursor: pointer;
-  animation: logo-breathe 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-/* Al hacer hover, efecto más dramático */
-.logo:hover {
-  animation: border-pulse 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-}
-
-/* Versión más sutil para usuarios que prefieren menos movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .logo {
-    animation: none;
-  }
-  
-  .logo:hover {
-    animation: none;
-    transform: scale(1.05);
-    filter: brightness(1.1) drop-shadow(0 0 8px rgba(234, 79, 51, 0.4));
-  }
-}
-
-/*
-  Ahora es un <button>, así que hay que apagarle el aspecto de botón del
-  navegador. El tamaño mínimo no es decorativo: las tres rayas miden 2px de alto
-  cada una y el área pulsable venía siendo esa, un blanco de 24x2 px. 44x44 es el
-  mínimo de WCAG 2.5.5 y lo que hace falta para acertarle con el pulgar.
-*/
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  min-width: 44px;
-  min-height: 44px;
-  place-items: center;
-}
-
-/* Pasó de <div> a <span>, que es inline y se saltaría el ancho y el alto. */
-.menu-icon {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.menu-icon::before,
-.menu-icon::after {
-  content: "";
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  position: absolute;
-  left: 0;
-  transition: all 0.3s ease;
-}
-
-.menu-icon::before {
-  top: -8px;
-}
-
-.menu-icon::after {
-  top: 8px;
-}
-
-.menu-toggle.open .menu-icon {
-  background-color: transparent;
-}
-
-.menu-toggle.open .menu-icon::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-
-.menu-toggle.open .menu-icon::after {
-  transform: rotate(-45deg);
-  top: 0;
+  justify-content: flex-end;
+  gap: 1.25rem;
 }
 
 .nav-links {
   display: flex;
-  list-style: none;
+  align-items: center;
+  gap: 0.2rem;
   margin: 0;
   padding: 0;
-  flex-grow: 1;
-  justify-content: flex-end;
-  transition: all 0.3s ease;
+  list-style: none;
 }
 
+/* Violeta sobre lavanda: 7,16:1, AAA. */
 .nav-link {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-family: "Asap Condensed", sans-serif;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.85rem;
+  font-family: var(--font-heading);
   font-size: 1.2rem;
-  padding: 5px 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-secondary);
+  /* La línea de `fc-enlace` va bajo el texto, no bajo el relleno. */
+  --fc-enlace-margen: 0.85rem;
+  --fc-enlace-bajo: 0.45rem;
 }
 
-/* El subrayado no es decoración y no depende del color que acabe teniendo el
-   menú: sin él, pasar por encima de un enlace solo se nota por el tono, y quien
-   no distingue ese cambio no percibe el estado. El contraste del naranja sobre
-   el morado de la cabecera sigue siendo 2,3:1 y queda para el rediseño. */
-.nav-link:hover {
-  color: #ea4f33;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+/* Sin fondo al pulsar; con teclado, el contorno de foco (WCAG 2.4.7). */
+.nav-link:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
 }
-.user-avatar {
+
+.auth-buttons {
   display: flex;
   align-items: center;
+}
+
+/* ---------- Avatar y menú de usuaria ---------- */
+
+.user-avatar-dropdown {
   position: relative;
 }
 
+.avatar-button {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-lavanda);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.22);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+}
+
+.avatar-button[aria-expanded="true"] {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.22), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.avatar-button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
 .avatar-icon {
-  width: 40px;
-  height: 40px;
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  margin: 1rem;
-  align-items: center;
-  cursor: pointer;
-  background-color: white;
-}
-.avatar-icon:hover {
-  transform: rotate(10deg);
-}
-
-.logout-button {
-  background-color: #ea4f33;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.logout-button:hover {
-  background-color: #bb3f28;
-  transform: scale(1.05);
-}
-
-.auth-buttons .nav-link {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 0 8px;
-}
-
-.upload-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-}
-
-.modal-content {
-  text-align: center;
-}
-
-.preview-image {
-  margin-top: 20px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.confirm-button,
-.cancel-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.confirm-button {
-  background-color: #4737bb;
-  color: white;
-}
-
-.confirm-button:hover {
-  background-color: #45a049;
-}
-
-.cancel-button {
-  background-color: #ea4f33;
-  color: white;
-  margin-left: 10px;
-}
-
-.cancel-button:hover {
-  background-color: #e53935;
+  background-color: #fff;
 }
 
 /*
- * El desplegable se dimensiona por su contenido, no por la tipografía de la
- * barra de navegación. Sus opciones llevaban la clase `nav-link`, que a partir
- * de 1200px va a 1.5rem con `padding: 10px 20px`: "Panel de administración" a
- * ese tamaño estiraba el menú hasta salirse de la pantalla. Aquí es una lista de
- * opciones, no un rótulo de cabecera.
+ * El desplegable se dimensiona por su contenido. En relieve, como la barra:
+ * opciones en violeta sobre lavanda (7,16:1, AAA).
  */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 12px);
   right: 0;
   min-width: max-content;
-  padding: 6px;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  background-color: #4737bb;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-medium);
+  gap: 0.25rem;
+  background: var(--color-lavanda);
+  border-radius: 1rem;
+  box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.95), 8px 10px 24px rgba(71, 55, 187, 0.22);
   z-index: 1100;
 }
 
 .dropdown-item {
   display: block;
   width: 100%;
-  padding: 10px 16px;
-  border: none;
-  border-radius: var(--radius-sm);
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border: 0;
+  border-radius: 0.7rem;
   background: transparent;
-  color: var(--color-white);
+  color: var(--color-secondary);
   font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 700;
   text-align: left;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  transition: box-shadow var(--transition-fast);
 }
 
+/* Al pasar el ratón la opción se hunde, sin cambiar de color. */
 .dropdown-item:hover {
-  background-color: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 3px 3px 8px rgba(71, 55, 187, 0.18), inset -3px -3px 8px rgba(255, 255, 255, 0.9);
 }
 
-/* Cerrar sesión se distingue del resto: es la que saca de la sesión. */
+.dropdown-item:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 1px;
+}
+
+/* Cerrar sesión se distingue del resto: es la que saca de la sesión. Lavanda claro sobre azul noche, AAA. */
 .dropdown-item--salir {
-  background-color: var(--color-primary);
+  margin-top: 0.25rem;
+  color: #e9e4ff;
+  background: linear-gradient(145deg, #261d8f, #170f66);
 }
 
 .dropdown-item--salir:hover {
-  background-color: #bb3f28;
+  box-shadow: inset 3px 3px 8px rgba(4, 2, 30, 0.6);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dropdown-item {
-    transition: none;
+/* ---------- Botón del menú (móvil) ---------- */
+
+.menu-toggle {
+  display: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0.8rem;
+  background: var(--color-lavanda);
+  color: var(--color-secondary);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.22);
+  cursor: pointer;
+}
+
+.menu-toggle.open {
+  box-shadow: inset 4px 4px 10px rgba(71, 55, 187, 0.22), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+}
+
+.menu-toggle svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.menu-toggle:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* ---------- Escritorio estrecho ---------- */
+
+@media (max-width: 1100px) {
+  .nav-link {
+    padding: 0 0.6rem;
+    font-size: 1.1rem;
+    --fc-enlace-margen: 0.6rem;
   }
 }
 
-.dropdown.open .dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.scrolled-dropdown {
-  background: rgba(71, 55, 187, 0.7);
-  backdrop-filter: blur(10px);
-  transition: background 0.3s ease;
-}
+/* ---------- Móvil y tableta: panel desplegable ---------- */
 
-.avatar-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-@media (max-width: 768px) {
-  /* `grid` y no `block` para que el `place-items: center` centre las rayas
-     dentro del área pulsable de 44x44. */
+@media (max-width: 900px) {
   .menu-toggle {
     display: grid;
   }
 
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
+  .logo {
+    height: 44px;
+  }
+
+  /*
+   * Enlaces y sesión bajan juntos en un panel. `visibility: hidden` saca los
+   * enlaces del orden de tabulación con el menú cerrado; el retardo deja
+   * terminar la animación de cierre antes de ocultarlos. El alto máximo es
+   * relativo a la pantalla y, si no cabe (zoom alto), se hace scroll dentro.
+   */
+  .nav-panel {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
-    background: linear-gradient(to right, #6d2c95, #4737bb);
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
     max-height: 0;
     overflow: hidden;
-    /*
-      `max-height: 0` esconde los enlaces a la vista pero no al teclado: seguían
-      recibiendo el Tab estando invisibles, así que el foco desaparecía de la
-      pantalla durante cinco pulsaciones. Ahora que el botón declara
-      `aria-expanded="false"` la contradicción sería doble: dice que el menú está
-      cerrado y su contenido sigue ahí.
-
-      `visibility: hidden` sí saca los enlaces del orden de tabulación. El retardo
-      en la transición es lo que deja terminar la animación de cierre antes de
-      ocultarlos; al abrir se aplica al instante.
-    */
-    visibility: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease,
-      visibility 0s linear 0.3s;
     padding: 0 16px;
+    background: var(--color-lavanda);
+    box-shadow: 0 14px 24px rgba(71, 55, 187, 0.16);
+    visibility: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, visibility 0s linear 0.3s;
   }
 
-  .logo {
-    width: 50px;
-    /* En móvil, 4 segundos - más rápido que antes */
-    animation: logo-breathe 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-  
-  /*
-    Mismo fallo que ya se corrigió en `.auth-buttons.open`, pero escondido: los
-    cinco enlaces caben en 200px solo mientras la letra tenga su tamaño normal.
-    `.nav-link` es inline, así que su altura la marca la línea de texto; al subir
-    el zoom al 200% —o al agrandar la letra desde el sistema— la lista pasa de
-    200px y `overflow: hidden` recorta los últimos enlaces sin dejar ninguna
-    señal de que están ahí.
-
-    El tope pasa a ser relativo a la altura de la pantalla, que es lo que de
-    verdad limita, y el desbordamiento a `auto`: si algún día no cabe, se hace
-    scroll dentro del menú en vez de desaparecer.
-
-    Pendiente de mirar con la web abierta: `.auth-buttons` se coloca en
-    `top: calc(100% + 160px)`, un número escrito a mano que da por hecha la
-    altura de esta lista. Con el zoom alto se solapan.
-  */
-  .nav-links.open {
-    max-height: min(70vh, 500px);
+  .nav-panel.open {
+    max-height: calc(100vh - var(--fem-header-height, 70px));
     overflow-y: auto;
+    padding: 0.5rem 16px 1.2rem;
     visibility: visible;
     transition: max-height 0.3s ease, padding 0.3s ease, visibility 0s;
   }
 
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
   .nav-link {
-    margin: 16px 0;
-    padding: 10px 20px;
     width: 100%;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 1rem;
+    padding: 0 0.4rem;
+    font-size: 1.3rem;
+    --fc-enlace-margen: 0.4rem;
+  }
+
+  /*
+   * En el panel el enlace ocupa toda la fila: al pasar, la línea mide lo que
+   * la palabra, no la fila. `.nav-panel` delante para ganar a rediseno.css,
+   * que se carga después.
+   */
+  .nav-panel .nav-link:hover::after,
+  .nav-panel .nav-link:active::after {
+    width: 5.5rem;
   }
 
   .auth-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-entrar {
+    width: 100%;
+  }
+
+  .user-avatar-dropdown {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    position: absolute;
-    top: calc(100% + 160px);
-    left: 0;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    background: linear-gradient(to right, #6d2c95, #4737bb);
-    /* Mismo motivo que en `.nav-links`: sin esto, el botón de iniciar sesión
-       (o el avatar) recibe el foco con el menú cerrado. */
-    visibility: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease,
-      visibility 0s linear 0.3s;
-    margin-top: 1.9rem;
-    padding: 0 16px;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 
-  /*
-    Con la entrada del panel de administración el desplegable pasa de dos
-    opciones a tres, y con `overflow: hidden` los 200px de antes recortaban
-    justo la última: "Cerrar sesión" dejaba de verse en móvil.
-  */
-  .auth-buttons.open {
-    max-height: 340px;
-    visibility: visible;
-    transition: max-height 0.3s ease, padding 0.3s ease, visibility 0s;
-  }
-
-  .logout-button {
-    cursor: pointer;
-    text-align: center;
-    margin: 8px 0;
-  }
-
-  .logout-button:hover {
-    background-color: #bb3f28;
-    transform: scale(1.05);
-  }
   .dropdown-menu {
     position: static;
     width: 100%;
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  .dropdown.open .dropdown-menu {
-    max-height: 150px;
-    overflow: hidden;
-  }
-  .scrolled-dropdown {
-    background-color: rgba(71, 55, 187, 0.8);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
-  .nav-link {
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .nav-link {
-    font-size: 1.5rem;
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .logo-link,
+  .avatar-button,
+  .dropdown-item,
+  .nav-panel,
+  .nav-panel.open {
+    transition: none;
   }
 }

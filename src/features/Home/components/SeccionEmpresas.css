@@ -1,0 +1,212 @@
+/*
+ * «Empresas que han confiado en nosotras» en Inicio. Piezas compartidas en
+ * src/styles/rediseno.css: `fc-manchas`, `fc-puntos`, `fc-antetitulo`,
+ * `fc-titulo-seccion`, `fc-rotulador` y `fc-boton-redondo`. Fondo: `bg3`, que
+ * empieza en el blanco en que termina `bg4` de Proyectos y acaba en el lavanda
+ * que da paso al azul de Contacto.
+ *
+ * index.css pinta todos los `span` en naranja y 1.5rem: cada clase de aquí
+ * fija sus propios valores.
+ */
+
+.empresas {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 16px;
+}
+
+.empresas__contenedor {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(1.6rem, 3.5vw, 2.4rem);
+}
+
+.empresas__cabeza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.empresas__titulo {
+  margin: 0.9rem 0 0;
+}
+
+.empresas__parrafo {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.empresas__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+
+.empresas__total {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.empresas__total-numero {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  /* 8,29:1 sobre blanco: AAA */
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.empresas__total-texto {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Cinta infinita ---------- */
+
+/*
+ * La pista lleva la lista dos veces y se desplaza la mitad de su ancho. Los
+ * bordes se difuminan con una máscara. La duración la fija el componente
+ * según el número de fichas, para ir a la misma velocidad que la cinta de
+ * alianzas de /equipo; los 180s de aquí son el valor de respaldo.
+ */
+.empresas__cinta {
+  overflow: hidden;
+  border-radius: 1rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.empresas__cinta:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.empresas__pista {
+  display: flex;
+  width: max-content;
+  animation: empresas-cinta 180s linear infinite;
+}
+
+.empresas__cinta:hover .empresas__pista,
+.empresas__cinta:focus-within .empresas__pista,
+.empresas__cinta--detenida .empresas__pista {
+  animation-play-state: paused;
+}
+
+@keyframes empresas-cinta {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.empresas__lista {
+  list-style: none;
+  margin: 0;
+  /* Abajo, sitio para la sombra de las fichas. */
+  padding: 0.5rem 1rem 1rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+/* ---------- Ficha: imagen y nombre ---------- */
+
+.empresas__ficha {
+  flex-shrink: 0;
+  width: 13.5rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+  padding: 0.7rem 0.7rem 1rem;
+  border-radius: 1.1rem;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 12px 26px rgba(71, 55, 187, 0.1);
+}
+
+/* Logo: entero sobre blanco. */
+.empresas__imagen {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--color-lavanda-medio);
+  border-radius: 0.8rem;
+  background: #fff;
+}
+
+.empresas__imagen img {
+  display: block;
+  max-width: 75%;
+  max-height: 4rem;
+  object-fit: contain;
+}
+
+/* Foto (cuando no hay logo): ocupa toda la caja. */
+.empresas__imagen--foto {
+  border: 0;
+  background: var(--color-lavanda-medio);
+}
+
+.empresas__imagen--foto img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+.empresas__imagen--izquierda img {
+  object-position: left center;
+}
+
+.empresas__nombre {
+  padding: 0 0.3rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-wrap: balance;
+}
+
+/* ---------- Tamaños ---------- */
+
+@media (max-width: 900px) {
+  .empresas__cabeza {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Sin movimiento: la cinta no se mueve, la copia sobra y la fila se desplaza a mano. */
+@media (prefers-reduced-motion: reduce) {
+  .empresas__pista {
+    animation: none;
+  }
+
+  .empresas__lista[aria-hidden="true"],
+  .empresas__boton {
+    display: none;
+  }
+
+  .empresas__cinta {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

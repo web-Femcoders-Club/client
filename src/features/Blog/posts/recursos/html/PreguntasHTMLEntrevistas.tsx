@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { BookOpen, Download, Hammer, MessageSquare, Share2, Trophy, Users, Wrench } from "lucide-react";
 import Quiz, { QuizQuestion, QuizResults } from "../../../../../components/Quiz";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
-
-import ShareButtons from "../../../components/ShareButtons";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  ListaMarcadaPost,
+  NotaPost,
+  PasosPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
 const preguntasHTMLEntrevistas: QuizQuestion[] = [
   // NIVEL BÁSICO (10 preguntas)
@@ -449,10 +455,6 @@ const PreguntasHTMLEntrevistas: React.FC = () => {
     }
   };
 
-  const closeAchievementModal = () => {
-    setAchievementModal({ show: false, title: "", message: "" });
-  };
-
   const downloadStudyGuidePDF = () => {
     const studyGuideContent = `
 GUÍA DE ESTUDIO HTML - ENTREVISTAS TÉCNICAS
@@ -549,10 +551,44 @@ Fecha: ${publicationDate}
     window.URL.revokeObjectURL(url);
   };
 
+  /*
+   * Bajo los resultados del quiz: el logro, si se ha desbloqueado (solo con la
+   * sesión iniciada: handleQuizComplete se lo pide al servidor); si no hay
+   * sesión, cómo guardarlo; y siempre la guía de estudio. Sustituye a la
+   * ventana flotante de «¡Logro desbloqueado!».
+   */
+  const conSesion = Boolean(sessionStorage.getItem("userId") && sessionStorage.getItem("authToken"));
+  const extraResultados = (
+    <div className="quiz__extra">
+      <p className="quiz__extra-texto">
+        <Trophy aria-hidden="true" />
+        {achievementModal.show ? (
+          <span className="fc-texto-neutro">
+            <strong>Has desbloqueado el logro «{achievementModal.title}».</strong>{" "}
+            {achievementModal.message} Lo tienes en <Link to="/welcome">tu espacio</Link>.
+          </span>
+        ) : conSesion ? (
+          <span className="fc-texto-neutro">
+            Tus logros se guardan en <Link to="/welcome">tu espacio</Link>.
+          </span>
+        ) : (
+          <span className="fc-texto-neutro">
+            <Link to="/login">Inicia sesión</Link> antes de hacer el quiz para guardar tu
+            logro en tu espacio.
+          </span>
+        )}
+      </p>
+      <button type="button" className="fc-boton" onClick={downloadStudyGuidePDF}>
+        <Download aria-hidden="true" />
+        Descargar la guía de estudio
+      </button>
+    </div>
+  );
+
   return (
-    <div className="blog-post">
+    <>
       <Helmet>
-        <title>Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club</title>
+        <title>Quiz HTML para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club</title>
         <meta
           name="description"
           content="Prepárate para entrevistas técnicas con nuestro quiz interactivo de HTML. 30 preguntas (básico a avanzado), explicaciones detalladas y guía de estudio descargable."
@@ -581,7 +617,7 @@ Fecha: ${publicationDate}
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales | femCoders Club"
+          content="Quiz HTML para entrevistas técnicas: 30 preguntas esenciales | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -601,7 +637,7 @@ Fecha: ${publicationDate}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Quiz HTML para Entrevistas Técnicas - femCoders Club"
+          content="Quiz HTML para entrevistas técnicas - FemCoders Club"
         />
         <meta
           name="twitter:description"
@@ -629,445 +665,343 @@ Fecha: ${publicationDate}
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/html/HTML-Quiz-Entrevistas.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/html/HTML-Quiz-Entrevistas.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/html/HTML-Quiz-Entrevistas.webp"
-            alt="Quiz HTML para Entrevistas Técnicas - 30 preguntas esenciales femCoders Club"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
+      <PlantillaPost
+        ruta="/recursos/html/quiz-html-entrevistas"
+        titulo="Quiz HTML para entrevistas técnicas: 30 preguntas que debes dominar"
+        autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+        idComentarios={postId}
+        entradilla={
+          <>
+            <p>
+              ¿Te estás preparando para una entrevista como desarrolladora frontend? Este quiz interactivo te ayudará a
+              <strong> evaluar tu nivel de HTML</strong> con las preguntas más frecuentes que suelen hacer los reclutadores técnicos.
+              Desde conceptos básicos hasta técnicas avanzadas de <strong>Web Components y performance</strong>.
+            </p>
+            <p>
+              He seleccionado cuidadosamente <strong>30 preguntas</strong> distribuidas en 3 niveles de dificultad,
+              basándome en entrevistas reales de empresas tech. Cada pregunta incluye una explicación detallada
+              para que entiendas no solo <em>qué</em> es correcto, sino <em>por qué</em>.
+            </p>
+          </>
+        }
+      >
+        <SeccionPost titulo="¿Qué encontrarás en este quiz?">
+          <TablaPost descripcion="Niveles del quiz">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nivel</th>
+                  <th>Preguntas</th>
+                  <th>Temas Clave</th>
+                  <th>Perfil Candidato</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Básico</strong></td>
+                  <td>10</td>
+                  <td>Estructura HTML5, etiquetas semánticas, formularios</td>
+                  <td>Junior Developer, Bootcamp graduate</td>
+                </tr>
+                <tr>
+                  <td><strong>Intermedio</strong></td>
+                  <td>10</td>
+                  <td>Accesibilidad, atributos globales, DOM, validación</td>
+                  <td>Mid-level Developer, 1-3 años experiencia</td>
+                </tr>
+                <tr>
+                  <td><strong>Avanzado</strong></td>
+                  <td>10</td>
+                  <td>Web Components, Performance, PWA, i18n</td>
+                  <td>Senior Developer, Tech Lead</td>
+                </tr>
+              </tbody>
+            </table>
+          </TablaPost>
 
-      <h1 className="blog-post-title">
-        Quiz HTML para Entrevistas Técnicas
-        <br />
-        30 Preguntas que Debes Dominar
-      </h1>
-
-      <ShareButtons path="/recursos/html/quiz-html-entrevistas" title="Quiz HTML para Entrevistas Técnicas: 30 Preguntas Esenciales" />
-
-      <p className="intro-text">
-        ¿Te estás preparando para una entrevista como desarrolladora frontend? Este quiz interactivo te ayudará a 
-        <strong> evaluar tu nivel de HTML</strong> con las preguntas más frecuentes que suelen hacer los reclutadores técnicos. 
-        Desde conceptos básicos hasta técnicas avanzadas de <strong>Web Components y performance</strong>.
-      </p>
-
-      <p className="intro-text">
-        He seleccionado cuidadosamente <strong>30 preguntas</strong> distribuidas en 3 niveles de dificultad, 
-        basándome en entrevistas reales de empresas tech. Cada pregunta incluye una explicación detallada 
-        para que entiendas no solo <em>qué</em> es correcto, sino <em>por qué</em>.
-      </p>
-
-      <div className="highlight-box">
-        <h2>🎯 ¿Qué encontrarás en este quiz?</h2>
-        
-        <div className="table-container">
-          <table className="framework-comparison-table">
-            <thead>
-              <tr>
-                <th>Nivel</th>
-                <th>Preguntas</th>
-                <th>Temas Clave</th>
-                <th>Perfil Candidato</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Básico</strong></td>
-                <td>10</td>
-                <td>Estructura HTML5, etiquetas semánticas, formularios</td>
-                <td>Junior Developer, Bootcamp graduate</td>
-              </tr>
-              <tr>
-                <td><strong>Intermedio</strong></td>
-                <td>10</td>
-                <td>Accesibilidad, atributos globales, DOM, validación</td>
-                <td>Mid-level Developer, 1-3 años experiencia</td>
-              </tr>
-              <tr>
-                <td><strong>Avanzado</strong></td>
-                <td>10</td>
-                <td>Web Components, Performance, PWA, i18n</td>
-                <td>Senior Developer, Tech Lead</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <button 
-            onClick={downloadStudyGuidePDF}
-            style={{
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 24px",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "1rem",
-              fontWeight: "bold",
-              cursor: "pointer",
-              transition: "background-color 0.3s ease",
-              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-            }}
-            onMouseOver={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#3d2ea1"}
-            onMouseOut={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#4737bb"}
-          >
-            📚 Descargar Guía de Estudio
-          </button>
-          <p style={{ fontSize: "0.9rem", color: "#666", marginTop: "8px" }}>
-            Todos los conceptos clave organizados para repasar
+          <p>
+            <button type="button" className="fc-boton" onClick={downloadStudyGuidePDF}>
+              <Download aria-hidden="true" />
+              Descargar Guía de Estudio
+            </button>
           </p>
-        </div>
-      </div>
+          <p>Todos los conceptos clave organizados para repasar</p>
+        </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>💡 Cómo aprovechar al máximo este quiz</h2>
-        
-        <h3>Antes de empezar:</h3>
-        <ul>
-          <li><strong>No busques las respuestas</strong> - La idea es evaluar tu conocimiento actual</li>
-          <li><strong>Lee cada pregunta cuidadosamente</strong> - Algunas tienen múltiples respuestas correctas</li>
-          <li><strong>Tómate tu tiempo</strong> - No hay límite de tiempo, enfócate en entender</li>
-        </ul>
+        <SeccionPost titulo="Cómo aprovechar al máximo este quiz">
+          <h3>Antes de empezar:</h3>
+          <ul>
+            <li><strong>No busques las respuestas</strong> - La idea es evaluar tu conocimiento actual</li>
+            <li><strong>Lee cada pregunta cuidadosamente</strong> - Algunas tienen múltiples respuestas correctas</li>
+            <li><strong>Tómate tu tiempo</strong> - No hay límite de tiempo, enfócate en entender</li>
+          </ul>
 
-        <h3>Durante el quiz:</h3>
-        <ul>
-          <li><strong>Piensa en voz alta</strong> - Como harías en una entrevista real</li>
-          <li><strong>Considera el contexto</strong> - ¿Cuándo usarías cada opción?</li>
-          <li><strong>Lee las explicaciones</strong> - Son tan importantes como las respuestas</li>
-        </ul>
+          <h3>Durante el quiz:</h3>
+          <ul>
+            <li><strong>Piensa en voz alta</strong> - Como harías en una entrevista real</li>
+            <li><strong>Considera el contexto</strong> - ¿Cuándo usarías cada opción?</li>
+            <li><strong>Lee las explicaciones</strong> - Son tan importantes como las respuestas</li>
+          </ul>
 
-        <h3>Después del quiz:</h3>
-        <ul>
-          <li><strong>Revisa tus áreas débiles</strong> - El sistema te dará feedback por nivel</li>
-          <li><strong>Practica los conceptos</strong> - Implementa lo que no domines</li>
-          <li><strong>Repite en una semana</strong> - Para reforzar el aprendizaje</li>
-        </ul>
-      </div>
+          <h3>Después del quiz:</h3>
+          <ul>
+            <li><strong>Revisa tus áreas débiles</strong> - El sistema te dará feedback por nivel</li>
+            <li><strong>Practica los conceptos</strong> - Implementa lo que no domines</li>
+            <li><strong>Repite en una semana</strong> - Para reforzar el aprendizaje</li>
+          </ul>
+        </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🚀 El Quiz Interactivo</h2>
-        <p>
-          <strong>Instrucciones:</strong> Selecciona la(s) respuesta(s) que consideres correcta(s) y haz clic en 
-          "Verificar Respuesta". Algunas preguntas pueden tener múltiples opciones válidas.
-        </p>
-        
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "20px",
-          borderLeft: "4px solid #4737bb"
-        }}>
-          <p style={{ margin: "0", fontSize: "1.1rem" }}>
-            <strong>💡 Tip de entrevista:</strong> En entrevistas reales, siempre explica tu razonamiento. 
-            No solo digas "la respuesta es B", sino "elijo B porque...". Los entrevistadores valoran 
-            el proceso de pensamiento tanto como la respuesta correcta.
+        <SeccionPost titulo="El quiz interactivo">
+          <p>
+            <strong>Instrucciones:</strong> Selecciona la(s) respuesta(s) que consideres correcta(s) y pulsa
+            «Comprobar respuesta». Algunas preguntas pueden tener múltiples opciones válidas.
           </p>
-        </div>
-      </div>
 
-      {/* Componente Quiz */}
-      <Quiz 
-        title="Quiz HTML - Entrevistas Técnicas" 
-        questions={preguntasHTMLEntrevistas}
-        showLevelIndicator={true}
-        shuffleQuestions={false}
-        passPercentage={70}
-        onComplete={handleQuizComplete}
-      />
+          <NotaPost titulo="Tip de entrevista">
+            <p>
+              En entrevistas reales, siempre explica tu razonamiento.
+              No solo digas "la respuesta es B", sino "elijo B porque...". Los entrevistadores valoran
+              el proceso de pensamiento tanto como la respuesta correcta.
+            </p>
+          </NotaPost>
 
-      <div className="highlight-box">
-        <h2>📊 Interpretando tu puntuación</h2>
-        
-        <h3>Puntuación Global:</h3>
-        <ul>
-          <li><strong>90-100%:</strong> ¡Excelente! Estás preparada para entrevistas senior</li>
-          <li><strong>75-89%:</strong> Muy bien. Repasa algunos conceptos específicos</li>
-          <li><strong>60-74%:</strong> Buen nivel base. Practica las áreas débiles</li>
-          <li><strong>Menos de 60%:</strong> Necesitas más estudio. Usa nuestra guía de recursos</li>
-        </ul>
+          <Quiz
+            title="Quiz HTML · Entrevistas técnicas"
+            questions={preguntasHTMLEntrevistas}
+            showLevelIndicator={true}
+            shuffleQuestions={false}
+            passPercentage={70}
+            onComplete={handleQuizComplete}
+            extraResultados={extraResultados}
+          />
+        </SeccionPost>
 
-        <h3>Por Nivel de Dificultad:</h3>
-        <ul>
-          <li><strong>Básico:</strong> Fundamental dominar 8/10 o más para cualquier posición frontend</li>
-          <li><strong>Intermedio:</strong> Necesario para posiciones mid-level y senior</li>
-          <li><strong>Avanzado:</strong> Diferenciador para roles técnicos leadership y arquitectura</li>
-        </ul>
-      </div>
+        <SeccionPost titulo="Interpretando tu puntuación">
+          <TarjetasPost
+            titulo="Tu puntuación global"
+            columnas={4}
+            tarjetas={[
+              { titulo: "90-100 %", texto: "¡Excelente! Estás preparada para entrevistas senior." },
+              { titulo: "75-89 %", texto: "Muy bien. Repasa algunos conceptos concretos." },
+              { titulo: "60-74 %", texto: "Buena base. Practica las áreas en las que fallaste." },
+              { titulo: "Menos de 60 %", texto: "Toca estudiar un poco más: empieza por los recursos de abajo." },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Qué pide cada nivel"
+            columnas={3}
+            tarjetas={[
+              { titulo: "Básico", texto: "Acertar 8 de 10 o más es lo esperable en cualquier puesto de frontend." },
+              { titulo: "Intermedio", texto: "Lo que se pide en puestos mid y senior." },
+              { titulo: "Avanzado", texto: "Lo que te distingue en roles técnicos de liderazgo y arquitectura." },
+            ]}
+          />
+        </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🎓 Recursos para seguir aprendiendo</h2>
-        <p>
-          Si quieres profundizar en algún tema específico que apareció en el quiz, 
-          estos recursos de femCoders Club te ayudarán:
-        </p>
+        <SeccionPost titulo="Recursos para seguir aprendiendo">
+          <p>Si quieres profundizar en algún tema del quiz, empieza por aquí:</p>
+          <TarjetasPost
+            titulo="Posts de FemCoders Club"
+            tarjetas={[
+              {
+                titulo: "Introducción a HTML",
+                texto: "Para reforzar los conceptos básicos.",
+                enlace: "/recursos/html/introduccion-html",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "HTML semántico y diseño de layout",
+                texto: (
+                  <>
+                    Cuándo usar <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> y compañía.
+                  </>
+                ),
+                enlace: "/recursos/html/html-semantico",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "HTML avanzado para SEO y accesibilidad",
+                texto: "ARIA, roles y buenas prácticas de accesibilidad.",
+                enlace: "/recursos/html/html-seo-accesibilidad",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+              {
+                titulo: "El lado oculto del CSS",
+                texto: "Para completar tu HTML con un CSS que no frene la página.",
+                enlace: "/recursos/css/css-performance-optimization",
+                icono: <BookOpen aria-hidden="true" />,
+              },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Herramientas"
+            tarjetas={[
+              {
+                titulo: "MDN Web Docs",
+                texto: "La documentación de referencia más completa.",
+                enlace: "https://developer.mozilla.org/es/docs/Web/HTML",
+                icono: <Wrench aria-hidden="true" />,
+              },
+              {
+                titulo: "Validador del W3C",
+                texto: "Comprueba que tu HTML es válido.",
+                enlace: "https://validator.w3.org/",
+                icono: <Wrench aria-hidden="true" />,
+              },
+              {
+                titulo: "Chrome DevTools",
+                texto: "Inspecciona el DOM y depura tu código.",
+                enlace: "https://developer.chrome.com/docs/devtools",
+                icono: <Wrench aria-hidden="true" />,
+              },
+              {
+                titulo: "WAVE",
+                texto: "Evalúa la accesibilidad de una página.",
+                enlace: "https://wave.webaim.org/",
+                icono: <Wrench aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
 
-        <h3>📖 Posts relacionados:</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/html/introduccion-html"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Introducción a HTML5: Fundamentos Esenciales
-              </a>
-            </strong> - Perfecto si necesitas reforzar conceptos básicos
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/html/html-semantico"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                HTML Semántico: Estructura que Importa
-              </a>
-            </strong> - Domina <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> y más
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/html/accesibilidad-html"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Accesibilidad HTML: Código Inclusivo
-              </a>
-            </strong> - ARIA, roles y mejores prácticas a11y
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/css-performance-optimization"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Performance: Optimización Avanzada
-              </a>
-            </strong> - Complementa HTML con CSS eficiente
-          </li>
-        </ul>
+        <SeccionPost titulo="Consejos para la entrevista">
+          <ListaMarcadaPost titulo="Lo que se valora" tipo="bien">
+            <li>
+              <strong>Semántica:</strong> no basta con conocer las etiquetas, hay que saber cuándo usar cada una.
+            </li>
+            <li>
+              <strong>Accesibilidad:</strong> menciónala siempre, aunque no te pregunten por ella.
+            </li>
+            <li>
+              <strong>Rendimiento:</strong> entiende cómo afectan tus decisiones de HTML a la carga.
+            </li>
+            <li>
+              <strong>Evolución de HTML:</strong> conoce qué cambió de HTML4 a HTML5.
+            </li>
+          </ListaMarcadaPost>
 
-        <h3>🛠️ Herramientas recomendadas:</h3>
-        <ul>
-          <li><strong>MDN Web Docs:</strong> La documentación oficial más completa</li>
-          <li><strong>HTML5 Validator:</strong> Valida tu código HTML</li>
-          <li><strong>Chrome DevTools:</strong> Inspecciona DOM y depura código</li>
-          <li><strong>WAVE Web Accessibility Evaluator:</strong> Evalúa accesibilidad</li>
-        </ul>
-      </div>
+          <ListaMarcadaPost titulo="Preguntas que suelen venir después" tipo="pregunta">
+            <li>
+              ¿Por qué elegirías <code>&lt;article&gt;</code> en lugar de <code>&lt;div&gt;</code>?
+            </li>
+            <li>¿Cómo harías un tema oscuro solo con HTML y CSS?</li>
+            <li>¿Qué tienes en cuenta para que un formulario sea accesible?</li>
+            <li>¿Cómo optimizarías una página con mucho contenido HTML?</li>
+          </ListaMarcadaPost>
 
-      <div className="highlight-box">
-        <h2>🎯 Tips específicos para la entrevista</h2>
-        
-        <h3>Lo que valoran los entrevistadores:</h3>
-        <ul>
-          <li><strong>Conocimiento semántico:</strong> No solo saber las etiquetas, sino cuándo usarlas</li>
-          <li><strong>Pensamiento en accesibilidad:</strong> Siempre menciona consideraciones a11y</li>
-          <li><strong>Performance awareness:</strong> Entiende el impacto de tus decisiones HTML</li>
-          <li><strong>Evolución de HTML:</strong> Conoce las diferencias entre HTML4 y HTML5</li>
-        </ul>
+          <ListaMarcadaPost titulo="Errores que conviene evitar" tipo="mal">
+            <li>
+              <strong>Mezclar semántica y presentación:</strong> HTML da la estructura; CSS, el aspecto.
+            </li>
+            <li>
+              <strong>Olvidar la accesibilidad:</strong> piensa siempre en quien usa un lector de pantalla.
+            </li>
+            <li>
+              <strong>Quedarte atrás:</strong> sigue las novedades de la especificación.
+            </li>
+            <li>
+              <strong>Respuestas genéricas:</strong> sé concreta y pon ejemplos.
+            </li>
+          </ListaMarcadaPost>
+        </SeccionPost>
 
-        <h3>Preguntas típicas de seguimiento:</h3>
-        <ul>
-          <li>"¿Por qué elegirías <code>&lt;article&gt;</code> en lugar de <code>&lt;div&gt;</code>?"</li>
-          <li>"¿Cómo implementarías un tema oscuro usando solo HTML y CSS?"</li>
-          <li>"¿Qué consideraciones tienes para hacer un formulario accesible?"</li>
-          <li>"¿Cómo optimizarías la carga de una página con mucho contenido HTML?"</li>
-        </ul>
+        <SeccionPost titulo="Tu plan de estudio">
+          <PasosPost
+            pasos={[
+              {
+                etiqueta: "Semanas 1 y 2",
+                titulo: "Refuerza lo básico",
+                puntos: [
+                  "La estructura de HTML5 y los elementos semánticos",
+                  "Formularios y validación nativa",
+                  "La diferencia entre elementos de bloque y en línea",
+                ],
+              },
+              {
+                etiqueta: "Semanas 3 y 4",
+                titulo: "Profundiza en lo intermedio",
+                puntos: [
+                  "Accesibilidad web y ARIA",
+                  "Atributos globales y atributos data-*",
+                  "El DOM y cómo manipularlo con JavaScript",
+                ],
+              },
+              {
+                etiqueta: "Semanas 5 y 6",
+                titulo: "Domina lo avanzado",
+                puntos: [
+                  "Web Components",
+                  "Rendimiento y optimización",
+                  "PWA y Service Workers",
+                ],
+              },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Para practicar con las manos"
+            tarjetas={[
+              {
+                titulo: "Tu portafolio",
+                texto: "Con HTML semántico y accesible.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un formulario complejo",
+                texto: "Con la validación nativa de HTML5.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un tema oscuro",
+                texto: "Con variables CSS y atributos data-*.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un Web Component",
+                texto: "Para entender los Custom Elements.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
 
-        <h3>Errores comunes que debes evitar:</h3>
-        <ul>
-          <li><strong>Confundir semántica con presentación:</strong> HTML es para estructura, CSS para apariencia</li>
-          <li><strong>Olvidar la accesibilidad:</strong> Siempre piensa en lectores de pantalla</li>
-          <li><strong>No conocer las novedades:</strong> Mantente actualizada con nuevas especificaciones</li>
-          <li><strong>Respuestas genéricas:</strong> Sé específica y da ejemplos concretos</li>
-        </ul>
-      </div>
+        <SeccionPost titulo="Comparte tu experiencia">
+          <p>
+            ¿Cómo te ha ido? Nos encanta saber qué tal le va a la comunidad, y lo que cuentas ayuda a
+            otras desarrolladoras que se preparan como tú.
+          </p>
+          <TarjetasPost
+            columnas={3}
+            tarjetas={[
+              {
+                titulo: "En nuestro Slack",
+                texto: "Únete a la comunidad y cuéntanos tus resultados.",
+                enlace: "https://communityinviter.com/apps/femcodersclub/femcoders-club",
+                icono: <Users aria-hidden="true" />,
+              },
+              {
+                titulo: "En redes sociales",
+                texto: "Con el hashtag #femCodersQuiz.",
+                icono: <Share2 aria-hidden="true" />,
+              },
+              {
+                titulo: "En los comentarios",
+                texto: "Dinos qué temas te han costado más.",
+                icono: <MessageSquare aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>💪 Siguientes pasos en tu preparación</h2>
-        
-        <h3>Plan de estudio recomendado:</h3>
-        <p><strong>Semana 1-2:</strong> Refuerza conceptos básicos</p>
-        <ul>
-          <li>Repasa estructura HTML5 y elementos semánticos</li>
-          <li>Practica formularios y validación nativa</li>
-          <li>Domina la diferencia entre elementos block e inline</li>
-        </ul>
-
-        <p><strong>Semana 3-4:</strong> Profundiza en temas intermedios</p>
-        <ul>
-          <li>Estudia accesibilidad web y ARIA</li>
-          <li>Practica con atributos globales y data attributes</li>
-          <li>Entiende el DOM y su manipulación con JavaScript</li>
-        </ul>
-
-        <p><strong>Semana 5-6:</strong> Domina conceptos avanzados</p>
-        <ul>
-          <li>Experimenta con Web Components</li>
-          <li>Aprende sobre performance y optimización</li>
-          <li>Estudia PWAs y Service Workers</li>
-        </ul>
-
-        <h3>Práctica hands-on:</h3>
-        <ul>
-          <li><strong>Crea un portafolio personal:</strong> Usando HTML semántico y accesible</li>
-          <li><strong>Construye un formulario complejo:</strong> Con validación nativa HTML5</li>
-          <li><strong>Implementa un tema oscuro:</strong> Usando CSS Variables y HTML data attributes</li>
-          <li><strong>Desarrolla un Web Component:</strong> Para entender Custom Elements</li>
-        </ul>
-      </div>
-
-      <div className="highlight-box">
-        <h2>🌟 Comparte tu experiencia</h2>
-        <p>
-          <strong>¿Cómo te fue en el quiz?</strong> Nos encanta conocer la experiencia de nuestra comunidad. 
-          Comparte tus resultados y aprendizajes:
-        </p>
-
-        <ul>
-          <li>
-            <strong>En nuestra comunidad Slack:</strong> 
-            <a
-              href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
-              className="highlight-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Únete a femCoders Club
-            </a>
-          </li>
-          <li><strong>En redes sociales:</strong> Usa el hashtag #femCodersQuiz</li>
-          <li><strong>En los comentarios:</strong> Cuéntanos qué temas te resultaron más desafiantes</li>
-        </ul>
-
-        <p>
-          <em>Tu feedback nos ayuda a crear mejores recursos para toda la comunidad. 
-          ¡Cada experiencia compartida es una oportunidad de aprendizaje para otras desarrolladoras!</em>
-        </p>
-      </div>
-
-      <div style={{ textAlign: "center", margin: "2rem 0" }}>
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "20px",
-          borderRadius: "10px",
-          borderLeft: "5px solid #4737bb"
-        }}>
-          <p style={{ margin: "0", fontSize: "1.2rem", fontStyle: "italic" }}>
-            <strong>🎯 Recuerda:</strong> El conocimiento técnico es solo una parte de la entrevista. 
-            La capacidad de comunicar ideas, trabajar en equipo y seguir aprendiendo son igualmente importantes. 
+        <NotaPost titulo="Recuerda">
+          <p>
+            El conocimiento técnico es solo una parte de la entrevista.
+            La capacidad de comunicar ideas, trabajar en equipo y seguir aprendiendo son igualmente importantes.{" "}
             <strong>¡Confía en tu preparación y muestra tu pasión por el desarrollo!</strong>
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </PlantillaPost>
 
-      <div className="author-info">
-        <p>
-          Creado por: <strong>femCoders Club</strong>
-        </p>
-        <p>Comunidad de mujeres desarrolladoras</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <Link to="/blog" className="back-to-blog">
-          Volver al Blog
-        </Link>
-      </div>
-
-      <CommentsSection postId={postId} />
-
-      {achievementModal.show && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-          onClick={closeAchievementModal}
-        >
-          <div
-            style={{
-              backgroundColor: "white",
-              borderRadius: "20px",
-              padding: "40px",
-              maxWidth: "450px",
-              textAlign: "center",
-              boxShadow: "0 10px 40px rgba(71, 55, 187, 0.3)",
-              animation: "fadeIn 0.3s ease-out",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{ fontSize: "4rem", marginBottom: "20px" }}>🏆</div>
-            <h2
-              style={{
-                color: "#4737bb",
-                marginBottom: "15px",
-                fontSize: "1.8rem",
-              }}
-            >
-              ¡Logro Desbloqueado!
-            </h2>
-            <h3
-              style={{
-                color: "#6d2c95",
-                marginBottom: "20px",
-                fontSize: "1.4rem",
-              }}
-            >
-              {achievementModal.title}
-            </h3>
-            <p style={{ color: "#666", marginBottom: "25px", lineHeight: 1.6 }}>
-              {achievementModal.message}
-            </p>
-            <button
-              onClick={closeAchievementModal}
-              style={{
-                backgroundColor: "#4737bb",
-                color: "white",
-                border: "none",
-                padding: "12px 30px",
-                borderRadius: "8px",
-                fontSize: "1rem",
-                fontWeight: "bold",
-                cursor: "pointer",
-                transition: "background-color 0.3s ease",
-              }}
-            >
-              ¡Genial!
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

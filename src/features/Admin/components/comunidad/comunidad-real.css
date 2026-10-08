@@ -1,0 +1,79 @@
+/*
+ * Página «Comunidad real» del panel.
+ *
+ * Reutiliza la rejilla y las tarjetas del resumen (resumen-panel.css) tal
+ * cual. Aquí solo va lo propio de esta página, con prefijo `comunidad-real__`
+ * por el mismo motivo que explica ese archivo: no arriesgar estilos ajenos.
+ */
+
+.comunidad-real__titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary); /* 8.29:1 sobre blanco: AAA */
+  margin: 0 0 0.35rem;
+  text-shadow: none;
+}
+
+.comunidad-real__intro {
+  font-size: 0.95rem;
+  color: #3d3d3d;
+  margin: 0;
+  max-width: 65ch;
+}
+
+.comunidad-real__aviso {
+  padding: 0.75rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #a32617;
+  background-color: #fdecea;
+  color: #8f2318;
+  font-size: 0.9rem;
+}
+
+.comunidad-real__filtro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.comunidad-real__filtro label {
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
+.comunidad-real__filtro select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #6b6b6b;
+  border-radius: 6px;
+  background: #fff;
+  color: #1f1f1f;
+  font-size: 0.95rem;
+}
+
+.comunidad-real__nombre {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.comunidad-real__colaboraciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* index.css colorea los `span`: aquí la fecha va en gris oscuro y sin negrita. */
+.comunidad-real__fecha {
+  display: inline-block;
+  min-width: 6.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #4a4a4a;
+  font-variant-numeric: tabular-nums;
+}

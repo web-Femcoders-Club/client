@@ -1,11 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
-
-import ShareButtons from "../../components/ShareButtons";
-import PostImage from "../../components/PostImage";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { SeccionPost, TarjetasPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 import { urlAbsoluta } from "../../components/siteUrl";
 
@@ -26,11 +23,8 @@ const REGISTRO_BASE = "https://registration.firabarcelona.com/?cod_prom=";
 const URL_EXPO_GRATIS = `${REGISTRO_BASE}${CODIGO_EXPO_GRATIS}#en_GB/J137026`;
 const URL_CONGRESO_DESCUENTO = `${REGISTRO_BASE}${CODIGO_CONGRESO_DESCUENTO}#en_GB/J137026`;
 
-const BarcelonaCybersecurityCongress26: React.FC = () => {
-  const postId = 50;
-
-  return (
-    <div className="blog-post">
+const BarcelonaCybersecurityCongress26: React.FC = () => (
+  <>
       <Helmet>
         <title>
           FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress
@@ -193,71 +187,52 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <PostImage
-        src="/public-optimized/desktop/assets/noticias/bcc26-femcodersclub.webp"
-        mobileSrc="/public-optimized/mobile/assets/noticias/bcc26-femcodersclub.webp"
-        desktopSrc="/public-optimized/desktop/assets/noticias/bcc26-femcodersclub.webp"
-        fallbackSrc="/assets/noticias/bcc26-femcodersclub.jpg"
-        alt="Cartel del Barcelona Cybersecurity Congress 2026 con el lema «We are ambassadors of the #BCC26» y el logotipo de FemCoders Club en el centro. Del 3 al 5 de noviembre de 2026 en Barcelona, Gran Via Venue, hall 2.1"
-      />
-
-      <h1 className="blog-post-title">
-        FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress
-        2026
-      </h1>
-
-      <ShareButtons
-        path="/noticias/barcelona-cybersecurity-congress-2026"
-        title="FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026"
-      />
-
-      {/*
-        El `speakable` del prerender apunta a `.blog-post-title` y a
-        `.intro-text`: esto es lo que un asistente lee cuando le preguntan por
-        el congreso. Por eso la intro lleva las fechas, la sede y las dos
-        entradas, y no solo el gancho.
-      */}
-      <div className="intro-text">
-        <p>
-          La ciberseguridad no es solo un tema técnico: es un reto social. En un
-          mundo donde la tecnología lo abarca todo, desde cómo trabajamos hasta
-          cómo nos relacionamos, la seguridad digital se ha convertido en una
-          prioridad. Pero, ¿quién construye ese futuro seguro?
-        </p>
-        <br />
-        <p>
-          Todas deberíamos ser parte de la respuesta, y por eso en FemCoders
-          Club estamos encantadas de contarte que somos{" "}
-          <strong>
-            Ambassadors oficiales del Barcelona Cybersecurity Congress 2026
-          </strong>{" "}
-          (#BCC26).
-        </p>
-        <br />
-        <p>
-          El congreso se celebra del{" "}
-          <strong>3 al 5 de noviembre de 2026</strong> en{" "}
-          <strong>Fira de Barcelona, recinto Gran Via, hall 2.1</strong>. Como
-          Ambassadors tenemos dos códigos para la comunidad: uno que te da la{" "}
-          <strong>entrada Expo+ gratis</strong> y otro que deja el{" "}
-          <strong>pase completo en 225 € en lugar de 495 €</strong>. Los dos
-          están más abajo y ninguno tiene límite de plazas.
-        </p>
-      </div>
-
-      {/* ── 1. Qué es el BCC26 ── */}
-      <div className="highlight-box">
-        <h2>El #BCC26: donde la ciberseguridad cobra vida</h2>
-        <br />
+    {/*
+      El `speakable` del prerender apunta al título y a la
+      entradilla (`.post__titulo`, `.post__entradilla`): esto es lo que un asistente lee cuando le preguntan por
+      el congreso. Por eso la intro lleva las fechas, la sede y las dos
+      entradas, y no solo el gancho.
+    */}
+    <PlantillaPost
+      ruta="/noticias/barcelona-cybersecurity-congress-2026"
+      titulo="FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={50}
+      entradilla={
+        <>
+          <p>
+            La ciberseguridad no es solo un tema técnico: es un reto social. En
+            un mundo donde la tecnología lo abarca todo, desde cómo trabajamos
+            hasta cómo nos relacionamos, la seguridad digital se ha convertido
+            en una prioridad. Pero ¿quién construye ese futuro seguro?
+          </p>
+          <p>
+            Todas deberíamos ser parte de la respuesta, y por eso en FemCoders
+            Club estamos encantadas de contarte que somos{" "}
+            <strong>
+              Ambassadors oficiales del Barcelona Cybersecurity Congress 2026
+            </strong>{" "}
+            (#BCC26).
+          </p>
+          <p>
+            El congreso se celebra del{" "}
+            <strong>3 al 5 de noviembre de 2026</strong> en{" "}
+            <strong>Fira de Barcelona, recinto Gran Via, hall 2.1</strong>. Como
+            Ambassadors tenemos dos códigos para la comunidad: uno que te da la{" "}
+            <strong>entrada Expo+ gratis</strong> y otro que deja el{" "}
+            <strong>pase completo en 225 € en lugar de 495 €</strong>. Los dos
+            están más abajo y ninguno tiene límite de plazas.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="El #BCC26: donde la ciberseguridad cobra vida">
         <p>
           El{" "}
           <a
             href="https://www.barcelonacybersecuritycongress.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
-            aria-label="Visitar la web del Barcelona Cybersecurity Congress"
           >
             <strong>Barcelona Cybersecurity Congress</strong>
           </a>{" "}
@@ -267,7 +242,6 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           juego y conectar a quienes están construyendo un ecosistema digital
           más resiliente.
         </p>
-        <br />
         <p>
           Este año se celebra del <strong>3 al 5 de noviembre de 2026</strong>{" "}
           en <strong>Fira de Barcelona, recinto Gran Via</strong>. Es un cambio
@@ -275,7 +249,6 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           noviembre para celebrarse a la vez que el Smart City Expo World
           Congress, así que la semana viene cargada.
         </p>
-        <br />
         <p>
           Habrá alrededor de un centenar de expositores, un programa de charlas
           y un <strong>hacking village</strong>. Los ejes de esta edición son la
@@ -283,124 +256,103 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           redes 5G y 6G, la gobernanza de datos y el cumplimiento de la
           normativa europea de ciberseguridad.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. Por qué estamos aquí ── */}
-      <div className="highlight-box">
-        <h2>¿Por qué FemCoders Club está aquí?</h2>
-        <br />
+      <SeccionPost titulo="¿Por qué FemCoders Club está aquí?">
         <p>
           En FemCoders Club tenemos claro que la tecnología avanza cuando es
           diversa. La ciberseguridad necesita talento, sí, pero también
           perspectivas distintas, voces nuevas y manos dispuestas a innovar. Y
           eso solo se logra si todas tenemos un asiento en la mesa.
         </p>
-        <br />
         <p>Como Ambassadors del #BCC26, lo que queremos es:</p>
-        <br />
-        <ul>
-          <li>
-            <strong>Llevar el congreso a nuestra comunidad.</strong> Porque
-            queremos que tú también formes parte de esta conversación.
-          </li>
-          <li>
-            <strong>Romper barreras.</strong> Mostrar que la ciberseguridad no
-            es un mundo cerrado, sino un sector lleno de oportunidades para
-            mujeres y personas infrarrepresentadas.
-          </li>
-          <li>
-            <strong>Crear conexiones reales.</strong> Entre profesionales, entre
-            curiosas, entre quienes ya trabajan en el sector y quienes quieren
-            empezar.
-          </li>
-        </ul>
-      </div>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Llevar el congreso a nuestra comunidad",
+              texto:
+                "Porque queremos que tú también formes parte de esta conversación.",
+            },
+            {
+              titulo: "Romper barreras",
+              texto:
+                "Mostrar que la ciberseguridad no es un mundo cerrado, sino un sector lleno de oportunidades para mujeres y personas infrarrepresentadas.",
+            },
+            {
+              titulo: "Crear conexiones reales",
+              texto:
+                "Entre profesionales, entre curiosas, entre quienes ya trabajan en el sector y quienes quieren empezar.",
+            },
+          ]}
+        />
+      </SeccionPost>
 
-      {/* ── 3. Qué vas a encontrar ── */}
-      <div className="highlight-box">
-        <h2>¿Qué puedes esperar del #BCC26?</h2>
-        <br />
+      <SeccionPost titulo="¿Qué puedes esperar del #BCC26?">
         <p>
           Si te interesa la tecnología, la ciberseguridad o simplemente quieres
           saber más sobre este mundo, el congreso es tu oportunidad para:
         </p>
-        <br />
-        <ul>
-          <li>
-            <strong>Descubrir las últimas tendencias.</strong> Desde la
-            inteligencia artificial hasta la protección de datos, pasando por
-            los riesgos emergentes.
-          </li>
-          <li>
-            <strong>Conocer proyectos que están cambiando cosas.</strong>{" "}
-            Startups, herramientas y soluciones que marcan la diferencia.
-          </li>
-          <li>
-            <strong>Hacer networking de verdad.</strong> Con profesionales,
-            empresas y posibles mentoras que pueden abrirte puertas.
-          </li>
-          <li>
-            <strong>Encontrar tu lugar en el sector.</strong> Ya sea para dar el
-            salto profesional o para inspirarte en tu próximo proyecto.
-          </li>
-          <li>
-            <strong>Aprender de las mejores.</strong> Talleres, charlas y
-            debates con expertas internacionales.
-          </li>
-        </ul>
-      </div>
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Descubrir las últimas tendencias",
+              texto:
+                "Desde la inteligencia artificial hasta la protección de datos, pasando por los riesgos emergentes.",
+            },
+            {
+              titulo: "Conocer proyectos que están cambiando cosas",
+              texto:
+                "Startups, herramientas y soluciones que marcan la diferencia.",
+            },
+            {
+              titulo: "Hacer networking de verdad",
+              texto:
+                "Con profesionales, empresas y posibles mentoras que pueden abrirte puertas.",
+            },
+            {
+              titulo: "Encontrar tu lugar en el sector",
+              texto:
+                "Ya sea para dar el salto profesional o para inspirarte en tu próximo proyecto.",
+            },
+            {
+              titulo: "Aprender de las mejores",
+              texto:
+                "Talleres, charlas y debates con expertas internacionales.",
+            },
+          ]}
+        />
+      </SeccionPost>
 
-      {/* ── 4. Las entradas ── */}
-      <div className="highlight-box">
-        <h2>Entradas del BCC26: gratis o con un 54 % de descuento</h2>
-        <br />
+      <SeccionPost titulo="Entradas del BCC26: gratis o con un 54 % de descuento">
         <p>
           Aquí viene la parte buena de ser Ambassadors: tenemos códigos para ti.
           Hay dos formas de entrar y la diferencia entre una y otra es cuánto
           del congreso ves.
         </p>
-        <br />
 
-        <h3 style={{ fontSize: "1.3rem", marginBottom: "10px" }}>
-          Entrada Expo+, gratis
-        </h3>
+        <h3>Entrada Expo+, gratis</h3>
         <p>
           Te da acceso a la <strong>zona de expositores</strong>: el centenar de
           empresas y startups que estarán allí, con sus demos y su gente. Es
           gratuita con nuestro código y no tiene límite de plazas, así que
           puedes compartirla con quien quieras.
         </p>
-        <br />
         <p>
           Código: <strong>{CODIGO_EXPO_GRATIS}</strong>
         </p>
-        <br />
-        <a
-          href={URL_EXPO_GRATIS}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-block",
-            backgroundColor: "#4737bb",
-            color: "white",
-            padding: "12px 30px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "bold",
-            fontSize: "16px",
-            transition: "all 0.3s ease",
-            boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-          }}
-          aria-label="Conseguir la entrada Expo+ gratuita con el código de FemCoders Club"
-        >
-          Conseguir mi entrada gratis
-        </a>
-        <br />
-        <br />
+        <p>
+          <a
+            href={URL_EXPO_GRATIS}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fc-boton"
+          >
+            Conseguir mi entrada gratis
+          </a>
+        </p>
 
-        <h3 style={{ fontSize: "1.3rem", marginBottom: "10px" }}>
-          Pase completo al congreso, 225 € en vez de 495 €
-        </h3>
+        <h3>Pase completo al congreso, 225 € en vez de 495 €</h3>
         <p>
           Este es el pase que te abre <strong>todo</strong>: las charlas, el
           programa de conferencias y el hacking village, además de la zona de
@@ -408,83 +360,46 @@ const BarcelonaCybersecurityCongress26: React.FC = () => {
           <strong>225 € en lugar de 495 €</strong>, un 54 % menos, y tampoco
           tiene límite de plazas.
         </p>
-        <br />
         <p>
           Código: <strong>{CODIGO_CONGRESO_DESCUENTO}</strong>
         </p>
-        <br />
-        <a
-          href={URL_CONGRESO_DESCUENTO}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-block",
-            backgroundColor: "#4737bb",
-            color: "white",
-            padding: "12px 30px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: "bold",
-            fontSize: "16px",
-            transition: "all 0.3s ease",
-            boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-          }}
-          aria-label="Conseguir el pase completo al congreso con el 54 % de descuento de FemCoders Club"
-        >
-          Conseguir mi pase completo
-        </a>
-      </div>
+        <p>
+          <a
+            href={URL_CONGRESO_DESCUENTO}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fc-boton"
+          >
+            Conseguir mi pase completo
+          </a>
+        </p>
+      </SeccionPost>
 
-      {/* ── 5. Cierre ── */}
-      <div className="highlight-box">
-        <h2>Barcelona nos espera</h2>
-        <br />
+      <SeccionPost titulo="Barcelona nos espera">
         <p>
           El Barcelona Cybersecurity Congress 2026 será el punto de encuentro
           para quienes creen en un futuro digital más seguro, inclusivo e
           innovador. Y nosotras estaremos ahí, representando a una comunidad que
           no para de crecer.
         </p>
-        <br />
         <p>
           <strong>Cuándo:</strong> del 3 al 5 de noviembre de 2026
         </p>
         <p>
           <strong>Dónde:</strong> Fira de Barcelona, recinto Gran Via, hall 2.1
         </p>
-        <br />
         <p>
           ¿Te apuntas? Porque la ciberseguridad no es solo para algunas: es para
           todas las que queremos ser parte de la solución.
         </p>
-        <br />
         <p>
           Si vas a venir, cuéntanoslo en el{" "}
-          <Link to="/contacto" className="highlight-link">
-            formulario de contacto
-          </Link>{" "}
-          o en nuestras redes. Nos encantaría coincidir contigo esos días.
+          <Link to="/contacto">formulario de contacto</Link> o en nuestras
+          redes. Nos encantaría coincidir contigo esos días.
         </p>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
-        </p>
-        <p>
-          Fecha de publicación: <strong>17 de septiembre, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default BarcelonaCybersecurityCongress26;

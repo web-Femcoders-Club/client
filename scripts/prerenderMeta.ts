@@ -18,11 +18,22 @@ import { getPostsIndex, type PostMeta } from "./postsIndex";
 import { generateSocialImages, type SocialImageMap } from "./socialImages";
 import { isPrivateRoute } from "./privateRoutes";
 import { RUTAS_SPA, type RutaMeta } from "./spaRoutesMeta";
+import { colaboradorasHtml, colaboradorasJsonLd } from "./contenidoColaboradoras";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DIST_DIR = path.join(ROOT, "dist");
 const SITE_URL = "https://www.femcodersclub.com";
 const LOGO = `${SITE_URL}/FemCodersClubLogo.png`;
+
+/**
+ * JSON-LD para un <script>. JSON.stringify no escapa "<": un texto con
+ * "</script>" (las descripciones de eventos llegan de la base de datos y de
+ * Eventbrite) cerraría la etiqueta y metería HTML en la página. El escape
+ * < es el mismo carácter para quien lee el JSON.
+ */
+function jsonLdSeguro(schema: unknown): string {
+  return JSON.stringify(schema).replace(/</g, "\\u003c");
+}
 
 /** Escapa el texto que se incrusta en un atributo HTML. */
 function attr(value: string): string {
@@ -77,7 +88,7 @@ function buildJsonLd(post: PostMeta, image: string): string {
     // Pensado para asistentes de voz y respuestas generativas.
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: [".blog-post-title", ".intro-text"],
+      cssSelector: [".post__titulo", ".post__entradilla"],
     },
   };
 
@@ -100,7 +111,7 @@ function buildJsonLd(post: PostMeta, image: string): string {
   return [article, breadcrumb]
     .map(
       (schema) =>
-        `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`
+        `    <script type="application/ld+json">${jsonLdSeguro(schema)}</script>`
     )
     .join("\n");
 }
@@ -188,7 +199,13 @@ function renderHead(template: string, post: PostMeta, image: string): string {
  * portada. Sin JSON-LD de artículo y con `og:type: website`, porque un listado
  * no es un artículo.
  */
-function renderHeadRuta(template: string, route: string, meta: RutaMeta): string {
+type JsonLd = Record<string, unknown>[];
+
+function renderHeadRuta(
+  template: string,
+  route: string,
+  meta: Omit<RutaMeta, "jsonLd"> & { jsonLd?: JsonLd }
+): string {
   const url = `${SITE_URL}${route}`;
 
   let html = template;
@@ -198,6 +215,14 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
   }
   for (const value of ["twitter:title", "twitter:description", "description"]) {
     html = stripMeta(html, "name", value);
+  }
+  if (meta.imagen) {
+    for (const value of ["og:image", "og:image:secure_url", "og:image:width", "og:image:height", "og:image:alt"]) {
+      html = stripMeta(html, "property", value);
+    }
+    for (const value of ["twitter:image", "twitter:image:alt"]) {
+      html = stripMeta(html, "name", value);
+    }
   }
 
   const tags = [
@@ -214,6 +239,20 @@ function renderHeadRuta(template: string, route: string, meta: RutaMeta): string
     "",
     `    <meta name="twitter:title" content="${attr(meta.title)}" />`,
     `    <meta name="twitter:description" content="${attr(meta.description)}" />`,
+    ...(meta.imagen
+      ? [
+          `    <meta property="og:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta property="og:image:width" content="${meta.imagen.ancho}" />`,
+          `    <meta property="og:image:height" content="${meta.imagen.alto}" />`,
+          `    <meta property="og:image:alt" content="${attr(meta.imagen.alt)}" />`,
+          `    <meta name="twitter:image" content="${SITE_URL}${meta.imagen.ruta}" />`,
+          `    <meta name="twitter:image:alt" content="${attr(meta.imagen.alt)}" />`,
+        ]
+      : []),
+    ...(meta.jsonLd ?? []).map(
+      (schema) =>
+        `    <script type="application/ld+json">${jsonLdSeguro(schema)}</script>`
+    ),
   ].join("\n");
 
   return html.replace("</head>", `${tags}\n  </head>`);
@@ -260,6 +299,20 @@ function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): st
   return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
 }
 
+/**
+ * Incrusta el texto de la página en un `<noscript>` para quien no ejecuta
+ * JavaScript (los rastreadores de los modelos). Con JS activo la página real
+ * ya está ahí. Es el mismo texto que ve una persona: sale de la misma fuente
+ * que pintan los componentes (ver scripts/contenidoQuienesSomos.ts).
+ */
+async function renderContenido(html: string, meta: RutaMeta): Promise<string> {
+  if (!meta.contenidoHtml) return html;
+  const contenido =
+    typeof meta.contenidoHtml === "function" ? await meta.contenidoHtml() : meta.contenidoHtml;
+  const bloque = `    <noscript>\n${contenido}\n    </noscript>`;
+  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+}
+
 export async function prerenderMeta(): Promise<void> {
   const templatePath = path.join(DIST_DIR, "index.html");
   if (!(await fs.pathExists(templatePath))) {
@@ -302,6 +355,8 @@ export async function prerenderMeta(): Promise<void> {
   }
 
   const spaRoutes = await writeSpaRoutes(posts);
+  // La última: escribe sobre dist/index.html, la plantilla de todo lo anterior.
+  await writePortada(template);
 
   console.log(`Paginas prerenderizadas: ${written}/${posts.length}`);
   console.log(`Rutas de la SPA materializadas: ${spaRoutes}`);
@@ -392,8 +447,11 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
     // duplicando la portada durante meses sin que nadie lo note.
     let html = template;
     if (meta) {
-      html = renderHeadRuta(template, route, meta);
+      // El JSON-LD de /equipo se pide a la API en el build: se resuelve antes.
+      const jsonLd = typeof meta.jsonLd === "function" ? await meta.jsonLd() : meta.jsonLd;
+      html = renderHeadRuta(template, route, { ...meta, jsonLd });
       html = renderEnlacesPosts(html, posts, meta);
+      html = await renderContenido(html, meta);
     } else {
       sinMetas.push(route);
     }
@@ -420,6 +478,28 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
   await fs.writeFile(path.join(DIST_DIR, "404.html"), template, "utf-8");
 
   return written;
+}
+
+/**
+ * Completa el HTML servido de la portada con lo que React pinta y un
+ * rastreador sin JavaScript no ve: las organizaciones colaboradoras de la
+ * sección «Empresas que han confiado en nosotras», en un `<noscript>` y como
+ * JSON-LD (ver scripts/contenidoColaboradoras.ts).
+ *
+ * Escribe sobre dist/index.html, que es la plantilla de los posts, de las rutas
+ * de la SPA y del 404.html. Por eso se llama al final, con todo lo demás ya
+ * escrito: hacerlo antes metería la lista de la portada en todas las páginas.
+ */
+async function writePortada(template: string): Promise<void> {
+  const jsonLd = `    <script type="application/ld+json">${jsonLdSeguro(colaboradorasJsonLd())}</script>`;
+  const noscript = `    <noscript>\n${colaboradorasHtml()}\n    </noscript>`;
+
+  const html = template
+    .replace("</head>", `${jsonLd}\n  </head>`)
+    .replace('<div id="root"></div>', `${noscript}\n    <div id="root"></div>`);
+
+  await fs.writeFile(path.join(DIST_DIR, "index.html"), html, "utf-8");
+  console.log("Portada: organizaciones colaboradoras añadidas al HTML servido");
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

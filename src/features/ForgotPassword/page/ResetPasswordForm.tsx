@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CircleAlert, CircleCheck, KeyRound } from "lucide-react";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import { useFocusMessage } from "../../../hooks/useFocusMessage";
-import "../components/ForgotPasswordForm.css";
+import AccesoCentrado from "../../LogIn/components/AccesoCentrado";
+import RequisitosContrasena from "../../LogIn/components/RequisitosContrasena";
+import { cumplePoliticaContrasena } from "../../LogIn/politicaContrasena";
+
+const ENLACE_NO_VALIDO = "El enlace de restablecimiento no es válido o ha expirado.";
+
+const VolverAlLogin: React.FC = () => (
+  <div className="formulario-acceso__pie">
+    <Link to="/login" className="fc-enlace fc-enlace--texto formulario-acceso__volver">
+      <ArrowLeft aria-hidden="true" />
+      Volver a iniciar sesión
+    </Link>
+  </div>
+);
 
 const ResetPasswordForm: React.FC = () => {
   const [newPassword, setNewPassword] = useState<string>("");
@@ -23,7 +37,20 @@ const ResetPasswordForm: React.FC = () => {
     e.preventDefault();
 
     if (!token) {
-      setError("El enlace de restablecimiento no es válido o ha expirado.");
+      setError(ENLACE_NO_VALIDO);
+      return;
+    }
+
+    /*
+     * El backend aplica la misma política que en el alta y responde 400 si no
+     * se cumple; abajo, un 400 se traduce como «enlace no válido», así que
+     * quien elegía una contraseña débil creía que su enlace había caducado.
+     * Se comprueba aquí antes de enviar.
+     */
+    if (!cumplePoliticaContrasena(newPassword)) {
+      setError(
+        "La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número."
+      );
       return;
     }
 
@@ -48,7 +75,7 @@ const ResetPasswordForm: React.FC = () => {
     } catch (err) {
       if (axios.isAxiosError(err)) {
         if (err.response && err.response.status === 400) {
-          setError("El enlace de restablecimiento no es válido o ha expirado.");
+          setError(ENLACE_NO_VALIDO);
         } else {
           setError(
             "Error al restablecer la contraseña. Por favor, intenta nuevamente."
@@ -63,88 +90,105 @@ const ResetPasswordForm: React.FC = () => {
     }
   };
 
+  const cabecera = {
+    antetitulo: "Tu cuenta",
+    titulo: (
+      <>
+        Crea una contraseña <span className="fc-rotulador">nueva</span>
+      </>
+    ),
+  };
+
   if (!token) {
     return (
-      <div className="forgot-password-container">
-        <div className="form-card">
-          <img
-            src="/FemCodersClubLogo.png"
-            alt="FemCoders Club Logo"
-            className="form-logo"
-          />
-          <p className="error-message">
-            El enlace de restablecimiento no es válido o ha expirado.
+      <>
+        <Helmet>
+          <title>Nueva contraseña - FemCoders Club</title>
+        </Helmet>
+        <AccesoCentrado {...cabecera}>
+          <p className="fc-aviso fc-aviso--error">
+            <CircleAlert aria-hidden="true" />
+            {ENLACE_NO_VALIDO}
           </p>
-        </div>
-      </div>
+          <p className="formulario-acceso__ayuda">
+            Puedes pedir uno nuevo en{" "}
+            <Link to="/forgot-password" className="fc-enlace fc-enlace--texto">
+              «He olvidado mi contraseña»
+            </Link>
+            .
+          </p>
+          <VolverAlLogin />
+        </AccesoCentrado>
+      </>
     );
   }
 
   return (
-    <div className="forgot-password-container">
-      <div className="form-card">
-        <img
-          src="/FemCodersClubLogo.png"
-          alt="FemCoders Club Logo"
-          className="form-logo"
-        />
-        <form onSubmit={handleSubmit}>
-          <h2>Crear Nueva Contraseña</h2>
-          <div className="form-group">
+    <>
+      <Helmet>
+        <title>Nueva contraseña - FemCoders Club</title>
+      </Helmet>
+      <AccesoCentrado
+        {...cabecera}
+        entradilla="Elige la contraseña con la que entrarás a partir de ahora."
+      >
+        <form onSubmit={handleSubmit} className="formulario-acceso__campos">
+          <div className="fc-campo">
+            <label htmlFor="newPassword">Nueva contraseña</label>
             <PasswordInput
               id="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               autoComplete="new-password"
               required
-            >
-              <label htmlFor="newPassword">Nueva Contraseña</label>
-            </PasswordInput>
+            />
           </div>
-          <div className="form-group">
+
+          <RequisitosContrasena contrasena={newPassword} />
+
+          <div className="fc-campo">
+            <label htmlFor="confirmPassword">Repite la contraseña</label>
             <PasswordInput
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               autoComplete="new-password"
               required
-            >
-              <label htmlFor="confirmPassword">Confirmar Contraseña</label>
-            </PasswordInput>
+            />
           </div>
-          <button
-            type="submit"
-            className="primary-button"
-            disabled={isSubmitting}
-            aria-busy={isSubmitting}
-          >
-            {isSubmitting ? "Restableciendo…" : "Restablecer Contraseña"}
-          </button>
+
           {message && (
-            <p className="success-message" role="status">
+            <p className="fc-aviso fc-aviso--exito" role="status">
+              <CircleCheck aria-hidden="true" />
               {message}
             </p>
           )}
           {error && (
-            <p className="error-message" role="alert" tabIndex={-1} ref={errorRef}>
+            <p
+              className="fc-aviso fc-aviso--error"
+              role="alert"
+              tabIndex={-1}
+              ref={errorRef}
+            >
+              <CircleAlert aria-hidden="true" />
               {error}
             </p>
           )}
 
-          <Link to="/login" className="back-to-login">
-            <ArrowLeft size={16} aria-hidden="true" />
-            Volver a iniciar sesión
-          </Link>
+          <button
+            type="submit"
+            className="fc-boton fc-boton--noche formulario-acceso__enviar"
+            disabled={isSubmitting}
+            aria-busy={isSubmitting}
+          >
+            {isSubmitting ? "Guardando…" : "Guardar contraseña"}
+            <KeyRound aria-hidden="true" />
+          </button>
         </form>
-      </div>
-      <div className="image-container">
-        <img
-          src="/FemCodersClubLogo.png"
-          alt="FemCoders Club"
-          className="side-image"
-        />
-      </div>
-    </div>
+
+        <VolverAlLogin />
+      </AccesoCentrado>
+    </>
   );
 };
 

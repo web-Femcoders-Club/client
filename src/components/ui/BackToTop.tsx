@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./BackToTop.css";
 
 const SCROLL_THRESHOLD = 400;
@@ -7,7 +7,8 @@ const CONTAINER_THRESHOLD = 200;
 interface BackToTopProps {
   /**
    * Contenedor con scroll propio (p. ej. el .modal-content de los modales
-   * legales). Sin él, el botón escucha el scroll de la ventana. Con él,
+   * legales). Sin él, el botón escucha el scroll de la ventana y debe ir al
+   * final del <main> (Layout lo pone ahí). Con él,
    * el botón debe renderizarse como ÚLTIMO HIJO dentro de ese contenedor
    * (usa position: sticky para quedarse visible abajo a la derecha).
    */
@@ -17,9 +18,15 @@ interface BackToTopProps {
 /**
  * Botón flotante «Volver arriba»: aparece tras un umbral de scroll.
  * Diseño: https://claude.ai/code/artifact/5acb286c-7ed4-40dc-9e56-494932878bfd
+ *
+ * En la página, además, solo se muestra al subir (o al llegar al final): es
+ * cuando se busca, y leyendo hacia abajo no tapa el final de las líneas ni los
+ * enlaces de abajo a la derecha. En los documentos del pie, que son cortos,
+ * basta con el umbral.
  */
 const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
   const [visible, setVisible] = useState(false);
+  const ultimaPosicion = useRef(0);
 
   useEffect(() => {
     const target = targetRef?.current;
@@ -28,7 +35,18 @@ const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
 
     const onScroll = () => {
       const scrolled = target ? target.scrollTop : window.scrollY;
-      setVisible(scrolled > threshold);
+      if (target) {
+        setVisible(scrolled > threshold);
+        return;
+      }
+      const subiendo = scrolled < ultimaPosicion.current;
+      const alFinal =
+        scrolled + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      // Sin cambio de posición (p. ej. al cargar) no se decide: se mantiene.
+      if (scrolled !== ultimaPosicion.current) {
+        setVisible(scrolled > threshold && (subiendo || alFinal));
+      }
+      ultimaPosicion.current = scrolled;
     };
     onScroll();
     scroller.addEventListener("scroll", onScroll, { passive: true });
@@ -47,10 +65,10 @@ const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
     }
   };
 
-  return (
+  const boton = (
     <button
       type="button"
-      className={`back-to-top ${targetRef ? "back-to-top--sticky" : "back-to-top--fixed"}${
+      className={`back-to-top ${targetRef ? "back-to-top--sticky" : "back-to-top--pagina"}${
         visible ? " back-to-top--visible" : ""
       }`}
       onClick={handleClick}
@@ -69,6 +87,10 @@ const BackToTop: React.FC<BackToTopProps> = ({ targetRef }) => {
       </svg>
     </button>
   );
+
+  // En la página, un ancla `sticky` de altura cero al final del <main>: el
+  // botón flota abajo durante el scroll y se detiene encima del pie.
+  return targetRef ? boton : <div className="back-to-top-ancla">{boton}</div>;
 };
 
 export default BackToTop;

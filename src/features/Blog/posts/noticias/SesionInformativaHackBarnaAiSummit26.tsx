@@ -1,17 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
-
-import ShareButtons from "../../components/ShareButtons";
+import { Link } from "react-router-dom";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { ImagenPost, NotaPost, SeccionPost, TablaPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 import { urlAbsoluta } from "../../components/siteUrl";
 
-const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
-  const postId = 47;
-
-  return (
-    <div className="blog-post">
+const SesionInformativaHackBarnaAiSummit26: React.FC = () => (
+  <>
       <Helmet>
         <title>
           HackBarna AI Summit 26: cómo se gana un hackathon de IA | FemCoders
@@ -148,209 +144,107 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.webp"
-            alt="Cartel de la sesión informativa HackBarna AI Summit 26 con Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles. Online, 3 de septiembre a las 19:30"
-            className="blog-post-image"
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg";
-              (e.target as HTMLImageElement).onerror = null;
-            }}
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta
-        cómo se gana un hackathon de IA
-      </h1>
-
-      <ShareButtons
-        path="/noticias/sesion-informativa-hackbarna-ai-summit-26"
-        title="Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA"
-      />
-
-      {/* ── Actualización: la sesión ya se celebró y hay grabación ── */}
-      <div
-        style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "25px",
-          borderRadius: "15px",
-          margin: "30px 0",
-          borderLeft: "5px solid #4737bb",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-        }}
-      >
-        <h2
-          style={{
-            color: "#6d2c95",
-            marginTop: 0,
-            fontSize: "1.5rem",
-            marginBottom: "15px",
-          }}
-        >
-          Actualización: ya puedes ver la sesión completa
-        </h2>
+    <PlantillaPost
+      ruta="/noticias/sesion-informativa-hackbarna-ai-summit-26"
+      titulo="Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={47}
+      entradilla={
+        <>
+          <p>
+            HackBarna arrancó en 2024 y este septiembre celebra su tercer
+            hackathon en Barcelona. Entre hackathons y hack nights ya han pasado
+            por sus eventos más de 400 hackers y se han construido más de 200
+            proyectos. En la última edición, el pasado octubre en el Glovo
+            Yellow Park, el primer premio se lo llevó Lilibeth Bustos Linares.
+          </p>
+          <p>
+            Este año queremos que en esa sala haya muchas más mujeres. Así que
+            le hemos pedido a Lilibeth que se siente un rato con nosotras antes
+            de HackBarna AI Summit 26 y nos cuente cómo se vive un hackathon de
+            IA desde dentro: qué pasa de verdad durante las 48 horas, cómo se
+            llega al domingo con algo que funciona y qué convence a un jurado
+            cuando llega la hora de las demos.
+          </p>
+          <p>
+            La cita es el jueves 3 de septiembre a las 19:30. Online, abierta y
+            gratuita.
+          </p>
+          <p>
+            Hace unas semanas os contamos aquí toda la logística de la edición
+            de este año, cuando anunciamos que{" "}
+            <Link to="/noticias/hackbarna-ai-summit-26">
+              FemCoders Club vuelve a ser community partner del hackathon
+            </Link>
+            : 19 y 20 de septiembre en Norrsken House Barcelona, más de 200
+            hackers y una lista de patrocinadores que sigue creciendo. Lo que no
+            teníamos hasta ahora es a alguien que ya haya pasado por ahí y se
+            siente contigo a responder.
+          </p>
+          <p>
+            <em>
+              Lilibeth Bustos Linares, ganadora del hackathon en su edición de
+              2025, estará con nosotras el 3 de septiembre.
+            </em>
+          </p>
+        </>
+      }
+    >
+      <NotaPost titulo="Actualización: ya puedes ver la sesión completa">
         <p>
-          La sesión se celebró el 3 de septiembre y la conversación completa con
-          Lilibeth Bustos Linares ya está disponible en nuestro canal de
+          La sesión se celebró el 3 de septiembre y la conversación completa
+          con Lilibeth Bustos Linares ya está disponible en nuestro canal de
           YouTube. Si no pudiste conectarte en directo, aquí la tienes entera.
         </p>
-        <br />
         <p>
           <a
             href="https://www.youtube.com/watch?v=pvStyYvl5io"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             <strong>Ver la grabación de la sesión con Lilibeth Bustos Linares en YouTube</strong>
           </a>
         </p>
-        <br />
         <p>
           Y desde entonces han pasado más cosas: varias femcoders hemos formado
           equipo y también participaremos en el hackathon. Lo contamos en{" "}
-          <a
-            href="/noticias/hackbarna-ai-summit-26-desde-dentro"
-            className="highlight-link"
-          >
+          <Link to="/noticias/hackbarna-ai-summit-26-desde-dentro">
             FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también
             desde dentro
-          </a>
+          </Link>
           .
         </p>
-      </div>
+      </NotaPost>
 
-      {/* ── Intro ── */}
-      <div className="intro-text">
-        <p>
-          HackBarna arrancó en 2024 y este septiembre celebra su tercer
-          hackathon en Barcelona. Entre hackathons y hack nights ya han pasado
-          por sus eventos más de 400 hackers y se han construido más de 200
-          proyectos. En la última edición, el pasado octubre en el Glovo Yellow
-          Park, el primer premio se lo llevó Lilibeth Bustos Linares.
-        </p>
-        <br />
-        <p>
-          Este año queremos que en esa sala haya muchas más mujeres. Así que le
-          hemos pedido a Lilibeth que se siente un rato con nosotras antes de
-          HackBarna AI Summit 26 y nos cuente cómo se vive un hackathon de IA
-          desde dentro: qué pasa de verdad durante las 48 horas, cómo se llega
-          al domingo con algo que funciona y qué convence a un jurado cuando
-          llega la hora de las demos.
-        </p>
-        <br />
-        <p>
-          La cita es el jueves 3 de septiembre a las 19:30. Online, abierta y
-          gratuita.
-        </p>
-        <br />
-        <p>
-          Hace unas semanas os contamos aquí toda la logística de la edición de
-          este año, cuando anunciamos que{" "}
-          <a
-            href="https://www.femcodersclub.com/noticias/hackbarna-ai-summit-26"
-            className="highlight-link"
-          >
-            FemCoders Club vuelve a ser community partner del hackathon
-          </a>
-          : 19 y 20 de septiembre en Norrsken House Barcelona, más de 200
-          hackers y una lista de patrocinadores que sigue creciendo. Lo que no
-          teníamos hasta ahora es a alguien que ya haya pasado por ahí y se
-          siente contigo a responder.
-        </p>
-      </div>
-
-      <div className="intro-text">
-        <p>
-          <em>
-            Lilibeth Bustos Linares, ganadora del hackathon en su edición de
-            2025, estará con nosotras el 3 de septiembre.
-          </em>
-        </p>
-      </div>
-
-      {/* ── 1. Quién es Lilibeth ── */}
-      <div className="highlight-box">
-        <h2>Quién es Lilibeth Bustos Linares</h2>
-        <br />
-
-        <div className="post-image-container">
-          <picture>
-            <source
-              srcSet="/public-optimized/mobile/assets/noticias/Lilibeth-Bustos-Linares.webp"
-              media="(max-width: 768px)"
-            />
-            <source
-              srcSet="/public-optimized/desktop/assets/noticias/Lilibeth-Bustos-Linares.webp"
-              media="(min-width: 769px)"
-            />
-            <img
-              src="/public-optimized/desktop/assets/noticias/Lilibeth-Bustos-Linares.webp"
-              alt="Retrato de Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles y ganadora del AI Summit Hackathon Barcelona 2025"
-              className="blog-post-image"
-              loading="lazy"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  "/assets/noticias/Lilibeth-Bustos-Linares.jpg";
-                (e.target as HTMLImageElement).onerror = null;
-              }}
-            />
-          </picture>
-        </div>
-        <br />
-
+      <SeccionPost titulo="Quién es Lilibeth Bustos Linares">
+        <ImagenPost
+          src="/assets/noticias/Lilibeth-Bustos-Linares.jpg"
+          alt="Retrato de Lilibeth Bustos Linares, fundadora y CEO de SOMA AI y SoulDoodles y ganadora del AI Summit Hackathon Barcelona 2025"
+        />
         <p>
           Fundadora y CEO de{" "}
-          <a
-            href="https://somaai.earth/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          <a href="https://somaai.earth/" target="_blank" rel="noopener noreferrer">
             SOMA AI
           </a>{" "}
           y de{" "}
-          <a
-            href="https://www.souldoodles.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          <a href="https://www.souldoodles.org/" target="_blank" rel="noopener noreferrer">
             SoulDoodles
           </a>
           . Más de diez años diseñando productos digitales en el sector
           tecnológico entre Nueva York y San Francisco. Ha sido docente de
           Product Design y ha dado charlas en conferencias internacionales.
         </p>
-        <br />
         <p>
           Y, sobre todo para lo que nos ocupa aquí, ganadora del AI Summit
           Hackathon Barcelona 2025.
         </p>
-        <br />
         <p>
-          Fíjate en ese recorrido, porque dice más de lo que parece. Lilibeth no
-          llegó al hackathon desde la investigación en machine learning ni desde
-          un doctorado. Llegó desde el diseño de producto, sabiendo mirar un
-          problema y construir algo que se entiende en cuatro minutos. Eso es
-          exactamente lo que se premia en un fin de semana así.
+          Fíjate en ese recorrido, porque dice más de lo que parece. Lilibeth
+          no llegó al hackathon desde la investigación en machine learning ni
+          desde un doctorado. Llegó desde el diseño de producto, sabiendo mirar
+          un problema y construir algo que se entiende en cuatro minutos. Eso
+          es exactamente lo que se premia en un fin de semana así.
         </p>
-        <br />
         <p>
           Y esa es la diferencia entre leer cómo funciona un hackathon y que te
           lo cuente de primera mano quien salió de la última edición con el
@@ -359,32 +253,24 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
           madrugada del domingo. Y sabe qué mira un jurado cuando ya lleva diez
           demos vistas.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. Ven con tus preguntas ── */}
-      <div className="highlight-box">
-        <h2>Ven con tus preguntas</h2>
-        <br />
+      <SeccionPost titulo="Ven con tus preguntas">
         <p>
-          La sesión no es una charla con turno de dudas al final. Es un rato con
-          Lilibeth para preguntarle lo que quieras: sobre el hackathon, sobre
-          cómo se construye algo en 48 horas o sobre su propio camino hasta
-          llegar ahí.
+          La sesión no es una charla con turno de dudas al final. Es un rato
+          con Lilibeth para preguntarle lo que quieras: sobre el hackathon,
+          sobre cómo se construye algo en 48 horas o sobre su propio camino
+          hasta llegar ahí.
         </p>
-        <br />
         <p>
           Puedes preguntar en directo o dejarlo escrito en el chat, como te
           resulte más cómodo. Y si prefieres solo escuchar, también.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 3. Las dos fechas ── */}
-      <div className="highlight-box">
-        <h2>Las dos fechas de HackBarna AI Summit 26 que te tienes que apuntar</h2>
-        <br />
-
-        <div className="table-container">
-          <table className="framework-comparison-table">
+      <SeccionPost titulo="Las dos fechas de HackBarna AI Summit 26 que te tienes que apuntar">
+        <TablaPost descripcion="Fechas y lugar de la sesión informativa y del hackathon">
+          <table>
             <thead>
               <tr>
                 <th>Qué</th>
@@ -409,14 +295,12 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <br />
-
+        </TablaPost>
         <p>
-          Entre una fecha y otra hay algo más de dos semanas. Y aquí va la parte
-          importante: el orden natural es justo el contrario del que parece.
+          Entre una fecha y otra hay algo más de dos semanas. Y aquí va la
+          parte importante: el orden natural es justo el contrario del que
+          parece.
         </p>
-        <br />
         <p>
           Inscríbete al hackathon ahora. Hoy, mientras lees esto. No esperes al
           3 de septiembre para decidir, porque si esperas te quedarán dos
@@ -424,44 +308,35 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
           llegar con algo pensado. La sesión no es el filtro por el que hay que
           pasar antes de apuntarse: es la preparación de quien ya está dentro.
         </p>
-        <br />
         <p>
           Le sacarás mucho más partido preguntándole a Lilibeth teniendo la
           plaza pedida. Las dudas se escuchan distinto cuando ya vas.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 4. Lo que te llevas ── */}
-      <div className="highlight-box">
-        <h2>Lo que te llevas de esas 48 horas</h2>
-        <br />
+      <SeccionPost titulo="Lo que te llevas de esas 48 horas">
         <p>
           El hackathon es uno de los pocos sitios donde puedes construir algo
           real junto a equipos de Vonage, Cognition o Nebius, y enseñarlo
-          después en una entrevista. Esa conversación con un mentor mientras los
-          dos miráis el mismo error en pantalla no la consigues por LinkedIn.
+          después en una entrevista. Esa conversación con un mentor mientras
+          los dos miráis el mismo error en pantalla no la consigues por
+          LinkedIn.
         </p>
-        <br />
         <p>
-          Cuarenta y ocho horas dan para mucho más de lo que parece cuando estás
-          rodeada de gente que sabe tanto o más que tú.
+          Cuarenta y ocho horas dan para mucho más de lo que parece cuando
+          estás rodeada de gente que sabe tanto o más que tú.
         </p>
-        <br />
         <p>
           Y de ese fin de semana se sale sabiendo bastante más de lo que sabías
           el viernes. Eso pasa siempre, ganes o no.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 5. Cómo apuntarte ── */}
-      <div className="highlight-box">
-        <h2>Cómo apuntarte a las dos</h2>
-        <br />
+      <SeccionPost titulo="Cómo apuntarte a las dos">
         <p>
           <strong>Primero, el hackathon.</strong> Se tarda unos minutos y es el
           paso que de verdad cuenta:
         </p>
-        <br />
         <ul>
           <li>
             <strong>Inscripción al hackathon:</strong>{" "}
@@ -469,7 +344,6 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               href="https://www.hackbcn.com/en/events/aisummit26"
               target="_blank"
               rel="noopener noreferrer"
-              className="highlight-link"
             >
               hackbcn.com/en/events/aisummit26
             </a>
@@ -480,41 +354,31 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
               href="https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516"
               target="_blank"
               rel="noopener noreferrer"
-              className="highlight-link"
             >
               gratuita y online en Eventbrite
             </a>
           </li>
           <li>
             <strong>Toda la información del evento:</strong>{" "}
-            <a
-              href="https://www.hackbcn.com/en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
+            <a href="https://www.hackbcn.com/en" target="_blank" rel="noopener noreferrer">
               hackbcn.com/en
             </a>
           </li>
         </ul>
-        <br />
         <p>
           Cuando te inscribas, menciona que vienes de FemCoders Club. Nos gusta
           que se note cuántas somos.
         </p>
-        <br />
         <p>
-          La sesión te va a servir en cualquier caso, porque vas a entender cómo
-          funciona esto por dentro. Pero pide plaza primero: siempre se puede
-          dar un paso atrás, y lo que no se puede es participar en un evento al
-          que no te has inscrito.
+          La sesión te va a servir en cualquier caso, porque vas a entender
+          cómo funciona esto por dentro. Pero pide plaza primero: siempre se
+          puede dar un paso atrás, y lo que no se puede es participar en un
+          evento al que no te has inscrito.
         </p>
-        <br />
         <p>
-          Gracias al equipo de HackBarna por volver a contar con la comunidad, y
-          a Lilibeth por regalarnos un rato antes del fin de semana grande.
+          Gracias al equipo de HackBarna por volver a contar con la comunidad,
+          y a Lilibeth por regalarnos un rato antes del fin de semana grande.
         </p>
-        <br />
         <p>
           Nos vemos el 3 de septiembre a las 19:30 con Lilibeth. Y cuando pidas
           plaza en el hackathon, dilo en{" "}
@@ -522,80 +386,30 @@ const SesionInformativaHackBarnaAiSummit26: React.FC = () => {
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             nuestro Slack
           </a>
           : vamos formando equipos desde ya.
         </p>
-        <br />
 
-        <div
-          style={{
-            backgroundColor: "rgba(71, 55, 187, 0.1)",
-            padding: "25px",
-            borderRadius: "15px",
-            textAlign: "center",
-            margin: "30px 0",
-            borderLeft: "5px solid #4737bb",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          <h3
-            style={{
-              color: "#6d2c95",
-              marginTop: 0,
-              fontSize: "1.6rem",
-              marginBottom: "15px",
-            }}
-          >
-            Reserva tu plaza en la sesión
-          </h3>
-          <p>
-            Jueves 3 de septiembre, 19:30 h. Online, abierta y gratuita, con
-            Lilibeth Bustos Linares.
-          </p>
-          <br />
+        <h3>Reserva tu plaza en la sesión</h3>
+        <p>
+          Jueves 3 de septiembre, 19:30 h. Online, abierta y gratuita, con
+          Lilibeth Bustos Linares.
+        </p>
+        <p>
           <a
             href="https://www.eventbrite.es/e/entradas-sesion-informativa-hackbarna-ai-summit-26-1997980184516"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-            }}
+            className="fc-boton"
           >
             Inscribirme en Eventbrite
           </a>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
         </p>
-        <p>
-          Fecha de publicación: <strong>17 de agosto, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default SesionInformativaHackBarnaAiSummit26;

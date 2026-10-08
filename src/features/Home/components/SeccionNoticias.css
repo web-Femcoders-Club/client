@@ -1,0 +1,303 @@
+/*
+ * Sección de noticias de la home.
+ *
+ * Fondo `bg3` (src/index.css). Piezas compartidas (src/styles/rediseno.css):
+ * `fc-puntos`, `fc-antetitulo`, `fc-boton`, `fc-boton-redondo` y `fc-chip`.
+ * Fondo, manchas y retícula: `bg3`, `fc-manchas`, `fc-puntos`.
+ * Aquí va lo propio: la disposición y las tarjetas apiladas.
+ *
+ * La destacada crece con el alto de la ventana, así la sección llena una
+ * pantalla de portátil sin forzar la altura ni dejar huecos.
+ *
+ * index.css pinta todos los `span` de naranja: cada clase que cae en un
+ * `span` fija su color, tamaño y peso.
+ */
+
+/*
+ * La raíz no se llama `.noticias` porque la antigua PostStyles.css del blog
+ * (borrada en oct. 2026) tenía `.noticias` y `.noticias h2` y le pisaban el
+ * relleno y el título.
+ */
+.noticias-home {
+  padding: clamp(2.5rem, 4.5vw, 3.5rem) 16px clamp(3rem, 5vw, 4rem);
+}
+
+.noticias__contenedor {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* ---------- Cabecera ---------- */
+
+.noticias__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+/* Tamaño, fuente y color: `fc-titulo-seccion`, compartido. */
+.noticias__titulo {
+  margin: 0.5rem 0 0;
+}
+
+.noticias__entradilla {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--color-text-dark);
+}
+
+.noticias__todas {
+  position: relative;
+}
+
+.noticias__chispas {
+  position: absolute;
+  right: -2.2rem;
+  top: -2.3rem;
+  width: 2.6rem;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.noticias__chispas path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+/* ---------- Meta: chip y fecha ---------- */
+
+.noticias__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.noticias__fecha {
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+/* Distintivo de imagen generada con IA (AI Act art. 50). Blanco sobre tinta: AAA. */
+.noticias__ia {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.6rem;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(42, 33, 112, 0.88);
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+/* ---------- Destacada ---------- */
+
+.noticias__carrusel {
+  position: relative;
+  margin-top: 1.4rem;
+}
+
+.noticias__ventana {
+  position: relative;
+  /* Sin tarjetas debajo, la destacada se queda con el alto: la sección llena la pantalla. */
+  height: clamp(18rem, 58svh, 34rem);
+}
+
+/* Dos tarjetas «apiladas» asomando por debajo: indican que hay más destacadas. */
+.noticias__ventana::before,
+.noticias__ventana::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-radius: 1.3rem;
+  box-shadow: 0 10px 24px rgba(71, 55, 187, 0.1);
+}
+
+.noticias__ventana::before {
+  left: 4%;
+  right: 4%;
+  bottom: -0.7rem;
+  z-index: 0;
+  background: var(--color-lavanda-medio);
+}
+
+.noticias__ventana::after {
+  left: 8%;
+  right: 8%;
+  bottom: -1.35rem;
+  z-index: -1;
+  background: #e3ddfa;
+}
+
+.noticias__destacada {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border-radius: 1.3rem;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 18px 40px rgba(71, 55, 187, 0.13);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.noticias__destacada--activa {
+  opacity: 1;
+  visibility: visible;
+}
+
+.noticias__destacada-imagen {
+  position: relative;
+  margin: 0;
+  background: var(--color-lavanda-medio);
+}
+
+.noticias__destacada-imagen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noticias__destacada-texto {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.1rem, 2vw, 1.6rem) clamp(1.2rem, 2.4vw, 2rem);
+}
+
+.noticias__destacada-titulo {
+  font-family: var(--font-heading);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  margin: 0.6rem 0 0;
+}
+
+.noticias__resumen {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.noticias__leer-destacada {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.noticias__flecha {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.noticias__flecha--anterior {
+  left: -1.5rem;
+}
+
+.noticias__flecha--siguiente {
+  right: -1.5rem;
+}
+
+/* Puntos y, a su derecha, el botón para detener el avance automático. */
+.noticias__puntos-carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.7rem;
+}
+
+.noticias__punto {
+  width: 0.6rem;
+  height: 0.6rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(71, 55, 187, 0.3);
+  cursor: pointer;
+}
+
+.noticias__punto--activo {
+  width: 1.5rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+}
+
+.noticias__puntos-carrusel .fc-boton-rotacion {
+  margin-left: 0.6rem;
+}
+
+.noticias__punto:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+  .noticias__flecha--anterior {
+    left: 0.4rem;
+  }
+
+  .noticias__flecha--siguiente {
+    right: 0.4rem;
+  }
+}
+
+@media (max-width: 760px) {
+  /* En móvil las destacadas se apilan en la misma celda y la más alta marca el alto. */
+  .noticias__ventana {
+    height: auto;
+    display: grid;
+  }
+
+  .noticias__destacada {
+    position: relative;
+    grid-area: 1 / 1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .noticias__destacada-imagen {
+    aspect-ratio: 16 / 9;
+  }
+
+  .noticias__flecha {
+    top: 28%;
+  }
+
+  .noticias__chispas {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noticias__destacada {
+    transition: none;
+  }
+}

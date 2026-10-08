@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import "../Footer.css";
+import "./Documento.css";
+import { X } from "lucide-react";
 import { ModalContext } from "../../../context/ModalContext";
 import BackToTop from "../../ui/BackToTop";
 import { useDialogoModal } from "../../../hooks/useDialogoModal";
@@ -30,27 +32,26 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay documento-fondo">
       <div
-        className="modal-content"
+        className="modal-content documento"
         role="dialog"
         aria-modal="true"
         aria-labelledby="privacy-policy-title"
-        style={{ maxWidth: "900px" }}
         ref={modalRef}
         tabIndex={-1}
       >
         <div className="modal-close">
           {/* Una "x" suelta se anuncia como "equis": el nombre lo pone aquí. */}
           <button onClick={closeModal} aria-label="Cerrar la política de privacidad">
-            x
+            <X aria-hidden="true" />
           </button>
         </div>
 
-        <div>
+        <header>
           <h3 id="privacy-policy-title">Política de Privacidad de FemCoders Club</h3>
-          <h4>Fecha de entrada en vigor: 29.09.2025</h4>
-        </div>
+          <p>Fecha de entrada en vigor: 29.09.2025 · Última actualización: 07.10.2026</p>
+        </header>
 
         <div className="modal-body">
           <p>
@@ -76,12 +77,34 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
           <h5>2. Datos que Recopilamos y Finalidades</h5>
           <ul>
             <li>
+              <strong>Cuenta en la web:</strong> nombre, apellidos, correo electrónico,
+              contraseña (nunca la guardamos tal cual, solo una huella que no permite
+              recuperarla), género y, si quieres darlos, teléfono y foto de perfil. Los usamos para
+              crear tu cuenta y darte acceso a tu espacio: recursos, mentorías, presentaciones y
+              ofertas de trabajo. El teléfono es opcional y solo lo usamos para avisarte si surge
+              algo urgente relacionado con un evento.
+            </li>
+            <li>
+              <strong>Género:</strong> organizamos eventos solo para mujeres y eventos mixtos, y lo
+              usamos para que las invitaciones te lleguen a los que corresponden. Solo te invitamos
+              si has aceptado recibir invitaciones. Si eliges «Mujer» u «Hombre», esa respuesta
+              decide a qué invitaciones entras y nadie la cambia por ti desde el panel. Si eliges «No binario» o
+              «Prefiero no decir», no entras por defecto en ninguna de las dos listas; el equipo
+              puede incluirte en una para invitarte a un evento, sin cambiar nunca lo que
+              respondiste en tu perfil. Puedes cambiar tu respuesta cuando quieras.
+            </li>
+            <li>
               <strong>Formulario de contacto:</strong> nombre, correo electrónico y mensaje, para
               responder tus consultas.
             </li>
             <li>
               <strong>Inscripción a eventos:</strong> nombre, correo electrónico y datos logísticos
               necesarios, para gestionar tu participación y enviarte información relacionada.
+              Eventbrite no pregunta el género; para saber a qué invitaciones va cada persona, lo
+              deducimos de forma orientativa a partir del nombre de pila, con un diccionario de
+              nombres del INE que funciona en nuestro propio servidor (el nombre no se envía a
+              ningún servicio externo). Si el nombre es ambiguo no deducimos nada, y el equipo
+              puede corregir el resultado. Si no es correcto, escríbenos y lo corregiremos a mano.
             </li>
             <li>
               <strong>DNI (solo en algunos eventos):</strong> cuando el evento se celebra en las
@@ -104,8 +127,9 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               forma agregada y anónima para mejorar nuestras actividades.
             </li>
             <li>
-              <strong>Cookies técnicas:</strong> necesarias para el correcto funcionamiento del
-              sitio web. No usamos cookies de terceros ni de analítica. Más info en la{" "}
+              <strong>Cookies y almacenamiento técnicos:</strong> necesarios para el correcto
+              funcionamiento del sitio web. No usamos cookies de analítica, de seguimiento ni de
+              publicidad. Más info en la{" "}
               <button onClick={handleCookiesPolicyClick} className="link-button">
                 Política de Cookies
               </button>
@@ -118,7 +142,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
           </ul>
 
           {!showMore && (
-            <button onClick={toggleShowMore} className="tertiary-button">
+            <button onClick={toggleShowMore} className="fc-boton fc-boton--borde documento__mas">
               Saber más
             </button>
           )}
@@ -129,17 +153,26 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               <p>Tratamos tus datos sobre las siguientes bases jurídicas:</p>
               <ul>
                 <li>
-                  <strong>Consentimiento expreso:</strong> cuando te inscribes, participas o te
-                  suscribes voluntariamente.
+                  <strong>Tu cuenta:</strong> la necesitamos para darte el servicio que pides al
+                  registrarte (acceso a tu espacio).
                 </li>
                 <li>
-                  <strong>Interés legítimo:</strong> para la difusión de actividades y la gestión
-                  interna de eventos y comunidad.
+                  <strong>Consentimiento expreso:</strong> cuando te inscribes, participas o te
+                  suscribes voluntariamente. Si tienes cuenta, la newsletter y las invitaciones a
+                  eventos solo te llegan si lo has aceptado.
+                </li>
+                <li>
+                  <strong>Interés legítimo:</strong> para informar de nuestras actividades a quienes
+                  se inscribieron en alguno de nuestros eventos, y para la gestión interna de
+                  eventos y comunidad.
                 </li>
               </ul>
               <p>
-                No realizamos decisiones automatizadas ni elaboramos perfiles basados únicamente en
-                el tratamiento automatizado de tus datos.
+                No tomamos decisiones basadas únicamente en tratamientos automatizados que tengan
+                efectos jurídicos sobre ti o te afecten de forma significativa. El único cálculo
+                automático es la deducción orientativa del género a partir del nombre en las
+                inscripciones de Eventbrite, explicada arriba: solo decide a qué invitaciones de
+                eventos entras, y el equipo puede corregirla.
               </p>
 
               <h5>4. Conservación de los Datos</h5>
@@ -148,6 +181,13 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 fueron recogidos o hasta que solicites su supresión. A modo orientativo:
               </p>
               <ul>
+                <li>
+                  <strong>Cuenta en la web:</strong> mientras la mantengas. Si nos pides borrarla,
+                  queda 48 horas en una papelera, por si fue un error, y después se borran tu
+                  cuenta, tu foto, tus logros y los resultados de los cuestionarios. Guardamos
+                  durante 12 meses una anotación interna con tu nombre y tu correo, que deja
+                  constancia del borrado.
+                </li>
                 <li>
                   <strong>Contacto:</strong> hasta responder la consulta y cerrar el seguimiento.
                 </li>
@@ -217,7 +257,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               <p>
                 <strong>Baja de comunicaciones:</strong> Si deseas dejar de recibir comunicaciones
                 de FemCoders Club, puedes{" "}
-                <a href="/baja-email" style={{ color: "#ea4f33", fontWeight: "bold", textDecoration: "underline" }}>solicitar tu baja aquí</a>. Recibirás un email de
+                <a href="/baja-email">solicitar tu baja aquí</a>. Recibirás un email de
                 confirmación con un enlace para completar el proceso.
               </p>
 
@@ -261,9 +301,12 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
 
               <h5>10. Uso de Cookies</h5>
               <p>
-                Solo utilizamos cookies propias de carácter técnico necesarias para el
-                funcionamiento del sitio. No usamos cookies de terceros, ni de seguimiento ni de
-                publicidad. No almacenamos información personal mediante cookies.
+                Solo utilizamos cookies y almacenamiento del navegador de carácter técnico,
+                necesarios para el funcionamiento del sitio. No usamos cookies de analítica, de
+                seguimiento ni de publicidad. Si inicias sesión, tu navegador guarda tu nombre, tu
+                email y los datos de la sesión mientras navegas, y los borra al cerrar la pestaña.
+                Algunas entradas del blog incluyen vídeos de YouTube, que al cargarse pueden usar
+                sus propias cookies.
               </p>
               <p>
                 Puedes configurar tu navegador para bloquearlas, aunque esto puede afectar al
@@ -298,8 +341,8 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 .
               </p>
 
-              <div className="flex justify-start mt-4">
-                <button onClick={closeModal} className="tertiary-button">
+              <div className="modal-footer">
+                <button onClick={closeModal} className="fc-boton fc-boton--noche">
                   Aceptar
                 </button>
               </div>

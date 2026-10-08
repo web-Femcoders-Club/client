@@ -1,8 +1,16 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import LoginForm from "../components/LoginForm";
-import "./LoginPage.css";
+import FraseAnimada from "../components/FraseAnimada";
+import "./Acceso.css";
 
+const PALABRAS = ["comunidad", "mentoría", "liderazgo", "diversidad", "oportunidades"] as const;
+
+/*
+ * /login: a la izquierda el saludo y la frase con la palabra escrita a mano,
+ * a la derecha la tarjeta del formulario con la capa en degradado (como
+ * /contacto). Layout ya pone el <main>: aquí, una sección.
+ */
 const LoginPage: React.FC = () => {
   return (
     <>
@@ -10,34 +18,28 @@ const LoginPage: React.FC = () => {
         <title>Iniciar Sesión - FemCoders Club</title>
         <meta name="description" content="Accede a tu cuenta de FemCoders Club para participar en nuestra comunidad tech." />
       </Helmet>
-      <div className="login-page bg1">
-        <div className="login-container">
-          <div className="login-background-text ">
-            <h3 className="typing main-title">¡Únete a nuestra comunidad!</h3>
-            <div className="words">
-              <h2 className="typing">Empoderamiento</h2>
-              <h2 className="typing">Inclusión</h2>
-              <h2 className="typing">Diversidad</h2>
-              <h2 className="typing">Liderazgo</h2>
-              <h2 className="typing">Crecimiento</h2>
-              <h2 className="typing">Desarrollo profesional</h2>
-              <h2 className="typing word-finale">
-                Juntas somos más fuertes
-                <span className="word-finale-sub">Tu comunidad te espera</span>
-              </h2>
-            </div>
-          </div>
-          <div className="login-form-container">
+      <section className="acceso bg1 fc-manchas" aria-labelledby="acceso-titulo">
+        <div className="acceso__rejilla">
+          <header className="acceso__cabecera">
+            <p className="fc-antetitulo fc-antetitulo--naranja">Tu cuenta</p>
+            <h1 className="acceso__titulo" id="acceso-titulo">
+              Qué alegría <span className="fc-rotulador">verte</span> de nuevo
+            </h1>
+            <FraseAnimada inicio="Juntas crecemos en" palabras={PALABRAS} />
+            <p className="acceso__entradilla">
+              Entra en tu espacio de FemCoders Club para seguir los eventos,
+              los recursos y las mentorías de la comunidad.
+            </p>
+          </header>
+
+          <div className="acceso__formulario">
+            <div className="fc-capa" aria-hidden="true" />
             <LoginForm />
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };
 
 export default LoginPage;
-
-
-
-

@@ -1,78 +1,110 @@
+/*
+ * Botón «Volver arriba».
+ *
+ * Círculo azul noche con flecha lavanda (más de 11:1, AAA) y un aro blanco
+ * fino: así se distingue igual sobre las secciones claras que sobre la
+ * oscura de contacto. Es el azul de las llamadas principales del rediseño.
+ */
 .back-to-top {
-  width: 48px;
-  height: 48px;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
-  background: var(--color-secondary);
-  color: #fdfdfd;
-  border: none;
-  box-shadow: var(--shadow-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 10px 24px rgba(23, 15, 102, 0.35);
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
-  transition:
-    opacity var(--transition-fast),
-    visibility var(--transition-fast),
-    transform var(--transition-fast),
-    background-color var(--transition-fast);
-}
-
-.back-to-top--fixed {
-  position: fixed;
-  right: 24px;
-  /*
-   * A 24px se apoyaba justo en el borde inferior, así que al llegar al final de
-   * la página quedaba encima del pie. Subirlo lo despega del pie en el tramo
-   * final sin dejar de estar a mano durante el resto del scroll.
-   *
-   * Es una medida fija a propósito: la alternativa que lo pararía exactamente
-   * sobre el pie exige observar cuándo entra en pantalla, y este botón lo
-   * comparten todas las páginas y cuatro modales del pie.
-   */
-  bottom: 5rem;
-  /* Por debajo del banner de cookies (zIndex 1000): mientras el banner esté
-     visible, lo tapa; al descartarlo, el botón queda accesible. */
-  z-index: 25;
-}
-
-@media (max-width: 768px) {
-  .back-to-top--fixed {
-    right: 16px;
-    bottom: 4rem;
-  }
-}
-
-/* Variante para contenedores con scroll propio (modales legales del footer):
-   se renderiza como último hijo del contenedor y se queda pegado abajo. */
-.back-to-top--sticky {
-  position: sticky;
-  bottom: 8px;
-  margin-left: auto;
-  flex-shrink: 0;
+  translate: 0 8px;
+  transition: opacity 0.2s ease, visibility 0.2s ease, translate 0.2s ease, box-shadow 0.25s ease;
 }
 
 .back-to-top--visible {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  translate: 0 0;
 }
 
-.back-to-top:hover {
-  background: var(--color-text-dark);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-medium);
+.back-to-top--visible:hover {
+  translate: 0 -3px;
+  box-shadow: 0 0 0 2px #fff, 0 14px 30px rgba(23, 15, 102, 0.45);
+}
+
+.back-to-top:active {
+  box-shadow: 0 0 0 2px #fff, inset 3px 3px 8px rgba(4, 2, 30, 0.6);
 }
 
 .back-to-top:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+/*
+ * En la página: un ancla `sticky` de altura cero al final del <main>. Mientras
+ * se hace scroll se queda pegada abajo; al llegar al final del contenido se
+ * detiene ahí, así el botón queda justo encima del pie y nunca lo tapa. Antes
+ * era `fixed` a una altura fija y en el tramo final se montaba sobre el pie.
+ */
+.back-to-top-ancla {
+  position: sticky;
+  bottom: 0;
+  z-index: 25;
+  height: 0;
+  /* El ancla no debe bloquear clics en lo que haya debajo; el botón, sí. */
+  pointer-events: none;
+}
+
+.back-to-top--pagina {
+  position: absolute;
+  right: 24px;
+  bottom: 1.5rem;
+  pointer-events: auto;
+}
+
+/* Móvil: 44px, el mínimo táctil AAA, para tapar menos texto. */
+@media (max-width: 768px) {
+  .back-to-top--pagina {
+    right: 16px;
+    bottom: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/*
+ * Con el aviso de cookies abierto en el móvil (CookieBanner marca <html>), el
+ * botón espera a que se cierre: los dos irían abajo, uno encima del otro.
+ */
+@media (max-width: 640px) {
+  :root[data-aviso-cookies="abierto"] .back-to-top--pagina {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/*
+ * En los documentos del pie (contenedor con scroll propio): último hijo,
+ * pegado abajo. Se sube por encima del botón «Aceptar», que también va fijo
+ * abajo; sin esto lo tapaba.
+ */
+.back-to-top--sticky {
+  position: sticky;
+  bottom: 5.5rem;
+  /* Margen superior negativo: no ocupa sitio (si no, dejaba una franja vacía bajo el pie del documento). */
+  margin: -3rem 1rem 0 auto;
+  flex-shrink: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .back-to-top {
     transition: none;
+  }
+
+  .back-to-top--visible:hover {
+    translate: none;
   }
 }

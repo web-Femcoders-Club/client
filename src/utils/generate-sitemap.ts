@@ -12,6 +12,7 @@ const currentDate = new Date().toISOString().slice(0, 10);
 // ❌ Rutas privadas/excluidas — fuente única compartida con el prerender
 import { PRIVATE_ROUTES } from '../../scripts/privateRoutes';
 import { getPostsIndex } from '../../scripts/postsIndex';
+import { VIDEO_COMUNIDAD } from '../features/About/videoComunidad';
 
 const excludedRoutes = PRIVATE_ROUTES;
 
@@ -20,7 +21,20 @@ const staticRoutes: SitemapItemLoose[] = [
   { url: '/', changefreq: EnumChangefreq.WEEKLY, priority: 1.0, lastmod: currentDate },
   { url: '/contacto', changefreq: EnumChangefreq.MONTHLY, priority: 0.7, lastmod: currentDate },
   { url: '/eventos', changefreq: EnumChangefreq.WEEKLY, priority: 0.9, lastmod: currentDate },
-  { url: '/femcoders-quienes-somos', changefreq: EnumChangefreq.MONTHLY, priority: 0.8, lastmod: currentDate },
+  {
+    url: '/femcoders-quienes-somos',
+    changefreq: EnumChangefreq.MONTHLY,
+    priority: 0.8,
+    lastmod: currentDate,
+    video: [{
+      title: VIDEO_COMUNIDAD.titulo,
+      description: VIDEO_COMUNIDAD.descripcion,
+      thumbnail_loc: `${hostname}${VIDEO_COMUNIDAD.miniatura}`,
+      content_loc: `${hostname}${VIDEO_COMUNIDAD.archivo}`,
+      duration: VIDEO_COMUNIDAD.duracionSegundos,
+      publication_date: VIDEO_COMUNIDAD.fechaSubida,
+    }],
+  },
   { url: '/blog', changefreq: EnumChangefreq.WEEKLY, priority: 0.9, lastmod: currentDate },
   { url: '/blog/noticias', changefreq: EnumChangefreq.WEEKLY, priority: 0.8, lastmod: currentDate },
   { url: '/blog/recursos', changefreq: EnumChangefreq.WEEKLY, priority: 0.8, lastmod: currentDate },
