@@ -171,8 +171,8 @@
   },
   {
     "ruta": "/recursos/js/manipulacion-dom-ingeniera",
-    "titulo": "Manipulaci&oacute;n del DOM como una Ingeniera",
-    "descripcion": "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulaci&oacute;n del DOM.",
+    "titulo": "Manipulación del DOM como una Ingeniera",
+    "descripcion": "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulación del DOM.",
     "imagen": "/assets/javascript/manipulacion-dom-ingeniera.png",
     "fecha": "2026-02-08",
     "seccion": "recurso",

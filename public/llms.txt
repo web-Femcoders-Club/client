@@ -648,10 +648,10 @@ Complete index of the 53 articles published on the FemCoders Club blog.
   Published: 2026-03-01
   Summary: El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva.
 
-- Manipulaci&oacute;n del DOM como una Ingeniera
+- Manipulación del DOM como una Ingeniera
   URL: https://www.femcodersclub.com/recursos/js/manipulacion-dom-ingeniera
   Published: 2026-02-08
-  Summary: Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulaci&oacute;n del DOM.
+  Summary: Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulación del DOM.
 
 - Event Loop en JavaScript: Cómo Funciona la Asincronía
   URL: https://www.femcodersclub.com/recursos/js/event-loop-javascript
