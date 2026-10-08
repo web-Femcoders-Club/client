@@ -51,6 +51,8 @@
 .post__migas a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
   min-height: 2.75rem;
   color: var(--color-secondary);
   font-weight: 700;
@@ -170,6 +172,8 @@
   aspect-ratio: 2.2 / 1;
   object-fit: cover;
   object-position: center;
+  /* Móvil en horizontal y zoom al 200 %: que el título asome en la primera pantalla. */
+  max-height: calc(100svh - var(--fem-header-height, 80px) - 5rem);
   border-radius: 1.2rem;
   background: var(--color-lavanda-medio);
 }
@@ -197,6 +201,7 @@
  */
 .post__contenido > *,
 .post-seccion > *,
+.post-respuesta__contenido > *,
 .post__final > * {
   min-width: 0;
 }
@@ -235,6 +240,14 @@
   outline: 3px solid var(--color-secondary);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Dos botones en un mismo párrafo: separados también cuando bajan de línea. */
+.post__contenido p:has(> .fc-boton) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 /* Imágenes dentro del texto: nunca más anchas que la columna. */
@@ -579,7 +592,7 @@
 .post-video video {
   display: block;
   width: 100%;
-  max-height: 80vh;
+  max-height: calc(100svh - var(--fem-header-height, 80px) - 1rem);
   border-radius: 1rem;
   background: var(--color-lila-oscuro);
 }
