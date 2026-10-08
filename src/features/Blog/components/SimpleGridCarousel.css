@@ -18,7 +18,7 @@
   height: auto;
   aspect-ratio: 2 / 1;
   /* En horizontal, que el pie y los puntos quepan en la pantalla. */
-  max-height: calc(100svh - var(--fem-header-height, 80px) - 2rem);
+  max-height: calc(100svh - var(--fem-header-height, 80px) - 2rem - 2.75rem);
   object-fit: cover;
   display: block;
 }
@@ -28,7 +28,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(71, 55, 187, 0.8);
+  /* Sólido: sobre capturas blancas, al 80 % el texto de 16px no llegaba a 7:1. Ahora 8,3:1. */
+  background-color: var(--color-secondary);
   padding: 15px;
   color: white;
 }
@@ -110,6 +111,9 @@
 }
 
 .grid-carousel-dot.active::before {
+  /* No solo más claro: también más grande, para verlo sin depender del brillo. */
+  width: 14px;
+  height: 14px;
   background-color: white;
 }
 
@@ -118,5 +122,9 @@
   outline-offset: -6px;
 }
 
-
-
+/* Móvil: el pie va debajo de la imagen; encima la tapaba casi entera. */
+@media (max-width: 560px) {
+  .grid-carousel-caption {
+    position: static;
+  }
+}
