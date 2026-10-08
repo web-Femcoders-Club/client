@@ -172,8 +172,6 @@
   aspect-ratio: 2.2 / 1;
   object-fit: cover;
   object-position: center;
-  /* Móvil en horizontal y zoom al 200 %: que el título asome en la primera pantalla. */
-  max-height: calc(100svh - var(--fem-header-height, 80px) - 5rem);
   border-radius: 1.2rem;
   background: var(--color-lavanda-medio);
 }

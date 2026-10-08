@@ -1,5 +1,7 @@
 .grid-carousel {
   position: relative;
+  /* Sin esto, dentro de la rejilla del post mide 0 hasta que carga la imagen. */
+  width: 100%;
   max-width: 900px;
   margin: 30px auto;
   border-radius: 10px;
@@ -31,36 +33,32 @@
   color: white;
 }
 
-.grid-carousel-caption h3 {
+/* Dos clases: las reglas del post (.post-seccion h3, .post__contenido p) le ganaban el color y el tamaño. */
+.grid-carousel .grid-carousel-caption h3 {
   margin: 0 0 5px 0;
   font-size: 1.5rem;
   color: #fdfdfd;
   line-height: 1.4;
 }
 
-.grid-carousel-caption p {
+.grid-carousel .grid-carousel-caption p {
   margin: 0;
   font-size: 1rem;
   color: #fdfdfd;
   line-height: 1.4;
 }
 
-.grid-carousel-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
+/* Barra bajo la imagen: ‹ flecha, puntos, flecha ›. Fuera de la imagen para no tapar el pie. */
+.grid-carousel-barra {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
-  transform: translateY(-50%);
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: var(--color-secondary);
 }
 
 .grid-carousel-button {
-  background-color: rgba(71, 55, 187, 0.7);
-  color: white;
-  border: none;
-  border-radius: 50%;
   /* 44px: objetivo táctil AAA. */
   flex-shrink: 0;
   width: 2.75rem;
@@ -68,23 +66,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .grid-carousel-button:hover {
-  background-color: rgba(71, 55, 187, 0.9);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.grid-carousel-button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: -3px;
 }
 
 .grid-carousel-indicators {
-  position: absolute;
-  bottom: 70px;
-  left: 0;
-  right: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 0;
-  padding: 0;
 }
 
 /* El botón mide 44px (objetivo táctil AAA); el punto visible, 10px, va en ::before. */
