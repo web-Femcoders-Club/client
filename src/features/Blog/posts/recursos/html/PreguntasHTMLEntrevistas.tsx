@@ -667,7 +667,7 @@ Fecha: ${publicationDate}
 
       <PlantillaPost
         ruta="/recursos/html/quiz-html-entrevistas"
-        titulo="Quiz HTML para Entrevistas Técnicas: 30 Preguntas que Debes Dominar"
+        titulo="Quiz HTML para entrevistas técnicas: 30 preguntas que debes dominar"
         autora={{ nombre: "femCoders Club", rol: "Comunidad de mujeres desarrolladoras" }}
         idComentarios={postId}
         entradilla={
@@ -751,7 +751,7 @@ Fecha: ${publicationDate}
           </ul>
         </SeccionPost>
 
-        <SeccionPost titulo="El Quiz Interactivo">
+        <SeccionPost titulo="El quiz interactivo">
           <p>
             <strong>Instrucciones:</strong> Selecciona la(s) respuesta(s) que consideres correcta(s) y pulsa
             «Comprobar respuesta». Algunas preguntas pueden tener múltiples opciones válidas.

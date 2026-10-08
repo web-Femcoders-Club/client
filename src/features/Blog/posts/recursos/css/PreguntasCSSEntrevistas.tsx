@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { BookOpen, Download, Globe, MessageSquare, Share2, Trophy, Users } from "lucide-react";
+import { BookOpen, Download, Globe, Hammer, MessageSquare, Share2, Trophy, Users } from "lucide-react";
 import Quiz, { QuizQuestion, QuizResults } from "../../../../../components/Quiz";
 import PlantillaPost from "../../../components/post/PlantillaPost";
-import { NotaPost, SeccionPost, TablaPost, TarjetasPost } from "../../../components/post/PiezasPost";
+import {
+  ListaMarcadaPost,
+  NotaPost,
+  PasosPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
 const preguntasCSSEntrevistas: QuizQuestion[] = [
   // NIVEL BÁSICO (10 preguntas)
@@ -651,7 +658,7 @@ Fecha: ${publicationDate}
         />
         <meta name="googlebot" content="index, follow" />
         <meta name="bingbot" content="index, follow" />
-        <meta name="author" content="Irina ichim" />
+        <meta name="author" content="Irina Ichim" />
 
         <meta property="og:type" content="article" />
         <meta
@@ -891,6 +898,104 @@ Fecha: ${publicationDate}
                 texto: "Guías de Google sobre rendimiento y buenas prácticas.",
                 enlace: "https://web.dev/",
                 icono: <Globe aria-hidden="true" />,
+              },
+            ]}
+          />
+        </SeccionPost>
+
+        <SeccionPost titulo="Consejos para la entrevista">
+          <ListaMarcadaPost titulo="Lo que se valora" tipo="bien">
+            <li>
+              <strong>La cascada y la especificidad:</strong> saber explicar por qué gana una regla y no otra.
+            </li>
+            <li>
+              <strong>Elegir bien el layout:</strong> cuándo usar Flexbox, cuándo Grid y por qué.
+            </li>
+            <li>
+              <strong>Diseño adaptable:</strong> mobile first, unidades relativas y media o container queries.
+            </li>
+            <li>
+              <strong>Accesibilidad:</strong> contraste, foco visible y <code>prefers-reduced-motion</code>, aunque no te pregunten.
+            </li>
+          </ListaMarcadaPost>
+
+          <ListaMarcadaPost titulo="Preguntas que suelen venir después" tipo="pregunta">
+            <li>¿Cómo centrarías un elemento en vertical y en horizontal?</li>
+            <li>¿Qué harías si un estilo no se aplica y no sabes por qué?</li>
+            <li>¿Cómo organizarías el CSS de un proyecto grande para que no se descontrole?</li>
+            <li>¿Qué propiedades animarías para que una animación vaya fluida?</li>
+          </ListaMarcadaPost>
+
+          <ListaMarcadaPost titulo="Errores que conviene evitar" tipo="mal">
+            <li>
+              <strong>Tapar problemas con <code>!important</code>:</strong> explica cómo lo resolverías con la especificidad.
+            </li>
+            <li>
+              <strong>Medidas fijas en todo:</strong> los píxeles fijos rompen el diseño en otras pantallas y con zoom.
+            </li>
+            <li>
+              <strong>Quitar el <code>outline</code> sin sustituto:</strong> quien navega con teclado deja de ver dónde está.
+            </li>
+            <li>
+              <strong>Respuestas genéricas:</strong> sé concreta y pon ejemplos de tus proyectos.
+            </li>
+          </ListaMarcadaPost>
+        </SeccionPost>
+
+        <SeccionPost titulo="Tu plan de estudio">
+          <PasosPost
+            pasos={[
+              {
+                etiqueta: "Semanas 1 y 2",
+                titulo: "Refuerza lo básico",
+                puntos: [
+                  "Selectores, cascada y especificidad",
+                  "El modelo de caja y box-sizing",
+                  "Unidades: px, em, rem, % y las del viewport",
+                ],
+              },
+              {
+                etiqueta: "Semanas 3 y 4",
+                titulo: "Profundiza en lo intermedio",
+                puntos: [
+                  "Flexbox y Grid, y cuándo usar cada uno",
+                  "Diseño adaptable con media queries y container queries",
+                  "Variables CSS y temas",
+                ],
+              },
+              {
+                etiqueta: "Semanas 5 y 6",
+                titulo: "Domina lo avanzado",
+                puntos: [
+                  "Transiciones y animaciones que no fuerzan el repintado",
+                  "Arquitectura del CSS: BEM, CSS Modules o Sass",
+                  "Rendimiento: CSS crítico y CSS sin usar",
+                ],
+              },
+            ]}
+          />
+          <TarjetasPost
+            titulo="Para practicar con las manos"
+            tarjetas={[
+              {
+                titulo: "Una página adaptable",
+                texto: "De móvil a escritorio, sin una sola medida fija.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un layout con Grid",
+                texto: "Con áreas con nombre y Flexbox dentro de cada componente.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Un tema oscuro",
+                texto: "Con variables CSS y prefers-color-scheme.",
+                icono: <Hammer aria-hidden="true" />,
+              },
+              {
+                titulo: "Una animación accesible",
+                texto: "Que respete prefers-reduced-motion.",
+                icono: <Hammer aria-hidden="true" />,
               },
             ]}
           />

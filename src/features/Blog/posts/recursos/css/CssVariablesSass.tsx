@@ -274,7 +274,7 @@ document.documentElement.style.setProperty('--client-primary', clientConfig.prim
           tarjetas={[
             {
               titulo: "CSS Viewer (extensión de Chrome)",
-              texto: "Inspecciona CSS Variables en tiempo real.",
+              texto: "Muestra los estilos de cualquier elemento al pasar el ratón por encima, sin abrir las DevTools.",
               enlace: "https://chrome.google.com/webstore/detail/css-viewer/ggfgijbpiheegefliciemofobhmofgce",
               icono: <Wrench aria-hidden="true" />,
             },
@@ -285,7 +285,7 @@ document.documentElement.style.setProperty('--client-primary', clientConfig.prim
             },
             {
               titulo: "Extensión de Sass para VS Code",
-              texto: "Resaltado de sintaxis y autocompletado.",
+              texto: "Resaltado y autocompletado para la sintaxis con sangría (.sass). Para SCSS no hace falta: VS Code ya lo trae.",
               enlace: "https://marketplace.visualstudio.com/items?itemName=syler.sass-indented",
               icono: <Wrench aria-hidden="true" />,
             },
@@ -310,7 +310,7 @@ document.documentElement.style.setProperty('--client-primary', clientConfig.prim
             },
             {
               titulo: "CSS Variables Generator",
-              texto: "Convierte colores Sass a CSS Variables automáticamente.",
+              texto: "Escribe el nombre y el color de cada variable y te da el bloque de CSS Variables listo para copiar.",
               enlace: "https://css-variables-generator.netlify.app",
               icono: <Wrench aria-hidden="true" />,
             },
