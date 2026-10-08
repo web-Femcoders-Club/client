@@ -5,6 +5,112 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Blog (rediseño): página principal, Noticias y Recursos
+
+#### Añadido
+- **El post de React migrado: el blog entero usa ya la plantilla común.**
+  `PostStyles.css` y `PostImage` se borran: ningún post los usaba, y la
+  hoja era global (al visitar el blog se quedaba cargada en toda la web).
+- **Las 19 noticias migradas a la plantilla**, sin estilos en línea,
+  `react-icons` ni `PostStyles.css`, con su `<Helmet>` y sus JSON-LD sin
+  cambios. Los vídeos propios van con `VideoPost` (con versión móvil y sin
+  reproducción automática: la felicitación de Navidad empezaba sola y en
+  bucle); las redes sociales, como enlaces con su nombre visible. Fechas,
+  cifras y estados de cada noticia se quedan como se escribieron.
+- **`OptimizedImage` ya no pide rutas inexistentes**: una imagen que ya
+  estaba en `/public-optimized/`, un `.gif` o un `.svg` se sirven tal cual
+  (antes, primero un 404 y luego la buena).
+- **`speakable`** del JSON-LD de los posts apunta al título y la entradilla
+  de la plantilla nueva.
+- **Los 11 posts de JavaScript migrados a la plantilla**, sin estilos en
+  línea, `react-icons` ni `PostStyles.css`, con su `<Helmet>` sin cambios.
+  Los ejercicios de Closures se pliegan con `RespuestaPost`. Por el camino:
+  el Decorator de Patrones ya memoiza de verdad, el `ClickCollector` del
+  EventBus recibe su bus, la coerción de Fundamentos recupera sus comillas
+  (`"5" + 2`), File System Access deja de presentarse como disponible en
+  todos los navegadores y la búsqueda «con debounce» de Event Loop se
+  llama por lo que hace (cancela la petición anterior). Las invitaciones a
+  la comunidad dicen «más de 1.600 mujeres» (antes 1.300 o 1.500 según el
+  post) y el club firma igual en todos: «FemCoders Club».
+- **Distintivo de IA en las portadas del blog**: tarjetas, listados y
+  portada del post marcan las imágenes generadas con IA (AI Act, art. 50).
+- **Los 14 posts de CSS migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz de CSS queda como
+  el de HTML (logro y guía en los resultados). Por el camino: valores de
+  `ease-in`/`ease-out` corregidos, `web-vitals` con la API actual, contrastes
+  de ejemplo recalculados, preguntas del quiz matizadas (especificidad,
+  `subgrid`, pseudoelementos), enlaces internos rotos arreglados y restos de
+  Markdown y de prompt eliminados.
+- **Piezas nuevas para los posts**: `ImagenPost` (imagen con pie),
+  `DemoPost` (resultado en vivo de un ejemplo, en recuadro punteado) y
+  `NotaPost tipo="aviso"`. El texto de `TarjetasPost` admite listas.
+  Guía para escribir posts nuevos en `docs/posts-del-blog.md`.
+- **El carrusel de CSS Grid lleva su propio CSS** (`SimpleGridCarousel.css`),
+  fuera de `PostStyles.css`.
+- **Plantilla común de los posts** (`components/post/PlantillaPost`): la
+  portada al ancho del texto, migas, tema, título, entradilla, autora, fecha
+  y tiempo de lectura; al final, compartir y comentarios en la misma columna;
+  fuera del artículo, «Sigue aprendiendo» con tres posts del mismo tema.
+  Fecha, tema e imagen salen del índice del blog. Piezas para el contenido:
+  `SeccionPost`, `CodigoPost` (con botón de copiar), `NotaPost` y `TablaPost`.
+- **Los 8 posts de HTML migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz conserva su
+  lógica (30 preguntas, logros y guía en PDF). Erratas arregladas por el camino:
+  palabras pegadas, restos de Markdown en títulos y un ejemplo de `<pre>` que
+  salía en una línea. «Formularios y tablas» enlaza también la demo en
+  GitHub Pages.
+- **La plantilla admite fotos y vídeos dentro del texto**: imágenes al ancho
+  de la columna como máximo, vídeos de YouTube en 16:9 y listas con foto
+  redonda; los bloques de código ya no ensanchan la página en móvil.
+- **Comentarios y compartir con el aspecto del rediseño** y su propio CSS
+  (antes dependían de `PostStyles.css`). La lógica no cambia. La lista va
+  antes del formulario, el comentario recién enviado se marca como pendiente
+  de revisión y los títulos ya no dan por hecho que quien comenta es mujer.
+- **Quiz de entrevistas rediseñado** (`components/Quiz`, sin cambios en la
+  lógica): barra de progreso, nivel en etiqueta, opciones con su estado dicho
+  en texto («Correcta», «Tu respuesta») y resultados con anillo y barras por
+  nivel. El foco acompaña cada paso. El logro y la guía de estudio salen en
+  la pantalla de resultados (`extraResultados`) en lugar de una ventana
+  flotante; sin sesión, se invita a iniciarla para guardar el logro.
+- **Piezas para apartados de ideas cortas**: `TarjetasPost`,
+  `ListaMarcadaPost` y `PasosPost`. El quiz de HTML las usa en la guía de
+  después del quiz (puntuación, recursos, consejos y plan de estudio), que
+  antes eran listas de viñetas seguidas. Su enlace a «Accesibilidad HTML»
+  (no existía) apunta ahora a «HTML avanzado para SEO y accesibilidad».
+- **Personas creadoras en tarjetas** en «Integración de frameworks».
+
+#### Eliminado
+- **Media `PostStyles.css` (de 1243 a 662 líneas)**: 79 reglas y 8 animaciones
+  de la portada antigua del blog y de las listas a mano que ya no usa nadie.
+  La portada de la web lo importaba solo por dos enlaces, que pasan a
+  `fc-enlace--texto`; ya no carga los estilos de los posts. Su regla `body`
+  (el fondo lavanda) pasa a `index.css` y vale para todas las páginas.
+
+#### Cambiado
+- **/blog/noticias y /blog/recursos son un mismo listado** (`ListadoBlog`)
+  con las tarjetas de la portada, del más nuevo al más antiguo; Recursos
+  filtra por tema. Fuera `Noticias.tsx` y `Recursos.tsx`, dos listas más
+  escritas a mano: a la de recursos le faltaban 8 de los 34.
+- **Paginación de 12 en 12** en Noticias, Recursos y los resultados del
+  buscador de la portada. En los listados la página va en la URL
+  (`?pagina=2`), así que Atrás y los enlaces compartidos funcionan.
+- **Recursos destaca los quizzes de entrevistas técnicas** en un bloque junto
+  al título («Prepara tu entrevista técnica»). Se reconocen por la ruta
+  (`/quiz-…`): uno nuevo aparece sin tocar el código.
+- **Pestañas Todo el blog / Noticias / Recursos** (con su número de posts) en
+  las tres páginas, bajo la entradilla: antes Noticias y Recursos solo se
+  veían al final de cada columna de la portada. Sustituyen a «Volver al blog».
+- **/blog con el diseño del rediseño, sin Tailwind**: cabecera con buscador y
+  temas (con su número real de posts), «Lo último» con los cuatro posts más
+  nuevos y dos columnas, Noticias y Recursos, con los tres siguientes de cada
+  una. Tarjetas con la portada de cada post (`TarjetaPost`), encuadradas hacia
+  arriba para no cortar caras. Fuera «Python», que no tenía ningún post.
+- **Un post nuevo aparece en la portada del blog sin tocar `BlogPage.tsx`**:
+  la lista sale de `src/features/Blog/postsDelBlog.json`, que genera
+  `pnpm generate:posts` (en el prebuild) desde el mismo índice que el sitemap
+  y `llms.txt`. Desaparecen el array de 53 posts y el `switch` que buscaba el
+  enlace por el título exacto.
+
 ### Acceso (rediseño): inicio de sesión, registro, contraseña y baja
 
 #### Cambiado

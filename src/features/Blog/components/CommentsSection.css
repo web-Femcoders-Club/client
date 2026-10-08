@@ -1,0 +1,146 @@
+/*
+ * Comentarios de los posts (CommentsSection.tsx), dentro de la columna de
+ * lectura: lista y, debajo, el formulario en una caja lavanda suave. Los
+ * campos usan `fc-campo` y los avisos `fc-aviso` (src/styles/rediseno.css).
+ *
+ * index.css da tamaño, color y sombra a h2/h3 y pinta los `span` en naranja:
+ * cada clase de aquí fija sus propios valores.
+ */
+
+.post-comentarios {
+  display: grid;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(71, 55, 187, 0.15);
+}
+
+.post-comentarios h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.post-comentarios__numero {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  background: var(--color-lavanda-medio);
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.post-comentarios__vacio,
+.post-comentarios__aviso {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+}
+
+.post-comentarios__lista {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-comentario {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.1);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+}
+
+.post-comentario p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.post-comentario__inicial {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-lavanda-medio);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.post-comentario__cabecera {
+  margin-bottom: 0.2rem !important;
+  font-size: 0.95rem;
+}
+
+.post-comentario__cabecera time {
+  font-size: 0.88rem;
+}
+
+.post-comentario__pendiente {
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+.post-comentarios__formulario {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding: clamp(1.1rem, 3vw, 1.5rem);
+  border-radius: 1.2rem;
+  background: var(--color-lavanda-claro);
+}
+
+.post-comentarios__formulario h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+/* Sobre la caja lavanda, los campos en blanco para que se distingan. */
+.post-comentarios__formulario .fc-campo input,
+.post-comentarios__formulario .fc-campo textarea {
+  background: #fff;
+}
+
+.post-comentarios__formulario .fc-campo textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.post-comentarios__formulario .char-counter {
+  justify-self: end;
+  margin: 0;
+}
+
+.post-comentarios__opcional {
+  font-size: inherit;
+  font-weight: 400;
+  color: inherit;
+}
+
+.post-comentarios__formulario .fc-boton {
+  justify-self: start;
+}

@@ -14,8 +14,9 @@
  */
 
 /*
- * La raíz no se llama `.noticias`: PostStyles.css (blog, también cargada en la
- * home) tiene `.noticias` y `.noticias h2`, que le pisaban el relleno y el título.
+ * La raíz no se llama `.noticias` porque la antigua PostStyles.css del blog
+ * (borrada en oct. 2026) tenía `.noticias` y `.noticias h2` y le pisaban el
+ * relleno y el título.
  */
 .noticias-home {
   padding: clamp(2.5rem, 4.5vw, 3.5rem) 16px clamp(3rem, 5vw, 4rem);

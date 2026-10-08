@@ -42,7 +42,7 @@ export const PRESENTACION = {
    */
   datos: [
     "Asociación sin ánimo de lucro nacida en Barcelona en octubre de 2023",
-    "más de 1.500 mujeres",
+    "más de 1.600 mujeres",
     "más de 40 eventos",
   ],
 };

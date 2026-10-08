@@ -88,7 +88,7 @@ function buildJsonLd(post: PostMeta, image: string): string {
     // Pensado para asistentes de voz y respuestas generativas.
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: [".blog-post-title", ".intro-text"],
+      cssSelector: [".post__titulo", ".post__entradilla"],
     },
   };
 

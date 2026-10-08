@@ -1,0 +1,582 @@
+/*
+ * Páginas del blog: la portada (PortadaBlog.tsx) y los listados de Noticias y
+ * Recursos (ListadoBlog.tsx). Piezas compartidas en
+ * src/styles/rediseno.css: `fc-manchas`, `fc-antetitulo`, `fc-rotulador`,
+ * `fc-titulo-seccion` y `fc-boton`. Fondos: `bg1` y `bg4`, los de la portada.
+ * Las tarjetas tienen su propio CSS (TarjetaPost.css).
+ *
+ * index.css da tamaño, color y sombra a h1/h2 y pinta todos los `span` en
+ * naranja: cada clase de aquí fija sus propios valores.
+ */
+
+.blog-portada {
+  /* La cabecera es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.blog-portada__contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ---------- Cabecera: título a la izquierda, buscador a la derecha ---------- */
+
+.blog-portada__cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  align-items: end;
+  gap: 1.5rem 3rem;
+}
+
+.blog-portada__texto {
+  display: grid;
+  gap: 1rem;
+}
+
+.blog-portada__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.blog-portada__entradilla {
+  margin: 0;
+  max-width: 38rem;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+/* ---------- Navegación del blog: Todo el blog, Noticias y Recursos ---------- */
+
+.blog-secciones__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-secciones__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  /* Borde violeta al 75 %: ~4,7:1, por encima del 3:1 de WCAG 1.4.11. */
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-secciones__enlace:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-lavanda-claro);
+}
+
+.blog-secciones__enlace[aria-current="page"] {
+  border-color: transparent;
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  color: #e9e4ff;
+}
+
+.blog-secciones__enlace:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* Es un span: fija color, tamaño y peso contra la regla global. */
+.blog-secciones__numero {
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-lavanda-medio);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.blog-secciones__enlace[aria-current="page"] .blog-secciones__numero {
+  background: rgba(233, 228, 255, 0.18);
+  color: #e9e4ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-secciones__enlace {
+    transition: none;
+  }
+}
+
+/* ---------- Recursos: título a la izquierda, kit de entrevistas a la derecha ---------- */
+
+.blog-listado__cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  /* La columna lleva título, pestañas y temas: mide casi lo que la tarjeta y quedan centradas. */
+  align-items: center;
+  gap: 2rem clamp(2rem, 5vw, 4rem);
+}
+
+.blog-kit {
+  position: relative;
+}
+
+.blog-kit .fc-capa {
+  inset: 1rem -0.8rem -0.8rem 1rem;
+  transform: rotate(2deg);
+}
+
+.blog-kit__tarjeta {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+}
+
+.blog-kit__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.blog-kit__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.blog-kit__lista {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada quiz, una fila clicable de al menos 44px sobre lavanda. */
+.blog-kit__enlace {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.9rem;
+  background: var(--color-lavanda-claro);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.blog-kit__enlace:hover {
+  background: var(--color-lavanda-medio);
+}
+
+.blog-kit__enlace:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Son `span`: fijan color, tamaño y peso contra la regla global. */
+.blog-kit__tema {
+  grid-column: 1;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.blog-kit__detalle {
+  grid-column: 1;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+.blog-kit__flecha {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--color-secondary);
+}
+
+.blog-kit__nota {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+}
+
+/* En los listados los temas van dentro de la columna del título. */
+.blog-portada__texto .blog-temas {
+  margin-top: 0.75rem;
+}
+
+.blog-listado__contador {
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Buscador ---------- */
+
+.blog-buscador {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.blog-buscador label {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.blog-buscador__campo {
+  position: relative;
+}
+
+.blog-buscador__campo svg {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  translate: 0 -50%;
+  color: var(--color-secondary);
+  pointer-events: none;
+}
+
+/* Borde violeta al 75 %: ~4,7:1 contra el blanco, por encima del 3:1 de WCAG 1.4.11. */
+.blog-buscador input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem 0.7rem 2.7rem;
+  border: 1.5px solid rgba(71, 55, 187, 0.75);
+  border-radius: 0.9rem;
+  background: #fff;
+  color: var(--color-text-dark);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+}
+
+.blog-buscador input:hover {
+  border-color: var(--color-secondary);
+}
+
+.blog-buscador input:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-color: var(--color-secondary);
+}
+
+/* ---------- Temas: pastillas en relieve; la elegida, hundida en azul noche ---------- */
+
+.blog-temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.blog-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-lavanda);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.16);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.blog-tema:hover {
+  box-shadow: -5px -5px 12px rgba(255, 255, 255, 1), 5px 5px 14px rgba(71, 55, 187, 0.22);
+}
+
+.blog-tema[aria-pressed="true"] {
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  box-shadow: inset 3px 3px 8px rgba(4, 2, 30, 0.5);
+  color: #e9e4ff;
+}
+
+.blog-tema:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* El número va en un span: fija color, tamaño y peso contra la regla global. */
+.blog-tema__numero {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+.blog-tema[aria-pressed="true"] .blog-tema__numero {
+  color: #e9e4ff;
+}
+
+/* ---------- Bloques: Lo último, columnas y resultados ---------- */
+
+.blog-bloque {
+  padding: clamp(2.5rem, 5vw, 4rem) 16px;
+}
+
+.blog-bloque__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-bloque__titulo {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+}
+
+.blog-bloque__contador {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+}
+
+.blog-rejilla,
+.blog-columna__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 1.5rem;
+}
+
+.blog-rejilla > li,
+.blog-columna__lista > li {
+  display: flex;
+}
+
+.blog-rejilla > li > .tarjeta-post,
+.blog-columna__lista > li > .tarjeta-post {
+  flex: 1;
+}
+
+/* Cuatro en fila; en tablet dos y dos, nunca tres y una sola debajo. */
+.blog-rejilla--cuatro {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.blog-columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+.blog-columna {
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+}
+
+.blog-columna__lista {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* En las columnas la tarjeta es ancha: con 16:9 la foto medía más que el texto. */
+.blog-columna .tarjeta-post__imagen {
+  aspect-ratio: 3 / 1;
+}
+
+.blog-columna .fc-boton {
+  justify-self: start;
+}
+
+/* El contador recibe el foco al cambiar de página: sin contorno de foco, no es un control. */
+.blog-bloque__contador:focus {
+  outline: none;
+}
+
+/* ---------- Paginación: pastillas en relieve; la actual, hundida en azul noche ---------- */
+
+.blog-paginacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.blog-paginacion__lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-paginacion__boton,
+.blog-paginacion__numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-lavanda);
+  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.95), 4px 4px 12px rgba(71, 55, 187, 0.16);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.blog-paginacion__numero {
+  padding: 0.4rem;
+}
+
+.blog-paginacion__boton svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.blog-paginacion__numero[aria-current="page"] {
+  background: linear-gradient(145deg, #261d8f, #170f66);
+  box-shadow: inset 3px 3px 8px rgba(4, 2, 30, 0.5);
+  color: #e9e4ff;
+  cursor: default;
+}
+
+/* Es un span: fija tamaño y color contra la regla global. */
+.blog-paginacion__texto {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.blog-paginacion__boton:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.blog-paginacion__boton:focus-visible,
+.blog-paginacion__numero:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.blog-vacio {
+  margin: 0;
+  padding: 2rem 1rem;
+  font-family: var(--font-primary);
+  text-align: center;
+  color: var(--color-text-dark);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1060px) {
+  .blog-rejilla--cuatro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .blog-portada__cabecera,
+  .blog-columnas,
+  .blog-listado__cabecera {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Margen para la capa girada, que si no roza los temas de debajo. */
+  .blog-kit {
+    max-width: 30rem;
+    margin: 0 0.8rem 1rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-kit__enlace {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .blog-rejilla--cuatro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blog-temas {
+    gap: 0.5rem;
+  }
+
+  /* Todo en una fila: Anterior y Siguiente se quedan en la flecha; el texto lo sigue oyendo el lector. */
+  .blog-paginacion {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .blog-paginacion__boton {
+    padding: 0.4rem;
+  }
+
+  .blog-paginacion__texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  /* Una sola columna: la tarjeta es estrecha y 16:9 ya no ocupa de más. */
+  .blog-columna .tarjeta-post__imagen {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-tema {
+    transition: none;
+  }
+}

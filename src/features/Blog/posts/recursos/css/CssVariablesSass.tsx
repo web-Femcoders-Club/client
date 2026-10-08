@@ -1,18 +1,22 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import { Link } from "react-router-dom";
+import { BookOpen, Wrench } from "lucide-react";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  CodigoPost,
+  ImagenPost,
+  ListaMarcadaPost,
+  NotaPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
-import ShareButtons from "../../../components/ShareButtons";
-
-const CssVariablesSass: React.FC = () => {
-  const postId = 25;
-  const publicationDate = "30 de julio de 2025";
-
-  return (
-    <div className="blog-post">
+const CssVariablesSass: React.FC = () => (
+  <>
       <Helmet>
-        <title>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | femCoders Club</title>
+        <title>CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | FemCoders Club</title>
         <meta
           name="description"
           content="Descubre cuándo usar CSS Custom Properties y cuándo Sass variables. Guía completa con ejemplos prácticos, arquitectura híbrida y migración estratégica para desarrollo frontend moderno."
@@ -41,7 +45,7 @@ const CssVariablesSass: React.FC = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | femCoders Club"
+          content="CSS Variables vs Sass: Cuándo usar cada una para máximo impacto | FemCoders Club"
         />
         <meta
           property="og:description"
@@ -89,85 +93,61 @@ const CssVariablesSass: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/css/CSS-Variables-Sass.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/css/CSS-Variables-Sass.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/css/CSS-Variables-Sass.webp"
-            alt="CSS Variables vs Sass - Comparación y arquitectura híbrida para desarrollo frontend moderno"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        CSS Variables vs Sass
-        <br />
-        Cuándo usar cada una para máximo impacto
-      </h1>
-
-      <ShareButtons path="/recursos/css/css-variables-vs-sass" title="CSS Variables vs Sass: Cuándo usar cada una para máximo impacto" />
-
-      <p className="intro-text">
-        ¿Alguna vez te has preguntado por qué tu tema oscuro tarda una eternidad en cambiar o por qué necesitas recompilar todo tu CSS cada vez que quieres ajustar un color? La respuesta está en entender cuándo usar{" "}
-        <strong>CSS Custom Properties</strong> (variables CSS) y cuándo quedarte con las clásicas{" "}
-        <strong>variables de Sass</strong>.
-      </p>
-
-      <p className="intro-text">
-        Después de años trabajando con ambas tecnologías, he descubierto que el secreto no está en elegir una sobre la otra, sino en{" "}
-        <strong>combinarlas estratégicamente</strong>. En este post te voy a mostrar exactamente cuándo usar cada una para que tu código sea más eficiente, mantenible y, sobre todo, ¡que funcione como esperas!
-      </p>
-
-      <div className="highlight-box">
-        <h2>🎯 ¿Por qué importa esta diferencia?</h2>
+    <PlantillaPost
+      ruta="/recursos/css/css-variables-vs-sass"
+      titulo="CSS Variables vs Sass: cuándo usar cada una para máximo impacto"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={25}
+      entradilla={
+        <>
+          <p>
+            ¿Alguna vez te has preguntado por qué tu tema oscuro tarda una eternidad en cambiar o por qué necesitas recompilar todo tu CSS cada vez que quieres ajustar un color? La respuesta está en entender cuándo usar{" "}
+            <strong>CSS Custom Properties</strong> (variables CSS) y cuándo quedarte con las clásicas{" "}
+            <strong>variables de Sass</strong>.
+          </p>
+          <p>
+            Después de años trabajando con ambas tecnologías, he descubierto que el secreto no está en elegir una sobre la otra, sino en{" "}
+            <strong>combinarlas estratégicamente</strong>. En este post te voy a mostrar exactamente cuándo usar cada una para que tu código sea más eficiente, mantenible y, sobre todo, ¡que funcione como esperas!
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="¿Por qué importa esta diferencia?">
         <p>
           Imagínate esto: estás desarrollando un dashboard corporativo que necesita cambiar entre tema claro y oscuro al instante. Con Sass variables, cada cambio requiere recompilación. Con CSS Variables, el cambio es inmediato.{" "}
           <strong>Pero aquí viene el plot twist</strong>: para un sistema de espaciado consistente, Sass variables son más eficientes.
         </p>
         <p>La clave está en entender que <strong>no es una batalla</strong>, es una colaboración.</p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>❌ Errores comunes que debes evitar</h2>
+      <SeccionPost titulo="Errores comunes que debes evitar">
         <p>
           Después de años trabajando con ambas tecnologías, he visto estos errores una y otra vez. Te ahorro tiempo y frustración:
         </p>
 
         <h3>1. Usar CSS Variables en media queries</h3>
-        <pre className="code-block bg3">
-{`/* ❌ Esto NO funciona */
+        <CodigoPost lenguaje="CSS">{`/* ❌ Esto NO funciona */
 @media (min-width: var(--breakpoint-md)) {
   .container { width: 100%; }
 }
 
 /* ✅ Esto SÍ funciona */
 @media (min-width: 768px) {
-  .container { 
+  .container {
     width: var(--container-width); /* Variables dentro sí funcionan */
   }
-}`}
-        </pre>
+}`}</CodigoPost>
 
         <h3>2. Migrar todas las variables de Sass de una vez</h3>
         <p>
-          <strong>Error típico:</strong> "Voy a convertir todas mis 200 variables de Sass a CSS Variables este fin de semana"
+          <strong>Error típico:</strong> «Voy a convertir todas mis 200 variables de Sass a CSS Variables este fin de semana».
         </p>
         <p>
-          <strong>Enfoque correcto:</strong> Migra gradualmente, empezando por colores y valores que realmente necesitan ser dinámicos.
+          <strong>Enfoque correcto:</strong> migra gradualmente, empezando por colores y valores que realmente necesitan ser dinámicos.
         </p>
 
         <h3>3. No considerar fallbacks para navegadores antiguos</h3>
-        <pre className="code-block bg3">
-{`/* ❌ Sin fallback */
+        <CodigoPost lenguaje="CSS">{`/* ❌ Sin fallback */
 .button {
   background: var(--primary-color);
 }
@@ -176,8 +156,7 @@ const CssVariablesSass: React.FC = () => {
 .button {
   background: #3b82f6; /* Fallback */
   background: var(--primary-color, #3b82f6); /* Con valor por defecto */
-}`}
-        </pre>
+}`}</CodigoPost>
 
         <h3>4. Usar CSS Variables para valores que nunca cambian</h3>
         <p>
@@ -185,23 +164,20 @@ const CssVariablesSass: React.FC = () => {
         </p>
 
         <h3>5. Olvidar la cascada de CSS Variables</h3>
-        <pre className="code-block bg3">
-{`/* Las CSS Variables respetan la cascada */
+        <CodigoPost lenguaje="CSS">{`/* Las CSS Variables respetan la cascada */
 :root { --color: blue; }
 .card { --color: red; } /* Sobrescribe la de :root */
-.card .title { color: var(--color); } /* Será roja, no azul */`}
-        </pre>
-      </div>
+.card .title { color: var(--color); } /* Será roja, no azul */`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🎨 Casos de uso reales en producción</h2>
+      <SeccionPost titulo="Casos de uso reales en producción">
         <p>
           Aquí tienes ejemplos concretos de cómo grandes empresas y proyectos reales implementan esta arquitectura híbrida:
         </p>
 
         <h3>E-commerce multitienda (Shopify, WooCommerce)</h3>
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <TablaPost descripcion="Qué va en Sass y qué en CSS Variables en un e-commerce multitienda">
+          <table>
             <thead>
               <tr>
                 <th>Sass Variables</th>
@@ -223,11 +199,10 @@ const CssVariablesSass: React.FC = () => {
               </tr>
             </tbody>
           </table>
-        </div>
+        </TablaPost>
 
         <h3>Dashboards corporativos (Analytics, CRM)</h3>
-        <pre className="code-block bg3">
-{`// Sass: Estructura fija del dashboard
+        <CodigoPost lenguaje="SCSS">{`// Sass: Estructura fija del dashboard
 $sidebar-width: 280px;
 $header-height: 64px;
 $card-padding: 24px;
@@ -237,22 +212,28 @@ $card-padding: 24px;
   --brand-primary: var(--client-primary, #3b82f6);
   --brand-secondary: var(--client-secondary, #64748b);
   --dashboard-theme: var(--client-theme, 'light');
-}
+}`}</CodigoPost>
+        <CodigoPost lenguaje="JavaScript">{`// JavaScript cambia los valores según el cliente logueado
+document.documentElement.style.setProperty('--client-primary', clientConfig.primaryColor);`}</CodigoPost>
 
-// JavaScript cambia los valores según el cliente logueado
-document.documentElement.style.setProperty('--client-primary', clientConfig.primaryColor);`}
-        </pre>
-
-        <h3>Aplicaciones educativas (Moodle, Canvas)</h3>
-        <ul>
-          <li><strong>Sass:</strong> Layout responsive y componentes educativos</li>
-          <li><strong>CSS Variables:</strong> Temas de accesibilidad (alto contraste, tamaño de fuente, modo dislexia)</li>
-          <li><strong>Beneficio:</strong> Cambios instantáneos sin recargar la página para mejor experiencia de aprendizaje</li>
-        </ul>
+        <TarjetasPost
+          titulo="Aplicaciones educativas (Moodle, Canvas)"
+          columnas={3}
+          tarjetas={[
+            { titulo: "Sass", texto: "Layout responsive y componentes educativos." },
+            {
+              titulo: "CSS Variables",
+              texto: "Temas de accesibilidad (alto contraste, tamaño de fuente, modo dislexia).",
+            },
+            {
+              titulo: "Beneficio",
+              texto: "Cambios instantáneos sin recargar la página para una mejor experiencia de aprendizaje.",
+            },
+          ]}
+        />
 
         <h3>Aplicaciones SaaS (Notion, Figma, Linear)</h3>
-        <pre className="code-block bg3">
-{`// Respuesta a preferencias del sistema
+        <CodigoPost lenguaje="SCSS">{`// Respuesta a preferencias del sistema
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: #0f172a;
@@ -266,228 +247,153 @@ document.documentElement.style.setProperty('--client-primary', clientConfig.prim
     --transition-duration: 0ms;
     --animation-duration: 0ms;
   }
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <h3>Design Systems empresariales</h3>
+        <h3>Design systems empresariales</h3>
         <p>
           Empresas como GitHub, Shopify y Atlassian usan esta arquitectura híbrida en sus design systems:
         </p>
-        <ul>
-          <li><strong>Sass:</strong> Tokens de espaciado, tipografía y breakpoints</li>
-          <li><strong>CSS Variables:</strong> Paletas de color, estados de componentes y temas</li>
-          <li><strong>Resultado:</strong> Consistencia visual + flexibilidad de theming</li>
-        </ul>
-      </div>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            { titulo: "Sass", texto: "Tokens de espaciado, tipografía y breakpoints." },
+            { titulo: "CSS Variables", texto: "Paletas de color, estados de componentes y temas." },
+            { titulo: "Resultado", texto: "Consistencia visual y flexibilidad de theming." },
+          ]}
+        />
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🛠️ Herramientas y recursos recomendados</h2>
+      <SeccionPost titulo="Herramientas y recursos recomendados">
         <p>
           Estas herramientas te harán la vida mucho más fácil al trabajar con la arquitectura híbrida:
         </p>
 
-        <h3>Para desarrollo y debugging</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://chrome.google.com/webstore/detail/css-viewer/ggfgijbpiheegefliciemofobhmofgce"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Viewer (Chrome Extension)
-              </a>
-            </strong>
-            : Inspecciona CSS Variables en tiempo real
-          </li>
-          <li>
-            <strong>Firefox DevTools</strong>: La mejor herramienta nativa para debugging CSS Variables (muestra valores computados)</li>
-          <li>
-            <strong>
-              <a
-                href="https://marketplace.visualstudio.com/items?itemName=syler.sass-indented"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sass Extension for VS Code
-              </a>
-            </strong>
-            : Sintaxis highlighting y autocompletado
-          </li>
-        </ul>
+        <TarjetasPost
+          titulo="Para desarrollo y debugging"
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "CSS Viewer (extensión de Chrome)",
+              texto: "Muestra los estilos de cualquier elemento al pasar el ratón por encima, sin abrir las DevTools.",
+              enlace: "https://chrome.google.com/webstore/detail/css-viewer/ggfgijbpiheegefliciemofobhmofgce",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Firefox DevTools",
+              texto: "La mejor herramienta nativa para depurar CSS Variables (muestra los valores computados).",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Extensión de Sass para VS Code",
+              texto: "Resaltado y autocompletado para la sintaxis con sangría (.sass). Para SCSS no hace falta: VS Code ya lo trae.",
+              enlace: "https://marketplace.visualstudio.com/items?itemName=syler.sass-indented",
+              icono: <Wrench aria-hidden="true" />,
+            },
+          ]}
+        />
 
-        <h3>Generadores y herramientas online</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://coolors.co"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Coolors.co
-              </a>
-            </strong>
-            : Genera paletas de colores y exporta como CSS Variables
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.fluid-type-scale.com"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Fluid Type Scale
-              </a>
-            </strong>
-            : Crea escalas tipográficas fluidas con CSS Variables
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://css-variables-generator.netlify.app"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Variables Generator
-              </a>
-            </strong>
-            : Convierte colores Sass a CSS Variables automáticamente
-          </li>
-        </ul>
+        <TarjetasPost
+          titulo="Generadores y herramientas online"
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Coolors.co",
+              texto: "Genera paletas de colores y las exporta como CSS Variables.",
+              enlace: "https://coolors.co",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Fluid Type Scale",
+              texto: "Crea escalas tipográficas fluidas con CSS Variables.",
+              enlace: "https://www.fluid-type-scale.com",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "CSS Variables Generator",
+              texto: "Escribe el nombre y el color de cada variable y te da el bloque de CSS Variables listo para copiar.",
+              enlace: "https://css-variables-generator.netlify.app",
+              icono: <Wrench aria-hidden="true" />,
+            },
+          ]}
+        />
 
-        <h3>Testing y performance</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://lighthouse.web.dev"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Lighthouse
-              </a>
-            </strong>
-            : Mide el impacto en performance de tu CSS
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.webpagetest.org"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WebPageTest
-              </a>
-            </strong>
-            : Compara velocidad de carga entre diferentes enfoques
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://caniuse.com/?search=css%20custom%20properties"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Can I Use
-              </a>
-            </strong>
-            : Verifica compatibilidad con navegadores
-          </li>
-        </ul>
+        <TarjetasPost
+          titulo="Testing y performance"
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Lighthouse",
+              texto: "Mide el impacto de tu CSS en el rendimiento.",
+              enlace: "https://developer.chrome.com/docs/lighthouse/overview",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "WebPageTest",
+              texto: "Compara la velocidad de carga entre diferentes enfoques.",
+              enlace: "https://www.webpagetest.org",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Can I Use",
+              texto: "Verifica la compatibilidad con los navegadores.",
+              enlace: "https://caniuse.com/?search=css%20custom%20properties",
+              icono: <Wrench aria-hidden="true" />,
+            },
+          ]}
+        />
 
-        <h3>Design Systems y documentación</h3>
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://storybook.js.org"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Storybook
-              </a>
-            </strong>
-            : Documenta tus componentes con diferentes themes
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://github.com/primer/css"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Primer CSS (GitHub)
-              </a>
-            </strong>
-            : Ejemplo real de design system híbrido
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://polaris.shopify.com"
-                className="highlight-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Shopify Polaris
-              </a>
-            </strong>
-            : Otro excelente ejemplo de arquitectura híbrida
-          </li>
-        </ul>
+        <TarjetasPost
+          titulo="Design systems y documentación"
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Storybook",
+              texto: "Documenta tus componentes con diferentes temas.",
+              enlace: "https://storybook.js.org",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Primer CSS (GitHub)",
+              texto: "Ejemplo real de design system híbrido.",
+              enlace: "https://github.com/primer/css",
+              icono: <Wrench aria-hidden="true" />,
+            },
+            {
+              titulo: "Shopify Polaris",
+              texto: "Otro excelente ejemplo de arquitectura híbrida.",
+              enlace: "https://polaris.shopify.com",
+              icono: <Wrench aria-hidden="true" />,
+            },
+          ]}
+        />
 
-        <div style={{
-          backgroundColor: "rgba(59, 130, 246, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "20px",
-          borderLeft: "4px solid #3b82f6"
-        }}>
-          <p style={{ margin: "0" }}>
-            <strong>💡 Pro tip:</strong> Crea un snippet de VS Code con tu estructura base de CSS Variables para nuevos proyectos. Te ahorra tiempo y asegura consistencia.
+        <NotaPost titulo="Pro tip">
+          <p>
+            Crea un snippet de VS Code con tu estructura base de CSS Variables para nuevos proyectos. Te ahorra tiempo y asegura consistencia.
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🌟 NIVEL BÁSICO: Las diferencias que cambiarán tu perspectiva</h2>
-
-        <h3>Sass Variables: Los cimientos sólidos</h3>
+      <SeccionPost titulo="Nivel básico: las diferencias que cambiarán tu perspectiva">
+        <h3>Sass Variables: los cimientos sólidos</h3>
         <p>
-          Las variables de Sass son como <strong>constantes matemáticas</strong>: se definen una vez durante la compilación y se "imprimen" en todos los lugares donde las uses.
+          Las variables de Sass son como <strong>constantes matemáticas</strong>: se definen una vez durante la compilación y se «imprimen» en todos los lugares donde las uses.
         </p>
 
-        <img
+        <ImagenPost
           src="/public-optimized/desktop/assets/css/sass-variables-demo.webp"
-          alt="Demostración de Sass Variables - Compilación a valores fijos"
-          className="blog-post-image"
-          loading="lazy"
-          style={{ margin: "1rem 0", borderRadius: "8px" }}
+          alt="Demo en CodePen que compara dos tarjetas: las variables de Sass se procesan al compilar, para valores que no cambian; las CSS Custom Properties, en tiempo de ejecución, para temas dinámicos"
+          pie={
+            <>
+              Sass Variables compilándose a valores fijos. CodePen:{" "}
+              <a href="https://codepen.io/IrinaIchim/pen/MYajExj" target="_blank" rel="noopener noreferrer">
+                «Sass vs CSS Variables Demo»
+              </a>
+            </>
+          }
         />
-        <p><em>Sass Variables compilándose a valores fijos - CodePen: 
-          <a
-            href="https://codepen.io/IrinaIchim/pen/MYajExj"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            "Sass vs CSS Variables Demo"
-          </a>
-        </em></p>
 
-        <pre className="code-block bg3">
-{`// Sass - Compile time
+        <CodigoPost lenguaje="SCSS">{`// Sass - Compile time
 $primary-color: #3b82f6;
 $spacing-unit: 1rem;
 $border-radius: 8px;
@@ -495,42 +401,34 @@ $border-radius: 8px;
 .card {
   background: $primary-color; // Se convierte en: background: #3b82f6;
   padding: calc($spacing-unit * 2); // Se convierte en: padding: 2rem;
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <p><strong>¿Cuándo usar Sass variables?</strong></p>
-        <ul>
-          <li>✅ Sistemas de espaciado consistentes</li>
-          <li>✅ Cálculos matemáticos complejos</li>
-          <li>✅ Configuraciones que no cambiarán en runtime</li>
-          <li>✅ Valores que necesitas en media queries</li>
-        </ul>
+        <ListaMarcadaPost titulo="¿Cuándo usar Sass variables?" tipo="bien">
+          <li>Sistemas de espaciado consistentes</li>
+          <li>Cálculos matemáticos complejos</li>
+          <li>Configuraciones que no cambiarán en runtime</li>
+          <li>Valores que necesitas en media queries</li>
+        </ListaMarcadaPost>
 
-        <h3>CSS Custom Properties: La magia dinámica</h3>
+        <h3>CSS Custom Properties: la magia dinámica</h3>
         <p>
           Las CSS Variables son como <strong>variables de JavaScript</strong>: existen en el navegador y pueden cambiar en tiempo real.
         </p>
 
-        <img
+        <ImagenPost
           src="/public-optimized/desktop/assets/css/css-variables-demo.webp"
-          alt="CSS Variables cambiando dinámicamente con tema oscuro"
-          className="blog-post-image"
-          loading="lazy"
-          style={{ margin: "1rem 0", borderRadius: "8px" }}
+          alt="Demo en CodePen en modo oscuro: con Sass hacen falta clases separadas por tema (.card y .card--dark); con CSS Custom Properties, un mismo componente cambia de tema al redefinir sus variables"
+          pie={
+            <>
+              CSS Variables funcionando dinámicamente. CodePen:{" "}
+              <a href="https://codepen.io/IrinaIchim/pen/NPGRaVW" target="_blank" rel="noopener noreferrer">
+                «Dark Mode: Sass vs CSS Variables»
+              </a>
+            </>
+          }
         />
-        <p><em>CSS Variables funcionando dinámicamente - CodePen: 
-          <a
-            href="https://codepen.io/IrinaIchim/pen/NPGRaVW"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            "Dark Mode: Sass vs CSS Variables"
-          </a>
-        </em></p>
 
-        <pre className="code-block bg3">
-{`/* CSS Variables - Runtime */
+        <CodigoPost lenguaje="CSS">{`/* CSS Variables - Runtime */
 :root {
   --primary-color: #3b82f6;
   --text-color: #1a202c;
@@ -545,22 +443,20 @@ $border-radius: 8px;
   background: var(--primary-color); /* Cambia dinámicamente */
   color: var(--text-color);
   transition: all 0.3s ease; /* ¡Y puede animarse! */
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <p><strong>¿Cuándo usar CSS Variables?</strong></p>
-        <ul>
-          <li>✅ Temas dinámicos (modo oscuro/claro)</li>
-          <li>✅ Componentes que cambian según el contexto</li>
-          <li>✅ Valores que necesitas modificar con JavaScript</li>
-          <li>✅ Animaciones y transiciones de propiedades</li>
-        </ul>
+        <ListaMarcadaPost titulo="¿Cuándo usar CSS Variables?" tipo="bien">
+          <li>Temas dinámicos (modo oscuro/claro)</li>
+          <li>Componentes que cambian según el contexto</li>
+          <li>Valores que necesitas modificar con JavaScript</li>
+          <li>Animaciones y transiciones de propiedades</li>
+        </ListaMarcadaPost>
 
-        <h3>El momento "¡Ajá!"</h3>
+        <h3>El momento «¡Ajá!»</h3>
         <p>Aquí está la diferencia clave que muchas desarrolladoras no captan al principio:</p>
 
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <TablaPost descripcion="Diferencias clave entre Sass Variables y CSS Variables">
+          <table>
             <thead>
               <tr>
                 <th>Sass Variables</th>
@@ -569,28 +465,27 @@ $border-radius: 8px;
             </thead>
             <tbody>
               <tr>
-                <td>📝 Se "escriben" durante compilación</td>
-                <td>🔄 Viven en el navegador</td>
+                <td>Se «escriben» durante la compilación</td>
+                <td>Viven en el navegador</td>
               </tr>
               <tr>
-                <td>⚡ Súper rápidas (ya están calculadas)</td>
-                <td>🎨 Pueden cambiar dinámicamente</td>
+                <td>Súper rápidas (ya están calculadas)</td>
+                <td>Pueden cambiar dinámicamente</td>
               </tr>
               <tr>
-                <td>🚫 No funcionan con JavaScript</td>
-                <td>✨ JavaScript puede modificarlas</td>
+                <td>No funcionan con JavaScript</td>
+                <td>JavaScript puede modificarlas</td>
               </tr>
               <tr>
-                <td>📱 Disponibles en media queries</td>
-                <td>❌ No en media queries</td>
+                <td>Disponibles en media queries</td>
+                <td>No en media queries</td>
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
+        </TablaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🚀 NIVEL INTERMEDIO: Arquitectura híbrida que escalará contigo</h2>
+      <SeccionPost titulo="Nivel intermedio: arquitectura híbrida que escalará contigo">
         <p>
           Aquí es donde la magia realmente sucede. En lugar de elegir uno u otro,{" "}
           <strong>combinas ambos</strong> para obtener lo mejor de ambos mundos.
@@ -598,26 +493,20 @@ $border-radius: 8px;
 
         <h3>La estrategia ganadora: Sass para estructura, CSS Variables para theming</h3>
 
-        <img
+        <ImagenPost
           src="/public-optimized/desktop/assets/css/hybrid-architecture-demo.webp"
-          alt="Arquitectura híbrida combinando Sass y CSS Variables"
-          className="blog-post-image"
-          loading="lazy"
-          style={{ margin: "1rem 0", borderRadius: "8px" }}
+          alt="Demo en CodePen de la arquitectura híbrida: selectores de modo claro u oscuro y de color, y tres tarjetas que reparten el trabajo entre los design tokens de Sass, las CSS Custom Properties y la combinación de ambas"
+          pie={
+            <>
+              Arquitectura híbrida en acción. CodePen:{" "}
+              <a href="https://codepen.io/IrinaIchim/pen/yyYaPLV" target="_blank" rel="noopener noreferrer">
+                «Hybrid Architecture: Sass + CSS Variables»
+              </a>
+            </>
+          }
         />
-        <p><em>Arquitectura híbrida en acción - CodePen: 
-          <a
-            href="https://codepen.io/IrinaIchim/pen/yyYaPLV"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            "Hybrid Architecture: Sass + CSS Variables"
-          </a>
-        </em></p>
 
-        <pre className="code-block bg3">
-{`// Sass: Define la estructura (compile-time)
+        <CodigoPost lenguaje="SCSS">{`// Sass: Define la estructura (compile-time)
 $space-xs: 0.25rem;
 $space-sm: 0.5rem;
 $space-md: 1rem;
@@ -641,70 +530,70 @@ $radius-lg: 0.75rem;
   padding: $space-lg;
   border-radius: $radius-lg;
   margin-bottom: $space-md;
-  
+
   // CSS Variables para theming dinámico
   background: var(--bg-primary);
   color: var(--text-primary);
   border: 1px solid var(--border-primary);
-  
+
   // ¡Y puede transicionar suavemente entre temas!
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}`}
-        </pre>
+}`}</CodigoPost>
 
         <h3>Theming dinámico que impresiona</h3>
-        <p>El poder real viene cuando implementas cambios de tema que se sienten <strong>instantáneos y fluidos</strong>:</p>
-
-        <p><em>Transición suave entre temas - CodePen: 
-          <a
-            href="https://codepen.io/IrinaIchim/pen/NPGRaVW"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            "Dark Mode: Sass vs CSS Variables"
+        <p>El poder real viene cuando implementas cambios de tema que se sienten <strong>instantáneos y fluidos</strong>.</p>
+        <p>
+          Transición suave entre temas en CodePen:{" "}
+          <a href="https://codepen.io/IrinaIchim/pen/NPGRaVW" target="_blank" rel="noopener noreferrer">
+            «Dark Mode: Sass vs CSS Variables»
           </a>
-        </em></p>
+        </p>
 
-        <pre className="code-block bg3">
-{`/* Tema base */
+        <CodigoPost lenguaje="CSS">{`/* Tema base */
 .theme-container {
   --transition-duration: 0.4s;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-  
-  transition: 
+
+  transition:
     background-color var(--transition-duration) var(--transition-timing),
     color var(--transition-duration) var(--transition-timing),
     border-color var(--transition-duration) var(--transition-timing);
-}
-
-/* Cambio de tema con JavaScript */
+}`}</CodigoPost>
+        <CodigoPost lenguaje="JavaScript">{`/* Cambio de tema con JavaScript */
 document.querySelector('.theme-toggle').addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
   // ¡Instantáneo! No hay recompilación
-});`}
-        </pre>
+});`}</CodigoPost>
 
-        <h3>Casos de uso reales que verás en producción</h3>
-        <ol>
-          <li><strong>Dashboards empresariales</strong>: Sass para el grid system, CSS Variables para branding por cliente</li>
-          <li><strong>E-commerce</strong>: Sass para componentes, CSS Variables para colores de marca dinámicos</li>
-          <li><strong>Aplicaciones educativas</strong>: Sass para responsive design, CSS Variables para temas de accesibilidad</li>
-        </ol>
-      </div>
+        <TarjetasPost
+          titulo="Casos de uso reales que verás en producción"
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Dashboards empresariales",
+              texto: "Sass para el grid system, CSS Variables para el branding por cliente.",
+            },
+            {
+              titulo: "E-commerce",
+              texto: "Sass para componentes, CSS Variables para colores de marca dinámicos.",
+            },
+            {
+              titulo: "Aplicaciones educativas",
+              texto: "Sass para responsive design, CSS Variables para temas de accesibilidad.",
+            },
+          ]}
+        />
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>💎 NIVEL AVANZADO: Migración estratégica y optimización</h2>
-
-        <h3>Migración inteligente: De Sass-only a arquitectura híbrida</h3>
+      <SeccionPost titulo="Nivel avanzado: migración estratégica y optimización">
+        <h3>Migración inteligente: de Sass-only a arquitectura híbrida</h3>
         <p>
           Si ya tienes un proyecto con muchas variables de Sass,{" "}
           <strong>no migres todo de una vez</strong>. Aquí tienes una estrategia probada:
         </p>
 
-        <p><strong>Fase 1: Identifica candidatos a migración</strong></p>
-        <pre className="code-block bg3">
-{`// ❌ Mantén en Sass (estructura fija)
+        <p><strong>Fase 1: identifica candidatos a migración</strong></p>
+        <CodigoPost lenguaje="SCSS">{`// ❌ Mantén en Sass (estructura fija)
 $breakpoints: (
   sm: 640px,
   md: 768px,
@@ -723,12 +612,10 @@ $colors: (
   primary: #3b82f6,
   secondary: #64748b,
   success: #10b981
-);`}
-        </pre>
+);`}</CodigoPost>
 
-        <p><strong>Fase 2: Implementa el puente</strong></p>
-        <pre className="code-block bg3">
-{`// Crea CSS Variables desde Sass
+        <p><strong>Fase 2: implementa el puente</strong></p>
+        <CodigoPost lenguaje="SCSS">{`// Crea CSS Variables desde Sass
 :root {
   @each $name, $color in $colors {
     --color-#{$name}: #{$color};
@@ -739,140 +626,119 @@ $colors: (
 .component {
   padding: $space-lg; // Sass (fijo)
   background: var(--color-primary); // CSS Variable (dinámico)
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <h3>Optimización de performance: Los detalles que marcan la diferencia</h3>
+        <h3>Optimización de performance: los detalles que marcan la diferencia</h3>
         <p>
-          La combinación de Sass y CSS Variables no solo mejora la mantenibilidad, sino que también puede optimizar la performance de tu sitio. Aquí te dejo algunos tips:
+          La combinación de Sass y CSS Variables no solo mejora la mantenibilidad, sino que también puede optimizar la performance de tu sitio. Aquí te dejo algunos tips.
         </p>
-        <p><em>Comparación visual de CSS generado - CodePen: 
-          <a
-            href="https://codepen.io/IrinaIchim/pen/MYajExj"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            "Sass vs CSS Variables Demo"
+        <p>
+          Comparación visual de CSS generado en CodePen:{" "}
+          <a href="https://codepen.io/IrinaIchim/pen/MYajExj" target="_blank" rel="noopener noreferrer">
+            «Sass vs CSS Variables Demo»
           </a>
-        </em></p>
+        </p>
 
-        <pre className="code-block bg3">
-{`/* Sass genera esto (más compacto): */
+        <CodigoPost lenguaje="CSS">{`/* Sass genera esto (más compacto): */
 .card { background: #ffffff; color: #1a202c; }
 .card-dark { background: #1a202c; color: #ffffff; }
 
 /* CSS Variables genera esto (más flexible): */
-.card { 
-  background: var(--bg-color); 
-  color: var(--text-color); 
+.card {
+  background: var(--bg-color);
+  color: var(--text-color);
   transition: all 0.3s ease;
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <p><strong>Métricas que importan:</strong></p>
-        <ul>
-          <li><strong>Sass</strong>: Menor tamaño de CSS final, carga más rápida</li>
-          <li><strong>CSS Variables</strong>: Mayor flexibilidad, mejor UX en cambios dinámicos</li>
-          <li><strong>Híbrido</strong>: El equilibrio perfecto entre performance y funcionalidad</li>
-        </ul>
+        <TarjetasPost
+          titulo="Métricas que importan"
+          columnas={3}
+          tarjetas={[
+            { titulo: "Sass", texto: "Menor tamaño de CSS final, carga más rápida." },
+            { titulo: "CSS Variables", texto: "Mayor flexibilidad, mejor UX en cambios dinámicos." },
+            { titulo: "Híbrido", texto: "El equilibrio perfecto entre performance y funcionalidad." },
+          ]}
+        />
 
         <h3>Debugging y herramientas de desarrollo</h3>
-        <p>Una ventaja huge de CSS Variables: <strong>puedes modificarlas en DevTools en tiempo real</strong>.</p>
+        <p>Una gran ventaja de las CSS Variables: <strong>puedes modificarlas en DevTools en tiempo real</strong>.</p>
 
-        <pre className="code-block bg3">
-{`// Debugging dinámico en la consola
+        <CodigoPost lenguaje="JavaScript">{`// Debugging dinámico en la consola
 document.documentElement.style.setProperty('--primary-color', '#ff6b6b');
 
 // Útil para testing de accesibilidad
-document.documentElement.style.setProperty('--font-size-base', '18px');`}
-        </pre>
-      </div>
+document.documentElement.style.setProperty('--font-size-base', '18px');`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🔗 Conectando con el ecosistema CSS</h2>
+      <SeccionPost titulo="Conectando con el ecosistema CSS">
         <p>Esta estrategia híbrida se complementa perfectamente con otras técnicas avanzadas que ya conoces en femCoders Club:</p>
 
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/selectores-css"
-                className="highlight underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Selectores CSS avanzados
-              </a>
-            </strong>
-            : Combínalos con CSS Variables para targeting dinámico
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/responsive-design"
-                className="highlight underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Responsive Design
-              </a>
-            </strong>
-            : Usa Sass para breakpoints, CSS Variables para valores adaptables
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://www.femcodersclub.com/recursos/css/accesibilidad-css"
-                className="highlight underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Accesibilidad CSS
-              </a>
-            </strong>
-            : CSS Variables son perfectas para implementar <code>prefers-color-scheme</code> y <code>prefers-reduced-motion</code>
-          </li>
-        </ul>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Selectores CSS avanzados",
+              texto: "Combínalos con CSS Variables para targeting dinámico.",
+              enlace: "/recursos/css/selectores-css",
+              icono: <BookOpen aria-hidden="true" />,
+            },
+            {
+              titulo: "Responsive Design",
+              texto: "Usa Sass para breakpoints y CSS Variables para valores adaptables.",
+              enlace: "/recursos/css/responsive-design",
+              icono: <BookOpen aria-hidden="true" />,
+            },
+            {
+              titulo: "Accesibilidad CSS",
+              texto: (
+                <>
+                  CSS Variables son perfectas para implementar <code>prefers-color-scheme</code> y{" "}
+                  <code>prefers-reduced-motion</code>.
+                </>
+              ),
+              enlace: "/recursos/css/accesibilidad-css",
+              icono: <BookOpen aria-hidden="true" />,
+            },
+          ]}
+        />
 
         <p>
           Si aún no has profundizado en Sass, te recomiendo nuestro post{" "}
-          <strong>
-            <a
-              href="https://www.femcodersclub.com/recursos/css/sass-next-level"
-              className="highlight underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              SASS: Lleva tu CSS al siguiente nivel
-            </a>
-          </strong>{" "}
+          <Link to="/recursos/css/sass-next-level">SASS: Lleva tu CSS al siguiente nivel</Link>{" "}
           para dominar las bases antes de implementar esta arquitectura híbrida.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🎯 Tu plan de acción (que puedes implementar hoy)</h2>
+      <SeccionPost titulo="Tu plan de acción (que puedes implementar hoy)">
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Checklist para proyectos nuevos",
+              texto: (
+                <ul>
+                  <li>Define tu sistema de espaciado con Sass variables</li>
+                  <li>Implementa colores y temas con CSS Variables</li>
+                  <li>Configura transiciones suaves entre temas</li>
+                  <li>Testea el cambio dinámico de variables con JavaScript</li>
+                </ul>
+              ),
+            },
+            {
+              titulo: "Para proyectos existentes",
+              texto: (
+                <ul>
+                  <li>Audita tus variables actuales (¿cuáles cambian dinámicamente?)</li>
+                  <li>Migra colores de tema a CSS Variables primero</li>
+                  <li>Mantén spacing y breakpoints en Sass</li>
+                  <li>Implementa el cambio de tema como mejora progresiva</li>
+                </ul>
+              ),
+            },
+          ]}
+        />
+      </SeccionPost>
 
-        <h3>Checklist para proyectos nuevos:</h3>
-        <ul>
-          <li>☐ Define tu sistema de espaciado con Sass variables</li>
-          <li>☐ Implementa colores y temas con CSS Variables</li>
-          <li>☐ Configura transiciones suaves entre temas</li>
-          <li>☐ Testea el cambio dinámico de variables con JavaScript</li>
-        </ul>
-
-        <h3>Para proyectos existentes:</h3>
-        <ul>
-          <li>☐ Audita tus variables actuales (¿cuáles cambian dinámicamente?)</li>
-          <li>☐ Migra colores de tema a CSS Variables primero</li>
-          <li>☐ Mantén spacing y breakpoints en Sass</li>
-          <li>☐ Implementa el cambio de tema como mejora progresiva</li>
-        </ul>
-      </div>
-
-      <div className="highlight-box">
-        <h2>💬 ¿Y tú, cómo las usas?</h2>
+      <SeccionPost titulo="¿Y tú, cómo las usas?">
         <p>
           La combinación de Sass variables y CSS Custom Properties ha revolucionado la forma en que estructuramos CSS escalable. Cada proyecto es único, y me encantaría conocer tu experiencia.
         </p>
@@ -882,62 +748,19 @@ document.documentElement.style.setProperty('--font-size-base', '18px');`}
         </p>
 
         <p>
-          Comparte tu experiencia en la{" "}
-          <a
-            href="https://www.femcodersclub.com"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            comunidad de femCoders Club
-          </a>{" "}
-          o escríbenos por{" "}
-          <a
-            href="https://www.femcodersclub.com/contacto"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            nuestros canales
-          </a>
-          . Siempre estamos aprendiendo juntas y estas conversaciones nos ayudan a crear mejores recursos para toda la comunidad.
+          Comparte tu experiencia en la <Link to="/">comunidad de femCoders Club</Link> o escríbenos por{" "}
+          <Link to="/contacto">nuestros canales</Link>. Siempre estamos aprendiendo juntas y estas conversaciones nos ayudan a crear mejores recursos para toda la comunidad.
         </p>
-      </div>
+      </SeccionPost>
 
-      <div className="styled-paragraph" style={{ textAlign: "center", margin: "2rem 0" }}>
+      <p>
         <em>
           ¿Te ha resultado útil este post? En femCoders Club creamos contenido práctico y actualizado para que domines las tecnologías que realmente importan en tu carrera.{" "}
-          <a
-            href="https://www.femcodersclub.com"
-            className="highlight-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Únete a nuestra comunidad
-          </a>{" "}
-          y mantente al día con las últimas tendencias en desarrollo frontend.
+          <Link to="/">Únete a nuestra comunidad</Link> y mantente al día con las últimas tendencias en desarrollo frontend.
         </em>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Irina Ichim</strong>
-        </p>
-        <p>Co-fundadora de FemCoders Club</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </p>
+    </PlantillaPost>
+  </>
+);
 
 export default CssVariablesSass;

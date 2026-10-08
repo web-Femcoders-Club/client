@@ -118,6 +118,15 @@ html {
 }
 
 /*
+ * Fondo de la página, detrás de las secciones. Estaba en PostStyles.css y
+ * solo se aplicaba tras cargar la portada o el blog; aquí vale para todas.
+ */
+body {
+  background-image: var(--fondo-bg1);
+  background-size: cover;
+}
+
+/*
  * Indicador de foco para las pantallas de fuera del panel (#101).
  *
  * El navegador recibe Tailwind v2 por CDN mientras el código escribe sintaxis

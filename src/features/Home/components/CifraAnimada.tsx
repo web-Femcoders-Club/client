@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface CifraAnimadaProps {
   valor: number;
-  /** Lo que va pegado al número: «+» en «1500+». */
+  /** Lo que va pegado al número: «+» en «1600+». */
   sufijo?: string;
   /** Milisegundos de espera antes de empezar, para que cada cifra arranque en su turno. */
   retraso?: number;
@@ -25,7 +25,7 @@ const prefiereMenosMovimiento = () =>
  *
  * Solo es la parte visual: lleva `aria-hidden` porque un lector de pantalla
  * anunciaría cada fotograma. Quien lo usa pone al lado la frase completa en
- * texto oculto («Más de 1500 mujeres en STEM»).
+ * texto oculto («Más de 1600 mujeres en STEM»).
  *
  * Con «reducir movimiento» activado no hay cuenta: se queda el valor final.
  */

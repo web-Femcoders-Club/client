@@ -26,6 +26,13 @@ export interface PostMeta {
   /** "noticia" | "recurso", derivado de la ruta */
   section: "noticia" | "recurso";
   keywords: string[];
+  /** La portada es una imagen generada con IA (AI Act art. 50): lleva distintivo. */
+  coverIsAiGenerated: boolean;
+}
+
+/** El post lo declara con `portadaConIA` en <PlantillaPost>. */
+function readCoverIsAiGenerated(source: string): boolean {
+  return /\bportadaConIA\b/.test(source);
 }
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -44,7 +51,27 @@ function readMeta(source: string, attr: string, value: string): string {
   if (!content) return "";
 
   // JSX permite partir cadenas largas en varias líneas indentadas.
-  return content.replace(/\s+/g, " ").trim();
+  return decodeEntities(content.replace(/\s+/g, " ").trim());
+}
+
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: "&", quot: '"', apos: "'", lt: "<", gt: ">", nbsp: " ",
+  laquo: "«", raquo: "»", iexcl: "¡", iquest: "¿", ntilde: "ñ", Ntilde: "Ñ", uuml: "ü",
+};
+
+/**
+ * Un `&oacute;` en un atributo del <Helmet> lo descodifica React al pintar,
+ * pero aquí se lee el código fuente: sin esto llegaba tal cual a las
+ * tarjetas del blog y a llms.txt («Manipulaci&oacute;n del DOM»).
+ */
+function decodeEntities(text: string): string {
+  return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (entity, code: string) => {
+    if (code.startsWith("#x") || code.startsWith("#X")) return String.fromCodePoint(parseInt(code.slice(2), 16));
+    if (code.startsWith("#")) return String.fromCodePoint(parseInt(code.slice(1), 10));
+    const accented = code.match(/^([aeiouAEIOU])acute$/)?.[1];
+    if (accented) return `${accented}́`.normalize("NFC");
+    return NAMED_ENTITIES[code] ?? entity;
+  });
 }
 
 /**
@@ -135,6 +162,7 @@ export function readPostMeta(path: string, file: string): PostMeta {
     publishedTime: readMeta(source, "property", "article:published_time"),
     section: path.startsWith("/noticias/") ? "noticia" : "recurso",
     keywords: keywords ? keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
+    coverIsAiGenerated: readCoverIsAiGenerated(source),
   };
 }
 

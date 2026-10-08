@@ -1,19 +1,20 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  CodigoPost,
+  ImagenPost,
+  NotaPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
-
-import ShareButtons from "../../../components/ShareButtons";
-
-const TransicionesyTransformaciones: React.FC = () => {
-  const postId = 18;
-
-  return (
-    <div className="blog-post">
+const TransicionesyTransformaciones: React.FC = () => (
+  <>
       <Helmet>
         <title>
-          Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada | FemCoders Club
+          Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada | FemCoders Club
         </title>
         <meta
           name="description"
@@ -40,7 +41,7 @@ const TransicionesyTransformaciones: React.FC = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada"
+          content="Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada"
         />
         <meta
           property="og:description"
@@ -60,7 +61,7 @@ const TransicionesyTransformaciones: React.FC = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada"
+          content="Transformaciones y transiciones CSS 2D/3D: guía avanzada"
         />
         <meta
           name="twitter:description"
@@ -88,84 +89,46 @@ const TransicionesyTransformaciones: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/css/TransformacionesCSS.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/css/TransformacionesCSS.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/css/TransformacionesCSS.webp"
-            alt="Transformaciones y Transiciones CSS 2D/3D - Dashboard futurista con efectos visuales avanzados"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        Transiciones y Transformaciones CSS<br/> en 2D y 3D
-      </h1>
-
-      <ShareButtons path="/recursos/css/transiciones-transformaciones" title="Domina las Transformaciones y Transiciones CSS 2D/3D: Guía Avanzada" />
-
-      <div className="intro-text">
+    <PlantillaPost
+      ruta="/recursos/css/transiciones-transformaciones"
+      titulo="Transiciones y transformaciones CSS en 2D y 3D"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={18}
+      entradilla={
         <p>
-          ¿Te has preguntado cómo crear esas interfaces futuristas que parecen salidas de una película de ciencia ficción? En este artículo exploramos las transformaciones y transiciones CSS desde un enfoque práctico y avanzado, usando ejemplos reales de un Dashboard futurista.
+          ¿Te has preguntado cómo crear esas interfaces futuristas que parecen
+          salidas de una película de ciencia ficción? En este artículo
+          exploramos las transformaciones y transiciones CSS desde un enfoque
+          práctico y avanzado, con ejemplos reales de un dashboard futurista.
         </p>
-        <div
-          className="example-image"
-          style={{ textAlign: "center", margin: "20px 0" }}
+      }
+    >
+      <ImagenPost
+        src="/assets/css/dashboard-futurista-completo.webp"
+        alt="Dashboard de control futurista con paneles inclinados en perspectiva, interruptores y gráficos sobre fondo oscuro, construido con transformaciones CSS 2D y 3D"
+      />
+      <p>
+        Hemos creado un proyecto práctico que puedes explorar en nuestro{" "}
+        <a
+          href="https://github.com/femcodersclub/Dashboard-de-Control-Futurista"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <img
-            src="/assets/css/dashboard-futurista-completo.webp"
-            alt="Dashboard de Control Futurista con transformaciones CSS 2D/3D aplicadas"
-            className="rounded-lg shadow-md"
-            loading="lazy"
-          />
-        </div>
-        <p>
-        Hemos creado un proyecto práctico que puedes
-          explorar en nuestro{" "}
-          <strong>
-            🔗
-            <a
-              href="https://github.com/femcodersclub/Dashboard-de-Control-Futurista"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
-              repositorio de GitHub
-            </a>
-          </strong>
-          . <br />
-          Demo en vivo disponible{" "}
-          <strong>
-            🔗
-            <a
-              href="https://femcodersclub.github.io/Dashboard-de-Control-Futurista/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
-              aquí.
-            </a>
-          </strong>
-<br />
-          Te invitamos a clonarlo y experimentar con él mientras lees este
-          post.
-        </p>
-      </div>
+          repositorio de GitHub
+        </a>
+        . También tienes la{" "}
+        <a
+          href="https://femcodersclub.github.io/Dashboard-de-Control-Futurista/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          demo en vivo
+        </a>
+        . Te invitamos a clonarlo y experimentar con él mientras lees este post.
+      </p>
 
-      <div className="highlight-box">
-        <h2>🎯 ¿Qué vamos a aprender?</h2>
-        <p>
-          Al final de este tutorial, dominarás:
-        </p>
+      <SeccionPost titulo="¿Qué vamos a aprender?">
+        <p>Al final de este tutorial, dominarás:</p>
         <ul>
           <li>Transformaciones 2D: rotación, escalado y traslación</li>
           <li>Transformaciones 3D: perspectiva y profundidad</li>
@@ -173,20 +136,25 @@ const TransicionesyTransformaciones: React.FC = () => {
           <li>Interactividad que combina CSS y JavaScript</li>
           <li>Técnicas de debugging y optimización</li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🔑 Transform vs Transition: La diferencia clave</h2>
-        
+      <SeccionPost titulo="Transform vs. transition: la diferencia clave">
         <p>Antes de profundizar, es crucial entender la diferencia fundamental:</p>
-        
-        <ul>
-          <li><strong>Transform:</strong> Define QUÉ cambio visual ocurre (rotar, escalar, mover)</li>
-          <li><strong>Transition:</strong> Define CÓMO ocurre ese cambio (duración, velocidad, retraso)</li>
-        </ul>
 
-        <pre className="code-block bg3">
-{`/* Transform define el estado final */
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Transform",
+              texto: "Define QUÉ cambio visual ocurre (rotar, escalar, mover).",
+            },
+            {
+              titulo: "Transition",
+              texto: "Define CÓMO ocurre ese cambio (duración, velocidad, retraso).",
+            },
+          ]}
+        />
+
+        <CodigoPost lenguaje="CSS">{`/* Transform define el estado final */
 .elemento {
   transform: rotate(45deg) scale(1.2);
 }
@@ -194,48 +162,55 @@ const TransicionesyTransformaciones: React.FC = () => {
 /* Transition define cómo llegar ahí */
 .elemento {
   transition: transform 0.3s ease-in-out;
-}`}
-        </pre>
-      </div>
+}`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🧠 Conceptos fundamentales</h2>
+      <SeccionPost titulo="Conceptos fundamentales">
         <h3>¿Qué son las transformaciones CSS?</h3>
         <p>
-          Las transformaciones CSS nos permiten modificar la posición, tamaño, rotación y forma de los elementos sin afectar el flujo del documento. Es como tener superpoderes para manipular elementos en el espacio.
+          Las transformaciones CSS nos permiten modificar la posición, tamaño,
+          rotación y forma de los elementos sin afectar el flujo del documento.
+          Es como tener superpoderes para manipular elementos en el espacio.
         </p>
-<br />  
-        <h2>2D vs 3D: ¿Cuándo usar cada una?</h2>
-        <br />
-        
-        <h5>🎨 Transformaciones 2D:</h5>
-        <ul>
-          <li>Perfectas para hover effects y animaciones sutiles</li>
-          <li>Ideal para botones, cards y elementos de interfaz</li>
-          <li>Menos recursos computacionales</li>
-          <li>Compatible con dispositivos más antiguos</li>
-        </ul>
-      
-        <h5>🌟 Transformaciones 3D:</h5>
-        <ul>
-          <li>Crean ilusión de profundidad y espacio</li>
-          <li>Perfectas para dashboards, portfolios y experiencias inmersivas</li>
-          <li>Más impacto visual, pero requieren más procesamiento</li>
-          <li>Ideales para dispositivos modernos</li>
-        </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🔧 1. Fundamentos sólidos</h2>
-        
-        <h3>El rendering pipeline: ¿Por qué transforms es más eficiente?</h3>
-        <br />
+      <SeccionPost titulo="2D vs. 3D: ¿cuándo usar cada una?" id="2d-vs-3d">
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Transformaciones 2D",
+              texto: (
+                <ul>
+                  <li>Perfectas para hover effects y animaciones sutiles</li>
+                  <li>Ideales para botones, cards y elementos de interfaz</li>
+                  <li>Menos recursos computacionales</li>
+                  <li>Compatibles con dispositivos más antiguos</li>
+                </ul>
+              ),
+            },
+            {
+              titulo: "Transformaciones 3D",
+              texto: (
+                <ul>
+                  <li>Crean ilusión de profundidad y espacio</li>
+                  <li>Perfectas para dashboards, portfolios y experiencias inmersivas</li>
+                  <li>Más impacto visual, pero requieren más procesamiento</li>
+                  <li>Ideales para dispositivos modernos</li>
+                </ul>
+              ),
+            },
+          ]}
+        />
+      </SeccionPost>
+
+      <SeccionPost titulo="1. Fundamentos sólidos">
+        <h3>El rendering pipeline: ¿por qué transform es más eficiente?</h3>
         <p>
-          Las transformaciones CSS operan en la <strong>capa de composición</strong> del navegador, evitando costosos recálculos de layout y repaint:
+          Las transformaciones CSS operan en la <strong>capa de composición</strong>{" "}
+          del navegador y evitan costosos recálculos de layout y repaint:
         </p>
-        <br />
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <TablaPost descripcion="Fases del renderizado que activa cada método">
+          <table>
             <thead>
               <tr>
                 <th>Método</th>
@@ -269,10 +244,9 @@ const TransicionesyTransformaciones: React.FC = () => {
               </tr>
             </tbody>
           </table>
-        </div>
+        </TablaPost>
 
-        <h3>Hardware acceleration: ¿Cuándo se activa?</h3>
-        <br />
+        <h3>Hardware acceleration: ¿cuándo se activa?</h3>
         <p>El navegador crea una nueva capa de composición cuando detecta:</p>
         <ul>
           <li><code>transform: translateZ(0)</code> o cualquier transform 3D</li>
@@ -281,38 +255,31 @@ const TransicionesyTransformaciones: React.FC = () => {
           <li><code>position: fixed</code></li>
         </ul>
 
-        <div style={{
-          backgroundColor: "rgba(255, 165, 0, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "15px",
-          borderLeft: "4px solid #ffa500"
-        }}>
-          <p style={{ margin: "0" }}>
-            <strong>⚠️ Cuidado:</strong> Demasiadas capas consumen memoria. Usa hardware acceleration solo cuando sea necesario.
+        <NotaPost titulo="Cuidado" tipo="aviso">
+          <p>
+            Demasiadas capas consumen memoria. Usa hardware acceleration solo
+            cuando sea necesario.
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🎨 2. Transformaciones 2D avanzadas</h2>
-        
-        <h3>Orden de las funciones: ¿Por qué importa?</h3>
-        <p>Las transformaciones se aplican de <strong>derecha a izquierda</strong>. El orden cambia completamente el resultado:</p>
+      <SeccionPost titulo="2. Transformaciones 2D avanzadas">
+        <h3>Orden de las funciones: ¿por qué importa?</h3>
+        <p>
+          Las transformaciones se aplican de <strong>derecha a izquierda</strong>.
+          El orden cambia completamente el resultado:
+        </p>
 
-        <pre className="code-block bg3">
-{`/* Primero rota, después traslada */
+        <CodigoPost lenguaje="CSS">{`/* Primero rota, después traslada */
 transform: translate(100px, 0) rotate(45deg);
 
 /* Primero traslada, después rota */
-transform: rotate(45deg) translate(100px, 0);`}
-        </pre>
+transform: rotate(45deg) translate(100px, 0);`}</CodigoPost>
 
-        <h3>Transform-origin: Más allá del centro</h3>
+        <h3>Transform-origin: más allá del centro</h3>
         <p>Define el punto de referencia para las transformaciones:</p>
 
-        <pre className="code-block bg3">
-{`/* Casos de uso específicos */
+        <CodigoPost lenguaje="CSS">{`/* Casos de uso específicos */
 .flip-card {
   transform-origin: left center; /* Voltear desde el lado izquierdo */
   transform: rotateY(180deg);
@@ -321,40 +288,35 @@ transform: rotate(45deg) translate(100px, 0);`}
 .scale-corner {
   transform-origin: top left; /* Escalar desde esquina */
   transform: scale(1.5);
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <h3>Matrix transformations: Control total</h3>
+        <h3>Matrix transformations: control total</h3>
         <p>Para efectos complejos, las matrices ofrecen control absoluto:</p>
 
-        <pre className="code-block bg3">
-{`/* Equivale a: skewX(20deg) */
+        <CodigoPost lenguaje="CSS">{`/* Equivale a: skewX(20deg) */
 transform: matrix(1, 0, 0.36, 1, 0, 0);
 
 /* Para 3D: matrix3d() con 16 valores */
-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
-        </pre>
+transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}</CodigoPost>
 
-        <h3>💡 Ejemplo del proyecto: Hover effect de los paneles</h3>
-        <p>En nuestro Dashboard, cada panel combina múltiples transformaciones:</p>
+        <h3>Ejemplo del proyecto: hover effect de los paneles</h3>
+        <p>En nuestro dashboard, cada panel combina varias transformaciones:</p>
 
-        <pre className="code-block bg3">
-{`.control-panel:hover {
+        <CodigoPost lenguaje="CSS">{`.control-panel:hover {
   /* Orden estratégico: elevar → rotar → escalar */
   transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}`}
-        </pre>
-      </div>
+}`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🌟 3. Transformaciones 3D profundas</h2>
-        
-        <h3>Perspective: Element-level vs Parent-level</h3>
-        <p><strong>Diferencia clave:</strong> Dónde aplicas la perspectiva cambia todo el efecto.</p>
+      <SeccionPost titulo="3. Transformaciones 3D profundas">
+        <h3>Perspective: a nivel de elemento o de padre</h3>
+        <p>
+          <strong>Diferencia clave:</strong> dónde aplicas la perspectiva
+          cambia todo el efecto.
+        </p>
 
-        <pre className="code-block bg3">
-{`/* Parent-level: todos los hijos comparten la misma perspectiva */
+        <CodigoPost lenguaje="CSS">{`/* Parent-level: todos los hijos comparten la misma perspectiva */
 .container {
   perspective: 1000px;
 }
@@ -362,24 +324,29 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
 /* Element-level: cada elemento tiene su propia perspectiva */
 .element {
   transform: perspective(1000px) rotateY(45deg);
-}`}
-        </pre>
+}`}</CodigoPost>
 
         <h3>Transform-style: preserve-3d y sus limitaciones</h3>
         <p>Determina si los elementos hijos participan en el espacio 3D:</p>
 
         <ul>
-          <li><code>flat</code> (default): Los hijos se aplanan al plano del padre</li>
-          <li><code>preserve-3d</code>: Los hijos mantienen su posición 3D</li>
+          <li><code>flat</code> (por defecto): los hijos se aplanan al plano del padre.</li>
+          <li><code>preserve-3d</code>: los hijos mantienen su posición 3D.</li>
         </ul>
 
-        <p><strong>⚠️ Limitaciones:</strong> <code>preserve-3d</code> se cancela con <code>overflow: hidden</code>, <code>clip</code>, o <code>filter</code>.</p>
+        <p>
+          <strong>Limitaciones:</strong> <code>preserve-3d</code> se cancela
+          con <code>overflow: hidden</code>, <code>clip</code> o{" "}
+          <code>filter</code>.
+        </p>
 
-        <h3>Stacking contexts en 3D: Problemas comunes</h3>
-        <p>Las transformaciones 3D crean nuevos stacking contexts, afectando el <code>z-index</code>:</p>
+        <h3>Stacking contexts en 3D: problemas comunes</h3>
+        <p>
+          Las transformaciones 3D crean nuevos stacking contexts, lo que afecta
+          al <code>z-index</code>:
+        </p>
 
-        <pre className="code-block bg3">
-{`/* Problema: z-index no funciona como esperas */
+        <CodigoPost lenguaje="CSS">{`/* Problema: z-index no funciona como esperas */
 .elemento-3d {
   transform: rotateY(45deg);
   z-index: 999; /* Puede no tener efecto */
@@ -387,14 +354,15 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
 
 /* Solución: usar translateZ para controlar profundidad */
 .adelante { transform: translateZ(50px); }
-.atras { transform: translateZ(-50px); }`}
-        </pre>
+.atras { transform: translateZ(-50px); }`}</CodigoPost>
 
-        <h3>💡 Ejemplo del proyecto: Profundidad visual</h3>
-        <p>En el Dashboard creamos profundidad usando perspective y translateZ:</p>
+        <h3>Ejemplo del proyecto: profundidad visual</h3>
+        <p>
+          En el dashboard creamos profundidad con <code>perspective</code> y{" "}
+          <code>translateZ</code>:
+        </p>
 
-        <pre className="code-block bg3">
-{`.dashboard-container {
+        <CodigoPost lenguaje="CSS">{`.dashboard-container {
   perspective: 1000px; /* Perspectiva compartida */
 }
 
@@ -404,22 +372,21 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
 
 .control-panel:hover {
   transform: translateZ(30px) rotateX(10deg);
-}`}
-        </pre>
-      </div>
+}`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>⏱️ 4. Transiciones avanzadas</h2>
-        
+      <SeccionPost titulo="4. Transiciones avanzadas">
         <h3>Timing functions personalizadas y su impacto visual</h3>
-        <p>Las curvas de animación determinan cómo se siente una transición. Cada una transmite una sensación diferente:</p>
-<br />
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <p>
+          Las curvas de animación determinan cómo se siente una transición.
+          Cada una transmite una sensación diferente:
+        </p>
+        <TablaPost descripcion="Timing functions, su curva cubic-bezier y cuándo usarlas">
+          <table>
             <thead>
               <tr>
-                <th>Timing Function</th>
-                <th>Cubic-Bezier</th>
+                <th>Timing function</th>
+                <th>Cubic-bezier</th>
                 <th>Sensación</th>
                 <th>Uso ideal</th>
               </tr>
@@ -427,13 +394,13 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
             <tbody>
               <tr>
                 <td><code>ease-out</code></td>
-                <td><code>(0, 0, 0.2, 1)</code></td>
+                <td><code>(0, 0, 0.58, 1)</code></td>
                 <td>Natural, suave</td>
                 <td>Elementos que entran</td>
               </tr>
               <tr>
                 <td><code>ease-in</code></td>
-                <td><code>(0.4, 0, 1, 1)</code></td>
+                <td><code>(0.42, 0, 1, 1)</code></td>
                 <td>Aceleración gradual</td>
                 <td>Elementos que salen</td>
               </tr>
@@ -451,23 +418,27 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
               </tr>
             </tbody>
           </table>
-        </div>
+        </TablaPost>
 
-        <h3>Transiciones interrumpidas: ¿Qué hace el navegador?</h3>
-        <br />
-        <p>Cuando una transición se interrumpe (por ejemplo, hover rápido), el navegador:</p>
+        <h3>Transiciones interrumpidas: ¿qué hace el navegador?</h3>
+        <p>
+          Cuando una transición se interrumpe (por ejemplo, con un hover
+          rápido), el navegador:
+        </p>
         <ul>
-          <li><strong>Calcula el estado actual</strong> de la propiedad en ese momento</li>
-          <li><strong>Inicia una nueva transición</strong> desde ese punto al nuevo destino</li>
-          <li><strong>Mantiene la fluidez</strong> sin saltos bruscos</li>
+          <li><strong>Calcula el estado actual</strong> de la propiedad en ese momento.</li>
+          <li><strong>Inicia una nueva transición</strong> desde ese punto al nuevo destino.</li>
+          <li><strong>Mantiene la fluidez</strong> sin saltos bruscos.</li>
         </ul>
 
-        <h3>Performance: ¿Qué propiedades transicionar?</h3>
-        <br />
-        <p><strong>Regla de oro:</strong> Solo transiciona propiedades que no causen reflow o repaint.</p>
+        <h3>Performance: ¿qué propiedades transicionar?</h3>
+        <p>
+          <strong>Regla de oro:</strong> transiciona solo propiedades que no
+          causen reflow o repaint.
+        </p>
 
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <TablaPost descripcion="Propiedades según su coste al transicionarlas">
+          <table>
             <thead>
               <tr>
                 <th>✅ Excelente</th>
@@ -493,94 +464,118 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
               </tr>
             </tbody>
           </table>
-        </div>
+        </TablaPost>
 
-        <h3>💡 Ejemplo del proyecto: Toggle switches</h3>
-        <p>Los interruptores del Dashboard usan la curva "back" para sentirse físicos:</p>
+        <h3>Ejemplo del proyecto: toggle switches</h3>
+        <p>
+          Los interruptores del dashboard usan la curva «bounce» para
+          sentirse físicos:
+        </p>
 
-        <pre className="code-block bg3">
-{`.toggle-switch::before {
+        <CodigoPost lenguaje="CSS">{`.toggle-switch::before {
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .toggle-switch.active::before {
   transform: translateX(30px) rotateY(180deg);
   /* El elemento "rebota" sutilmente al final */
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <div style={{
-          backgroundColor: "rgba(0, 255, 255, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "15px",
-          borderLeft: "4px solid #00ffff"
-        }}>
-          <p style={{ margin: "0" }}>
-            <strong>💡 Tip:</strong> Los valores negativos en cubic-bezier crean el efecto "overshoot" que hace que las animaciones se sientan más naturales.
+        <NotaPost>
+          <p>
+            Los valores negativos en cubic-bezier crean el efecto «overshoot»,
+            que hace que las animaciones se sientan más naturales.
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>⚡ 5. Interactividad: CSS + JavaScript</h2>
-        
+      <SeccionPost titulo="5. Interactividad: CSS + JavaScript">
         <p>
-          Las transformaciones CSS alcanzan su máximo potencial cuando se combinan con JavaScript. Esta sinergia permite crear interfaces que responden inteligentemente a las acciones del usuario.
-        </p>
-<br />
-        <h3>🎮 Principios clave de la combinación</h3>
-        <br />
-        <ul>
-          <li><strong>JavaScript controla el timing</strong> - cuándo activar las transformaciones</li>
-          <li><strong>CSS maneja las transiciones</strong> - qué tan suave se ve el cambio</li>
-          <li><strong>Feedback inmediato</strong> - respuesta visual instantánea a cada acción</li>
-          <li><strong>Estados coordinados</strong> - múltiples elementos que cambian en armonía</li>
-        </ul>
-
-        <h3>💡 Ejemplo práctico: Nuestro Dashboard</h3>
-        <br />
-        <p>
-          En el <a href="https://femcodersclub.github.io/Dashboard-de-Control-Futurista/" target="_blank" rel="noopener noreferrer" className="highlight-link">proyecto completo</a>, cada botón responde con transformaciones que se sienten físicas, los datos se actualizan con microanimaciones, y el modo automático coordina efectos visuales en todo el sistema.
+          Las transformaciones CSS alcanzan su máximo potencial cuando se
+          combinan con JavaScript. Esta sinergia permite crear interfaces que
+          responden inteligentemente a las acciones de quien las usa.
         </p>
 
+        <TarjetasPost
+          titulo="Principios clave de la combinación"
+          tarjetas={[
+            {
+              titulo: "JavaScript controla el timing",
+              texto: "Cuándo activar las transformaciones.",
+            },
+            {
+              titulo: "CSS maneja las transiciones",
+              texto: "Qué tan suave se ve el cambio.",
+            },
+            {
+              titulo: "Feedback inmediato",
+              texto: "Respuesta visual instantánea a cada acción.",
+            },
+            {
+              titulo: "Estados coordinados",
+              texto: "Varios elementos que cambian en armonía.",
+            },
+          ]}
+        />
+
+        <h3>Ejemplo práctico: nuestro dashboard</h3>
         <p>
-          <strong>La fórmula:</strong> JavaScript decide qué animar y cuándo, CSS hace que se vea fluido y natural.
+          En el{" "}
+          <a
+            href="https://femcodersclub.github.io/Dashboard-de-Control-Futurista/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            proyecto completo
+          </a>
+          , cada botón responde con transformaciones que se sienten físicas,
+          los datos se actualizan con microanimaciones y el modo automático
+          coordina efectos visuales en todo el sistema.
         </p>
-      </div>
 
-      <div className="highlight-box">
-        <h2>🔍 6. Técnicas de debugging y optimización</h2>
-        
-        <h3>DevTools para inspeccionar transforms complejas</h3>
-        <p>Las herramientas de desarrollo son esenciales para debuggear transformaciones complejas:</p>
+        <p>
+          <strong>La fórmula:</strong> JavaScript decide qué animar y cuándo;
+          CSS hace que se vea fluido y natural.
+        </p>
+      </SeccionPost>
 
-        <div className="tools-container">
-          <div className="recurso-item">
-            <h5 className="tool-title">Chrome DevTools</h5>
-            <ul>
-              <li><strong>Elements panel:</strong> Edita transforms en tiempo real</li>
-              <li><strong>Animations panel:</strong> Visualiza timing y curvas</li>
-              <li><strong>Layers panel:</strong> Identifica capas de composición</li>
-              <li><strong>Performance tab:</strong> Detecta jank y bottlenecks</li>
-            </ul>
-          </div>
-          
-          <div className="recurso-item">
-            <h5 className="tool-title">Firefox DevTools</h5>
-            <ul>
-              <li><strong>Inspector:</strong> El mejor para transformaciones 3D</li>
-              <li><strong>Animaciones:</strong> Control de velocidad y pausa</li>
-              <li><strong>Computed:</strong> Ve el resultado final de transforms</li>
-            </ul>
-          </div>
-        </div>
+      <SeccionPost titulo="6. Técnicas de debugging y optimización">
+        <p>
+          Las herramientas de desarrollo son esenciales para depurar
+          transformaciones complejas:
+        </p>
 
-        <h2>Problemas comunes y sus soluciones</h2>
-        
-        <h5>🐛 Problema: Elementos que "tiemblan" durante la animación</h5>
-        <pre className="code-block bg3">
-{`/* ❌ Problema: subpixel rendering */
+        <TarjetasPost
+          titulo="DevTools para inspeccionar transforms complejas"
+          tarjetas={[
+            {
+              titulo: "Chrome DevTools",
+              texto: (
+                <ul>
+                  <li><strong>Elements panel:</strong> edita transforms en tiempo real.</li>
+                  <li><strong>Animations panel:</strong> visualiza timing y curvas.</li>
+                  <li><strong>Layers panel:</strong> identifica capas de composición.</li>
+                  <li><strong>Performance tab:</strong> detecta jank y cuellos de botella.</li>
+                </ul>
+              ),
+            },
+            {
+              titulo: "Firefox DevTools",
+              texto: (
+                <ul>
+                  <li><strong>Inspector:</strong> el mejor para transformaciones 3D.</li>
+                  <li><strong>Animaciones:</strong> control de velocidad y pausa.</li>
+                  <li><strong>Computed:</strong> muestra el resultado final de los transforms.</li>
+                </ul>
+              ),
+            },
+          ]}
+        />
+      </SeccionPost>
+
+      <SeccionPost titulo="Problemas comunes y sus soluciones">
+        <h3>Problema: elementos que «tiemblan» durante la animación</h3>
+        <CodigoPost lenguaje="CSS">{`/* ❌ Problema: subpixel rendering */
 .elemento {
   transform: translateX(10.5px);
 }
@@ -588,12 +583,10 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
 /* ✅ Solución: usar valores enteros o translateZ */
 .elemento {
   transform: translateX(10px) translateZ(0);
-}`}
-        </pre>
+}`}</CodigoPost>
 
-        <h5>🐛 Problema: Z-index no funciona con elementos transformados</h5>
-        <pre className="code-block bg3">
-{`/* ❌ Problema: nuevo stacking context */
+        <h3>Problema: z-index no funciona con elementos transformados</h3>
+        <CodigoPost lenguaje="CSS">{`/* ❌ Problema: nuevo stacking context */
 .card {
   transform: rotateY(10deg);
   z-index: 999; /* No tendrá efecto */
@@ -601,142 +594,141 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
 
 /* ✅ Solución: usar translateZ para profundidad */
 .card-adelante { transform: translateZ(10px); }
-.card-atras { transform: translateZ(-10px); }`}
-        </pre>
+.card-atras { transform: translateZ(-10px); }`}</CodigoPost>
 
-        <div style={{
-          backgroundColor: "rgba(255, 0, 0, 0.1)",
-          padding: "15px",
-          borderRadius: "8px",
-          marginTop: "20px",
-          borderLeft: "4px solid #ff0000"
-        }}>
-          <p style={{ margin: "0" }}>
-            <strong>🚨 Red Flag:</strong> Si tu animación causa scroll jank o la página se siente lenta, probablemente estés animando propiedades que causan reflow (width, height, padding, margin).
+        <NotaPost titulo="Red flag" tipo="aviso">
+          <p>
+            Si tu animación causa scroll jank o la página se siente lenta,
+            probablemente estés animando propiedades que causan reflow (
+            <code>width</code>, <code>height</code>, <code>padding</code>,{" "}
+            <code>margin</code>).
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🌍 7. Ejemplos reales en acción</h2>
-        
+      <SeccionPost titulo="7. Ejemplos reales en acción">
         <p>
-          Las transformaciones CSS brillan cuando se aplican en proyectos reales. Veamos cómo diferentes sitios web implementan estas técnicas de forma efectiva.
+          Las transformaciones CSS brillan cuando se aplican en proyectos
+          reales. Veamos cómo diferentes sitios web implementan estas técnicas
+          de forma efectiva.
         </p>
 
-        <h3>🎯 Proyectos de FemCoders Club</h3>
-        
-        <div className="tools-container">
-          <div className="recurso-item">
-            <h5 className="tool-title">Página de Eventos - Flip Cards</h5>
-            <br />
-            <p>Tarjetas que se voltean para revelar información adicional del evento</p>
-            <ul>
-              <li><strong>Técnica:</strong> <code>rotateY(180deg)</code> con <code>backface-visibility</code></li>
-              <li><strong>Timing:</strong> <code>transition: 0.6s ease-in-out</code></li>
-              <li><strong>UX:</strong> Hover en desktop, tap en móvil</li>
-            </ul>
-            <a href="https://www.femcodersclub.com/eventos" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Ver flip cards en acción
-            </a>
-          </div>
-          
-          <div className="recurso-item">
-            <h5 className="tool-title">Página "Quiénes Somos"</h5>
-            <br />
-            <p>Animaciones sutiles que guían la atención del usuario</p>
-            <ul>
-              <li><strong>Técnica:</strong> <code>translateY()</code> y <code>scale()</code> en scroll</li>
-              <li><strong>Performance:</strong> Intersection Observer + <code>will-change</code></li>
-              <li><strong>Accesibilidad:</strong> Respeta <code>prefers-reduced-motion</code></li>
-            </ul>
-            <a href="https://www.femcodersclub.com/femcoders-quienes-somos" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Explorar animaciones on-scroll
-            </a>
-          </div>
-        </div>
+        <TarjetasPost
+          titulo="Proyectos de FemCoders Club"
+          tarjetas={[
+            {
+              titulo: "Página de eventos: flip cards",
+              enlace: "/eventos",
+              texto: (
+                <>
+                  <p>Tarjetas que se voltean para revelar información adicional del evento.</p>
+                  <ul>
+                    <li><strong>Técnica:</strong> <code>rotateY(180deg)</code> con <code>backface-visibility</code></li>
+                    <li><strong>Timing:</strong> <code>transition: 0.6s ease-in-out</code></li>
+                    <li><strong>UX:</strong> hover en escritorio, tap en móvil</li>
+                  </ul>
+                </>
+              ),
+            },
+            {
+              titulo: "Página «Quiénes somos»",
+              enlace: "/femcoders-quienes-somos",
+              texto: (
+                <>
+                  <p>Animaciones sutiles que guían la atención.</p>
+                  <ul>
+                    <li><strong>Técnica:</strong> <code>translateY()</code> y <code>scale()</code> en scroll</li>
+                    <li><strong>Performance:</strong> Intersection Observer + <code>will-change</code></li>
+                    <li><strong>Accesibilidad:</strong> respeta <code>prefers-reduced-motion</code></li>
+                  </ul>
+                </>
+              ),
+            },
+          ]}
+        />
 
-        <h3>🎨 Inspiración del ecosistema web</h3>
-        
-        <div className="tools-container">
-          <div className="recurso-item">
-            <h5 className="tool-title">GitHub - Hover Effects</h5>
-            <br />
-            <p>Microinteracciones en botones y elementos de navegación</p>
-            <ul>
-              <li><strong>Sutil pero efectivo:</strong> <code>transform: translateY(-1px)</code></li>
-              <li><strong>Consistencia:</strong> Mismo timing en toda la plataforma</li>
-              <li><strong>Performance:</strong> Solo transform y opacity</li>
-            </ul>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Analizar en GitHub
-            </a>
-          </div>
-          
-          <div className="recurso-item">
-            <h5 className="tool-title">Stripe - Animaciones Premium</h5>
-            <br />
-            <p>Transiciones sofisticadas que transmiten calidad</p>
-            <ul>
-              <li><strong>Curvas personalizadas:</strong> cubic-bezier único</li>
-              <li><strong>Staging:</strong> Elementos que aparecen en secuencia</li>
-              <li><strong>3D sutil:</strong> <code>translateZ()</code> para profundidad</li>
-            </ul>
-            <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Estudiar en Stripe
-            </a>
-          </div>
-        </div>
+        <TarjetasPost
+          titulo="Inspiración del ecosistema web"
+          tarjetas={[
+            {
+              titulo: "GitHub: hover effects",
+              enlace: "https://github.com",
+              texto: (
+                <>
+                  <p>Microinteracciones en botones y elementos de navegación.</p>
+                  <ul>
+                    <li><strong>Sutil pero efectivo:</strong> <code>transform: translateY(-1px)</code></li>
+                    <li><strong>Consistencia:</strong> mismo timing en toda la plataforma</li>
+                    <li><strong>Performance:</strong> solo transform y opacity</li>
+                  </ul>
+                </>
+              ),
+            },
+            {
+              titulo: "Stripe: animaciones premium",
+              enlace: "https://stripe.com",
+              texto: (
+                <>
+                  <p>Transiciones sofisticadas que transmiten calidad.</p>
+                  <ul>
+                    <li><strong>Curvas personalizadas:</strong> cubic-bezier propio</li>
+                    <li><strong>Staging:</strong> elementos que aparecen en secuencia</li>
+                    <li><strong>3D sutil:</strong> <code>translateZ()</code> para dar profundidad</li>
+                  </ul>
+                </>
+              ),
+            },
+          ]}
+        />
 
-        <h3>🔬 Laboratorio de experimentación</h3>
-        
-        <div className="tools-container">
-          <div className="recurso-item">
-            <h5 className="tool-title">CodePen - Transform Gallery</h5>
-            <br />
-            <p>Miles de ejemplos creativos de la comunidad</p>
-            <ul>
-              <li><strong>Búsqueda recomendada:</strong> "CSS 3D transforms"</li>
-              <li><strong>Autores destacados:</strong> Ana Tudor, Shaw, Amit Sheen</li>
-              <li><strong>Filtros útiles:</strong> Most hearted, Recent</li>
-            </ul>
-            <a href="https://codepen.io/search/pens?q=css+3d+transform" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Explorar en CodePen
-            </a>
-          </div>
-          
-          <div className="recurso-item">
-            <h5 className="tool-title">CSS-Tricks - Almacén de técnicas</h5>
-            <br />
-            <p>Artículos profundos sobre implementación</p>
-            <ul>
-              <li><strong>Transform Guide:</strong> Referencia completa</li>
-              <li><strong>Performance:</strong> Qué animar y qué evitar</li>
-              <li><strong>Browser Support:</strong> Compatibilidad actualizada</li>
-            </ul>
-            <a href="https://css-tricks.com/almanac/properties/t/transform/" target="_blank" rel="noopener noreferrer" className="highlight-link">
-              Leer guías técnicas
-            </a>
-          </div>
-        </div>
+        <TarjetasPost
+          titulo="Laboratorio de experimentación"
+          tarjetas={[
+            {
+              titulo: "CodePen: galería de transforms",
+              enlace: "https://codepen.io/search/pens?q=css+3d+transform",
+              texto: (
+                <>
+                  <p>Miles de ejemplos creativos de la comunidad.</p>
+                  <ul>
+                    <li><strong>Búsqueda recomendada:</strong> «CSS 3D transforms»</li>
+                    <li><strong>Autores destacados:</strong> Ana Tudor, Shaw, Amit Sheen</li>
+                    <li><strong>Filtros útiles:</strong> Most hearted, Recent</li>
+                  </ul>
+                </>
+              ),
+            },
+            {
+              titulo: "CSS-Tricks: almacén de técnicas",
+              enlace: "https://css-tricks.com/almanac/properties/t/transform/",
+              texto: (
+                <>
+                  <p>Artículos en profundidad sobre implementación.</p>
+                  <ul>
+                    <li><strong>Transform Guide:</strong> referencia completa</li>
+                    <li><strong>Performance:</strong> qué animar y qué evitar</li>
+                    <li><strong>Browser Support:</strong> compatibilidad actualizada</li>
+                  </ul>
+                </>
+              ),
+            },
+          ]}
+        />
 
-        <h3>💡 Qué aprender de cada ejemplo</h3>
-   <br />
+        <h3>Qué aprender de cada ejemplo</h3>
         <p>
-          Cada uno de estos sitios aplica transformaciones y transiciones de forma única, pero todos comparten principios clave:
-       
-          <ul>
-            <li><strong>Consistencia:</strong> Usan las mismas técnicas en toda la plataforma</li>
-            <li><strong>Performance:</strong> Evitan reflow y repaint innecesarios</li>
-            <li><strong>Interactividad:</strong> Responden a acciones del usuario de forma fluida</li>
-            <li><strong>Estética:</strong> Las animaciones cuentan una historia visual</li>
-          </ul>
+          Cada uno de estos sitios aplica transformaciones y transiciones de
+          forma única, pero todos comparten principios clave:
         </p>
-      
-<br />
-        
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <ul>
+          <li><strong>Consistencia:</strong> usan las mismas técnicas en toda la plataforma.</li>
+          <li><strong>Performance:</strong> evitan reflow y repaint innecesarios.</li>
+          <li><strong>Interactividad:</strong> responden a cada acción de forma fluida.</li>
+          <li><strong>Estética:</strong> las animaciones cuentan una historia visual.</li>
+        </ul>
+
+        <TablaPost descripcion="Técnica destacada y lección clave de cada sitio">
+          <table>
             <thead>
               <tr>
                 <th>Sitio</th>
@@ -748,7 +740,7 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
               <tr>
                 <td><strong>FemCoders Eventos</strong></td>
                 <td>Flip cards 3D</td>
-                <td>UX diferente para desktop vs móvil</td>
+                <td>UX diferente para escritorio y móvil</td>
               </tr>
               <tr>
                 <td><strong>GitHub</strong></td>
@@ -772,97 +764,61 @@ transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);`}
               </tr>
             </tbody>
           </table>
-        </div>
+        </TablaPost>
 
-        <div style={{
-          backgroundColor: "rgba(138, 43, 226, 0.1)",
-          padding: "20px",
-          borderRadius: "10px",
-          marginTop: "20px",
-          borderLeft: "4px solid #8a2be2"
-        }}>
-          <h4 style={{ margin: "0 0 10px 0", color: "#8a2be2" }}>🎯 Ejercicio práctico</h4>
-          <p style={{ margin: "0" }}>
-            Visita cada uno de estos sitios con las DevTools abiertas. En el panel Elements, inspecciona los elementos que se animan y observa qué propiedades CSS cambian. ¡Es la mejor forma de aprender de los profesionales!
-          </p>
-        </div>
-      </div>
-
-      <div className="highlight-box">
-        <h2>💡 Conclusión: Tu momento de brillar</h2>
-        
-        <p>
-          Las transformaciones y transiciones CSS son mucho más que efectos visuales: son tu herramienta para crear experiencias web que inspiran y sorprenden. Desde el render pipeline hasta las curvas cubic-bezier, cada concepto que hemos explorado te acerca más a dominar el arte de la animación web.
-        </p>
-
-        <p>
-          <strong>¿El secreto?</strong> No está en usar todas las técnicas a la vez, sino en elegir la correcta para cada momento. Las mejores interfaces son aquellas donde las transformaciones pasan desapercibidas porque se sienten naturales.
-        </p>
-
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "25px",
-          borderRadius: "15px",
-          textAlign: "center",
-          margin: "30px 0",
-          borderLeft: "5px solid #4737bb",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
-        }}>
-          <h3 style={{ color: "#6d2c95", marginTop: 0, fontSize: "2rem", marginBottom: "15px" }}>
-            🌟 Ahora es tu turno de brillar 🌟
-          </h3>
-          <p >
-            No te quedes solo leyendo. <strong>Experimenta, crea, rompe cosas y vuélvelas a armar.</strong> Cada transform que escribas, cada transition que ajustes, te convierte en una desarrolladora más completa.
-          </p>
-          <br />
+        <NotaPost titulo="Ejercicio práctico">
           <p>
-            ¿Tu próximo desafío? Toma una de estas técnicas y aplícala en tu proyecto actual. No importa si es pequeño - los grandes cambios empiezan con pequeños experimentos.
+            Visita cada uno de estos sitios con las DevTools abiertas. En el
+            panel Elements, inspecciona los elementos que se animan y observa
+            qué propiedades CSS cambian. ¡Es la mejor forma de aprender de las
+            profesionales!
           </p>
-          <br />
+        </NotaPost>
+      </SeccionPost>
+
+      <SeccionPost titulo="Conclusión: tu momento de brillar">
+        <p>
+          Las transformaciones y transiciones CSS son mucho más que efectos
+          visuales: son tu herramienta para crear experiencias web que inspiran
+          y sorprenden. Desde el render pipeline hasta las curvas cubic-bezier,
+          cada concepto que hemos explorado te acerca más a dominar el arte de
+          la animación web.
+        </p>
+
+        <p>
+          <strong>¿El secreto?</strong> No está en usar todas las técnicas a la
+          vez, sino en elegir la correcta para cada momento. Las mejores
+          interfaces son aquellas en las que las transformaciones pasan
+          desapercibidas porque se sienten naturales.
+        </p>
+
+        <h3>Ahora es tu turno de brillar</h3>
+        <p>
+          No te quedes solo leyendo.{" "}
+          <strong>Experimenta, crea, rompe cosas y vuélvelas a armar.</strong>{" "}
+          Cada transform que escribas, cada transition que ajustes, te convierte
+          en una desarrolladora más completa.
+        </p>
+        <p>
+          ¿Tu próximo desafío? Toma una de estas técnicas y aplícala en tu
+          proyecto actual. No importa si es pequeño: los grandes cambios
+          empiezan con pequeños experimentos.
+        </p>
+        <p>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)"
-            }}
           >
-            💬 Comparte tu creación en la comunidad
+            Comparte tu creación en la comunidad
           </a>
-          <p style={{ fontSize: "18px", fontWeight: "bold", marginTop: "20px", marginBottom: 0, color: "#2a2170" }}>
-            El futuro del web está en tus manos. ¡Hazlo brillar! ✨
-          </p>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Irina Ichim</strong>
         </p>
-        <p>Co-fundadora de FemCoders Club</p>
         <p>
-          Fecha de publicación: <strong>25 de mayo, 2025</strong>
+          <strong>El futuro de la web está en tus manos. ¡Hazla brillar!</strong>
         </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default TransicionesyTransformaciones;

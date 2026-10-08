@@ -1,0 +1,137 @@
+/*
+ * Tarjeta de un post (TarjetaPost.tsx). Piezas compartidas: `fc-tarjeta` y
+ * `fc-chip` (src/styles/rediseno.css).
+ *
+ * index.css da tamaño, color y sombra a h2/h3 y pinta todos los `span` en
+ * naranja: cada clase de aquí fija sus propios valores.
+ */
+
+.tarjeta-post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  transition: translate 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Sin el relleno de `fc-tarjeta`: la foto va de borde a borde. Dos clases porque rediseno.css carga después. */
+.tarjeta-post.fc-tarjeta {
+  padding: 0;
+}
+
+.tarjeta-post:hover {
+  translate: 0 -3px;
+  box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 22px 44px rgba(71, 55, 187, 0.16);
+}
+
+.tarjeta-post__foto {
+  position: relative;
+}
+
+/* Las portadas son horizontales; el encuadre enseña el tercio de arriba, donde suelen estar las caras. */
+.tarjeta-post__imagen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 28%;
+  background: var(--color-lavanda-medio);
+}
+
+.tarjeta-post__cuerpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.tarjeta-post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  color: var(--color-text-dark);
+}
+
+.tarjeta-post__meta .fc-chip {
+  font-size: 0.7rem;
+}
+
+.tarjeta-post__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* `font: inherit`: la regla global `* { font-family }` le pondría Roboto. */
+.tarjeta-post__titulo a {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+
+/* El enlace del título cubre la tarjeta entera. */
+.tarjeta-post__titulo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* El foco se pinta en la tarjeta, no en el título. */
+.tarjeta-post__titulo a:focus-visible {
+  outline: none;
+}
+
+.tarjeta-post:has(.tarjeta-post__titulo a:focus-visible) {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.tarjeta-post__texto {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-dark);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tarjeta-post__leer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: auto 0 0;
+  padding-top: 0.25rem;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.tarjeta-post__leer svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-post {
+    transition: none;
+  }
+
+  .tarjeta-post:hover {
+    translate: none;
+  }
+}

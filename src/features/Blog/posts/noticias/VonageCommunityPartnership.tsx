@@ -1,18 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
-
-import ShareButtons from "../../components/ShareButtons";
-import PostImage from "../../components/PostImage";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { SeccionPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 
-const VonageCommunityPartnership: React.FC = () => {
-  const postId = 49;
-
-  return (
-    <div className="blog-post">
+const VonageCommunityPartnership: React.FC = () => (
+  <>
       <Helmet>
         <title>
           FemCoders Club se une al Vonage Community Partnership Program |
@@ -152,79 +146,55 @@ const VonageCommunityPartnership: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <PostImage
-        src="/public-optimized/desktop/assets/noticias/vonage-femcodersclub.webp"
-        mobileSrc="/public-optimized/mobile/assets/noticias/vonage-femcodersclub.webp"
-        desktopSrc="/public-optimized/desktop/assets/noticias/vonage-femcodersclub.webp"
-        fallbackSrc="/assets/noticias/vonage-femcodersclub.jpg"
-        alt="Vonage x fem Coders Club, colaboración para impulsar a las mujeres en tecnología. Los logotipos de Vonage —part of Ericsson— y de FemCoders Club, uno junto al otro, sobre un fondo claro con una red de nodos rosa y la silueta de un rostro de mujer formada por circuitos violetas"
-        aiGenerated
-      />
-
-      <h1 className="blog-post-title">
-        FemCoders Club se une al Vonage Community Partnership Program
-      </h1>
-
-      <ShareButtons
-        path="/noticias/vonage-community-partnership-program"
-        title="FemCoders Club se une al Vonage Community Partnership Program"
-      />
-
-      {/* ── Intro ── */}
-      <div className="intro-text">
-        <p>
-          Septiembre empieza con una noticia importante para FemCoders Club:{" "}
-          <strong>nos unimos al Vonage Community Partnership Program</strong>,
-          una colaboración que nos conecta con uno de los ecosistemas
-          tecnológicos internacionales más importantes en el ámbito de las
-          comunicaciones y las APIs.
-        </p>
-        <br />
-        <p>
-          Para nosotras, esta alianza tiene mucho que ver con cómo entendemos el
-          crecimiento profesional dentro de una comunidad tecnológica: conocer
-          nuevas herramientas, experimentar con ellas y acercarnos a tecnologías
-          que después encontramos en proyectos y entornos profesionales reales.
-        </p>
-      </div>
-
-      {/* ── 1. De HackBarna a formar parte del programa ── */}
-      <div className="highlight-box">
-        <h2>De HackBarna a formar parte del programa</h2>
-        <br />
+    <PlantillaPost
+      ruta="/noticias/vonage-community-partnership-program"
+      titulo="FemCoders Club se une al Vonage Community Partnership Program"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={49}
+      portadaConIA
+      entradilla={
+        <>
+          <p>
+            Septiembre empieza con una noticia importante para FemCoders Club:{" "}
+            <strong>nos unimos al Vonage Community Partnership Program</strong>,
+            una colaboración que nos conecta con uno de los ecosistemas
+            tecnológicos internacionales más importantes en el ámbito de las
+            comunicaciones y las APIs.
+          </p>
+          <p>
+            Para nosotras, esta alianza tiene mucho que ver con cómo entendemos
+            el crecimiento profesional dentro de una comunidad tecnológica:
+            conocer nuevas herramientas, experimentar con ellas y acercarnos a
+            tecnologías que después encontramos en proyectos y entornos
+            profesionales reales.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="De HackBarna a formar parte del programa">
         <p>
           Nuestro primer contacto con el ecosistema de{" "}
           <a
             href="https://www.vonage.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
-            aria-label="Visitar la web de Vonage"
           >
             <strong>Vonage</strong>
           </a>{" "}
           llegó el año pasado a través de{" "}
-          <Link to="/noticias/HackBarna2025" className="highlight-link">
-            HackBarna 2025
-          </Link>
-          . Desde entonces hemos seguido de cerca su comunidad developer y todo
-          lo que están construyendo alrededor de sus APIs y tecnologías de
+          <Link to="/noticias/HackBarna2025">HackBarna 2025</Link>. Desde
+          entonces hemos seguido de cerca su comunidad developer y todo lo que
+          están construyendo alrededor de sus APIs y tecnologías de
           comunicación.
         </p>
-        <br />
         <p>
           Este año volvemos a coincidir: Vonage es Gold Sponsor de{" "}
-          <Link
-            to="/noticias/hackbarna-ai-summit-26-desde-dentro"
-            className="highlight-link"
-          >
+          <Link to="/noticias/hackbarna-ai-summit-26-desde-dentro">
             HackBarna AI Summit 26
           </Link>
           , el hackathon en el que estaremos los días 19 y 20 de septiembre,
           esta vez también con equipo propio.
         </p>
-        <br />
         <p>
           Ahora damos un paso más y{" "}
           <strong>
@@ -233,23 +203,18 @@ const VonageCommunityPartnership: React.FC = () => {
           </strong>
           .
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. ¿Por qué nos interesa especialmente Vonage? ── */}
-      <div className="highlight-box">
-        <h2>¿Por qué nos interesa especialmente Vonage?</h2>
-        <br />
+      <SeccionPost titulo="¿Por qué nos interesa especialmente Vonage?">
         <p>
           Vonage, parte de Ericsson, es una compañía global especializada en
           comunicaciones cloud y APIs, con un ecosistema que reúne a más de{" "}
           <strong>1,8 millones de developers registrados</strong>.
         </p>
-        <br />
         <p>
-          Pero más allá de las cifras, lo que realmente nos interesa es lo que
+          Pero, más allá de las cifras, lo que realmente nos interesa es lo que
           podemos hacer con su tecnología.
         </p>
-        <br />
         <p>
           Sus APIs permiten integrar capacidades como{" "}
           <strong>
@@ -259,19 +224,16 @@ const VonageCommunityPartnership: React.FC = () => {
           , sin tener que construir desde cero toda la infraestructura necesaria
           para hacerlas funcionar.
         </p>
-        <br />
         <p>
           Para una developer, poder trabajar con este tipo de herramientas
           significa mucho más que conocerlas sobre el papel. Significa probarlas,
           integrarlas, entender cómo funcionan y descubrir qué podemos construir
           con ellas.
         </p>
-        <br />
         <p>
           Y precisamente ahí está una de las razones principales por las que
           esta colaboración nos ilusiona.
         </p>
-        <br />
         <p>
           Queremos que FemCoders Club siga siendo un espacio donde podamos
           crecer profesionalmente, pero también donde tengamos la oportunidad de{" "}
@@ -281,26 +243,21 @@ const VonageCommunityPartnership: React.FC = () => {
           </strong>
           .
         </p>
-        <br />
         <p>
           Formar parte del <strong>Vonage Community Partnership Program</strong>{" "}
           nos abre además la puerta a un ecosistema tecnológico internacional y
           a nuevas posibilidades para seguir creando oportunidades para nuestra
           comunidad.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 3. Las personas detrás de esta colaboración ── */}
-      <div className="highlight-box">
-        <h2>Las personas detrás de esta colaboración</h2>
-        <br />
+      <SeccionPost titulo="Las personas detrás de esta colaboración">
         <p>
           En este camino hemos tenido la suerte de contar con dos personas del
           equipo de Vonage que desde el principio nos han recibido con muchísima
           cercanía y cariño, y con muchas ganas de construir cosas junto a
           nuestra comunidad:
         </p>
-        <br />
         <ul>
           <li>
             <strong>Lucinda Abberley</strong> — equipo de Vonage.{" "}
@@ -308,7 +265,6 @@ const VonageCommunityPartnership: React.FC = () => {
               href="https://www.linkedin.com/in/lucinda-abberley-b1671744/"
               target="_blank"
               rel="noopener noreferrer"
-              className="highlight-link"
               aria-label="Ver el perfil de LinkedIn de Lucinda Abberley"
             >
               LinkedIn
@@ -320,30 +276,24 @@ const VonageCommunityPartnership: React.FC = () => {
               href="https://www.linkedin.com/in/maxchambers/"
               target="_blank"
               rel="noopener noreferrer"
-              className="highlight-link"
               aria-label="Ver el perfil de LinkedIn de Max Chambers"
             >
               LinkedIn
             </a>
           </li>
         </ul>
-        <br />
         <p>
           Gracias especialmente a <strong>Lucinda y Max</strong> por la
           confianza en FemCoders Club y, sobre todo, por el cariño y la cercanía
           que nos habéis mostrado desde el primer momento.
         </p>
-        <br />
         <p>
           Para nosotras, la forma en la que empiezan estas colaboraciones
           también importa.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 4. Lo que viene ── */}
-      <div className="highlight-box">
-        <h2>Lo que viene</h2>
-        <br />
+      <SeccionPost titulo="Lo que viene">
         <p>
           Cuando publicamos esta noticia dijimos que muy pronto habría
           novedades. Ya las hay:{" "}
@@ -353,13 +303,11 @@ const VonageCommunityPartnership: React.FC = () => {
           </strong>
           , dentro de la web.
         </p>
-        <br />
         <p>
           No lo contamos aquí en abierto porque son para las integrantes del
           club. Si tienes cuenta, las encuentras nada más entrar, en tu página
           de bienvenida.
         </p>
-        <br />
         <p>
           Y hay una segunda parte que sí podemos contar, porque depende de
           vosotras:{" "}
@@ -369,101 +317,38 @@ const VonageCommunityPartnership: React.FC = () => {
           </strong>{" "}
           con las APIs de Vonage —voz, vídeo, mensajería y verificación—.
         </p>
-        <br />
         <p>
           No está decidido todavía, y preferimos decirlo a prometerlo. Antes de
           fijar fechas o formato necesitamos saber cuántas personas tendrían
           ganas de participar y con cuánto tiempo cuentan. Si sale adelante,
           será porque hay gente suficiente para que tenga sentido.
         </p>
-        <br />
         <p>
           Esa pregunta está dentro de la web, en tu página de bienvenida: son
           tres preguntas y se contestan en un minuto.
         </p>
-        <br />
 
-        <div
-          style={{
-            backgroundColor: "rgba(71, 55, 187, 0.1)",
-            padding: "25px",
-            borderRadius: "15px",
-            textAlign: "center",
-            margin: "30px 0",
-            borderLeft: "5px solid #4737bb",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          <h3
-            style={{
-              color: "#6d2c95",
-              marginTop: 0,
-              fontSize: "1.6rem",
-              marginBottom: "15px",
-            }}
-          >
-            Ya está disponible
-          </h3>
-          <p>
-            Regístrate en FemCoders Club y lo encontrarás dentro, en tu página
-            de bienvenida. Si ya tienes cuenta, solo tienes que entrar.
-          </p>
-          <br />
-          <Link
-            to="/register"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-            }}
-          >
+        <h3>Ya está disponible</h3>
+        <p>
+          Regístrate en FemCoders Club y lo encontrarás dentro, en tu página de
+          bienvenida. Si ya tienes cuenta, solo tienes que entrar.
+        </p>
+        <p>
+          <Link to="/register" className="fc-boton">
             Registrarme en FemCoders Club
           </Link>
-          <br />
-          <br />
-          {/*
-            Quien ya tiene cuenta no necesita registrarse, necesita entrar. Sin
-            esta segunda puerta, el único botón la manda a un formulario de alta
-            que va a rechazar su email y la deja sin saber qué hacer.
-          */}
-          <p style={{ margin: 0, fontSize: "0.95rem" }}>
-            ¿Ya tienes cuenta?{" "}
-            <Link to="/login" className="highlight-link">
-              Entra aquí
-            </Link>
-            .
-          </p>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
         </p>
+        {/*
+          Quien ya tiene cuenta no necesita registrarse, necesita entrar. Sin
+          esta segunda puerta, el único botón la manda a un formulario de alta
+          que va a rechazar su email y la deja sin saber qué hacer.
+        */}
         <p>
-          Fecha de publicación: <strong>10 de septiembre, 2026</strong>
+          ¿Ya tienes cuenta? <Link to="/login">Entra aquí</Link>.
         </p>
-        <p>
-          Actualizado: <strong>13 de septiembre, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default VonageCommunityPartnership;

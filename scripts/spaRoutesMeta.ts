@@ -164,7 +164,7 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
         url: SITIO,
         logo: urlAbsoluta("/FemCodersClubLogo.png"),
         description:
-          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.500 miembros y más de 40 eventos organizados.",
+          "Comunidad y asociación registrada que empodera a mujeres en el sector tecnológico, cerrando la brecha de género digital. Fundada en Barcelona en octubre de 2023, con más de 1.600 miembros y más de 40 eventos organizados.",
         foundingDate: "2023-10-24",
         email: "info@femcodersclub.com",
         address: {

@@ -1,18 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../components/CommentsSection";
-import PostImage from "../../components/PostImage";
-import "../../page/PostStyles.css";
-
-import ShareButtons from "../../components/ShareButtons";
+import { Link } from "react-router-dom";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { SeccionPost, TablaPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 import { urlAbsoluta } from "../../components/siteUrl";
 
-const HackBarnaAiSummit26: React.FC = () => {
-  const postId = 46;
-
-  return (
-    <div className="blog-post">
+const HackBarnaAiSummit26: React.FC = () => (
+  <>
       <Helmet>
         <title>
           FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit
@@ -149,69 +144,48 @@ const HackBarnaAiSummit26: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <PostImage
-        src="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
-        mobileSrc="/public-optimized/mobile/assets/noticias/hackbarna-ai-summit-26.webp"
-        desktopSrc="/public-optimized/desktop/assets/noticias/hackbarna-ai-summit-26.webp"
-        fallbackSrc="/assets/noticias/hackbarna-ai-summit-26.png"
-        alt="FemCoders Club, community partner de HackBarna AI Summit 26, hackathon de inteligencia artificial en Norrsken House Barcelona"
-        aiGenerated
-      />
-
-      <h1 className="blog-post-title">
-        FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26
-      </h1>
-
-      <ShareButtons path="/noticias/hackbarna-ai-summit-26" title="FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26" />
-
-      {/* ── Intro ── */}
-      <div className="intro-text">
-        <p>
-          El año pasado{" "}
-          <a
-            href="https://www.femcodersclub.com/noticias/HackBarna2025"
-            className="highlight-link"
-          >
-            contamos aquí
-          </a>{" "}
-          lo que sentimos cuando nos invitaron a ser community partner de
-          HackBarna por primera vez. Ese "¡guau, hemos llegado lejos!" no se ha
-          ido: este año repetimos, y queremos que esta vez seáis muchas más las
-          que os apuntéis.
-        </p>
-        <br />
-        <p>
-          FemCoders Club es de nuevo community partner de{" "}
-          <a
-            href="https://www.hackbcn.com/en/events/aisummit26"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
-            <strong>HackBarna AI Summit 26</strong>
-          </a>
-          , la tercera edición de este hackathon centrado en inteligencia
-          artificial que se celebra en Barcelona. Y si el año pasado ya nos
-          pareció un evento de primer nivel, esta edición viene con más hackers,
-          más sponsors y un espacio nuevo: Norrsken House Barcelona.
-        </p>
-      </div>
-
-      {/* ── 1. Qué vas a encontrar ── */}
-      <div className="highlight-box">
-        <h2>Lo que vas a encontrar en HackBarna AI Summit 26</h2>
-        <br />
+    <PlantillaPost
+      ruta="/noticias/hackbarna-ai-summit-26"
+      titulo="FemCoders Club vuelve a ser community partner de HackBarna AI Summit 26"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={46}
+      portadaConIA
+      entradilla={
+        <>
+          <p>
+            El año pasado <Link to="/noticias/HackBarna2025">contamos aquí</Link>{" "}
+            lo que sentimos cuando nos invitaron a ser community partner de
+            HackBarna por primera vez. Ese «¡guau, hemos llegado lejos!» no se ha
+            ido: este año repetimos, y queremos que esta vez seáis muchas más las
+            que os apuntéis.
+          </p>
+          <p>
+            FemCoders Club es de nuevo community partner de{" "}
+            <a
+              href="https://www.hackbcn.com/en/events/aisummit26"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>HackBarna AI Summit 26</strong>
+            </a>
+            , la tercera edición de este hackathon centrado en inteligencia
+            artificial que se celebra en Barcelona. Y si el año pasado ya nos
+            pareció un evento de primer nivel, esta edición viene con más hackers,
+            más sponsors y un espacio nuevo: Norrsken House Barcelona.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="Lo que vas a encontrar en HackBarna AI Summit 26">
         <p>
           Un fin de semana entero para construir. Nada de charlas interminables
           ni networking vacío: se trata de sentarte a programar junto a más de
           200 hackers, con mentoras y mentores que están un paso por delante en
           IA y con un objetivo claro, demostrar algo funcionando en 48 horas.
         </p>
-        <br />
 
-        <div className="table-container">
-          <table className="framework-comparison-table">
+        <TablaPost descripcion="Detalles de HackBarna AI Summit 26">
+          <table>
             <thead>
               <tr>
                 <th>Detalles del evento</th>
@@ -252,7 +226,6 @@ const HackBarnaAiSummit26: React.FC = () => {
                     href="https://www.hackbcn.com/en/events/aisummit26"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="highlight-link"
                   >
                     hackbcn.com/en/events/aisummit26
                   </a>
@@ -260,8 +233,7 @@ const HackBarnaAiSummit26: React.FC = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <br />
+        </TablaPost>
 
         <p>
           El sábado arranca con el registro a las 9:00, la keynote de apertura a
@@ -270,12 +242,9 @@ const HackBarnaAiSummit26: React.FC = () => {
           empieza la ronda de jurado que cierra con la entrega de premios a las
           17:30. Dos días, sin pausa, con el reloj corriendo de verdad.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. Quién está detrás ── */}
-      <div className="highlight-box">
-        <h2>Quién está detrás este año</h2>
-        <br />
+      <SeccionPost titulo="Quién está detrás este año">
         <p>
           Por ahora, HackBarna AI Summit 26 cuenta con <strong>Vonage</strong>{" "}
           como sponsor gold y con <strong>Preply</strong>,{" "}
@@ -287,24 +256,19 @@ const HackBarnaAiSummit26: React.FC = () => {
           partida: tanto los sponsors como las comunidades participantes se van
           confirmando semana a semana, así que esta lista todavía va a crecer.
         </p>
-        <br />
         <p>
           Que sigamos ahí, edición tras edición, no es casualidad. Es la
           confirmación de que cuando una comunidad demuestra lo que sus
           femcoders son capaces de construir, la vuelven a invitar.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 3. Por qué aplicar ── */}
-      <div className="highlight-box">
-        <h2>Por qué merece la pena aplicar</h2>
-        <br />
+      <SeccionPost titulo="Por qué merece la pena aplicar">
         <p>
           Cuarenta y ocho horas suenan a poco tiempo hasta que te sientas a
           construir algo real junto a gente que sabe tanto o más que tú. Ahí es
           donde se aprende de verdad, no en el tutorial número quince.
         </p>
-        <br />
         <p>
           Vas a compartir espacio con equipos de empresas que están definiendo
           cómo se construye con IA ahora mismo. Esa conversación con un mentor
@@ -313,127 +277,63 @@ const HackBarnaAiSummit26: React.FC = () => {
           que puedes enseñar después en una entrevista, no una línea más en el
           CV.
         </p>
-        <br />
         <p>
           Si te da vértigo aplicar porque piensas que no estás a la altura, esa
           duda la tenemos todas la primera vez. Si programas, ya tienes lo que
           hace falta para estar ahí. Lo demás se construye en las 48 horas.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 4. Cómo aplicar ── */}
-      <div className="highlight-box">
-        <h2>Cómo aplicar</h2>
-        <br />
+      <SeccionPost titulo="Cómo aplicar">
         <p>
           La inscripción se hace en pocos minutos a través de Luma, y jueces y
           mentoras todavía se están confirmando, así que si tienes experiencia y
           te apetece mentorizar, también hay hueco para ti.
         </p>
-        <br />
-        <ul>
-          <li>
-            <strong>Aplicar al hackathon:</strong>{" "}
-            <a
-              href="https://www.hackbcn.com/en/events/aisummit26"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
-              hackbcn.com/en/events/aisummit26
-            </a>
-          </li>
-          <li>
-            <strong>Toda la información del evento:</strong>{" "}
-            <a
-              href="https://www.hackbcn.com/en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
-              hackbcn.com/en
-            </a>
-          </li>
-        </ul>
-        <br />
+        <p>
+          <a
+            href="https://www.hackbcn.com/en/events/aisummit26"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fc-boton"
+          >
+            Aplicar al hackathon
+          </a>
+        </p>
+        <p>
+          <strong>Toda la información del evento:</strong>{" "}
+          <a href="https://www.hackbcn.com/en" target="_blank" rel="noopener noreferrer">
+            hackbcn.com/en
+          </a>
+        </p>
         <p>
           Cuando apliques, menciona que vienes de FemCoders Club. Nos gusta que
           se note cuántas somos.
         </p>
-        <br />
         <p>
           Y esto no se queda aquí. Estamos preparando algo más para seguir
           conectando con toda la comunidad antes del hackathon. Todavía estamos
           cuadrando los detalles, pero muy pronto os contamos más.
         </p>
-        <br />
 
-        <div
-          style={{
-            backgroundColor: "rgba(71, 55, 187, 0.1)",
-            padding: "25px",
-            borderRadius: "15px",
-            textAlign: "center",
-            margin: "30px 0",
-            borderLeft: "5px solid #4737bb",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          <h3
-            style={{
-              color: "#6d2c95",
-              marginTop: 0,
-              fontSize: "1.6rem",
-              marginBottom: "15px",
-            }}
-          >
-            ¿Te apuntas?
-          </h3>
-          <p>
-            Cuéntanoslo en nuestro Slack, nos encanta saber quién va a estar
-            allí representando a FemCoders Club.
-          </p>
-          <br />
+        <h3>¿Te apuntas?</h3>
+        <p>
+          Cuéntanoslo en nuestro Slack, nos encanta saber quién va a estar
+          allí representando a FemCoders Club.
+        </p>
+        <p>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-            }}
+            className="fc-boton"
           >
             Únete a nuestro Slack
           </a>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
         </p>
-        <p>
-          Fecha de publicación: <strong>7 de agosto, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default HackBarnaAiSummit26;

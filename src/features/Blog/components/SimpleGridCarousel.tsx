@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "./SimpleGridCarousel.css";
 
 const SimpleGridCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,34 +103,38 @@ const SimpleGridCarousel = () => {
         </div>
       </div>
 
-      <div className="grid-carousel-controls">
+      {/* Flechas y puntos en una barra bajo la imagen: encima tapaban el pie en móvil. */}
+      <div className="grid-carousel-barra">
         <button
+          type="button"
           onClick={prevSlide}
           className="grid-carousel-button"
-          aria-label="Anterior slide"
+          aria-label="Diapositiva anterior"
         >
-          <IoIosArrowBack />
+          <IoIosArrowBack aria-hidden="true" />
         </button>
+        <div className="grid-carousel-indicators">
+          {slides.map((_, index) => (
+            <button
+              type="button"
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`grid-carousel-dot ${
+                index === currentIndex ? "active" : ""
+              }`}
+              aria-label={`Ir a la diapositiva ${index + 1}`}
+              aria-current={index === currentIndex ? "true" : undefined}
+            />
+          ))}
+        </div>
         <button
+          type="button"
           onClick={nextSlide}
           className="grid-carousel-button"
-          aria-label="Siguiente slide"
+          aria-label="Diapositiva siguiente"
         >
-          <IoIosArrowForward />
+          <IoIosArrowForward aria-hidden="true" />
         </button>
-      </div>
-
-      <div className="grid-carousel-indicators">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`grid-carousel-dot ${
-              index === currentIndex ? "active" : ""
-            }`}
-            aria-label={`Ir a la diapositiva ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   );

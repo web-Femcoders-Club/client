@@ -1,0 +1,486 @@
+[
+  {
+    "ruta": "/recursos/js/testing-javascript-sin-frameworks",
+    "titulo": "Testing en JavaScript sin frameworks: construye tu propio test runner",
+    "descripcion": "Construye tu propio test runner en JavaScript sin dependencias: assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto completo: testlet.",
+    "imagen": "/assets/javascript/testlet-arquitectura.png",
+    "fecha": "2026-10-02",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/offload-challenge-vonage-hackbarna-ai-summit-26",
+    "titulo": "CTRL4ELLA recibe el premio Best use of the Vonage Video API",
+    "descripcion": "CTRL4ELLA, de FemCoders Club, recibe el premio Best use of the Vonage Video API con OFFLOAD, una agente de IA que sabe cuándo hablar en una videollamada.",
+    "imagen": "/assets/noticias/offload-challenge-vonage-hackbarna-ai-summit-26.jpg",
+    "fecha": "2026-09-29",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/barcelona-cybersecurity-congress-2026",
+    "titulo": "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
+    "descripcion": "Barcelona Cybersecurity Congress 2026, del 3 al 5 de noviembre en Fira de Barcelona. Somos Ambassadors: entrada gratis y el pase completo con un 54 % menos.",
+    "imagen": "/assets/noticias/bcc26-femcodersclub.jpg",
+    "fecha": "2026-09-17",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/claude-community-house-barcelona",
+    "titulo": "Claude Community House Barcelona: cuatro días de IA en Poblenou y un −20 % para nuestra comunidad",
+    "descripcion": "Del 21 al 24 de septiembre, la comunidad europea de Claude toma un edificio de Poblenou: talleres, clínicas de proyectos, un hackathon de impacto y una azotea. Con el código FEMCODERS20 tienes un 20 % de descuento en las entradas del rooftop.",
+    "imagen": "/assets/noticias/claude-community-house-barcelona.jpg",
+    "fecha": "2026-09-16",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/vonage-community-partnership-program",
+    "titulo": "FemCoders Club se une al Vonage Community Partnership Program",
+    "descripcion": "Nos unimos al programa de Vonage (part of Ericsson). Ya hay novedades dentro para la comunidad, y queremos montar un proyecto en grupo con sus APIs de voz, vídeo, mensajería y verificación.",
+    "imagen": "/assets/noticias/vonage-femcodersclub.jpg",
+    "fecha": "2026-09-10",
+    "seccion": "noticia",
+    "tema": "FemCoders Club",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/noticias/hackbarna-ai-summit-26-desde-dentro",
+    "titulo": "FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro",
+    "descripcion": "Volvemos como Community Partner y este año vamos un poco más allá: varias femcoders hemos formado equipo y también participaremos en el hackathon. 19 y 20 de septiembre en Norrsken House Barcelona.",
+    "imagen": "/assets/noticias/hackbarna-ai-summit-26-desde-dentro.jpg",
+    "fecha": "2026-09-09",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/sesion-informativa-hackbarna-ai-summit-26",
+    "titulo": "Sesión informativa HackBarna AI Summit 26: la ganadora de 2025 cuenta cómo se gana un hackathon de IA",
+    "descripcion": "Lilibeth Bustos Linares, ganadora del hackathon en 2025, se sienta con nosotras a contar cómo se viven esas 48 horas. Jueves 3 de septiembre, 19:30 h. Online y gratuita.",
+    "imagen": "/assets/noticias/sesion-informativa-hackbarna-ai-summit-26.jpg",
+    "fecha": "2026-08-17",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/hackbarna-ai-summit-26",
+    "titulo": "FemCoders Club vuelve a ser Community Partner de HackBarna AI Summit 26",
+    "descripcion": "Repetimos como community partner del hackathon de IA de Barcelona. 19 y 20 de septiembre de 2026 en Norrsken House Barcelona, con más de 200 hackers. ¿Te apuntas?",
+    "imagen": "/assets/noticias/hackbarna-ai-summit-26.png",
+    "fecha": "2026-08-07",
+    "seccion": "noticia",
+    "tema": "FemCoders Club",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/ia-javascript-gemini",
+    "titulo": "IA en JavaScript: cómo integrar la API gratuita de Gemini sin frameworks",
+    "descripcion": "Cómo integrar Gemini en un proyecto JavaScript real sin frameworks: proxy en Node nativo, control de cuota, backoff exponencial, caché LRU y streaming token a token.",
+    "imagen": "/assets/javascript/ia-javascript-gemini.png",
+    "fecha": "2026-07-19",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/colaboracion-june",
+    "titulo": "FemCoders Club colabora en el desarrollo de June, una plataforma contra la violencia digital de género",
+    "descripcion": "Nos sumamos como equipo de desarrollo al proyecto June, de la asociación In CoDe, para documentar la violencia política de género y la censura digital en España.",
+    "imagen": "/assets/noticias/colaboracion-june.png",
+    "fecha": "2026-07-05",
+    "seccion": "noticia",
+    "tema": "FemCoders Club",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/optimizacion-javascript",
+    "titulo": "Optimización en JavaScript: mide antes de tocar una línea",
+    "descripcion": "Debounce, throttle, memoization y detección de memory leaks: las técnicas que de verdad mueven la aguja, medidas con datos reales en lugar de intuiciones.",
+    "imagen": "/assets/javascript/optimizacion-javascript.png",
+    "fecha": "2026-06-27",
+    "seccion": "recurso",
+    "tema": "JavaScript",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/web-apis-nueva-generacion",
+    "titulo": "Web APIs de nueva generación en JavaScript: más allá del localStorage",
+    "descripcion": "IndexedDB, Web Crypto API y File System Access API: las APIs del navegador que reemplazan dependencias externas. Proyecto práctico: Encrypted Private Notes con encriptación extremo a extremo.",
+    "imagen": "/assets/javascript/web-apis-nueva-generacion.png",
+    "fecha": "2026-06-12",
+    "seccion": "recurso",
+    "tema": "JavaScript",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/modulos-arquitectura-escalable",
+    "titulo": "Módulos y arquitectura escalable en JavaScript",
+    "descripcion": "ES Modules vs CommonJS, dynamic import, tree shaking y cómo organizar un proyecto JavaScript que va a crecer. Proyecto práctico: Productivity Dashboard.",
+    "imagen": "/assets/javascript/modulos-arquitectura-escalable.png",
+    "fecha": "2026-06-03",
+    "seccion": "recurso",
+    "tema": "JavaScript",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/noticias/taller-decidim-hacks",
+    "titulo": "Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails",
+    "descripcion": "Crónica del taller práctico sobre Decidim en el Canòdrom: entorno local, arquitectura Rails, personalización y comunidad.",
+    "imagen": "/assets/noticias/taller-decidim-elvia.jpeg",
+    "fecha": "2026-06-03",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/js/patrones-diseno-javascript",
+    "titulo": "Patrones de diseño en JavaScript puro: más allá del catálogo",
+    "descripcion": "Patrones de diseño en JavaScript moderno: Module, Observer, Proxy, Decorator y composición funcional. Proyecto práctico: reactive-store-js.",
+    "imagen": "/assets/javascript/patrones-diseno-javascript.png",
+    "fecha": "2026-05-10",
+    "seccion": "recurso",
+    "tema": "JavaScript",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/estructuras-datos-js",
+    "titulo": "Estructuras de datos avanzadas en JavaScript: Map, Set, WeakMap y WeakSet",
+    "descripcion": "Map, Set, WeakMap y WeakSet: cuándo usar cada estructura y por qué importa. Proyecto práctico: LRU Cache con Map, el mismo ejercicio de entrevistas de Google, Meta y Amazon.",
+    "imagen": "/assets/javascript/estructuras-datos-js.png",
+    "fecha": "2026-04-25",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/marzo-2026-eventos",
+    "titulo": "El mes en que dejamos de pedir permiso para ocupar espacio",
+    "descripcion": "Talent Arena, Claude en Barcelona e InfoJobs: marzo 2026 ha sido un mes que deja huella. Y aún no ha terminado.",
+    "imagen": "/assets/noticias/talent-arena-2026-partnership.png",
+    "fecha": "2026-03-06",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/js/closures-scope-context",
+    "titulo": "Closures, scope y context: lo que realmente pasa en el motor de JavaScript",
+    "descripcion": "El 60% de las preguntas técnicas de JavaScript en entrevistas giran alrededor de scope, closures y this. Aprende cómo funcionan realmente con ejemplos y una state machine interactiva.",
+    "imagen": "/assets/javascript/closures-scope-context.png",
+    "fecha": "2026-03-01",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/recursos/js/manipulacion-dom-ingeniera",
+    "titulo": "Manipulación del DOM como una ingeniera",
+    "descripcion": "Event Delegation, Performance, IntersectionObserver, MutationObserver y Custom Events. Construye sistemas robustos con manipulación del DOM.",
+    "imagen": "/assets/javascript/manipulacion-dom-ingeniera.png",
+    "fecha": "2026-02-08",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/talent-arena-2026-partnership",
+    "titulo": "FemCoders Club es Community Partner de Talent Arena 2026",
+    "descripcion": "Una alianza que celebra la diversidad y el poder del talento colectivo. Descubre qué significa esta colaboración para nuestra comunidad.",
+    "imagen": "/assets/noticias/femCodersClub-talentArena.png",
+    "fecha": "2026-02-02",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/js/event-loop-javascript",
+    "titulo": "Event Loop en JavaScript: cómo funciona la asincronía",
+    "descripcion": "Entiende por qué setTimeout con 0ms no se ejecuta inmediatamente. Domina el Event Loop, microtasks, macrotasks y código asíncrono en JavaScript.",
+    "imagen": "/assets/javascript/event-loop-javascript.webp",
+    "fecha": "2026-01-24",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/felices-fiestas-2025",
+    "titulo": "Felices fiestas: FemCoders Club cierra 2025 y sigue",
+    "descripcion": "Más de 1,300 mujeres en tech, logros reales y un 2026 lleno de proyectos. Así cierra FemCoders Club el año 2025.",
+    "imagen": "/assets/noticias/felices-fiestas-2025.gif",
+    "fecha": "2025-12-28",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/js/fundamentos-javascript-profundos",
+    "titulo": "Los fundamentos de JavaScript que realmente importan",
+    "descripcion": "El salto de HTML/CSS a JavaScript explicado sin tecnicismos. Entiende cómo funciona JavaScript por dentro con ejemplos reales.",
+    "imagen": "/public-optimized/desktop/assets/javascript/fundamentos-javascript.webp",
+    "fecha": "2025-11-25",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
+    "ruta": "/noticias/segundo-aniversario",
+    "titulo": "Segundo aniversario de FemCoders Club: nuestra historia, nuestro equipo y el futuro tecnológico",
+    "descripcion": "De un espacio seguro a una Asociación con +1.300 mujeres en tech. Celebramos 2 años de crecimiento, comunidad y futuro tecnológico.",
+    "imagen": "/public-optimized/desktop/assets/Eventos2025/segundoAniversario-femCodersClub.webp",
+    "fecha": "2025-10-24",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/css/quiz-css-entrevistas",
+    "titulo": "Quiz CSS para entrevistas técnicas: 30 preguntas esenciales",
+    "descripcion": "Quiz interactivo para preparar entrevistas técnicas de CSS. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
+    "imagen": "/public-optimized/desktop/assets/css/CSS-Quiz-Entrevistas.webp",
+    "fecha": "2025-10-17",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/noticias/HackBarna2025",
+    "titulo": "¡FemCoders Club es Community Partner de HackBarna 2025!",
+    "descripcion": "¡Una noticia que nos llena de orgullo! Somos Community Partner oficial del hackathon de IA más importante de Barcelona. ¡Te esperamos!",
+    "imagen": "/public-optimized/desktop/assets/Eventos2025/hackbarna-2025-femcoders.webp",
+    "fecha": "2025-09-30",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/html/quiz-html-entrevistas",
+    "titulo": "Quiz HTML para entrevistas técnicas: 30 preguntas esenciales",
+    "descripcion": "Quiz interactivo para preparar entrevistas técnicas de HTML. 3 niveles de dificultad, explicaciones detalladas y feedback personalizado.",
+    "imagen": "/public-optimized/desktop/assets/html/HTML-Quiz-Entrevistas.webp",
+    "fecha": "2025-09-15",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/css/css-performance-optimization",
+    "titulo": "El Lado Oculto del CSS: Cómo tus estilos están saboteando la performance",
+    "descripcion": "Tutorial completo de optimización CSS: mejora tu PageSpeed de 81 a 97 con técnicas avanzadas, Critical CSS y herramientas de medición profesionales.",
+    "imagen": "/public-optimized/desktop/assets/css/CSS-Performance-Optimization.webp",
+    "fecha": "2025-08-02",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/css-variables-vs-sass",
+    "titulo": "CSS Variables vs Sass: Cuándo usar cada una para máximo impacto",
+    "descripcion": "Guía completa para combinar CSS Variables y Sass: arquitectura híbrida, theming dinámico y casos de uso reales para desarrollo frontend moderno.",
+    "imagen": "/public-optimized/desktop/assets/css/CSS-Variables-Sass.webp",
+    "fecha": "2025-07-29",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/sass-next-level",
+    "titulo": "SASS: Lleva tu CSS al siguiente nivel",
+    "descripcion": "Tutorial completo de SASS: desde variables hasta arquitectura 7-1. Incluye proyecto FemPalette interactivo y comparación con CSS moderno.",
+    "imagen": "/public-optimized/desktop/assets/css/SASS-Next-Level.webp",
+    "fecha": "2025-07-20",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/accesibilidad-css",
+    "titulo": "Accesibilidad en CSS: diseñando experiencias inclusivas",
+    "descripcion": "Domina la accesibilidad en CSS: contraste, tipografía, navegación por teclado y preferencias del usuario. Con ejemplos reales de sitios web.",
+    "imagen": "/public-optimized/desktop/assets/css/Accesibilidad-CSS.webp",
+    "fecha": "2025-07-12",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/animaciones-css",
+    "titulo": "Domina las animaciones CSS: de básico a avanzado",
+    "descripcion": "Guía completa de animaciones CSS desde keyframes básicos hasta técnicas avanzadas. Aprende performance, accesibilidad y mejores prácticas con ejemplos reales.",
+    "imagen": "/public-optimized/desktop/assets/css/AnimacionesCSS.webp",
+    "fecha": "2025-07-01",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/noticias/EntrevistaNadiaTesting",
+    "titulo": "Entrevista con Nadia Cavalleri: de psicóloga a líder en testing y QA",
+    "descripcion": "Una conversación inspiradora con una de las voces más influyentes en testing de Latinoamérica. Descubre su historia, consejos y visión del futuro del QA.",
+    "imagen": "/public-optimized/desktop/assets/Eventos2025/nadiaCavalleri.webp",
+    "fecha": "2025-06-20",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/DataConnectEvento",
+    "titulo": "DataConnect: revive una tarde épica de comunidad tech en Barcelona",
+    "descripcion": "Más de 70 personas se reunieron en InfoJobs Barcelona para una jornada increíble de Big Data, networking y comunidad. Revive los mejores momentos con nuestro video resumen.",
+    "imagen": "/public-optimized/desktop/assets/Eventos2025/comunidadData.webp",
+    "fecha": "2025-06-02",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/css/transiciones-transformaciones",
+    "titulo": "Domina las transformaciones y transiciones CSS 2D/3D: guía avanzada",
+    "descripcion": "Guía completa de transformaciones y transiciones CSS 2D y 3D. Aprende rendering pipeline, hardware acceleration, timing functions avanzadas, debugging y ejemplos reales con Dashboard futurista.",
+    "imagen": "/public-optimized/desktop/assets/css/TransformacionesCSS.webp",
+    "fecha": "2025-05-25",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/css-grid-flexbox",
+    "titulo": "Estrategias avanzadas para dominar el layout en CSS: combinando Grid y Flexbox",
+    "descripcion": "Aprende a combinar CSS Grid y Flexbox estratégicamente para crear layouts modernos, complejos y responsivos. Descubre 5 estrategias eficaces y ejemplos prácticos.",
+    "imagen": "/public-optimized/desktop/assets/css/CssGridFlexbox.webp",
+    "fecha": "2025-04-27",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/react/nike-store-replica",
+    "titulo": "Réplica de Nike Store con React: un proyecto e-commerce completo",
+    "descripcion": "Descubre cómo Almudena Rendón ha creado una impresionante réplica de Nike Store usando React, con carrito de compras, diseño responsivo y funcionalidades avanzadas.",
+    "imagen": "/assets/react/nike-store-replica.jpg",
+    "fecha": "2025-03-16",
+    "seccion": "recurso",
+    "tema": "React"
+  },
+  {
+    "ruta": "/recursos/css/flexbox",
+    "titulo": "Flexbox: El poder de crear layouts flexibles",
+    "descripcion": "Descubre cómo utilizar Flexbox en CSS para crear layouts flexibles y responsivos. Ejemplos prácticos y consejos para mejorar tu diseño web.",
+    "imagen": "/assets/css/flexbox.jpg",
+    "fecha": "2025-03-02",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/box-model",
+    "titulo": "Box Model en CSS | Guía completa con FemCoders Club",
+    "descripcion": "Descubre cómo funciona el Box Model en CSS y optimiza tus diseños web con técnicas avanzadas. Aprende con FemCoders Club.",
+    "imagen": "/assets/css/boxModel.jpg",
+    "fecha": "2025-02-16",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/selectores-css",
+    "titulo": "Domina los selectores en CSS",
+    "descripcion": "Explora los selectores en CSS, desde básicos como clases e ID hasta avanzados como pseudoclases y combinaciones. Ejemplos prácticos incluidos.",
+    "imagen": "/assets/css/SelectoresCss.jpg",
+    "fecha": "2025-01-17",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/css-grid",
+    "titulo": "CSS Grid: domina el sistema de cuadrículas en tu página web",
+    "descripcion": "Aprende a usar CSS Grid para crear layouts web profesionales. Guía completa con ejemplos prácticos, compatibilidad con navegadores y optimización de rendimiento.",
+    "imagen": "/public-optimized/desktop/assets/css/CssGrid.webp",
+    "fecha": "2025-01-15",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/css/responsive-design",
+    "titulo": "Responsive design: de principiante a experta con media queries",
+    "descripcion": "Domina el responsive design desde conceptos básicos hasta técnicas avanzadas. Comparación desktop-first vs mobile-first con ejemplos prácticos.",
+    "imagen": "/public-optimized/desktop/assets/css/ResponsiveDesign.webp",
+    "fecha": "2025-01-04",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/noticias/Bienvenido2025",
+    "titulo": "¡Bienvenidas a 2025 con FemCoders Club! 🎉",
+    "descripcion": "Explora los logros de 2024 y nuestras iniciativas para 2025 en FemCoders Club. Aprende, conecta y crece en nuestra comunidad.",
+    "imagen": "/assets/noticias/bienvenido2025.jpg",
+    "fecha": "2025-01-03",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/noticias/FelicitacionNavidad",
+    "titulo": "FemCoders Club: felices fiestas 2024",
+    "descripcion": "Felicitamos la Navidad y el Año Nuevo desde femCoders Club, celebrando los logros de 2024 y mirando hacia un 2025 lleno de innovación.",
+    "imagen": "/FemCodersClubLogo.png",
+    "fecha": "2024-12-22",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/css/introduccion-css",
+    "titulo": "¿Qué es CSS y cómo usarlo para diseñar páginas web?",
+    "descripcion": "Aprende qué es CSS y cómo aplicarlo para crear páginas web visualmente atractivas. Con ejemplos y mini-proyecto para practicar.",
+    "imagen": "/assets/css/IntroduccionCss.png",
+    "fecha": "2024-11-15",
+    "seccion": "recurso",
+    "tema": "CSS"
+  },
+  {
+    "ruta": "/recursos/html/integracion-frameworks",
+    "titulo": "Integración de frameworks y librerías",
+    "descripcion": "Explora cómo combinar HTML con frameworks modernos como React y Svelte para crear aplicaciones dinámicas y escalables.",
+    "imagen": "/assets/html/htmlFrameworks.jpg",
+    "fecha": "2023-11-14",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/html/formularios-y-tablas",
+    "titulo": "Formularios y tablas en HTML",
+    "descripcion": "Aprende a estructurar formularios y tablas en HTML. Descubre etiquetas importantes y casos de uso comunes con ejemplos prácticos.",
+    "imagen": "/assets/html/Formularios-Tablas-HTML.png",
+    "fecha": "2023-11-09",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/html/apis-html",
+    "titulo": "Guía completa: APIs en HTML para proyectos web - FemCoders Club",
+    "descripcion": "Descubre cómo las APIs en HTML pueden potenciar tus proyectos. Guía de Geolocalización, Canvas, y mucho más para desarrolladoras.",
+    "imagen": "/assets/html/ApisHtml.png",
+    "fecha": "2023-11-09",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/html/html-seo-accesibilidad",
+    "titulo": "HTML avanzado para SEO y accesibilidad",
+    "descripcion": "Optimiza el SEO y la accesibilidad de tu web con HTML avanzado: microdatos, RDFa, ARIA, Lazy Loading y más.",
+    "imagen": "/assets/html/Html-Accesibilidad-SEO.jpg",
+    "fecha": "2023-11-05",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/html/html-semantico",
+    "titulo": "HTML semántico y diseño de layout",
+    "descripcion": "Aprende a usar etiquetas semánticas y a crear layouts efectivos para mejorar la experiencia de usuario y el posicionamiento web.",
+    "imagen": "/assets/html/ejemplo-layout.png",
+    "fecha": "2023-10-30",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/noticias/Aniversario",
+    "titulo": "FemCoders Club: primer aniversario",
+    "descripcion": "Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.",
+    "imagen": "/femCodersClubpost.png",
+    "fecha": "2023-10-24",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
+    "ruta": "/recursos/html/elementos-html-clave",
+    "titulo": "Elementos HTML clave: encabezados, párrafos, enlaces e imágenes",
+    "descripcion": "Explora los elementos esenciales de HTML y aprende a enriquecer tus páginas web con imágenes, enlaces, emojis y videos.",
+    "imagen": "/assets/html/Elementos-HTML-Clave.png",
+    "fecha": "2023-10-21",
+    "seccion": "recurso",
+    "tema": "HTML"
+  },
+  {
+    "ruta": "/recursos/html/introduccion-html",
+    "titulo": "Introducción a HTML: la base de la web",
+    "descripcion": "Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.",
+    "imagen": "/assets/html/Introduccion-HTML.png",
+    "fecha": "2023-10-14",
+    "seccion": "recurso",
+    "tema": "HTML"
+  }
+]

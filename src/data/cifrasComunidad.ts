@@ -6,7 +6,7 @@
  * de la comunidad y más adelante saldrán de ahí.
  */
 export const CIFRAS_COMUNIDAD = {
-  mujeres: 1500,
+  mujeres: 1600,
   eventos: 40,
   empresas: 30,
 } as const;
