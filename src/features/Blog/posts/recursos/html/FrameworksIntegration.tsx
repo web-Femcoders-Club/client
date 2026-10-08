@@ -499,8 +499,8 @@ export class GreetingComponent {
         </p>
         <ul>
           <li>
-            <img src="/assets/html/nicolas.jpeg" alt="Nicolás Schurmann" />
-            <strong>Nicolás Schurmann:</strong>
+            <img src="/assets/html/nicolas.jpeg" alt="" />
+            <strong>Nicolás Schurmann</strong>
             <p>
               Su estilo único, cálido y didáctico ha sido clave en mi
               aprendizaje. Nicolás no solo explica con claridad, sino que
@@ -512,8 +512,8 @@ export class GreetingComponent {
             </p>
           </li>
           <li>
-            <img src="/assets/html/midudev.jpeg" alt="midudev" />
-            <strong>midudev:</strong>
+            <img src="/assets/html/midudev.jpeg" alt="" />
+            <strong>midudev</strong>
             <p>
               Un verdadero referente en la comunidad tech, midudev inspira a
               miles de personas, especialmente a mujeres, a perseguir sus sueños
@@ -524,8 +524,8 @@ export class GreetingComponent {
             </p>
           </li>
           <li>
-            <img src="/assets/html/moure.jpeg" alt="MoureDev" />
-            <strong>MoureDev:</strong>
+            <img src="/assets/html/moure.jpeg" alt="" />
+            <strong>MoureDev</strong>
             <p>
               La dedicación de Moure por crear contenido de calidad y accesible
               ha sido una gran fuente de motivación para muchas desarrolladoras.
@@ -536,8 +536,8 @@ export class GreetingComponent {
             </p>
           </li>
           <li>
-            <img src="/assets/html/carlos.jpeg" alt="Carlos Azaustre" />
-            <strong>Carlos Azaustre:</strong>
+            <img src="/assets/html/carlos.jpeg" alt="" />
+            <strong>Carlos Azaustre</strong>
             <p>
               Carlos es un referente clave en la comunidad de desarrollo web en
               español. Su enfoque profesional y su habilidad para explicar

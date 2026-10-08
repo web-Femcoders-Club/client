@@ -27,6 +27,18 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   (antes dependían de `PostStyles.css`). La lógica no cambia. La lista va
   antes del formulario, el comentario recién enviado se marca como pendiente
   de revisión y los títulos ya no dan por hecho que quien comenta es mujer.
+- **Quiz de entrevistas rediseñado** (`components/Quiz`, sin cambios en la
+  lógica): barra de progreso, nivel en etiqueta, opciones con su estado dicho
+  en texto («Correcta», «Tu respuesta») y resultados con anillo y barras por
+  nivel. El foco acompaña cada paso. El logro y la guía de estudio salen en
+  la pantalla de resultados (`extraResultados`) en lugar de una ventana
+  flotante; sin sesión, se invita a iniciarla para guardar el logro.
+- **Piezas para apartados de ideas cortas**: `TarjetasPost`,
+  `ListaMarcadaPost` y `PasosPost`. El quiz de HTML las usa en la guía de
+  después del quiz (puntuación, recursos, consejos y plan de estudio), que
+  antes eran listas de viñetas seguidas. Su enlace a «Accesibilidad HTML»
+  (no existía) apunta ahora a «HTML avanzado para SEO y accesibilidad».
+- **Personas creadoras en tarjetas** en «Integración de frameworks».
 
 #### Eliminado
 - **Media `PostStyles.css` (de 1243 a 662 líneas)**: 79 reglas y 8 animaciones

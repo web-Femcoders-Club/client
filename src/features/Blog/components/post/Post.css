@@ -323,22 +323,52 @@
 }
 
 /*
- * Un elemento de lista que empieza por una foto (las personas creadoras de
- * los frameworks): la foto, pequeña y redonda, al lado del texto.
+ * Lista de personas (las creadoras de contenido de «Integración de
+ * frameworks»): tarjetas lavanda, dos por fila; en cada una, la foto y el
+ * nombre arriba y el texto debajo.
  */
-.post-seccion li:has(> img:first-child) {
-  display: flex;
-  align-items: flex-start;
+.post-seccion ul:has(> li > img:first-child) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  padding-left: 0;
+}
+
+.post-seccion li:has(> img:first-child) {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-content: start;
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 1.2rem;
+  background: var(--color-lavanda-claro);
   list-style: none;
 }
 
 .post-seccion li > img:first-child {
-  flex-shrink: 0;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.post-seccion li:has(> img:first-child) > strong {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.15;
+}
+
+.post-seccion li:has(> img:first-child) > p {
+  grid-column: 1 / -1;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .post-seccion ul:has(> li > img:first-child) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ---------- CodigoPost: claro y sobrio; texto azul oscuro sobre lavanda muy claro (más de 12:1) ---------- */
@@ -491,6 +521,260 @@
 
 .post-tabla tr:last-child td {
   border-bottom: 0;
+}
+
+/*
+ * ---------- TarjetasPost, ListaMarcadaPost y PasosPost ----------
+ * Para los apartados hechos de ideas cortas (guías de estudio, consejos):
+ * en viñetas con negritas se leían como un párrafo tras otro.
+ * `.post-seccion ul` da rejilla y sangría a todas las listas: aquí se anulan.
+ */
+
+.post-tarjetas,
+.post-marcada {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.post-tarjetas .post-tarjetas__lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.post-tarjetas .post-tarjetas__lista--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.post-tarjetas .post-tarjetas__lista--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.post-tarjetas__tarjeta {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid rgba(71, 55, 187, 0.14);
+  border-radius: 1.1rem;
+  background: var(--color-lavanda-claro);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__enlace:hover) {
+  border-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__enlace:focus-visible) {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Con icono: el icono a la izquierda, título y texto a su lado (menos alto en móvil). */
+.post-tarjetas__tarjeta:has(.post-tarjetas__icono) {
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+}
+
+.post-tarjetas__tarjeta:has(.post-tarjetas__icono) > p {
+  grid-column: 2;
+}
+
+.post-tarjetas__icono {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--color-secondary);
+}
+
+.post-tarjetas__icono svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.post__contenido .post-tarjetas__titulo {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+}
+
+.post__contenido .post-tarjetas__texto {
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+/* Todo el área de la tarjeta lleva al enlace; el foco se marca en la tarjeta. */
+.post-tarjetas__enlace {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.post-tarjetas__enlace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.post-tarjetas__enlace:focus-visible {
+  outline: none;
+}
+
+/* ListaMarcadaPost */
+.post-marcada ul {
+  gap: 0.7rem;
+  padding: 0;
+  list-style: none;
+}
+
+.post-marcada li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.post-marcada li > svg {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: 0.3rem;
+}
+
+.post-marcada--bien li > svg {
+  color: #0f5a26;
+}
+
+.post-marcada--mal li > svg {
+  color: var(--color-primary-oscuro);
+}
+
+.post-marcada--pregunta li > svg {
+  color: var(--color-secondary);
+}
+
+/* Las preguntas, como burbujas de conversación. */
+.post-marcada--pregunta ul {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.post-marcada--pregunta li {
+  padding: 0.85rem 1rem;
+  border-radius: 1rem 1rem 1rem 0.25rem;
+  background: var(--color-lavanda-claro);
+}
+
+.post-marcada__texto {
+  min-width: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.post-marcada--pregunta .post-marcada__texto {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+/* PasosPost: una línea vertical que une los números. */
+.post-seccion .post-pasos {
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-pasos__paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.post-pasos__paso:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 2.75rem;
+  bottom: 0;
+  left: calc(1.375rem - 1px);
+  width: 2px;
+  background: var(--color-lavanda-medio);
+}
+
+.post-pasos__numero {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.post__contenido .post-pasos__etiqueta {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-oscuro);
+}
+
+.post__contenido .post-pasos__titulo {
+  margin-bottom: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.post-pasos ul {
+  gap: 0.3rem;
+  padding-left: 1.1rem;
+  font-size: 1rem;
+  list-style: disc;
+}
+
+@media (max-width: 860px) {
+  .post-tarjetas .post-tarjetas__lista--3,
+  .post-tarjetas .post-tarjetas__lista--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .post-tarjetas .post-tarjetas__lista,
+  .post-tarjetas .post-tarjetas__lista--3,
+  .post-tarjetas .post-tarjetas__lista--4,
+  .post-marcada--pregunta ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-tarjetas__tarjeta {
+    transition: none;
+  }
+
+  .post-tarjetas__tarjeta:has(.post-tarjetas__enlace:hover) {
+    transform: none;
+  }
 }
 
 /* ---------- Final: compartir y comentarios ---------- */
