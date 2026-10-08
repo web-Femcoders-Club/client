@@ -491,7 +491,7 @@ const EntrevistaNadiaTesting: React.FC = () => (
           >
             Únete al Slack
           </a>{" "}
-          <Link to="/login" className="fc-boton">
+          <Link to="/register" className="fc-boton">
             Sé parte de la comunidad
           </Link>
         </p>

@@ -52,8 +52,7 @@
     "imagen": "/assets/noticias/hackbarna-ai-summit-26-desde-dentro.jpg",
     "fecha": "2026-09-09",
     "seccion": "noticia",
-    "tema": "FemCoders Club",
-    "imagenConIA": true
+    "tema": "FemCoders Club"
   },
   {
     "ruta": "/noticias/sesion-informativa-hackbarna-ai-summit-26",

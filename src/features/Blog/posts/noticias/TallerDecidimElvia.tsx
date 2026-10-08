@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import PlantillaPost from "../../components/post/PlantillaPost";
 import { CodigoPost, SeccionPost } from "../../components/post/PiezasPost";
 
@@ -276,17 +277,12 @@ docker compose up`}</CodigoPost>
         </p>
         <p>
           Si te quedaste con ganas de más o quieres que organicemos esta sesión
-          de nuevo, no dudes en escribirnos:
+          de nuevo, no dudes en escribirnos.
         </p>
         <p>
-          <a
-            href="https://github.com/openpoke/decidim-hacks"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fc-boton"
-          >
-            openpoke/decidim-hacks
-          </a>
+          <Link to="/contacto" className="fc-boton">
+            Escríbenos
+          </Link>
         </p>
       </SeccionPost>
 

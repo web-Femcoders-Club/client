@@ -151,7 +151,6 @@ const HackBarnaAiSummit26DesdeDentro: React.FC = () => (
       titulo="FemCoders Club vuelve a HackBarna AI Summit 26: esta vez también desde dentro"
       autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
       idComentarios={48}
-      portadaConIA
       entradilla={
         <>
           <p>
