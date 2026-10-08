@@ -268,9 +268,13 @@ Organizamos eventos presenciales en Barcelona y sesiones online con profesionale
 
 Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
 
-### Upcoming events (0)
+### Upcoming events (1)
 
-No upcoming events announced right now.
+- Mujeres, talento e IA: celebramos tres años de FemCoders Club
+  Date: 2026-11-11
+  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
+  Summary: Celebramos el tercer aniversario de FemCoders Club de la mano de Vonage. Áurea Rodríguez, Virginia Carreras y Anna Tsolakou conversarán sobre mujeres, talento e inteligencia artificial: sesgos, oportunidades y carreras profesionales, y sobre cómo conseguir que la IA amplíe las oportunidades de las mujeres en lugar de reproducir desigualdades. Habrá networking y un concurso de Vonage con premios para las asistentes.
+  Tickets: https://www.aicampus.barcelona/es/program/mujeres-talento-e-ia-women-talent-and-ai-2026-11-11
 
 ### Speakers
 
