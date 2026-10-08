@@ -185,9 +185,12 @@ const Bienvenido2025: React.FC = () => (
       </SeccionPost>
 
       <SeccionPost titulo="Nuestros mejores deseos para ti en 2025">
+        <blockquote>
+          <p>«La tecnología debe ser un puente hacia la igualdad, no una barrera».</p>
+          <p>— FemCoders Club</p>
+        </blockquote>
         <p>
-          «La tecnología debe ser un puente hacia la igualdad, no una barrera»,
-          Tarana Burke. Que esta frase te inspire a seguir creciendo y a marcar
+          Que esta frase te inspire a seguir creciendo y a marcar
           la diferencia en el mundo tecnológico. Este año, exploraremos nuevas
           fronteras en la programación, la inteligencia artificial y mucho más.
           ¡Estamos emocionadas por ver todo lo que lograremos juntas!

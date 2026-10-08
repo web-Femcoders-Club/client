@@ -265,6 +265,26 @@
   overflow-wrap: anywhere;
 }
 
+/* Una cita destacada: más grande, con una línea lila a la izquierda; la última línea, la autoría. */
+.post__contenido blockquote {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.25rem 0;
+  padding: 0.2rem 0 0.2rem 1.25rem;
+  border-left: 3px solid var(--color-secondary);
+}
+
+.post__contenido blockquote p:first-child {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.post__contenido blockquote p:last-child:not(:first-child) {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 /* ---------- SeccionPost ---------- */
 
 .post-seccion {
