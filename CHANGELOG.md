@@ -8,6 +8,18 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 ### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Añadido
+- **Los 11 posts de JavaScript migrados a la plantilla**, sin estilos en
+  línea, `react-icons` ni `PostStyles.css`, con su `<Helmet>` sin cambios.
+  Los ejercicios de Closures se pliegan con `RespuestaPost`. Por el camino:
+  el Decorator de Patrones ya memoiza de verdad, el `ClickCollector` del
+  EventBus recibe su bus, la coerción de Fundamentos recupera sus comillas
+  (`"5" + 2`), File System Access deja de presentarse como disponible en
+  todos los navegadores y la búsqueda «con debounce» de Event Loop se
+  llama por lo que hace (cancela la petición anterior). Las invitaciones a
+  la comunidad dicen «más de 1.600 mujeres» (antes 1.300 o 1.500 según el
+  post) y el club firma igual en todos: «FemCoders Club».
+- **Distintivo de IA en las portadas del blog**: tarjetas, listados y
+  portada del post marcan las imágenes generadas con IA (AI Act, art. 50).
 - **Los 14 posts de CSS migrados a la plantilla**, sin Tailwind ni
   `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz de CSS queda como
   el de HTML (logro y guía en los resultados). Por el camino: valores de

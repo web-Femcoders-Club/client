@@ -711,7 +711,7 @@ Fecha: ${publicationDate}
       <PlantillaPost
         ruta="/recursos/css/quiz-css-entrevistas"
         titulo="Quiz CSS para entrevistas técnicas: 30 preguntas que debes dominar"
-        autora={{ nombre: "femCoders Club", rol: "Comunidad de mujeres desarrolladoras" }}
+        autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
         idComentarios={postId}
         entradilla={
           <>
