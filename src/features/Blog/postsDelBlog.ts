@@ -13,6 +13,8 @@ export type PostDelBlog = {
   fecha: string;
   seccion: "noticia" | "recurso";
   tema: string;
+  /** Portada generada con IA: las tarjetas y el post muestran el distintivo (AI Act art. 50). */
+  imagenConIA?: true;
 };
 
 export const POSTS_DEL_BLOG = posts as PostDelBlog[];

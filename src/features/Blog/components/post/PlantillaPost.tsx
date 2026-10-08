@@ -19,6 +19,11 @@ type PlantillaPostProps = {
   autora: Autora;
   /** Identificador de los comentarios en el backend (no cambia aunque cambie la ruta). */
   idComentarios: number;
+  /**
+   * La portada es una imagen generada con IA: lleva el distintivo (AI Act
+   * art. 50). El índice del blog lo lee de aquí para marcar las tarjetas.
+   */
+  portadaConIA?: boolean;
   children: React.ReactNode;
 };
 
@@ -50,6 +55,7 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
   entradilla,
   autora,
   idComentarios,
+  portadaConIA = false,
   children,
 }) => {
   const cuerpoRef = useRef<HTMLDivElement>(null);
@@ -81,6 +87,7 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
           {post && (
             <figure className="post__portada">
               <OptimizedImage src={post.imagen} alt="" loading="eager" fetchPriority="high" />
+              {portadaConIA && <figcaption className="fc-distintivo-ia">Imagen generada con IA</figcaption>}
             </figure>
           )}
           <div className="post__columna">

@@ -24,6 +24,10 @@
   box-shadow: 0 1px 0 rgba(71, 55, 187, 0.06), 0 22px 44px rgba(71, 55, 187, 0.16);
 }
 
+.tarjeta-post__foto {
+  position: relative;
+}
+
 /* Las portadas son horizontales; el encuadre enseña el tercio de arriba, donde suelen estar las caras. */
 .tarjeta-post__imagen {
   display: block;

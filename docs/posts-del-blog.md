@@ -49,11 +49,18 @@ imagen los lee del `<Helmet>` a través del índice: no se repiten en el post.
 | Código con botón de copiar                    | `CodigoPost lenguaje`                     |
 | Un consejo o un aviso                         | `NotaPost titulo tipo?="consejo"\|"aviso"` |
 | Una tabla (con scroll en móvil)               | `TablaPost descripcion`                   |
-| Una imagen dentro del texto, con pie          | `ImagenPost src alt pie?`                 |
+| Una imagen dentro del texto, con pie          | `ImagenPost src alt pie? generadaConIA?`  |
 | El resultado en vivo de un ejemplo de CSS     | `DemoPost` + `.post-demo__caja`           |
+| La respuesta plegada de un ejercicio          | `RespuestaPost resumen?`                  |
 | Varias ideas cortas, herramientas, recursos   | `TarjetasPost tarjetas columnas?`         |
 | Lo que sí, lo que no, o preguntas             | `ListaMarcadaPost titulo tipo`            |
 | Un plan por etapas                            | `PasosPost pasos`                         |
+
+**Imágenes generadas con IA** (AI Act, art. 50): si la portada se creó o se
+retocó con un modelo generativo, `portadaConIA` en `PlantillaPost`; el índice
+lo lee de ahí y las tarjetas del blog también muestran el distintivo. Dentro
+del texto, `generadaConIA` en `ImagenPost`. Un diseño hecho a mano en Canva
+no cuenta.
 
 Párrafos, listas, `<code>` dentro de una frase y enlaces van sin clase: los
 estiliza la plantilla. Los enlaces a la propia web, con `<Link to>`.

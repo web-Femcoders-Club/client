@@ -54,6 +54,7 @@ const posts: PostDelBlog[] = getPostsIndex().map((post) => ({
   fecha: post.publishedTime.slice(0, 10),
   seccion: post.section,
   tema: temaDe(post),
+  ...(post.coverIsAiGenerated && { imagenConIA: true }),
 }));
 
 writeFileSync(SALIDA, JSON.stringify(posts, null, 2) + "\n");

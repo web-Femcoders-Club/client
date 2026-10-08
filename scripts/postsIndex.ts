@@ -26,6 +26,18 @@ export interface PostMeta {
   /** "noticia" | "recurso", derivado de la ruta */
   section: "noticia" | "recurso";
   keywords: string[];
+  /** La portada es una imagen generada con IA (AI Act art. 50): lleva distintivo. */
+  coverIsAiGenerated: boolean;
+}
+
+/**
+ * Un post migrado lo declara con `portadaConIA` en <PlantillaPost>. Uno
+ * antiguo, con `aiGenerated` en su primer <PostImage>, que es la portada.
+ */
+function readCoverIsAiGenerated(source: string): boolean {
+  if (source.includes("<PlantillaPost")) return /\bportadaConIA\b/.test(source);
+  const firstPostImage = source.match(/<PostImage\b[\s\S]*?\/>/)?.[0] ?? "";
+  return /\baiGenerated\b/.test(firstPostImage);
 }
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -135,6 +147,7 @@ export function readPostMeta(path: string, file: string): PostMeta {
     publishedTime: readMeta(source, "property", "article:published_time"),
     section: path.startsWith("/noticias/") ? "noticia" : "recurso",
     keywords: keywords ? keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
+    coverIsAiGenerated: readCoverIsAiGenerated(source),
   };
 }
 

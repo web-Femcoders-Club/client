@@ -100,25 +100,48 @@ export const TablaPost: React.FC<TablaPostProps> = ({ descripcion, children }) =
   </div>
 );
 
-type ImagenPostProps = { src: string; alt: string; pie?: React.ReactNode };
+type ImagenPostProps = {
+  src: string;
+  alt: string;
+  pie?: React.ReactNode;
+  /** Creada o retocada con un modelo generativo; no un diseño hecho a mano en Canva. */
+  generadaConIA?: boolean;
+};
 
 /*
- * Una imagen dentro del texto, al ancho de la columna, con pie opcional.
- * Una ruta original («/assets/…») pasa por OptimizedImage; una que ya apunta
- * a /public-optimized/ se sirve tal cual.
+ * Una imagen dentro del texto, al ancho de la columna, con pie opcional y,
+ * si hace falta, el distintivo de IA (AI Act art. 50). Una ruta original
+ * («/assets/…») pasa por OptimizedImage; una que ya apunta a
+ * /public-optimized/ se sirve tal cual.
  */
-export const ImagenPost: React.FC<ImagenPostProps> = ({ src, alt, pie }) => (
+export const ImagenPost: React.FC<ImagenPostProps> = ({ src, alt, pie, generadaConIA = false }) => (
   <figure className="post-imagen">
-    {src.startsWith("/public-optimized/") ? (
-      <img src={src} alt={alt} loading="lazy" decoding="async" />
-    ) : (
-      <OptimizedImage src={src} alt={alt} />
-    )}
+    <div className="post-imagen__marco">
+      {src.startsWith("/public-optimized/") ? (
+        <img src={src} alt={alt} loading="lazy" decoding="async" />
+      ) : (
+        <OptimizedImage src={src} alt={alt} />
+      )}
+      {generadaConIA && <span className="fc-distintivo-ia">Imagen generada con IA</span>}
+    </div>
     {pie && <figcaption>{pie}</figcaption>}
   </figure>
 );
 
-type DemoPostProps = { titulo?: string; children: React.ReactNode };
+type RespuestaPostProps = { resumen?: string; children: React.ReactNode };
+
+/*
+ * La respuesta de un ejercicio, plegada: se abre al pulsar «Ver respuesta».
+ * Con <details> nativo, el teclado y el lector de pantalla ya saben usarla.
+ */
+export const RespuestaPost: React.FC<RespuestaPostProps> = ({ resumen = "Ver respuesta", children }) => (
+  <details className="post-respuesta">
+    <summary>{resumen}</summary>
+    <div className="post-respuesta__contenido">{children}</div>
+  </details>
+);
+
+type DemoPostProps ={ titulo?: string; children: React.ReactNode };
 
 /*
  * El resultado en vivo de un ejemplo de CSS, en un recuadro punteado para

@@ -42,7 +42,8 @@
     "imagen": "/assets/noticias/vonage-femcodersclub.jpg",
     "fecha": "2026-09-10",
     "seccion": "noticia",
-    "tema": "FemCoders Club"
+    "tema": "FemCoders Club",
+    "imagenConIA": true
   },
   {
     "ruta": "/noticias/hackbarna-ai-summit-26-desde-dentro",
@@ -51,7 +52,8 @@
     "imagen": "/assets/noticias/hackbarna-ai-summit-26-desde-dentro.jpg",
     "fecha": "2026-09-09",
     "seccion": "noticia",
-    "tema": "FemCoders Club"
+    "tema": "FemCoders Club",
+    "imagenConIA": true
   },
   {
     "ruta": "/noticias/sesion-informativa-hackbarna-ai-summit-26",
@@ -69,7 +71,8 @@
     "imagen": "/assets/noticias/hackbarna-ai-summit-26.png",
     "fecha": "2026-08-07",
     "seccion": "noticia",
-    "tema": "FemCoders Club"
+    "tema": "FemCoders Club",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/ia-javascript-gemini",
@@ -87,7 +90,8 @@
     "imagen": "/assets/noticias/colaboracion-june.png",
     "fecha": "2026-07-05",
     "seccion": "noticia",
-    "tema": "FemCoders Club"
+    "tema": "FemCoders Club",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/optimizacion-javascript",
@@ -96,7 +100,8 @@
     "imagen": "/assets/javascript/optimizacion-javascript.png",
     "fecha": "2026-06-27",
     "seccion": "recurso",
-    "tema": "JavaScript"
+    "tema": "JavaScript",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/web-apis-nueva-generacion",
@@ -105,7 +110,8 @@
     "imagen": "/assets/javascript/web-apis-nueva-generacion.png",
     "fecha": "2026-06-12",
     "seccion": "recurso",
-    "tema": "JavaScript"
+    "tema": "JavaScript",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/modulos-arquitectura-escalable",
@@ -114,7 +120,8 @@
     "imagen": "/assets/javascript/modulos-arquitectura-escalable.png",
     "fecha": "2026-06-03",
     "seccion": "recurso",
-    "tema": "JavaScript"
+    "tema": "JavaScript",
+    "imagenConIA": true
   },
   {
     "ruta": "/noticias/taller-decidim-hacks",
@@ -132,7 +139,8 @@
     "imagen": "/assets/javascript/patrones-diseno-javascript.png",
     "fecha": "2026-05-10",
     "seccion": "recurso",
-    "tema": "JavaScript"
+    "tema": "JavaScript",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/estructuras-datos-js",

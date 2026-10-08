@@ -35,7 +35,10 @@ const TarjetaPost: React.FC<TarjetaPostProps> = ({ post, nivel = "h3" }) => {
 
   return (
     <article className="fc-tarjeta tarjeta-post">
-      <OptimizedImage src={post.imagen} alt="" className="tarjeta-post__imagen" />
+      <div className="tarjeta-post__foto">
+        <OptimizedImage src={post.imagen} alt="" className="tarjeta-post__imagen" />
+        {post.imagenConIA && <span className="fc-distintivo-ia">Imagen generada con IA</span>}
+      </div>
       <div className="tarjeta-post__cuerpo">
         <div className="tarjeta-post__meta">
           <span className={claseTema}>{post.tema}</span>

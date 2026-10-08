@@ -159,6 +159,7 @@
  * 16:9 pierden algo más; si alguna corta su texto, ajustar su encuadre.
  */
 .post__portada {
+  position: relative;
   max-width: 880px;
   margin: 0 auto 2rem;
 }
@@ -531,6 +532,10 @@
   margin: 0.25rem 0;
 }
 
+.post-imagen__marco {
+  position: relative;
+}
+
 .post-imagen img {
   display: block;
   width: 100%;
@@ -541,6 +546,45 @@
   line-height: 1.5;
   color: var(--color-text-dark);
   text-align: center;
+}
+
+/* ---------- RespuestaPost: la respuesta de un ejercicio, plegada ---------- */
+
+.post-respuesta {
+  border: 1px solid rgba(71, 55, 187, 0.18);
+  border-radius: 0.9rem;
+}
+
+.post-respuesta summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 0.9rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-respuesta summary:hover {
+  background: var(--color-lavanda-claro);
+}
+
+.post-respuesta summary:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.post-respuesta[open] summary {
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+  border-radius: 0.9rem 0.9rem 0 0;
+}
+
+.post-respuesta__contenido {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
 }
 
 /* ---------- DemoPost: el resultado en vivo de un ejemplo, en recuadro punteado ---------- */
