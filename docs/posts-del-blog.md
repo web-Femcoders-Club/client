@@ -52,6 +52,7 @@ imagen los lee del `<Helmet>` a través del índice: no se repiten en el post.
 | Una imagen dentro del texto, con pie          | `ImagenPost src alt pie? generadaConIA?`  |
 | El resultado en vivo de un ejemplo de CSS     | `DemoPost` + `.post-demo__caja`           |
 | La respuesta plegada de un ejercicio          | `RespuestaPost resumen?`                  |
+| Un vídeo propio (.mp4), con versión móvil     | `VideoPost src srcMovil? poster? descripcion` |
 | Varias ideas cortas, herramientas, recursos   | `TarjetasPost tarjetas columnas?`         |
 | Lo que sí, lo que no, o preguntas             | `ListaMarcadaPost titulo tipo`            |
 | Un plan por etapas                            | `PasosPost pasos`                         |

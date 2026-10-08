@@ -1,16 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { FaGithub } from "react-icons/fa";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { CodigoPost, SeccionPost } from "../../components/post/PiezasPost";
 
-import ShareButtons from "../../components/ShareButtons";
-
-const TallerDecidimElvia: React.FC = () => {
-  const postId = 41;
-
-  return (
-    <div className="blog-post">
+const TallerDecidimElvia: React.FC = () => (
+  <>
       <Helmet>
         <title>
           Dentro de Decidim: lo que aprendimos explorando su arquitectura con
@@ -79,185 +73,119 @@ const TallerDecidimElvia: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/noticias/taller-decidim-elvia.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/noticias/taller-decidim-elvia.webp"
-            alt="Taller de Decidim en el Canòdrom con Elvia Benedith — FemCoders Club, mayo 2026"
-            className="blog-post-image"
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "/assets/noticias/taller-decidim-elvia.jpeg";
-              (e.target as HTMLImageElement).onerror = null;
-            }}
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        Dentro de Decidim: lo que aprendimos explorando su arquitectura con
-        Ruby on Rails
-      </h1>
-
-      <ShareButtons path="/noticias/taller-decidim-hacks" title="Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails" />
-
-      {/* ── Intro ── */}
-      <div className="intro-text">
-        <p>
-          El pasado 27 de mayo nos reunimos en el{" "}
-          <strong>Canòdrom de Barcelona</strong> para explorar una de las
-          plataformas de participación ciudadana más importantes del ecosistema
-          open source:{" "}
-          <a
-            href="https://decidim.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
-            Decidim
-          </a>
-          .
-        </p>
-        <br />
-        <p>
-          De la mano de{" "}
-          <strong>Elvia Benedith</strong> de{" "}
-          <a
-            href="https://pokecode.net"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
-            Pokecode
-          </a>{" "}
-          —empresa colaboradora oficial de Decidim especializada en soluciones
-          de participación ciudadana y democracia digital— y junto a personas
-          con perfiles muy diversos, dedicamos una mañana a descubrir cómo
-          hackear Decidim desde dentro: levantar un entorno local, explorar su
-          arquitectura y realizar pequeñas personalizaciones en un entorno
-          seguro.
-        </p>
-        <br />
-        <p>
-          El evento estaba abierto a cualquier persona interesada,
-          independientemente de su experiencia o trayectoria profesional.
-          No fue un taller de diapositivas. Fue un taller de terminal abierta,
-          preguntas reales y aprendizaje compartido.
-        </p>
-      </div>
-
-      {/* ── 1. Qué es Decidim ── */}
-      <div className="highlight-box">
-        <h2>¿Qué es Decidim y por qué importa?</h2>
-        <br />
+    <PlantillaPost
+      ruta="/noticias/taller-decidim-hacks"
+      titulo="Dentro de Decidim: lo que aprendimos explorando su arquitectura con Ruby on Rails"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={41}
+      entradilla={
+        <>
+          <p>
+            El pasado 27 de mayo nos reunimos en el{" "}
+            <strong>Canòdrom de Barcelona</strong> para explorar una de las
+            plataformas de participación ciudadana más importantes del
+            ecosistema open source:{" "}
+            <a href="https://decidim.org" target="_blank" rel="noopener noreferrer">
+              Decidim
+            </a>.
+          </p>
+          <p>
+            De la mano de <strong>Elvia Benedith</strong> de{" "}
+            <a href="https://pokecode.net" target="_blank" rel="noopener noreferrer">
+              Pokecode
+            </a>{" "}
+            —empresa colaboradora oficial de Decidim especializada en
+            soluciones de participación ciudadana y democracia digital— y junto
+            a personas con perfiles muy diversos, dedicamos una mañana a
+            descubrir cómo hackear Decidim desde dentro: levantar un entorno
+            local, explorar su arquitectura y realizar pequeñas
+            personalizaciones en un entorno seguro.
+          </p>
+          <p>
+            El evento estaba abierto a cualquier persona interesada,
+            independientemente de su experiencia o trayectoria profesional. No
+            fue un taller de diapositivas. Fue un taller de terminal abierta,
+            preguntas reales y aprendizaje compartido.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="¿Qué es Decidim y por qué importa?">
         <p>
           Decidim es una plataforma de{" "}
           <strong>participación ciudadana digital</strong> nacida en Barcelona,
           construida como software libre y utilizada hoy por ayuntamientos,
           universidades y organizaciones de todo el mundo. La ciudad de
           Barcelona, Helsinki, la Comisión Europea y decenas de instituciones
-          más la usan para articular procesos participativos reales: presupuestos
-          participativos, consultas ciudadanas, planes estratégicos.
+          más la usan para articular procesos participativos reales:
+          presupuestos participativos, consultas ciudadanas, planes
+          estratégicos.
         </p>
-        <br />
         <p>
           Lo que la hace especialmente interesante desde el punto de vista
           técnico es que{" "}
           <strong>
             toda esa infraestructura de democracia digital está construida en
             Ruby on Rails
-          </strong>
-          , con una arquitectura modular que permite a cualquier organización
-          personalizar, extender y contribuir al proyecto.
+          </strong>, con una arquitectura modular que permite a cualquier
+          organización personalizar, extender y contribuir al proyecto.
         </p>
-        <br />
         <p>
           Para muchas de las asistentes, Decidim era una caja negra: algo que
           habían visto en las webs municipales pero nunca desde dentro. Ese fue
           exactamente el punto de partida del taller.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. El entorno ── */}
-      <div className="highlight-box">
-        <h2>Lo que pasó cuando levantamos Decidim en local</h2>
-        <br />
+      <SeccionPost titulo="Lo que pasó cuando levantamos Decidim en local">
         <p>
           La primera parte del taller fue práctica desde el minuto uno: levantar
           un entorno de desarrollo local con{" "}
           <strong>Docker, Git y VS Code</strong>. Porque entender una plataforma
           de verdad empieza por tenerla corriendo en tu máquina.
         </p>
-        <br />
         <p>
           Elvia y el equipo de{" "}
-          <a
-            href="https://pokecode.net/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          <a href="https://pokecode.net/" target="_blank" rel="noopener noreferrer">
             Pokecode
           </a>{" "}
           estuvieron atentas a cualquier duda o incidencia que pudiera surgir,
           resolviendo cada situación con una calma y una claridad que se nota
-          solo en quien entiende la tecnología desde dentro. Explicaron el porqué
-          de cada paso, no solo el cómo.
+          solo en quien entiende la tecnología desde dentro. Explicaron el
+          porqué de cada paso, no solo el cómo.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 3. Arquitectura ── */}
-      <div className="highlight-box">
-        <h2>Entendiendo la arquitectura: Rails, módulos y componentes</h2>
-        <br />
+      <SeccionPost titulo="Entendiendo la arquitectura: Rails, módulos y componentes">
         <p>
-          Una vez el entorno estaba en marcha, llegó la parte más reveladora: ver
-          cómo está organizado Decidim por dentro.
+          Una vez el entorno estaba en marcha, llegó la parte más reveladora:
+          ver cómo está organizado Decidim por dentro.
         </p>
-        <br />
         <p>
           La arquitectura de Decidim se basa en{" "}
           <strong>motores de Ruby on Rails</strong>. Cada funcionalidad
           —procesos participativos, consultas, presupuestos, iniciativas
           ciudadanas— vive en su propio módulo, relativamente independiente del
-          núcleo. Esto tiene una implicación directa: puedes activar o desactivar
-          funcionalidades, personalizarlas o crear las tuyas propias sin tocar el
-          código central del proyecto.
+          núcleo. Esto tiene una implicación directa: puedes activar o
+          desactivar funcionalidades, personalizarlas o crear las tuyas propias
+          sin tocar el código central del proyecto.
         </p>
-        <br />
         <p>
           Vimos cómo modificar vistas, cómo entender el flujo de datos entre
           componentes y cómo experimentar con la plataforma sin poner en riesgo
           ninguna instalación real. El entorno local era exactamente para eso:
           para romper cosas sin miedo y entender qué pasa cuando lo haces.
         </p>
-        <br />
         <p>
-          Para quienes no habían trabajado antes con Rails, fue una introducción
-          muy tangible: no como framework abstracto, sino como la estructura
-          concreta que sostiene una plataforma que millones de personas usan para
-          ejercer su participación democrática.
+          Para quienes no habían trabajado antes con Rails, fue una
+          introducción muy tangible: no como framework abstracto, sino como la
+          estructura concreta que sostiene una plataforma que millones de
+          personas usan para ejercer su participación democrática.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 4. El momento que sorprendió ── */}
-      <div className="highlight-box">
-        <h2>El momento que lo cambió todo</h2>
-        <br />
-        <p>
-          Hubo un momento en el taller que se notó en la sala.
-        </p>
-        <br />
+      <SeccionPost titulo="El momento que lo cambió todo">
+        <p>Hubo un momento en el taller que se notó en la sala.</p>
         <p>
           Fue cuando varias personas se dieron cuenta de que detrás de una
           plataforma utilizada por instituciones de todo el mundo —por
@@ -265,32 +193,26 @@ const TallerDecidimElvia: React.FC = () => {
           arquitectura <strong>accesible para cualquier desarrolladora</strong>{" "}
           que quiera aprender, experimentar o contribuir.
         </p>
-        <br />
         <p>
           No hacía falta ser experta en Ruby on Rails ni tener años de
           experiencia en open source. Hacía falta curiosidad, un entorno
           funcionando y alguien que te explicara por dónde empezar. Y eso es
           exactamente lo que Elvia trajo ese día.
         </p>
-        <br />
         <p>
           Ese es el tipo de momento que nos recuerda por qué organizamos este
           tipo de talleres: porque hay tecnología con impacto real en la
-          sociedad que merece ser conocida, explorada y mejorada por más personas,
-          y en particular por más mujeres.
+          sociedad que merece ser conocida, explorada y mejorada por más
+          personas, y en particular por más mujeres.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 5. Comunidad ── */}
-      <div className="highlight-box">
-        <h2>Aprender en comunidad: lo que no se puede replicar online</h2>
-        <br />
+      <SeccionPost titulo="Aprender en comunidad: lo que no se puede replicar online">
         <p>
           Más allá del código, el taller volvió a demostrar algo que vemos
           constantemente en FemCoders Club: aprender en comunidad acelera el
           aprendizaje.
         </p>
-        <br />
         <p>
           Durante la sesión surgieron preguntas técnicas que abrieron hilos de
           conversación sobre tecnología cívica, sobre las diferencias entre
@@ -298,237 +220,139 @@ const TallerDecidimElvia: React.FC = () => {
           comunitarios, sobre el ecosistema Ruby en España, sobre cómo empezar
           a contribuir a open source cuando sientes que aún no estás lista.
         </p>
-        <br />
         <p>
           Esa última conversación fue especialmente interesante. Porque la
-          respuesta corta es: nunca se está del todo lista, y ese es precisamente
-          el momento de empezar. Y tener a alguien como Elvia en la sala,
-          contando su propia experiencia, hace que esa respuesta pese diferente.
+          respuesta corta es: nunca se está del todo lista, y ese es
+          precisamente el momento de empezar. Y tener a alguien como Elvia en
+          la sala, contando su propia experiencia, hace que esa respuesta pese
+          diferente.
         </p>
-        <br />
         <p>
           Hubo un momento en que alguien miró el reloj y ya habían pasado dos
           horas sin que nadie se hubiera dado cuenta. Esa es la mejor medida de
           que algo funcionó.
         </p>
-        <br />
         <p>
           El Canòdrom, como espacio, acompañó perfectamente: mesas largas donde
           cabía la colaboración, luz natural, y ese ambiente que tiene cuando la
           gente lleva los portátiles en serio y no de adorno.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── Repositorio ── */}
-      <div className="highlight-box">
-        <h2>¿Quieres seguir explorando? Clona el repositorio</h2>
-        <br />
+      <SeccionPost titulo="¿Quieres seguir explorando? Clona el repositorio">
         <p>
           Elvia mantiene{" "}
           <a
             href="https://github.com/openpoke/decidim-hacks"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             decidim-hacks
-          </a>
-          , un repositorio con ejemplos prácticos, personalizaciones y
-          ejercicios estructurados para practicar a tu propio ritmo. Es el
-          mismo entorno que usamos en el taller — y el punto de partida más
-          accesible para adentrarse en el ecosistema Decidim.
+          </a>, un repositorio con ejemplos prácticos, personalizaciones y
+          ejercicios estructurados para practicar a tu propio ritmo. Es el mismo
+          entorno que usamos en el taller y el punto de partida más accesible
+          para adentrarse en el ecosistema Decidim.
         </p>
-        <br />
-        <p>
-          Para reproducir el entorno exacto que usamos durante la sesión:
-        </p>
-        <br />
-        <div className="code-block bg3">
-          <pre>
-            {`git clone https://github.com/openpoke/decidim-hacks.git
+        <p>Para reproducir el entorno exacto que usamos durante la sesión:</p>
+        <CodigoPost lenguaje="Bash">{`git clone https://github.com/openpoke/decidim-hacks.git
 cd decidim-hacks
 git pull
-docker compose up`}
-          </pre>
-        </div>
-        <br />
+docker compose up`}</CodigoPost>
         <p>
-          Una vez iniciado, accede a{" "}
-          <code>localhost:3000</code> y <code>localhost:8080</code>.
-          Dentro del repositorio encontrarás los ejercicios para seguir
-          explorando a tu ritmo.
+          Una vez iniciado, accede a <code>localhost:3000</code> y{" "}
+          <code>localhost:8080</code>. Dentro del repositorio encontrarás los
+          ejercicios para seguir explorando a tu ritmo.
         </p>
-        <br />
         <p>
-          Si quieres leer la experiencia en primera persona, Elvia la cuenta
-          en su propio blog:
+          Si quieres leer la experiencia en primera persona, Elvia la cuenta en
+          su propio blog:{" "}
+          <a
+            href="https://pokecode.net/es/blog/es/hacking-decidim-la-master-class-que-mai-vaig-imaginar-impartir"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Hacking Decidim: la master class que mai vaig imaginar impartir
+          </a>.
         </p>
-        <br />
-        <a
-          href="https://pokecode.net/es/blog/es/hacking-decidim-la-master-class-que-mai-vaig-imaginar-impartir"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="highlight-link"
-          style={{ display: "inline-block", marginBottom: "1rem" }}
-        >
-          Hacking Decidim: la master class que mai vaig imaginar impartir →
-        </a>
-        <br />
-        <br />
         <p>
-          Si te quedaste con ganas de más o quieres que organicemos esta
-          sesión de nuevo, no dudes en escribirnos:
+          Si te quedaste con ganas de más o quieres que organicemos esta sesión
+          de nuevo, no dudes en escribirnos:
         </p>
-        <br />
-        <a
-          href="https://github.com/openpoke/decidim-hacks"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            backgroundColor: "#2a2170",
-            color: "#fff",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            textDecoration: "none",
-            fontWeight: 700,
-            fontSize: "1rem",
-          }}
-        >
-          <FaGithub />
-          openpoke/decidim-hacks
-        </a>
-      </div>
+        <p>
+          <a
+            href="https://github.com/openpoke/decidim-hacks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fc-boton"
+          >
+            openpoke/decidim-hacks
+          </a>
+        </p>
+      </SeccionPost>
 
-      {/* ── 6. Gracias ── */}
-      <div className="highlight-box">
-        <h2>Gracias, Elvia</h2>
-        <br />
+      <SeccionPost titulo="Gracias, Elvia">
         <p>
           Queremos agradecer especialmente a{" "}
           <a
             href="https://www.linkedin.com/in/elvia-benedith/"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             <strong>Elvia Benedith</strong>
           </a>{" "}
           y al equipo de{" "}
-          <a
-            href="https://pokecode.net"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          <a href="https://pokecode.net" target="_blank" rel="noopener noreferrer">
             Pokecode
           </a>{" "}
           por compartir su experiencia, preparar el entorno de trabajo y
           acercarnos al ecosistema Decidim desde una perspectiva práctica y
           cercana.
         </p>
-        <br />
         <p>
           También gracias al{" "}
           <a
             href="https://canodrom.barcelona"
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             Canòdrom
           </a>{" "}
           por acoger este encuentro y a todas las personas que participaron con
           curiosidad, preguntas y ganas de aprender.
         </p>
-        <br />
         <p>
           Este tipo de taller solo funciona cuando hay alguien que comparte lo
           que sabe sin guardarse nada. Elvia lo hizo, y se notó.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── Cierre ── */}
-      <div className="highlight-box">
-        <div
-          style={{
-            backgroundColor: "rgba(71, 55, 187, 0.1)",
-            padding: "25px",
-            borderRadius: "15px",
-            textAlign: "center",
-            margin: "30px 0",
-            borderLeft: "5px solid #4737bb",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          <h3
-            style={{
-              color: "#6d2c95",
-              marginTop: 0,
-              fontSize: "1.6rem",
-              marginBottom: "15px",
-            }}
-          >
-            El conocimiento crece cuando se comparte
-          </h3>
-          <p>
-            En FemCoders Club creemos que el código con impacto real en la
-            sociedad merece ser conocido, explorado y mejorado por más personas.
-          </p>
-          <br />
-          <p>
-            Este taller nos permitió acercarnos a una tecnología que sostiene
-            procesos democráticos en todo el mundo y descubrir que contribuir al
-            software libre está más cerca de lo que parece.
-          </p>
-          <br />
-          <p>
-            Esperamos seguir creando espacios donde la tecnología, la
-            colaboración y el aprendizaje abierto se encuentren.
-          </p>
-          <br />
+      <SeccionPost titulo="El conocimiento crece cuando se comparte">
+        <p>
+          En FemCoders Club creemos que el código con impacto real en la
+          sociedad merece ser conocido, explorado y mejorado por más personas.
+        </p>
+        <p>
+          Este taller nos permitió acercarnos a una tecnología que sostiene
+          procesos democráticos en todo el mundo y descubrir que contribuir al
+          software libre está más cerca de lo que parece.
+        </p>
+        <p>
+          Esperamos seguir creando espacios donde la tecnología, la
+          colaboración y el aprendizaje abierto se encuentren.
+        </p>
+        <p>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-            }}
+            className="fc-boton"
           >
             Únete a la comunidad
           </a>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
         </p>
-        <p>
-          Fecha de publicación: <strong>3 de junio, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default TallerDecidimElvia;

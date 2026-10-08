@@ -1,15 +1,18 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
+import { Link } from "react-router-dom";
+import { Handshake, Sparkles } from "lucide-react";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import {
+  NotaPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+  VideoPost,
+} from "../../components/post/PiezasPost";
 
-import ShareButtons from "../../components/ShareButtons";
-
-const DataConnectEvento: React.FC = () => {
-  const postId = 19; 
-
-  return (
-    <div className="blog-post">
+const DataConnectEvento: React.FC = () => (
+  <>
       <Helmet>
         <title>
           DataConnect: Revive una tarde épica de comunidad tech en Barcelona | FemCoders Club
@@ -88,234 +91,192 @@ const DataConnectEvento: React.FC = () => {
         <meta name="language" content="Spanish" />
       </Helmet>
 
-      <div className="post-image-container">
-        <picture>
-          <source
-            srcSet="/public-optimized/mobile/assets/Eventos2025/comunidadData.webp"
-            media="(max-width: 768px)"
-          />
-          <source
-            srcSet="/public-optimized/desktop/assets/Eventos2025/comunidadData.webp"
-            media="(min-width: 769px)"
-          />
-          <img
-            src="/public-optimized/desktop/assets/Eventos2025/comunidadData.webp"
-            alt="DataConnect Barcelona - Evento tech en InfoJobs con más de 70 personas de la comunidad data"
-            className="blog-post-image"
-            loading="lazy"
-          />
-        </picture>
-      </div>
-
-      <h1 className="blog-post-title">
-        🎬 Revive la magia del DataConnect:<br/>una tarde que marcó la diferencia
-      </h1>
-
-      <ShareButtons path="/noticias/DataConnectEvento" title="DataConnect: Revive una tarde épica de comunidad tech en Barcelona" />
-
-      <div className="intro-text">
-        <p>
-          ¿Te perdiste nuestro evento DataConnect? No te preocupes, lo tenemos todo capturado en este video que resume una jornada épica de comunidad, aprendizaje y networking que nos llenó el corazón.
-        </p>
-        
-             <div
-          className="example-image"
-          style={{ textAlign: "center", margin: "30px 0" }}
-        >
-          {/* Video del evento DataConnect incrustado */}
-          <video
-            controls
-           
-            className="video-post-blog"
-            poster="/assets/eventos/dataconnect-thumbnail.jpg"
-          >
-            <source src="/videoDataConnect-evento-femCodersClub.mp4" type="video/mp4" />
-            <p style={{ fontSize: "18px", color: "#666", padding: "20px" }}>
-              Tu navegador no soporta la reproducción de video HTML5.
-            </p>
-          </video>
-          <p style={{ 
-            fontSize: "14px", 
-            color: "#888", 
-            fontStyle: "italic",
-            marginTop: "10px" 
-          }}>
-            📹 Revive los mejores momentos del DataConnect Barcelona
+    <PlantillaPost
+      ruta="/noticias/DataConnectEvento"
+      titulo="Revive la magia del DataConnect: una tarde que marcó la diferencia"
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={19}
+      entradilla={
+        <>
+          <p>
+            ¿Te perdiste nuestro evento DataConnect? No te preocupes, lo tenemos
+            todo capturado en este vídeo que resume una jornada épica de
+            comunidad, aprendizaje y networking que nos llenó el corazón.
           </p>
-        </div>
-        
-        <p>
-          El pasado <strong>28 de mayo</strong>, las oficinas de <strong>InfoJobs</strong> en Barcelona se transformaron en el epicentro de la innovación data. Más de <strong>70 personas apasionadas</strong> por el Big Data, análisis y visualización de datos se reunieron para vivir una experiencia única que quedará en nuestros corazones para siempre.
-        </p>
-      </div>
+          <p>
+            El pasado <strong>28 de mayo</strong>, las oficinas de{" "}
+            <strong>InfoJobs</strong> en Barcelona se transformaron en el
+            epicentro de la innovación data. Más de{" "}
+            <strong>70 personas apasionadas</strong> por el Big Data, análisis y
+            visualización de datos se reunieron para vivir una experiencia
+            única que quedará en nuestros corazones para siempre.
+          </p>
+        </>
+      }
+    >
+      <VideoPost
+        src="/videoDataConnect-evento-femCodersClub.mp4"
+        descripcion="Vídeo resumen del DataConnect en las oficinas de InfoJobs Barcelona: charlas, live coding y networking"
+        pie="Revive los mejores momentos del DataConnect Barcelona."
+      />
 
-      <div className="highlight-box">
-        <h2>🌟 Lo que vivimos</h2>
-        
-        <h3>🎤 Charlas que inspiraron</h3>
-        <br />
+      <SeccionPost titulo="Lo que vivimos">
+        <h3>Charlas que inspiraron</h3>
         <p>
-          <strong>Muntsa Padró</strong>, <strong>Laura Pourtier</strong>, <strong>Kevin Badia Carballo</strong> y <strong>Pia Trnovec</strong> compartieron sus experiencias reales desde{" "}
-          <a 
-            href="https://www.infojobs.net/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          <strong>Muntsa Padró</strong>, <strong>Laura Pourtier</strong>,{" "}
+          <strong>Kevin Badia Carballo</strong> y <strong>Pia Trnovec</strong>{" "}
+          compartieron sus experiencias reales desde{" "}
+          <a href="https://www.infojobs.net/" target="_blank" rel="noopener noreferrer">
             InfoJobs
-          </a>, {" "}
-          <a 
-            href="https://www.lewagon.com/es" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          </a>
+          ,{" "}
+          <a href="https://www.lewagon.com/es" target="_blank" rel="noopener noreferrer">
             Le Wagon
-          </a> y {" "}
-          <a 
-            href="https://glovoapp.com/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
+          </a>{" "}
+          y{" "}
+          <a href="https://glovoapp.com/" target="_blank" rel="noopener noreferrer">
             Glovo
-          </a>. Historias auténticas de profesionales que están liderando el cambio en el mundo data, contadas desde el corazón y con esa honestidad que solo sucede en comunidad.
+          </a>
+          . Historias auténticas de profesionales que están liderando el cambio
+          en el mundo data, contadas desde el corazón y con esa honestidad que
+          solo sucede en comunidad.
         </p>
-<br />
-        <h3>🎵 Networking con energía</h3>
-        <br />
-       <p>
-          Con{" "}
-          <a 
-            href="https://www.linkedin.com/in/karisssha/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="highlight-link"
-          >
-            Karisha Meléndez como DJ
-          </a>, <strong>Live Coding</strong> y esa conexión especial que solo sucede cuando personas con la misma pasión se encuentran. Hubo risas, intercambio de contactos, ideas que nacieron en conversaciones espontáneas y esos momentos mágicos donde sientes que estás exactamente donde debes estar.
-        </p>
-<br />
-        <h3>👥 Comunidad diversa</h3>
-        <br />
-        <p>
-          El ingrediente secreto que hace que estos espacios sean únicos y transformadores. Desde estudiantes dando sus primeros pasos en data hasta profesionales con experiencia, todas las personas con ganas de aprender, compartir y crecer en comunidad.
-        </p>
-      </div>
 
-       <div className="highlight-box">
-        <h2>📚 ¿Quieres profundizar más?</h2>
-        
+        <h3>Networking con energía</h3>
         <p>
-          Si las charlas del video te dejaron con ganas de más, tenemos algo especial para ti. Puedes acceder a las <strong>presentaciones completas</strong> de Le Wagon y Glovo en nuestro repositorio de recursos:
-        </p>
-        
-        <div style={{
-          textAlign: "center",
-          margin: "25px 0",
-          padding: "20px",
-          backgroundColor: "rgba(138, 43, 226, 0.1)",
-          borderRadius: "10px",
-          border: "2px solid #8a2be2"
-        }}>
+          Con{" "}
           <a
-            href="https://www.femcodersclub.com/presentaciones-destacadas"
+            href="https://www.linkedin.com/in/karisssha/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#8a2be2",
-              color: "white",
-              padding: "15px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "18px",
-              transition: "all 0.3s ease",
-              marginRight: "15px",
-              marginBottom: "10px"
-            }}
           >
-            📊 Ver presentaciones destacadas
+            Karisha Meléndez como DJ
           </a>
-          <a
-            href="/register"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "15px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "18px",
-              transition: "all 0.3s ease",
-              marginBottom: "10px"
-            }}
-          >
-            👩‍💻 Únete a FemCoders Club
-          </a>
-        </div>
-        
-        <p>
-          Allí encontrarás los slides completos, recursos adicionales y todo el material que compartieron quienes presentaron. <strong>¿Aún no eres parte de la comunidad?</strong> Regístrate gratis para acceder a recursos exclusivos, eventos futuros y conectar con una red increíble de personas apasionadas por la tecnología.
+          , <strong>live coding</strong> y esa conexión especial que solo sucede
+          cuando personas con la misma pasión se encuentran. Hubo risas,
+          intercambio de contactos, ideas que nacieron en conversaciones
+          espontáneas y esos momentos mágicos donde sientes que estás
+          exactamente donde debes estar.
         </p>
-      </div>
 
-      <div className="highlight-box">
-        <h2>📸 Momentos que quedarán para siempre</h2>
-        
-        <div className="tools-container">
-          <div className="recurso-item">
-            <h5 className="tool-title">🎯 Highlights del evento</h5>
-            <br />
-            <ul>
-              <li><strong>70+ profesionales</strong> del mundo data reunidos en un solo lugar</li>
-              <li><strong>4 speakers inspiradores</strong> compartiendo experiencias reales</li>
-              <li><strong>Live Coding en vivo</strong> que dejó a todo el mundo con la boca abierta</li>
-              <li><strong>Networking orgánico</strong> con conversaciones que nacieron naturalmente</li>
-              <li><strong>DJ set</strong> que creó el ambiente perfecto para conectar</li>
-            </ul>
-          </div>
-          
-          <div className="recurso-item">
-            <h5 className="tool-title">🤝 Nuestros increíbles aliados</h5>
-            <br />
-            <ul>
-              <li><strong>InfoJobs:</strong> Nos abrió las puertas de sus increíbles oficinas</li>
-              <li><strong>Le Wagon Spain:</strong> Compartió expertise en coding y formación</li>
-              <li><strong>Glovo:</strong> Nos mostró cómo usan data para mejorar vidas</li>
-              <li><strong>FemCoders Club:</strong> Tejió la red que hizo posible esta magia</li>
-            </ul>
-          </div>
-        </div>
+        <h3>Comunidad diversa</h3>
+        <p>
+          El ingrediente secreto que hace que estos espacios sean únicos y
+          transformadores. Desde estudiantes dando sus primeros pasos en data
+          hasta profesionales con experiencia, todas las personas con ganas de
+          aprender, compartir y crecer en comunidad.
+        </p>
+      </SeccionPost>
 
-        <div style={{
-          backgroundColor: "rgba(0, 255, 255, 0.1)",
-          padding: "20px",
-          borderRadius: "10px",
-          marginTop: "20px",
-          borderLeft: "4px solid #00ffff"
-        }}>
-          <p style={{ margin: "0", fontStyle: "italic" }}>
-            <strong>💭 "Eventos como este me recuerdan por qué amo tanto el mundo tech. La energía, las conexiones auténticas, las ganas de seguir creciendo... ¡Esto es comunidad de verdad!"</strong> - Participante del DataConnect
+      <SeccionPost titulo="¿Quieres profundizar más?">
+        <p>
+          Si las charlas del vídeo te dejaron con ganas de más, tenemos algo
+          especial para ti. Puedes acceder a las{" "}
+          <strong>presentaciones completas</strong> de Le Wagon y Glovo en
+          nuestro repositorio de recursos:
+        </p>
+        <p>
+          <Link to="/presentaciones-destacadas" className="fc-boton">
+            Ver presentaciones destacadas
+          </Link>{" "}
+          <Link to="/register" className="fc-boton">
+            Únete a FemCoders Club
+          </Link>
+        </p>
+        <p>
+          Allí encontrarás los slides completos, recursos adicionales y todo el
+          material que compartieron quienes presentaron.{" "}
+          <strong>¿Aún no eres parte de la comunidad?</strong> Regístrate gratis
+          para acceder a recursos exclusivos, eventos futuros y conectar con una
+          red increíble de personas apasionadas por la tecnología.
+        </p>
+      </SeccionPost>
+
+      <SeccionPost titulo="Momentos que quedarán para siempre">
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Highlights del evento",
+              icono: <Sparkles aria-hidden="true" />,
+              texto: (
+                <ul>
+                  <li>
+                    <strong>70+ profesionales</strong> del mundo data reunidos
+                    en un solo lugar
+                  </li>
+                  <li>
+                    <strong>4 speakers inspiradores</strong> compartiendo
+                    experiencias reales
+                  </li>
+                  <li>
+                    <strong>Live coding en vivo</strong> que dejó a todo el
+                    mundo con la boca abierta
+                  </li>
+                  <li>
+                    <strong>Networking orgánico</strong> con conversaciones que
+                    nacieron naturalmente
+                  </li>
+                  <li>
+                    <strong>DJ set</strong> que creó el ambiente perfecto para
+                    conectar
+                  </li>
+                </ul>
+              ),
+            },
+            {
+              titulo: "Nuestros increíbles aliados",
+              icono: <Handshake aria-hidden="true" />,
+              texto: (
+                <ul>
+                  <li>
+                    <strong>InfoJobs:</strong> nos abrió las puertas de sus
+                    increíbles oficinas.
+                  </li>
+                  <li>
+                    <strong>Le Wagon Spain:</strong> compartió expertise en
+                    coding y formación.
+                  </li>
+                  <li>
+                    <strong>Glovo:</strong> nos mostró cómo usan data para
+                    mejorar vidas.
+                  </li>
+                  <li>
+                    <strong>FemCoders Club:</strong> tejió la red que hizo
+                    posible esta magia.
+                  </li>
+                </ul>
+              ),
+            },
+          ]}
+        />
+
+        <NotaPost titulo="Lo que nos dijo una participante">
+          <p>
+            «Eventos como este me recuerdan por qué amo tanto el mundo tech. La
+            energía, las conexiones auténticas, las ganas de seguir creciendo...
+            ¡Esto es comunidad de verdad!»
           </p>
-        </div>
-      </div>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>💜 Gracias infinitas</h2>
-        
+      <SeccionPost titulo="Gracias infinitas">
         <p>
-          A cada persona que hizo posible esta jornada: equipo organizador que trabajó incansablemente, speakers que compartieron su sabiduría con generosidad, equipo voluntario que estuvo en cada detalle, empresas colaboradoras que creyeron en la visión, y especialmente a cada una de las 70+ personas que vinieron con ganas de aprender, compartir y conectar.
+          A cada persona que hizo posible esta jornada: equipo organizador que
+          trabajó incansablemente, speakers que compartieron su sabiduría con
+          generosidad, equipo voluntario que estuvo en cada detalle, empresas
+          colaboradoras que creyeron en la visión, y especialmente a cada una de
+          las 70+ personas que vinieron con ganas de aprender, compartir y
+          conectar.
         </p>
-<br />
         <p>
-          <strong>Y seguimos adelante con más fuerza que nunca.</strong> Continuamos trabajando para crear más espacios donde el talento diverso tenga visibilidad, oportunidades y, sobre todo, esa sensación de pertenencia que tanto necesitamos en el mundo tech.
+          <strong>Y seguimos adelante con más fuerza que nunca.</strong>{" "}
+          Continuamos trabajando para crear más espacios donde el talento
+          diverso tenga visibilidad, oportunidades y, sobre todo, esa sensación
+          de pertenencia que tanto necesitamos en el mundo tech.
         </p>
-<br />
-        <div className="table-container">
-          <table className="framework-comparison-table">
+
+        <TablaPost descripcion="Lo que nos llevamos, lo que construimos y lo que viene después del DataConnect">
+          <table>
             <thead>
               <tr>
                 <th>Lo que nos llevamos</th>
@@ -346,94 +307,44 @@ const DataConnectEvento: React.FC = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
+        </TablaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🚀 ¿Te unes a la próxima aventura?</h2>
-        
+      <SeccionPost titulo="¿Te unes a la próxima aventura?">
         <p>
-          Si este post te emocionó tanto como a nosotros nos emocionó vivir el evento, tenemos noticias increíbles: esto es solo el comienzo. En FemCoders Club estamos preparando más eventos, workshops y oportunidades para que nuestra comunidad siga creciendo y brillando.
+          Si este post te emocionó tanto como a nosotros nos emocionó vivir el
+          evento, tenemos noticias increíbles: esto es solo el comienzo. En
+          FemCoders Club estamos preparando más eventos, workshops y
+          oportunidades para que nuestra comunidad siga creciendo y brillando.
         </p>
 
-        <div style={{
-          backgroundColor: "rgba(71, 55, 187, 0.1)",
-          padding: "25px",
-          borderRadius: "15px",
-          textAlign: "center",
-          margin: "30px 0",
-          borderLeft: "5px solid #4737bb",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
-        }}>
-          <h3 style={{ color: "#6d2c95", marginTop: 0, fontSize: "1.8rem", marginBottom: "15px" }}>
-            💫 Mantente conectado con nosotros
-          </h3>
-          <p>
-            Síguenos en nuestras redes, únete a nuestro Slack y sé la primera persona en enterarte de próximos eventos que van a volar tu mente.
-          </p>
-          <br />
+        <h3>Mantente conectado con nosotros</h3>
+        <p>
+          Síguenos en nuestras redes, únete a nuestro Slack y sé la primera
+          persona en enterarte de próximos eventos que van a volar tu mente.
+        </p>
+        <p>
           <a
             href="https://communityinviter.com/apps/femcodersclub/femcoders-club"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#4737bb",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(71, 55, 187, 0.3)",
-              marginRight: "15px"
-            }}
+            className="fc-boton"
           >
-            💬 Únete al Slack
-          </a>
-          <a
-            href="/eventos"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#8a2be2",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "16px",
-              transition: "all 0.3s ease",
-              boxShadow: "0 4px 15px rgba(138, 43, 226, 0.3)"
-            }}
-          >
-            📅 Ver próximos eventos
-          </a>
-          <p style={{ fontSize: "16px", fontWeight: "bold", marginTop: "20px", marginBottom: 0, color: "#2a2170" }}>
-            La comunidad tech más inspiradora te está esperando. ¡Ven a brillar con nosotros! ✨
-          </p>
-        </div>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>Equipo FemCoders Club</strong>
+            Únete al Slack
+          </a>{" "}
+          <Link to="/eventos" className="fc-boton">
+            Ver próximos eventos
+          </Link>
         </p>
-        <p>Con amor desde Barcelona 💜</p>
         <p>
-          Fecha de publicación: <strong>2 de junio, 2025</strong>
+          <strong>
+            La comunidad tech más inspiradora te está esperando. ¡Ven a brillar
+            con nosotros!
+          </strong>
         </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default DataConnectEvento;

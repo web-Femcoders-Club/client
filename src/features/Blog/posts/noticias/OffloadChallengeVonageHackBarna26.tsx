@@ -1,11 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import CommentsSection from "../../components/CommentsSection";
-import "../../page/PostStyles.css";
-
-import ShareButtons from "../../components/ShareButtons";
-import PostImage from "../../components/PostImage";
+import PlantillaPost from "../../components/post/PlantillaPost";
+import { CodigoPost, SeccionPost, TarjetasPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 
 /*
@@ -62,11 +59,16 @@ const PREGUNTAS = [
   },
 ];
 
-const OffloadChallengeVonageHackBarna26: React.FC = () => {
-  const postId = 52;
+/** El equipo CTRL4ELLA, con su perfil de LinkedIn. */
+const EQUIPO = [
+  { nombre: "Irina Ichim", linkedin: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
+  { nombre: "Elvia Benedith", linkedin: "https://www.linkedin.com/in/elvia-benedith" },
+  { nombre: "Ana Lucía Silva Córdoba", linkedin: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
+  { nombre: "Silvina Lucero Calderón", linkedin: "https://www.linkedin.com/in/silvina-lucero" },
+];
 
-  return (
-    <div className="blog-post">
+const OffloadChallengeVonageHackBarna26: React.FC = () => (
+  <>
       <Helmet>
         {/*
           Los metadatos van como literales y no desde las constantes de
@@ -186,73 +188,53 @@ const OffloadChallengeVonageHackBarna26: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* ── Hero image ── */}
-      <PostImage
-        src="/public-optimized/desktop/assets/noticias/offload-challenge-vonage-hackbarna-ai-summit-26.webp"
-        mobileSrc="/public-optimized/mobile/assets/noticias/offload-challenge-vonage-hackbarna-ai-summit-26.webp"
-        desktopSrc="/public-optimized/desktop/assets/noticias/offload-challenge-vonage-hackbarna-ai-summit-26.webp"
-        fallbackSrc={PORTADA}
-        alt="Collage de OFFLOAD en HackBarna AI Summit 26. El equipo CTRL4ELLA posa en el escenario de Norrsken House con el premio de Vonage, junto a otras personas del evento; el equipo trabaja alrededor de una mesa con portátiles; el público llena la grada; y varias pantallas de la aplicación muestran a Mia, la agente, con el lema «Less mental load. More time to live.», el SMS que invita a unirse a la llamada y una videollamada en la que Mia escucha"
-      />
-
-      <h1 className="blog-post-title">{TITULO}</h1>
-
-      <ShareButtons path={SLUG} title={TITULO} />
-
-      {/*
-        El `speakable` del prerender apunta a `.blog-post-title` y a
-        `.intro-text`: la intro lleva el premio, el equipo, el evento y qué
-        hace OFFLOAD, que es lo que un asistente tiene que poder contar.
-      */}
-      <div className="intro-text">
-        <p>
-          El equipo <strong>CTRL4ELLA</strong>, formado por cuatro femcoders,
-          presentó <strong>OFFLOAD</strong> en{" "}
-          <strong>HackBarna AI Summit 26</strong> y el proyecto recibió el
-          premio del challenge <strong>Best use of the Vonage Video API</strong>
-          . Nos hace especial ilusión contarlo porque este equipo nació en la
-          propia comunidad: al salir de la{" "}
-          <Link
-            to="/noticias/sesion-informativa-hackbarna-ai-summit-26"
-            className="highlight-link"
-          >
-            sesión del 3 de septiembre con Lilibeth Bustos Linares
-          </Link>
-          , varias decidimos que queríamos estar allí construyendo. Dos semanas
-          después, el 19 y 20 de septiembre, estábamos en Norrsken House
-          Barcelona haciéndolo.
-        </p>
-        <br />
-        <p>
-          OFFLOAD es una aplicación familiar que reparte la carga mental de una
-          casa. La sostiene una agente de IA, Mia, que entra en una videollamada
-          de Vonage, escucha lo que se dice y solo pide la palabra cuando las
-          dos personas que hablan se han quedado sin opciones. El código es
-          público, así que podéis clonarlo, abrirlo y llevaros a vuestros
-          proyectos lo que os sirva.
-        </p>
-        <br />
-        <p>
-          Hay una idea que puede ser útil a cualquiera que esté montando algo
-          con agentes. De los siete pasos que da el sistema para resolver un
-          choque de agendas, solo dos pasan por un modelo de lenguaje, y la
-          decisión de cuándo interviene Mia no pasa por ninguno. En este post
-          contamos cómo está construido por dentro y qué papel tiene cada
-          tecnología, empezando por Vonage.
-        </p>
-      </div>
-
-      {/* ── 1. Qué resuelve OFFLOAD ── */}
-      <div className="highlight-box">
-        <h2>Qué resuelve OFFLOAD</h2>
-        <br />
+    <PlantillaPost
+      ruta={SLUG}
+      titulo={TITULO}
+      autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
+      idComentarios={52}
+      entradilla={
+        <>
+          <p>
+            El equipo <strong>CTRL4ELLA</strong>, formado por cuatro femcoders,
+            presentó <strong>OFFLOAD</strong> en{" "}
+            <strong>HackBarna AI Summit 26</strong> y el proyecto recibió el
+            premio del challenge <strong>Best use of the Vonage Video API</strong>.
+            Nos hace especial ilusión contarlo porque este equipo nació en la
+            propia comunidad: al salir de la{" "}
+            <Link to="/noticias/sesion-informativa-hackbarna-ai-summit-26">
+              sesión del 3 de septiembre con Lilibeth Bustos Linares
+            </Link>
+            , varias decidimos que queríamos estar allí construyendo. Dos
+            semanas después, el 19 y 20 de septiembre, estábamos en Norrsken
+            House Barcelona haciéndolo.
+          </p>
+          <p>
+            OFFLOAD es una aplicación familiar que reparte la carga mental de una
+            casa. La sostiene una agente de IA, Mia, que entra en una
+            videollamada de Vonage, escucha lo que se dice y solo pide la
+            palabra cuando las dos personas que hablan se han quedado sin
+            opciones. El código es público, así que podéis clonarlo, abrirlo y
+            llevaros a vuestros proyectos lo que os sirva.
+          </p>
+          <p>
+            Hay una idea que puede ser útil a cualquiera que esté montando algo
+            con agentes. De los siete pasos que da el sistema para resolver un
+            choque de agendas, solo dos pasan por un modelo de lenguaje, y la
+            decisión de cuándo interviene Mia no pasa por ninguno. En este post
+            contamos cómo está construido por dentro y qué papel tiene cada
+            tecnología, empezando por Vonage.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="Qué resuelve OFFLOAD">
         <p>
           La carga mental de una casa está en acordarse de que las cosas
           existen: quién lleva a la niña a la piscina el jueves si esa tarde hay
           reunión, o a quién se le puede pedir ayuda. Una lista compartida
           ayuda a apuntarlo, pero también hay que mantenerla.
         </p>
-        <br />
         <p>
           OFFLOAD pone en ese lugar a Mia, que mira las agendas de la familia y
           se hace una sola pregunta cada vez que encuentra algo: ¿esto cambia el
@@ -261,19 +243,15 @@ const OffloadChallengeVonageHackBarna26: React.FC = () => {
           sí o un no no basta, abre una videollamada para hablarlo. Ahí es donde
           entra Vonage.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 2. Vonage ── */}
-      <div className="highlight-box">
-        <h2>Vonage, en el centro de OFFLOAD</h2>
-        <br />
+      <SeccionPost titulo="Vonage, en el centro de OFFLOAD">
         <p>
           El challenge pedía usar la Vonage Video API para resolver un problema
           real, y en OFFLOAD la videollamada es el momento en que la familia se
           pone de acuerdo. El proyecto usa tres capacidades de Vonage, y las
           tres están construidas y funcionando:
         </p>
-        <br />
         <ul>
           <li>
             <strong>La sesión de vídeo con transcripciones en directo.</strong>{" "}
@@ -295,7 +273,6 @@ const OffloadChallengeVonageHackBarna26: React.FC = () => {
             mensaje, la persona tocó el enlace y apareció en la videollamada.
           </li>
         </ul>
-        <br />
         <p>
           Para que Mia pueda escuchar, la sesión se crea en modo{" "}
           <strong>routed</strong>, con el audio pasando por el Media Router de
@@ -304,10 +281,7 @@ const OffloadChallengeVonageHackBarna26: React.FC = () => {
           Las llamadas a la Video API se hacen por REST, con un JWT de
           aplicación contra <code>video.api.vonage.com</code>:
         </p>
-        <br />
-        <div className="code-block bg3">
-          <pre>
-            {`// p2p.preference=disabled pone el Media Router en medio:
+        <CodigoPost lenguaje="TypeScript">{`// p2p.preference=disabled pone el Media Router en medio:
 // ahí se leen las transcripciones en directo.
 const response = await fetch(\`\${videoBase}/session/create\`, {
   method: "POST",
@@ -317,10 +291,7 @@ const response = await fetch(\`\${videoBase}/session/create\`, {
     Accept: "application/json",
   },
   body: "archiveMode=manual&p2p.preference=disabled",
-});`}
-          </pre>
-        </div>
-        <br />
+});`}</CodigoPost>
         <p>
           Dentro de la sala no hay jerarquía: las dos personas de la familia
           entran con el mismo rol, publisher. Como arrancar las transcripciones
@@ -329,12 +300,9 @@ const response = await fetch(\`\${videoBase}/session/create\`, {
           vídeo en la que un proceso automático necesite más permisos que las
           personas: el permiso lo tiene quien orquesta.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 3. Cuándo habla Mia ── */}
-      <div className="highlight-box">
-        <h2>Cómo decide Mia cuándo hablar en la videollamada</h2>
-        <br />
+      <SeccionPost titulo="Cómo decide Mia cuándo hablar en la videollamada">
         <p>
           Esta es la parte del proyecto que más nos gusta contar. Cuándo
           interviene Mia lo decide una función pura de pocas líneas, sin ningún
@@ -344,10 +312,7 @@ const response = await fetch(\`\${videoBase}/session/create\`, {
           casa ya no queda nadie disponible. Así que Mia pide la palabra cuando
           las dos han dicho que no pueden.
         </p>
-        <br />
-        <div className="code-block bg3">
-          <pre>
-            {`/** Lo que dice alguien cuando no puede. Español de España, como se habla. */
+        <CodigoPost lenguaje="TypeScript">{`/** Lo que dice alguien cuando no puede. Español de España, como se habla. */
 const REFUSALS = [
   "no puedo", "no voy a poder", "no llego", "no me da tiempo",
   "no me cuadra", "imposible", "no hay manera", "estoy liada",
@@ -360,10 +325,7 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
   );
 
   return whoSaidNo.size >= 2;
-}`}
-          </pre>
-        </div>
-        <br />
+}`}</CodigoPost>
         <p>
           Lo importante es que cuenta <strong>personas distintas</strong>, no
           negativas. Quien dice «no puedo, de verdad que no puedo» ha dicho que
@@ -371,18 +333,14 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           dicho gracias al stream del que viene, un dato que la propia sesión de
           Vonage ya da.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 4. El resto del stack ── */}
-      <div className="highlight-box">
-        <h2>Mastra, Nebius, SLNG y Norma: qué hace cada una</h2>
-        <br />
+      <SeccionPost titulo="Mastra, Nebius, SLNG y Norma: qué hace cada una">
         <p>
           Alrededor de la videollamada trabajan otras cuatro tecnologías de las
           empresas que acompañaron el hackathon, y cada una tiene un papel
           concreto.
         </p>
-        <br />
         <p>
           <strong>Mastra</strong> orquesta el proceso. Resolver un choque de
           agendas es un workflow de siete pasos, y su estado vive en Postgres:
@@ -390,7 +348,6 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           continúa en el paso exacto en el que se quedó, incluso si el servidor
           se reinicia entretanto.
         </p>
-        <br />
         <p>
           <strong>Nebius Token Factory</strong> pone el razonamiento, con dos
           modelos de distinto tamaño. El pequeño saca eventos y tareas de una
@@ -401,7 +358,6 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           clasificador de intención acierta el 93,3 % sobre treinta frases
           escritas, y el modelo grande no se inventa nada en 6 de 6 casos.
         </p>
-        <br />
         <p>
           Como el producto se usa hablando, el equipo volvió a medir por el
           camino real: veintinueve de esas frases leídas en voz alta,
@@ -411,14 +367,12 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           esos siete puntos de diferencia son una referencia útil para quien
           monte algo parecido con voz.
         </p>
-        <br />
         <p>
           <strong>SLNG</strong> pone la voz de Mia, tanto en los mensajes
           cortos como cuando habla dentro de la videollamada, y convierte en
           texto las notas de voz que se dictan fuera de ella. Lo que se dice
           durante la llamada lo transcribe Vonage.
         </p>
-        <br />
         <p>
           <strong>Norma</strong>, de QualityClouds, la conocimos allí mismo,
           porque tenía su propio challenge, «Production Ready», y la
@@ -433,18 +387,14 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
             href={`${REPO}/blob/dev/DEFENCE.md`}
             target="_blank"
             rel="noopener noreferrer"
-            className="highlight-link"
           >
             DEFENCE.md
           </a>
           .
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 5. Reglas convertidas en tests ── */}
-      <div className="highlight-box">
-        <h2>Las reglas del producto, convertidas en tests</h2>
-        <br />
+      <SeccionPost titulo="Las reglas del producto, convertidas en tests">
         <p>
           OFFLOAD distingue dos círculos de personas. El núcleo conecta su
           cuenta de Google y Mia ve sus agendas. La red de apoyo, una abuela, un
@@ -453,16 +403,12 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           proyecto: fuera del núcleo, Mia nunca afirma que alguien está
           disponible.
         </p>
-        <br />
         <p>
           Durante el banco de pruebas, un modelo dijo que la abuela estaba
           libre sin tener forma de saberlo, y ese caso concreto es hoy un test
           que bloquea la integración de cualquier cambio que lo rompa:
         </p>
-        <br />
-        <div className="code-block bg3">
-          <pre>
-            {`it("degrada a «llamar» cuando el modelo propone a alguien de la red", () => {
+        <CodigoPost lenguaje="TypeScript">{`it("degrada a «llamar» cuando el modelo propone a alguien de la red", () => {
   const r = correctInventedAvailability(
     proposal("propose", "Abuela Rosa"),
     SUPPORT_NETWORK
@@ -470,50 +416,32 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
 
   assert.equal(r.proposal.decision, "call");
   assert.equal(r.inventedAvailability, true);
-});`}
-          </pre>
-        </div>
-        <br />
+});`}</CodigoPost>
         <p>
           Son catorce tests de este tipo, y cada uno lleva el nombre de la
           regla que protege, para que un fallo diga qué principio se ha roto.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 6. El proyecto está publicado ── */}
-      <div className="highlight-box">
-        <h2>El proyecto está publicado</h2>
-        <br />
+      <SeccionPost titulo="El proyecto está publicado">
         <p>
           El repositorio es público y la aplicación está desplegada, así que
           podéis verla y clonarla:
         </p>
-        <br />
         <ul>
           <li>
             Repositorio:{" "}
-            <a
-              href={REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
+            <a href={REPO} target="_blank" rel="noopener noreferrer">
               github.com/ctrl-Ella/OffLoad
             </a>
           </li>
           <li>
             Aplicación desplegada:{" "}
-            <a
-              href={DEMO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-            >
+            <a href={DEMO} target="_blank" rel="noopener noreferrer">
               offload-production-1c5b.up.railway.app
             </a>
           </li>
         </ul>
-        <br />
         <p>
           Está construido con Next.js 16, React 19, Prisma 7 y Tailwind 4, todo
           en TypeScript, y necesita Node 22.13 o superior y una base de datos
@@ -526,7 +454,6 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           <code>docs/guides/accessibility.md</code>, es mostrar el texto cuando
           la voz no suena.
         </p>
-        <br />
         <p>
           Aunque no lo levantéis, hay tres carpetas que puede merecer la pena
           abrir: <code>docs/specs/</code>, con una spec por tarea escrita antes
@@ -535,80 +462,36 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           <code>bench/results/</code>, con las mediciones del banco de pruebas y
           su fecha.
         </p>
-      </div>
+      </SeccionPost>
 
-      {/* ── 7. Preguntas frecuentes ── */}
-      <div className="highlight-box">
-        <h2>Preguntas frecuentes</h2>
-        <br />
+      <SeccionPost titulo="Preguntas frecuentes">
         {PREGUNTAS.map(({ pregunta, respuesta }) => (
           <React.Fragment key={pregunta}>
-            <h3 style={{ fontSize: "1.15rem", marginBottom: "8px" }}>
-              {pregunta}
-            </h3>
+            <h3>{pregunta}</h3>
             <p>{respuesta}</p>
-            <br />
           </React.Fragment>
         ))}
-      </div>
+      </SeccionPost>
 
-      {/* ── 8. El equipo y las gracias ── */}
-      <div className="highlight-box">
-        <h2>El equipo</h2>
-        <br />
-        <p>OFFLOAD lo construyó el equipo CTRL4ELLA:</p>
-        <br />
-        <ul>
-          <li>
-            <strong>Irina Ichim</strong>{" "}
-            <a
-              href="https://www.linkedin.com/in/irina-ichim-desarrolladora"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-              aria-label="Ver el perfil de LinkedIn de Irina Ichim"
-            >
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <strong>Elvia Benedith</strong>{" "}
-            <a
-              href="https://www.linkedin.com/in/elvia-benedith"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-              aria-label="Ver el perfil de LinkedIn de Elvia Benedith"
-            >
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <strong>Ana Lucía Silva Córdoba</strong>{" "}
-            <a
-              href="https://www.linkedin.com/in/ana-lucia-silva-cordoba"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-              aria-label="Ver el perfil de LinkedIn de Ana Lucía Silva Córdoba"
-            >
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <strong>Silvina Lucero Calderón</strong>{" "}
-            <a
-              href="https://www.linkedin.com/in/silvina-lucero"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="highlight-link"
-              aria-label="Ver el perfil de LinkedIn de Silvina Lucero Calderón"
-            >
-              LinkedIn
-            </a>
-          </li>
-        </ul>
-        <br />
+      <SeccionPost titulo="El equipo">
+        <TarjetasPost
+          titulo="OFFLOAD lo construyó el equipo CTRL4ELLA"
+          tarjetas={EQUIPO.map(({ nombre, linkedin }) => ({
+            titulo: nombre,
+            texto: (
+              <p>
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver el perfil de LinkedIn de ${nombre}`}
+                >
+                  LinkedIn
+                </a>
+              </p>
+            ),
+          }))}
+        />
         <p>
           Gracias a <strong>Vonage</strong> por el challenge y por una Video API
           con la que se puede construir algo así en un fin de semana, y a{" "}
@@ -618,13 +501,9 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           <strong>SLNG</strong> y <strong>QualityClouds</strong>, cuyas
           herramientas forman parte de OFFLOAD.
         </p>
-        <br />
         <p>
           Si os apetece probar la Video API, os contamos en{" "}
-          <Link
-            to="/noticias/vonage-community-partnership-program"
-            className="highlight-link"
-          >
+          <Link to="/noticias/vonage-community-partnership-program">
             la noticia del Vonage Community Partnership Program
           </Link>{" "}
           qué tenéis disponible desde la comunidad. Y si estáis montando algo
@@ -632,26 +511,9 @@ export function bothHaveRuledItOut(said: Utterance[]): boolean {
           dónde no, el razonamiento entero está en el repositorio, y podéis
           abrir una issue o escribirnos para comentarlo.
         </p>
-      </div>
-
-      <div className="author-info">
-        <p>
-          Escrito por: <strong>FemCoders Club</strong>
-        </p>
-        <p>
-          Fecha de publicación: <strong>29 de septiembre, 2026</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={postId} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default OffloadChallengeVonageHackBarna26;

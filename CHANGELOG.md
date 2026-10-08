@@ -8,6 +8,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 ### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Añadido
+- **Las 19 noticias migradas a la plantilla**, sin estilos en línea,
+  `react-icons` ni `PostStyles.css`, con su `<Helmet>` y sus JSON-LD sin
+  cambios. Los vídeos propios van con `VideoPost` (con versión móvil y sin
+  reproducción automática: la felicitación de Navidad empezaba sola y en
+  bucle); las redes sociales, como enlaces con su nombre visible. Fechas,
+  cifras y estados de cada noticia se quedan como se escribieron.
+- **`OptimizedImage` ya no pide rutas inexistentes**: una imagen que ya
+  estaba en `/public-optimized/`, un `.gif` o un `.svg` se sirven tal cual
+  (antes, primero un 404 y luego la buena).
+- **`speakable`** del JSON-LD de los posts apunta al título y la entradilla
+  de la plantilla nueva.
 - **Los 11 posts de JavaScript migrados a la plantilla**, sin estilos en
   línea, `react-icons` ni `PostStyles.css`, con su `<Helmet>` sin cambios.
   Los ejercicios de Closures se pliegan con `RespuestaPost`. Por el camino:

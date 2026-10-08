@@ -57,10 +57,16 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const optimizedSrc = `/public-optimized/${folder}/${cleanSrc}`
     .replace(/\.(jpg|jpeg|png|webp)$/i, ".webp")
     .replace(/\/{2,}/g, "/");
-  
+
+  // Una ruta que ya está optimizada, o un formato que optimize-images.ts no
+  // convierte (gif animado, svg), se sirve tal cual: si no, se pedía antes una
+  // ruta inexistente que daba 404 y luego la buena.
+  const sinVersionOptimizada =
+    cleanSrc.startsWith("public-optimized/") || !/\.(jpg|jpeg|png|webp)$/i.test(cleanSrc);
+
   return (
     <img
-      src={optimizadaFallo ? src : optimizedSrc}
+      src={optimizadaFallo || sinVersionOptimizada ? src : optimizedSrc}
       alt={alt}
       title={title}
       className={className}

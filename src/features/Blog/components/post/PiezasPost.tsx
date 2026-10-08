@@ -110,25 +110,47 @@ type ImagenPostProps = {
 
 /*
  * Una imagen dentro del texto, al ancho de la columna, con pie opcional y,
- * si hace falta, el distintivo de IA (AI Act art. 50). Una ruta original
- * («/assets/…») pasa por OptimizedImage; una que ya apunta a
- * /public-optimized/ se sirve tal cual.
+ * si hace falta, el distintivo de IA (AI Act art. 50).
  */
 export const ImagenPost: React.FC<ImagenPostProps> = ({ src, alt, pie, generadaConIA = false }) => (
   <figure className="post-imagen">
     <div className="post-imagen__marco">
-      {src.startsWith("/public-optimized/") ? (
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
-      ) : (
-        <OptimizedImage src={src} alt={alt} />
-      )}
+      <OptimizedImage src={src} alt={alt} />
       {generadaConIA && <span className="fc-distintivo-ia">Imagen generada con IA</span>}
     </div>
     {pie && <figcaption>{pie}</figcaption>}
   </figure>
 );
 
-type RespuestaPostProps = { resumen?: string; children: React.ReactNode };
+type VideoPostProps = {
+  src: string;
+  /** Versión vertical para móvil: el navegador la elige con `media`. */
+  srcMovil?: string;
+  poster?: string;
+  /** Qué se ve en el vídeo: nombra el reproductor para el lector de pantalla. */
+  descripcion: string;
+  pie?: React.ReactNode;
+};
+
+/*
+ * Un vídeo propio (.mp4) al ancho de la columna, con controles y sin
+ * reproducción automática (WCAG 2.2.2). Los de YouTube van con un <iframe>
+ * normal: la plantilla ya los pone en 16:9.
+ */
+export const VideoPost: React.FC<VideoPostProps> = ({ src, srcMovil, poster, descripcion, pie }) => (
+  <figure className="post-video">
+    <video controls preload="metadata" poster={poster} aria-label={descripcion}>
+      {srcMovil && <source src={srcMovil} type="video/mp4" media="(max-width: 768px)" />}
+      <source src={src} type="video/mp4" />
+      <p>
+        Tu navegador no puede reproducir este vídeo. <a href={src}>Descárgalo aquí</a>.
+      </p>
+    </video>
+    {pie && <figcaption>{pie}</figcaption>}
+  </figure>
+);
+
+type RespuestaPostProps ={ resumen?: string; children: React.ReactNode };
 
 /*
  * La respuesta de un ejercicio, plegada: se abre al pulsar «Ver respuesta».
