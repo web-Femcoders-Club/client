@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "./SimpleGridCarousel.css";
 
 const SimpleGridCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

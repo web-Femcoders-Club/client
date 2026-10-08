@@ -523,6 +523,63 @@
   border-bottom: 0;
 }
 
+/* ---------- ImagenPost: al ancho de la columna, con pie opcional ---------- */
+
+.post-imagen {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.25rem 0;
+}
+
+.post-imagen img {
+  display: block;
+  width: 100%;
+}
+
+.post-imagen figcaption {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+  text-align: center;
+}
+
+/* ---------- DemoPost: el resultado en vivo de un ejemplo, en recuadro punteado ---------- */
+
+.post-demo {
+  margin: 0.25rem 0;
+  border: 2px dashed rgba(71, 55, 187, 0.35);
+  border-radius: 0.9rem;
+  overflow: clip;
+}
+
+.post-demo__titulo {
+  padding: 0.45rem 1rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.12);
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.post-demo__escenario {
+  padding: 1.25rem;
+  overflow-x: auto;
+  background: var(--color-lavanda-claro);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* El bloque de muestra: los ejemplos le añaden en línea la propiedad que enseñan. */
+.post-demo__caja {
+  padding: 1rem;
+  border: 2px solid var(--color-secondary);
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--color-text-dark);
+}
+
 /*
  * ---------- TarjetasPost, ListaMarcadaPost y PasosPost ----------
  * Para los apartados hechos de ideas cortas (guías de estudio, consejos):

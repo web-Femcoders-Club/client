@@ -8,6 +8,19 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 ### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Añadido
+- **Los 14 posts de CSS migrados a la plantilla**, sin Tailwind ni
+  `PostStyles.css` y con su `<Helmet>` sin cambios. El quiz de CSS queda como
+  el de HTML (logro y guía en los resultados). Por el camino: valores de
+  `ease-in`/`ease-out` corregidos, `web-vitals` con la API actual, contrastes
+  de ejemplo recalculados, preguntas del quiz matizadas (especificidad,
+  `subgrid`, pseudoelementos), enlaces internos rotos arreglados y restos de
+  Markdown y de prompt eliminados.
+- **Piezas nuevas para los posts**: `ImagenPost` (imagen con pie),
+  `DemoPost` (resultado en vivo de un ejemplo, en recuadro punteado) y
+  `NotaPost tipo="aviso"`. El texto de `TarjetasPost` admite listas.
+  Guía para escribir posts nuevos en `docs/posts-del-blog.md`.
+- **El carrusel de CSS Grid lleva su propio CSS** (`SimpleGridCarousel.css`),
+  fuera de `PostStyles.css`.
 - **Plantilla común de los posts** (`components/post/PlantillaPost`): la
   portada al ancho del texto, migas, tema, título, entradilla, autora, fecha
   y tiempo de lectura; al final, compartir y comentarios en la misma columna;

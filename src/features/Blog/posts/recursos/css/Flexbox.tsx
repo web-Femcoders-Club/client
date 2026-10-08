@@ -1,16 +1,18 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CommentsSection from "../../../../Blog/components/CommentsSection";
-import "../../../page/PostStyles.css";
-
-import ShareButtons from "../../../components/ShareButtons";
 import { articleSchema } from "../../../components/articleSchema";
+import PlantillaPost from "../../../components/post/PlantillaPost";
+import {
+  CodigoPost,
+  ListaMarcadaPost,
+  NotaPost,
+  SeccionPost,
+  TablaPost,
+  TarjetasPost,
+} from "../../../components/post/PiezasPost";
 
-const Flexbox: React.FC = () => {
-  const publicationDate = "2 de marzo de 2025";
-
-  return (
-    <div className="blog-post">
+const Flexbox: React.FC = () => (
+  <>
       <Helmet>
         <title>
           Flexbox: El poder de crear layouts flexibles | femCoders Club
@@ -99,487 +101,462 @@ const Flexbox: React.FC = () => {
         </script>
       </Helmet>
 
-      <div className="post-image-container">
-        <img
-          src="/assets/css/flexbox.jpg"
-          alt="Flexbox: El poder de crear layouts flexibles"
-          className="blog-post-image"
-        />
-      </div>
-
-      <h1 className="blog-post-title">
-        Flexbox: El poder de crear layouts flexibles
-      </h1>
-
-      <ShareButtons path="/recursos/css/flexbox" title="Flexbox: El poder de crear layouts flexibles" />
-
-      <div className="intro-text">
-        <h3>¿Qué es Flexbox y por qué necesitamos aprenderlo?</h3>
-        <p>
-          Antes de Flexbox, crear diseños web alineados correctamente era todo
-          un desafío. Utilizábamos floats, position y otros trucos que a menudo
-          resultaban en código complicado y frágil. Con la llegada de Flexbox,
-          todo cambió.
-        </p>
-        <p>
-          Para complementar este aprendizaje, hemos creado un mini-proyecto en
-          GitHub que puedes utilizar para practicar:
-          <br />
-          <span>
-            👉 Repositorio en GitHub:{" "}
-            <a
-              href="https://github.com/femcodersclub/demoFlexbox.git"
-              title="Repositorio GitHub Demo interactivo Flexbox"
-              target="_blank"
-              rel="noopener"
-            >
-              demoFlexBox - GitHub
-            </a>
-            <br />
-            🌐 Demostración en vivo:{" "}
-            <a
-              href="https://femcodersclub.github.io/demoFlexbox/"
-              title="Demostración en vivo Flexbox"
-              target="_blank"
-              rel="noopener"
-            >
-              demoFlexBox - Live
-            </a>
-          </span>
-        </p>
-
-        <p>
-          <strong>Flexbox (Flexible Box Layout) </strong>llegó para revolucionar
-          la forma en que posicionamos elementos en nuestras páginas web. Fue
-          diseñado específicamente para crear diseños flexibles que se adapten a
-          diferentes tamaños de pantalla, lo que lo hace perfecto para el diseño
-          web moderno y responsivo.
-        </p>
-      </div>
-
-      <div className="highlight-box">
-        <h2>Conceptos básicos de Flexbox</h2>
+    <PlantillaPost
+      ruta="/recursos/css/flexbox"
+      titulo="Flexbox: el poder de crear layouts flexibles"
+      autora={{ nombre: "Irina Ichim", rol: "Cofundadora de FemCoders Club" }}
+      idComentarios={14}
+      entradilla={
+        <>
+          <p>
+            Antes de Flexbox, crear diseños web bien alineados era todo un
+            desafío. Utilizábamos floats, position y otros trucos que a menudo
+            acababan en código complicado y frágil. Con la llegada de Flexbox,
+            todo cambió.
+          </p>
+          <p>
+            Para complementar este aprendizaje, hemos creado un miniproyecto en
+            GitHub que puedes utilizar para practicar:
+          </p>
+          <ul>
+            <li>
+              Repositorio en GitHub:{" "}
+              <a
+                href="https://github.com/femcodersclub/demoFlexbox.git"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                demoFlexBox en GitHub
+              </a>
+            </li>
+            <li>
+              Demostración en vivo:{" "}
+              <a
+                href="https://femcodersclub.github.io/demoFlexbox/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                demoFlexBox en vivo
+              </a>
+            </li>
+          </ul>
+          <p>
+            <strong>Flexbox (Flexible Box Layout)</strong> llegó para
+            revolucionar la forma en que posicionamos los elementos en nuestras
+            páginas web. Se diseñó específicamente para crear diseños flexibles
+            que se adapten a distintos tamaños de pantalla, lo que lo hace
+            perfecto para el diseño web moderno y responsivo.
+          </p>
+        </>
+      }
+    >
+      <SeccionPost titulo="Conceptos básicos de Flexbox">
         <p>
           Para trabajar con Flexbox necesitamos entender dos conceptos
           principales:
         </p>
-        <ul>
-          <li>
-            1. Contenedor Flex (Flex Container):Es el elemento padre que
-            declaramos con<strong> display: flex</strong> o{" "}
-            <strong>display: inline-flex. </strong>Este contenedor permite que
-            todos sus hijos directos se comporten como elementos flexibles.
-          </li>
-          <li>
-            2. Elementos Flex (Flex Items): Son los hijos directos del
-            contenedor flex. Estos elementos se alinearán y distribuirán según
-            las propiedades que definamos en el contenedor.
-          </li>
-        </ul>
-      </div>
-      <div className="highlight-box">
-        <h2>Propiedades principales del Contenedor Flex</h2>
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "1. Contenedor flex (flex container)",
+              texto: (
+                <>
+                  Es el elemento padre que declaramos con{" "}
+                  <code>display: flex</code> o{" "}
+                  <code>display: inline-flex</code>. Este contenedor permite
+                  que todos sus hijos directos se comporten como elementos
+                  flexibles.
+                </>
+              ),
+            },
+            {
+              titulo: "2. Elementos flex (flex items)",
+              texto:
+                "Son los hijos directos del contenedor flex. Estos elementos se alinean y distribuyen según las propiedades que definamos en el contenedor.",
+            },
+          ]}
+        />
+      </SeccionPost>
+
+      <SeccionPost titulo="Propiedades principales del contenedor flex">
         <p>
           Estas propiedades controlan la distribución de los elementos dentro
           del contenedor flex:
         </p>
-        <ul>
-          <li>
-            <strong>display:</strong> Activa Flexbox en el contenedor.
-            <pre className="code-block bg3">
-              {`.contenedor {
-    display: flex; /* Contenedor Flex */
-}`}
-            </pre>
-          </li>
 
-          <li>
-            <strong>flex-direction:</strong> Define la dirección de los
-            elementos.
-            <pre className="code-block bg3">
-              {`.contenedor {
+        <h3>
+          <code>display</code>
+        </h3>
+        <p>Activa Flexbox en el contenedor.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
+    display: flex; /* Contenedor Flex */
+}`}</CodigoPost>
+
+        <h3>
+          <code>flex-direction</code>
+        </h3>
+        <p>Define la dirección de los elementos.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
     flex-direction: row; /* Fila (por defecto) */
     flex-direction: column; /* Columna */
-}`}
-            </pre>
-          </li>
+}`}</CodigoPost>
 
-          <li>
-            <strong>flex-wrap:</strong> Controla si los elementos se ajustan a
-            varias líneas.
-            <pre className="code-block bg3">
-              {`.contenedor {
+        <h3>
+          <code>flex-wrap</code>
+        </h3>
+        <p>Controla si los elementos se reparten en varias líneas.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
     flex-wrap: wrap; /* Permite múltiples líneas */
-}`}
-            </pre>
-          </li>
+}`}</CodigoPost>
 
-          <li>
-            <strong>justify-content:</strong> Alinea los elementos en el eje
-            principal.
-            <pre className="code-block bg3">
-              {`.contenedor {
+        <h3>
+          <code>justify-content</code>
+        </h3>
+        <p>Alinea los elementos en el eje principal.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
     justify-content: center; /* Centra los elementos */
-}`}
-            </pre>
-          </li>
+}`}</CodigoPost>
 
-          <li>
-            <strong>align-items:</strong> Alinea los elementos en el eje
-            cruzado.
-            <pre className="code-block bg3">
-              {`.contenedor {
+        <h3>
+          <code>align-items</code>
+        </h3>
+        <p>Alinea los elementos en el eje cruzado.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
     align-items: center; /* Centrado vertical */
-}`}
-            </pre>
-          </li>
+}`}</CodigoPost>
 
-          <li>
-            <strong>align-content:</strong> Alinea líneas de elementos cuando
-            hay varias líneas.
-            <pre className="code-block bg3">
-              {`.contenedor {
+        <h3>
+          <code>align-content</code>
+        </h3>
+        <p>Alinea las líneas de elementos cuando hay varias.</p>
+        <CodigoPost lenguaje="CSS">{`.contenedor {
     align-content: space-between; /* Espacio entre líneas */
-}`}
-            </pre>
-          </li>
-        </ul>
-      </div>
+}`}</CodigoPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>Propiedades de los Elementos Flex</h2>
-
-        <p>
-          <strong>Orden de los elementos: order</strong>
-          <br />
-          Cambia el orden de aparición de un elemento específico:
-        </p>
-        <pre className="code-block bg3">
-          {`.elemento {
+      <SeccionPost titulo="Propiedades de los elementos flex">
+        <h3>
+          Orden de los elementos: <code>order</code>
+        </h3>
+        <p>Cambia el orden de aparición de un elemento concreto:</p>
+        <CodigoPost lenguaje="CSS">{`.elemento {
     order: 0; /* Por defecto */
     /* Números negativos mueven el elemento hacia el principio */
     /* Números positivos mueven el elemento hacia el final */
-}`}
-        </pre>
+}`}</CodigoPost>
 
+        <h3>
+          Tamaño de los elementos: <code>flex-grow</code>,{" "}
+          <code>flex-shrink</code> y <code>flex-basis</code>
+        </h3>
         <p>
-          <strong>
-            Tamaño de los elementos: flex-grow, flex-shrink y flex-basis
-          </strong>
-          <br />
-          Controla cómo los elementos flexibles crecen, se encogen y se
+          Controlan cómo los elementos flexibles crecen, se encogen y se
           distribuyen:
         </p>
-        <pre className="code-block bg3">
-          {`.elemento {
+        <CodigoPost lenguaje="CSS">{`.elemento {
     flex-grow: 0; /* No crece por defecto */
     flex-shrink: 1; /* Puede encogerse si es necesario */
     flex-basis: auto; /* Tamaño inicial basado en el contenido */
 
     /* Abreviatura: */
     flex: 0 1 auto; /* flex-grow flex-shrink flex-basis */
-}`}
-        </pre>
+}`}</CodigoPost>
+        <ul>
+          <li>
+            <strong>
+              <code>flex-grow</code>:
+            </strong>{" "}
+            define la capacidad de un elemento para crecer si hay espacio
+            disponible.
+          </li>
+          <li>
+            <strong>
+              <code>flex-shrink</code>:
+            </strong>{" "}
+            define la capacidad de un elemento para encogerse si es necesario.
+          </li>
+          <li>
+            <strong>
+              <code>flex-basis</code>:
+            </strong>{" "}
+            define el tamaño inicial de un elemento antes de que se distribuya
+            el espacio restante.
+          </li>
+        </ul>
+      </SeccionPost>
 
+      <SeccionPost titulo="Alineación individual: align-self" id="align-self">
         <p>
-          <strong>flex-grow:</strong> Define la capacidad de un elemento para
-          crecer si hay espacio disponible.
-          <br />
-          <strong>flex-shrink:</strong> Define la capacidad de un elemento para
-          encogerse si es necesario.
-          <br />
-          <strong>flex-basis:</strong> Define el tamaño inicial de un elemento
-          antes de que el espacio restante sea distribuido.
-        </p>
-      </div>
-      <div className="highlight-box">
-        <h2>Alineación individual: align-self</h2>
-        <p>
-          La propiedad <strong>align-self</strong> permite sobrescribir la
-          alineación establecida en <strong>align-items</strong>
-          para un elemento específico dentro de un contenedor flex.
+          La propiedad <code>align-self</code> permite sobrescribir, para un
+          elemento concreto dentro de un contenedor flex, la alineación
+          establecida en <code>align-items</code>.
         </p>
         <p>
-          📌 Ejemplo: Si tienes varios elementos en un contenedor, pero quieres
+          Por ejemplo, si tienes varios elementos en un contenedor pero quieres
           que solo uno de ellos esté centrado verticalmente, puedes usar{" "}
-          <strong>align-self: center;</strong> en ese elemento en particular.
+          <code>align-self: center;</code> en ese elemento en particular.
         </p>
-        <br />
-        <h2>Centrado perfecto con Flexbox</h2>
+      </SeccionPost>
+
+      <SeccionPost titulo="Centrado perfecto con Flexbox">
         <p>
-          Una de las razones por las que Flexbox es tan popular es porque
-          permite centrar elementos fácilmente en una página, algo que antes
-          requería trucos complejos.
+          Una de las razones por las que Flexbox es tan popular es que permite
+          centrar elementos fácilmente en una página, algo que antes requería
+          trucos complejos.
         </p>
         <p>
-          📌 ¿Cómo se hace? Basta con aplicar{" "}
-          <strong>justify-content: center;</strong> para alinear horizontalmente
-          y <strong>align-items: center;</strong> para centrar verticalmente
-          dentro del contenedor.
+          ¿Cómo se hace? Basta con aplicar <code>justify-content: center;</code>{" "}
+          para alinear horizontalmente y <code>align-items: center;</code> para
+          centrar verticalmente dentro del contenedor.
         </p>
-        <br />
-        <h2>Proyecto interactivo: ¡Experimenta con Flexbox!</h2>
+      </SeccionPost>
+
+      <SeccionPost titulo="Proyecto interactivo: ¡experimenta con Flexbox!">
         <p>
           Para reforzar lo que hemos visto, hemos creado un{" "}
           <strong>proyecto interactivo</strong> donde puedes experimentar con
           estas propiedades en acción.
         </p>
-
+        <TarjetasPost
+          tarjetas={[
+            {
+              titulo: "Navbar responsivo",
+              texto: "Construido con Flexbox.",
+            },
+            {
+              titulo: "Centrado de elementos",
+              texto: (
+                <>
+                  Con <code>justify-content</code> y <code>align-items</code>.
+                </>
+              ),
+            },
+            {
+              titulo: "Galería adaptable",
+              texto: "Se reorganiza automáticamente.",
+            },
+            {
+              titulo: "Controles interactivos",
+              texto: "Para cambiar las propiedades de Flexbox.",
+            },
+          ]}
+        />
+        <h3>Prueba el proyecto</h3>
         <ul>
-          <li>🛠️ Navbar responsivo: construido con Flexbox.</li>
           <li>
-            🎯 Centrado de elementos: con `justify-content` y `align-items`.
-          </li>
-          <li>🖼️ Galería adaptable: que se reorganiza automáticamente.</li>
-          <li>
-            🎮 Controles interactivos: para cambiar propiedades de Flexbox.
-          </li>
-        </ul>
-
-        <h3>🔗 Prueba el proyecto aquí: </h3>
-        <br />
-        <p>
-          🚀 Código en GitHub: 👉{" "}
-          <span>
+            Código en GitHub:{" "}
             <a
               href="https://github.com/femcodersclub/demoFlexbox"
               target="_blank"
               rel="noopener noreferrer"
             >
               github.com/femcodersclub/demoFlexbox
-            </a>{" "}
-          </span>{" "}
-        </p>
-
-        <p>
-          {" "}
-          🌐 Demo en GitHub Pages: 👉
-          <span>
-            {" "}
+            </a>
+          </li>
+          <li>
+            Demo en GitHub Pages:{" "}
             <a
               href="https://femcodersclub.github.io/demoFlexbox/"
               target="_blank"
               rel="noopener noreferrer"
             >
               femcodersclub.github.io/demoFlexbox
-            </a>{" "}
-          </span>
-        </p>
-      </div>
-
-      <div className="highlight-box">
-        <h2>Ventajas de usar Flexbox</h2>
-        <p>
-          Flexbox ofrece múltiples ventajas que lo convierten en una opción
-          ideal para diseñar
-          <strong> layouts modernos, responsivos y fáciles de mantener.</strong>
-        </p>
-        <br />
-        <ul>
-          <li>
-            <strong>Simplicidad:</strong> Permite crear diseños complejos con
-            menos código, haciéndolos más fáciles de leer y mantener.
-          </li>
-          <li>
-            <strong>Responsividad:</strong> Se adapta automáticamente a
-            distintos tamaños de pantalla sin necesidad de media queries
-            complicadas.
-          </li>
-          <li>
-            <strong>Bidireccionalidad:</strong> Funciona en ambos ejes,
-            horizontal y vertical, lo que facilita la distribución de los
-            elementos.
-          </li>
-          <li>
-            <strong>Alineación sencilla:</strong> Centrar elementos ya no es un
-            desafío gracias a propiedades como
-            <code> justify-content</code> y <code>align-items</code>.
-          </li>
-          <li>
-            <strong>Orden flexible:</strong> Puedes cambiar el orden visual de
-            los elementos sin modificar el HTML, usando la propiedad{" "}
-            <code>order</code>.
-          </li>
-          <li>
-            <strong>Compatibilidad:</strong> Funciona en la mayoría de los
-            navegadores modernos, garantizando estabilidad en distintos
-            entornos.
+            </a>
           </li>
         </ul>
-      </div>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>¿Cuándo usar Flexbox?</h2>
+      <SeccionPost titulo="Ventajas de usar Flexbox">
+        <p>
+          Flexbox ofrece múltiples ventajas que lo convierten en una opción
+          ideal para diseñar{" "}
+          <strong>layouts modernos, responsivos y fáciles de mantener</strong>.
+        </p>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Simplicidad",
+              texto:
+                "Permite crear diseños complejos con menos código, más fácil de leer y mantener.",
+            },
+            {
+              titulo: "Responsividad",
+              texto:
+                "Se adapta automáticamente a distintos tamaños de pantalla sin necesidad de media queries complicadas.",
+            },
+            {
+              titulo: "Bidireccionalidad",
+              texto:
+                "Funciona en ambos ejes, horizontal y vertical, lo que facilita la distribución de los elementos.",
+            },
+            {
+              titulo: "Alineación sencilla",
+              texto: (
+                <>
+                  Centrar elementos ya no es un desafío gracias a propiedades
+                  como <code>justify-content</code> y <code>align-items</code>.
+                </>
+              ),
+            },
+            {
+              titulo: "Orden flexible",
+              texto: (
+                <>
+                  Puedes cambiar el orden visual de los elementos sin modificar
+                  el HTML, con la propiedad <code>order</code>.
+                </>
+              ),
+            },
+            {
+              titulo: "Compatibilidad",
+              texto:
+                "Funciona en todos los navegadores modernos, lo que garantiza estabilidad en distintos entornos.",
+            },
+          ]}
+        />
+      </SeccionPost>
+
+      <SeccionPost titulo="¿Cuándo usar Flexbox?">
         <p>
           Flexbox es ideal cuando necesitas distribuir y alinear elementos de
-          manera flexible en una dimensión (fila o columna). Aquí algunos casos
-          donde Flexbox es la mejor opción:
+          manera flexible en una dimensión (fila o columna).
         </p>
-        <br />
-        <ul>
+        <ListaMarcadaPost titulo="Casos en los que Flexbox es la mejor opción" tipo="bien">
           <li>
-            <strong>Diseño de componentes pequeños:</strong> Perfecto para
+            <strong>Diseño de componentes pequeños:</strong> perfecto para
             alinear elementos dentro de tarjetas, botones, barras de navegación
             y formularios.
           </li>
           <li>
             <strong>Distribución de elementos en una fila o columna:</strong>{" "}
-            Útil para menús de navegación, galerías de imágenes o listas de
+            útil para menús de navegación, galerías de imágenes o listas de
             productos.
           </li>
           <li>
-            <strong>Alineación de elementos:</strong> Centrar elementos en una
-            página nunca fue tan fácil con
-            <strong> justify-content</strong> y <strong>align-items</strong>.
+            <strong>Alineación de elementos:</strong> centrar elementos en una
+            página nunca fue tan fácil con <code>justify-content</code> y{" "}
+            <code>align-items</code>.
           </li>
           <li>
-            <strong>Espaciado uniforme entre elementos:</strong> Proporciona
-            control total sobre el espacio entre elementos con propiedades como
-            <strong> space-between</strong> y <strong>space-around</strong>.
+            <strong>Espaciado uniforme entre elementos:</strong> proporciona
+            control total sobre el espacio entre elementos con valores como{" "}
+            <code>space-between</code> y <code>space-around</code>.
           </li>
           <li>
-            <strong>Componentes dinámicos:</strong> Cuando los elementos de un
+            <strong>Componentes dinámicos:</strong> cuando los elementos de un
             contenedor necesitan ajustarse según el contenido disponible sin
-            usar
-            <strong>width</strong> o <strong>height</strong> fijas.
+            usar <code>width</code> o <code>height</code> fijos.
           </li>
           <li>
-            <strong>Diseños responsivos sin complicaciones:</strong> Evita el
+            <strong>Diseños responsivos sin complicaciones:</strong> evita el
             uso excesivo de media queries, ya que Flexbox ajusta los elementos
             automáticamente según el tamaño del contenedor.
           </li>
-        </ul>
-      </div>
+        </ListaMarcadaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🎮 Recursos para practicar Flexbox</h2>
+      <SeccionPost titulo="Recursos para practicar Flexbox">
         <p>
           ¡Aprender Flexbox puede ser divertido! Te recomendamos estos recursos
           interactivos:
         </p>
-        <br />
-        <ul>
-          <li>
-            <strong>
-              <a
-                href="https://flexboxfroggy.com/#es"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Flexbox Froggy
-              </a>
-            </strong>{" "}
-            - Un juego educativo donde ayudarás a unas ranitas a llegar a sus
-            nenúfares usando propiedades de Flexbox. Es perfecto para
-            principiantes y cubre todas las propiedades principales que hemos
-            visto.
-          </li>
-          <li>
-            <strong>
-              <a
-                href="http://www.flexboxdefense.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Flexbox Defense
-              </a>
-            </strong>{" "}
-            - Otro juego donde usas propiedades de Flexbox para posicionar
-            torres de defensa y detener las oleadas de enemigos. Es ideal para
-            practicar alineación y distribución de elementos.
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://flukeout.github.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CSS Diner
-              </a>
-            </strong>{" "}
-            - No es específico de Flexbox, pero es excelente para practicar
-            selectores CSS, que son fundamentales para aplicar correctamente tus
-            estilos Flexbox.
-          </li>
-        </ul>
-      </div>
+        <TarjetasPost
+          columnas={3}
+          tarjetas={[
+            {
+              titulo: "Flexbox Froggy",
+              texto:
+                "Un juego educativo en el que ayudas a unas ranitas a llegar a sus nenúfares usando propiedades de Flexbox. Es perfecto para principiantes y cubre todas las propiedades principales que hemos visto.",
+              enlace: "https://flexboxfroggy.com/#es",
+            },
+            {
+              titulo: "Flexbox Defense",
+              texto:
+                "Otro juego en el que usas propiedades de Flexbox para posicionar torres de defensa y detener las oleadas de enemigos. Ideal para practicar la alineación y la distribución de elementos.",
+              enlace: "http://www.flexboxdefense.com/",
+            },
+            {
+              titulo: "CSS Diner",
+              texto:
+                "No es específico de Flexbox, pero es excelente para practicar los selectores CSS, fundamentales para aplicar correctamente tus estilos con Flexbox.",
+              enlace: "https://flukeout.github.io/",
+            },
+          ]}
+        />
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>📱 Compatibilidad con navegadores</h2>
+      <SeccionPost titulo="Compatibilidad con navegadores">
         <p>
           Flexbox es compatible con todos los navegadores modernos, lo que lo
           hace una opción segura para tus proyectos. Aquí tienes una tabla con
           la compatibilidad mínima requerida:
         </p>
-        <br />
-        <table className="framework-comparison-table">
-          <thead>
-            <tr>
-              <th>Navegador</th>
-              <th>Versión mínima</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>🌍 Chrome</td>
-              <td>29+</td>
-            </tr>
-            <tr>
-              <td>🦊 Firefox</td>
-              <td>22+</td>
-            </tr>
-            <tr>
-              <td>🍏 Safari</td>
-              <td>6.1+</td>
-            </tr>
-            <tr>
-              <td>🖥️ Edge</td>
-              <td>Compatibilidad completa</td>
-            </tr>
-            <tr>
-              <td>🛑 Internet Explorer</td>
-              <td>IE11 (con limitaciones)</td>
-            </tr>
-          </tbody>
-        </table>
+        <TablaPost descripcion="Versión mínima de cada navegador compatible con Flexbox">
+          <table>
+            <thead>
+              <tr>
+                <th>Navegador</th>
+                <th>Versión mínima</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chrome</td>
+                <td>29+</td>
+              </tr>
+              <tr>
+                <td>Firefox</td>
+                <td>22+</td>
+              </tr>
+              <tr>
+                <td>Safari</td>
+                <td>6.1+</td>
+              </tr>
+              <tr>
+                <td>Edge</td>
+                <td>Compatibilidad completa</td>
+              </tr>
+              <tr>
+                <td>Internet Explorer</td>
+                <td>IE11 (con limitaciones)</td>
+              </tr>
+            </tbody>
+          </table>
+        </TablaPost>
         <p>
-          ✅{" "}
           <strong>
             Flexbox es compatible con la mayoría de los navegadores
           </strong>{" "}
-          y funciona sin problemas en proyectos modernos. ⚠️ Sin embargo,{" "}
+          y funciona sin problemas en proyectos modernos. Sin embargo,{" "}
           <strong>Internet Explorer 11</strong> presenta algunas limitaciones y
-          comportamientos inesperados. 📌 Para garantizar una experiencia
-          consistente, te recomendamos probar tus diseños en diferentes
+          comportamientos inesperados. Para garantizar una experiencia
+          consistente, te recomendamos probar tus diseños en distintos
           navegadores.
         </p>
-
-        <p>
-          ⚠️ Para navegadores más antiguos, puedes utilizar un polyfill como{" "}
-          <span>
+        <NotaPost titulo="Navegadores más antiguos" tipo="aviso">
+          <p>
+            Para navegadores más antiguos, puedes utilizar una herramienta como{" "}
             <a
               href="https://github.com/postcss/autoprefixer"
               target="_blank"
               rel="noopener noreferrer"
             >
               Autoprefixer
-            </a>
-          </span>{" "}
-          para mejorar la compatibilidad.
-        </p>
-      </div>
+            </a>, que añade automáticamente los prefijos de proveedor necesarios
+            para mejorar la compatibilidad.
+          </p>
+        </NotaPost>
+      </SeccionPost>
 
-      <div className="highlight-box">
-        <h2>🚀 Conclusión: El poder de Flexbox</h2>
+      <SeccionPost titulo="Conclusión: el poder de Flexbox">
         <p>
-          Flexbox ha cambiado la forma en que diseñamos layouts en CSS,
-          permitiéndonos trabajar de manera más eficiente y creando estructuras
-          flexibles con menos esfuerzo. Su capacidad para manejar alineaciones y
-          distribuciones de elementos lo convierte en una herramienta
+          Flexbox ha cambiado la forma en que diseñamos layouts en CSS: nos
+          permite trabajar de manera más eficiente y crear estructuras
+          flexibles con menos esfuerzo. Su capacidad para manejar alineaciones
+          y distribuciones de elementos lo convierte en una herramienta
           imprescindible en el desarrollo web moderno.
         </p>
-
         <p>
           Aunque <strong>CSS Grid</strong> es una alternativa potente para
           construir layouts más complejos, Flexbox sigue siendo la mejor opción
@@ -587,35 +564,19 @@ const Flexbox: React.FC = () => {
           como barras de navegación, formularios y tarjetas.
         </p>
 
-        <h3>📌 Próximo tema: CSS Grid</h3>
+        <h3>Próximo tema: CSS Grid</h3>
         <p>
-          En nuestro próximo post, exploraremos <strong>CSS Grid</strong> y cómo
+          En nuestro próximo post exploraremos <strong>CSS Grid</strong> y cómo
           combinarlo con Flexbox para lograr diseños web aún más dinámicos y
-          versátiles. <br />
-          ¿Tienes alguna duda sobre Flexbox? 💬 ¡Déjanos un comentario y te
-          ayudaremos! 😊
+          versátiles.
         </p>
-      </div>
-
-      <div className="author-info">
         <p>
-          Escrito por: <strong>Irina Ichim</strong>
+          ¿Tienes alguna duda sobre Flexbox? ¡Déjanos un comentario y te
+          ayudaremos!
         </p>
-        <p>Co-fundadora de femCoders Club</p>
-        <p>
-          Fecha de publicación: <strong>{publicationDate}</strong>
-        </p>
-      </div>
-
-      <div className="back-to-blog-container">
-        <a href="/blog" className="back-to-blog">
-          Volver al Blog
-        </a>
-      </div>
-
-      <CommentsSection postId={14} />
-    </div>
-  );
-};
+      </SeccionPost>
+    </PlantillaPost>
+  </>
+);
 
 export default Flexbox;

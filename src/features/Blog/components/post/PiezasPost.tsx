@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, CircleCheck, CircleX, Copy, Lightbulb, MessageCircleQuestion } from "lucide-react";
+import {
+  Check,
+  CircleCheck,
+  CircleX,
+  Copy,
+  Lightbulb,
+  MessageCircleQuestion,
+  TriangleAlert,
+} from "lucide-react";
+import OptimizedImage from "../../../../components/OptimizedImage";
 
 /** «¿Qué es HTML y por qué es importante?» → «que-es-html-y-por-que-es-importante». */
 const slug = (texto: string) =>
@@ -63,12 +72,15 @@ export const CodigoPost: React.FC<CodigoPostProps> = ({ lenguaje, children }) =>
   );
 };
 
-type NotaPostProps = { titulo?: string; children: React.ReactNode };
+type NotaPostProps = { titulo?: string; tipo?: "consejo" | "aviso"; children: React.ReactNode };
 
-/** Un consejo o aviso dentro del texto: una línea naranja a la izquierda, sin caja de color. */
-export const NotaPost: React.FC<NotaPostProps> = ({ titulo = "Consejo", children }) => (
+/*
+ * Un consejo o un aviso dentro del texto: una línea naranja a la izquierda,
+ * sin caja de color. Solo cambia el icono: bombilla o triángulo de alerta.
+ */
+export const NotaPost: React.FC<NotaPostProps> = ({ titulo = "Consejo", tipo = "consejo", children }) => (
   <aside className="post-nota" aria-label={titulo}>
-    <Lightbulb aria-hidden="true" />
+    {tipo === "aviso" ? <TriangleAlert aria-hidden="true" /> : <Lightbulb aria-hidden="true" />}
     <div>
       <p className="post-nota__titulo">{titulo}</p>
       {children}
@@ -86,6 +98,39 @@ export const TablaPost: React.FC<TablaPostProps> = ({ descripcion, children }) =
   <div className="post-tabla" role="region" aria-label={descripcion} tabIndex={0}>
     {children}
   </div>
+);
+
+type ImagenPostProps = { src: string; alt: string; pie?: React.ReactNode };
+
+/*
+ * Una imagen dentro del texto, al ancho de la columna, con pie opcional.
+ * Una ruta original («/assets/…») pasa por OptimizedImage; una que ya apunta
+ * a /public-optimized/ se sirve tal cual.
+ */
+export const ImagenPost: React.FC<ImagenPostProps> = ({ src, alt, pie }) => (
+  <figure className="post-imagen">
+    {src.startsWith("/public-optimized/") ? (
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
+    ) : (
+      <OptimizedImage src={src} alt={alt} />
+    )}
+    {pie && <figcaption>{pie}</figcaption>}
+  </figure>
+);
+
+type DemoPostProps = { titulo?: string; children: React.ReactNode };
+
+/*
+ * El resultado en vivo de un ejemplo de CSS, en un recuadro punteado para
+ * que no se confunda con el texto. Los estilos que demuestra cada ejemplo
+ * van en línea dentro del post, junto al código que los explica;
+ * `.post-demo__caja` da el bloque de muestra de base.
+ */
+export const DemoPost: React.FC<DemoPostProps> = ({ titulo = "Resultado", children }) => (
+  <figure className="post-demo">
+    <figcaption className="post-demo__titulo">{titulo}</figcaption>
+    <div className="post-demo__escenario">{children}</div>
+  </figure>
 );
 
 type TarjetaDePost = {
@@ -122,7 +167,8 @@ export const TarjetasPost: React.FC<TarjetasPostProps> = ({ titulo, tarjetas, co
               </a>
             )}
           </p>
-          <p className="post-tarjetas__texto">{tarjeta.texto}</p>
+          {/* Un <div> y no un <p>: el texto puede llevar su propia lista. */}
+          <div className="post-tarjetas__texto">{tarjeta.texto}</div>
         </li>
       ))}
     </ul>
