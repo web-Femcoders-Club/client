@@ -5,6 +5,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Panel de admin: correos inactivos
+
+#### Añadido
+- **Apartado «Correos inactivos»** (#133, server#144): una libreta para apuntar
+  a personas conocidas cuyo correo rebotó, con nota y correo nuevo. Se puede
+  añadir, editar en la fila y borrar con confirmación. No toca las listas de
+  envío. Las tres acciones aparecen con su texto en el registro de actividad.
+
 ### Blog (rediseño): página principal, Noticias y Recursos
 
 #### Añadido

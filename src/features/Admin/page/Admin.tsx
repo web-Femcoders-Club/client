@@ -9,6 +9,7 @@ import {
   Lightbulb,
   Mail,
   MailX,
+  MailQuestion,
   History,
   MessageSquare,
   ShieldCheck,
@@ -29,6 +30,7 @@ import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
 import RegistroDeActividad from '../components/registro/RegistroDeActividad';
 import ComunidadReal from '../components/comunidad/ComunidadReal';
+import CorreosInactivos from '../components/correos-inactivos/CorreosInactivos';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -57,6 +59,7 @@ const SECCIONES = [
 const CUMPLIMIENTO = [
   { to: '/admin/registro', texto: 'Registro de actividad', Icono: History },
   { to: '/admin/unsubscribed', texto: 'Bajas de email', Icono: MailX },
+  { to: '/admin/correos-inactivos', texto: 'Correos inactivos', Icono: MailQuestion },
   { to: '/admin/consents', texto: 'Consentimientos', Icono: ShieldCheck },
   { to: '/admin/legal', texto: 'Documentación legal', Icono: FileText },
 ];
@@ -144,6 +147,7 @@ const Admin: React.FC = () => {
               <Route path="comunidad" element={<ComunidadReal />} />
               <Route path="registro" element={<RegistroDeActividad />} />
               <Route path="unsubscribed" element={<UnsubscribeList />} />
+              <Route path="correos-inactivos" element={<CorreosInactivos />} />
               <Route path="consents" element={<ConsentOverview />} />
               <Route path="legal" element={<LegalDocs />} />
             </Routes>

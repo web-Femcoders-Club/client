@@ -35,6 +35,9 @@ const TEXTO_DE_ACCION: Record<string, string> = {
   "email.dado-de-baja": "Dio de baja un email",
   "patrocinador.borrado": "Borró un patrocinador",
   "crm.sincronizado": "Sincronizó el CRM",
+  "correo-inactivo.anadido": "Apuntó un correo inactivo",
+  "correo-inactivo.editado": "Editó un correo inactivo",
+  "correo-inactivo.borrado": "Borró un correo inactivo",
 };
 
 /** Las que conviene que salten a la vista al repasar el registro. */
