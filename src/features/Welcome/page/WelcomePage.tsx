@@ -24,6 +24,7 @@ import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
 import CodigoVonage from "../components/CodigoVonage";
 import AprovecharVonage from "../components/AprovecharVonage";
 import InteresEnApis from "../components/InteresEnApis";
+import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
 import "./WelcomePage.css";
 
 /*
@@ -331,6 +332,9 @@ const WelcomePage = () => {
       <div className="flex-1 min-w-0 p-4 lg:p-8">
         <div className="max-w-6xl mx-auto welcome-columna">
           {bandaPersonal}
+
+          {/* Temporal: se quita cuando cierre la encuesta. */}
+          <EncuestaComunidad />
 
           {/*
             Ninguno de los dos recibe nada del consentimiento, y es a propósito:

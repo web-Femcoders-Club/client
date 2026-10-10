@@ -13,6 +13,16 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   añadir, editar en la fila y borrar con confirmación. No toca las listas de
   envío. Las tres acciones aparecen con su texto en el registro de actividad.
 
+### Encuesta de la comunidad
+
+#### Añadido
+- **Tarjeta de la encuesta de experiencia** (Google Forms), en la portada,
+  dentro de «Conócenos», y en `/welcome`. La web no guarda nada: solo enlaza.
+  Es temporal; la URL y el texto viven en `EncuestaComunidad.tsx`, y al
+  cerrarla se quitan las dos líneas que la colocan.
+
+### Panel de admin: correos inactivos (cont.)
+
 #### Cambiado
 - **El menú del panel empieza arriba.** El saludo y el título pasan a la
   columna del contenido y el hueco bajo la cabecera sale de

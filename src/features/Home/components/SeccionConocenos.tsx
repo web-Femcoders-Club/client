@@ -24,6 +24,8 @@ interface SeccionConocenosProps {
   tiempoRestante: TiempoRestante;
   enTransicion: boolean;
   alElegirEvento: (indice: number) => void;
+  /** Avisos temporales bajo las dos tarjetas (ahora, la encuesta). */
+  children?: React.ReactNode;
 }
 
 const dosCifras = (n: number) => String(Math.max(0, n)).padStart(2, "0");
@@ -43,6 +45,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
   tiempoRestante,
   enTransicion,
   alElegirEvento,
+  children,
 }) => {
   const evento = eventos[indiceActivo];
   const fecha = evento ? new Date(evento.start.local) : null;
@@ -179,6 +182,7 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
           </div>
         </article>
       </div>
+      {children && <div className="conocenos__extra">{children}</div>}
     </section>
   );
 };
