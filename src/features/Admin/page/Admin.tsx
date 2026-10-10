@@ -9,6 +9,7 @@ import {
   Lightbulb,
   Mail,
   MailX,
+  MailQuestion,
   History,
   MessageSquare,
   ShieldCheck,
@@ -29,6 +30,7 @@ import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
 import RegistroDeActividad from '../components/registro/RegistroDeActividad';
 import ComunidadReal from '../components/comunidad/ComunidadReal';
+import CorreosInactivos from '../components/correos-inactivos/CorreosInactivos';
 import '../admin-ui.css';
 import './Admin.css';
 
@@ -57,6 +59,7 @@ const SECCIONES = [
 const CUMPLIMIENTO = [
   { to: '/admin/registro', texto: 'Registro de actividad', Icono: History },
   { to: '/admin/unsubscribed', texto: 'Bajas de email', Icono: MailX },
+  { to: '/admin/correos-inactivos', texto: 'Correos inactivos', Icono: MailQuestion },
   { to: '/admin/consents', texto: 'Consentimientos', Icono: ShieldCheck },
   { to: '/admin/legal', texto: 'Documentación legal', Icono: FileText },
 ];
@@ -70,11 +73,6 @@ const Admin: React.FC = () => {
         <meta name="description" content="Panel de administración para gestionar la comunidad FemCoders Club." />
       </Helmet>
       <div className="admin-container">
-        <div className="admin-header">
-          <h1>Bienvenida, {userName}</h1>
-          <h2>Panel de Administración</h2>
-          <p>Aquí puedes gestionar miembros, patrocinadores, voluntarios y comentarios.</p>
-        </div>
         <div className="admin-content">
           <CollapsibleSidebar
             storageKey="femcoders:menu-panel"
@@ -87,9 +85,9 @@ const Admin: React.FC = () => {
               ya lo hacía bien y sirve de modelo (client#59).
             */}
             <nav aria-label="Secciones del panel">
-              <ul className="steps steps-vertical">
+              <ul className="admin-secciones">
                 {SECCIONES.map(({ to, texto, Icono }) => (
-                  <li key={to} className="step">
+                  <li key={to} className="admin-secciones__item">
                     <NavLink
                       to={to}
                       className="admin-sidebar__enlace admin-focus"
@@ -126,27 +124,40 @@ const Admin: React.FC = () => {
               </ul>
             </nav>
           </CollapsibleSidebar>
-          <div className="admin-main p-4">
-            <Routes>
-              {/*
-                Sin esta ruta, entrar en /admin no casaba con ninguna y el área
-                de trabajo se quedaba en blanco: no era un fallo de estilos,
-                era que no había nada que renderizar.
-              */}
-              <Route index element={<ResumenPanel />} />
-              <Route path="stats" element={<UserStats />} />
-              <Route path="users" element={<ManageUsers />} />
-              <Route path="comments" element={<ManageComments />} />
-              <Route path="crm/*" element={<CrmDashboard />} />
-              <Route path="achievements" element={<ManageAchievements />} />
-              <Route path="listas" element={<ListasDeCorreo />} />
-              <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
-              <Route path="comunidad" element={<ComunidadReal />} />
-              <Route path="registro" element={<RegistroDeActividad />} />
-              <Route path="unsubscribed" element={<UnsubscribeList />} />
-              <Route path="consents" element={<ConsentOverview />} />
-              <Route path="legal" element={<LegalDocs />} />
-            </Routes>
+          {/*
+            Los títulos van en la columna del contenido y no encima de las dos:
+            así el menú arranca arriba, pegado a la cabecera, y no pierde de alto
+            lo que ocupa el saludo.
+          */}
+          <div className="admin-columna">
+            <div className="admin-header">
+              <h1>Bienvenida, {userName}</h1>
+              <h2>Panel de Administración</h2>
+              <p>Aquí puedes gestionar miembros, patrocinadores, voluntarios y comentarios.</p>
+            </div>
+            <div className="admin-main">
+              <Routes>
+                {/*
+                  Sin esta ruta, entrar en /admin no casaba con ninguna y el área
+                  de trabajo se quedaba en blanco: no era un fallo de estilos,
+                  era que no había nada que renderizar.
+                */}
+                <Route index element={<ResumenPanel />} />
+                <Route path="stats" element={<UserStats />} />
+                <Route path="users" element={<ManageUsers />} />
+                <Route path="comments" element={<ManageComments />} />
+                <Route path="crm/*" element={<CrmDashboard />} />
+                <Route path="achievements" element={<ManageAchievements />} />
+                <Route path="listas" element={<ListasDeCorreo />} />
+                <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
+                <Route path="comunidad" element={<ComunidadReal />} />
+                <Route path="registro" element={<RegistroDeActividad />} />
+                <Route path="unsubscribed" element={<UnsubscribeList />} />
+                <Route path="correos-inactivos" element={<CorreosInactivos />} />
+                <Route path="consents" element={<ConsentOverview />} />
+                <Route path="legal" element={<LegalDocs />} />
+              </Routes>
+            </div>
           </div>
         </div>
       </div>

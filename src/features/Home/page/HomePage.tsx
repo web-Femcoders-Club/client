@@ -14,6 +14,7 @@ import SeccionProyectos from "../components/SeccionProyectos";
 import SeccionEmpresas from "../components/SeccionEmpresas";
 import SeccionContacto from "../components/SeccionContacto";
 import CifraAnimada from "../components/CifraAnimada";
+import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
 import { ArrowRight, Building2, CalendarDays, Users } from "lucide-react";
 import { CIFRAS_COMUNIDAD } from "../../../data/cifrasComunidad";
 import "./Home.css";
@@ -920,7 +921,10 @@ const HomePage: React.FC = () => {
             });
           }, 600);
         }}
-      />
+      >
+        {/* Temporal: se quita cuando cierre la encuesta. */}
+        <EncuestaComunidad />
+      </SeccionConocenos>
 
       <SeccionNoticias noticias={newsData} />
       <SeccionProyectos />

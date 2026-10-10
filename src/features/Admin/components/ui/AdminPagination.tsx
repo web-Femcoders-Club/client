@@ -28,6 +28,11 @@ interface AdminPaginationProps {
    * que no tiene por qué ser la última pedida.
    */
   deshabilitado?: boolean;
+  /**
+   * Si la paginación va repetida (arriba y abajo de una tabla larga), solo una
+   * copia debe anunciar el cambio de página; si no, el lector lo dice dos veces.
+   */
+  anunciar?: boolean;
 }
 
 const AdminPagination: React.FC<AdminPaginationProps> = ({
@@ -38,6 +43,7 @@ const AdminPagination: React.FC<AdminPaginationProps> = ({
   nombreElemento = "resultado",
   etiqueta = "Paginación",
   deshabilitado = false,
+  anunciar = true,
 }) => {
   // Con una sola página los controles no aportan nada.
   if (totalPaginas <= 1) return null;
@@ -55,7 +61,10 @@ const AdminPagination: React.FC<AdminPaginationProps> = ({
 
       {/* aria-live: al cambiar de página la tabla se sustituye entera, y sin
           esto un lector de pantalla no anuncia nada. */}
-      <p className="admin-pagination__info" aria-live="polite">
+      <p
+        className="admin-pagination__info"
+        aria-live={anunciar ? "polite" : undefined}
+      >
         Página {paginaActual} de {totalPaginas}
         {typeof totalElementos === "number" && (
           <span>

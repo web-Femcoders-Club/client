@@ -28,6 +28,14 @@
   align-items: stretch;
 }
 
+/* Bajo las dos tarjetas, con su mismo ancho y su mismo hueco. */
+.conocenos__extra {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: clamp(1.25rem, 2.5vw, 2rem) auto 0;
+}
+
 .conocenos__tarjeta {
   display: flex;
   flex-direction: column;

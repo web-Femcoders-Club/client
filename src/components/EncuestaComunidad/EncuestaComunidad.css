@@ -1,0 +1,54 @@
+/*
+ * Tarjeta de la encuesta: blanca (`fc-tarjeta`), con el antetítulo y el botón
+ * azul noche del rediseño (src/styles/rediseno.css). Texto a la izquierda y
+ * botón a la derecha; en estrecho, uno debajo del otro.
+ */
+
+.encuesta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.encuesta__texto {
+  flex: 1 1 26rem;
+  min-width: 0;
+}
+
+.encuesta__titulo {
+  margin: 0.6rem 0 0.4rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  /* index.css da sombra a todos los h2; en una tarjeta blanca solo emborrona. */
+  text-shadow: none;
+}
+
+/* #3d3d3d sobre blanco: 10,9:1, AAA. */
+.encuesta__parrafo {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #3d3d3d;
+}
+
+.encuesta__accion {
+  display: flex;
+}
+
+@media (max-width: 600px) {
+  .encuesta__accion,
+  .encuesta__accion .fc-boton {
+    width: 100%;
+  }
+
+  /* El botón no parte línea por defecto; a 320px o con zoom, sí debe. */
+  .encuesta__accion .fc-boton {
+    white-space: normal;
+    text-align: center;
+  }
+}
