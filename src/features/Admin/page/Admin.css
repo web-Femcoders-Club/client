@@ -1,28 +1,36 @@
+/*
+ * La cabecera de la web es fija y publica su altura en --fem-header-height.
+ * Antes el hueco se salvaba con `padding: 3rem` + `margin-top: 5rem` escritos a
+ * mano: unos 40px de aire de más bajo la cabecera que, sumados a los títulos,
+ * dejaban el menú y las tarjetas a media pantalla.
+ */
 .admin-container {
-    
     background-image: var(--fondo-bg1);
-    padding: 3rem;
+    padding: calc(var(--fem-header-height, 80px) + 1.5rem) clamp(16px, 3vw, 3rem) 3rem;
     border-radius: 8px;
-   
   }
-  
+
   .admin-header {
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
-  
+
   .admin-header h1 {
+    margin: 0;
     font-size: 2rem;
+    line-height: 1.15;
     color: #4737bb;
   }
-  
+
   .admin-header h2 {
-    font-size: 1.5rem;
+    margin: 0.15rem 0 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
     color: #ea4f33;
   }
-  
+
   .admin-header p {
+    margin: 0.35rem 0 0;
     font-size: 1rem;
     color: #333;
   }
@@ -40,9 +48,14 @@
     align-items: flex-start;
   }
 
-  .admin-main {
+  /* Títulos y área de trabajo comparten columna: el menú tiene todo el alto. */
+  .admin-columna {
     flex: 1;
     min-width: 0;
+  }
+
+  .admin-main {
+    padding: 1rem;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -78,7 +91,7 @@
    * sección se estaba. Con `NavLink` el `aria-current="page"` lo pone react-
    * router solo; esto es solo la parte que se ve.
    *
-   * El realce NO toca el color del texto, y es a propósito: `.steps .step a`
+   * El realce NO toca el color del texto, y es a propósito: `.admin-secciones__item a`
    * lo fija a `inherit` con más especificidad, y el último paso va en coral
    * (#ea4f33), que sobre cualquier fondo claro se queda lejos de AAA. Fondo,
    * barra y negrita se distinguen igual en la franja de iconos, cuando el
@@ -103,24 +116,34 @@
     }
   }
 
-  .steps .step {
+  /*
+   * Eran `steps steps-vertical` y `step`, nombres de daisyUI, que nunca se ha
+   * cargado: la lista dependía del preflight de Tailwind para quitar viñetas y
+   * márgenes. Ahora lo dice ella misma.
+   */
+  .admin-secciones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .admin-secciones__item {
     color: #4737bb;
   }
-  
-  .steps .step:last-child {
+
+  .admin-secciones__item:last-child {
     color: #ea4f33;
   }
-  
-  .steps .step a {
+
+  .admin-secciones__item a {
     text-decoration: none;
     color: inherit;
   }
-  
-  .steps .step a:hover {
+
+  .admin-secciones__item a:hover {
     text-decoration: underline;
   }
-  
-  
+
 
   /*
    * Sección de cumplimiento del menú lateral. Separada de los pasos numerados
