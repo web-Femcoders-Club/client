@@ -13,7 +13,7 @@ import AdminPagination from "../ui/AdminPagination";
 import ConfirmacionIrreversible from "../ui/ConfirmacionIrreversible";
 import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
 
-const POR_PAGINA = 20;
+const POR_PAGINA = 10;
 
 /**
  * Bajas de email.
@@ -344,6 +344,17 @@ const UnsubscribeList: React.FC = () => {
           />
         </div>
 
+        {/* Arriba también, para no tener que bajar hasta el final de la tabla. */}
+        <AdminPagination
+          paginaActual={pagina}
+          totalPaginas={totalPaginas}
+          onCambiar={setPagina}
+          totalElementos={totalBajas}
+          nombreElemento="baja"
+          etiqueta="Paginación de la lista de bajas, arriba"
+          anunciar={false}
+        />
+
         {loading ? (
           <div className="flex justify-center items-center admin-min-alto-sm">
             <Loader2
@@ -393,7 +404,7 @@ const UnsubscribeList: React.FC = () => {
           onCambiar={setPagina}
           totalElementos={totalBajas}
           nombreElemento="baja"
-          etiqueta="Paginación de la lista de bajas"
+          etiqueta="Paginación de la lista de bajas, abajo"
         />
       </div>
 
