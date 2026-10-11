@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import PlantillaPost from "../../components/post/PlantillaPost";
-import { SeccionPost } from "../../components/post/PiezasPost";
+import { NotaPost, SeccionPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 
 const VonageCommunityPartnership: React.FC = () => (
@@ -73,7 +73,7 @@ const VonageCommunityPartnership: React.FC = () => (
         */}
         <meta
           property="article:modified_time"
-          content="2026-09-13T12:00:00Z"
+          content="2026-10-11T12:00:00Z"
         />
         <meta property="article:author" content="FemCoders Club" />
         <meta property="article:section" content="Noticias" />
@@ -323,6 +323,15 @@ const VonageCommunityPartnership: React.FC = () => (
           ganas de participar y con cuánto tiempo cuentan. Si sale adelante,
           será porque hay gente suficiente para que tenga sentido.
         </p>
+        <NotaPost titulo="Actualización: el programa ya tiene fechas">
+          <p>
+            Ya es oficial: abrimos{" "}
+            <Link to="/noticias/proyecto-piloto-apis-vonage">
+              nuestro primer programa piloto con las APIs de Vonage
+            </Link>
+            , con inscripciones hasta el domingo 18 de octubre de 2026.
+          </p>
+        </NotaPost>
         <p>
           Esa pregunta está dentro de la web, en tu página de bienvenida: son
           tres preguntas y se contestan en un minuto.
