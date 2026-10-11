@@ -135,6 +135,17 @@
   font-size: 0.85rem;
 }
 
+.post__logo {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+  padding: 0.15rem;
+  box-shadow: 0 0 0 1px var(--color-lavanda-medio);
+}
+
 .post__inicial {
   display: grid;
   place-items: center;

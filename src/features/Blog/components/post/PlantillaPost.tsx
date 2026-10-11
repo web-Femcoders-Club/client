@@ -29,6 +29,7 @@ type PlantillaPostProps = {
 
 const PALABRAS_POR_MINUTO = 200;
 const RELACIONADOS = 3;
+const FIRMA_DEL_CLUB = "FemCoders Club";
 
 const formatoFecha = new Intl.DateTimeFormat("es-ES", {
   day: "numeric",
@@ -110,9 +111,14 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
             <div className="post__entradilla">{entradilla}</div>
             <div className="post__meta">
               <div className="post__autora">
-                <span className="post__inicial" aria-hidden="true">
-                  {autora.nombre.charAt(0)}
-                </span>
+                {/* El nombre va escrito al lado: el logo es decorativo. */}
+                {autora.nombre === FIRMA_DEL_CLUB ? (
+                  <OptimizedImage src="/FemCodersClubLogo.png" alt="" className="post__logo" />
+                ) : (
+                  <span className="post__inicial" aria-hidden="true">
+                    {autora.nombre.charAt(0)}
+                  </span>
+                )}
                 <p>
                   <strong>{autora.nombre}</strong>
                   {autora.rol && <small>{autora.rol}</small>}
