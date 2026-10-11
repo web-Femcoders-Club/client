@@ -11,16 +11,49 @@ import { articleSchema } from "../../components/articleSchema";
   abierto; manda a registrarse o a entrar.
 */
 
+/*
+  Las preguntas frecuentes se pintan y se declaran como FAQPage desde la misma
+  lista, para que el texto visible y el de los datos estructurados no puedan
+  separarse. Cada respuesta se sostiene sola y solo dice lo que ya cuenta el
+  post: un buscador generativo puede citarla sin leer el resto.
+*/
+const PREGUNTAS = [
+  {
+    pregunta: "¿Qué es el programa piloto de FemCoders Club con las APIs de Vonage?",
+    respuesta:
+      "Es la primera edición de un programa en el que integrantes de FemCoders Club trabajan en pequeños equipos para desarrollar una aplicación real con las APIs de Vonage, con el acompañamiento de mentoras de la comunidad. Nace de la colaboración de FemCoders Club con el Vonage Community Partnership Program.",
+  },
+  {
+    pregunta: "¿Cuánto dura el programa piloto y cómo se organiza?",
+    respuesta:
+      "Dura unas seis semanas y es 100 % online, con flexibilidad para que cada equipo se organice según su disponibilidad. No es un curso tradicional: cada equipo explora ideas, toma decisiones y resuelve problemas mientras construye su aplicación.",
+  },
+  {
+    pregunta: "¿Hace falta experiencia para participar en el programa piloto con Vonage?",
+    respuesta:
+      "No hace falta tener años de experiencia programando. El programa está pensado tanto para quienes dan sus primeros pasos como para quienes quieren seguir creciendo, probar nuevas herramientas o ganar experiencia colaborando en un proyecto.",
+  },
+  {
+    pregunta: "¿Qué incluye el programa piloto con las APIs de Vonage?",
+    respuesta:
+      "El acompañamiento de mentoras de FemCoders Club y créditos para utilizar las APIs de Vonage durante el desarrollo del proyecto.",
+  },
+  {
+    pregunta: "¿Cómo me apunto al programa piloto y hasta cuándo?",
+    respuesta:
+      "Las inscripciones están abiertas hasta el domingo 18 de octubre de 2026. Hay que registrarse en FemCoders Club, o entrar con tu cuenta si ya la tienes, y responder las tres preguntas que aparecen en la página de bienvenida.",
+  },
+];
+
 const ProyectoPilotoApisVonage: React.FC = () => (
   <>
       <Helmet>
         <title>
-          De aprender a construir: nuestro primer programa piloto con las APIs
-          de Vonage | FemCoders Club
+          Primer programa piloto con las APIs de Vonage | FemCoders Club
         </title>
         <meta
           name="description"
-          content="Abrimos nuestro primer programa piloto con las APIs de Vonage: seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real. Inscripciones hasta el 18 de octubre."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
         />
         <meta
           name="keywords"
@@ -34,11 +67,11 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="De aprender a construir: nuestro primer programa piloto con las APIs de Vonage"
+          content="Primer programa piloto con las APIs de Vonage"
         />
         <meta
           property="og:description"
-          content="Abrimos nuestro primer programa piloto con las APIs de Vonage: seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real. Inscripciones hasta el 18 de octubre."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
         />
         <meta
           property="og:url"
@@ -50,18 +83,18 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         />
         <meta
           property="og:image:alt"
-          content="De aprender a construir: nuestro primer programa piloto con las APIs de Vonage. Tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y unos libros con las palabras Build, Learn y Together"
+          content="Ilustración generada con IA: tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y libros con las palabras Build, Learn y Together"
         />
         <meta property="og:site_name" content="FemCoders Club" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="De aprender a construir: nuestro primer programa piloto con las APIs de Vonage"
+          content="Primer programa piloto con las APIs de Vonage"
         />
         <meta
           name="twitter:description"
-          content="Seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real con las APIs de Vonage. Inscripciones hasta el 18 de octubre."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
         />
         <meta
           name="twitter:image"
@@ -92,7 +125,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
               headline:
                 "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
               description:
-                "Abrimos nuestro primer programa piloto con las APIs de Vonage: seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real. Inscripciones hasta el 18 de octubre.",
+                "Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026.",
               image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
               datePublished: "2026-10-11T10:00:00Z",
               about: {
@@ -115,6 +148,17 @@ const ProyectoPilotoApisVonage: React.FC = () => (
               ],
             })
           )}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: PREGUNTAS.map(({ pregunta, respuesta }) => ({
+              "@type": "Question",
+              name: pregunta,
+              acceptedAnswer: { "@type": "Answer", text: respuesta },
+            })),
+          })}
         </script>
       </Helmet>
 
@@ -211,6 +255,15 @@ const ProyectoPilotoApisVonage: React.FC = () => (
           proceso. Más adelante podremos mostrar los proyectos terminados y dar
           voz a las participantes que quieran contar su experiencia.
         </p>
+      </SeccionPost>
+
+      <SeccionPost titulo="Preguntas frecuentes">
+        {PREGUNTAS.map(({ pregunta, respuesta }) => (
+          <React.Fragment key={pregunta}>
+            <h3>{pregunta}</h3>
+            <p>{respuesta}</p>
+          </React.Fragment>
+        ))}
       </SeccionPost>
 
       <SeccionPost titulo="¿Te apetece participar?">

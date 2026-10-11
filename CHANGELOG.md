@@ -5,6 +5,15 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Blog: programa piloto con las APIs de Vonage
+
+#### Añadido
+- **Noticia `/noticias/proyecto-piloto-apis-vonage`**, también en la portada.
+  Inscripciones hasta el 18 de octubre de 2026 desde `/welcome`; el post manda
+  a registrarse o entrar y no muestra el código de Vonage. Portada generada con
+  IA y marcada como tal, en JPEG 1200×630. Preguntas frecuentes visibles y
+  declaradas como FAQPage desde la misma lista.
+
 ### Panel de admin: correos inactivos
 
 #### Añadido

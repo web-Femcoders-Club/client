@@ -373,7 +373,7 @@ const HomePage: React.FC = () => {
       description:
         "Durante unas seis semanas, pequeños equipos de la comunidad construirán una aplicación real con las APIs de Vonage: online, con flexibilidad y con el acompañamiento de mentoras de FemCoders Club. No hace falta tener años de experiencia. Inscripciones abiertas hasta el 18 de octubre.",
       image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
-      imageAlt: "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage. Tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y unos libros con las palabras Build, Learn y Together",
+      imageAlt: "Ilustración generada con IA: tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y libros con las palabras Build, Learn y Together",
       aiGenerated: true,
       date: "11 Octubre 2026",
       category: "Noticias",
