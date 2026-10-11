@@ -182,7 +182,8 @@ const ProyectoPilotoApisVonage: React.FC = () => (
             proyectos y seguir creciendo profesionalmente.
           </p>
           <p>
-            Un mes después, empezamos a convertir esa idea en algo concreto:{" "}
+            De ahí nació la idea de crear proyectos juntas, y hoy abrimos las
+            inscripciones de{" "}
             <strong>
               nuestro primer programa piloto para crear aplicaciones con las
               APIs de Vonage
@@ -192,17 +193,9 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         </>
       }
     >
-      <SeccionPost titulo="De una pregunta a un proyecto en equipo">
+      <SeccionPost titulo="Un proyecto en equipo">
         <p>
-          Todo empezó con tres preguntas que compartimos dentro de la comunidad:
-          si os apetecía participar en un proyecto en grupo, cuántas horas
-          podríais dedicarle cada semana y qué tecnologías os interesaban más,
-          desde SMS y voz hasta vídeo, verificación o WhatsApp. Antes de definir
-          el programa, queríamos escucharos y entender qué podía encajar con
-          vuestro tiempo y vuestros intereses.
-        </p>
-        <p>
-          Ahora damos el siguiente paso. Durante{" "}
+          Durante{" "}
           <strong>unas seis semanas</strong>, las participantes trabajarán en
           pequeños equipos para desarrollar una aplicación real utilizando las
           APIs de Vonage. Será una experiencia <strong>100 % online</strong>,
@@ -273,6 +266,12 @@ const ProyectoPilotoApisVonage: React.FC = () => (
           participar, solo tienes que registrarte en FemCoders Club y responder
           las tres preguntas que encontrarás en tu página de bienvenida. Si ya
           tienes cuenta, puedes entrar directamente y completar el formulario.
+        </p>
+        <p>
+          Te preguntamos si te apetece participar en un proyecto en grupo,
+          cuántas horas podrías dedicarle cada semana y qué tecnologías te
+          interesan más, desde SMS y voz hasta vídeo, verificación o WhatsApp.
+          Así podremos entender qué encaja con tu tiempo y tus intereses.
         </p>
         <p>
           <Link to="/register" className="fc-boton">
