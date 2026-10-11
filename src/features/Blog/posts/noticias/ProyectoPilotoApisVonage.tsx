@@ -29,9 +29,9 @@ const PREGUNTAS = [
       "Dura unas seis semanas y es 100 % online, con flexibilidad para que cada equipo se organice según su disponibilidad. No es un curso tradicional: cada equipo explora ideas, toma decisiones y resuelve problemas mientras construye su aplicación.",
   },
   {
-    pregunta: "¿Hace falta experiencia para participar en el programa piloto con Vonage?",
+    pregunta: "¿Para quién es el programa piloto con las APIs de Vonage?",
     respuesta:
-      "No hace falta tener años de experiencia programando. El programa está pensado tanto para quienes dan sus primeros pasos como para quienes quieren seguir creciendo, probar nuevas herramientas o ganar experiencia colaborando en un proyecto.",
+      "Para quienes están dando sus primeros pasos, para quienes quieren seguir creciendo o probar nuevas herramientas y también para quienes ya tienen experiencia y les apetece construir algo en comunidad. No hace falta tener años de experiencia programando: lo importante son las ganas de aprender, compartir conocimientos y participar.",
   },
   {
     pregunta: "¿Qué incluye el programa piloto con las APIs de Vonage?",
@@ -206,11 +206,12 @@ const ProyectoPilotoApisVonage: React.FC = () => (
           construyendo algo en común.
         </p>
         <p>
-          No hace falta tener años de experiencia programando. El programa está
-          pensado tanto para quienes están dando sus primeros pasos como para
-          quienes quieren seguir creciendo, probar nuevas herramientas o ganar
-          experiencia colaborando en un proyecto. Lo importante son las ganas de
-          aprender, compartir conocimientos y participar.
+          No hace falta tener años de experiencia programando, y tenerla
+          tampoco deja a nadie fuera. El programa está pensado para quienes
+          están dando sus primeros pasos, para quienes quieren seguir creciendo
+          o probar nuevas herramientas y también para quienes ya tienen
+          experiencia y les apetece construir algo en comunidad. Lo importante
+          son las ganas de aprender, compartir conocimientos y participar.
         </p>
       </SeccionPost>
 
