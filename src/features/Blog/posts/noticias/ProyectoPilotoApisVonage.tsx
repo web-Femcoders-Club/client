@@ -123,6 +123,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
       titulo="De aprender a construir: nuestro primer programa piloto con las APIs de Vonage"
       autora={{ nombre: "FemCoders Club", rol: "Comunidad de mujeres en tecnología" }}
       idComentarios={54}
+      portadaConIA
       entradilla={
         <>
           <p>

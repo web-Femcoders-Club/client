@@ -6,7 +6,8 @@
     "imagen": "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
     "fecha": "2026-10-11",
     "seccion": "noticia",
-    "tema": "FemCoders Club"
+    "tema": "FemCoders Club",
+    "imagenConIA": true
   },
   {
     "ruta": "/recursos/js/testing-javascript-sin-frameworks",
