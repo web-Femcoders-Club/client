@@ -368,6 +368,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "26",
+      title: "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
+      description:
+        "Durante unas seis semanas, pequeños equipos de la comunidad construirán una aplicación real con las APIs de Vonage: online, con flexibilidad y con el acompañamiento de mentoras de FemCoders Club. No hace falta tener años de experiencia. Inscripciones abiertas hasta el 18 de octubre.",
+      image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
+      imageAlt: "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage. Tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y unos libros con las palabras Build, Learn y Together",
+      date: "11 Octubre 2026",
+      category: "Noticias",
+      link: "/noticias/proyecto-piloto-apis-vonage",
+    },
+    {
       id: "25",
       title: "Testing en JavaScript sin frameworks: construye tu propio test runner",
       description:

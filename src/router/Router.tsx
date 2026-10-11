@@ -211,6 +211,9 @@ const OffloadChallengeVonageHackBarna26 = lazy(
   () =>
     import("../features/Blog/posts/noticias/OffloadChallengeVonageHackBarna26")
 );
+const ProyectoPilotoApisVonage = lazy(
+  () => import("../features/Blog/posts/noticias/ProyectoPilotoApisVonage")
+);
 const TestingJavaScriptSinFrameworks = lazy(
   () =>
     import("../features/Blog/posts/recursos/js/TestingJavaScriptSinFrameworks")
@@ -932,6 +935,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <TestingJavaScriptSinFrameworks />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/proyecto-piloto-apis-vonage"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ProyectoPilotoApisVonage />
                 </Suspense>
               </Layout>
             }

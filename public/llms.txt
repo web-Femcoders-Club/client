@@ -511,9 +511,14 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 53 articles published on the FemCoders Club blog.
+Complete index of the 54 articles published on the FemCoders Club blog.
 
-### News (19)
+### News (20)
+
+- De aprender a construir: nuestro primer programa piloto con las APIs de Vonage
+  URL: https://www.femcodersclub.com/noticias/proyecto-piloto-apis-vonage
+  Published: 2026-10-11
+  Summary: Abrimos nuestro primer programa piloto con las APIs de Vonage: seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real. Inscripciones hasta el 18 de octubre.
 
 - CTRL4ELLA recibe el premio Best use of the Vonage Video API
   URL: https://www.femcodersclub.com/noticias/offload-challenge-vonage-hackbarna-ai-summit-26

@@ -1,5 +1,14 @@
 [
   {
+    "ruta": "/noticias/proyecto-piloto-apis-vonage",
+    "titulo": "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
+    "descripcion": "Abrimos nuestro primer programa piloto con las APIs de Vonage: seis semanas en pequeños equipos, online y con mentoras, para construir una aplicación real. Inscripciones hasta el 18 de octubre.",
+    "imagen": "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
+    "fecha": "2026-10-11",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
     "ruta": "/recursos/js/testing-javascript-sin-frameworks",
     "titulo": "Testing en JavaScript sin frameworks: construye tu propio test runner",
     "descripcion": "Construye tu propio test runner en JavaScript sin dependencias: assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto completo: testlet.",
