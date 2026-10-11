@@ -269,9 +269,9 @@
 /*
  * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
  *
- * Las dos columnas son iguales de ancho a propósito: una es lo que se puede
- * hacer hoy y la otra lo que quizá se haga en octubre, y jerarquizar una sobre
- * otra daría a entender que el programa está más cerrado de lo que está.
+ * Las dos columnas son iguales de ancho a propósito: son dos caminos que no se
+ * excluyen (probar por tu cuenta o el programa piloto en equipo), y jerarquizar
+ * uno sobre otro daría a entender que hay que elegir.
  */
 .vonage__caminos {
   display: grid;
@@ -312,8 +312,8 @@
 
 /*
  * La columna del programa va en violeta para que las dos no se lean como la
- * misma cosa: una es lo que se puede hacer hoy y la otra lo que quizá se haga
- * en octubre.
+ * misma cosa: una es lo que haces por tu cuenta y la otra el programa piloto
+ * en equipo.
  *
  * Contraste: el blanco sobre el extremo claro del degradado (#4737bb) da 8,2:1
  * y sobre el oscuro (#2a2170) 13:1. Los dos pasan AAA.

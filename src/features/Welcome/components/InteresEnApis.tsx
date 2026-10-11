@@ -36,16 +36,14 @@ const LAS_APIS: { valor: ApiDeVonage; texto: string }[] = [
 ];
 
 /**
- * Tres preguntas para saber si merece la pena montar un proyecto en grupo con
- * las APIs de Vonage (#102, server#131).
+ * Las tres preguntas de inscripción al programa piloto con las APIs de Vonage
+ * (#102, server#131). Inscripciones hasta el 18 de octubre de 2026.
  *
  * Tres y no un formulario largo: cuantos más campos, menos respuestas. Y sin
  * campo de texto libre, que es donde acaban apareciendo teléfonos y nombres de
  * empresa que nadie pidió y que luego hay que custodiar.
  *
- * Opcional de verdad: no bloquea nada y los textos hablan de «si sale adelante».
- * No se prometen fechas ni formato, porque si se anuncia una cohorte y responden
- * cuatro personas el compromiso queda en el aire.
+ * Opcional de verdad: no bloquea nada del resto de la página.
  */
 const InteresEnApis: React.FC = () => {
   const idUser = Number(sessionStorage.getItem("userId") || 0);
@@ -139,8 +137,8 @@ const InteresEnApis: React.FC = () => {
         ¿Montamos algo con estas APIs?
       </h2>
       <p className="vonage__texto">
-        Estamos viendo si sale adelante un proyecto en grupo. No hay fechas ni
-        formato decididos: primero queremos saber si os apetece.
+        Inscripciones abiertas hasta el domingo 18 de octubre de 2026. Con tus
+        respuestas sabremos qué encaja con tu tiempo y tus intereses.
       </p>
 
       <form onSubmit={enviar} className="vonage__form">

@@ -8,16 +8,12 @@ import "./vonage.css";
  * arriba se acaba de dar algo, abajo se pide algo, y aquí se explica para qué
  * sirve lo primero y por qué merece la pena lo segundo.
  *
- * ## Por qué el programa de octubre está escrito en condicional
+ * ## El programa piloto ya tiene fechas
  *
- * Todavía no existe: depende de cuánta gente conteste el formulario de abajo.
- * Anunciarlo como si estuviera decidido conseguiría más respuestas a corto
- * plazo y costaría credibilidad en cuanto se retrasara o no saliera.
- *
- * Decir en voz alta que primero hace falta saber cuántas sois convierte la
- * incertidumbre en el motivo para contestar, en vez de en una excusa. Si alguien
- * edita este texto, esa es la línea que no conviene cruzar: se puede contar la
- * intención, no comprometer la fecha.
+ * Unas seis semanas e inscripciones hasta el 18 de octubre de 2026. Si cambian,
+ * este texto, la entradilla del formulario de abajo y la noticia
+ * /noticias/proyecto-piloto-apis-vonage cambian juntos: quien llega desde la
+ * noticia lee las tres cosas seguidas.
  */
 const AprovecharVonage: React.FC = () => (
   <section className="vonage vonage--aprovechar" aria-labelledby="aprovechar-titulo">
@@ -32,8 +28,8 @@ const AprovecharVonage: React.FC = () => (
 
       <p className="vonage__texto">
         La colaboración con Vonage te abre dos caminos, y no tienes que elegir:
-        el primero está disponible desde hoy y el segundo depende de cuántas
-        seáis.
+        probar sus APIs por tu cuenta o construir en equipo en nuestro primer
+        programa piloto.
       </p>
 
       <div className="vonage__caminos">
@@ -58,24 +54,24 @@ const AprovecharVonage: React.FC = () => (
         </div>
 
         <div className="vonage__camino vonage__camino--programa">
-          <p className="vonage__caja-titulo">Y si prefieres no hacerlo sola</p>
+          <p className="vonage__caja-titulo">Y si prefieres construir en equipo</p>
 
           <p className="vonage__camino-texto">
-            Queremos preparar para <strong>octubre</strong> un programa para
-            construir uno o varios proyectos en grupo con estas APIs: algo más
-            ambicioso de lo que suele salir en solitario, con gente con quien
-            repartirse el trabajo y a quien preguntar.
+            Durante unas <strong>seis semanas</strong>, en pequeños equipos,
+            100 % online y con mentoras de FemCoders Club, crearemos
+            aplicaciones con estas APIs. Es para quien da sus primeros pasos y
+            también para quien ya tiene experiencia y quiere construir algo en
+            comunidad.
           </p>
 
           <p className="vonage__camino-texto">
-            No está decidido todavía, y preferimos decirlo a prometerlo. Antes
-            de fijar nada necesitamos saber cuántas personas tendrían ganas y
-            con cuánto tiempo cuentan. Si sale adelante, será porque hay gente
-            suficiente.
+            Las participantes contarán con créditos para usar las APIs durante
+            el proyecto. Las inscripciones están abiertas hasta el{" "}
+            <strong>domingo 18 de octubre de 2026</strong>.
           </p>
 
           <p className="vonage__camino-texto vonage__camino-texto--llamada">
-            Eso es justo lo que preguntamos aquí abajo. Son tres preguntas y se
+            Para apuntarte, responde las tres preguntas de aquí abajo. Se
             contestan en un minuto.
           </p>
         </div>
