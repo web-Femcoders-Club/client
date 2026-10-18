@@ -23,7 +23,8 @@ import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
 import CodigoVonage from "../components/CodigoVonage";
 import AprovecharVonage from "../components/AprovecharVonage";
-import InteresEnApis from "../components/InteresEnApis";
+import CierrePilotoVonage from "../components/CierrePilotoVonage";
+import ListaEspera from "../components/ListaEspera";
 import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
 import "./WelcomePage.css";
 
@@ -344,7 +345,8 @@ const WelcomePage = () => {
           */}
           <CodigoVonage />
           <AprovecharVonage />
-          <InteresEnApis />
+          <CierrePilotoVonage />
+          <ListaEspera />
 
           <header className="mb-8 lg:mb-12">
             <h2>

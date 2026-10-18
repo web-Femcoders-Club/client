@@ -1,9 +1,5 @@
 import axios from "axios";
-import {
-  InteresEnApis,
-  RespuestaDeInteres,
-  ResumenDeInteres,
-} from "../types/types";
+import { InteresEnApis, ResumenDeInteres } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -31,18 +27,6 @@ export const getInteresEnApis = async (
   const { data } = await axios.get(`${API_URL}/user/${idUser}/interes-apis`, {
     headers: getAuthHeaders(),
   });
-  return data;
-};
-
-export const guardarInteresEnApis = async (
-  idUser: number,
-  respuesta: RespuestaDeInteres
-): Promise<InteresEnApis> => {
-  const { data } = await axios.post(
-    `${API_URL}/user/${idUser}/interes-apis`,
-    respuesta,
-    { headers: getAuthHeaders() }
-  );
   return data;
 };
 

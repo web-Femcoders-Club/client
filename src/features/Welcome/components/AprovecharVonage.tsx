@@ -4,16 +4,14 @@ import "./vonage.css";
 /**
  * Qué puede hacer una usuaria con la colaboración de Vonage (#102).
  *
- * Va entre el código y las tres preguntas porque es el puente entre los dos:
- * arriba se acaba de dar algo, abajo se pide algo, y aquí se explica para qué
- * sirve lo primero y por qué merece la pena lo segundo.
+ * Va entre el código y el cierre del piloto: arriba se acaba de dar algo, y aquí
+ * se explica para qué sirve.
  *
- * ## El programa piloto ya tiene fechas
+ * ## Las inscripciones al piloto cerraron
  *
- * Unas seis semanas e inscripciones hasta el 18 de octubre de 2026. Si cambian,
- * este texto, la entradilla del formulario de abajo y la noticia
- * /noticias/proyecto-piloto-apis-vonage cambian juntos: quien llega desde la
- * noticia lee las tres cosas seguidas.
+ * El 18 de octubre de 2026 (server#147). Este texto, el bloque de cierre de
+ * abajo y la noticia /noticias/proyecto-piloto-apis-vonage cuentan lo mismo:
+ * quien llega desde la noticia lee las tres cosas seguidas.
  */
 const AprovecharVonage: React.FC = () => (
   <section className="vonage vonage--aprovechar" aria-labelledby="aprovechar-titulo">
@@ -66,13 +64,13 @@ const AprovecharVonage: React.FC = () => (
 
           <p className="vonage__camino-texto">
             Las participantes contarán con créditos para usar las APIs durante
-            el proyecto. Las inscripciones están abiertas hasta el{" "}
+            el proyecto. Las inscripciones cerraron el{" "}
             <strong>domingo 18 de octubre de 2026</strong>.
           </p>
 
           <p className="vonage__camino-texto vonage__camino-texto--llamada">
-            Para apuntarte, responde las tres preguntas de aquí abajo. Se
-            contestan en un minuto.
+            Si te apetece sumarte a los próximos proyectos, apúntate a la lista
+            de espera de aquí abajo.
           </p>
         </div>
       </div>

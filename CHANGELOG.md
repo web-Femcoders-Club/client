@@ -5,6 +5,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Cierre del piloto de Vonage y lista de espera
+
+#### Añadido
+- **Lista de espera para futuros proyectos** en `/welcome` (server#147):
+  tecnologías de un catálogo cerrado con «Otra», si se ofrece como mentora y una
+  idea opcional de hasta 500 caracteres. Nombre y correo salen de la cuenta. Se
+  puede actualizar y quitarse de la lista.
+- **Apartado «Lista de espera» en el panel**: total, mentoras, desglose por
+  tecnología, búsqueda y filtro «Solo mentoras».
+- **Punto nuevo en la política de privacidad** para la lista de espera.
+
+#### Cambiado
+- **Inscripciones al piloto cerradas**: el formulario de las tres preguntas se
+  sustituye por un mensaje de cierre, distinto para quien se inscribió. El post,
+  su FAQ y metadatos, la tarjeta de la portada y el bloque «Qué puedes hacer con
+  esto» de `/welcome` lo cuentan igual.
+
 ### Blog: programa piloto con las APIs de Vonage
 
 #### Añadido

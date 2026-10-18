@@ -587,6 +587,63 @@ export interface ResumenDeInteres {
 }
 
 /* ---------------------------------------------------------------
+   Lista de espera para futuros proyectos (server#147)
+   --------------------------------------------------------------- */
+
+/** Vocabulario cerrado: el backend valida contra esta misma lista. */
+export type TecnologiaListaEspera =
+  | "html-css"
+  | "javascript"
+  | "typescript"
+  | "react"
+  | "angular"
+  | "vue"
+  | "node"
+  | "python"
+  | "java"
+  | "php"
+  | "sql"
+  | "ux-ui"
+  | "testing"
+  | "devops-cloud"
+  | "datos-ia"
+  | "otra";
+
+/** Lo que se envía al apuntarse o actualizar la inscripción. */
+export interface DatosListaEspera {
+  tecnologias: TecnologiaListaEspera[];
+  otraTecnologia?: string;
+  seOfreceComoMentora: boolean;
+  idea?: string;
+}
+
+export interface InscripcionListaEspera {
+  id: number;
+  idUser: number;
+  tecnologias: TecnologiaListaEspera[];
+  otraTecnologia: string | null;
+  seOfreceComoMentora: boolean;
+  idea: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Igual que en el panel del piloto: `null` si la cuenta ya no existe. */
+export interface InscripcionConPersona extends InscripcionListaEspera {
+  nombre: string | null;
+  email: string | null;
+}
+
+export interface ResumenListaEspera {
+  resumen: {
+    total: number;
+    mentoras: number;
+    porTecnologia: Record<string, number>;
+  };
+  inscripciones: InscripcionConPersona[];
+}
+
+/* ---------------------------------------------------------------
    Listas de correo por género (#13, backend server#16)
    --------------------------------------------------------------- */
 

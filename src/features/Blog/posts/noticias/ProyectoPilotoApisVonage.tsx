@@ -6,9 +6,10 @@ import { SeccionPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 
 /*
-  El código promocional de Vonage y el formulario del piloto son solo para la
+  El código promocional de Vonage y la lista de espera son solo para la
   comunidad: viven en /welcome, detrás del login. Este post no los nombra en
-  abierto; manda a registrarse o a entrar.
+  abierto; manda a registrarse o a entrar. Las inscripciones al piloto cerraron
+  el 18 de octubre de 2026 (server#147).
 */
 
 /*
@@ -39,9 +40,9 @@ const PREGUNTAS = [
       "El acompañamiento de mentoras de FemCoders Club y créditos para utilizar las APIs de Vonage durante el desarrollo del proyecto.",
   },
   {
-    pregunta: "¿Cómo me apunto al programa piloto y hasta cuándo?",
+    pregunta: "¿Todavía puedo apuntarme al programa piloto?",
     respuesta:
-      "Las inscripciones están abiertas hasta el domingo 18 de octubre de 2026. Hay que registrarse en FemCoders Club, o entrar con tu cuenta si ya la tienes, y responder las tres preguntas que aparecen en la página de bienvenida.",
+      "Las inscripciones al programa piloto cerraron el domingo 18 de octubre de 2026. Para participar en los próximos proyectos de FemCoders Club, hay que registrarse en la web, o entrar con tu cuenta si ya la tienes, y apuntarse a la lista de espera de la página de bienvenida.",
   },
 ];
 
@@ -53,7 +54,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         </title>
         <meta
           name="description"
-          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones cerradas; lista de espera abierta."
         />
         <meta
           name="keywords"
@@ -71,7 +72,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         />
         <meta
           property="og:description"
-          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones cerradas; lista de espera abierta."
         />
         <meta
           property="og:url"
@@ -94,7 +95,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         />
         <meta
           name="twitter:description"
-          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026."
+          content="Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones cerradas; lista de espera abierta."
         />
         <meta
           name="twitter:image"
@@ -125,7 +126,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
               headline:
                 "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
               description:
-                "Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones hasta el 18 de octubre de 2026.",
+                "Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones cerradas; lista de espera abierta.",
               image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
               datePublished: "2026-10-11T10:00:00Z",
               about: {
@@ -262,17 +263,19 @@ const ProyectoPilotoApisVonage: React.FC = () => (
 
       <SeccionPost titulo="¿Te apetece participar?">
         <p>
-          Las inscripciones están abiertas{" "}
-          <strong>hasta el domingo 18 de octubre de 2026</strong>. Para
-          participar, solo tienes que registrarte en FemCoders Club y responder
-          las tres preguntas que encontrarás en tu página de bienvenida. Si ya
-          tienes cuenta, puedes entrar directamente y completar el formulario.
+          Las inscripciones al programa piloto cerraron el{" "}
+          <strong>domingo 18 de octubre de 2026</strong>. Gracias a todas las
+          personas que os habéis apuntado: con vuestras respuestas estamos
+          organizando los equipos, y os escribiremos para contaros los
+          siguientes pasos.
         </p>
         <p>
-          Te preguntamos si te apetece participar en un proyecto en grupo,
-          cuántas horas podrías dedicarle cada semana y qué tecnologías te
-          interesan más, desde SMS y voz hasta vídeo, verificación o WhatsApp.
-          Así podremos entender qué encaja con tu tiempo y tus intereses.
+          Si te apetece participar en los próximos proyectos de la comunidad,
+          puedes apuntarte a nuestra lista de espera desde tu página de
+          bienvenida. Te preguntamos con qué tecnologías te sientes más cómoda,
+          si te gustaría acompañar a un equipo como mentora y, si tienes una, tu
+          idea de proyecto. El equipo se pondrá en contacto contigo cuando haya
+          un proyecto nuevo.
         </p>
         <p>
           <Link to="/register" className="fc-boton">

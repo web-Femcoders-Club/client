@@ -50,7 +50,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
 
         <header>
           <h3 id="privacy-policy-title">Política de Privacidad de FemCoders Club</h3>
-          <p>Fecha de entrada en vigor: 29.09.2025 · Última actualización: 07.10.2026</p>
+          <p>Fecha de entrada en vigor: 29.09.2025 · Última actualización: 19.10.2026</p>
         </header>
 
         <div className="modal-body">
@@ -92,6 +92,14 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               «Prefiero no decir», no entras por defecto en ninguna de las dos listas; el equipo
               puede incluirte en una para invitarte a un evento, sin cambiar nunca lo que
               respondiste en tu perfil. Puedes cambiar tu respuesta cuando quieras.
+            </li>
+            <li>
+              <strong>Lista de espera de proyectos:</strong> si te apuntas desde tu página de
+              bienvenida, guardamos con qué tecnologías te sientes más cómoda, si te ofreces como
+              mentora y, si nos la cuentas, tu idea de proyecto. Tu nombre y tu correo los tomamos
+              de tu cuenta. Lo usamos para contactar contigo cuando organicemos un proyecto nuevo.
+              Puedes quitarte de la lista cuando quieras desde la misma página, y si borras tu
+              cuenta tu inscripción se borra con ella.
             </li>
             <li>
               <strong>Formulario de contacto:</strong> nombre, correo electrónico y mensaje, para
