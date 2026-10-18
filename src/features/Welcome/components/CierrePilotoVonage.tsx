@@ -53,7 +53,11 @@ const CierrePilotoVonage: React.FC = () => {
       )}
       <p className="vonage__texto">
         Si te apetece participar en los próximos proyectos de la comunidad, puedes
-        apuntarte a la lista de espera que tienes justo debajo.
+        apuntarte a la{" "}
+        <a href="#lista-espera" className="vonage__enlace foco-visible">
+          lista de espera
+        </a>
+        .
       </p>
     </section>
   );

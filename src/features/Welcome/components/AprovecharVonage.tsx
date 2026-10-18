@@ -69,8 +69,11 @@ const AprovecharVonage: React.FC = () => (
           </p>
 
           <p className="vonage__camino-texto vonage__camino-texto--llamada">
-            Si te apetece sumarte a los próximos proyectos, apúntate a la lista
-            de espera de aquí abajo.
+            Si te apetece sumarte a los próximos proyectos, apúntate a la{" "}
+            <a href="#lista-espera" className="vonage__enlace vonage__enlace--claro foco-visible">
+              lista de espera
+            </a>
+            .
           </p>
         </div>
       </div>

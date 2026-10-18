@@ -478,6 +478,18 @@
   cursor: pointer;
 }
 
+/* Sobre la tarjeta violeta: blanco, como el texto que la rodea (8,2:1 en el
+   extremo claro del degradado). El violeta de marca ahí no se leería. */
+.vonage__enlace--claro,
+.vonage__enlace--claro:hover {
+  color: var(--color-white);
+}
+
+/* Al saltar al ancla, que el título no quede pegado al borde de la ventana. */
+#lista-espera {
+  scroll-margin-top: var(--spacing-md);
+}
+
 /*
  * Avisos del bloque. La caja es común; el color no.
  *

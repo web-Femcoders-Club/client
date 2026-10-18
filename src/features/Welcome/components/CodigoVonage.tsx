@@ -94,8 +94,10 @@ const CodigoVonage: React.FC = () => {
         {cabecera}
 
         <p className="vonage__texto">
-          Vonage nos da <strong>20 € de crédito</strong> para que trastees con
-          sus APIs de comunicación: SMS, voz, vídeo y verificación.
+          Vonage pone a tu disposición{" "}
+          <strong>20 € de crédito para explorar sus APIs de comunicación</strong>,
+          experimentar con tecnologías como SMS, voz, vídeo y verificación, y
+          empezar a integrarlas en tus propios proyectos.
         </p>
 
         {error ? (
