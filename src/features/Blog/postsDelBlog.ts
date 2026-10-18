@@ -10,6 +10,8 @@ export type PostDelBlog = {
   titulo: string;
   descripcion: string;
   imagen: string;
+  /** Ancho entre alto de la portada, acotado entre 1,9:1 y 2,2:1. */
+  proporcion: number;
   fecha: string;
   seccion: "noticia" | "recurso";
   tema: string;

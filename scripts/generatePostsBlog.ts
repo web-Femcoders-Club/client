@@ -1,5 +1,6 @@
 import { existsSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
+import sharp from "sharp";
 import { fileURLToPath } from "url";
 import { getPostsIndex, type PostMeta } from "./postsIndex";
 import type { PostDelBlog } from "../src/features/Blog/postsDelBlog";
@@ -46,16 +47,38 @@ function temaDe(post: PostMeta): string {
   return TEMAS[carpeta] ?? carpeta;
 }
 
-const posts: PostDelBlog[] = getPostsIndex().map((post) => ({
-  ruta: post.path,
-  titulo: post.title,
-  descripcion: post.description,
-  imagen: imagenLocal(post),
-  fecha: post.publishedTime.slice(0, 10),
-  seccion: post.section,
-  tema: temaDe(post),
-  ...(post.coverIsAiGenerated && { imagenConIA: true }),
-}));
+/*
+ * La portada del post se pinta con la proporción de su imagen, para no cortar
+ * el texto de las 16:9. Se acota: una vertical o cuadrada ocuparía media
+ * pantalla, y una muy panorámica quedaría en una tira. Con 1,9 una 16:9
+ * pierde un 3 % arriba y otro abajo: menos alta, y el texto sigue entero.
+ */
+const PROPORCION_MINIMA = 1.9;
+const PROPORCION_MAXIMA = 2.2;
+
+async function proporcionDe(imagen: string): Promise<number> {
+  const { width, height } = await sharp(resolve(ROOT, "public" + imagen)).metadata();
+  if (!width || !height) throw new Error(`No se pueden leer las medidas de ${imagen}`);
+  const acotada = Math.min(PROPORCION_MAXIMA, Math.max(PROPORCION_MINIMA, width / height));
+  return Math.round(acotada * 1000) / 1000;
+}
+
+const posts: PostDelBlog[] = await Promise.all(
+  getPostsIndex().map(async (post) => {
+    const imagen = imagenLocal(post);
+    return {
+      ruta: post.path,
+      titulo: post.title,
+      descripcion: post.description,
+      imagen,
+      proporcion: await proporcionDe(imagen),
+      fecha: post.publishedTime.slice(0, 10),
+      seccion: post.section,
+      tema: temaDe(post),
+      ...(post.coverIsAiGenerated && { imagenConIA: true as const }),
+    };
+  })
+);
 
 writeFileSync(SALIDA, JSON.stringify(posts, null, 2) + "\n");
 console.log(`✅ postsDelBlog.json: ${posts.length} posts`);

@@ -368,6 +368,17 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "27",
+      title: "FemCoders Club y Actividades para Mujeres consolidan una alianza para impulsar el talento femenino",
+      description:
+        "Nuestras actividades ya forman parte del calendario de Actividades para Mujeres, la plataforma fundada por Marta Gimeno Robles para conectar a mujeres de habla hispana con iniciativas en sus ciudades. Os contamos qué ofrece y cómo publicar las vuestras de forma gratuita.",
+      image: "/assets/noticias/alianza-actividades-para-mujeres.jpg",
+      imageAlt: "Alianza de impacto. Los logotipos de FemCoders Club y de Actividades para Mujeres, uno junto al otro, y el lema «Juntas para poner a la mujer en el centro»",
+      date: "19 Octubre 2026",
+      category: "Noticias",
+      link: "/noticias/alianza-actividades-para-mujeres",
+    },
+    {
       id: "26",
       title: "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
       description:

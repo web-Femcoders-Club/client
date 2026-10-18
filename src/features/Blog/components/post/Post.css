@@ -172,10 +172,11 @@
 }
 
 /*
- * La portada abre el post, al ancho exacto de la columna de texto. A 880px
- * de ancho y 2,2:1 mide 400px de alto: a las portadas 2:1 (casi todas) se
- * les recortan unos 11px arriba y abajo, sin tocar el texto que llevan. Las
- * 16:9 pierden algo más; si alguna corta su texto, ajustar su encuadre.
+ * La portada abre el post, al ancho exacto de la columna de texto, con la
+ * proporción de su imagen (postsDelBlog.json, acotada entre 1,9:1 y 2,2:1):
+ * las 2:1 se ven enteras y las 16:9 pierden solo un 3 % arriba y abajo. Las
+ * verticales o cuadradas se recortan más, porque a su tamaño ocuparían la
+ * pantalla entera.
  */
 .post__portada {
   position: relative;
@@ -186,7 +187,7 @@
 .post__portada img {
   display: block;
   width: 100%;
-  aspect-ratio: 2.2 / 1;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 1.2rem;

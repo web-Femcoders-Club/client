@@ -86,7 +86,7 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
       <article className="post">
         <header className="post__cabecera">
           {post && (
-            <figure className="post__portada">
+            <figure className="post__portada" style={{ aspectRatio: post.proporcion }}>
               <OptimizedImage src={post.imagen} alt="" loading="eager" fetchPriority="high" />
               {portadaConIA && <figcaption className="fc-distintivo-ia">Imagen generada con IA</figcaption>}
             </figure>

@@ -511,9 +511,14 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 54 articles published on the FemCoders Club blog.
+Complete index of the 55 articles published on the FemCoders Club blog.
 
-### News (20)
+### News (21)
+
+- FemCoders Club y Actividades para Mujeres consolidan una alianza
+  URL: https://www.femcodersclub.com/noticias/alianza-actividades-para-mujeres
+  Published: 2026-10-19
+  Summary: Nuestras actividades se suman al calendario de Actividades para Mujeres, la plataforma de Marta Gimeno Robles. Qué ofrece y cómo publicar las vuestras gratis.
 
 - Primer programa piloto con las APIs de Vonage
   URL: https://www.femcodersclub.com/noticias/proyecto-piloto-apis-vonage
