@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ModalContext } from "../../../context/ModalContext";
 import {
   getListaEspera,
   guardarListaEspera,
@@ -25,6 +26,7 @@ import "./vonage.css";
  */
 const ListaEspera: React.FC = () => {
   const idUser = Number(sessionStorage.getItem("userId") || 0);
+  const { openModal } = useContext(ModalContext);
 
   const [tecnologias, setTecnologias] = useState<TecnologiaListaEspera[]>([]);
   const [otraTecnologia, setOtraTecnologia] = useState("");
@@ -206,7 +208,8 @@ const ListaEspera: React.FC = () => {
           </label>
           <p id="lista-espera-idea-ayuda" className="vonage__ayuda">
             Cuéntanosla en {LARGO_IDEA} caracteres como máximo. No hace falta que
-            incluyas datos de contacto: ya los tenemos por tu cuenta.
+            incluyas datos de contacto, porque ya los tenemos por tu cuenta, y te
+            pedimos que no incluyas datos de salud ni de otras personas.
           </p>
           <textarea
             id="lista-espera-idea"
@@ -238,6 +241,26 @@ const ListaEspera: React.FC = () => {
             {mensaje}
           </p>
         )}
+
+        {/*
+          Primera capa de información (RGPD art. 13), donde se recogen los
+          datos y antes del botón: para qué se usan, cómo quitarse y dónde está
+          la política entera.
+        */}
+        <p className="vonage__ayuda vonage__aviso">
+          Usamos estos datos solo para formar equipos y contactar contigo cuando
+          haya un proyecto nuevo. Puedes quitarte de la lista cuando quieras desde
+          aquí, y si borras tu cuenta tu inscripción se borra con ella. Más
+          detalle en la{" "}
+          <button
+            type="button"
+            className="vonage__enlace foco-visible"
+            onClick={() => openModal("privacyPolicy")}
+          >
+            política de privacidad
+          </button>
+          .
+        </p>
 
         <div className="vonage__acciones">
           <button

@@ -14,7 +14,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   puede actualizar y quitarse de la lista.
 - **Apartado «Lista de espera» en el panel**: total, mentoras, desglose por
   tecnología, búsqueda y filtro «Solo mentoras».
-- **Punto nuevo en la política de privacidad** para la lista de espera.
+- **La política de privacidad recoge la lista de espera** (finalidad, base legal
+  y plazo), y el formulario informa antes del botón y enlaza la política.
 
 #### Cambiado
 - **Inscripciones al piloto cerradas**: el formulario de las tres preguntas se
