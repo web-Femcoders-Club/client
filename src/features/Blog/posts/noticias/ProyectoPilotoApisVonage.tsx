@@ -7,7 +7,7 @@ import { articleSchema } from "../../components/articleSchema";
 
 /*
   El código promocional de Vonage y la lista de espera son solo para la
-  comunidad: viven en /welcome, detrás del login. Este post no los nombra en
+  comunidad: viven en /vonage y /welcome, detrás del login. Este post no los nombra en
   abierto; manda a registrarse o a entrar. Las inscripciones al piloto cerraron
   el 18 de octubre de 2026 (server#147).
 */

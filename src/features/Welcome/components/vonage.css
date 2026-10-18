@@ -126,7 +126,15 @@
   margin-bottom: 0;
 }
 
+/*
+ * Puede ir en un <p>, un <h2> o un <h3>. Las tres primeras propiedades anulan lo
+ * que index.css pone a los encabezados (fuente de títulos, sombra, altura de
+ * línea): aquí es una etiqueta pequeña, no un título grande.
+ */
 .vonage__caja-titulo {
+  font-family: var(--font-primary);
+  text-shadow: none;
+  line-height: 1.4;
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-text-dark);
@@ -488,6 +496,164 @@
 /* Al saltar al ancla, que el título no quede pegado al borde de la ventana. */
 #lista-espera {
   scroll-margin-top: var(--spacing-md);
+}
+
+/* ---------------------------------------------------------------
+   Página /vonage (server#147)
+   --------------------------------------------------------------- */
+
+/* La caja de la comunidad, que en /vonage va sola al final. */
+.vonage__caja--suelta {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Título de la tarjeta del programa y su etiqueta de estado, en una fila que
+   se parte en dos cuando no cabe. */
+.vonage__camino-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vonage__camino-cabecera .vonage__caja-titulo {
+  margin: 0;
+}
+
+/*
+ * Doble clase para ganar a `.vonage span`, que hereda tamaño y peso del padre
+ * para neutralizar la regla global de los span. El candado acompaña; el texto
+ * «cerradas» es la señal.
+ */
+.vonage .vonage__etiqueta-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+/*
+ * Aviso de cierre del piloto. Tonos cálidos para que no se lea como un bloque
+ * más de los violetas: --color-primary-oscuro sobre --color-melocoton da
+ * 7,41:1, y el texto (#6b1a12) más todavía. Los dos pasan AAA.
+ */
+.vonage-cierre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  background: var(--color-melocoton);
+  border: 2px solid var(--color-primary-oscuro);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.vonage-cierre__icono {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-primary-oscuro);
+  color: #ffffff;
+}
+
+.vonage-cierre__cuerpo {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.vonage-cierre__antetitulo {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-oscuro);
+}
+
+.vonage-cierre__titulo {
+  margin: 0 0 var(--spacing-xs);
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--color-primary-oscuro);
+  text-shadow: none;
+}
+
+.vonage-cierre__texto {
+  margin: 0 0 var(--spacing-xs);
+  line-height: 1.6;
+  color: #6b1a12;
+}
+
+.vonage-cierre__texto:last-child {
+  margin-bottom: 0;
+}
+
+.vonage-cierre__enlace,
+.vonage-cierre__enlace:hover {
+  font-weight: 700;
+  color: var(--color-primary-oscuro);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* «Volver a tu espacio», el mismo patrón que en Ofertas de trabajo. */
+.vonage-pagina__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-bottom: var(--spacing-sm);
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #3b2d99;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.vonage-pagina__volver:hover {
+  background-color: #f4f2fa;
+  color: var(--color-text-dark);
+}
+
+/* Acceso a /vonage desde /welcome: una tarjeta corta en lugar de los bloques. */
+.vonage--acceso {
+  padding: 0;
+  overflow: hidden;
+}
+
+.vonage__acceso-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.vonage__acceso-texto {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.vonage__acceso-texto .vonage__titulo {
+  font-size: 1.5rem;
+}
+
+.vonage__acceso-texto .vonage__texto {
+  margin-bottom: 0;
 }
 
 /*

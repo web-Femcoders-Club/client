@@ -305,8 +305,8 @@ const VonageCommunityPartnership: React.FC = () => (
         </p>
         <p>
           No lo contamos aquí en abierto porque son para las integrantes del
-          club. Si tienes cuenta, las encuentras nada más entrar, en tu página
-          de bienvenida.
+          club. Si tienes cuenta, las encuentras en tu área personal, en la
+          página de Vonage.
         </p>
         <p>
           Y hay una segunda parte que sí podemos contar, porque depende de
@@ -329,18 +329,17 @@ const VonageCommunityPartnership: React.FC = () => (
             <Link to="/noticias/proyecto-piloto-apis-vonage">
               nuestro primer programa piloto con las APIs de Vonage
             </Link>
-            , con inscripciones hasta el domingo 18 de octubre de 2026.
+            , cuyas inscripciones cerraron el domingo 18 de octubre de 2026. Si
+            te apetece participar en los próximos proyectos, puedes apuntarte a
+            la lista de espera desde tu página de bienvenida.
           </p>
         </NotaPost>
-        <p>
-          Esa pregunta está dentro de la web, en tu página de bienvenida: son
-          tres preguntas y se contestan en un minuto.
-        </p>
 
         <h3>Ya está disponible</h3>
         <p>
-          Regístrate en FemCoders Club y lo encontrarás dentro, en tu página de
-          bienvenida. Si ya tienes cuenta, solo tienes que entrar.
+          Regístrate en FemCoders Club y lo encontrarás dentro, en la página de
+          Vonage de tu área personal. Si ya tienes cuenta, solo tienes que
+          entrar.
         </p>
         <p>
           <Link to="/register" className="fc-boton">

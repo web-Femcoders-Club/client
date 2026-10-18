@@ -16,12 +16,20 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   tecnología, búsqueda y filtro «Solo mentoras».
 - **La política de privacidad recoge la lista de espera** (finalidad, base legal
   y plazo), y el formulario informa antes del botón y enlaza la política.
+- **Página `/vonage`**, con entrada «Vonage» en el menú de `/welcome`: reúne el
+  aviso de cierre del piloto, el código, «Qué puedes hacer con esto» y el
+  espacio de Vonage para la comunidad, que antes eran cuatro bloques seguidos en
+  `/welcome`. Solo exige sesión, no la pantalla de preferencias. Es privada: no
+  va al sitemap ni al prerender.
 
 #### Cambiado
 - **Inscripciones al piloto cerradas**: el formulario de las tres preguntas se
-  sustituye por un mensaje de cierre, distinto para quien se inscribió. El post,
-  su FAQ y metadatos, la tarjeta de la portada y el bloque «Qué puedes hacer con
-  esto» de `/welcome` lo cuentan igual.
+  sustituye por un aviso de cierre con candado y agradecimiento, distinto para
+  quien se inscribió. El post, su FAQ y metadatos, la tarjeta de la portada y la
+  noticia de septiembre lo cuentan igual.
+- **`/welcome`** muestra una tarjeta corta de acceso a Vonage en lugar de sus
+  bloques. Los enlaces «lista de espera» de `/vonage` llevan a
+  `/welcome#lista-espera`, con scroll y foco en el formulario.
 
 ### Blog: programa piloto con las APIs de Vonage
 

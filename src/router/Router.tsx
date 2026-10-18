@@ -69,6 +69,7 @@ const PersonalizaPerfil = lazy(
 const FrameworksIntegration = lazy(
   () => import("../features/Blog/posts/recursos/html/FrameworksIntegration")
 );
+const VonagePage = lazy(() => import("../features/Vonage/page/VonagePage"));
 const MentorshipPage = lazy(
   () => import("../features/Mentorship/page/Mentorship")
 );
@@ -487,6 +488,20 @@ const RouterComponent: React.FC = () => {
               <ProtectedRoute>
                 <Layout>
                   <SendDocumentation />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          {/*
+            Solo sesión, sin `ExigeRespuesta`: nada de esta página puede
+            depender del consentimiento (RGPD art. 7.4, ver `VonagePage`).
+          */}
+          <Route
+            path="/vonage"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <VonagePage />
                 </Layout>
               </ProtectedRoute>
             }

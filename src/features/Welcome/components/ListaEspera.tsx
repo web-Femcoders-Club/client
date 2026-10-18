@@ -141,12 +141,13 @@ const ListaEspera: React.FC = () => {
   if (!idUser) return null;
 
   return (
-    // `id` para los enlaces «lista de espera» del cierre del piloto y de «Qué
-    // puedes hacer con esto».
+    // `id` para los enlaces «lista de espera» de /vonage (`/welcome#lista-espera`).
+    // `tabIndex={-1}` para que /welcome pueda llevar el foco aquí al llegar.
     <section
       id="lista-espera"
       className="vonage"
       aria-labelledby="lista-espera-titulo"
+      tabIndex={-1}
     >
       <h2 id="lista-espera-titulo" className="vonage__titulo">
         Lista de espera para los próximos proyectos
