@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import PlantillaPost from "../../components/post/PlantillaPost";
-import { SeccionPost } from "../../components/post/PiezasPost";
+import { NotaPost, SeccionPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
 
 /*
@@ -129,6 +129,8 @@ const ProyectoPilotoApisVonage: React.FC = () => (
                 "Seis semanas en pequeños equipos, 100 % online y con mentoras, para crear una aplicación con las APIs de Vonage. Inscripciones cerradas; lista de espera abierta.",
               image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
               datePublished: "2026-10-11T10:00:00Z",
+              // Aviso de inscripciones cerradas y lista de espera (server#147).
+              dateModified: "2026-10-19T10:00:00Z",
               about: {
                 "@type": "Organization",
                 name: "Vonage",
@@ -194,6 +196,26 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         </>
       }
     >
+      {/*
+        Va antes del primer apartado porque la entradilla dice «hoy abrimos las
+        inscripciones»: quien llega ahora tiene que saber lo primero que ya
+        cerraron, y qué puede hacer en su lugar.
+      */}
+      <NotaPost titulo="Actualización: inscripciones cerradas">
+        <p>
+          Las inscripciones al programa piloto cerraron el{" "}
+          <strong>domingo 18 de octubre de 2026</strong>. Gracias a todas las
+          personas que os habéis sumado a esta primera edición.
+        </p>
+        <p>
+          Si te gustaría participar en los próximos proyectos de la comunidad,{" "}
+          <Link to="/register">regístrate en FemCoders Club</Link> y completa el
+          formulario de la lista de espera que encontrarás en tu página de
+          bienvenida. Si ya tienes cuenta, <Link to="/login">entra</Link> y lo
+          tendrás ahí.
+        </p>
+      </NotaPost>
+
       <SeccionPost titulo="Un proyecto en equipo">
         <p>
           Durante{" "}
