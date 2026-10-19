@@ -332,6 +332,8 @@
  * tamaño, que no dependen del fondo.
  */
 .vonage__camino--programa {
+  /* Referencia del sello «Cerrado», que se coloca sobre la esquina. */
+  position: relative;
   background: linear-gradient(135deg, #4737bb, #2a2170);
   border-color: transparent;
   color: var(--color-white);
@@ -507,15 +509,11 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* Título de la tarjeta del programa y su etiqueta de estado, en una fila que
-   se parte en dos cuando no cabe. */
+/* Título de la tarjeta del programa. Deja sitio a la derecha para el sello,
+   que va posicionado encima de la esquina. */
 .vonage__camino-cabecera {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
+  padding-right: 4.5rem;
 }
 
 .vonage__camino-cabecera .vonage__caja-titulo {
@@ -523,20 +521,41 @@
 }
 
 /*
- * Doble clase para ganar a `.vonage span`, que hereda tamaño y peso del padre
- * para neutralizar la regla global de los span. El candado acompaña; el texto
- * «cerradas» es la señal.
+ * Sello «Cerrado», redondo y sobresaliendo de la esquina de la tarjeta violeta.
+ *
+ * - Cabe: sobresale 1 rem por arriba y 0,75 rem por la derecha, menos que el
+ *   hueco que hay alrededor de la tarjeta (1,5 rem; 1 rem en móvil). Más, y lo
+ *   recortaría el `overflow: hidden` de `.vonage--aprovechar`.
+ * - Medidas en rem, no en px, para que el círculo crezca con el texto al hacer
+ *   zoom en vez de quedarse pequeño y desbordarse.
+ * - Neumorfismo solo en el relieve (sombras). El contraste no depende de él:
+ *   --color-primary-oscuro sobre --color-melocoton da 7,41:1 (AAA), y el
+ *   círculo claro sobre el violeta se distingue de sobra.
+ * - Doble clase para ganar a `.vonage span`, que hereda tamaño y peso del
+ *   padre para neutralizar la regla global de los span.
  */
-.vonage .vonage__etiqueta-estado {
-  display: inline-flex;
+.vonage .vonage__sello {
+  position: absolute;
+  top: -1rem;
+  right: -0.75rem;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8125rem;
+  justify-content: center;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
   font-weight: 700;
-  color: var(--color-white);
-  border: 1px solid var(--color-white);
-  border-radius: 999px;
-  padding: 4px 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-oscuro);
+  background: var(--color-melocoton);
+  box-shadow:
+    6px 6px 14px rgba(20, 12, 60, 0.45),
+    -3px -3px 8px rgba(255, 255, 255, 0.35),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -3px -3px 6px rgba(143, 35, 24, 0.18);
 }
 
 /*

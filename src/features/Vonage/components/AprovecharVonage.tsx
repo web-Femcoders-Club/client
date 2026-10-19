@@ -54,23 +54,15 @@ const AprovecharVonage: React.FC = () => (
         <div className="vonage__camino vonage__camino--programa">
           <div className="vonage__camino-cabecera">
             <h3 className="vonage__caja-titulo">En equipo: programa piloto</h3>
-            {/* El candado acompaña al texto, que ya dice «cerradas». */}
-            <span className="vonage__etiqueta-estado">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect x="4" y="11" width="16" height="10" rx="2" />
-                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-              </svg>
-              Inscripciones cerradas
+            {/*
+              Sello redondo sobre la esquina. A la vista dice solo «Cerrado»; el
+              lector de pantalla oye «Cerrado a nuevas inscripciones», que sin
+              el dibujo es lo que se entiende. Va justo después del título para
+              que se lea en ese orden.
+            */}
+            <span className="vonage__sello">
+              Cerrado
+              <span className="vonage__sr-only"> a nuevas inscripciones</span>
             </span>
           </div>
 
