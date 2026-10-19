@@ -6,7 +6,7 @@ import "../../Welcome/components/vonage.css";
 
 /**
  * Acceso a /vonage desde /welcome (server#147). Sustituye a los bloques del
- * código, de «Qué puedes hacer con esto» y del cierre del piloto, que ahora
+ * código, de «Qué puedes hacer con esta colaboración» y del cierre del piloto, que ahora
  * viven juntos en su página.
  */
 const AccesoVonage: React.FC = () => (

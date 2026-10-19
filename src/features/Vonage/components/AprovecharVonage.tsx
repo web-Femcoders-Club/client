@@ -22,12 +22,13 @@ const AprovecharVonage: React.FC = () => (
 
     <div className="vonage__cuerpo">
       <h2 id="aprovechar-titulo" className="vonage__titulo">
-        Qué puedes hacer con esto
+        Qué puedes hacer con esta colaboración
       </h2>
 
       <p className="vonage__texto">
-        La colaboración con Vonage te abre dos caminos, y no tienes que elegir:
-        probar sus APIs por tu cuenta o construir en equipo con la comunidad.
+        Gracias a nuestra colaboración con Vonage, puedes explorar sus APIs por
+        tu cuenta o participar en proyectos en equipo con otras mujeres de la
+        comunidad.
       </p>
 
       <div className="vonage__caminos">
@@ -36,17 +37,17 @@ const AprovecharVonage: React.FC = () => (
 
           <ul className="vonage__lista">
             <li>
-              Canjea el código y prueba sus APIs con el crédito: mandar un SMS,
-              montar una verificación en un login, abrir una sala de vídeo.
+              Utiliza tus 20 € de crédito para experimentar con las APIs de
+              Vonage: enviar SMS, implementar sistemas de verificación o integrar
+              videollamadas en tus aplicaciones.
             </li>
             <li>
-              Regístrate en su espacio para FemCoders Club. Dentro de su
-              plataforma hay cursos y recursos para developers, y te llegan sus
-              eventos.
+              Accede al espacio de FemCoders Club en Vonage, donde encontrarás
+              formación, recursos técnicos y novedades sobre sus eventos.
             </li>
             <li>
-              Lo que construyas es tuyo y lo puedes enseñar. Haber integrado una
-              API de comunicaciones se explica muy bien en una entrevista.
+              Desarrolla tus propias ideas, amplía tus conocimientos y crea
+              proyectos que podrás incorporar a tu portfolio.
             </li>
           </ul>
         </div>
@@ -55,26 +56,26 @@ const AprovecharVonage: React.FC = () => (
           <div className="vonage__camino-cabecera">
             <h3 className="vonage__caja-titulo">En equipo: programa piloto</h3>
             {/*
-              Sello redondo sobre la esquina. A la vista dice solo «Cerrado»; el
-              lector de pantalla oye «Cerrado a nuevas inscripciones», que sin
-              el dibujo es lo que se entiende. Va justo después del título para
-              que se lea en ese orden.
+              Sello redondo sobre la esquina. «Inscripciones cerradas» y no
+              «Cerrado», que daría a entender que el programa ha terminado. Va
+              justo después del título para que se lea en ese orden.
             */}
-            <span className="vonage__sello">
-              Cerrado
-              <span className="vonage__sr-only"> a nuevas inscripciones</span>
-            </span>
+            <span className="vonage__sello">Inscripciones cerradas</span>
           </div>
 
           <p className="vonage__camino-texto">
-            Seis semanas, en pequeños equipos, 100 % online, con mentoras de
-            FemCoders Club y créditos para usar las APIs durante el proyecto. Es
-            para quien da sus primeros pasos y también para quien ya tiene
-            experiencia y quiere construir algo en comunidad.
+            Durante seis semanas, las participantes desarrollan proyectos en
+            pequeños equipos, 100 % online, con el acompañamiento de mentoras de
+            FemCoders Club y créditos para utilizar las APIs de Vonage.
+          </p>
+
+          <p className="vonage__camino-texto">
+            Una oportunidad para aprender, compartir conocimientos y crear
+            soluciones reales, independientemente de tu nivel de experiencia.
           </p>
 
           <p className="vonage__camino-texto vonage__camino-texto--llamada">
-            Si te apetece sumarte a la próxima edición, apúntate a la{" "}
+            ¿Te gustaría participar en la próxima edición? Inscríbete en nuestra{" "}
             <Link
               to="/welcome#lista-espera"
               className="vonage__enlace vonage__enlace--claro foco-visible"

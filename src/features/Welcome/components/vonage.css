@@ -264,7 +264,7 @@
 }
 
 /*
- * El bloque de «Qué puedes hacer con esto» lleva la misma barra de color que la
+ * El bloque de «Qué puedes hacer con esta colaboración» lleva la misma barra de color que la
  * tarjeta del código, así que necesita lo mismo que ella: sin relleno propio
  * —lo pone `.vonage__cuerpo`— y con `overflow: hidden` para que la barra se
  * recorte contra el radio de la esquina en vez de asomar por fuera.
@@ -275,7 +275,7 @@
 }
 
 /*
- * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
+ * El bloque de «Qué puedes hacer con esta colaboración», entre el código y las preguntas.
  *
  * Las dos columnas son iguales de ancho a propósito: son dos caminos que no se
  * excluyen (probar por tu cuenta o el programa piloto en equipo), y jerarquizar
@@ -513,7 +513,7 @@
    que va posicionado encima de la esquina. */
 .vonage__camino-cabecera {
   margin-bottom: var(--spacing-xs);
-  padding-right: 4.5rem;
+  padding-right: 6rem;
 }
 
 .vonage__camino-cabecera .vonage__caja-titulo {
@@ -521,7 +521,9 @@
 }
 
 /*
- * Sello «Cerrado», redondo y sobresaliendo de la esquina de la tarjeta violeta.
+ * Sello «Inscripciones cerradas», redondo y sobresaliendo de la esquina de la
+ * tarjeta violeta. En dos líneas y sin mayúsculas, que con ellas «Inscripciones»
+ * no cabría en el círculo.
  *
  * - Cabe: sobresale 1 rem por arriba y 0,75 rem por la derecha, menos que el
  *   hueco que hay alrededor de la tarjeta (1,5 rem; 1 rem en móvil). Más, y lo
@@ -541,14 +543,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.75rem;
-  height: 4.75rem;
+  box-sizing: border-box;
+  width: 6.5rem;
+  height: 6.5rem;
+  padding: 0.75rem;
   border-radius: 50%;
   font-family: var(--font-heading);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.15;
+  text-align: center;
   color: var(--color-primary-oscuro);
   background: var(--color-melocoton);
   box-shadow:

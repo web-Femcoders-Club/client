@@ -17,7 +17,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 - **La política de privacidad recoge la lista de espera** (finalidad, base legal
   y plazo), y el formulario informa antes del botón y enlaza la política.
 - **Página `/vonage`**, con entrada «Vonage» en el menú de `/welcome`: reúne el
-  aviso de cierre del piloto, el código, «Qué puedes hacer con esto» y el
+  aviso de cierre del piloto, el código, «Qué puedes hacer con esta colaboración» y el
   espacio de Vonage para la comunidad, que antes eran cuatro bloques seguidos en
   `/welcome`. Solo exige sesión, no la pantalla de preferencias. Es privada: no
   va al sitemap ni al prerender.
