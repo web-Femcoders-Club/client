@@ -79,7 +79,7 @@ const TONO_APUNTE: Record<string, string> = {
  *   ejemplo, el servidor arrancado antes de cambiar de rama y sin reiniciar).
  *   Decir «cuenta eliminada» aquí sería mentir sobre una cuenta que existe.
  */
-const Contacto: React.FC<{ nombre?: string | null; email?: string | null }> = ({
+export const Contacto: React.FC<{ nombre?: string | null; email?: string | null }> = ({
   nombre,
   email,
 }) => {
@@ -112,7 +112,7 @@ const Apunte: React.FC<{ valor: string }> = ({ valor }) => (
 );
 
 /** Desglose de un recuento, de más a menos. */
-const Desglose: React.FC<{
+export const Desglose: React.FC<{
   titulo: string;
   cuenta: Record<string, number>;
   mapa: Record<string, string>;

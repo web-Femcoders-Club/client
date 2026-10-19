@@ -10,6 +10,7 @@ import {
     FolderOpen,
     Heart,
     MapPin,
+    MessageCircle,
     Presentation,
     UserCog,
 } from "lucide-react";
@@ -21,9 +22,8 @@ import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
 import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
 import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
-import CodigoVonage from "../components/CodigoVonage";
-import AprovecharVonage from "../components/AprovecharVonage";
-import InteresEnApis from "../components/InteresEnApis";
+import AccesoVonage from "../../Vonage/components/AccesoVonage";
+import ListaEspera from "../components/ListaEspera";
 import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
 import "./WelcomePage.css";
 
@@ -42,6 +42,7 @@ const ENLACES_MENU = [
     texto: "Recursos Exclusivos",
     Icono: FolderOpen,
   },
+  { to: "/vonage", texto: "Vonage", Icono: MessageCircle },
   { to: "/mentoria", texto: "¿Necesitas mentoría?", Icono: Heart },
   { to: "/enviar-documentacion", texto: "Enviar documentación", Icono: FileUp },
 ];
@@ -61,6 +62,21 @@ const WelcomePage = () => {
   );
   const [emojiMenuOpen, setEmojiMenuOpen] = useState(false);
   const [emojiStats, setEmojiStats] = useState<{ [key: string]: number }>({});
+
+  /*
+   * React Router no baja solo hasta un ancla al cambiar de página: el enlace
+   * «lista de espera» de /vonage (`/welcome#lista-espera`) llegaría arriba del
+   * todo. Además del scroll se mueve el foco, para que quien navega con teclado
+   * o lector de pantalla siga desde el formulario y no desde el principio.
+   */
+  useEffect(() => {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    const destino = document.getElementById(id);
+    if (!destino) return;
+    destino.scrollIntoView({ block: "start" });
+    destino.focus({ preventScroll: true });
+  }, [location.hash]);
 
   // El respaldo miraba solo en localStorage, pero LoginForm escribe el nombre en
   // sessionStorage: al recargar /welcome se perdía el `location.state` y el
@@ -337,14 +353,12 @@ const WelcomePage = () => {
           <EncuestaComunidad />
 
           {/*
-            Ninguno de los dos recibe nada del consentimiento, y es a propósito:
-            si el código dependiera de haber aceptado las comunicaciones, ese
-            consentimiento dejaría de ser libre y no valdría (RGPD art. 7.4).
-            Se llega aquí habiendo respondido lo que sea.
+            Lo de Vonage vive en /vonage (server#147); aquí queda el acceso. La
+            lista de espera se queda en /welcome porque es para cualquier
+            proyecto futuro, no solo de Vonage.
           */}
-          <CodigoVonage />
-          <AprovecharVonage />
-          <InteresEnApis />
+          <AccesoVonage />
+          <ListaEspera />
 
           <header className="mb-8 lg:mb-12">
             <h2>

@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCodigoVonage } from "../../../api/vonageApi";
 import OptimizedImage from "../../../components/OptimizedImage";
-import "./vonage.css";
-
-/**
- * Espacio de Vonage para FemCoders Club. Vive fuera del sitio, así que el enlace
- * abre en pestaña nueva.
- */
-const URL_COMUNIDAD =
-  "https://developer.vonage.com/en/events/register/femcoders-club";
+import "../../Welcome/components/vonage.css";
 
 /**
  * El código promocional de Vonage para la comunidad (#102, server#131).
@@ -94,8 +87,10 @@ const CodigoVonage: React.FC = () => {
         {cabecera}
 
         <p className="vonage__texto">
-          Vonage nos da <strong>20 € de crédito</strong> para que trastees con
-          sus APIs de comunicación: SMS, voz, vídeo y verificación.
+          Vonage pone a tu disposición{" "}
+          <strong>20 € de crédito para explorar sus APIs de comunicación</strong>,
+          experimentar con tecnologías como SMS, voz, vídeo y verificación, y
+          empezar a integrarlas en tus propios proyectos.
         </p>
 
         {error ? (
@@ -147,49 +142,6 @@ const CodigoVonage: React.FC = () => {
             </div>
           )
         )}
-
-        <div className="vonage__caja vonage__caja--comunidad">
-          <div>
-            <p className="vonage__caja-titulo vonage__caja-titulo--llano">
-              Únete a la comunidad de Vonage
-            </p>
-            <p className="vonage__caja-texto">
-              Regístrate en su espacio para FemCoders Club y accede a sus
-              eventos.
-            </p>
-          </div>
-
-          {/*
-            Sale del sitio, así que abre en pestaña nueva. Eso es un cambio de
-            contexto y hay que anunciarlo (WCAG 3.2.5): el icono lo dice a quien
-            lo ve y el texto oculto a quien lo escucha. `rel="noopener
-            noreferrer"` porque `target="_blank"` da acceso a `window.opener`.
-          */}
-          <a
-            className="vonage__boton vonage__boton--secundario foco-visible"
-            href={URL_COMUNIDAD}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ir al registro
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M14 4h6v6" />
-              <path d="M20 4l-9 9" />
-              <path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
-            </svg>
-            <span className="vonage__sr-only"> (se abre en una pestaña nueva)</span>
-          </a>
-        </div>
       </div>
     </section>
   );

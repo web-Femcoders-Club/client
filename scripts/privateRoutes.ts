@@ -19,6 +19,7 @@ export const PRIVATE_ROUTES = [
   "/recursos-comunidad-femcoders-club",
   "/mentoria",
   "/enviar-documentacion",
+  "/vonage",
   "/welcome",
   // La pantalla de consentimiento solo tiene sentido dentro de una sesión, y en
   // el sitemap invitaría a Google a indexar un formulario privado (#102).

@@ -126,7 +126,15 @@
   margin-bottom: 0;
 }
 
+/*
+ * Puede ir en un <p>, un <h2> o un <h3>. Las tres primeras propiedades anulan lo
+ * que index.css pone a los encabezados (fuente de títulos, sombra, altura de
+ * línea): aquí es una etiqueta pequeña, no un título grande.
+ */
 .vonage__caja-titulo {
+  font-family: var(--font-primary);
+  text-shadow: none;
+  line-height: 1.4;
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-text-dark);
@@ -256,7 +264,7 @@
 }
 
 /*
- * El bloque de «Qué puedes hacer con esto» lleva la misma barra de color que la
+ * El bloque de «Qué puedes hacer con esta colaboración» lleva la misma barra de color que la
  * tarjeta del código, así que necesita lo mismo que ella: sin relleno propio
  * —lo pone `.vonage__cuerpo`— y con `overflow: hidden` para que la barra se
  * recorte contra el radio de la esquina en vez de asomar por fuera.
@@ -267,7 +275,7 @@
 }
 
 /*
- * El bloque de «Qué puedes hacer con esto», entre el código y las preguntas.
+ * El bloque de «Qué puedes hacer con esta colaboración», entre el código y las preguntas.
  *
  * Las dos columnas son iguales de ancho a propósito: son dos caminos que no se
  * excluyen (probar por tu cuenta o el programa piloto en equipo), y jerarquizar
@@ -280,6 +288,9 @@
   /* Las dos columnas igual de altas aunque una tenga más texto: si no, la
      violeta queda cortada a media altura y parece un recuadro suelto. */
   align-items: stretch;
+  /* Hueco para el sello «Inscripciones cerradas», que sobresale 2 rem por
+     encima de la tarjeta violeta (ver `.vonage__sello`). */
+  padding-top: var(--spacing-sm);
 }
 
 .vonage__camino {
@@ -347,8 +358,12 @@
 }
 
 @media (max-width: 780px) {
+  /* Apiladas, la violeta va segunda: el hueco del sello pasa de encima de las
+     dos tarjetas al espacio entre ellas. */
   .vonage__caminos {
     grid-template-columns: minmax(0, 1fr);
+    padding-top: 0;
+    row-gap: 2.75rem;
   }
 }
 
@@ -395,6 +410,277 @@
 .vonage__etiqueta {
   color: var(--color-text-dark);
   line-height: 1.5;
+}
+
+/*
+ * Piezas del formulario de la lista de espera (server#147), que comparte el
+ * resto de clases con los bloques de Vonage.
+ *
+ * Las casillas de tecnologías van en rejilla con `auto-fill`: con zoom al 200 %
+ * o en móvil en horizontal las columnas se reducen solas, sin depender de un
+ * breakpoint por ancho.
+ */
+.vonage__opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(11rem, 100%), 1fr));
+  column-gap: var(--spacing-sm);
+}
+
+.vonage__campo {
+  margin-top: var(--spacing-sm);
+}
+
+.vonage__campo .vonage__leyenda,
+.vonage__grupo > .vonage__leyenda {
+  display: block;
+}
+
+/* Borde en el violeta de marca: 8,3:1 sobre blanco, de sobra para 1.4.11. */
+.vonage__entrada {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--color-text-dark);
+  background: var(--color-white);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.vonage__entrada--area {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Texto de ayuda en el mismo color que el resto: sin opacidad, que restaría
+   contraste. */
+.vonage__ayuda {
+  color: var(--color-text-dark);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.vonage__entrada + .vonage__ayuda {
+  margin-top: var(--spacing-xs);
+}
+
+.vonage__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.vonage__aviso {
+  margin-bottom: var(--spacing-sm);
+}
+
+/*
+ * Botón que abre la política con aspecto de enlace. Propio y no el
+ * `.link-button` del pie, que vive en Footer.css. Subrayado siempre: dentro de
+ * un párrafo, el color solo no basta para distinguirlo (WCAG 1.4.1).
+ */
+.vonage__enlace {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--color-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* Sobre la tarjeta violeta: blanco, como el texto que la rodea (8,2:1 en el
+   extremo claro del degradado). El violeta de marca ahí no se leería. */
+.vonage__enlace--claro,
+.vonage__enlace--claro:hover {
+  color: var(--color-white);
+}
+
+/* Al saltar al ancla, que el título no quede pegado al borde de la ventana. */
+#lista-espera {
+  scroll-margin-top: var(--spacing-md);
+}
+
+/* ---------------------------------------------------------------
+   Página /vonage (server#147)
+   --------------------------------------------------------------- */
+
+/* La caja de la comunidad, que en /vonage va sola al final. */
+.vonage__caja--suelta {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Título de la tarjeta del programa, junto al sello que lo rodea. */
+.vonage__camino-titulo {
+  margin-bottom: var(--spacing-xs);
+}
+
+/*
+ * Sello «Inscripciones cerradas», redondo y medio fuera de la esquina de la
+ * tarjeta violeta. En dos líneas y sin mayúsculas, que con ellas «Inscripciones»
+ * no cabría en el círculo.
+ *
+ * - Es un `float` con `shape-outside`: el texto de la tarjeta rodea la curva
+ *   del círculo en vez de quedar tapado, y no hace falta reservar una columna.
+ * - Sobresale 2 rem por arriba y 0,75 rem por la derecha. Por arriba cabe en
+ *   los 2,5 rem que hay sobre las tarjetas (o en el hueco entre ellas en móvil,
+ *   ver `.vonage__caminos`); más, y lo recortaría el `overflow: hidden` de
+ *   `.vonage--aprovechar`. Por la derecha, menos que el relleno lateral.
+ * - Medidas en rem, no en px, para que el círculo crezca con el texto al hacer
+ *   zoom en vez de quedarse pequeño y desbordarse.
+ * - Neumorfismo solo en el relieve (sombras). El contraste no depende de él:
+ *   --color-primary-oscuro sobre --color-melocoton da 7,41:1 (AAA), y el
+ *   círculo claro sobre el violeta se distingue de sobra.
+ * - Doble clase para ganar a `.vonage span`, que hereda tamaño y peso del
+ *   padre para neutralizar la regla global de los span.
+ */
+.vonage .vonage__sello {
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 6.5rem;
+  height: 6.5rem;
+  /* Relleno de la tarjeta: 1 rem arriba y 1,5 rem a la derecha. */
+  margin: -3rem -2.25rem var(--spacing-xs) var(--spacing-sm);
+  shape-outside: circle(50%) border-box;
+  shape-margin: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--color-primary-oscuro);
+  background: var(--color-melocoton);
+  box-shadow:
+    6px 6px 14px rgba(20, 12, 60, 0.45),
+    -3px -3px 8px rgba(255, 255, 255, 0.35),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -3px -3px 6px rgba(143, 35, 24, 0.18);
+}
+
+/*
+ * Aviso de cierre del piloto. Tonos cálidos para que no se lea como un bloque
+ * más de los violetas: --color-primary-oscuro sobre --color-melocoton da
+ * 7,41:1, y el texto (#6b1a12) más todavía. Los dos pasan AAA.
+ */
+.vonage-cierre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  background: var(--color-melocoton);
+  border: 2px solid var(--color-primary-oscuro);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.vonage-cierre__icono {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-primary-oscuro);
+  color: #ffffff;
+}
+
+.vonage-cierre__cuerpo {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.vonage-cierre__antetitulo {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-oscuro);
+}
+
+.vonage-cierre__titulo {
+  margin: 0 0 var(--spacing-xs);
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--color-primary-oscuro);
+  text-shadow: none;
+}
+
+.vonage-cierre__texto {
+  margin: 0 0 var(--spacing-xs);
+  line-height: 1.6;
+  color: #6b1a12;
+}
+
+.vonage-cierre__texto:last-child {
+  margin-bottom: 0;
+}
+
+.vonage-cierre__enlace,
+.vonage-cierre__enlace:hover {
+  font-weight: 700;
+  color: var(--color-primary-oscuro);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* «Volver a tu espacio», el mismo patrón que en Ofertas de trabajo. */
+.vonage-pagina__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-bottom: var(--spacing-sm);
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #3b2d99;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.vonage-pagina__volver:hover {
+  background-color: #f4f2fa;
+  color: var(--color-text-dark);
+}
+
+/* Acceso a /vonage desde /welcome: una tarjeta corta en lugar de los bloques. */
+.vonage--acceso {
+  padding: 0;
+  overflow: hidden;
+}
+
+.vonage__acceso-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.vonage__acceso-texto {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.vonage__acceso-texto .vonage__titulo {
+  font-size: 1.5rem;
+}
+
+.vonage__acceso-texto .vonage__texto {
+  margin-bottom: 0;
 }
 
 /*

@@ -50,7 +50,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
 
         <header>
           <h3 id="privacy-policy-title">Política de Privacidad de FemCoders Club</h3>
-          <p>Fecha de entrada en vigor: 29.09.2025 · Última actualización: 07.10.2026</p>
+          <p>Fecha de entrada en vigor: 29.09.2025 · Última actualización: 19.10.2026</p>
         </header>
 
         <div className="modal-body">
@@ -92,6 +92,15 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
               «Prefiero no decir», no entras por defecto en ninguna de las dos listas; el equipo
               puede incluirte en una para invitarte a un evento, sin cambiar nunca lo que
               respondiste en tu perfil. Puedes cambiar tu respuesta cuando quieras.
+            </li>
+            <li>
+              <strong>Lista de espera de proyectos:</strong> si te apuntas desde tu página de
+              bienvenida, guardamos con qué tecnologías has trabajado o te gustaría trabajar, si te ofreces como
+              mentora y, si nos la cuentas, tu idea de proyecto. Tu nombre y tu correo los tomamos
+              de tu cuenta. Lo usamos para formar los equipos, saber quién puede acompañarlos como
+              mentora y contactar contigo cuando organicemos un proyecto nuevo. Puedes quitarte de
+              la lista cuando quieras desde la misma página, y si borras tu cuenta tu inscripción
+              se borra con ella.
             </li>
             <li>
               <strong>Formulario de contacto:</strong> nombre, correo electrónico y mensaje, para
@@ -158,8 +167,9 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                 </li>
                 <li>
                   <strong>Consentimiento expreso:</strong> cuando te inscribes, participas o te
-                  suscribes voluntariamente. Si tienes cuenta, la newsletter y las invitaciones a
-                  eventos solo te llegan si lo has aceptado.
+                  suscribes voluntariamente, por ejemplo al apuntarte a la lista de espera de
+                  proyectos. Si tienes cuenta, la newsletter y las invitaciones a eventos solo te
+                  llegan si lo has aceptado.
                 </li>
                 <li>
                   <strong>Interés legítimo:</strong> para informar de nuestras actividades a quienes
@@ -187,6 +197,10 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
                   cuenta, tu foto, tus logros y los resultados de los cuestionarios. Guardamos
                   durante 12 meses una anotación interna con tu nombre y tu correo, que deja
                   constancia del borrado.
+                </li>
+                <li>
+                  <strong>Lista de espera de proyectos:</strong> hasta que te quites de la lista o
+                  borres tu cuenta; en ese caso se elimina con ella, al vaciarse la papelera.
                 </li>
                 <li>
                   <strong>Contacto:</strong> hasta responder la consulta y cerrar el seguimiento.

@@ -4,6 +4,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import {
   Award,
   BarChart3,
+  ClipboardList,
   FileText,
   HeartHandshake,
   Lightbulb,
@@ -27,6 +28,7 @@ import LegalDocs from '../components/legal/LegalDocs';
 import ManageAchievements from '../../Achievements/page/ManageAchievements';
 import ListasDeCorreo from '../components/contactos/ListasDeCorreo';
 import InteresEnApisPanel from '../components/interes/InteresEnApisPanel';
+import ListaEsperaPanel from '../components/listaEspera/ListaEsperaPanel';
 import ResumenPanel from '../components/resumen/ResumenPanel';
 import RegistroDeActividad from '../components/registro/RegistroDeActividad';
 import ComunidadReal from '../components/comunidad/ComunidadReal';
@@ -49,6 +51,7 @@ const SECCIONES = [
   { to: '/admin/listas', texto: '6. Listas de Correo', Icono: Mail },
   { to: '/admin/proyecto-vonage', texto: '7. Proyecto Vonage', Icono: Lightbulb },
   { to: '/admin/comunidad', texto: '8. Comunidad real', Icono: HeartHandshake },
+  { to: '/admin/lista-espera', texto: '9. Lista de espera', Icono: ClipboardList },
 ];
 
 /*
@@ -150,6 +153,7 @@ const Admin: React.FC = () => {
                 <Route path="achievements" element={<ManageAchievements />} />
                 <Route path="listas" element={<ListasDeCorreo />} />
                 <Route path="proyecto-vonage" element={<InteresEnApisPanel />} />
+                <Route path="lista-espera" element={<ListaEsperaPanel />} />
                 <Route path="comunidad" element={<ComunidadReal />} />
                 <Route path="registro" element={<RegistroDeActividad />} />
                 <Route path="unsubscribed" element={<UnsubscribeList />} />
