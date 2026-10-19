@@ -95,7 +95,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ closeModal }) =
             </li>
             <li>
               <strong>Lista de espera de proyectos:</strong> si te apuntas desde tu página de
-              bienvenida, guardamos con qué tecnologías te sientes más cómoda, si te ofreces como
+              bienvenida, guardamos con qué tecnologías has trabajado o te gustaría trabajar, si te ofreces como
               mentora y, si nos la cuentas, tu idea de proyecto. Tu nombre y tu correo los tomamos
               de tu cuenta. Lo usamos para formar los equipos, saber quién puede acompañarlos como
               mentora y contactar contigo cuando organicemos un proyecto nuevo. Puedes quitarte de

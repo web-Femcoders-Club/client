@@ -104,7 +104,8 @@ const ListaEsperaPanel: React.FC = () => {
       </h1>
       <p className="text-gray-500 text-sm mb-6">
         Quién quiere participar en los próximos proyectos de la comunidad, con qué
-        tecnologías se siente cómoda y quién se ofrece como mentora.
+        tecnologías ha trabajado o le gustaría trabajar y quién se ofrece como
+        mentora.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

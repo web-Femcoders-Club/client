@@ -18,8 +18,8 @@ import "./vonage.css";
  * Lista de espera para futuros proyectos de la comunidad (server#147).
  *
  * Nombre y correo no se piden: salen de la cuenta. Se pregunta solo lo que el
- * equipo necesita para formar equipos: con qué tecnologías se siente cómoda
- * cada persona, si se ofrece como mentora y, si quiere, una idea de proyecto.
+ * equipo necesita para formar equipos: con qué tecnologías ha trabajado o le gustaría
+ * trabajar cada persona, si se ofrece como mentora y, si quiere, una idea de proyecto.
  *
  * Usa las clases de `vonage.css` porque son las del bloque de formulario de
  * /welcome; la lista no depende de Vonage en nada más.
@@ -150,20 +150,36 @@ const ListaEspera: React.FC = () => {
       tabIndex={-1}
     >
       <h2 id="lista-espera-titulo" className="vonage__titulo">
-        Lista de espera para los próximos proyectos
+        Participa en los próximos proyectos de FemCoders Club
       </h2>
       <p className="vonage__texto">
-        Si te apetece participar en los próximos proyectos de FemCoders Club,
-        apúntate aquí. Con lo que nos cuentes sabremos qué equipos podemos formar
-        y quién puede acompañarlos como mentora, y el equipo se pondrá en
-        contacto contigo cuando haya un proyecto nuevo.
+        ¿Te gustaría formar parte de un proyecto tecnológico junto a otras mujeres
+        de nuestra comunidad?
+      </p>
+      <p className="vonage__texto">
+        Queremos seguir creando oportunidades para aprender, compartir
+        conocimientos y desarrollar proyectos en equipo. Tanto si estás dando tus
+        primeros pasos como si ya tienes experiencia y quieres aportar tus
+        conocimientos, hay espacio para ti.
+      </p>
+      <p className="vonage__texto">
+        Cuéntanos qué tecnologías conoces y cómo te gustaría participar. Así
+        podremos organizar los próximos equipos y contar con mentoras que los
+        acompañen.
       </p>
 
       <form onSubmit={enviar} className="vonage__form" noValidate>
-        <fieldset className="vonage__grupo">
+        <fieldset
+          className="vonage__grupo"
+          aria-describedby="lista-espera-tecnologias-ayuda"
+        >
           <legend className="vonage__leyenda">
-            ¿Con qué tecnologías te sientes más cómoda? Puedes marcar varias
+            ¿Con qué tecnologías has trabajado o te gustaría trabajar?
           </legend>
+          <p id="lista-espera-tecnologias-ayuda" className="vonage__ayuda">
+            Puedes seleccionar varias opciones. No necesitas dominarlas para
+            participar.
+          </p>
           <div className="vonage__opciones">
             {TECNOLOGIAS_LISTA_ESPERA.map(({ valor, texto }) => (
               <label className="vonage__opcion" key={valor}>
@@ -204,19 +220,18 @@ const ListaEspera: React.FC = () => {
               onChange={(e) => setMentora(e.target.checked)}
             />
             <span className="vonage__etiqueta">
-              Me sentiría cómoda acompañando a un equipo como mentora
+              Me gustaría acompañar a un equipo como mentora
             </span>
           </label>
         </div>
 
         <div className="vonage__grupo">
           <label htmlFor="lista-espera-idea" className="vonage__leyenda">
-            ¿Tienes una idea de proyecto? (opcional)
+            ¿Tienes alguna idea de proyecto? (Opcional)
           </label>
           <p id="lista-espera-idea-ayuda" className="vonage__ayuda">
-            Cuéntanosla en {LARGO_IDEA} caracteres como máximo. No hace falta que
-            incluyas datos de contacto, porque ya los tenemos por tu cuenta, y te
-            pedimos que no incluyas datos de salud ni de otras personas.
+            ¡Nos encantará conocerla! Cuéntanos brevemente qué te gustaría crear.
+            No hace falta que compartas datos personales ni información sensible.
           </p>
           <textarea
             id="lista-espera-idea"
@@ -254,20 +269,28 @@ const ListaEspera: React.FC = () => {
           datos y antes del botón: para qué se usan, cómo quitarse y dónde está
           la política entera.
         */}
-        <p className="vonage__ayuda vonage__aviso">
-          Usamos estos datos solo para formar equipos y contactar contigo cuando
-          haya un proyecto nuevo. Puedes quitarte de la lista cuando quieras desde
-          aquí, y si borras tu cuenta tu inscripción se borra con ella. Más
-          detalle en la{" "}
-          <button
-            type="button"
-            className="vonage__enlace foco-visible"
-            onClick={() => openModal("privacyPolicy")}
-          >
-            política de privacidad
-          </button>
-          .
-        </p>
+        <div className="vonage__aviso">
+          <h3 className="vonage__caja-titulo vonage__caja-titulo--llano">
+            Información sobre tu inscripción
+          </h3>
+          <p className="vonage__ayuda">
+            Utilizaremos tus respuestas únicamente para organizar equipos y
+            avisarte cuando surjan nuevos proyectos. Puedes darte de baja de la
+            lista en cualquier momento. Si eliminas tu cuenta, también
+            eliminaremos tu inscripción.
+          </p>
+          <p className="vonage__ayuda">
+            Consulta nuestra{" "}
+            <button
+              type="button"
+              className="vonage__enlace foco-visible"
+              onClick={() => openModal("privacyPolicy")}
+            >
+              política de privacidad
+            </button>{" "}
+            para más información.
+          </p>
+        </div>
 
         <div className="vonage__acciones">
           <button
@@ -275,7 +298,7 @@ const ListaEspera: React.FC = () => {
             className="vonage__boton foco-visible"
             disabled={ocupada}
           >
-            {inscrita ? "Actualizar mi inscripción" : "Apuntarme a la lista"}
+            {inscrita ? "Actualizar mi inscripción" : "Quiero participar"}
           </button>
           {inscrita && (
             <button

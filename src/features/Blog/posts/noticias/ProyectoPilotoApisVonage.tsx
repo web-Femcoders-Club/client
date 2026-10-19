@@ -272,7 +272,7 @@ const ProyectoPilotoApisVonage: React.FC = () => (
         <p>
           Si te apetece participar en los próximos proyectos de la comunidad,
           puedes apuntarte a nuestra lista de espera desde tu página de
-          bienvenida. Te preguntamos con qué tecnologías te sientes más cómoda,
+          bienvenida. Te preguntamos con qué tecnologías has trabajado o te gustaría trabajar,
           si te gustaría acompañar a un equipo como mentora y, si tienes una, tu
           idea de proyecto. El equipo se pondrá en contacto contigo cuando haya
           un proyecto nuevo.
