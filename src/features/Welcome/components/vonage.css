@@ -288,6 +288,9 @@
   /* Las dos columnas igual de altas aunque una tenga más texto: si no, la
      violeta queda cortada a media altura y parece un recuadro suelto. */
   align-items: stretch;
+  /* Hueco para el sello «Inscripciones cerradas», que sobresale por encima de
+     la tarjeta violeta (ver `.vonage__sello`). */
+  padding-top: 3rem;
 }
 
 .vonage__camino {
@@ -357,8 +360,12 @@
 }
 
 @media (max-width: 780px) {
+  /* Apiladas, la violeta va segunda: el hueco del sello pasa de encima de las
+     dos tarjetas al espacio entre ellas. */
   .vonage__caminos {
     grid-template-columns: minmax(0, 1fr);
+    padding-top: 0;
+    row-gap: 4.75rem;
   }
 }
 
@@ -525,9 +532,11 @@
  * tarjeta violeta. En dos líneas y sin mayúsculas, que con ellas «Inscripciones»
  * no cabría en el círculo.
  *
- * - Cabe: sobresale 1 rem por arriba y 0,75 rem por la derecha, menos que el
- *   hueco que hay alrededor de la tarjeta (1,5 rem; 1 rem en móvil). Más, y lo
- *   recortaría el `overflow: hidden` de `.vonage--aprovechar`.
+ * - Queda casi entero por encima del borde (4,25 rem de sus 6,5), para no tapar
+ *   el texto de la tarjeta. El hueco lo abre `.vonage__caminos`: 4,5 rem encima
+ *   de las tarjetas, o 4,75 rem entre ellas en móvil. Sin ese hueco lo
+ *   recortaría el `overflow: hidden` de `.vonage--aprovechar`. Por la derecha
+ *   sobresale 0,75 rem, menos que el relleno lateral (1,5 rem; 1 rem en móvil).
  * - Medidas en rem, no en px, para que el círculo crezca con el texto al hacer
  *   zoom en vez de quedarse pequeño y desbordarse.
  * - Neumorfismo solo en el relieve (sombras). El contraste no depende de él:
@@ -538,7 +547,7 @@
  */
 .vonage .vonage__sello {
   position: absolute;
-  top: -1rem;
+  top: -4.25rem;
   right: -0.75rem;
   display: flex;
   align-items: center;
