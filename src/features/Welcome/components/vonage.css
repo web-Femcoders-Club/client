@@ -288,9 +288,9 @@
   /* Las dos columnas igual de altas aunque una tenga más texto: si no, la
      violeta queda cortada a media altura y parece un recuadro suelto. */
   align-items: stretch;
-  /* Hueco para el sello «Inscripciones cerradas», que sobresale por encima de
-     la tarjeta violeta (ver `.vonage__sello`). */
-  padding-top: 3rem;
+  /* Hueco para el sello «Inscripciones cerradas», que sobresale 2 rem por
+     encima de la tarjeta violeta (ver `.vonage__sello`). */
+  padding-top: var(--spacing-sm);
 }
 
 .vonage__camino {
@@ -335,8 +335,6 @@
  * tamaño, que no dependen del fondo.
  */
 .vonage__camino--programa {
-  /* Referencia del sello «Cerrado», que se coloca sobre la esquina. */
-  position: relative;
   background: linear-gradient(135deg, #4737bb, #2a2170);
   border-color: transparent;
   color: var(--color-white);
@@ -365,7 +363,7 @@
   .vonage__caminos {
     grid-template-columns: minmax(0, 1fr);
     padding-top: 0;
-    row-gap: 4.75rem;
+    row-gap: 2.75rem;
   }
 }
 
@@ -516,27 +514,22 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* Título de la tarjeta del programa. Deja sitio a la derecha para el sello,
-   que va posicionado encima de la esquina. */
-.vonage__camino-cabecera {
+/* Título de la tarjeta del programa, junto al sello que lo rodea. */
+.vonage__camino-titulo {
   margin-bottom: var(--spacing-xs);
-  padding-right: 6rem;
-}
-
-.vonage__camino-cabecera .vonage__caja-titulo {
-  margin: 0;
 }
 
 /*
- * Sello «Inscripciones cerradas», redondo y sobresaliendo de la esquina de la
+ * Sello «Inscripciones cerradas», redondo y medio fuera de la esquina de la
  * tarjeta violeta. En dos líneas y sin mayúsculas, que con ellas «Inscripciones»
  * no cabría en el círculo.
  *
- * - Queda casi entero por encima del borde (4,25 rem de sus 6,5), para no tapar
- *   el texto de la tarjeta. El hueco lo abre `.vonage__caminos`: 4,5 rem encima
- *   de las tarjetas, o 4,75 rem entre ellas en móvil. Sin ese hueco lo
- *   recortaría el `overflow: hidden` de `.vonage--aprovechar`. Por la derecha
- *   sobresale 0,75 rem, menos que el relleno lateral (1,5 rem; 1 rem en móvil).
+ * - Es un `float` con `shape-outside`: el texto de la tarjeta rodea la curva
+ *   del círculo en vez de quedar tapado, y no hace falta reservar una columna.
+ * - Sobresale 2 rem por arriba y 0,75 rem por la derecha. Por arriba cabe en
+ *   los 2,5 rem que hay sobre las tarjetas (o en el hueco entre ellas en móvil,
+ *   ver `.vonage__caminos`); más, y lo recortaría el `overflow: hidden` de
+ *   `.vonage--aprovechar`. Por la derecha, menos que el relleno lateral.
  * - Medidas en rem, no en px, para que el círculo crezca con el texto al hacer
  *   zoom en vez de quedarse pequeño y desbordarse.
  * - Neumorfismo solo en el relieve (sombras). El contraste no depende de él:
@@ -546,15 +539,17 @@
  *   padre para neutralizar la regla global de los span.
  */
 .vonage .vonage__sello {
-  position: absolute;
-  top: -4.25rem;
-  right: -0.75rem;
+  float: right;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
   width: 6.5rem;
   height: 6.5rem;
+  /* Relleno de la tarjeta: 1 rem arriba y 1,5 rem a la derecha. */
+  margin: -3rem -2.25rem var(--spacing-xs) var(--spacing-sm);
+  shape-outside: circle(50%) border-box;
+  shape-margin: 0.5rem;
   padding: 0.75rem;
   border-radius: 50%;
   font-family: var(--font-heading);

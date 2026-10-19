@@ -53,15 +53,16 @@ const AprovecharVonage: React.FC = () => (
         </div>
 
         <div className="vonage__camino vonage__camino--programa">
-          <div className="vonage__camino-cabecera">
-            <h3 className="vonage__caja-titulo">En equipo: programa piloto</h3>
-            {/*
-              Sello redondo sobre la esquina. «Inscripciones cerradas» y no
-              «Cerrado», que daría a entender que el programa ha terminado. Va
-              justo después del título para que se lea en ese orden.
-            */}
-            <span className="vonage__sello">Inscripciones cerradas</span>
-          </div>
+          {/*
+            Sello redondo sobre la esquina. «Inscripciones cerradas» y no
+            «Cerrado», que daría a entender que el programa ha terminado. Va
+            antes del título porque es un `float`: el texto de la tarjeta lo
+            rodea, y para eso tiene que estar primero en el documento.
+          */}
+          <span className="vonage__sello">Inscripciones cerradas</span>
+          <h3 className="vonage__caja-titulo vonage__camino-titulo">
+            En equipo: programa piloto
+          </h3>
 
           <p className="vonage__camino-texto">
             Durante seis semanas, las participantes desarrollan proyectos en
