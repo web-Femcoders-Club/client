@@ -12,9 +12,10 @@ import {
     MapPin,
     MessageCircle,
     Presentation,
+    ScrollText,
     UserCog,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLocation } from "react-router-dom";
 import { getUserAchievements } from "../../../api/achievementsApi";
@@ -25,6 +26,7 @@ import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
 import AccesoVonage from "../../Vonage/components/AccesoVonage";
 import ListaEspera from "../components/ListaEspera";
 import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
+import { ModalContext } from "../../../context/ModalContext";
 import "./WelcomePage.css";
 
 /*
@@ -49,7 +51,8 @@ const ENLACES_MENU = [
 
 const WelcomePage = () => {
   const location = useLocation();
-  const state = (location.state as { userName: string; userId?: number }) || {};
+  const { openModal } = useContext(ModalContext);
+  const state =(location.state as { userName: string; userId?: number }) || {};
   const { userName, userId } = state;
 
   const resolvedUserId =
@@ -315,6 +318,22 @@ const WelcomePage = () => {
             </Link>
           </li>
         ))}
+        {/*
+          Botón y no enlace: abre el documento sobre la página, como la política
+          de privacidad, en vez de llevar a otra ruta.
+        */}
+        <li>
+          <button
+            type="button"
+            className="welcome-menu__enlace welcome-menu__boton"
+            title="Código de conducta"
+            aria-haspopup="dialog"
+            onClick={() => openModal("codigoConducta")}
+          >
+            <ScrollText className="welcome-menu__icono" aria-hidden="true" />
+            <span className="fem-sidebar__label">Código de conducta</span>
+          </button>
+        </li>
       </ul>
     </nav>
   );

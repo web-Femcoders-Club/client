@@ -47,6 +47,16 @@
   background-color: #f4f2fa;
 }
 
+/* El código de conducta abre un modal: botón con el aspecto de los enlaces. */
+.welcome-menu__boton {
+  width: 100%;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .welcome-menu__icono {
   width: 20px;
   height: 20px;

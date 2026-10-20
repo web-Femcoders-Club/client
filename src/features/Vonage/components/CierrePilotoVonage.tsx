@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getInteresEnApis } from "../../../api/vonageApi";
+import { ModalContext } from "../../../context/ModalContext";
 import "../../Welcome/components/vonage.css";
 
 /**
@@ -18,6 +19,7 @@ import "../../Welcome/components/vonage.css";
 const CierrePilotoVonage: React.FC = () => {
   const idUser = Number(sessionStorage.getItem("userId") || 0);
   const [seInscribio, setSeInscribio] = useState(false);
+  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     if (!idUser) return;
@@ -61,11 +63,26 @@ const CierrePilotoVonage: React.FC = () => {
           Inscripciones al programa piloto cerradas
         </h2>
         {seInscribio ? (
-          <p className="vonage-cierre__texto">
-            <strong>Gracias por sumarte a este primer programa piloto.</strong>{" "}
-            Ya tenemos tus respuestas, y el equipo se pondrá en contacto contigo
-            para contarte los siguientes pasos.
-          </p>
+          <>
+            <p className="vonage-cierre__texto">
+              <strong>Gracias por sumarte a este primer programa piloto.</strong>{" "}
+              Ya tenemos tus respuestas, y el equipo se pondrá en contacto contigo
+              para contarte los siguientes pasos.
+            </p>
+            {/* El código de conducta es sobre todo para el piloto: solo lo ve quien se inscribió. */}
+            <p className="vonage-cierre__texto">
+              Antes del inicio, el 26 de octubre, te pedimos que leas el{" "}
+              <button
+                type="button"
+                className="vonage__enlace vonage-cierre__enlace foco-visible"
+                aria-haspopup="dialog"
+                onClick={() => openModal("codigoConducta")}
+              >
+                código de conducta
+              </button>{" "}
+              del programa.
+            </p>
+          </>
         ) : (
           <p className="vonage-cierre__texto">
             Las inscripciones cerraron el domingo 18 de octubre.{" "}

@@ -21,6 +21,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   espacio de Vonage para la comunidad, que antes eran cuatro bloques seguidos en
   `/welcome`. Solo exige sesión, no la pantalla de preferencias. Es privada: no
   va al sitemap ni al prerender.
+- **Código de conducta del programa piloto** en un modal, como la política de
+  privacidad. Se abre desde el menú de `/welcome` y, para quien se inscribió,
+  desde el aviso de cierre de `/vonage`. El original está en el Drive: los
+  cambios se copian a mano. No va al pie porque está pensado para el piloto.
 
 #### Cambiado
 - **Inscripciones al piloto cerradas**: el formulario de las tres preguntas se
