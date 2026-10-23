@@ -28,6 +28,8 @@ import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
 import { META_CONTACTO } from "../src/features/Contact/contenido";
+import { codigoConductaHtml } from "./contenidoCodigoConducta";
+import { META_CODIGO } from "../src/features/CodigoConducta/contenido";
 import { META_REGISTRO } from "../src/features/User/contenido";
 
 export interface RutaMeta {
@@ -222,6 +224,13 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     imagen: { ruta: META_CONTACTO.imagen, ancho: 1200, alto: 630, alt: META_CONTACTO.imagenAlt },
     // La página, el punto de contacto de la Organization y la miga de pan.
     jsonLd: contactoJsonLd(),
+  },
+  "/codigo-de-conducta": {
+    // Metas y textos de src/features/CodigoConducta/contenido.ts, los mismos que
+    // pinta CodigoConductaPage.tsx. Sin imagen propia: se queda la genérica.
+    title: META_CODIGO.titulo,
+    description: META_CODIGO.descripcion,
+    contenidoHtml: codigoConductaHtml(),
   },
   "/login": {
     title: "Iniciar Sesión - FemCoders Club",

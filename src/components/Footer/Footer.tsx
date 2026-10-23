@@ -76,6 +76,12 @@ const FccFooter = () => {
           </div>
 
           <ul className="pie__avisos pie__bloque--separado">
+            {/* Página y no ventana: necesita una dirección propia para compartirla en Slack. */}
+            <li>
+              <Link to="/codigo-de-conducta" className="pie__aviso fc-enlace fc-enlace--siempre">
+                Código de conducta
+              </Link>
+            </li>
             {AVISOS.map(({ modal, texto }) => (
               <li key={modal}>
                 <button type="button" className="pie__aviso fc-enlace fc-enlace--siempre" onClick={() => openModal(modal)}>

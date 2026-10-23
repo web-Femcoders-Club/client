@@ -61,6 +61,7 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Events: https://www.femcodersclub.com/eventos
 - Team: https://www.femcodersclub.com/equipo
 - About: https://www.femcodersclub.com/femcoders-quienes-somos
+- Code of conduct: https://www.femcodersclub.com/codigo-de-conducta
 - LinkedIn: https://www.linkedin.com/company/fem-coders-club/
 - GitHub: https://github.com/femcodersclub
 - YouTube: https://www.youtube.com/@FemcodersClub

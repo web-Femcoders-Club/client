@@ -20,6 +20,7 @@ const excludedRoutes = PRIVATE_ROUTES;
 const staticRoutes: SitemapItemLoose[] = [
   { url: '/', changefreq: EnumChangefreq.WEEKLY, priority: 1.0, lastmod: currentDate },
   { url: '/contacto', changefreq: EnumChangefreq.MONTHLY, priority: 0.7, lastmod: currentDate },
+  { url: '/codigo-de-conducta', changefreq: EnumChangefreq.MONTHLY, priority: 0.6, lastmod: currentDate },
   { url: '/eventos', changefreq: EnumChangefreq.WEEKLY, priority: 0.9, lastmod: currentDate },
   {
     url: '/femcoders-quienes-somos',

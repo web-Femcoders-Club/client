@@ -1,0 +1,224 @@
+/*
+ * /codigo-de-conducta: una hoja blanca (fc-tarjeta) sobre el fondo bg1, con
+ * el ancho de lectura de los documentos del pie.
+ *
+ * Los h1, h3 y h4 globales de index.css son naranja con sombra doble y
+ * encogen en el móvil: aquí cada título fija su color, su tamaño y quita la
+ * sombra. Tinta y violeta sobre blanco: 15:1 y 8,29:1, AAA.
+ */
+
+.codigo {
+  /* La cabecera es fija y publica su altura en --fem-header-height. */
+  padding: calc(var(--fem-header-height, 80px) + clamp(1.5rem, 4vw, 3rem)) 16px clamp(3.5rem, 7vw, 5rem);
+}
+
+/* El botón de volver y la hoja comparten ancho, así que quedan alineados. */
+.codigo__marco {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/*
+ * «Volver a tu espacio», encima de la hoja. Violeta sobre el fondo claro:
+ * 8,29:1, AAA. 44px de alto (WCAG 2.5.5).
+ */
+.codigo__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  border-radius: 0.6rem;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.codigo__volver svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+}
+
+.codigo__volver:hover {
+  background-color: var(--color-lavanda);
+}
+
+.codigo__volver:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.codigo__hoja {
+  padding: clamp(1.4rem, 4vw, 3rem);
+}
+
+/* ---------- Cabecera ---------- */
+
+.codigo__cabecera {
+  display: grid;
+  gap: 0.9rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid rgba(71, 55, 187, 0.14);
+}
+
+.codigo__titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--color-text-dark);
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+.codigo__entradilla {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--font-primary);
+  font-size: clamp(1.02rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  text-wrap: pretty;
+}
+
+.codigo__vigor {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+}
+
+/* ---------- Índice ---------- */
+
+.codigo__indice {
+  margin: 1.6rem 0 0;
+  padding: 1.1rem 1.4rem;
+  border-radius: 1rem;
+  background: var(--color-lavanda);
+}
+
+.codigo__indice-titulo {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.codigo__indice ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.codigo__indice li {
+  margin-top: 0.35rem;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.codigo__indice li::marker {
+  color: var(--color-secondary);
+}
+
+/* ---------- Partes y apartados ---------- */
+
+.codigo__parte {
+  padding-top: 2.4rem;
+}
+
+.codigo__parte-titulo {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+.codigo__parte-entradilla {
+  margin: 0;
+}
+
+/* Cada proyecto, una banda lavanda a la izquierda que lo separa de la parte general. */
+.codigo__proyecto {
+  margin-top: 2rem;
+  padding-left: clamp(0.9rem, 2.5vw, 1.4rem);
+  border-left: 3px solid var(--color-lavanda-medio);
+}
+
+.codigo__proyecto-titulo {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  text-shadow: none;
+}
+
+/* Violeta, sin sombra, con la línea de marca corta delante (como en los documentos del pie). */
+.codigo__apartado-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-secondary);
+  text-shadow: none;
+}
+
+.codigo__apartado-titulo::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+/* ---------- Texto ---------- */
+
+.codigo__parte p,
+.codigo__parte li {
+  max-width: 72ch;
+  font-family: var(--font-primary);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-text-dark);
+}
+
+.codigo__parte p {
+  margin: 0 0 0.8rem;
+}
+
+.codigo__parte ul {
+  margin: 0 0 0.8rem;
+  padding-left: 1.3rem;
+  list-style: disc;
+}
+
+.codigo__parte li + li {
+  margin-top: 0.35rem;
+}
+
+.codigo__parte li::marker {
+  color: var(--color-secondary);
+}
+
+/* El correo, largo y sin espacios: se parte antes que salirse de la hoja a 320px. */
+.codigo a[href^="mailto:"] {
+  overflow-wrap: anywhere;
+}

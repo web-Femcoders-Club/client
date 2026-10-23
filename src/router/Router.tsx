@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import CodigoConductaModal from "../components/Footer/Modals/CodigoConducta";
 import CookiePolicyModal from "../components/Footer/Modals/Cookies";
 import FaqModal from "../components/Footer/Modals/FaqModal";
 import LegalNoticeModal from "../components/Footer/Modals/LegalNoticeModalProps";
@@ -20,6 +19,7 @@ import logPageView from "../utils/logPageView";
 
 const HomePage = lazy(() => import("../features/Home/page/HomePage"));
 const ContactPage = lazy(() => import("../features/Contact/page/ContactPage"));
+const CodigoConductaPage = lazy(() => import("../features/CodigoConducta/page/CodigoConductaPage"));
 const BlogPage = lazy(() => import("../features/Blog/page/BlogPage"));
 const Aniversario = lazy(
   () => import("../features/Blog/posts/noticias/Aniversario")
@@ -250,6 +250,14 @@ const RouterComponent: React.FC = () => {
             element={
               <Layout>
                 <ContactPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/codigo-de-conducta"
+            element={
+              <Layout>
+                <CodigoConductaPage />
               </Layout>
             }
           />
@@ -992,9 +1000,6 @@ const RouterComponent: React.FC = () => {
         <LegalNoticeModal closeModal={closeModal} />
       )}
       {modalType === "faq" && <FaqModal closeModal={closeModal} />}
-      {modalType === "codigoConducta" && (
-        <CodigoConductaModal closeModal={closeModal} />
-      )}
     </>
   );
 };
