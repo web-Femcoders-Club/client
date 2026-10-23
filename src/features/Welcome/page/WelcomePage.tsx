@@ -1,57 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import {
     Award,
-    Briefcase,
     Calendar,
     ChevronRight,
     Clock,
     ExternalLink,
-    FileUp,
-    FolderOpen,
-    Heart,
     MapPin,
-    MessageCircle,
-    Presentation,
-    ScrollText,
-    UserCog,
 } from "lucide-react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLocation } from "react-router-dom";
 import { getUserAchievements } from "../../../api/achievementsApi";
 import { getUpcomingEvents } from "../../../api/eventsApi";
 import OptimizedImage from "../../../components/OptimizedImage";
-import CollapsibleSidebar from "../../../components/ui/CollapsibleSidebar";
+import MenuEspacio from "../components/MenuEspacio";
 import InvolucrateEnLaComunidad from "../components/InvolucrateEnLaComunidad";
 import AccesoVonage from "../../Vonage/components/AccesoVonage";
 import ListaEspera from "../components/ListaEspera";
 import EncuestaComunidad from "../../../components/EncuestaComunidad/EncuestaComunidad";
-import { ModalContext } from "../../../context/ModalContext";
 import "./WelcomePage.css";
-
-/*
- * Cada enlace lleva icono porque el menú contraído deja solo la franja de
- * iconos: el texto se oculta a la vista pero sigue en el árbol de
- * accesibilidad, así que un lector de pantalla lo anuncia entero. El `title` es
- * para quien navega con ratón y solo ve el dibujo.
- */
-const ENLACES_MENU = [
-  { to: "/ofertas-de-trabajo", texto: "Ofertas de Trabajo", Icono: Briefcase },
-  { to: "/personaliza-perfil", texto: "Personaliza tu perfil", Icono: UserCog },
-  { to: "/presentaciones-destacadas", texto: "Presentaciones", Icono: Presentation },
-  {
-    to: "/recursos-comunidad-femcoders-club",
-    texto: "Recursos Exclusivos",
-    Icono: FolderOpen,
-  },
-  { to: "/vonage", texto: "Vonage", Icono: MessageCircle },
-  { to: "/mentoria", texto: "¿Necesitas mentoría?", Icono: Heart },
-  { to: "/enviar-documentacion", texto: "Enviar documentación", Icono: FileUp },
-];
 
 const WelcomePage = () => {
   const location = useLocation();
-  const { openModal } = useContext(ModalContext);
   const state =(location.state as { userName: string; userId?: number }) || {};
   const { userName, userId } = state;
 
@@ -296,48 +266,6 @@ const WelcomePage = () => {
     </div>
   );
 
-  /*
-   * Contenido del menú, no un componente. Definido como `const Sidebar = () =>`
-   * dentro del cuerpo de WelcomePage, React lo veía como un tipo de componente
-   * nuevo en cada render y desmontaba y volvía a montar el menú entero: se
-   * perdía el foco y las transiciones se cortaban a medias. Como elemento JSX el
-   * árbol es estable.
-   *
-   * Cada enlace se etiquetaba además con un `<h2>`: seis encabezados falsos que
-   * ensuciaban el esquema de la página para quien navega saltando de encabezado
-   * en encabezado. Es un enlace, y se marca como tal.
-   */
-  const contenidoMenu = (
-    <nav aria-label="Tu espacio">
-      <ul className="welcome-menu__lista">
-        {ENLACES_MENU.map(({ to, texto, Icono }) => (
-          <li key={to}>
-            <Link to={to} className="welcome-menu__enlace" title={texto}>
-              <Icono className="welcome-menu__icono" aria-hidden="true" />
-              <span className="fem-sidebar__label">{texto}</span>
-            </Link>
-          </li>
-        ))}
-        {/*
-          Botón y no enlace: abre el documento sobre la página, como la política
-          de privacidad, en vez de llevar a otra ruta.
-        */}
-        <li>
-          <button
-            type="button"
-            className="welcome-menu__enlace welcome-menu__boton"
-            title="Código de conducta"
-            aria-haspopup="dialog"
-            onClick={() => openModal("codigoConducta")}
-          >
-            <ScrollText className="welcome-menu__icono" aria-hidden="true" />
-            <span className="fem-sidebar__label">Código de conducta</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  );
-
   return (
     <>
     <Helmet>
@@ -351,13 +279,7 @@ const WelcomePage = () => {
       táctil con la ventana estrecha el clic tampoco hacía nada.
     */}
     <div className="welcome-layout flex min-h-screen bg1">
-      <CollapsibleSidebar
-        storageKey="femcoders:menu-bienvenida"
-        label="menú de bienvenida"
-        title="Tu espacio"
-      >
-        {contenidoMenu}
-      </CollapsibleSidebar>
+      <MenuEspacio />
 
       {/*
         `min-w-0` en lugar de `w-full`: ahora el menú ocupa sitio en el flujo en

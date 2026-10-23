@@ -9,23 +9,29 @@ const URL_COMUNIDAD =
   "https://developer.vonage.com/en/events/register/femcoders-club";
 
 /**
- * Invitación al espacio de Vonage para la comunidad. Va al final de /vonage:
- * es una acción secundaria frente al código y lo que se puede hacer con él.
+ * Invitación al espacio de Vonage para la comunidad: el enlace de registro que
+ * Vonage creó para FemCoders Club. Va dentro de la tarjeta «Somos Community
+ * Partner» (CodigoVonage), debajo del código: las dos cosas son lo que da la
+ * colaboración, y sueltas al final de /vonage parecían bloques sin relación.
+ * Por eso es un `h3` de esa tarjeta y no una sección propia.
  */
 const ComunidadVonage: React.FC = () => (
-  <section
-    className="vonage__caja vonage__caja--comunidad vonage__caja--suelta"
-    aria-labelledby="comunidad-vonage-titulo"
-  >
-    <div>
-      <h2
-        id="comunidad-vonage-titulo"
-        className="vonage__caja-titulo vonage__caja-titulo--llano"
-      >
+  <div className="vonage__caja vonage__caja--comunidad">
+    <div className="vonage__caja-cuerpo">
+      <h3 className="vonage__caja-titulo vonage__caja-titulo--llano">
         Únete a la comunidad de Vonage
-      </h2>
+      </h3>
+      {/*
+        La URL dice /events/register, pero la página no es de eventos: es la
+        bienvenida de Vonage Developer a FemCoders Club, donde se crea la cuenta
+        y se canjea el código. Con la cuenta se entra a toda la plataforma:
+        documentación, comunidad, blog y Learning Center (comprobado el 23 de
+        octubre de 2026).
+      */}
       <p className="vonage__caja-texto">
-        Regístrate en su espacio para FemCoders Club y accede a sus eventos.
+        Crea tu cuenta en Vonage Developer desde su página de bienvenida para
+        FemCoders Club, canjea tu código y accede a su documentación, su
+        comunidad y su Learning Center.
       </p>
     </div>
 
@@ -59,7 +65,7 @@ const ComunidadVonage: React.FC = () => (
       </svg>
       <span className="vonage__sr-only"> (se abre en una pestaña nueva)</span>
     </a>
-  </section>
+  </div>
 );
 
 export default ComunidadVonage;

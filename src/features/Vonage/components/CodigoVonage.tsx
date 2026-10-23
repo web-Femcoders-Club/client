@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCodigoVonage } from "../../../api/vonageApi";
 import OptimizedImage from "../../../components/OptimizedImage";
+import ComunidadVonage from "./ComunidadVonage";
 import "../../Welcome/components/vonage.css";
 
 /**
@@ -142,6 +143,9 @@ const CodigoVonage: React.FC = () => {
             </div>
           )
         )}
+
+        {/* Se muestra aunque el código no cargue: el registro no depende de él. */}
+        <ComunidadVonage />
       </div>
     </section>
   );

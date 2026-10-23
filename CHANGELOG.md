@@ -5,9 +5,51 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Código de conducta público
+
+#### Añadido
+- **Página `/codigo-de-conducta`**, pública y enlazada desde el pie, para poder
+  compartirla en Slack. Primero el código de toda la comunidad y después el de
+  los proyectos: las normas comunes a cualquier proyecto en grupo y, aparte, lo
+  propio del piloto con Vonage (seis semanas, equipo de acompañamiento, créditos
+  y claves, inicio el 26 de octubre). Cada parte tiene ancla propia
+  (`#piloto-vonage`). Textos en `src/features/CodigoConducta/contenido.ts`; con
+  texto en el HTML servido, en el sitemap y en `llms.txt`.
+
+#### Cambiado
+- **El menú de `/welcome` y el aviso de cierre de `/vonage`** llevan a la página
+  en lugar de abrir el modal, que se elimina: un solo texto que mantener.
+- **Normas de proyectos generalizadas**: «durante las seis semanas» pasa a
+  «durante todo el proyecto», «la mentoría semanal» a «las sesiones de
+  mentoría» y «las sesiones se graban» a «si se graban, se explica al presentar
+  el proyecto»; los datos concretos del piloto quedan en su apartado. El aviso
+  de problemas da primero el correo, que vale fuera de los proyectos.
+
 ### Cierre del piloto de Vonage y lista de espera
 
 #### Añadido
+- **Bloque «Conoce el programa piloto»** en `/vonage`, justo después del aviso
+  de cierre, con dos botones: la presentación del programa
+  (`/MaterialesEventos/femCodersClub-Vonage-programaPiloto.pdf`, 14 MB, pestaña
+  nueva) y el código de conducta. Dentro del aviso de cierre se perdían. Lo ve
+  todo el mundo con sesión y no da por hecho que vaya a participar: aún no está
+  decidido quién de las inscritas formará parte de los equipos.
+
+- **Menú lateral de «Tu espacio» en `/vonage`**: sale de `WelcomePage` a un
+  componente compartido (`MenuEspacio`) que usan `/welcome` y `/vonage`, con el
+  mismo estado abierto o contraído. Nueva entrada «Inicio» (`/welcome`), y la
+  página actual se marca con `aria-current` (fondo y barra a la izquierda).
+
+#### Corregido
+- **`/vonage` quedaba bajo la cabecera fija**: el `p-4 lg:p-8` de Tailwind no
+  sumaba su altura y tapaba «Volver a tu espacio». Ahora usa
+  `--fem-header-height`, como el resto de páginas rediseñadas, y sin Tailwind.
+
+#### Cambiado (orden de `/vonage`)
+- **«Únete a la comunidad de Vonage» entra en la tarjeta «Somos Community
+  Partner»**, debajo del código, en lugar de ir suelta al final. Orden de la
+  página: aviso de cierre, programa piloto, Community Partner con el registro y
+  «Qué puedes hacer con esta colaboración».
 - **Lista de espera para futuros proyectos** en `/welcome` (server#147):
   tecnologías de un catálogo cerrado con «Otra», si se ofrece como mentora y una
   idea opcional de hasta 500 caracteres. Nombre y correo salen de la cuenta. Se

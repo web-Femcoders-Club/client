@@ -127,6 +127,20 @@
 }
 
 /*
+ * El texto encoge y el botón no: con una frase de dos líneas, el texto ocupaba
+ * todo el ancho y el botón bajaba a otra fila. Así el botón se queda a la
+ * derecha mientras quepan los dos; en pantallas estrechas se apilan (abajo).
+ */
+.vonage__caja--comunidad .vonage__caja-cuerpo {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.vonage__caja--comunidad .vonage__boton {
+  flex-shrink: 0;
+}
+
+/*
  * Puede ir en un <p>, un <h2> o un <h3>. Las tres primeras propiedades anulan lo
  * que index.css pone a los encabezados (fuente de títulos, sombra, altura de
  * línea): aquí es una etiqueta pequeña, no un título grande.
@@ -509,11 +523,6 @@
    Página /vonage (server#147)
    --------------------------------------------------------------- */
 
-/* La caja de la comunidad, que en /vonage va sola al final. */
-.vonage__caja--suelta {
-  margin-bottom: var(--spacing-lg);
-}
-
 /* Título de la tarjeta del programa, junto al sello que lo rodea. */
 .vonage__camino-titulo {
   margin-bottom: var(--spacing-xs);
@@ -634,6 +643,54 @@
   color: var(--color-primary-oscuro);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/*
+ * Cuando las acciones son una lista (los botones de MaterialesPilotoVonage),
+ * sin viñetas ni sangrado. En móvil, como los botones, a todo el ancho.
+ */
+ul.vonage__acciones {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 480px) {
+  ul.vonage__acciones li {
+    width: 100%;
+  }
+}
+
+/*
+ * Página /vonage: el menú de «Tu espacio» a la izquierda y el contenido al
+ * lado, como en /welcome (`.welcome-layout`). La cabecera es fija y publica su
+ * altura en --fem-header-height: sin sumarla, «Volver a tu espacio» y el
+ * principio del aviso de cierre quedaban tapados debajo de ella (antes era un
+ * `p-4 lg:p-8` de Tailwind, que no la tenía en cuenta). 64rem es el
+ * `max-w-5xl` de antes.
+ */
+.vonage-pagina {
+  display: flex;
+  min-height: 100vh;
+  padding-top: var(--fem-header-height, 132px);
+}
+
+/* `min-width: 0` para que las tarjetas puedan encoger junto al menú. */
+.vonage-pagina__contenido {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem 16px 3rem;
+}
+
+.vonage-pagina__columna {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .vonage-pagina__contenido {
+    padding: 2rem 2rem 3rem;
+  }
 }
 
 /* «Volver a tu espacio», el mismo patrón que en Ofertas de trabajo. */

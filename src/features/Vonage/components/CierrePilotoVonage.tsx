@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getInteresEnApis } from "../../../api/vonageApi";
-import { ModalContext } from "../../../context/ModalContext";
 import "../../Welcome/components/vonage.css";
 
 /**
@@ -12,14 +11,17 @@ import "../../Welcome/components/vonage.css";
  * de bloques, para que nadie lo confunda con algo que todavía se puede hacer.
  *
  * Quien se inscribió ve un mensaje propio: lo que necesita saber es que tenemos
- * su respuesta y que le escribiremos. Se decide con la misma consulta que usaba
+ * su respuesta y que le escribiremos. No da por hecho que vaya a participar,
+ * porque eso aún no está decidido. Se decide con la misma consulta que usaba
  * el formulario; si falla, se muestra el mensaje general, que también es cierto
  * para ella.
+ *
+ * La presentación y el código de conducta van en el bloque siguiente
+ * (MaterialesPilotoVonage): aquí, dentro de un aviso de «cerrado», se perdían.
  */
 const CierrePilotoVonage: React.FC = () => {
   const idUser = Number(sessionStorage.getItem("userId") || 0);
   const [seInscribio, setSeInscribio] = useState(false);
-  const { openModal } = useContext(ModalContext);
 
   useEffect(() => {
     if (!idUser) return;
@@ -63,26 +65,11 @@ const CierrePilotoVonage: React.FC = () => {
           Inscripciones al programa piloto cerradas
         </h2>
         {seInscribio ? (
-          <>
-            <p className="vonage-cierre__texto">
-              <strong>Gracias por sumarte a este primer programa piloto.</strong>{" "}
-              Ya tenemos tus respuestas, y el equipo se pondrá en contacto contigo
-              para contarte los siguientes pasos.
-            </p>
-            {/* El código de conducta es sobre todo para el piloto: solo lo ve quien se inscribió. */}
-            <p className="vonage-cierre__texto">
-              Antes del inicio, el 26 de octubre, te pedimos que leas el{" "}
-              <button
-                type="button"
-                className="vonage__enlace vonage-cierre__enlace foco-visible"
-                aria-haspopup="dialog"
-                onClick={() => openModal("codigoConducta")}
-              >
-                código de conducta
-              </button>{" "}
-              del programa.
-            </p>
-          </>
+          <p className="vonage-cierre__texto">
+            <strong>Gracias por sumarte a este primer programa piloto.</strong>{" "}
+            Ya tenemos tus respuestas, y el equipo se pondrá en contacto contigo
+            para contarte los siguientes pasos.
+          </p>
         ) : (
           <p className="vonage-cierre__texto">
             Las inscripciones cerraron el domingo 18 de octubre.{" "}
