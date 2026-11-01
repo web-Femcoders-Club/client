@@ -14,10 +14,15 @@ const SECCIONES = [
     texto: "Recursos",
     total: POSTS_DEL_BLOG.filter((post) => post.seccion === "recurso").length,
   },
+  {
+    ruta: "/blog/ctrl-ella",
+    texto: "Ctrl+Ella",
+    total: POSTS_DEL_BLOG.filter((post) => post.seccion === "ctrl-ella").length,
+  },
 ];
 
 /*
- * Las tres páginas del blog, a la vista en las tres: sin esto, Noticias y
+ * Las páginas del blog, a la vista en todas: sin esto, Noticias y
  * Recursos solo aparecían al final de cada columna de la portada. NavLink
  * pone aria-current="page" en la actual. Estilos en Blog.css.
  */

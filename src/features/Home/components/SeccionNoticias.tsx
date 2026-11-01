@@ -32,6 +32,7 @@ const CHIP_POR_CATEGORIA: Record<string, string> = {
   Noticias: "fc-chip--naranja",
   Eventos: "fc-chip--lila",
   Colaboraciones: "fc-chip--neutro",
+  "Ctrl+Ella": "fc-chip--lila",
 };
 
 const esExterna = (url: string) => /^https?:\/\//.test(url);

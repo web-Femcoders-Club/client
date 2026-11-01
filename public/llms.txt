@@ -58,6 +58,7 @@ Collaborating organizations: NTT DATA, HackBarna, SheHub, Le Wagon, El Canòdrom
 - Website: https://www.femcodersclub.com
 - Blog: https://www.femcodersclub.com/blog
 - Resources: https://www.femcodersclub.com/blog/recursos
+- Ctrl+Ella, the community newsletter (career guides for women in tech): https://www.femcodersclub.com/blog/ctrl-ella
 - Events: https://www.femcodersclub.com/eventos
 - Team: https://www.femcodersclub.com/equipo
 - About: https://www.femcodersclub.com/femcoders-quienes-somos
@@ -512,7 +513,7 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 55 articles published on the FemCoders Club blog.
+Complete index of the 56 articles published on the FemCoders Club blog.
 
 ### News (21)
 
@@ -792,5 +793,12 @@ Complete index of the 55 articles published on the FemCoders Club blog.
   URL: https://www.femcodersclub.com/recursos/html/introduccion-html
   Published: 2023-10-14
   Summary: Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.
+
+### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (1)
+
+- Sentido de pertenencia de las mujeres en tecnología
+  URL: https://www.femcodersclub.com/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia
+  Published: 2026-11-01
+  Summary: Estar en tecnología no es lo mismo que sentirse parte. Por qué importa el sentido de pertenencia para las mujeres del sector y qué aporta una comunidad.
 
 <!-- END: posts generados automaticamente -->

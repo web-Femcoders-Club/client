@@ -1,5 +1,15 @@
 [
   {
+    "ruta": "/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia",
+    "titulo": "Sentido de pertenencia de las mujeres en tecnología",
+    "descripcion": "Estar en tecnología no es lo mismo que sentirse parte. Por qué importa el sentido de pertenencia para las mujeres del sector y qué aporta una comunidad.",
+    "imagen": "/assets/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia.jpg",
+    "proporcion": 1.905,
+    "fecha": "2026-11-01",
+    "seccion": "ctrl-ella",
+    "tema": "Ctrl+Ella"
+  },
+  {
     "ruta": "/noticias/alianza-actividades-para-mujeres",
     "titulo": "FemCoders Club y Actividades para Mujeres consolidan una alianza",
     "descripcion": "Nuestras actividades se suman al calendario de Actividades para Mujeres, la plataforma de Marta Gimeno Robles. Qué ofrece y cómo publicar las vuestras gratis.",

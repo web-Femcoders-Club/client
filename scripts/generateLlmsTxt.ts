@@ -66,6 +66,7 @@ export async function generateLlmsTxt(): Promise<void> {
   const posts = getPostsIndex();
   const noticias = posts.filter((p) => p.section === "noticia");
   const recursos = posts.filter((p) => p.section === "recurso");
+  const ctrlElla = posts.filter((p) => p.section === "ctrl-ella");
 
   const render = (list: typeof posts) =>
     list
@@ -96,6 +97,10 @@ export async function generateLlmsTxt(): Promise<void> {
     `### Technical resources (${recursos.length})`,
     "",
     render(recursos),
+    "",
+    `### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (${ctrlElla.length})`,
+    "",
+    render(ctrlElla),
     "",
     END,
   ].join("\n");
@@ -132,7 +137,7 @@ export async function generateLlmsTxt(): Promise<void> {
 
   await fs.writeFile(LLMS_PATH, updated, "utf-8");
   console.log(
-    `llms.txt actualizado: ${posts.length} posts (${noticias.length} noticias, ${recursos.length} recursos)`
+    `llms.txt actualizado: ${posts.length} posts (${noticias.length} noticias, ${recursos.length} recursos, ${ctrlElla.length} de Ctrl+Ella)`
   );
 }
 

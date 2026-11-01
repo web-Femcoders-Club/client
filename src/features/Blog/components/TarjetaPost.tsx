@@ -29,9 +29,14 @@ const TarjetaPost: React.FC<TarjetaPostProps> = ({ post, nivel = "h3" }) => {
   const esNoticia = post.seccion === "noticia";
   const claseTema = esNoticia
     ? "fc-chip fc-chip--naranja"
-    : post.tema === "JavaScript"
+    : post.tema === "JavaScript" || post.seccion === "ctrl-ella"
       ? "fc-chip fc-chip--lila"
       : "fc-chip";
+  const llamada = {
+    noticia: "Leer la noticia",
+    recurso: "Ver el recurso",
+    "ctrl-ella": "Leer el artículo",
+  }[post.seccion];
 
   return (
     <article className="fc-tarjeta tarjeta-post">
@@ -51,7 +56,7 @@ const TarjetaPost: React.FC<TarjetaPostProps> = ({ post, nivel = "h3" }) => {
         </Titulo>
         <p className="tarjeta-post__texto">{post.descripcion}</p>
         <p className="tarjeta-post__leer" aria-hidden="true">
-          {esNoticia ? "Leer la noticia" : "Ver el recurso"}
+          {llamada}
           <ArrowRight />
         </p>
       </div>

@@ -43,6 +43,7 @@ function imagenLocal(post: PostMeta): string {
 
 function temaDe(post: PostMeta): string {
   if (post.section === "noticia") return "FemCoders Club";
+  if (post.section === "ctrl-ella") return "Ctrl+Ella";
   const carpeta = post.path.split("/")[2] ?? "";
   return TEMAS[carpeta] ?? carpeta;
 }

@@ -5,6 +5,7 @@ import NavBlog from "./NavBlog";
 import Paginacion from "./Paginacion";
 import TarjetaPost from "./TarjetaPost";
 import {
+  NEWSLETTER_CTRL_ELLA,
   POSTS_DEL_BLOG,
   POSTS_POR_PAGINA,
   TEMAS_DEL_BLOG,
@@ -23,6 +24,8 @@ const TEXTOS: Record<
     singular: string;
     plural: string;
     todas: string;
+    /** Enlace externo bajo la entradilla. */
+    enlace?: { texto: string; url: string };
   }
 > = {
   noticia: {
@@ -43,12 +46,23 @@ const TEXTOS: Record<
     plural: "recursos",
     todas: "Todos los recursos",
   },
+  // La entradilla sale de la primera edición de Ctrl+Ella, «Bienvenida a Ctrl + Ella».
+  "ctrl-ella": {
+    titulo: "Ctrl+Ella, nuestra",
+    destacado: "newsletter",
+    entradilla:
+      "Queremos que sea un punto de encuentro: un lugar para descubrir, aprender, compartir y, sobre todo, seguir creciendo juntas en tecnología. Aquí reunimos sus artículos sobre aprendizaje, carrera profesional y comunidad.",
+    singular: "artículo",
+    plural: "artículos",
+    todas: "Todos los artículos de Ctrl+Ella",
+    enlace: { texto: "Suscríbete a Ctrl+Ella en LinkedIn", url: NEWSLETTER_CTRL_ELLA },
+  },
 };
 
 type ListadoBlogProps = { seccion: PostDelBlog["seccion"] };
 
 /*
- * /blog/noticias y /blog/recursos: todos los posts de una sección, del más
+ * /blog/noticias, /blog/recursos y /blog/ctrl-ella: todos los posts de una sección, del más
  * nuevo al más antiguo, con las mismas tarjetas que la portada. Recursos
  * filtra además por tema. Sale de POSTS_DEL_BLOG: antes cada página tenía su
  * lista escrita a mano, y a la de recursos le faltaban ocho.
@@ -119,6 +133,13 @@ const ListadoBlog: React.FC<ListadoBlogProps> = ({ seccion }) => {
                 <span className="fc-rotulador">{textos.destacado}</span>
               </h1>
               <p className="blog-portada__entradilla">{textos.entradilla}</p>
+              {textos.enlace && (
+                <p className="blog-portada__entradilla">
+                  <a href={textos.enlace.url} target="_blank" rel="noopener noreferrer">
+                    {textos.enlace.texto}
+                  </a>
+                </p>
+              )}
               <NavBlog />
               {temas.length > 1 && (
                 <div

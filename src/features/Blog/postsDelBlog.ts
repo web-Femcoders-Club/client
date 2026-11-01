@@ -13,7 +13,7 @@ export type PostDelBlog = {
   /** Ancho entre alto de la portada, acotado entre 1,9:1 y 2,2:1. */
   proporcion: number;
   fecha: string;
-  seccion: "noticia" | "recurso";
+  seccion: "noticia" | "recurso" | "ctrl-ella";
   tema: string;
   /** Portada generada con IA: las tarjetas y el post muestran el distintivo (AI Act art. 50). */
   imagenConIA?: true;
@@ -25,4 +25,7 @@ export const POSTS_DEL_BLOG = posts as PostDelBlog[];
 export const POSTS_POR_PAGINA = 12;
 
 /** Temas del filtro, en este orden; cada uno con su número real de posts. */
-export const TEMAS_DEL_BLOG = ["FemCoders Club", "JavaScript", "CSS", "HTML", "React"] as const;
+export const TEMAS_DEL_BLOG = ["FemCoders Club", "Ctrl+Ella", "JavaScript", "CSS", "HTML", "React"] as const;
+
+/** Ctrl+Ella en LinkedIn: el listado y cada artículo enlazan a la newsletter original. */
+export const NEWSLETTER_CTRL_ELLA = "https://www.linkedin.com/newsletters/ctrl-ella-7494407888552169472/";

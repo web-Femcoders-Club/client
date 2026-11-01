@@ -14,7 +14,7 @@
 import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
-import { getPostsIndex, type PostMeta } from "./postsIndex";
+import { getPostsIndex, SECTIONS, type PostMeta } from "./postsIndex";
 import { generateSocialImages, type SocialImageMap } from "./socialImages";
 import { isPrivateRoute } from "./privateRoutes";
 import { RUTAS_SPA, type RutaMeta } from "./spaRoutesMeta";
@@ -57,10 +57,17 @@ function stripTag(html: string, tag: "title"): string {
   return html.replace(new RegExp(`[ \\t]*<${tag}>[\\s\\S]*?</${tag}>\\r?\\n?`, "i"), "");
 }
 
+/** Ctrl+Ella firma con el nombre de la autora; el resto, con el del club. */
+function authorOf(post: PostMeta): string {
+  return post.section === "ctrl-ella" ? post.author : "FemCoders Club";
+}
+
 /** JSON-LD del post: Article o NewsArticle según la sección, más migas. */
 function buildJsonLd(post: PostMeta, image: string): string {
   const url = `${SITE_URL}${post.path}`;
   const isNews = post.section === "noticia";
+  const section = SECTIONS[post.section];
+  const author = authorOf(post);
 
   const article = {
     "@context": "https://schema.org",
@@ -73,11 +80,10 @@ function buildJsonLd(post: PostMeta, image: string): string {
       ? { datePublished: post.publishedTime, dateModified: post.publishedTime }
       : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    author: {
-      "@type": "Organization",
-      name: "FemCoders Club",
-      url: SITE_URL,
-    },
+    author:
+      author === "FemCoders Club"
+        ? { "@type": "Organization", name: author, url: SITE_URL }
+        : { "@type": "Person", name: author },
     publisher: {
       "@type": "Organization",
       name: "FemCoders Club",
@@ -101,8 +107,8 @@ function buildJsonLd(post: PostMeta, image: string): string {
       {
         "@type": "ListItem",
         position: 3,
-        name: isNews ? "Noticias" : "Recursos",
-        item: `${SITE_URL}/blog/${isNews ? "noticias" : "recursos"}`,
+        name: section.name,
+        item: `${SITE_URL}${section.listing}`,
       },
       { "@type": "ListItem", position: 4, name: post.title, item: url },
     ],
@@ -174,10 +180,8 @@ function renderHead(template: string, post: PostMeta, image: string): string {
     post.publishedTime
       ? `    <meta property="article:published_time" content="${post.publishedTime}" />`
       : "",
-    `    <meta property="article:author" content="FemCoders Club" />`,
-    `    <meta property="article:section" content="${
-      post.section === "noticia" ? "Noticias" : "Recursos"
-    }" />`,
+    `    <meta property="article:author" content="${attr(authorOf(post))}" />`,
+    `    <meta property="article:section" content="${SECTIONS[post.section].name}" />`,
     "",
     `    <meta name="twitter:card" content="summary_large_image" />`,
     `    <meta name="twitter:site" content="@FemCodersClub" />`,

@@ -5,6 +5,34 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Ctrl+Ella en el blog
+
+#### Añadido
+- **Tercera sección del blog, `/blog/ctrl-ella`**, junto a Noticias y Recursos:
+  los artículos de Ctrl+Ella, la newsletter de la comunidad en LinkedIn. La
+  sección se deduce de la ruta (`/ctrl-ella/…`), como las otras dos, así que un
+  post nuevo solo necesita su componente y su ruta en `Router.tsx`. Tiene
+  pestaña en la navegación del blog, filtro en la portada del blog, metas e
+  imagen propias en el HTML servido, y entra en el sitemap y en `llms.txt`.
+- **Firma con nombre propio**: en el HTML servido, los artículos de Ctrl+Ella
+  llevan como autora una `Person` (el `article:author` del post) en lugar de la
+  organización. Solo en esta sección: en los recursos antiguos el autor viene
+  escrito de formas distintas y no se ha tocado.
+- **Primer artículo**, «No basta con estar en tecnología: también necesitamos
+  sentir que pertenecemos», de Ana Lucía Silva Córdoba, con su bibliografía.
+  Sale el primero en el carrusel de la portada, con una versión de la imagen
+  con margen para que el recorte no se coma el texto; para hacerle sitio sale
+  del carrusel el recurso de testing en JavaScript.
+- **Nota al pie en cada artículo de la sección** con el enlace a la newsletter
+  original, desde `PlantillaPost`.
+
+#### Corregido
+- **El sitemap había perdido `/noticias/vonage-community-partnership-program`**:
+  descartaba toda ruta que *contuviera* una privada, y desde que `/vonage` lo es
+  se llevaba también esa noticia. Ahora usa `isPrivateRoute`, por prefijo, como
+  el prerender. El sitemap regenerado gana además `/codigo-de-conducta`, que
+  faltaba desde que se creó la página.
+
 ### Avisos de Dependabot
 
 #### Seguridad

@@ -368,6 +368,19 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "28",
+      title: "No basta con estar en tecnología: también necesitamos sentir que pertenecemos",
+      description:
+        "Estrenamos en la web los artículos de Ctrl+Ella, nuestra newsletter. Empezamos por uno sobre algo de lo que se habla poco: la diferencia entre conseguir un sitio en el sector tecnológico y sentir que ese sitio también es tuyo, y lo que cambia cuando encuentras a otras personas que te entienden.",
+      // Versión con margen: el carrusel recorta con object-fit: cover y la
+      // portada del post, con el texto de lado a lado, perdía los extremos.
+      image: "/assets/ctrl-ella/sentido-de-pertenencia-portada-home.jpg",
+      imageAlt: "Portada de la edición número 11 de Ctrl+Ella, octubre de 2026: «No basta con estar en tecnología: también necesitamos sentir que pertenecemos», en letras violetas sobre fondo naranja",
+      date: "1 Noviembre 2026",
+      category: "Ctrl+Ella",
+      link: "/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia",
+    },
+    {
       id: "27",
       title: "FemCoders Club y Actividades para Mujeres consolidan una alianza para impulsar el talento femenino",
       description:
@@ -389,17 +402,6 @@ const HomePage: React.FC = () => {
       date: "11 Octubre 2026",
       category: "Noticias",
       link: "/noticias/proyecto-piloto-apis-vonage",
-    },
-    {
-      id: "25",
-      title: "Testing en JavaScript sin frameworks: construye tu propio test runner",
-      description:
-        "Assertions con diff, spies, fake timers y cobertura real leyendo el perfilador de V8. Proyecto práctico: testlet, un framework de testing completo y sin dependencias que se testea a sí mismo.",
-      image: "/assets/javascript/testlet-arquitectura.webp",
-      imageAlt: "Diagrama de arquitectura de testlet: Runner, Suite, Test, Reporter, Assert, Spy, FakeTimers y Coverage",
-      date: "2 Octubre 2026",
-      category: "Recursos",
-      link: "/recursos/js/testing-javascript-sin-frameworks",
     },
     {
       id: "24",

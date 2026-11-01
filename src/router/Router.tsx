@@ -219,6 +219,9 @@ const ProyectoPilotoApisVonage = lazy(
 const AlianzaActividadesParaMujeres = lazy(
   () => import("../features/Blog/posts/noticias/AlianzaActividadesParaMujeres")
 );
+const SentidoDePertenencia = lazy(
+  () => import("../features/Blog/posts/ctrl-ella/SentidoDePertenencia")
+);
 const TestingJavaScriptSinFrameworks = lazy(
   () =>
     import("../features/Blog/posts/recursos/js/TestingJavaScriptSinFrameworks")
@@ -982,6 +985,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <AlianzaActividadesParaMujeres />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <SentidoDePertenencia />
                 </Suspense>
               </Layout>
             }

@@ -5,9 +5,9 @@ import ListadoBlog from "../components/ListadoBlog";
 import PortadaBlog from "../components/PortadaBlog";
 
 /*
- * /blog y sus dos secciones. La portada lee los posts de postsDelBlog.json,
+ * /blog y sus tres secciones. La portada lee los posts de postsDelBlog.json,
  * que se genera en el prebuild: publicar un post ya no exige tocar este
- * archivo. Noticias y Recursos son el mismo listado con otra sección.
+ * archivo. Noticias, Recursos y Ctrl+Ella son el mismo listado con otra sección.
  */
 const BlogPage: React.FC = () => {
   const location = useLocation();
@@ -20,6 +20,8 @@ const BlogPage: React.FC = () => {
             ? "Noticias - FemCoders Club"
             : location.pathname.includes("recursos")
             ? "Recursos - FemCoders Club"
+            : location.pathname.includes("ctrl-ella")
+            ? "Ctrl+Ella, la newsletter de FemCoders Club"
             : "Blog de FemCoders Club"}
         </title>
 
@@ -76,6 +78,7 @@ const BlogPage: React.FC = () => {
         <Route index element={<PortadaBlog />} />
         <Route path="noticias" element={<ListadoBlog seccion="noticia" />} />
         <Route path="recursos" element={<ListadoBlog seccion="recurso" />} />
+        <Route path="ctrl-ella" element={<ListadoBlog seccion="ctrl-ella" />} />
       </Routes>
     </>
   );

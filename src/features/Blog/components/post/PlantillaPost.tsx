@@ -5,8 +5,15 @@ import OptimizedImage from "../../../../components/OptimizedImage";
 import CommentsSection from "../CommentsSection";
 import ShareButtons from "../ShareButtons";
 import TarjetaPost from "../TarjetaPost";
-import { POSTS_DEL_BLOG } from "../../postsDelBlog";
+import { NotaPost } from "./PiezasPost";
+import { NEWSLETTER_CTRL_ELLA, POSTS_DEL_BLOG, type PostDelBlog } from "../../postsDelBlog";
 import "./Post.css";
+
+const LISTADOS: Record<PostDelBlog["seccion"], { ruta: string; texto: string; todos: string }> = {
+  noticia: { ruta: "/blog/noticias", texto: "Noticias", todos: "Todas las noticias" },
+  recurso: { ruta: "/blog/recursos", texto: "Recursos", todos: "Todos los recursos" },
+  "ctrl-ella": { ruta: "/blog/ctrl-ella", texto: "Ctrl+Ella", todos: "Todos los artículos de Ctrl+Ella" },
+};
 
 type Autora = { nombre: string; rol?: string };
 
@@ -74,9 +81,8 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
   }
 
   const esNoticia = post?.seccion === "noticia";
-  const listado = esNoticia
-    ? { ruta: "/blog/noticias", texto: "Noticias" }
-    : { ruta: "/blog/recursos", texto: "Recursos" };
+  const esCtrlElla = post?.seccion === "ctrl-ella";
+  const listado = LISTADOS[post?.seccion ?? "recurso"];
   const relacionados = post
     ? POSTS_DEL_BLOG.filter((p) => p.tema === post.tema && p.ruta !== ruta).slice(0, RELACIONADOS)
     : [];
@@ -104,7 +110,13 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
             </nav>
             {post && (
               <p className="post__tema">
-                <span className={esNoticia ? "fc-chip fc-chip--naranja" : "fc-chip"}>{post.tema}</span>
+                <span
+                  className={
+                    esNoticia ? "fc-chip fc-chip--naranja" : esCtrlElla ? "fc-chip fc-chip--lila" : "fc-chip"
+                  }
+                >
+                  {post.tema}
+                </span>
               </p>
             )}
             <h1 className="post__titulo">{titulo}</h1>
@@ -145,6 +157,17 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
         <div className="post__cuerpo">
           <div className="post__columna post__contenido" ref={cuerpoRef}>
             {children}
+            {esCtrlElla && (
+              <NotaPost titulo="Publicado originalmente en Ctrl+Ella">
+                <p>
+                  Este artículo salió primero en{" "}
+                  <a href={NEWSLETTER_CTRL_ELLA} target="_blank" rel="noopener noreferrer">
+                    Ctrl+Ella, la newsletter de FemCoders Club en LinkedIn
+                  </a>
+                  . Si te suscribes, te llegan las nuevas ediciones.
+                </p>
+              </NotaPost>
+            )}
           </div>
           <div className="post__columna post__final">
             <div className="post__compartir">
@@ -161,10 +184,10 @@ const PlantillaPost: React.FC<PlantillaPostProps> = ({
           <div className="post__relacionados-contenido">
             <div className="post__relacionados-cabecera">
               <h2 className="fc-titulo-seccion" id="relacionados-titulo">
-                {esNoticia ? "Más noticias" : `Sigue aprendiendo ${post?.tema}`}
+                {esNoticia ? "Más noticias" : esCtrlElla ? "Más de Ctrl+Ella" : `Sigue aprendiendo ${post?.tema}`}
               </h2>
               <Link to={listado.ruta} className="fc-boton">
-                {esNoticia ? "Todas las noticias" : "Todos los recursos"}
+                {listado.todos}
                 <ArrowRight aria-hidden="true" />
               </Link>
             </div>

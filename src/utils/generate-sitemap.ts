@@ -10,11 +10,9 @@ const hostname = 'https://www.femcodersclub.com';
 const currentDate = new Date().toISOString().slice(0, 10);
 
 // ❌ Rutas privadas/excluidas — fuente única compartida con el prerender
-import { PRIVATE_ROUTES } from '../../scripts/privateRoutes';
+import { isPrivateRoute } from '../../scripts/privateRoutes';
 import { getPostsIndex } from '../../scripts/postsIndex';
 import { VIDEO_COMUNIDAD } from '../features/About/videoComunidad';
-
-const excludedRoutes = PRIVATE_ROUTES;
 
 // ✅ Rutas estáticas
 const staticRoutes: SitemapItemLoose[] = [
@@ -39,6 +37,7 @@ const staticRoutes: SitemapItemLoose[] = [
   { url: '/blog', changefreq: EnumChangefreq.WEEKLY, priority: 0.9, lastmod: currentDate },
   { url: '/blog/noticias', changefreq: EnumChangefreq.WEEKLY, priority: 0.8, lastmod: currentDate },
   { url: '/blog/recursos', changefreq: EnumChangefreq.WEEKLY, priority: 0.8, lastmod: currentDate },
+  { url: '/blog/ctrl-ella', changefreq: EnumChangefreq.WEEKLY, priority: 0.8, lastmod: currentDate },
   { url: '/equipo', changefreq: EnumChangefreq.MONTHLY, priority: 0.7, lastmod: currentDate },
   { url: '/login', changefreq: EnumChangefreq.MONTHLY, priority: 0.5, lastmod: currentDate },
 ];
@@ -67,7 +66,9 @@ function getAdditionalRoutesFromRouter(): SitemapItemLoose[] {
       if (
         !path.includes('*') &&
         !path.includes(':') &&
-        !excludedRoutes.some(ex => path.includes(ex)) &&
+        // Por prefijo, como el prerender: con `includes`, "/vonage" se llevaba
+        // por delante /noticias/vonage-community-partnership-program.
+        !isPrivateRoute(path) &&
         !staticRoutes.some(sr => sr.url === path)
       ) {
         routes.push({

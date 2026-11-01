@@ -70,8 +70,8 @@ const PortadaBlog: React.FC = () => {
                 Aprende y comparte con la <span className="fc-rotulador">comunidad</span>
               </h1>
               <p className="blog-portada__entradilla">
-                Noticias de FemCoders Club y recursos para aprender desarrollo web:
-                HTML, CSS, JavaScript y más.
+                Noticias de FemCoders Club, recursos para aprender desarrollo web y
+                los artículos de Ctrl+Ella, nuestra newsletter.
               </p>
               <NavBlog />
             </div>

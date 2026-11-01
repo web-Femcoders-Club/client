@@ -31,6 +31,7 @@ import { META_CONTACTO } from "../src/features/Contact/contenido";
 import { codigoConductaHtml } from "./contenidoCodigoConducta";
 import { META_CODIGO } from "../src/features/CodigoConducta/contenido";
 import { META_REGISTRO } from "../src/features/User/contenido";
+import type { PostSection } from "./postsIndex";
 
 export interface RutaMeta {
   title: string;
@@ -39,7 +40,7 @@ export interface RutaMeta {
    * Sección de posts que la página lista, si lista alguna. El prerender la usa
    * para incrustar los enlaces a los artículos dentro de un `<noscript>`.
    */
-  listaPosts?: "todas" | "noticia" | "recurso";
+  listaPosts?: "todas" | PostSection;
   /**
    * Encabezado de esa lista. Va aparte del `title` porque un título de pestaña
    * ("Noticias - FemCoders Club") no se lee como el encabezado de una lista
@@ -104,6 +105,20 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
       "Artículos para aprender HTML, CSS, JavaScript y React a tu ritmo, escritos por la comunidad de FemCoders Club.",
     listaPosts: "recurso",
     encabezadoLista: "Recursos para aprender",
+  },
+  // Los mismos textos que pinta ListadoBlog para esta sección.
+  "/blog/ctrl-ella": {
+    title: "Ctrl+Ella, la newsletter de FemCoders Club",
+    description:
+      "Artículos de Ctrl+Ella, la newsletter de FemCoders Club, para seguir creciendo en tecnología: aprendizaje, carrera profesional y comunidad.",
+    listaPosts: "ctrl-ella",
+    encabezadoLista: "Artículos de Ctrl+Ella",
+    imagen: {
+      ruta: "/og-ctrl-ella.jpg",
+      ancho: 1200,
+      alto: 630,
+      alt: "Ctrl + Ella, el nombre de la newsletter de FemCoders Club: «Ctrl» en letras negras, un signo más violeta y «Ella» en naranja, escrito a mano",
+    },
   },
 
   "/eventos": {

@@ -13,6 +13,15 @@ import { fileURLToPath } from "url";
  * Router.tsx por regex.
  */
 
+export type PostSection = "noticia" | "recurso" | "ctrl-ella";
+
+/** Nombre y listado de cada sección, para el prerender (migas, article:section). */
+export const SECTIONS: Record<PostSection, { name: string; listing: string }> = {
+  noticia: { name: "Noticias", listing: "/blog/noticias" },
+  recurso: { name: "Recursos", listing: "/blog/recursos" },
+  "ctrl-ella": { name: "Ctrl+Ella", listing: "/blog/ctrl-ella" },
+};
+
 export interface PostMeta {
   /** Ruta canónica, p. ej. "/noticias/hackbarna-ai-summit-26" */
   path: string;
@@ -23,11 +32,23 @@ export interface PostMeta {
   image: string;
   imageAlt: string;
   publishedTime: string;
-  /** "noticia" | "recurso", derivado de la ruta */
-  section: "noticia" | "recurso";
+  /** Derivada de la ruta: /noticias/, /ctrl-ella/ o, si no, recurso. */
+  section: PostSection;
+  /**
+   * El article:author del <Helmet>. El prerender solo lo usa en Ctrl+Ella, que
+   * firma con nombre propio: en los recursos antiguos viene escrito de formas
+   * distintas («femCoders Club», «Irina Ichim - FemCoders Club»).
+   */
+  author: string;
   keywords: string[];
   /** La portada es una imagen generada con IA (AI Act art. 50): lleva distintivo. */
   coverIsAiGenerated: boolean;
+}
+
+function sectionOf(path: string): PostSection {
+  if (path.startsWith("/noticias/")) return "noticia";
+  if (path.startsWith("/ctrl-ella/")) return "ctrl-ella";
+  return "recurso";
 }
 
 /** El post lo declara con `portadaConIA` en <PlantillaPost>. */
@@ -160,7 +181,8 @@ export function readPostMeta(path: string, file: string): PostMeta {
     image: readMeta(source, "property", "og:image"),
     imageAlt: readMeta(source, "property", "og:image:alt"),
     publishedTime: readMeta(source, "property", "article:published_time"),
-    section: path.startsWith("/noticias/") ? "noticia" : "recurso",
+    section: sectionOf(path),
+    author: readMeta(source, "property", "article:author") || "FemCoders Club",
     keywords: keywords ? keywords.split(",").map((k) => k.trim()).filter(Boolean) : [],
     coverIsAiGenerated: readCoverIsAiGenerated(source),
   };

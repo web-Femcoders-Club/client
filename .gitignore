@@ -35,6 +35,12 @@ documentation/
 # Agentes locales de Claude Code (no versionados, repo público)
 .claude/
 
+# Material original de Ctrl+Ella (PDF de la revista, textos de Lu). Vive en
+# el Drive; aquí solo entra el post ya aprobado. No basta con *.pdf: los de
+# public/MaterialesEventos sí se publican.
+/ctrl-ella-fuentes/
+Ctrl_Ella*.pdf
+
 # Volcados que deja Git Bash al caerse en Windows. No son del proyecto y se
 # cuelan en cualquier `git add -A`.
 *.stackdump
