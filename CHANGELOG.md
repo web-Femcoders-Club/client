@@ -5,6 +5,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Avisos de Dependabot
+
+#### Seguridad
+- **Cierra los 33 avisos abiertos en GitHub** subiendo solo las librerías
+  afectadas, cada una por su nombre: `axios` 1.21.0, `sharp` 0.35.5, `vite`
+  7.3.7 y, por arrastre, `follow-redirects` 1.16.2. Una actualización general
+  habría movido también Tailwind y PostCSS, que sí pueden cambiar los estilos.
+- **`pnpm.overrides` para las indirectas**: `compression`, `fast-uri`,
+  `brace-expansion`, `source-map-js` y `js-yaml`. Esta versión de pnpm no
+  actualiza dependencias indirectas por nombre, y `serve` fija `compression`
+  1.8.1 exacta. Cada override pide la versión mínima corregida dentro del rango
+  que ya acepta su paquete padre. Es deuda consciente: el bloque se relee
+  cuando se suba `serve` o pnpm.
+- **Comprobado contra el build anterior**: los 23 CSS y todas las imágenes salen
+  idénticos byte a byte; del JS solo cambia el archivo principal, que es el que
+  lleva axios. `serve` sigue sirviendo comprimido y devolviendo el 404 de la SPA.
+
 ### Código de conducta público
 
 #### Añadido
