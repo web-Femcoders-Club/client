@@ -368,6 +368,33 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "30",
+      title: "¿Cómo convertir tus metas en un plan real para crecer en tecnología?",
+      description:
+        "Decir «quiero aprender programación» es un buen comienzo, pero una meta necesita algo más para hacerse realidad. En esta edición de Ctrl+Ella hablamos de los objetivos SMART, una herramienta sencilla para convertir lo que quieres conseguir en pasos concretos y alcanzables.",
+      // Versión con margen: el carrusel recorta con object-fit: cover y el
+      // banner perdía el logo.
+      image: "/assets/ctrl-ella/portada-por-defecto-home.jpg",
+      imageAlt: "Banner de Ctrl+Ella, la newsletter de FemCoders Club: tecnología, aprendizaje, carrera y comunidad. Una libreta con tareas marcadas y, al otro lado, una taza junto a un portátil con código sobre una pila de libros",
+      aiGenerated: true,
+      date: "7 Noviembre 2026",
+      category: "Ctrl+Ella",
+      link: "/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia",
+    },
+    {
+      id: "29",
+      title: "Quiz JavaScript para entrevistas técnicas: 30 preguntas para practicar",
+      description:
+        "Después de recorrer la serie de JavaScript, toca conectar las piezas. Repasa con diez preguntas por nivel, de lo básico a lo avanzado, y descubre el porqué de cada respuesta. Incluye una guía descargable y recursos para seguir aprendiendo a tu ritmo.",
+      // Versión con margen, por el mismo recorte: se perdía el texto.
+      image: "/assets/javascript/quiz-javascript-portada-home.jpg",
+      imageAlt: "Portada de los recursos sobre fundamentos de JavaScript de FemCoders Club",
+      date: "7 Noviembre 2026",
+      category: "Recursos",
+      link: "/recursos/js/quiz-javascript-entrevistas",
+      linkLabel: "Hacer el quiz de JavaScript",
+    },
+    {
       id: "28",
       title: "No basta con estar en tecnología: también necesitamos sentir que pertenecemos",
       description:
@@ -379,17 +406,6 @@ const HomePage: React.FC = () => {
       date: "1 Noviembre 2026",
       category: "Ctrl+Ella",
       link: "/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia",
-    },
-    {
-      id: "27",
-      title: "FemCoders Club y Actividades para Mujeres consolidan una alianza para impulsar el talento femenino",
-      description:
-        "Nuestras actividades ya forman parte del calendario de Actividades para Mujeres, la plataforma fundada por Marta Gimeno Robles para conectar a mujeres de habla hispana con iniciativas en sus ciudades. Os contamos qué ofrece y cómo publicar las vuestras de forma gratuita.",
-      image: "/assets/noticias/alianza-actividades-para-mujeres.jpg",
-      imageAlt: "Alianza de impacto. Los logotipos de FemCoders Club y de Actividades para Mujeres, uno junto al otro, y el lema «Juntas para poner a la mujer en el centro»",
-      date: "19 Octubre 2026",
-      category: "Noticias",
-      link: "/noticias/alianza-actividades-para-mujeres",
     },
     {
       id: "26",
@@ -413,17 +429,6 @@ const HomePage: React.FC = () => {
       date: "29 Septiembre 2026",
       category: "Noticias",
       link: "/noticias/offload-challenge-vonage-hackbarna-ai-summit-26",
-    },
-    {
-      id: "23",
-      title: "FemCoders Club, nueva Ambassador del Barcelona Cybersecurity Congress 2026",
-      description:
-        "Somos Ambassadors oficiales del congreso europeo de ciberseguridad, del 3 al 5 de noviembre en Fira de Barcelona. Habrá un centenar de expositores, un hacking village y un programa sobre IA aplicada a la ciberdefensa, seguridad en 5G y 6G y normativa europea. Tenemos dos códigos para la comunidad: entrada gratuita a la zona de expositores y el pase completo por 225 € en lugar de 495 €.",
-      image: "/assets/noticias/bcc26-femcodersclub.jpg",
-      imageAlt: "Cartel del Barcelona Cybersecurity Congress 2026 con el lema «We are ambassadors of the #BCC26» y el logotipo de FemCoders Club en el centro. Del 3 al 5 de noviembre de 2026 en Barcelona, Gran Via Venue, hall 2.1",
-      date: "17 Septiembre 2026",
-      category: "Noticias",
-      link: "/noticias/barcelona-cybersecurity-congress-2026",
     },
     {
       id: "21",

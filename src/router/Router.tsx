@@ -144,6 +144,9 @@ const SegundoAniversarioFemCodersClub = lazy(
 const FundamentosJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/FundamentosJavaScript")
 );
+const PreguntasJavaScriptEntrevistas = lazy(
+  () => import("../features/Blog/posts/recursos/js/PreguntasJavaScriptEntrevistas")
+);
 const EventLoopJavaScript = lazy(
   () => import("../features/Blog/posts/recursos/js/EventLoopJavaScript")
 );
@@ -221,6 +224,9 @@ const AlianzaActividadesParaMujeres = lazy(
 );
 const SentidoDePertenencia = lazy(
   () => import("../features/Blog/posts/ctrl-ella/SentidoDePertenencia")
+);
+const ObjetivosSmart = lazy(
+  () => import("../features/Blog/posts/ctrl-ella/ObjetivosSmart")
 );
 const TestingJavaScriptSinFrameworks = lazy(
   () =>
@@ -750,6 +756,16 @@ const RouterComponent: React.FC = () => {
   }
 />
           <Route
+            path="/recursos/js/quiz-javascript-entrevistas"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <PreguntasJavaScriptEntrevistas />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
             path="/recursos/js/fundamentos-javascript-profundos"
             element={
               <Layout>
@@ -995,6 +1011,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <SentidoDePertenencia />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <ObjetivosSmart />
                 </Suspense>
               </Layout>
             }

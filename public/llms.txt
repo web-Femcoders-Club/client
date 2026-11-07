@@ -513,7 +513,7 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 56 articles published on the FemCoders Club blog.
+Complete index of the 58 articles published on the FemCoders Club blog.
 
 ### News (21)
 
@@ -622,7 +622,12 @@ Complete index of the 56 articles published on the FemCoders Club blog.
   Published: 2023-10-24
   Summary: Celebramos el primer aniversario de femCoders Club, una comunidad para mujeres en tecnología donde compartir, aprender y crecer juntas.
 
-### Technical resources (34)
+### Technical resources (35)
+
+- Quiz JavaScript para entrevistas técnicas: 30 preguntas esenciales
+  URL: https://www.femcodersclub.com/recursos/js/quiz-javascript-entrevistas
+  Published: 2026-11-07
+  Summary: Repasa JavaScript con 30 preguntas en tres niveles: fundamentos, closures, DOM, promesas, event loop y testing. Con explicaciones y guía descargable.
 
 - Testing en JavaScript sin frameworks: construye tu propio test runner
   URL: https://www.femcodersclub.com/recursos/js/testing-javascript-sin-frameworks
@@ -794,7 +799,12 @@ Complete index of the 56 articles published on the FemCoders Club blog.
   Published: 2023-10-14
   Summary: Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.
 
-### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (1)
+### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (2)
+
+- Objetivos SMART para crecer en tecnología: guía con ejemplos
+  URL: https://www.femcodersclub.com/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia
+  Published: 2026-11-07
+  Summary: Convierte tus metas en objetivos SMART, con ejemplos para aprender tecnología, cambiar de trabajo, crear tu portfolio o hacer networking a tu ritmo.
 
 - Sentido de pertenencia de las mujeres en tecnología
   URL: https://www.femcodersclub.com/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia

@@ -1,5 +1,26 @@
 [
   {
+    "ruta": "/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia",
+    "titulo": "Objetivos SMART para crecer en tecnología: guía con ejemplos",
+    "descripcion": "Convierte tus metas en objetivos SMART, con ejemplos para aprender tecnología, cambiar de trabajo, crear tu portfolio o hacer networking a tu ritmo.",
+    "imagen": "/assets/ctrl-ella/portada-por-defecto.webp",
+    "proporcion": 1.9,
+    "fecha": "2026-11-07",
+    "seccion": "ctrl-ella",
+    "tema": "Ctrl+Ella",
+    "imagenConIA": true
+  },
+  {
+    "ruta": "/recursos/js/quiz-javascript-entrevistas",
+    "titulo": "Quiz JavaScript para entrevistas técnicas: 30 preguntas esenciales",
+    "descripcion": "Repasa JavaScript con 30 preguntas en tres niveles: fundamentos, closures, DOM, promesas, event loop y testing. Con explicaciones y guía descargable.",
+    "imagen": "/public-optimized/desktop/assets/javascript/fundamentos-javascript.webp",
+    "proporcion": 2.076,
+    "fecha": "2026-11-07",
+    "seccion": "recurso",
+    "tema": "JavaScript"
+  },
+  {
     "ruta": "/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia",
     "titulo": "Sentido de pertenencia de las mujeres en tecnología",
     "descripcion": "Estar en tecnología no es lo mismo que sentirse parte. Por qué importa el sentido de pertenencia para las mujeres del sector y qué aporta una comunidad.",

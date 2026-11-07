@@ -5,6 +5,22 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Dos posts nuevos y noticias de la portada
+
+#### Añadido
+- **Quiz de JavaScript para entrevistas técnicas**
+  (`/recursos/js/quiz-javascript-entrevistas`): 30 preguntas en tres niveles,
+  con explicaciones y una guía de estudio descargable.
+- **Segundo artículo de Ctrl+Ella, sobre objetivos SMART**
+  (`/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia`), de Ana Lucía
+  Silva Córdoba. Estrena el banner de la newsletter como portada por defecto
+  (`assets/ctrl-ella/portada-por-defecto.webp`), marcado como generado con IA.
+
+#### Cambiado
+- **Noticias de la portada**: entran los dos posts nuevos y salen la alianza con
+  Actividades para Mujeres y el Barcelona Cybersecurity Congress, que ya pasó.
+  Ambas noticias siguen publicadas en el blog.
+
 ### Ctrl+Ella en el blog
 
 #### Añadido
