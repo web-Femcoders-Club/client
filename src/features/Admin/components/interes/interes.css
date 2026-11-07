@@ -32,6 +32,26 @@
   border-bottom: none;
 }
 
+/* El `min()` evita que una columna desborde en móvil o con el zoom al 200%. */
+.interes-desglose--columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+  column-gap: 2.5rem;
+}
+
+/* En columnas, la última fila no está sola: sin borde quedaría descuadrada. */
+.interes-desglose--columnas .interes-desglose__fila:last-child {
+  border-bottom: 1px solid #ece9f5;
+}
+
+/* Neutraliza la regla global de `span` (naranja y 1,5rem), que es de marca.
+   Acotado a esta variante: el panel del piloto de Vonage queda como estaba. */
+.interes-desglose--columnas .interes-desglose__nombre {
+  font: inherit;
+  color: inherit;
+  text-shadow: none;
+}
+
 .interes-desglose__fila strong {
   font-size: 1.05rem;
   color: var(--color-secondary);

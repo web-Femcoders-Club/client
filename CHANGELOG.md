@@ -5,6 +5,13 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Panel de la lista de espera
+
+#### Cambiado
+- **Las tecnologías ocupan todo el ancho, en columnas.** Ahora que la lista es
+  larga, no cabía en una tarjeta junto a los dos recuentos. `Desglose` gana la
+  opción `enColumnas`; el panel del piloto de Vonage, que no la usa, queda igual.
+
 ### Dos posts nuevos y noticias de la portada
 
 #### Añadido

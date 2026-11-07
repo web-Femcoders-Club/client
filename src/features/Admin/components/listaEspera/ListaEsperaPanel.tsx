@@ -108,7 +108,7 @@ const ListaEsperaPanel: React.FC = () => {
         mentora.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {tarjetas.map((t) => (
           <div key={t.label} className="admin-card">
             <p className="text-2xl font-bold" style={{ color: "#4737bb" }}>
@@ -117,10 +117,14 @@ const ListaEsperaPanel: React.FC = () => {
             <p className="text-gray-500 text-sm">{t.label}</p>
           </div>
         ))}
+      </div>
+
+      <div className="mb-6">
         <Desglose
           titulo="Tecnologías"
           cuenta={data.resumen.porTecnologia}
           mapa={NOMBRES}
+          enColumnas
         />
       </div>
 

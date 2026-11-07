@@ -116,7 +116,9 @@ export const Desglose: React.FC<{
   titulo: string;
   cuenta: Record<string, number>;
   mapa: Record<string, string>;
-}> = ({ titulo, cuenta, mapa }) => {
+  /** Para listas largas que ocupan todo el ancho de la pantalla. */
+  enColumnas?: boolean;
+}> = ({ titulo, cuenta, mapa, enColumnas = false }) => {
   const filas = Object.entries(cuenta).sort((a, b) => b[1] - a[1]);
   return (
     <div className="admin-card">
@@ -124,10 +126,16 @@ export const Desglose: React.FC<{
       {filas.length === 0 ? (
         <p className="admin-card__ayuda">Todavía sin respuestas.</p>
       ) : (
-        <ul className="interes-desglose">
+        <ul
+          className={`interes-desglose ${
+            enColumnas ? "interes-desglose--columnas" : ""
+          }`}
+        >
           {filas.map(([valor, n]) => (
             <li key={valor} className="interes-desglose__fila">
-              <span>{etiqueta(mapa, valor)}</span>
+              <span className="interes-desglose__nombre">
+                {etiqueta(mapa, valor)}
+              </span>
               <strong>{n}</strong>
             </li>
           ))}
