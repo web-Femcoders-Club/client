@@ -44,3 +44,6 @@ Ctrl_Ella*.pdf
 # Volcados que deja Git Bash al caerse en Windows. No son del proyecto y se
 # cuelan en cualquier `git add -A`.
 *.stackdump
+
+# Caché que deja TypeScript al compilar.
+*.tsbuildinfo
