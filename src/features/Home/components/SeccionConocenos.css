@@ -164,14 +164,32 @@
   background: var(--color-melocoton);
 }
 
-/* El vídeo y su botón de pausa: src/components/VideoSinEventos. */
+/*
+ * El vídeo y su botón de pausa: src/components/VideoSinEventos.
+ *
+ * El hueco de la imagen no tiene proporción fija: se queda con el alto que
+ * sobra para igualar las dos tarjetas. Los carteles de evento llevan texto
+ * hasta el borde, y con `cover` perdían los lados (el del aniversario
+ * cortaba la primera letra del título). Se ven enteros (`contain`), y detrás
+ * va la misma imagen difuminada rellenando el marco, como en el carrusel de
+ * ponentes de /eventos.
+ */
 .evento__imagen img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+}
+
+.evento__imagen .evento__imagen-fondo {
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  max-width: none;
+  object-fit: cover;
+  filter: blur(24px) saturate(1.1);
 }
 
 /* Blanco sobre violeta: 8,29:1, AAA. */
