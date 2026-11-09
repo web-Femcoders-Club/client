@@ -11,16 +11,41 @@
   gap: 1rem;
 }
 
-/* Las imágenes de Eventbrite son 2:1. */
-.evento-tarjeta__imagen {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+/*
+ * Marco 2:1, que es la proporción de las imágenes de Eventbrite. Las de los
+ * eventos creados a mano pueden ser cuadradas o apaisadas, y son carteles
+ * con texto hasta el borde: se ven enteras (`contain`), y detrás la misma
+ * imagen difuminada rellena el marco, como en el carrusel de ponentes. Con
+ * una imagen 2:1 las dos capas coinciden y no cambia nada.
+ */
+.evento-tarjeta__marco {
+  position: relative;
   aspect-ratio: 2 / 1;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 1rem;
   background: var(--color-lavanda-medio);
+}
+
+.evento-tarjeta__imagen,
+.evento-tarjeta__fondo {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.evento-tarjeta__imagen {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.evento-tarjeta__fondo {
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  filter: blur(24px) saturate(1.1);
 }
 
 .evento-tarjeta__datos {

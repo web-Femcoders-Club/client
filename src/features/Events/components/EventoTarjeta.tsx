@@ -36,7 +36,12 @@ const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3
 
   return (
     <article className="fc-tarjeta evento-tarjeta" aria-labelledby={idTitulo}>
-      {evento.logo_url && <ImagenEvento className="evento-tarjeta__imagen" url={evento.logo_url} />}
+      {evento.logo_url && (
+        <div className="evento-tarjeta__marco">
+          <ImagenEvento className="evento-tarjeta__fondo" url={evento.logo_url} />
+          <ImagenEvento className="evento-tarjeta__imagen" url={evento.logo_url} />
+        </div>
+      )}
       <div className="evento-tarjeta__datos">
         <time className="evento-tarjeta__fecha" dateTime={fechaIso(evento.start_local)}>
           {formatearFecha(inicio)}
