@@ -1,5 +1,5 @@
 import { Event } from "../../../types/types";
-import { PROXIMOS_EVENTOS } from "../contenido";
+import { ENLACE_EXTRA_POR_EVENTO, PROXIMOS_EVENTOS } from "../contenido";
 import { fechaIso, leerFecha } from "../fecha";
 import ImagenEvento from "./ImagenEvento";
 import "./EventoTarjeta.css";
@@ -33,6 +33,8 @@ const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3
   const inicio = leerFecha(evento.start_local);
   const haPasado = inicio < new Date();
   const idTitulo = `evento-${evento.id}`;
+  const enlaceExtra = haPasado ? undefined : ENLACE_EXTRA_POR_EVENTO[evento.id];
+  const reservar = !haPasado && evento.event_url;
 
   return (
     <article className="fc-tarjeta evento-tarjeta" aria-labelledby={idTitulo}>
@@ -47,19 +49,34 @@ const EventoTarjeta: React.FC<EventoTarjetaProps> = ({ evento, nivelTitulo = "h3
         {evento.name}
       </Titulo>
       {evento.description && <p className="evento-tarjeta__texto">{evento.description}</p>}
-      {!haPasado && evento.event_url && (
-        <a
-          className="fc-boton fc-boton--naranja"
-          href={evento.event_url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {PROXIMOS_EVENTOS.reservar}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7M9 7h8v8" />
-          </svg>
-          <span className="fc-solo-lector">(se abre Eventbrite en otra pestaña)</span>
-        </a>
+      {(reservar || enlaceExtra) && (
+        <div className="evento-tarjeta__acciones">
+          {reservar && (
+            <a
+              className="fc-boton fc-boton--naranja"
+              href={evento.event_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {PROXIMOS_EVENTOS.reservar}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" />
+              </svg>
+              <span className="fc-solo-lector">(se abre Eventbrite en otra pestaña)</span>
+            </a>
+          )}
+          {enlaceExtra && (
+            <a
+              className="fc-enlace fc-enlace--texto evento-tarjeta__enlace-extra"
+              href={enlaceExtra.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {enlaceExtra.texto}
+              <span className="fc-solo-lector"> ({enlaceExtra.destino})</span>
+            </a>
+          )}
+        </div>
       )}
     </article>
   );
