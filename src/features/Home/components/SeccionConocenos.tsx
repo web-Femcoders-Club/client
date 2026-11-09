@@ -109,6 +109,11 @@ const SeccionConocenos: React.FC<SeccionConocenosProps> = ({
               <figure className="evento__imagen">
                 <OptimizedImage
                   src={evento.logo?.original?.url || "/apoyomujeres.png"}
+                  alt=""
+                  className="evento__imagen-fondo"
+                />
+                <OptimizedImage
+                  src={evento.logo?.original?.url || "/apoyomujeres.png"}
                   alt={`Imagen del evento ${evento.name.text}`}
                 />
                 {fechaValida && (
