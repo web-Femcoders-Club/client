@@ -35,6 +35,23 @@ export const PROXIMOS_EVENTOS = {
   },
 };
 
+/*
+ * Enlace extra para un evento concreto, por su id. Es un caso puntual: las
+ * bases del concurso de Vonage del tercer aniversario (20/11/2026). No es un
+ * campo de la base a propósito, porque un solo evento no justifica cambiar el
+ * esquema. Si se repite en otros eventos, entonces sí.
+ *
+ * Solo sale en la tarjeta de próximos, así que deja de verse en cuanto el
+ * evento pasa. Después se puede borrar la entrada.
+ */
+export const ENLACE_EXTRA_POR_EVENTO: Record<string, { texto: string; url: string; destino: string }> = {
+  "femcoders-3-aniversario-2026": {
+    texto: "Bases del concurso de Vonage",
+    url: "https://www.vonage.com/legal/femcoders-club-meetup-giveaway-official-rules/",
+    destino: "se abre la web de Vonage en otra pestaña, en inglés",
+  },
+};
+
 export const EVENTOS_PASADOS = {
   antetitulo: "Eventos pasados",
   titulo: { texto: "Lo que ya hemos vivido", destacado: "juntas" },
