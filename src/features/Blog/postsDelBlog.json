@@ -1,5 +1,15 @@
 [
   {
+    "ruta": "/noticias/femcoders-club-stem-awards-barcelona-2026",
+    "titulo": "FemCoders Club gana en los STEM Awards Barcelona 2026",
+    "descripcion": "FemCoders Club gana el premio STEM Ecosystem Professional Career 2026 en Barcelona por su labor de apoyo al desarrollo profesional de las mujeres en tecnología.",
+    "imagen": "/assets/noticias/femcoders-club-stem-awards-barcelona-2026.jpg",
+    "proporcion": 1.9,
+    "fecha": "2026-11-13",
+    "seccion": "noticia",
+    "tema": "FemCoders Club"
+  },
+  {
     "ruta": "/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia",
     "titulo": "Objetivos SMART para crecer en tecnología: guía con ejemplos",
     "descripcion": "Convierte tus metas en objetivos SMART, con ejemplos para aprender tecnología, cambiar de trabajo, crear tu portfolio o hacer networking a tu ritmo.",

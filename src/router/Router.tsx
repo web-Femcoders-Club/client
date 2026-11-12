@@ -222,6 +222,9 @@ const ProyectoPilotoApisVonage = lazy(
 const AlianzaActividadesParaMujeres = lazy(
   () => import("../features/Blog/posts/noticias/AlianzaActividadesParaMujeres")
 );
+const StemAwardsBarcelona2026 = lazy(
+  () => import("../features/Blog/posts/noticias/StemAwardsBarcelona2026")
+);
 const SentidoDePertenencia = lazy(
   () => import("../features/Blog/posts/ctrl-ella/SentidoDePertenencia")
 );
@@ -1001,6 +1004,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <AlianzaActividadesParaMujeres />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/noticias/femcoders-club-stem-awards-barcelona-2026"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <StemAwardsBarcelona2026 />
                 </Suspense>
               </Layout>
             }

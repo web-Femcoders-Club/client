@@ -67,6 +67,11 @@ const HomePage: React.FC = () => {
 
   const images = [
     {
+      src: "/assets/home-images/femcoders-club-premio-stem-awards-barcelona-2026.jpg",
+      alt: "Tres mujeres posan en el escenario de los STEM Awards Barcelona 2026; la del centro sostiene el premio Professional Career que recibió FemCoders Club",
+      title: "FemCoders Club recibe el premio STEM Ecosystem Professional Career — CosmoCaixa, 10 de noviembre de 2026",
+    },
+    {
       src: "/assets/eventos2026/femCodersClub-ganadoras-hackBarna-reto-Vonage.jpg",
       alt: "El equipo de FemCoders Club, con el premio del reto de Vonage, posa en el escenario de HackBarna AI Summit 2026",
       title: "Ganadoras del reto de Vonage en HackBarna AI Summit 2026",
@@ -367,6 +372,17 @@ const HomePage: React.FC = () => {
     }
   };
   const newsData: NewsItem[] = [
+    {
+      id: "31",
+      title: "FemCoders Club gana el premio STEM Ecosystem Professional Career en Barcelona",
+      description:
+        "El 10 de noviembre recibimos el premio STEM Ecosystem Professional Career en los STEM Awards Barcelona 2026, durante el STEM Women Congress Global en CosmoCaixa. Un reconocimiento al trabajo de acompañar a las mujeres en distintas etapas de su carrera en tecnología, que compartimos con toda la comunidad.",
+      image: "/assets/noticias/femcoders-club-stem-awards-barcelona-2026.jpg",
+      imageAlt: "Las iniciativas premiadas en los STEM Awards Barcelona 2026 posan con sus galardones en el escenario de CosmoCaixa, delante de la pantalla de SWC Barcelona Global 2026",
+      date: "13 Noviembre 2026",
+      category: "Noticias",
+      link: "/noticias/femcoders-club-stem-awards-barcelona-2026",
+    },
     {
       id: "30",
       title: "¿Cómo convertir tus metas en un plan real para crecer en tecnología?",
