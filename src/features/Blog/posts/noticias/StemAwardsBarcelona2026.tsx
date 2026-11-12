@@ -181,9 +181,11 @@ const StemAwardsBarcelona2026: React.FC = () => (
       </SeccionPost>
 
       <SeccionPost titulo="A quienes hacéis posible esta comunidad">
+        {/* El trofeo es real; el fondo y las pegatinas se añadieron con IA. */}
         <ImagenPost
           src="/assets/noticias/premio-stem-ecosystem-professional-career-2026.jpg"
           alt="El galardón Professional Career del STEM Women Congress, categoría Ecosystem Recognition, noviembre de 2026: un disco claro sobre una base de madera, rodeado de pegatinas con el logotipo de FemCoders Club"
+          generadaConIA
         />
         <p>
           Gracias a quienes venís a los encuentros, compartís una oferta con
