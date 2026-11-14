@@ -513,7 +513,7 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 59 articles published on the FemCoders Club blog.
+Complete index of the 60 articles published on the FemCoders Club blog.
 
 ### News (22)
 
@@ -804,7 +804,12 @@ Complete index of the 59 articles published on the FemCoders Club blog.
   Published: 2023-10-14
   Summary: Aprende qué es HTML, por qué es esencial para la web moderna y cómo se combina con CSS y JS.
 
-### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (2)
+### Ctrl+Ella, the FemCoders Club newsletter: career guides for women in tech (3)
+
+- Cómo hacer un CV para tecnología: guía con ejemplos y checklist
+  URL: https://www.femcodersclub.com/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia
+  Published: 2026-11-14
+  Summary: Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.
 
 - Objetivos SMART para crecer en tecnología: guía con ejemplos
   URL: https://www.femcodersclub.com/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia
