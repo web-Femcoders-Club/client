@@ -1,5 +1,16 @@
 [
   {
+    "ruta": "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia",
+    "titulo": "Cómo hacer un CV para tecnología: guía con ejemplos y checklist",
+    "descripcion": "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist.",
+    "imagen": "/assets/ctrl-ella/portada-por-defecto.webp",
+    "proporcion": 1.9,
+    "fecha": "2026-11-14",
+    "seccion": "ctrl-ella",
+    "tema": "Ctrl+Ella",
+    "imagenConIA": true
+  },
+  {
     "ruta": "/noticias/femcoders-club-stem-awards-barcelona-2026",
     "titulo": "FemCoders Club gana en los STEM Awards Barcelona 2026",
     "descripcion": "FemCoders Club gana el premio STEM Ecosystem Professional Career 2026 en Barcelona por su labor de apoyo al desarrollo profesional de las mujeres en tecnología.",
