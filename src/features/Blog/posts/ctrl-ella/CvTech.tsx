@@ -20,7 +20,7 @@ import { articleSchema } from "../../components/articleSchema";
 const RUTA = "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia";
 const TITULO_SEO = "Cómo hacer un CV para tecnología: guía con ejemplos y checklist";
 const DESCRIPCION =
-  "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist.";
+  "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.";
 const IMAGEN = "/assets/ctrl-ella/portada-por-defecto.webp";
 const PUBLICADO = "2026-11-14T10:00:00Z";
 
@@ -45,7 +45,7 @@ const CvTech: React.FC = () => (
       <meta property="og:title" content="Cómo hacer un CV para tecnología: guía con ejemplos y checklist" />
       <meta
         property="og:description"
-        content="Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist."
+        content="Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final."
       />
       <meta
         property="og:url"

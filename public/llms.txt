@@ -809,7 +809,7 @@ Complete index of the 60 articles published on the FemCoders Club blog.
 - Cómo hacer un CV para tecnología: guía con ejemplos y checklist
   URL: https://www.femcodersclub.com/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia
   Published: 2026-11-14
-  Summary: Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist.
+  Summary: Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.
 
 - Objetivos SMART para crecer en tecnología: guía con ejemplos
   URL: https://www.femcodersclub.com/ctrl-ella/objetivos-smart-metas-plan-crecer-en-tecnologia
