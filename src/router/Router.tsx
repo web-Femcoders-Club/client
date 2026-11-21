@@ -231,6 +231,9 @@ const SentidoDePertenencia = lazy(
 const ObjetivosSmart = lazy(
   () => import("../features/Blog/posts/ctrl-ella/ObjetivosSmart")
 );
+const MarcaPersonal = lazy(
+  () => import("../features/Blog/posts/ctrl-ella/MarcaPersonal")
+);
 const TestingJavaScriptSinFrameworks = lazy(
   () =>
     import("../features/Blog/posts/recursos/js/TestingJavaScriptSinFrameworks")
@@ -1034,6 +1037,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ObjetivosSmart />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/ctrl-ella/marca-personal-tecnologia-linkedin-visibilidad"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <MarcaPersonal />
                 </Suspense>
               </Layout>
             }
