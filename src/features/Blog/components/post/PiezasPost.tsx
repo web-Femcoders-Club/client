@@ -130,18 +130,35 @@ type VideoPostProps = {
   /** Qué se ve en el vídeo: nombra el reproductor para el lector de pantalla. */
   descripcion: string;
   pie?: React.ReactNode;
+  /** Pista de subtítulos (.vtt, en español). Sin voz, basta con indicar la música. */
+  subtitulos?: string;
+  /** Creado o editado con herramientas de IA (AI Act art. 50). */
+  creadoConIA?: boolean;
 };
 
 /*
  * Un vídeo propio (.mp4) al ancho de la columna, con controles y sin
  * reproducción automática (WCAG 2.2.2). Los de YouTube van con un <iframe>
  * normal: la plantilla ya los pone en 16:9.
+ *
+ * El distintivo de IA va encima del vídeo y no superpuesto como en las
+ * imágenes: encima taparía los controles o el contenido del fotograma.
  */
-export const VideoPost: React.FC<VideoPostProps> = ({ src, srcMovil, poster, descripcion, pie }) => (
+export const VideoPost: React.FC<VideoPostProps> = ({
+  src,
+  srcMovil,
+  poster,
+  descripcion,
+  pie,
+  subtitulos,
+  creadoConIA = false,
+}) => (
   <figure className="post-video">
+    {creadoConIA && <span className="fc-distintivo-ia post-video__ia">Vídeo creado con ayuda de IA</span>}
     <video controls preload="metadata" poster={poster} aria-label={descripcion}>
       {srcMovil && <source src={srcMovil} type="video/mp4" media="(max-width: 768px)" />}
       <source src={src} type="video/mp4" />
+      {subtitulos && <track kind="captions" src={subtitulos} srcLang="es" label="Español" />}
       <p>
         Tu navegador no puede reproducir este vídeo. <a href={src}>Descárgalo aquí</a>.
       </p>

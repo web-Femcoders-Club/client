@@ -1,5 +1,16 @@
 [
   {
+    "ruta": "/noticias/piloto-vonage-cuatro-proyectos",
+    "titulo": "Construimos juntas: el piloto con Vonage",
+    "descripcion": "Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.",
+    "imagen": "/assets/noticias/piloto-vonage-cuatro-proyectos.jpg",
+    "proporcion": 1.905,
+    "fecha": "2026-11-22",
+    "seccion": "noticia",
+    "tema": "FemCoders Club",
+    "imagenConIA": true
+  },
+  {
     "ruta": "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia",
     "titulo": "Cómo hacer un CV para tecnología: ejemplos y checklist",
     "descripcion": "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.",

@@ -373,6 +373,18 @@ const HomePage: React.FC = () => {
   };
   const newsData: NewsItem[] = [
     {
+      id: "33",
+      title: "Construimos juntas: el piloto con Vonage",
+      description:
+        "Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.",
+      image: "/assets/noticias/piloto-vonage-cuatro-proyectos-home.jpg",
+      imageAlt: "Imagen creada con IA: los logotipos de FemCoders Club y Vonage sobre los cuatro proyectos del piloto: visitas de pisos sin estafas, recepcionista de voz para restaurantes, atención al cliente de una tienda de moda y averías del hogar por vídeo",
+      aiGenerated: true,
+      date: "22 Noviembre 2026",
+      category: "Noticias",
+      link: "/noticias/piloto-vonage-cuatro-proyectos",
+    },
+    {
       id: "31",
       title: "FemCoders Club gana el premio STEM Ecosystem Professional Career en Barcelona",
       description:
@@ -422,18 +434,6 @@ const HomePage: React.FC = () => {
       category: "Recursos",
       link: "/recursos/js/quiz-javascript-entrevistas",
       linkLabel: "Hacer el quiz de JavaScript",
-    },
-    {
-      id: "26",
-      title: "De aprender a construir: nuestro primer programa piloto con las APIs de Vonage",
-      description:
-        "Durante unas seis semanas, pequeños equipos de la comunidad construirán una aplicación real con las APIs de Vonage: online, con flexibilidad y con el acompañamiento de mentoras de FemCoders Club. Para quien empieza y también para quien ya tiene experiencia y quiere construir algo en comunidad. Las inscripciones cerraron el 18 de octubre.",
-      image: "/assets/noticias/proyecto-piloto-apis-vonage.jpg",
-      imageAlt: "Ilustración generada con IA: tres chicas sonríen frente a sus portátiles, con los logotipos de FemCoders Club y Vonage, iconos de mensajes, llamada, vídeo y verificación, y libros con las palabras Build, Learn y Together",
-      aiGenerated: true,
-      date: "11 Octubre 2026",
-      category: "Noticias",
-      link: "/noticias/proyecto-piloto-apis-vonage",
     },
     {
       id: "24",

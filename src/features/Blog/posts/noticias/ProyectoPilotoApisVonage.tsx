@@ -203,6 +203,14 @@ const ProyectoPilotoApisVonage: React.FC = () => (
       */}
       <NotaPost titulo="Actualización: inscripciones cerradas">
         <p>
+          El programa ya está en marcha. Te presentamos a las participantes, las mentoras y las
+          aplicaciones que están construyendo en{' '}
+          <Link to="/noticias/piloto-vonage-cuatro-proyectos">
+            Construimos juntas: el piloto con Vonage
+          </Link>
+          .
+        </p>
+        <p>
           Las inscripciones al programa piloto cerraron el{" "}
           <strong>domingo 18 de octubre de 2026</strong>. Gracias a todas las
           personas que os habéis sumado a esta primera edición.

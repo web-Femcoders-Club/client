@@ -5,6 +5,26 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Noticia: así avanza el piloto con Vonage
+
+#### Añadido
+- **Post de avance del programa piloto** (`/noticias/piloto-vonage-cuatro-proyectos`):
+  los cuatro equipos, sus mentoras, el *learning path* con certificado, el
+  acompañamiento de Vonage y la demo final del 4 de diciembre de 2026. Incluye el
+  vídeo de presentación de los equipos, con subtítulos y la transcripción
+  plegada debajo.
+- **`VideoPost` admite `subtitulos`** (pista `.vtt`) y **`creadoConIA`**
+  (distintivo encima del vídeo, sin tapar los controles).
+- **`articleSchema` admite `video`**, para el `VideoObject` que contiene el post.
+  Hasta ahora solo se podía poner en `about`, que dice de qué trata el post.
+- **«De aprender a construir…»** enlaza al nuevo post desde su nota de
+  inscripciones cerradas.
+
+#### Cambiado
+- **Noticias de la portada**: entra el piloto con Vonage, con una imagen 4:3
+  propia para el carrusel (`piloto-vonage-cuatro-proyectos-home.jpg`), y sale
+  «De aprender a construir…», que sigue publicado en el blog.
+
 ### Panel: lista de espera de los eventos (server#150)
 
 #### Añadido

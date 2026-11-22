@@ -270,9 +270,13 @@ Organizamos eventos presenciales en Barcelona y sesiones online con profesionale
 
 Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
 
-### Upcoming events (0)
+### Upcoming events (1)
 
-No upcoming events announced right now.
+- Dev3pack Global Hackathon: Build Station en Barcelona
+  Date: 2026-11-28
+  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
+  Summary: Hackathon universitario global de Dev3pack y Solana Foundation, del 27 al 29 de noviembre. En Barcelona nos encontramos en persona el sábado 28, de 10:00 a 18:00, en AI Campus: un día para construir en equipo, con un track exclusivo de Vonage y mentoría de FemCoders Club y La Familia. No hace falta experiencia previa, solo ganas de participar. La inscripción la gestiona Dev3pack y está abierta hasta el 26 de noviembre.
+  Tickets: https://app.dev3pack.xyz/s/SPAIN
 
 ### Speakers
 
@@ -514,9 +518,14 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 60 articles published on the FemCoders Club blog.
+Complete index of the 61 articles published on the FemCoders Club blog.
 
-### News (22)
+### News (23)
+
+- Construimos juntas: el piloto con Vonage
+  URL: https://www.femcodersclub.com/noticias/piloto-vonage-cuatro-proyectos
+  Published: 2026-11-22
+  Summary: Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.
 
 - FemCoders Club gana en los STEM Awards Barcelona 2026
   URL: https://www.femcodersclub.com/noticias/femcoders-club-stem-awards-barcelona-2026
