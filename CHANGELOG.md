@@ -5,6 +5,17 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Equipo: web profesional de las cofundadoras
+
+#### Añadido
+- **Enlace a Irina Ichim Studio en la biografía de Irina** (`/equipo`), sobre el
+  nombre del estudio dentro del texto, sin `nofollow` ni `noreferrer`. Si la
+  biografía no lo nombra, va en un párrafo propio al final del desplegable.
+- **`url` en su ficha del JSON-LD** (`founder` de la Organization y la `Person`
+  de `/equipo`), en el HTML servido y en `llms.txt`.
+- Las webs viven en `src/features/Team/contenido.ts`, por nombre completo. Si
+  otra cofundadora quiere la suya, conviene pasarlo a un campo de `member`.
+
 ### Panel de la lista de espera
 
 #### Cambiado

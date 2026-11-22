@@ -210,13 +210,13 @@ LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
 
 ### Irina Ichim
 
-Cofundadora · Emprendedora convertida en desarrolladora full-stack.
+Cofundadora · Ingeniera de software freelance con visión emprendedora.
 
-Después de enfrentar desafíos laborales, descubrí mi pasión por la programación mientras exploraba nuevas oportunidades.
+Diseño y desarrollo aplicaciones web combinando mi experiencia como emprendedora con el trabajo técnico. Me interesa entender qué necesita quien va a utilizar un producto y transformar esa idea en software útil y bien construido.
 
-Disfruto cada desafío que enfrento y encuentro satisfacción en resolver problemas complejos.
+Como cofundadora de FemCoders Club, impulso espacios donde las mujeres podemos aprender, compartir conocimientos y desarrollar proyectos juntas. También acompaño a otras desarrolladoras como mentora, aportando lo que sé y aprendiendo con ellas.
 
-Además, como cofundadora de FemCoders Club, estoy comprometida a apoyar a mujeres que, al igual que yo, han enfrentado momentos difíciles y están dando un giro en sus vidas al aprender programación.
+Puedes conocer mi trabajo en Irina Ichim Studio (https://irina-ichim.com).
 
 LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
 
@@ -270,13 +270,9 @@ Organizamos eventos presenciales en Barcelona y sesiones online con profesionale
 
 Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
 
-### Upcoming events (1)
+### Upcoming events (0)
 
-- Mujeres, talento e IA: celebramos tres años de FemCoders Club
-  Date: 2026-11-20
-  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
-  Summary: Celebramos el tercer aniversario de FemCoders Club de la mano de Vonage. Virginia Carreras y Anna Tsolakou conversarán sobre mujeres, talento e inteligencia artificial: sesgos, oportunidades y carreras profesionales, y sobre cómo conseguir que la IA amplíe las oportunidades de las mujeres en lugar de reproducir desigualdades. Habrá networking y un concurso de Vonage con premios para las asistentes.
-  Tickets: https://www.aicampus.barcelona/es/program/mujeres-talento-e-ia-women-talent-and-ai-2026-11-20
+No upcoming events announced right now.
 
 ### Speakers
 
@@ -322,7 +318,12 @@ En nuestros eventos participan profesionales de distintos ámbitos del sector te
 - Rocío Cejudo, experta en accesibilidad y ciberseguridad, compartió valiosas estrategias para crear experiencias digitales más seguras e inclusivas en su charla.
 - Lorena Salvador abordó cómo diseñar webs y aplicaciones teniendo en cuenta la accesibilidad, destacando buenas prácticas para garantizar experiencias inclusivas para todos.
 
-### Past events (34, most recent first)
+### Past events (35, most recent first)
+
+- Mujeres, talento e IA: celebramos tres años de FemCoders Club
+  Date: 2026-11-20
+  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
+  Summary: Celebramos el tercer aniversario de FemCoders Club de la mano de Vonage. Virginia Carreras y Anna Tsolakou conversarán sobre mujeres, talento e inteligencia artificial: sesgos, oportunidades y carreras profesionales, y sobre cómo conseguir que la IA amplíe las oportunidades de las mujeres en lugar de reproducir desigualdades. Habrá networking y un concurso de Vonage con premios para las asistentes.
 
 - HackBarna AI Summit 26 - FemCoders Club Community Partner
   Date: 2026-09-19
