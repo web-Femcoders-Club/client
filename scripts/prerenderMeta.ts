@@ -19,6 +19,7 @@ import { generateSocialImages, type SocialImageMap } from "./socialImages";
 import { isPrivateRoute } from "./privateRoutes";
 import { RUTAS_SPA, type RutaMeta } from "./spaRoutesMeta";
 import { colaboradorasHtml, colaboradorasJsonLd } from "./contenidoColaboradoras";
+import { fundadorasJsonLd } from "./fundadoras";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DIST_DIR = path.join(ROOT, "dist");
@@ -262,6 +263,19 @@ function renderHeadRuta(
   return html.replace("</head>", `${tags}\n  </head>`);
 }
 
+/*
+ * El texto para quien no ejecuta JavaScript va en un bloque normal y no en un
+ * `<noscript>`: muchos extractores (los de los buscadores con IA, entre ellos)
+ * descartan lo que hay dentro de `<noscript>`, y en /equipo eso dejaba a las
+ * fundadoras fuera de lo que leían. Con JS, index.html lo oculta antes de
+ * pintarse y src/main.tsx lo retira al arrancar.
+ */
+const bloqueSinJs = (contenido: string) =>
+  `    <div class="contenido-sin-js">\n${contenido}\n    </div>`;
+
+const insertarAntesDeRoot = (html: string, bloque: string) =>
+  html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+
 /**
  * Incrusta los enlaces a los artículos en las páginas que los listan.
  *
@@ -271,9 +285,9 @@ function renderHeadRuta(
  * descubrible por el sitemap, y una URL sin ningún enlace que la apunte recibe
  * poca prioridad de rastreo.
  *
- * Va dentro de un `<noscript>` porque con JavaScript activo el listado real ya
- * está ahí y duplicarlo sería ruido. No es contenido distinto del que ve una
- * persona: son los mismos artículos, los mismos títulos y las mismas rutas.
+ * Va en un bloque sin JS (`bloqueSinJs`) porque con JavaScript activo el
+ * listado real ya está ahí y duplicarlo sería ruido. No es contenido distinto
+ * del que ve una persona: son los mismos artículos, títulos y rutas.
  */
 function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): string {
   if (!meta.listaPosts) return html;
@@ -291,30 +305,34 @@ function renderEnlacesPosts(html: string, posts: PostMeta[], meta: RutaMeta): st
     )
     .join("\n");
 
-  const bloque = [
-    "    <noscript>",
-    `      <h2>${attr(meta.encabezadoLista || meta.title)}</h2>`,
-    "      <ul>",
-    enlaces,
-    "      </ul>",
-    "    </noscript>",
-  ].join("\n");
+  const bloque = bloqueSinJs(
+    [
+      `      <h2>${attr(meta.encabezadoLista || meta.title)}</h2>`,
+      "      <ul>",
+      enlaces,
+      "      </ul>",
+    ].join("\n")
+  );
 
-  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+  return insertarAntesDeRoot(html, bloque);
 }
 
 /**
- * Incrusta el texto de la página en un `<noscript>` para quien no ejecuta
- * JavaScript (los rastreadores de los modelos). Con JS activo la página real
- * ya está ahí. Es el mismo texto que ve una persona: sale de la misma fuente
- * que pintan los componentes (ver scripts/contenidoQuienesSomos.ts).
+ * Incrusta el texto de la página para quien no ejecuta JavaScript (los
+ * rastreadores de los modelos). Con JS activo la página real ya está ahí. Es
+ * el mismo texto que ve una persona: sale de la misma fuente que pintan los
+ * componentes (ver scripts/contenidoQuienesSomos.ts).
+ *
+ * Quita el aviso genérico de index.html («requiere JavaScript», con su propio
+ * h1): en una página con su texto, era lo primero que leía un rastreador y le
+ * daba dos h1.
  */
 async function renderContenido(html: string, meta: RutaMeta): Promise<string> {
   if (!meta.contenidoHtml) return html;
   const contenido =
     typeof meta.contenidoHtml === "function" ? await meta.contenidoHtml() : meta.contenidoHtml;
-  const bloque = `    <noscript>\n${contenido}\n    </noscript>`;
-  return html.replace('<div id="root"></div>', `${bloque}\n    <div id="root"></div>`);
+  const sinAviso = html.replace(/\s*<noscript id="aviso-sin-js">[\s\S]*?<\/noscript>/, "");
+  return insertarAntesDeRoot(sinAviso, bloqueSinJs(contenido));
 }
 
 export async function prerenderMeta(): Promise<void> {
@@ -487,20 +505,32 @@ async function writeSpaRoutes(posts: PostMeta[]): Promise<number> {
 /**
  * Completa el HTML servido de la portada con lo que React pinta y un
  * rastreador sin JavaScript no ve: las organizaciones colaboradoras de la
- * sección «Empresas que han confiado en nosotras», en un `<noscript>` y como
- * JSON-LD (ver scripts/contenidoColaboradoras.ts).
+ * sección «Empresas que han confiado en nosotras», como texto y como JSON-LD
+ * (ver scripts/contenidoColaboradoras.ts). Y quiénes fundaron el club: la
+ * Organization de index.html no lleva `founder`, y la portada es la página que
+ * más se lee de FemCoders Club. Va con el mismo `@id`, así que es el mismo nodo.
  *
  * Escribe sobre dist/index.html, que es la plantilla de los posts, de las rutas
  * de la SPA y del 404.html. Por eso se llama al final, con todo lo demás ya
  * escrito: hacerlo antes metería la lista de la portada en todas las páginas.
  */
 async function writePortada(template: string): Promise<void> {
-  const jsonLd = `    <script type="application/ld+json">${jsonLdSeguro(colaboradorasJsonLd())}</script>`;
-  const noscript = `    <noscript>\n${colaboradorasHtml()}\n    </noscript>`;
+  const organizacion = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "FemCoders Club",
+    url: SITE_URL,
+    founder: fundadorasJsonLd(),
+  };
+  const jsonLd = [colaboradorasJsonLd(), organizacion]
+    .map((schema) => `    <script type="application/ld+json">${jsonLdSeguro(schema)}</script>`)
+    .join("\n");
 
-  const html = template
-    .replace("</head>", `${jsonLd}\n  </head>`)
-    .replace('<div id="root"></div>', `${noscript}\n    <div id="root"></div>`);
+  const html = insertarAntesDeRoot(
+    template.replace("</head>", `${jsonLd}\n  </head>`),
+    bloqueSinJs(colaboradorasHtml())
+  );
 
   await fs.writeFile(path.join(DIST_DIR, "index.html"), html, "utf-8");
   console.log("Portada: organizaciones colaboradoras añadidas al HTML servido");

@@ -17,7 +17,9 @@ FemCoders Club is a Spanish tech community and registered association founded on
 
 ## Founders
 
-FemCoders Club is led by its five current co-founders (full bios, as published on the website, in the "Team" section below):
+The founders of FemCoders Club who lead it today are its five current co-founders: Irina Ichim, Elvia Benedith, Ana Lucía Silva Córdoba, Silvina Lucero Calderón and Isadora Matias. Other women took part in the club's early days and are part of its history, but they are no longer part of the team.
+
+Full bios, as published on the website, are in the "Team" section below:
 
 1. Irina Ichim — Fullstack Software Developer, AI Specialist, Backend Java Mentor
    LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
@@ -176,15 +178,29 @@ Si quieres conocer mejor lo que hacemos, descubre nuestras iniciativas en el blo
 
 <!-- BEGIN: equipo generado automaticamente -->
 
-## Team: the co-founders of FemCoders Club (in Spanish, as published)
+## Team: the founders (co-founders) of FemCoders Club, current team (in Spanish, as published)
 
 Source: https://www.femcodersclub.com/equipo
+
+FemCoders Club se fundó en Barcelona en octubre de 2023. Hoy lo lideran sus cofundadoras: Irina Ichim, Elvia Benedith, Ana Lucía Silva Córdoba, Silvina Lucero Calderón e Isadora Matias. Ellas son las fundadoras que forman el equipo actual. Otras compañeras participaron en los inicios del club y forman parte de su historia, aunque hoy ya no están en el equipo.
 
 Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una comunidad apasionada hoy se ha formalizado como una asociación legalmente constituida.
 
 Este paso administrativo es la prueba de nuestro compromiso a largo plazo: nos da la estructura necesaria para impulsar proyectos de gran escala y ofrecer una plataforma estable donde todas puedan crecer.
 
 Cada miembro de nuestro liderazgo aporta una trayectoria sólida y una visión estratégica para asegurar que FemCoders Club continúe siendo el referente de la inclusión y el empoderamiento femenino en el sector tech.
+
+### Irina Ichim
+
+Cofundadora · Ingeniera de software freelance con visión emprendedora.
+
+Diseño y desarrollo aplicaciones web combinando mi experiencia como emprendedora con el trabajo técnico. Me interesa entender qué necesita quien va a utilizar un producto y transformar esa idea en software útil y bien construido.
+
+Como cofundadora de FemCoders Club, impulso espacios donde las mujeres podemos aprender, compartir conocimientos y desarrollar proyectos juntas. También acompaño a otras desarrolladoras como mentora, aportando lo que sé y aprendiendo con ellas.
+
+Puedes conocer mi trabajo en Irina Ichim Studio (https://irina-ichim.com).
+
+LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
 
 ### Elvia Benedith
 
@@ -207,18 +223,6 @@ Con amplia experiencia en la enseñanza, interesada por el diseño, lo que me ll
 Me apasiona trabajar en equipo, aplicar metodologías ágiles y profundizar en el desarrollo web.
 
 LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
-
-### Irina Ichim
-
-Cofundadora · Ingeniera de software freelance con visión emprendedora.
-
-Diseño y desarrollo aplicaciones web combinando mi experiencia como emprendedora con el trabajo técnico. Me interesa entender qué necesita quien va a utilizar un producto y transformar esa idea en software útil y bien construido.
-
-Como cofundadora de FemCoders Club, impulso espacios donde las mujeres podemos aprender, compartir conocimientos y desarrollar proyectos juntas. También acompaño a otras desarrolladoras como mentora, aportando lo que sé y aprendiendo con ellas.
-
-Puedes conocer mi trabajo en Irina Ichim Studio (https://irina-ichim.com).
-
-LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
 
 ### Silvina Lucero Calderón
 
@@ -270,9 +274,13 @@ Organizamos eventos presenciales en Barcelona y sesiones online con profesionale
 
 Llevamos más de 40 eventos creando oportunidades para conectar y seguir creciendo, estés dando tus primeros pasos o lleves años formando parte del sector.
 
-### Upcoming events (0)
+### Upcoming events (1)
 
-No upcoming events announced right now.
+- Dev3pack Global Hackathon: Build Station en Barcelona
+  Date: 2026-11-28
+  Location: AI Campus Barcelona, Carrer de Jesús 3, Barcelona
+  Summary: Hackathon universitario global de Dev3pack y Solana Foundation, del 27 al 29 de noviembre. En Barcelona nos encontramos en persona el sábado 28, de 10:00 a 18:00, en AI Campus: un día para construir en equipo, con un track exclusivo de Vonage y mentoría de FemCoders Club y La Familia. No hace falta experiencia previa, solo ganas de participar. La inscripción la gestiona Dev3pack y está abierta hasta el 26 de noviembre.
+  Tickets: https://app.dev3pack.xyz/s/SPAIN
 
 ### Speakers
 
@@ -514,9 +522,14 @@ Source: https://www.femcodersclub.com/ (section «Empresas que han confiado en n
 
 ## Blog posts
 
-Complete index of the 61 articles published on the FemCoders Club blog.
+Complete index of the 62 articles published on the FemCoders Club blog.
 
-### News (22)
+### News (23)
+
+- Construimos juntas: el piloto con Vonage
+  URL: https://www.femcodersclub.com/noticias/piloto-vonage-cuatro-proyectos
+  Published: 2026-11-22
+  Summary: Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.
 
 - FemCoders Club gana en los STEM Awards Barcelona 2026
   URL: https://www.femcodersclub.com/noticias/femcoders-club-stem-awards-barcelona-2026

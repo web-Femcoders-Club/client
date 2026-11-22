@@ -4,7 +4,7 @@
  * Mismo patrón que scripts/contenidoEquipo.ts: los textos de
  * src/features/Events/contenido.ts —la misma fuente que pintan las
  * secciones— y los eventos de la base de datos se convierten en:
- *   - HTML para un `<noscript>` del HTML servido (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS del HTML servido (lo inserta prerenderMeta);
  *   - JSON-LD con cada evento, en el HTML servido;
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  *

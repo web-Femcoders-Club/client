@@ -6,7 +6,7 @@
  * solo veía al equipo si renderizaba. Aquí se convierte
  * src/features/Team/contenido.ts —la misma fuente que pintan las secciones— y
  * el equipo actual de la base de datos en:
- *   - HTML para un `<noscript>` del HTML servido (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS del HTML servido (lo inserta prerenderMeta);
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  * No es contenido distinto del que ve una persona: son los mismos textos y las
  * mismas biografías, íntegras.
@@ -20,6 +20,8 @@ import {
   IMPACTO,
   PRESENTACION_EQUIPO,
   ROL_EQUIPO_ACTUAL,
+  TITULO_PAGINA_EQUIPO,
+  ordenarComoCofundadoras,
   VALORES_EQUIPO,
   partirDescripcion,
   enlazarWeb,
@@ -28,7 +30,7 @@ import {
   type WebPersonal,
 } from "../src/features/Team/contenido";
 import type { Member } from "../src/types/types";
-import { idPersona } from "./fundadoras";
+import { fundadorasJsonLd, idPersona } from "./fundadoras";
 
 const SITIO = "https://www.femcodersclub.com";
 const URL_PAGINA = `${SITIO}/equipo`;
@@ -48,7 +50,7 @@ let peticion: Promise<MiembroPublico[]> | null = null;
 
 /**
  * El equipo actual, en el orden de la base de datos. Vacío si la API falla.
- * Se pide una sola vez por build: lo usan el noscript, el JSON-LD y llms.txt.
+ * Se pide una sola vez por build: lo usan el bloque sin JS, el JSON-LD y llms.txt.
  */
 export function obtenerEquipo(): Promise<MiembroPublico[]> {
   peticion ??= pedirEquipo();
@@ -62,8 +64,11 @@ async function pedirEquipo(): Promise<MiembroPublico[]> {
     const miembros = (await respuesta.json()) as Member[];
     if (!Array.isArray(miembros)) throw new Error("la respuesta no es una lista");
 
-    return miembros
-      .filter((m) => m.memberRole === ROL_EQUIPO_ACTUAL)
+    const actuales = ordenarComoCofundadoras(
+      miembros.filter((m) => m.memberRole === ROL_EQUIPO_ACTUAL),
+      (m) => `${m.memberName} ${m.memberLastName}`,
+    );
+    return actuales
       .map((m) => ({
         nombre: `${m.memberName} ${m.memberLastName}`.trim(),
         web: webPersonal(`${m.memberName} ${m.memberLastName}`),
@@ -168,13 +173,27 @@ export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[
     memberOf: { "@id": ID_ORGANIZACION },
   }));
 
+  /*
+   * La misma Organization que index.html y «Quiénes somos» (mismo `@id`), con
+   * sus fundadoras: quien solo lee esta página tiene la respuesta aquí.
+   */
+  const organizacion = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ID_ORGANIZACION,
+    name: "FemCoders Club",
+    url: SITIO,
+    founder: fundadorasJsonLd(),
+  };
+
   const pagina = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "@id": URL_PAGINA,
-    name: `${titulo(PRESENTACION_EQUIPO.titulo)} | FemCoders Club`,
+    name: TITULO_PAGINA_EQUIPO,
     url: URL_PAGINA,
-    description: "Las cofundadoras que lideran FemCoders Club, sus valores y el impacto de la comunidad.",
+    description:
+      "Las fundadoras de FemCoders Club: las cofundadoras que forman el equipo actual, sus valores y el impacto de la comunidad.",
     inLanguage: "es",
     isPartOf: { "@id": ID_SITIO },
     about: { "@id": ID_ORGANIZACION },
@@ -203,7 +222,7 @@ export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[
     ],
   };
 
-  return [pagina, ...personas, migas];
+  return [pagina, organizacion, ...personas, migas];
 }
 
 // ---------- Markdown (llms.txt) ----------
@@ -221,7 +240,7 @@ function fragmentosMd(fragmentos: Fragmento[]): string {
 export function equipoMarkdown(equipo: MiembroPublico[]): string {
   const P = PRESENTACION_EQUIPO;
   return [
-    "## Team: the co-founders of FemCoders Club (in Spanish, as published)",
+    "## Team: the founders (co-founders) of FemCoders Club, current team (in Spanish, as published)",
     "",
     `Source: ${URL_PAGINA}`,
     "",

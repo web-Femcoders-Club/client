@@ -3,7 +3,7 @@
  *
  * Mismo patrón que scripts/contenidoContacto.ts: los textos de
  * src/features/CodigoConducta/contenido.ts —la misma fuente que pinta la
- * página— se convierten en HTML para un `<noscript>` del HTML servido (lo
+ * página— se convierten en HTML para el bloque sin JS del HTML servido (lo
  * inserta prerenderMeta). Mismos encabezados y anclas que la página.
  */
 import {

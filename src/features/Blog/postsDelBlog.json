@@ -1,5 +1,16 @@
 [
   {
+    "ruta": "/noticias/piloto-vonage-cuatro-proyectos",
+    "titulo": "Construimos juntas: el piloto con Vonage",
+    "descripcion": "Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.",
+    "imagen": "/assets/noticias/piloto-vonage-cuatro-proyectos.jpg",
+    "proporcion": 1.905,
+    "fecha": "2026-11-22",
+    "seccion": "noticia",
+    "tema": "FemCoders Club",
+    "imagenConIA": true
+  },
+  {
     "ruta": "/ctrl-ella/marca-personal-tecnologia-linkedin-visibilidad",
     "titulo": "Marca personal en tecnología: cómo hacerte visible",
     "descripcion": "Cómo construir tu marca personal en tecnología: mejora tu LinkedIn, haz networking sin sentir que te vendes y deja señales útiles de lo que sabes hacer.",

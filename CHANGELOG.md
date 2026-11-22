@@ -5,6 +5,55 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Equipo: quiénes son las fundadoras, dicho con claridad
+
+#### Cambiado
+- **/equipo responde a «¿quiénes son las fundadoras de FemCoders Club?»** en una
+  frase citable: se fundó en Barcelona en octubre de 2023, hoy lo lideran sus
+  cinco cofundadoras, con nombre, y las compañeras de los inicios forman parte de
+  su historia pero ya no están en el equipo. Los buscadores y los modelos de IA
+  mezclaban a unas y otras.
+- **Título «Fundadoras de FemCoders Club: el equipo actual»** y h1 «Fundadoras y
+  equipo actual»: Google enseñaba «Nuestro equipo de liderazgo» y un texto de los
+  valores.
+- **Las cofundadoras actuales, en un solo sitio** (`COFUNDADORAS_ACTUALES` en
+  `src/features/Team/contenido.ts`): de ahí salen la frase, la meta description
+  (Helmet y prerender) y el `founder` del JSON-LD. Antes estaban escritas a mano
+  en tres sitios.
+- **JSON-LD de /equipo**: incluye la Organization con `founder`, con el mismo
+  `@id` que index.html y «Quiénes somos».
+- **llms.txt**: el apartado «Founders» aclara que las de los inicios ya no están
+  en el equipo.
+- **Irina Ichim, primera**: el orden de `COFUNDADORAS_ACTUALES` manda en la frase,
+  las tarjetas, el HTML servido y el JSON-LD (antes, el de la base de datos). La
+  rotación de las tarjetas sigue igual.
+- **La portada declara quién fundó el club**: su Organization lleva `founder`.
+- **El texto para rastreadores sale de `<noscript>`**, en todas las páginas que
+  lo llevan (/equipo, Quiénes somos, eventos, contacto, código de conducta,
+  listados del blog y portada). Muchos extractores descartan `<noscript>`.
+  Ahora va en bloques `.contenido-sin-js`: con JavaScript, `index.html` los
+  oculta antes de pintarse y `main.tsx` los retira. En las páginas con texto
+  propio se quita el aviso genérico «requiere JavaScript», que daba dos h1.
+
+### Noticia: así avanza el piloto con Vonage
+
+#### Añadido
+- **Post de avance del programa piloto** (`/noticias/piloto-vonage-cuatro-proyectos`):
+  los cuatro equipos, sus mentoras, el *learning path* con certificado, el
+  acompañamiento de Vonage y la demo final del 4 de diciembre de 2026. Incluye el
+  vídeo de presentación de los equipos, con subtítulos y la transcripción
+  plegada debajo.
+- **`VideoPost` admite `subtitulos`** (pista `.vtt`).
+- **`articleSchema` admite `video`**, para el `VideoObject` que contiene el post.
+  Hasta ahora solo se podía poner en `about`, que dice de qué trata el post.
+- **«De aprender a construir…»** enlaza al nuevo post desde su nota de
+  inscripciones cerradas.
+
+#### Cambiado
+- **Noticias de la portada**: entra el piloto con Vonage, con una imagen 4:3
+  propia para el carrusel (`piloto-vonage-cuatro-proyectos-home.jpg`), y sale
+  «De aprender a construir…», que sigue publicado en el blog.
+
 ### Panel: lista de espera de los eventos (server#150)
 
 #### Añadido

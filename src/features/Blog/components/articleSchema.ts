@@ -63,6 +63,8 @@ export interface ArticleSchemaInput {
   author?: Record<string, unknown>;
   /** De qué trata el post: un `Event`, otra `Organization`… */
   about?: Record<string, unknown>;
+  /** Un vídeo que el post contiene (`VideoObject`). No va en `about`: el post no trata del vídeo. */
+  video?: Record<string, unknown>;
   contributor?: Record<string, unknown>[];
   keywords?: string[];
   articleBody?: string;
@@ -78,6 +80,7 @@ export function articleSchema({
   dateModified,
   author,
   about,
+  video,
   contributor,
   keywords,
   articleBody,
@@ -100,6 +103,7 @@ export function articleSchema({
     // `JSON.stringify` omite las claves con `undefined`, así que lo que no se
     // pasa no aparece en la salida.
     about,
+    video,
     contributor,
     keywords,
     articleBody,

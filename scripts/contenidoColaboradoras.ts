@@ -7,7 +7,7 @@
  * PerplexityBot) veían ninguna organización. Aquí se convierte
  * src/data/colaboradoras.ts —la misma lista que pinta la sección y cuenta el
  * panel— en:
- *   - HTML para un `<noscript>` de la portada (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS de la portada (lo inserta prerenderMeta);
  *   - JSON-LD de la portada, enlazado a la Organization de index.html;
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  * No es contenido distinto del que ve una persona: son las mismas
@@ -38,7 +38,7 @@ const resumen = () =>
 const descripcion = (c: Colaboradora) =>
   `${textoAnios(aniosDeColaboracion(c))}: ${c.colaboraciones.map((col) => col.descripcion).join("; ")}`;
 
-// ---------- HTML (noscript de la portada) ----------
+// ---------- HTML (bloque sin JS de la portada) ----------
 
 export function colaboradorasHtml(): string {
   return [

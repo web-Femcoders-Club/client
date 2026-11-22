@@ -47,3 +47,6 @@ Ctrl_Ella*.pdf
 
 # Caché que deja TypeScript al compilar.
 *.tsbuildinfo
+
+# Imágenes y prompts que genera image_gen al trabajar en el proyecto: se quedan en local
+output/

@@ -130,6 +130,8 @@ type VideoPostProps = {
   /** Qué se ve en el vídeo: nombra el reproductor para el lector de pantalla. */
   descripcion: string;
   pie?: React.ReactNode;
+  /** Pista de subtítulos (.vtt, en español). Sin voz, basta con indicar la música. */
+  subtitulos?: string;
 };
 
 /*
@@ -137,11 +139,19 @@ type VideoPostProps = {
  * reproducción automática (WCAG 2.2.2). Los de YouTube van con un <iframe>
  * normal: la plantilla ya los pone en 16:9.
  */
-export const VideoPost: React.FC<VideoPostProps> = ({ src, srcMovil, poster, descripcion, pie }) => (
+export const VideoPost: React.FC<VideoPostProps> = ({
+  src,
+  srcMovil,
+  poster,
+  descripcion,
+  pie,
+  subtitulos,
+}) => (
   <figure className="post-video">
     <video controls preload="metadata" poster={poster} aria-label={descripcion}>
       {srcMovil && <source src={srcMovil} type="video/mp4" media="(max-width: 768px)" />}
       <source src={src} type="video/mp4" />
+      {subtitulos && <track kind="captions" src={subtitulos} srcLang="es" label="Español" />}
       <p>
         Tu navegador no puede reproducir este vídeo. <a href={src}>Descárgalo aquí</a>.
       </p>

@@ -28,6 +28,7 @@ import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
 import { META_CONTACTO } from "../src/features/Contact/contenido";
+import { DESCRIPCION_EQUIPO, TITULO_PAGINA_EQUIPO } from "../src/features/Team/contenido";
 import { codigoConductaHtml } from "./contenidoCodigoConducta";
 import { META_CODIGO } from "../src/features/CodigoConducta/contenido";
 import { META_REGISTRO } from "../src/features/User/contenido";
@@ -38,7 +39,7 @@ export interface RutaMeta {
   description: string;
   /**
    * Sección de posts que la página lista, si lista alguna. El prerender la usa
-   * para incrustar los enlaces a los artículos dentro de un `<noscript>`.
+   * para incrustar los enlaces a los artículos en el bloque sin JS.
    */
   listaPosts?: "todas" | PostSection;
   /**
@@ -55,7 +56,7 @@ export interface RutaMeta {
    */
   jsonLd?: Record<string, unknown>[] | (() => Promise<Record<string, unknown>[]>);
   /**
-   * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
+   * Texto de la página en HTML, para el bloque sin JS del HTML servido. Los
    * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
    * página hecha en React solo leen las metas. Una función cuando el texto
    * depende de datos que hay que pedir en el build (el equipo de /equipo).
@@ -139,10 +140,9 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     jsonLd: async () => eventosJsonLd(await obtenerEventos()),
   },
   "/equipo": {
-    // Copiado de TeamPage.tsx. El título coincide con el h1 y cabe sin cortarse.
-    title: "Nuestro equipo de liderazgo | FemCoders Club",
-    description:
-      "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias.",
+    // Los mismos que el Helmet de TeamPage.tsx, desde src/features/Team/contenido.ts.
+    title: TITULO_PAGINA_EQUIPO,
+    description: DESCRIPCION_EQUIPO,
     // Textos de src/features/Team/contenido.ts y biografías de la base de datos.
     contenidoHtml: async () => equipoHtml(await obtenerEquipo()),
     imagen: {
