@@ -177,6 +177,14 @@
   color: var(--color-text-dark);
 }
 
+/* 7,2:1 sobre lavanda (AAA). Subrayado: el color solo no basta para distinguirlo del texto. */
+.equipo-tarjeta__historia a {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 /* ---------- Cofundadoras Legacy (filter="inactive"; hoy no se muestran) ---------- */
 
 .equipo-tarjetas__lista--legacy .equipo-tarjeta__foto {

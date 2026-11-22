@@ -5,6 +5,46 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Panel: lista de espera de los eventos (server#150)
+
+#### Añadido
+- **Etiqueta «Lista de espera»** en la lista de cada evento del CRM y en el
+  historial de cada persona. La cabecera del evento separa «X asistentes» de
+  «Y en lista de espera».
+- **«Solo en lista de espera»** en Comunidad real: las tres cifras vuelven a
+  sumar el total de personas.
+
+#### Cambiado
+- «Asistentes únicas en Eventbrite» pasa a «Asistentes únicas», porque ya
+  cuenta también eventos de otras plataformas. Los textos de la lista del
+  evento y del historial hablan de inscripciones, no de asistencia.
+- Requiere el servidor con server#150: con uno anterior, el panel se comporta
+  como antes.
+
+### Equipo: web profesional de las cofundadoras
+
+#### Añadido
+- **Enlace a Irina Ichim Studio en la biografía de Irina** (`/equipo`), sobre el
+  nombre del estudio dentro del texto, sin `nofollow` ni `noreferrer`. Si la
+  biografía no lo nombra, va en un párrafo propio al final del desplegable.
+- **`url` en su ficha del JSON-LD** (`founder` de la Organization y la `Person`
+  de `/equipo`), en el HTML servido y en `llms.txt`.
+- Las webs viven en `src/features/Team/contenido.ts`, por nombre completo. Si
+  otra cofundadora quiere la suya, conviene pasarlo a un campo de `member`.
+
+### Ctrl+Ella: CV para tecnología
+
+#### Añadido
+- **Tercer artículo de Ctrl+Ella, sobre el CV para tecnología**
+  (`/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia`), de Ana Lucía Silva
+  Córdoba. Portada propia generada con IA (`assets/ctrl-ella/cv-para-tecnologia.webp`)
+  y versión con margen para el carrusel de la portada.
+- **«Sigue la serie» en Objetivos SMART**, con enlace a la edición siguiente.
+
+#### Cambiado
+- **Noticias de la portada**: entra el CV para tecnología, detrás del premio
+  STEM, y sale «No basta con estar en tecnología…», que sigue publicado en el blog.
+
 ### Panel de la lista de espera
 
 #### Cambiado

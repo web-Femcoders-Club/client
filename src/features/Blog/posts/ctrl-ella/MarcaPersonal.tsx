@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import PlantillaPost from "../../components/post/PlantillaPost";
 import { SeccionPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
@@ -359,6 +360,17 @@ const MarcaPersonal: React.FC = () => (
         <p>No hace falta publicarlo hoy.</p>
         <p>Guárdalo.</p>
         <p>Esa es tu primera señal.</p>
+      </SeccionPost>
+
+      <SeccionPost titulo="Sigue la serie">
+        <ul>
+          <li>
+            Edición anterior:{" "}
+            <Link to="/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia">
+              CV tech: cómo transformar tu experiencia en oportunidades
+            </Link>
+          </li>
+        </ul>
       </SeccionPost>
     </PlantillaPost>
   </>

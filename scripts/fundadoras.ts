@@ -15,6 +15,8 @@
  * que sustituye a la de mantener a Liliana Dalmarco en `founder` (EQ1, #18).
  */
 
+import { webPersonal } from "../src/features/Team/contenido";
+
 const SITIO = "https://www.femcodersclub.com";
 
 export interface Fundadora {
@@ -43,11 +45,15 @@ export const slugPersona = (nombre: string) =>
 /** Cada persona se identifica en /equipo, que es donde se la ve. */
 export const idPersona = (nombre: string) => `${SITIO}/equipo#${slugPersona(nombre)}`;
 
-/** Para `founder`: nombre, enlace y LinkedIn; el detalle lo da /equipo. */
+/** Para `founder`: nombre, enlace, su web si la tiene y LinkedIn; el detalle lo da /equipo. */
 export const fundadorasJsonLd = () =>
-  FUNDADORAS.map((f) => ({
-    "@type": "Person",
-    "@id": idPersona(f.nombre),
-    name: f.nombre,
-    sameAs: f.linkedin,
-  }));
+  FUNDADORAS.map((f) => {
+    const web = webPersonal(f.nombre);
+    return {
+      "@type": "Person",
+      "@id": idPersona(f.nombre),
+      name: f.nombre,
+      ...(web ? { url: web.url } : {}),
+      sameAs: f.linkedin,
+    };
+  });

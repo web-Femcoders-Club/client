@@ -162,3 +162,43 @@ export const partirDescripcion = (descripcion: string) => {
 
 /** El rol que la base de datos da al equipo actual (las Legacy no se muestran). */
 export const ROL_EQUIPO_ACTUAL = "Cofundadora";
+
+/*
+ * La web profesional de cada cofundadora que tenga una, por nombre completo
+ * tal como está en la base de datos. Vive aquí y no en la base de datos
+ * porque de momento solo hay una: si alguna más quiere la suya, conviene
+ * pasarla a un campo de `member` (servidor, panel y este cliente a la vez).
+ * La leen la tarjeta de /equipo, el HTML servido, el JSON-LD y llms.txt.
+ */
+export interface WebPersonal {
+  nombre: string;
+  url: string;
+}
+
+const WEBS_PERSONALES: Record<string, WebPersonal> = {
+  "Irina Ichim": { nombre: "Irina Ichim Studio", url: "https://irina-ichim.com" },
+};
+
+export const webPersonal = (nombreCompleto: string): WebPersonal | undefined =>
+  WEBS_PERSONALES[nombreCompleto.trim()];
+
+/*
+ * El enlace va dentro de la biografía, sobre el nombre de la web la primera
+ * vez que aparece («Dirijo Irina Ichim Studio…»). Si la biografía no lo
+ * nombra, la web va en un párrafo propio al final, para no perderla.
+ */
+export type ParrafoConWeb =
+  | { tipo: "texto"; texto: string }
+  | { tipo: "enlace"; antes: string; web: WebPersonal; despues: string };
+
+export const enlazarWeb = (historia: string[], web?: WebPersonal): ParrafoConWeb[] => {
+  const parrafos: ParrafoConWeb[] = historia.map((texto) => ({ tipo: "texto", texto }));
+  if (!web) return parrafos;
+
+  const i = historia.findIndex((p) => p.includes(web.nombre));
+  if (i === -1) return [...parrafos, { tipo: "enlace", antes: "", web, despues: "" }];
+
+  const [antes, ...resto] = historia[i].split(web.nombre);
+  parrafos[i] = { tipo: "enlace", antes, web, despues: resto.join(web.nombre) };
+  return parrafos;
+};

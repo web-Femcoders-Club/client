@@ -22,6 +22,10 @@ import {
   ROL_EQUIPO_ACTUAL,
   VALORES_EQUIPO,
   partirDescripcion,
+  enlazarWeb,
+  webPersonal,
+  type ParrafoConWeb,
+  type WebPersonal,
 } from "../src/features/Team/contenido";
 import type { Member } from "../src/types/types";
 import { idPersona } from "./fundadoras";
@@ -36,6 +40,7 @@ export interface MiembroPublico {
   oficio: string | null;
   historia: string[];
   linkedin: string;
+  web?: WebPersonal;
   imagen: string;
 }
 
@@ -61,6 +66,7 @@ async function pedirEquipo(): Promise<MiembroPublico[]> {
       .filter((m) => m.memberRole === ROL_EQUIPO_ACTUAL)
       .map((m) => ({
         nombre: `${m.memberName} ${m.memberLastName}`.trim(),
+        web: webPersonal(`${m.memberName} ${m.memberLastName}`),
         rol: m.memberRole,
         ...partirDescripcion(m.memberDescription ?? ""),
         linkedin: m.memberLinkedin,
@@ -89,6 +95,11 @@ function fragmentosHtml(fragmentos: Fragmento[]): string {
     .join("");
 }
 
+const parrafoHtml = (p: ParrafoConWeb) =>
+  p.tipo === "texto"
+    ? escapar(p.texto)
+    : `${escapar(p.antes)}<a href="${escapar(p.web.url)}">${escapar(p.web.nombre)}</a>${escapar(p.despues)}`;
+
 export function equipoHtml(equipo: MiembroPublico[]): string {
   const P = PRESENTACION_EQUIPO;
   const miembro = (m: MiembroPublico) =>
@@ -96,7 +107,7 @@ export function equipoHtml(equipo: MiembroPublico[]): string {
       "<article>",
       `<h3>${escapar(m.nombre)}</h3>`,
       `<p>${escapar(m.rol)}${m.oficio ? ` · ${escapar(m.oficio)}` : ""}</p>`,
-      ...m.historia.map((p) => `<p>${escapar(p)}</p>`),
+      ...enlazarWeb(m.historia, m.web).map((p) => `<p>${parrafoHtml(p)}</p>`),
       m.linkedin ? `<p><a href="${escapar(m.linkedin)}">LinkedIn de ${escapar(m.nombre)}</a></p>` : "",
       "</article>",
     ].join("\n");
@@ -152,6 +163,7 @@ export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[
     jobTitle: m.rol,
     ...(m.oficio ? { description: m.oficio } : {}),
     image: m.imagen,
+    ...(m.web ? { url: m.web.url } : {}),
     ...(m.linkedin ? { sameAs: m.linkedin } : {}),
     memberOf: { "@id": ID_ORGANIZACION },
   }));
@@ -219,7 +231,10 @@ export function equipoMarkdown(equipo: MiembroPublico[]): string {
       "",
       `${m.rol}${m.oficio ? ` · ${m.oficio}` : ""}`,
       "",
-      ...m.historia.flatMap((p) => [p, ""]),
+      ...enlazarWeb(m.historia, m.web).flatMap((p) => [
+        p.tipo === "texto" ? p.texto : `${p.antes}${p.web.nombre} (${p.web.url})${p.despues}`,
+        "",
+      ]),
       ...(m.linkedin ? [`LinkedIn: ${m.linkedin}`, ""] : []),
     ]),
     `### ${titulo(VALORES_EQUIPO.titulo)}`,

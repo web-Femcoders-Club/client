@@ -6,7 +6,7 @@ import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
 import BotonRotacion from "../../../components/ui/BotonRotacion";
 import { useRotacion } from "../../../hooks/useRotacion";
-import { ROL_EQUIPO_ACTUAL, partirDescripcion } from "../contenido";
+import { ROL_EQUIPO_ACTUAL, enlazarWeb, partirDescripcion, webPersonal } from "../contenido";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
@@ -120,6 +120,7 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
           const nombre = `${member.memberName} ${member.memberLastName}`;
           const idHistoria = `historia-${member.idMember}`;
           const { oficio, historia } = partirDescripcion(member.memberDescription);
+          const web = webPersonal(nombre);
 
           return (
             <li
@@ -170,9 +171,21 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
               </div>
 
               <div className="equipo-tarjeta__historia" id={idHistoria} hidden={!isExpanded}>
-                {historia.map((parrafo) => (
-                  <p key={parrafo}>{parrafo}</p>
-                ))}
+                {enlazarWeb(historia, web).map((parrafo, i) =>
+                  parrafo.tipo === "texto" ? (
+                    <p key={i}>{parrafo.texto}</p>
+                  ) : (
+                    <p key={i}>
+                      {parrafo.antes}
+                      {/* Sin noreferrer: así la web de destino sabe que la visita llega desde aquí. */}
+                      <a href={parrafo.web.url} target="_blank" rel="noopener">
+                        {parrafo.web.nombre}
+                        <span className="fc-solo-lector"> (se abre en una pestaña nueva)</span>
+                      </a>
+                      {parrafo.despues}
+                    </p>
+                  ),
+                )}
               </div>
             </li>
           );

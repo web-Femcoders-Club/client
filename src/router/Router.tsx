@@ -231,6 +231,9 @@ const SentidoDePertenencia = lazy(
 const ObjetivosSmart = lazy(
   () => import("../features/Blog/posts/ctrl-ella/ObjetivosSmart")
 );
+const CvTech = lazy(
+  () => import("../features/Blog/posts/ctrl-ella/CvTech")
+);
 const MarcaPersonal = lazy(
   () => import("../features/Blog/posts/ctrl-ella/MarcaPersonal")
 );
@@ -1037,6 +1040,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <ObjetivosSmart />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <CvTech />
                 </Suspense>
               </Layout>
             }
