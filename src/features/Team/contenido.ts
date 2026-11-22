@@ -14,12 +14,54 @@ import {
   RECURSOS_ABIERTOS,
 } from "../../data/cifrasComunidad";
 
+/*
+ * Las cofundadoras del equipo actual, una sola vez para toda la web: la frase
+ * de presentación de /equipo, su meta description y el JSON-LD
+ * (scripts/fundadoras.ts) salen de aquí. Las cofundadoras que ya no están
+ * (rol «Cofundadora Legacy») siguen solo en la base de datos.
+ *
+ * Los buscadores y los modelos de IA mezclaban a las del equipo actual con
+ * las de los inicios, que algunos perfiles externos siguen presentando como
+ * cofundadoras. Por eso la página lo dice en una frase que se pueda citar
+ * tal cual, con las palabras «fundadoras» y «cofundadoras».
+ */
+export const COFUNDADORAS_ACTUALES = [
+  { nombre: "Elvia Benedith", linkedin: "https://www.linkedin.com/in/elvia-benedith" },
+  { nombre: "Ana Lucía Silva Córdoba", linkedin: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
+  { nombre: "Irina Ichim", linkedin: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
+  { nombre: "Silvina Lucero Calderón", linkedin: "https://www.linkedin.com/in/silvina-lucero" },
+  { nombre: "Isadora Matias", linkedin: "https://www.linkedin.com/in/isadoramatias/" },
+] as const;
+
+/** «A, B e C»: delante de «i» o «hi» la conjunción es «e». */
+const enumerar = (nombres: readonly string[]) => {
+  if (nombres.length < 2) return nombres.join("");
+  const ultimo = nombres[nombres.length - 1];
+  const conjuncion = /^h?i(?![aeiouáéíóú])/i.test(ultimo) ? "e" : "y";
+  return `${nombres.slice(0, -1).join(", ")} ${conjuncion} ${ultimo}`;
+};
+
+const NOMBRES_COFUNDADORAS = enumerar(COFUNDADORAS_ACTUALES.map((c) => c.nombre));
+
+/*
+ * Título y meta description de /equipo, para el Helmet de TeamPage y el
+ * prerender (scripts/spaRoutesMeta.ts). El título lleva «fundadoras», que es
+ * lo que se busca, y la descripción, «cofundadoras» y los nombres.
+ */
+export const TITULO_PAGINA_EQUIPO = "Fundadoras de FemCoders Club: el equipo actual";
+export const DESCRIPCION_EQUIPO = `Las cofundadoras que lideran hoy FemCoders Club: ${NOMBRES_COFUNDADORAS}.`;
+
 export const PRESENTACION_EQUIPO = {
   antetitulo: "Nuestro equipo",
   marca: "FemCoders Club",
-  titulo: { texto: "Nuestro equipo de", destacado: "liderazgo" } as Titulo,
+  titulo: { texto: "Fundadoras y equipo", destacado: "actual" } as Titulo,
   lema: "¡Conoce a las líderes de FemCoders Club!",
   parrafos: [
+    [
+      `FemCoders Club se fundó en Barcelona en octubre de ${ANIO_FUNDACION}. Hoy lo lideran sus cofundadoras: `,
+      { negrita: [NOMBRES_COFUNDADORAS] },
+      ". Ellas son las fundadoras que forman el equipo actual. Otras compañeras participaron en los inicios del club y forman parte de su historia, aunque hoy ya no están en el equipo.",
+    ],
     [
       "Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una comunidad apasionada hoy se ha formalizado como una ",
       { negrita: ["asociación legalmente constituida"] },

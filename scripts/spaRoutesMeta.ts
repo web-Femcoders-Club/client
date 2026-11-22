@@ -28,6 +28,7 @@ import { eventosHtml, eventosJsonLd, obtenerEventos } from "./contenidoEventos";
 import { fundadorasJsonLd } from "./fundadoras";
 import { contactoHtml, contactoJsonLd } from "./contenidoContacto";
 import { META_CONTACTO } from "../src/features/Contact/contenido";
+import { DESCRIPCION_EQUIPO, TITULO_PAGINA_EQUIPO } from "../src/features/Team/contenido";
 import { codigoConductaHtml } from "./contenidoCodigoConducta";
 import { META_CODIGO } from "../src/features/CodigoConducta/contenido";
 import { META_REGISTRO } from "../src/features/User/contenido";
@@ -139,10 +140,9 @@ export const RUTAS_SPA: Record<string, RutaMeta> = {
     jsonLd: async () => eventosJsonLd(await obtenerEventos()),
   },
   "/equipo": {
-    // Copiado de TeamPage.tsx. El título coincide con el h1 y cabe sin cortarse.
-    title: "Nuestro equipo de liderazgo | FemCoders Club",
-    description:
-      "Conoce a las cofundadoras de FemCoders Club: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias.",
+    // Los mismos que el Helmet de TeamPage.tsx, desde src/features/Team/contenido.ts.
+    title: TITULO_PAGINA_EQUIPO,
+    description: DESCRIPCION_EQUIPO,
     // Textos de src/features/Team/contenido.ts y biografías de la base de datos.
     contenidoHtml: async () => equipoHtml(await obtenerEquipo()),
     imagen: {

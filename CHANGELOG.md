@@ -5,6 +5,26 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Equipo: quiénes son las fundadoras, dicho con claridad
+
+#### Cambiado
+- **/equipo responde a «¿quiénes son las fundadoras de FemCoders Club?»** en una
+  frase citable: se fundó en Barcelona en octubre de 2023, hoy lo lideran sus
+  cinco cofundadoras, con nombre, y las compañeras de los inicios forman parte de
+  su historia pero ya no están en el equipo. Los buscadores y los modelos de IA
+  mezclaban a unas y otras.
+- **Título «Fundadoras de FemCoders Club: el equipo actual»** y h1 «Fundadoras y
+  equipo actual»: Google enseñaba «Nuestro equipo de liderazgo» y un texto de los
+  valores.
+- **Las cofundadoras actuales, en un solo sitio** (`COFUNDADORAS_ACTUALES` en
+  `src/features/Team/contenido.ts`): de ahí salen la frase, la meta description
+  (Helmet y prerender) y el `founder` del JSON-LD. Antes estaban escritas a mano
+  en tres sitios.
+- **JSON-LD de /equipo**: incluye la Organization con `founder`, con el mismo
+  `@id` que index.html y «Quiénes somos».
+- **llms.txt**: el apartado «Founders» aclara que las de los inicios ya no están
+  en el equipo.
+
 ### Noticia: así avanza el piloto con Vonage
 
 #### Añadido

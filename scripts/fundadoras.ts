@@ -15,22 +15,10 @@
  * que sustituye a la de mantener a Liliana Dalmarco en `founder` (EQ1, #18).
  */
 
-import { webPersonal } from "../src/features/Team/contenido";
+import { COFUNDADORAS_ACTUALES, webPersonal } from "../src/features/Team/contenido";
 
+// La lista (COFUNDADORAS_ACTUALES) vive en src/features/Team/contenido.ts: también la lee la página.
 const SITIO = "https://www.femcodersclub.com";
-
-export interface Fundadora {
-  nombre: string;
-  linkedin: string;
-}
-
-export const FUNDADORAS: Fundadora[] = [
-  { nombre: "Elvia Benedith", linkedin: "https://www.linkedin.com/in/elvia-benedith" },
-  { nombre: "Ana Lucía Silva Córdoba", linkedin: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
-  { nombre: "Irina Ichim", linkedin: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
-  { nombre: "Silvina Lucero Calderón", linkedin: "https://www.linkedin.com/in/silvina-lucero" },
-  { nombre: "Isadora Matias", linkedin: "https://www.linkedin.com/in/isadoramatias/" },
-];
 
 /** «Ana Lucía Silva Córdoba» → «ana-lucia-silva-cordoba». */
 export const slugPersona = (nombre: string) =>
@@ -47,7 +35,7 @@ export const idPersona = (nombre: string) => `${SITIO}/equipo#${slugPersona(nomb
 
 /** Para `founder`: nombre, enlace, su web si la tiene y LinkedIn; el detalle lo da /equipo. */
 export const fundadorasJsonLd = () =>
-  FUNDADORAS.map((f) => {
+  COFUNDADORAS_ACTUALES.map((f) => {
     const web = webPersonal(f.nombre);
     return {
       "@type": "Person",

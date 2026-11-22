@@ -20,6 +20,7 @@ import {
   IMPACTO,
   PRESENTACION_EQUIPO,
   ROL_EQUIPO_ACTUAL,
+  TITULO_PAGINA_EQUIPO,
   VALORES_EQUIPO,
   partirDescripcion,
   enlazarWeb,
@@ -28,7 +29,7 @@ import {
   type WebPersonal,
 } from "../src/features/Team/contenido";
 import type { Member } from "../src/types/types";
-import { idPersona } from "./fundadoras";
+import { fundadorasJsonLd, idPersona } from "./fundadoras";
 
 const SITIO = "https://www.femcodersclub.com";
 const URL_PAGINA = `${SITIO}/equipo`;
@@ -168,13 +169,27 @@ export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[
     memberOf: { "@id": ID_ORGANIZACION },
   }));
 
+  /*
+   * La misma Organization que index.html y «Quiénes somos» (mismo `@id`), con
+   * sus fundadoras: quien solo lee esta página tiene la respuesta aquí.
+   */
+  const organizacion = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ID_ORGANIZACION,
+    name: "FemCoders Club",
+    url: SITIO,
+    founder: fundadorasJsonLd(),
+  };
+
   const pagina = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "@id": URL_PAGINA,
-    name: `${titulo(PRESENTACION_EQUIPO.titulo)} | FemCoders Club`,
+    name: TITULO_PAGINA_EQUIPO,
     url: URL_PAGINA,
-    description: "Las cofundadoras que lideran FemCoders Club, sus valores y el impacto de la comunidad.",
+    description:
+      "Las fundadoras de FemCoders Club: las cofundadoras que forman el equipo actual, sus valores y el impacto de la comunidad.",
     inLanguage: "es",
     isPartOf: { "@id": ID_SITIO },
     about: { "@id": ID_ORGANIZACION },
@@ -203,7 +218,7 @@ export function equipoJsonLd(equipo: MiembroPublico[]): Record<string, unknown>[
     ],
   };
 
-  return [pagina, ...personas, migas];
+  return [pagina, organizacion, ...personas, migas];
 }
 
 // ---------- Markdown (llms.txt) ----------
@@ -221,7 +236,7 @@ function fragmentosMd(fragmentos: Fragmento[]): string {
 export function equipoMarkdown(equipo: MiembroPublico[]): string {
   const P = PRESENTACION_EQUIPO;
   return [
-    "## Team: the co-founders of FemCoders Club (in Spanish, as published)",
+    "## Team: the founders (co-founders) of FemCoders Club, current team (in Spanish, as published)",
     "",
     `Source: ${URL_PAGINA}`,
     "",
