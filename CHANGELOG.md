@@ -24,6 +24,16 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   `@id` que index.html y «Quiénes somos».
 - **llms.txt**: el apartado «Founders» aclara que las de los inicios ya no están
   en el equipo.
+- **Irina Ichim, primera**: el orden de `COFUNDADORAS_ACTUALES` manda en la frase,
+  las tarjetas, el HTML servido y el JSON-LD (antes, el de la base de datos). La
+  rotación de las tarjetas sigue igual.
+- **La portada declara quién fundó el club**: su Organization lleva `founder`.
+- **El texto para rastreadores sale de `<noscript>`**, en todas las páginas que
+  lo llevan (/equipo, Quiénes somos, eventos, contacto, código de conducta,
+  listados del blog y portada). Muchos extractores descartan `<noscript>`.
+  Ahora va en bloques `.contenido-sin-js`: con JavaScript, `index.html` los
+  oculta antes de pintarse y `main.tsx` los retira. En las páginas con texto
+  propio se quita el aviso genérico «requiere JavaScript», que daba dos h1.
 
 ### Noticia: así avanza el piloto con Vonage
 
@@ -33,8 +43,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
   acompañamiento de Vonage y la demo final del 4 de diciembre de 2026. Incluye el
   vídeo de presentación de los equipos, con subtítulos y la transcripción
   plegada debajo.
-- **`VideoPost` admite `subtitulos`** (pista `.vtt`) y **`creadoConIA`**
-  (distintivo encima del vídeo, sin tapar los controles).
+- **`VideoPost` admite `subtitulos`** (pista `.vtt`).
 - **`articleSchema` admite `video`**, para el `VideoObject` que contiene el post.
   Hasta ahora solo se podía poner en `about`, que dice de qué trata el post.
 - **«De aprender a construir…»** enlaza al nuevo post desde su nota de

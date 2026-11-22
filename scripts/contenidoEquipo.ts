@@ -6,7 +6,7 @@
  * solo veía al equipo si renderizaba. Aquí se convierte
  * src/features/Team/contenido.ts —la misma fuente que pintan las secciones— y
  * el equipo actual de la base de datos en:
- *   - HTML para un `<noscript>` del HTML servido (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS del HTML servido (lo inserta prerenderMeta);
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  * No es contenido distinto del que ve una persona: son los mismos textos y las
  * mismas biografías, íntegras.
@@ -21,6 +21,7 @@ import {
   PRESENTACION_EQUIPO,
   ROL_EQUIPO_ACTUAL,
   TITULO_PAGINA_EQUIPO,
+  ordenarComoCofundadoras,
   VALORES_EQUIPO,
   partirDescripcion,
   enlazarWeb,
@@ -49,7 +50,7 @@ let peticion: Promise<MiembroPublico[]> | null = null;
 
 /**
  * El equipo actual, en el orden de la base de datos. Vacío si la API falla.
- * Se pide una sola vez por build: lo usan el noscript, el JSON-LD y llms.txt.
+ * Se pide una sola vez por build: lo usan el bloque sin JS, el JSON-LD y llms.txt.
  */
 export function obtenerEquipo(): Promise<MiembroPublico[]> {
   peticion ??= pedirEquipo();
@@ -63,8 +64,11 @@ async function pedirEquipo(): Promise<MiembroPublico[]> {
     const miembros = (await respuesta.json()) as Member[];
     if (!Array.isArray(miembros)) throw new Error("la respuesta no es una lista");
 
-    return miembros
-      .filter((m) => m.memberRole === ROL_EQUIPO_ACTUAL)
+    const actuales = ordenarComoCofundadoras(
+      miembros.filter((m) => m.memberRole === ROL_EQUIPO_ACTUAL),
+      (m) => `${m.memberName} ${m.memberLastName}`,
+    );
+    return actuales
       .map((m) => ({
         nombre: `${m.memberName} ${m.memberLastName}`.trim(),
         web: webPersonal(`${m.memberName} ${m.memberLastName}`),

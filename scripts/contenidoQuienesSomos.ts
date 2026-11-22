@@ -5,7 +5,7 @@
  * HTML tal como llega: sin JS, de esta página solo veían las metas. Aquí se
  * convierte src/features/About/contenido.ts, la misma fuente que pintan las
  * secciones, en:
- *   - HTML para un `<noscript>` del HTML servido (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS del HTML servido (lo inserta prerenderMeta);
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  * No es contenido distinto del que ve una persona: son los mismos textos.
  */

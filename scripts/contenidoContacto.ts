@@ -4,7 +4,7 @@
  * Mismo patrón que scripts/contenidoQuienesSomos.ts: los textos de
  * src/features/Contact/contenido.ts —la misma fuente que pintan las
  * secciones— se convierten en:
- *   - HTML para un `<noscript>` del HTML servido (lo inserta prerenderMeta);
+ *   - HTML para el bloque sin JS del HTML servido (lo inserta prerenderMeta);
  *   - JSON-LD de la página y su punto de contacto, en el HTML servido;
  *   - Markdown para un bloque de public/llms.txt (lo inserta generateLlmsTxt).
  * El formulario no se reproduce: sin JavaScript no puede enviarse. Se da el

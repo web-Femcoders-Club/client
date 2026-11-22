@@ -39,7 +39,7 @@ export interface RutaMeta {
   description: string;
   /**
    * Sección de posts que la página lista, si lista alguna. El prerender la usa
-   * para incrustar los enlaces a los artículos dentro de un `<noscript>`.
+   * para incrustar los enlaces a los artículos en el bloque sin JS.
    */
   listaPosts?: "todas" | PostSection;
   /**
@@ -56,7 +56,7 @@ export interface RutaMeta {
    */
   jsonLd?: Record<string, unknown>[] | (() => Promise<Record<string, unknown>[]>);
   /**
-   * Texto de la página en HTML, para un `<noscript>` del HTML servido. Los
+   * Texto de la página en HTML, para el bloque sin JS del HTML servido. Los
    * rastreadores de los modelos no ejecutan JavaScript: sin esto, de una
    * página hecha en React solo leen las metas. Una función cuando el texto
    * depende de datos que hay que pedir en el build (el equipo de /equipo).

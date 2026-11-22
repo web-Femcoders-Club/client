@@ -17,7 +17,7 @@ FemCoders Club is a Spanish tech community and registered association founded on
 
 ## Founders
 
-The founders of FemCoders Club who lead it today are its five current co-founders: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón and Isadora Matias. Other women took part in the club's early days and are part of its history, but they are no longer part of the team.
+The founders of FemCoders Club who lead it today are its five current co-founders: Irina Ichim, Elvia Benedith, Ana Lucía Silva Córdoba, Silvina Lucero Calderón and Isadora Matias. Other women took part in the club's early days and are part of its history, but they are no longer part of the team.
 
 Full bios, as published on the website, are in the "Team" section below:
 
@@ -182,13 +182,25 @@ Si quieres conocer mejor lo que hacemos, descubre nuestras iniciativas en el blo
 
 Source: https://www.femcodersclub.com/equipo
 
-FemCoders Club se fundó en Barcelona en octubre de 2023. Hoy lo lideran sus cofundadoras: Elvia Benedith, Ana Lucía Silva Córdoba, Irina Ichim, Silvina Lucero Calderón e Isadora Matias. Ellas son las fundadoras que forman el equipo actual. Otras compañeras participaron en los inicios del club y forman parte de su historia, aunque hoy ya no están en el equipo.
+FemCoders Club se fundó en Barcelona en octubre de 2023. Hoy lo lideran sus cofundadoras: Irina Ichim, Elvia Benedith, Ana Lucía Silva Córdoba, Silvina Lucero Calderón e Isadora Matias. Ellas son las fundadoras que forman el equipo actual. Otras compañeras participaron en los inicios del club y forman parte de su historia, aunque hoy ya no están en el equipo.
 
 Nuestro equipo de cofundadoras, mentoras y colaboradoras es el motor de esta iniciativa. Lo que nació como una comunidad apasionada hoy se ha formalizado como una asociación legalmente constituida.
 
 Este paso administrativo es la prueba de nuestro compromiso a largo plazo: nos da la estructura necesaria para impulsar proyectos de gran escala y ofrecer una plataforma estable donde todas puedan crecer.
 
 Cada miembro de nuestro liderazgo aporta una trayectoria sólida y una visión estratégica para asegurar que FemCoders Club continúe siendo el referente de la inclusión y el empoderamiento femenino en el sector tech.
+
+### Irina Ichim
+
+Cofundadora · Ingeniera de software freelance con visión emprendedora.
+
+Diseño y desarrollo aplicaciones web combinando mi experiencia como emprendedora con el trabajo técnico. Me interesa entender qué necesita quien va a utilizar un producto y transformar esa idea en software útil y bien construido.
+
+Como cofundadora de FemCoders Club, impulso espacios donde las mujeres podemos aprender, compartir conocimientos y desarrollar proyectos juntas. También acompaño a otras desarrolladoras como mentora, aportando lo que sé y aprendiendo con ellas.
+
+Puedes conocer mi trabajo en Irina Ichim Studio (https://irina-ichim.com).
+
+LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
 
 ### Elvia Benedith
 
@@ -211,18 +223,6 @@ Con amplia experiencia en la enseñanza, interesada por el diseño, lo que me ll
 Me apasiona trabajar en equipo, aplicar metodologías ágiles y profundizar en el desarrollo web.
 
 LinkedIn: https://www.linkedin.com/in/ana-lucia-silva-cordoba
-
-### Irina Ichim
-
-Cofundadora · Ingeniera de software freelance con visión emprendedora.
-
-Diseño y desarrollo aplicaciones web combinando mi experiencia como emprendedora con el trabajo técnico. Me interesa entender qué necesita quien va a utilizar un producto y transformar esa idea en software útil y bien construido.
-
-Como cofundadora de FemCoders Club, impulso espacios donde las mujeres podemos aprender, compartir conocimientos y desarrollar proyectos juntas. También acompaño a otras desarrolladoras como mentora, aportando lo que sé y aprendiendo con ellas.
-
-Puedes conocer mi trabajo en Irina Ichim Studio (https://irina-ichim.com).
-
-LinkedIn: https://www.linkedin.com/in/irina-ichim-desarrolladora
 
 ### Silvina Lucero Calderón
 

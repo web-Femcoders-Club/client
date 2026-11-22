@@ -6,7 +6,13 @@ import { getMember } from "../../../api/memberApi";
 import { Member } from "../../../types/types";
 import BotonRotacion from "../../../components/ui/BotonRotacion";
 import { useRotacion } from "../../../hooks/useRotacion";
-import { ROL_EQUIPO_ACTUAL, enlazarWeb, partirDescripcion, webPersonal } from "../contenido";
+import {
+  ROL_EQUIPO_ACTUAL,
+  enlazarWeb,
+  ordenarComoCofundadoras,
+  partirDescripcion,
+  webPersonal,
+} from "../contenido";
 import "../../Team/page/CardTeamMember.css";
 
 interface CardTeamMemberProps {
@@ -30,7 +36,10 @@ const CardTeamMember: React.FC<CardTeamMemberProps> = ({ filter = "all" }) => {
     if (!data || !Array.isArray(data)) return [];
 
     if (filter === "active") {
-      return data.filter(member => member.memberRole === ROL_EQUIPO_ACTUAL);
+      return ordenarComoCofundadoras(
+        data.filter(member => member.memberRole === ROL_EQUIPO_ACTUAL),
+        (m) => `${m.memberName} ${m.memberLastName}`,
+      );
     } else if (filter === "inactive") {
       return data.filter(member => member.memberRole === "Cofundadora Legacy");
     }

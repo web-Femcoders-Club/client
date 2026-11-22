@@ -26,12 +26,24 @@ import {
  * tal cual, con las palabras «fundadoras» y «cofundadoras».
  */
 export const COFUNDADORAS_ACTUALES = [
+  { nombre: "Irina Ichim", linkedin: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
   { nombre: "Elvia Benedith", linkedin: "https://www.linkedin.com/in/elvia-benedith" },
   { nombre: "Ana Lucía Silva Córdoba", linkedin: "https://www.linkedin.com/in/ana-lucia-silva-cordoba" },
-  { nombre: "Irina Ichim", linkedin: "https://www.linkedin.com/in/irina-ichim-desarrolladora" },
   { nombre: "Silvina Lucero Calderón", linkedin: "https://www.linkedin.com/in/silvina-lucero" },
   { nombre: "Isadora Matias", linkedin: "https://www.linkedin.com/in/isadoramatias/" },
 ] as const;
+
+/*
+ * El orden de la lista es también el de las tarjetas de /equipo y el del HTML
+ * servido, en vez del de la base de datos. Quien no esté en la lista va al final.
+ */
+export const ordenarComoCofundadoras = <T,>(miembros: T[], nombreDe: (m: T) => string): T[] => {
+  const posicion = (m: T) => {
+    const i = COFUNDADORAS_ACTUALES.findIndex((c) => c.nombre === nombreDe(m).trim());
+    return i === -1 ? COFUNDADORAS_ACTUALES.length : i;
+  };
+  return [...miembros].sort((a, b) => posicion(a) - posicion(b));
+};
 
 /** «A, B e C»: delante de «i» o «hi» la conjunción es «e». */
 const enumerar = (nombres: readonly string[]) => {

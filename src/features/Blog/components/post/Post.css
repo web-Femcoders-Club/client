@@ -613,15 +613,6 @@
   background: var(--color-lila-oscuro);
 }
 
-/*
- * El distintivo de IA, en línea sobre el vídeo en vez de superpuesto. Con dos
- * clases para ganar a .fc-distintivo-ia, que es absoluto y se carga después.
- */
-.post-video .post-video__ia {
-  position: static;
-  justify-self: start;
-}
-
 .post-video figcaption {
   font-size: 0.92rem;
   line-height: 1.5;
