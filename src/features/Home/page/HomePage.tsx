@@ -384,6 +384,19 @@ const HomePage: React.FC = () => {
       link: "/noticias/femcoders-club-stem-awards-barcelona-2026",
     },
     {
+      id: "32",
+      title: "Cómo hacer un CV tech que funcione: de tu experiencia a tus oportunidades",
+      description:
+        "Si estás intentando entrar en tecnología, es fácil pensar que tu experiencia anterior no cuenta. En esta edición de Ctrl+Ella vemos cómo convertir tareas en logros, adaptar el CV a cada oferta y tener en cuenta los sistemas ATS, con una checklist final para repasarlo con calma.",
+      // Versión con margen, por el mismo recorte del carrusel.
+      image: "/assets/ctrl-ella/cv-para-tecnologia-portada-home.jpg",
+      imageAlt: "Portada de Ctrl+Ella, la newsletter de FemCoders Club: «Tu CV para tecnología. Experiencia, proyectos y logros», junto a un currículum con tres apartados marcados y un icono de código",
+      aiGenerated: true,
+      date: "14 Noviembre 2026",
+      category: "Ctrl+Ella",
+      link: "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia",
+    },
+    {
       id: "30",
       title: "¿Cómo convertir tus metas en un plan real para crecer en tecnología?",
       description:
@@ -409,19 +422,6 @@ const HomePage: React.FC = () => {
       category: "Recursos",
       link: "/recursos/js/quiz-javascript-entrevistas",
       linkLabel: "Hacer el quiz de JavaScript",
-    },
-    {
-      id: "28",
-      title: "No basta con estar en tecnología: también necesitamos sentir que pertenecemos",
-      description:
-        "Estrenamos en la web los artículos de Ctrl+Ella, nuestra newsletter. Empezamos por uno sobre algo de lo que se habla poco: la diferencia entre conseguir un sitio en el sector tecnológico y sentir que ese sitio también es tuyo, y lo que cambia cuando encuentras a otras personas que te entienden.",
-      // Versión con margen: el carrusel recorta con object-fit: cover y la
-      // portada del post, con el texto de lado a lado, perdía los extremos.
-      image: "/assets/ctrl-ella/sentido-de-pertenencia-portada-home.jpg",
-      imageAlt: "Portada de la edición número 11 de Ctrl+Ella, octubre de 2026: «No basta con estar en tecnología: también necesitamos sentir que pertenecemos», en letras violetas sobre fondo naranja",
-      date: "1 Noviembre 2026",
-      category: "Ctrl+Ella",
-      link: "/ctrl-ella/sentido-de-pertenencia-mujeres-en-tecnologia",
     },
     {
       id: "26",

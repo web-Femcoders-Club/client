@@ -18,10 +18,10 @@ import { articleSchema } from "../../components/articleSchema";
  */
 
 const RUTA = "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia";
-const TITULO_SEO = "Cómo hacer un CV para tecnología: guía con ejemplos y checklist";
+const TITULO_SEO = "Cómo hacer un CV para tecnología: ejemplos y checklist";
 const DESCRIPCION =
   "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.";
-const IMAGEN = "/assets/ctrl-ella/portada-por-defecto.webp";
+const IMAGEN = "/assets/ctrl-ella/cv-para-tecnologia.webp";
 const PUBLICADO = "2026-11-14T10:00:00Z";
 
 const AUTORA = {
@@ -37,12 +37,12 @@ const CvTech: React.FC = () => (
       <meta name="description" content={DESCRIPCION} />
       <meta
         name="keywords"
-        content="CV tech, cómo hacer un CV para tecnología, CV para ATS, currículum de programadora, cambiar a tecnología, mujeres en tecnología, Ctrl+Ella, FemCoders Club"
+        content="CV tech, cómo hacer un CV para tecnología, CV para ATS, currículum tech, cambiar a tecnología, mujeres en tecnología, Ctrl+Ella, FemCoders Club"
       />
       <link rel="canonical" href={`https://www.femcodersclub.com${RUTA}`} />
 
       <meta property="og:type" content="article" />
-      <meta property="og:title" content="Cómo hacer un CV para tecnología: guía con ejemplos y checklist" />
+      <meta property="og:title" content="Cómo hacer un CV para tecnología: ejemplos y checklist" />
       <meta
         property="og:description"
         content="Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final."
@@ -53,11 +53,11 @@ const CvTech: React.FC = () => (
       />
       <meta
         property="og:image"
-        content="https://www.femcodersclub.com/assets/ctrl-ella/portada-por-defecto.webp"
+        content="https://www.femcodersclub.com/assets/ctrl-ella/cv-para-tecnologia.webp"
       />
       <meta
         property="og:image:alt"
-        content="Banner de Ctrl+Ella, la newsletter de FemCoders Club: tecnología, aprendizaje, carrera y comunidad"
+        content="Ilustración generada con IA: «Tu CV para tecnología. Experiencia, proyectos y logros». Portada de Ctrl+Ella con un currículum, código y una checklist."
       />
       <meta property="og:site_name" content="FemCoders Club" />
 
@@ -66,7 +66,7 @@ const CvTech: React.FC = () => (
       <meta name="twitter:description" content={DESCRIPCION} />
       <meta
         name="twitter:image"
-        content="https://www.femcodersclub.com/assets/ctrl-ella/portada-por-defecto.webp"
+        content="https://www.femcodersclub.com/assets/ctrl-ella/cv-para-tecnologia.webp"
       />
 
       <meta property="article:published_time" content="2026-11-14T10:00:00Z" />
@@ -83,7 +83,7 @@ const CvTech: React.FC = () => (
           articleSchema({
             type: "Article",
             path: RUTA,
-            headline: "CV tech: cómo transformar tu experiencia en oportunidades",
+            headline: "Cómo hacer un CV tech que funcione: de tu experiencia a tus oportunidades",
             description: DESCRIPCION,
             image: IMAGEN,
             datePublished: PUBLICADO,

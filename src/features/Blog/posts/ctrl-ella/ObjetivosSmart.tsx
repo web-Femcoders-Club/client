@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import PlantillaPost from "../../components/post/PlantillaPost";
 import { NotaPost, SeccionPost, TarjetasPost } from "../../components/post/PiezasPost";
 import { articleSchema } from "../../components/articleSchema";
@@ -437,6 +438,17 @@ const ObjetivosSmart: React.FC = () => (
           mucho más lejos de lo que imaginabas.
         </p>
         <h3>Define tu objetivo. Empieza. Y crece a tu manera.</h3>
+      </SeccionPost>
+
+      <SeccionPost titulo="Sigue la serie">
+        <ul>
+          <li>
+            Edición siguiente:{" "}
+            <Link to="/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia">
+              Cómo hacer un CV tech que funcione: de tu experiencia a tus oportunidades
+            </Link>
+          </li>
+        </ul>
       </SeccionPost>
     </PlantillaPost>
   </>
