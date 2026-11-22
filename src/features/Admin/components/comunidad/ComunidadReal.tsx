@@ -4,6 +4,7 @@ import {
   Building2,
   CalendarDays,
   ClipboardList,
+  Hourglass,
   MailQuestion,
   UserCheck,
   UserPlus,
@@ -49,18 +50,22 @@ const ComunidadReal: React.FC = () => {
   const asistentesUnicas = comunidad?.identifiedAttendees;
   const registradasSinAsistir =
     comunidad && comunidad.registeredUsers - comunidad.bothRegisteredAndAttended;
+  // Quien solo conocemos por una lista de espera (server#150). Un servidor
+  // anterior no lo manda: entonces no hay nadie así y vale 0.
+  const soloListaDeEspera = comunidad && (comunidad.waitlistOnly ?? 0);
   const totalPersonas = comunidad?.knownPeople;
 
   /*
-   * Las dos partes deberían sumar exactamente el total. Si el backend cambia su
-   * forma de contar y dejan de cuadrar, se dice aquí en lugar de enseñar tres
-   * cifras incoherentes sin aviso.
+   * Las tres partes deberían sumar exactamente el total. Si el backend cambia su
+   * forma de contar y dejan de cuadrar, se dice aquí en lugar de enseñar cifras
+   * incoherentes sin aviso.
    */
   const cuadra =
     asistentesUnicas === undefined ||
     registradasSinAsistir === undefined ||
+    soloListaDeEspera === undefined ||
     totalPersonas === undefined ||
-    asistentesUnicas + registradasSinAsistir === totalPersonas;
+    asistentesUnicas + registradasSinAsistir + soloListaDeEspera === totalPersonas;
 
   const tiposPresentes = useMemo(
     () =>
@@ -102,10 +107,10 @@ const ComunidadReal: React.FC = () => {
         )}
         <div className="resumen__rejilla">
           <TarjetaResumen
-            rotulo="Asistentes únicas en Eventbrite"
+            rotulo="Asistentes únicas"
             cifra={asistentesUnicas}
             Icono={UserCheck}
-            nota="Por email: cada asistente cuenta una vez"
+            nota="Por email, con plaza en algún evento, de Eventbrite o de otra plataforma"
             cargando={crm.isPending}
             fallo={crm.isError}
           />
@@ -118,14 +123,22 @@ const ComunidadReal: React.FC = () => {
             fallo={crm.isError}
           />
           <TarjetaResumen
+            rotulo="Solo en lista de espera"
+            cifra={soloListaDeEspera}
+            Icono={Hourglass}
+            nota="Sin plaza todavía ni cuenta en la web"
+            cargando={crm.isPending}
+            fallo={crm.isError}
+          />
+          <TarjetaResumen
             rotulo="Total de personas"
             cifra={totalPersonas}
             Icono={Users}
             tono={cuadra ? 'ok' : 'alerta'}
             nota={
               cuadra
-                ? 'Suma de las dos anteriores'
-                : 'No cuadra con la suma de las dos anteriores: revisa el cálculo del servidor'
+                ? 'Suma de las tres anteriores'
+                : 'No cuadra con la suma de las tres anteriores: revisa el cálculo del servidor'
             }
             cargando={crm.isPending}
             fallo={crm.isError}

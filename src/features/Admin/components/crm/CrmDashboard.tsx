@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import EtiquetaListaDeEspera from "./EtiquetaListaDeEspera";
 import AdminTable from "../ui/AdminTable";
 import AdminPagination from "../ui/AdminPagination";
 import { useDebouncedValue } from "../../../../hooks/useDebouncedValue";
@@ -16,6 +17,7 @@ import {
   CrmStats,
   CrmAttendee,
   CrmAttendeeDetail,
+  CrmAttendeeEvent,
   CrmEventStat,
   CrmEventAttendeesResponse,
   CrmUsersCrosscheck,
@@ -39,6 +41,20 @@ const CROSSCHECK_POR_PAGINA = 15;
 const EVENTOS_POR_PAGINA = 10;
 const ATTENDEES_POR_PAGINA = 20;
 const DETAIL_EVENTS_PER_PAGE = 5;
+
+/**
+ * Un evento por fila en el historial de una persona. Los repetidos aparecen
+ * cuando alguien se inscribió dos veces al mismo evento; si una de las filas
+ * tuvo plaza, gana esa, para no etiquetar «Lista de espera» a quien entró.
+ */
+const unoPorEvento = (eventos: CrmAttendeeEvent[]): CrmAttendeeEvent[] => {
+  const porId = new Map<string, CrmAttendeeEvent>();
+  for (const ev of eventos) {
+    const previo = porId.get(ev.eventId);
+    if (!previo || previo.estado === "lista_espera") porId.set(ev.eventId, ev);
+  }
+  return [...porId.values()];
+};
 
 const CrmDashboard: React.FC = () => {
   const [sincronizando, setSincronizando] = useState(false);
@@ -745,6 +761,11 @@ const CrmDashboard: React.FC = () => {
                       <span>{formatDate(eventPanel.event.date)}</span>
                       <span>{eventPanel.event.location}</span>
                       <span className="font-medium" style={{ color: "#ea4f33" }}>{eventPanel.totalAttendees} asistentes</span>
+                      {(eventPanel.summary?.listaDeEspera ?? 0) > 0 && (
+                        <span className="font-medium" style={{ color: "#4737bb" }}>
+                          {eventPanel.summary?.listaDeEspera} en lista de espera
+                        </span>
+                      )}
                     </div>
                     <div className="relative mb-4">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -763,17 +784,20 @@ const CrmDashboard: React.FC = () => {
                     </div>
                       <AdminTable
                         columns={["Nombre", "Email", "DNI"]}
-                        caption="Asistentes del evento"
+                        caption="Personas inscritas en el evento"
                       >
                           {filteredEventAttendees.length === 0 ? (
                             <tr>
                               <td colSpan={3} className="p-6 text-center text-gray-400 text-sm">
-                                No hay asistentes que coincidan con "{eventPanelSearch}"
+                                No hay nadie que coincida con "{eventPanelSearch}"
                               </td>
                             </tr>
                           ) : filteredEventAttendees.map((a) => (
                             <tr key={a.email} className="border-b border-gray-100 hover:bg-gray-50">
-                              <td className="p-3 text-sm font-medium">{a.firstName} {a.lastName}</td>
+                              <td className="p-3 text-sm font-medium">
+                                {a.firstName} {a.lastName}
+                                <EtiquetaListaDeEspera estado={a.estado} />
+                              </td>
                               <td className="p-3 text-sm text-gray-600">{a.email}</td>
                               <td className="p-3 text-sm text-gray-500">{a.dni || "—"}</td>
                             </tr>
@@ -791,7 +815,7 @@ const CrmDashboard: React.FC = () => {
                         totalPaginas={eventPanel.pagination.totalPages}
                         onCambiar={(p) => loadEventAttendees(eventPanelId, p)}
                         totalElementos={eventPanel.pagination.totalItems}
-                        nombreElemento="asistente"
+                        nombreElemento="persona"
                         etiqueta="Paginación de asistentes del evento"
                       />
                     )}
@@ -822,9 +846,7 @@ const CrmDashboard: React.FC = () => {
                 // Los eventos vienen ya paginados y ordenados del servidor: aquí
                 // solo se quitan los repetidos que trae la propia página, que
                 // aparecen cuando alguien se inscribió dos veces al mismo evento.
-                const pagedEvents = Array.from(
-                  new Map(selectedAttendee.events.map((ev) => [ev.eventId, ev])).values()
-                );
+                const pagedEvents = unoPorEvento(selectedAttendee.events);
                 const totalEventPages = selectedAttendee.eventsPagination?.totalPages ?? 1;
                 return (
                   <div>
@@ -840,7 +862,7 @@ const CrmDashboard: React.FC = () => {
                     </span>
                       <AdminTable
                         columns={["Evento", "Fecha", "Lugar"]}
-                        caption="Eventos a los que ha asistido"
+                        caption="Eventos en los que se ha inscrito"
                       >
                           {pagedEvents.map((ev) => (
                             <tr key={ev.eventId} className="border-b border-gray-100 hover:bg-gray-50">
@@ -848,6 +870,7 @@ const CrmDashboard: React.FC = () => {
                                 <a href={ev.eventUrl} target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: "#4737bb" }}>
                                   {ev.name}
                                 </a>
+                                <EtiquetaListaDeEspera estado={ev.estado} />
                               </td>
                               <td className="p-3 text-sm text-gray-600">{formatDate(ev.date)}</td>
                               <td className="p-3 text-sm text-gray-600">{ev.location}</td>
@@ -1083,9 +1106,7 @@ const CrmDashboard: React.FC = () => {
                     // Los eventos vienen ya paginados y ordenados del servidor: aquí
                     // solo se quitan los repetidos que trae la propia página, que
                     // aparecen cuando alguien se inscribió dos veces al mismo evento.
-                    const pagedEvents = Array.from(
-                      new Map(selectedAttendee.events.map((ev) => [ev.eventId, ev])).values()
-                    );
+                    const pagedEvents = unoPorEvento(selectedAttendee.events);
                     const totalEventPages = selectedAttendee.eventsPagination?.totalPages ?? 1;
                     return (
                       <div>
@@ -1118,6 +1139,7 @@ const CrmDashboard: React.FC = () => {
                                     >
                                       {ev.name}
                                     </a>
+                                    <EtiquetaListaDeEspera estado={ev.estado} />
                                   </td>
                                   <td className="p-3 text-sm text-gray-600">{formatDate(ev.date)}</td>
                                   <td className="p-3 text-sm text-gray-600">{ev.location}</td>

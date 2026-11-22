@@ -338,6 +338,11 @@ export interface CrmStats {
     registeredUsers: number;
     identifiedAttendees: number;
     bothRegisteredAndAttended: number;
+    /**
+     * Quien solo conocemos por una lista de espera: sin cuenta y sin plaza
+     * (server#150). Opcional: un servidor anterior no lo manda.
+     */
+    waitlistOnly?: number;
     knownPeople: number;
   };
   /** Inscripciones reales cuyo email Eventbrite no facilitó. */
@@ -402,12 +407,19 @@ export interface CrmAttendeeDetail extends CrmAttendee {
   eventsPagination: Pagination;
 }
 
+/**
+ * Si tuvo plaza o se quedó en lista de espera (server#150). Opcional porque un
+ * servidor anterior a ese cambio no lo manda: sin él, se trata como inscrita.
+ */
+export type EstadoInscripcion = "inscrita" | "lista_espera";
+
 export interface CrmAttendeeEvent {
   eventId: string;
   name: string;
   date: string;
   location: string;
   eventUrl: string;
+  estado?: EstadoInscripcion;
 }
 
 export interface CrmEventAttendee {
@@ -415,6 +427,7 @@ export interface CrmEventAttendee {
   lastName: string;
   email: string;
   dni: string | null;
+  estado?: EstadoInscripcion;
 }
 
 export interface CrmEventAttendeesResponse {
@@ -424,6 +437,7 @@ export interface CrmEventAttendeesResponse {
     date: string;
     location: string;
   };
+  /** Solo quien tuvo plaza; la lista de espera va en `summary.listaDeEspera`. */
   totalAttendees: number;
   attendees: CrmEventAttendee[];
   /** El resumen se calcula sobre el evento entero, no sobre la página. */
@@ -432,6 +446,7 @@ export interface CrmEventAttendeesResponse {
     dniMissing: number;
     dniInvalid: number;
     multipleEntries: number;
+    listaDeEspera?: number;
   };
   pagination?: {
     currentPage: number;

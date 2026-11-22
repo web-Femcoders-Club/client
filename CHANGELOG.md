@@ -5,6 +5,22 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 
 ## [No publicado]
 
+### Panel: lista de espera de los eventos (server#150)
+
+#### Añadido
+- **Etiqueta «Lista de espera»** en la lista de cada evento del CRM y en el
+  historial de cada persona. La cabecera del evento separa «X asistentes» de
+  «Y en lista de espera».
+- **«Solo en lista de espera»** en Comunidad real: las tres cifras vuelven a
+  sumar el total de personas.
+
+#### Cambiado
+- «Asistentes únicas en Eventbrite» pasa a «Asistentes únicas», porque ya
+  cuenta también eventos de otras plataformas. Los textos de la lista del
+  evento y del historial hablan de inscripciones, no de asistencia.
+- Requiere el servidor con server#150: con uno anterior, el panel se comporta
+  como antes.
+
 ### Equipo: web profesional de las cofundadoras
 
 #### Añadido
