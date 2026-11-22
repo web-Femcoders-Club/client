@@ -32,6 +32,19 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 - Las webs viven en `src/features/Team/contenido.ts`, por nombre completo. Si
   otra cofundadora quiere la suya, conviene pasarlo a un campo de `member`.
 
+### Ctrl+Ella: CV para tecnología
+
+#### Añadido
+- **Tercer artículo de Ctrl+Ella, sobre el CV para tecnología**
+  (`/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia`), de Ana Lucía Silva
+  Córdoba. Portada propia generada con IA (`assets/ctrl-ella/cv-para-tecnologia.webp`)
+  y versión con margen para el carrusel de la portada.
+- **«Sigue la serie» en Objetivos SMART**, con enlace a la edición siguiente.
+
+#### Cambiado
+- **Noticias de la portada**: entra el CV para tecnología, detrás del premio
+  STEM, y sale «No basta con estar en tecnología…», que sigue publicado en el blog.
+
 ### Panel de la lista de espera
 
 #### Cambiado
