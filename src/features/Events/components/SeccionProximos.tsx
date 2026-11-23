@@ -2,6 +2,7 @@ import FemSpinner from "../../../components/FemSpinner";
 import VideoSinEventos from "../../../components/VideoSinEventos/VideoSinEventos";
 import { Event } from "../../../types/types";
 import { PRESENTACION_EVENTOS as P, PROXIMOS_EVENTOS as PROX } from "../contenido";
+import CarruselProximos from "./CarruselProximos";
 import EventoTarjeta from "./EventoTarjeta";
 import "./SeccionProximos.css";
 
@@ -51,12 +52,17 @@ const SeccionProximos: React.FC<SeccionProximosProps> = ({ eventos, cargando }) 
       </div>
 
       <div className="eventos-proximos__lado">
-        <h2 className="eventos-proximos__subtitulo" id="proximos">
-          {PROX.titulo}
-        </h2>
+        {/* Con varios eventos, el título va dentro del carrusel, en la fila de sus controles. */}
+        {(cargando || eventos.length < 2) && (
+          <h2 className="eventos-proximos__subtitulo" id="proximos">
+            {PROX.titulo}
+          </h2>
+        )}
         {cargando ? (
           <FemSpinner />
-        ) : eventos.length > 0 ? (
+        ) : eventos.length > 1 ? (
+          <CarruselProximos eventos={eventos} titulo={PROX.titulo} />
+        ) : eventos.length === 1 ? (
           <div className="eventos-proximos__pila">
             <div className="fc-capa" aria-hidden="true" />
             <ul className="eventos-proximos__lista">
