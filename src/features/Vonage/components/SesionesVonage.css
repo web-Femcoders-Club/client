@@ -1,82 +1,104 @@
 /*
- * Sesiones online con Vonage. La tarjeta es la `.vonage--partner` de
- * vonage.css (barra de color arriba y cuerpo con padding); aquí solo lo propio.
+ * Agenda de sesiones con Vonage. La tarjeta es `.vonage--partner` y cada fila
+ * una `.vonage__caja` de vonage.css; aquí solo la rejilla de la fila.
  *
- * index.css pinta todos los `span` en naranja y negrita: los de aquí fijan su
- * color dentro de la clase, sin tocar la regla global.
+ * Los títulos de sesión son `p` y no `h3`: index.css da tamaño y sombra a los
+ * encabezados, y una agenda de cuatro filas no necesita cuatro encabezados.
  */
 
 .sesiones-vonage {
-  padding: 0;
-  overflow: hidden;
-}
-
-.sesiones-vonage__lista {
   display: grid;
-  gap: 1rem;
-  margin: 1.25rem 0 0;
+  gap: var(--spacing-sm);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.sesiones-vonage__sesion {
+/* Fecha | datos | botón. En estrecho, el botón baja a su propia fila. */
+.sesiones-vonage__fila {
   display: grid;
-  gap: 0.35rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid #d9d2f0;
-  border-radius: var(--radius-md, 12px);
-  background: #faf8ff;
-}
-
-/* 8,29:1 sobre el fondo de la tarjeta: AAA */
-.sesiones-vonage__cuando {
-  display: flex;
-  flex-wrap: wrap;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  font-weight: 700;
-  color: var(--color-secondary);
+  gap: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: 0;
 }
 
-.sesiones-vonage__cuando time::first-letter {
+.sesiones-vonage__fila--hoy {
+  border-color: var(--color-secondary);
+  box-shadow: inset 4px 0 0 var(--color-secondary);
+}
+
+/* Bloque de fecha: blanco sobre violeta, 8,29:1 (AAA). */
+.sesiones-vonage__fecha {
+  display: grid;
+  justify-items: center;
+  min-width: 3.6rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--radius-md);
+  background: var(--color-secondary);
+  color: #ffffff;
+  line-height: 1;
+  text-align: center;
+}
+
+.vonage .sesiones-vonage__semana,
+.vonage .sesiones-vonage__mes {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.sesiones-vonage__hoy {
-  padding: 0.1rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  color: var(--color-white);
-  background: var(--color-secondary);
+.vonage .sesiones-vonage__dia {
+  margin: 0.15rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.sesiones-vonage__datos {
+  min-width: 0;
 }
 
 .sesiones-vonage__api {
   margin: 0;
+  font-family: var(--font-heading);
   font-size: 1.15rem;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--color-text-dark);
 }
 
-.sesiones-vonage__expertos,
+.sesiones-vonage__detalle,
 .sesiones-vonage__acceso {
-  margin: 0;
+  margin: 0.2rem 0 0;
+  line-height: 1.45;
   color: var(--color-text-dark);
 }
 
 .sesiones-vonage__acceso {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
-.sesiones-vonage .sesiones-vonage__dato {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+.sesiones-vonage__acceso code {
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-text-dark);
   overflow-wrap: anywhere;
 }
 
 .sesiones-vonage__entrar {
-  justify-self: start;
-  margin-top: 0.35rem;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .sesiones-vonage__fila {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .sesiones-vonage__entrar {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
 }
