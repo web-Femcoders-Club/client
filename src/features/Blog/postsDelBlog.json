@@ -11,6 +11,17 @@
     "imagenConIA": true
   },
   {
+    "ruta": "/ctrl-ella/marca-personal-tecnologia-linkedin-visibilidad",
+    "titulo": "Marca personal en tecnología: cómo hacerte visible",
+    "descripcion": "Cómo construir tu marca personal en tecnología: mejora tu LinkedIn, haz networking sin sentir que te vendes y deja señales útiles de lo que sabes hacer.",
+    "imagen": "/assets/ctrl-ella/portada-por-defecto.webp",
+    "proporcion": 1.9,
+    "fecha": "2026-11-21",
+    "seccion": "ctrl-ella",
+    "tema": "Ctrl+Ella",
+    "imagenConIA": true
+  },
+  {
     "ruta": "/ctrl-ella/cv-tech-como-hacer-un-cv-para-tecnologia",
     "titulo": "Cómo hacer un CV para tecnología: ejemplos y checklist",
     "descripcion": "Aprende a hacer un CV para tecnología: convierte tareas en logros, adáptalo a cada oferta, cuida el ATS y repasa tu CV con una checklist final.",
