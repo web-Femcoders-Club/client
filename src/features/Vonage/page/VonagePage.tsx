@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import CierrePilotoVonage from "../components/CierrePilotoVonage";
 import MaterialesPilotoVonage from "../components/MaterialesPilotoVonage";
 import CodigoVonage from "../components/CodigoVonage";
+import SesionesVonage from "../components/SesionesVonage";
 import AprovecharVonage from "../components/AprovecharVonage";
 import MenuEspacio from "../../Welcome/components/MenuEspacio";
 import "../../Welcome/components/vonage.css";
@@ -44,6 +45,8 @@ const VonagePage: React.FC = () => (
 
           <h1 className="vonage__sr-only">Vonage en FemCoders Club</h1>
 
+          {/* Lo único de la página con fecha: va primero mientras haya sesiones. */}
+          <SesionesVonage />
           <CierrePilotoVonage />
           <MaterialesPilotoVonage />
           <CodigoVonage />

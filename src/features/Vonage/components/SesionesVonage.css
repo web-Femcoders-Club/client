@@ -1,0 +1,82 @@
+/*
+ * Sesiones online con Vonage. La tarjeta es la `.vonage--partner` de
+ * vonage.css (barra de color arriba y cuerpo con padding); aquí solo lo propio.
+ *
+ * index.css pinta todos los `span` en naranja y negrita: los de aquí fijan su
+ * color dentro de la clase, sin tocar la regla global.
+ */
+
+.sesiones-vonage {
+  padding: 0;
+  overflow: hidden;
+}
+
+.sesiones-vonage__lista {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sesiones-vonage__sesion {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid #d9d2f0;
+  border-radius: var(--radius-md, 12px);
+  background: #faf8ff;
+}
+
+/* 8,29:1 sobre el fondo de la tarjeta: AAA */
+.sesiones-vonage__cuando {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.sesiones-vonage__cuando time::first-letter {
+  text-transform: uppercase;
+}
+
+.sesiones-vonage__hoy {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--color-white);
+  background: var(--color-secondary);
+}
+
+.sesiones-vonage__api {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  color: var(--color-text-dark);
+}
+
+.sesiones-vonage__expertos,
+.sesiones-vonage__acceso {
+  margin: 0;
+  color: var(--color-text-dark);
+}
+
+.sesiones-vonage__acceso {
+  font-size: 0.95rem;
+}
+
+.sesiones-vonage .sesiones-vonage__dato {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  overflow-wrap: anywhere;
+}
+
+.sesiones-vonage__entrar {
+  justify-self: start;
+  margin-top: 0.35rem;
+  text-decoration: none;
+}
