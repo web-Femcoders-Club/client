@@ -88,7 +88,7 @@ const SeccionPonentes: React.FC = () => {
               caja mide siempre lo que el más largo y la página no salta al
               cambiar de foto. Los ocultos no los lee el lector de pantalla.
             */}
-            <div className="carrusel-ponentes__pies" aria-live={rotacion.girando ? "off" : "polite"}>
+            <div className="carrusel-ponentes__pies" aria-live={rotacion.avanzando ? "off" : "polite"}>
               {P.fotos.map((foto, i) => (
                 <p
                   key={foto.src}

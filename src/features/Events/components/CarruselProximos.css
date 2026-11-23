@@ -1,0 +1,136 @@
+/*
+ * Carrusel de próximos eventos (más de uno). Botones y capa: rediseno.css.
+ * La transición sigue al carrusel de ponentes: fundido lento, y la tarjeta
+ * que entra sube un poco; la capa de detrás respira mientras gira.
+ */
+
+.carrusel-proximos {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.carrusel-proximos__pila {
+  position: relative;
+}
+
+.carrusel-proximos__pila .fc-capa {
+  inset: 1.2rem -0.9rem -0.9rem 1.2rem;
+  rotate: 2.5deg;
+  animation: proximos-respirar 8s ease-in-out infinite alternate;
+}
+
+/* Todas en la misma celda: el carrusel mide lo que la tarjeta más alta. */
+.carrusel-proximos__marco {
+  position: relative;
+  z-index: 1;
+  display: grid;
+}
+
+.carrusel-proximos__diapositiva {
+  grid-area: 1 / 1;
+  display: grid;
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 0.75rem;
+  scale: 0.985;
+  transition:
+    opacity 0.9s ease,
+    translate 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.9s;
+}
+
+.carrusel-proximos__diapositiva--activa {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+  scale: 1;
+  transition:
+    opacity 0.9s ease,
+    translate 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+/* La tarjeta ocupa todo el alto de la celda, aunque su contenido sea más corto. */
+.carrusel-proximos__diapositiva > .evento-tarjeta {
+  align-content: start;
+}
+
+/* Título y controles en una fila; si no caben, los controles bajan. */
+.carrusel-proximos__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+}
+
+.carrusel-proximos__controles {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/*
+ * Para que la columna no crezca más que el texto de la izquierda: la imagen,
+ * un poco más baja (se ve entera igualmente, con su fondo difuminado), y la
+ * descripción, en tres líneas. El resto está en la página del evento, a la
+ * que lleva «Reserva tu plaza».
+ */
+.carrusel-proximos .evento-tarjeta__marco {
+  aspect-ratio: 5 / 2;
+}
+
+.carrusel-proximos .evento-tarjeta__texto {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.carrusel-proximos__contador {
+  min-width: 3.6rem;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Móvil en horizontal: la tarjeta a todo el ancho no cabe en el alto, y los
+ * controles quedarían fuera de vista mientras se lee. Como en ponentes, el
+ * ancho sale del alto disponible.
+ */
+@media (orientation: landscape) and (max-height: 500px) {
+  .carrusel-proximos {
+    width: 100%;
+    max-width: min(100%, calc((100svh - var(--fem-header-height, 70px) - 4rem) * 1.6));
+    margin-inline: auto;
+  }
+}
+
+@keyframes proximos-respirar {
+  from { rotate: 2deg; translate: 0 0; }
+  to { rotate: 3.5deg; translate: 0.3rem -0.3rem; }
+}
+
+.carrusel-proximos--detenido .fc-capa {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-proximos__diapositiva,
+  .carrusel-proximos__diapositiva--activa {
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+
+  .carrusel-proximos__pila .fc-capa {
+    animation: none;
+  }
+}
