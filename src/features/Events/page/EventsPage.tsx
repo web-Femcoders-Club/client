@@ -29,6 +29,11 @@ const EventsPage = () => {
 
   const hayError = Boolean(pastEventsError || upcomingEventsError);
 
+  // La API no los devuelve ordenados, y en el carrusel el primero es el único que se ve sin esperar.
+  const sortedUpcomingEvents = [...(upcomingEventsData ?? [])].sort(
+    (a, b) => leerFecha(a.start_local).getTime() - leerFecha(b.start_local).getTime()
+  );
+
   const sortedPastEvents = pastEventsData
     ? [...pastEventsData].sort(
         (a, b) =>
@@ -85,7 +90,7 @@ const EventsPage = () => {
       ) : (
         <>
           <SeccionProximos
-            eventos={upcomingEventsData ?? []}
+            eventos={sortedUpcomingEvents}
             cargando={isLoadingUpcomingEvents}
           />
 

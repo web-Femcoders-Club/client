@@ -100,6 +100,19 @@
   font-variant-numeric: tabular-nums;
 }
 
+/*
+ * Móvil en horizontal: la tarjeta a todo el ancho no cabe en el alto, y los
+ * controles quedarían fuera de vista mientras se lee. Como en ponentes, el
+ * ancho sale del alto disponible.
+ */
+@media (orientation: landscape) and (max-height: 500px) {
+  .carrusel-proximos {
+    width: 100%;
+    max-width: min(100%, calc((100svh - var(--fem-header-height, 70px) - 4rem) * 1.6));
+    margin-inline: auto;
+  }
+}
+
 @keyframes proximos-respirar {
   from { rotate: 2deg; translate: 0 0; }
   to { rotate: 3.5deg; translate: 0.3rem -0.3rem; }

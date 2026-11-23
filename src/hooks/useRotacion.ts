@@ -60,6 +60,12 @@ export function useRotacion(
   return {
     /** Si está en modo automático (aunque ahora esté en pausa por ratón o foco). */
     girando: habilitada && !detenida,
+    /**
+     * Si está avanzando ahora mismo. Para `aria-live`: con el ratón o el foco
+     * dentro, `girando` sigue en true pero los cambios ya son de la persona,
+     * y hay que anunciarlos.
+     */
+    avanzando: habilitada && !detenida && !enPausa,
     alternar: () => setDetenida((d) => !d),
     pausaAlInteractuar,
   };

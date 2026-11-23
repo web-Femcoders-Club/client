@@ -35,14 +35,22 @@ interface CarruselProximosProps {
 
 const CarruselProximos: React.FC<CarruselProximosProps> = ({ eventos, titulo }) => {
   const total = eventos.length;
-  const [actual, setActual] = useState(0);
-  const irA = useCallback((i: number) => setActual(((i % total) + total) % total), [total]);
+  const [elegida, setElegida] = useState(0);
+  // Si la lista se acorta al recargarse en segundo plano, el índice guardado
+  // puede quedar fuera: sin acotarlo, ninguna tarjeta estaría activa.
+  const actual = Math.min(elegida, total - 1);
+  const irA = useCallback((i: number) => setElegida(((i % total) + total) % total), [total]);
   const rotacion = useRotacion(() => irA(actual + 1), INTERVALO_ROTACION, total > 1, actual);
 
   const alPulsarTecla = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    // Desde dentro de una tarjeta (p. ej. en «Reserva tu plaza») las flechas
+    // no cambian de evento: la tarjeta pasaría a `inert` y el foco se perdería.
+    if ((e.target as HTMLElement).closest(".carrusel-proximos__diapositiva")) return;
     const acciones: Record<string, () => void> = {
       ArrowLeft: () => irA(actual - 1),
       ArrowRight: () => irA(actual + 1),
+      Home: () => irA(0),
+      End: () => irA(total - 1),
     };
     const accion = acciones[e.key];
     if (!accion) return;
@@ -102,7 +110,14 @@ const CarruselProximos: React.FC<CarruselProximosProps> = ({ eventos, titulo }) 
       </div>
       <div className="carrusel-proximos__pila">
         <div className="fc-capa" aria-hidden="true" />
-        <div className="carrusel-proximos__marco" id="proximos-eventos" aria-live={rotacion.girando ? "off" : "polite"}>
+        {/*
+          Lo que oye el lector al cambiar a mano: posición y nombre, no la
+          tarjeta entera. Mientras avanza sola, en silencio.
+        */}
+        <p className="fc-solo-lector" aria-live={rotacion.avanzando ? "off" : "polite"}>
+          Evento {actual + 1} de {total}: {eventos[actual]?.name}
+        </p>
+        <div className="carrusel-proximos__marco" id="proximos-eventos">
           {eventos.map((evento, i) => (
             <div
               key={evento.id}
