@@ -21,6 +21,31 @@ export const getCodigoVonage = async (): Promise<{ codigo: string }> => {
   return data;
 };
 
+/** Una sesión online con el equipo de Vonage. Fecha y horas, en hora de Barcelona. */
+export interface SesionVonage {
+  fecha: string;
+  inicio: string;
+  fin: string;
+  api: string;
+  expertos: string;
+  enlace: string;
+  idReunion: string;
+  codigo: string;
+}
+
+/**
+ * Las sesiones online con Vonage que aún no han terminado (server#152).
+ *
+ * Por lo mismo que el código: llevan enlaces y códigos de Teams, y escritas
+ * aquí quedarían publicadas en el bundle y en el repositorio.
+ */
+export const getSesionesVonage = async (): Promise<{ sesiones: SesionVonage[] }> => {
+  const { data } = await axios.get(`${API_URL}/vonage/sesiones`, {
+    headers: getAuthHeaders(),
+  });
+  return data;
+};
+
 export const getInteresEnApis = async (
   idUser: number
 ): Promise<InteresEnApis | null> => {
