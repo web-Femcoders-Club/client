@@ -237,6 +237,9 @@ const ObjetivosSmart = lazy(
 const CvTech = lazy(
   () => import("../features/Blog/posts/ctrl-ella/CvTech")
 );
+const EntrevistaTech = lazy(
+  () => import("../features/Blog/posts/ctrl-ella/EntrevistaTech")
+);
 const TestingJavaScriptSinFrameworks = lazy(
   () =>
     import("../features/Blog/posts/recursos/js/TestingJavaScriptSinFrameworks")
@@ -1060,6 +1063,16 @@ const RouterComponent: React.FC = () => {
               <Layout>
                 <Suspense fallback={<Loader />}>
                   <CvTech />
+                </Suspense>
+              </Layout>
+            }
+          />
+          <Route
+            path="/ctrl-ella/entrevista-tech-como-prepararla"
+            element={
+              <Layout>
+                <Suspense fallback={<Loader />}>
+                  <EntrevistaTech />
                 </Suspense>
               </Layout>
             }
