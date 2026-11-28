@@ -1,5 +1,16 @@
 [
   {
+    "ruta": "/ctrl-ella/entrevista-tech-como-prepararla",
+    "titulo": "Cómo preparar una entrevista tech: guía con método STAR",
+    "descripcion": "Prepara una entrevista tech sin parecer otra persona: cómo responder «háblame de ti», contar tus proyectos, usar el método STAR y hacer tus preguntas.",
+    "imagen": "/assets/ctrl-ella/portada-por-defecto.webp",
+    "proporcion": 1.9,
+    "fecha": "2026-11-28",
+    "seccion": "ctrl-ella",
+    "tema": "Ctrl+Ella",
+    "imagenConIA": true
+  },
+  {
     "ruta": "/noticias/piloto-vonage-cuatro-proyectos",
     "titulo": "Construimos juntas: el piloto con Vonage",
     "descripcion": "Quince mujeres y cuatro mentoras de FemCoders Club construyen cuatro aplicaciones con las APIs de Vonage. Te presentamos los equipos antes de la demo final.",
